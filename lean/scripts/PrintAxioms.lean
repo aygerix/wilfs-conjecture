@@ -97,3 +97,25 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.Examples.tile3_isTile
 #print axioms NumericalSemigroup.Examples.tile3_TileCLAt
 #print axioms NumericalSemigroup.Examples.tile3_tight
+-- Wilf.TileReduction
+#print axioms NumericalSemigroup.IsApery.eq_of_mod_eq
+#print axioms NumericalSemigroup.tilePhi_genMod
+#print axioms NumericalSemigroup.isTile_factDownSet
+#print axioms NumericalSemigroup.val_aperyMax_sub_tilePhi
+#print axioms NumericalSemigroup.CL_sum_eq_tile_sum
+#print axioms NumericalSemigroup.CL_iff_tileCLAt_aperyMax
+#print axioms NumericalSemigroup.CL_of_tileCLAt
+#print axioms NumericalSemigroup.wilfConjecture_of_TileCL
+-- Wilf.Ramp
+#print axioms NumericalSemigroup.pi_nat_induction
+#print axioms NumericalSemigroup.DirConvex.delta_mono
+#print axioms NumericalSemigroup.DirConvex.incr_mono
+#print axioms NumericalSemigroup.DirConvex.sub_zero_le_sum_sub
+#print axioms NumericalSemigroup.DirConvex.column_ineq
+#print axioms NumericalSemigroup.DirConvex.direction_ineq
+#print axioms NumericalSemigroup.sum_tileT_mul
+#print axioms NumericalSemigroup.rampLemma
+#print axioms NumericalSemigroup.rampLemma_concave
+#print axioms NumericalSemigroup.rampLemma_eq
+#print axioms NumericalSemigroup.incr_mono_of_convex
+#print axioms NumericalSemigroup.dirConvex_comp_linear

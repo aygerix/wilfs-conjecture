@@ -7,17 +7,20 @@
 - Files: `Wilf.lean` (root), `Wilf/Basic.lean` (definitions and general theorems),
   `Wilf/Chains.lean` (Identity CH, Corollary H, Lemma A, TOP'' ⇒ Wilf; see `.research/PROOFS.md`),
   `Wilf/Carry.lean` (factorization down-set D, column identity CH', CL ⇒ Wilf, Tile-CL statement),
+  `Wilf/TileReduction.lean` (the factorization down-set is a tile; CL = Tile-CL at `s = M`; **Tile-CL ⇒ Wilf**),
+  `Wilf/Ramp.lean` (the Ramp Lemma for finite down-sets and directionally convex `ρ`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
-## Status (2026-10-17, after the Carry round)
+## Status (2026-10-17, after the Tile-reduction / Ramp round)
 
 - `lake build`: succeeds, 0 errors, 0 warnings.
 - `sorry` count: **0** (`grep -rnw sorry Wilf Wilf.lean` gives nothing). No `axiom` declarations and no `native_decide`.
-- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (95 of them, including all the main ones below)
+- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (115 of them, including all the main ones below)
   depends only on `[propext, Classical.choice, Quot.sound]`, the standard mathlib axioms.
 - Every theorem below is **proved** (kernel-checked). Wilf's conjecture itself is only *stated* (`WilfConjecture`), not proved.
   Conjectures TOP'', CL and Tile-CL are only *stated* (`TOP2`, `CL`, `TileCL`); what is proved is the
-  implications `TOP2 S → Wilf(S)` and `CL S → Wilf(S)`. No implication involving `TileCL` is proved.
+  implications `TOP2 S → Wilf(S)`, `CL S → Wilf(S)`, and **`TileCL → WilfConjecture`** (`wilfConjecture_of_TileCL`).
+  The Ramp Lemma is proved (`rampLemma`); it does not by itself imply Tile-CL (see `.research/PROOFS.md`).
 
 ## Definitions (`Wilf/Basic.lean`, namespace `NumericalSemigroup`)
 
@@ -222,6 +225,56 @@ Independent numerical check by the Lean agent (scratchpad script `check_cl.py`, 
 order exactly as formalized, on all 19,814 semigroups with `S ≠ ℕ` and genus ≤ 17. Results: `D` is a down-set with
 `|D| = m`, CH' holds exactly, and CL(lex) holds, with 0 failures in each case.
 
+## Tile-CL ⇒ Wilf (`Wilf/TileReduction.lean`)
+
+Verdict: the remark "CL for `S` is Tile-CL for `(D, p mod m)` at `s = M mod m`" in `.research/PROOFS.md` is correct as
+stated. `TileCL`, `CL`, `IsTile`, `TileCLAt` and `WilfConjecture` are used **unchanged** (as defined in `Carry.lean`/`Basic.lean`).
+
+| Lean | Meaning |
+|---|---|
+| `genMod S a := (S.gen a : ZMod S.multiplicity)` | `p_a mod m` for `p_a ∈ P'` |
+
+Theorems (all proved; `S` implicit; `d = S.primitives'.card`, `m = S.multiplicity`, `M = S.aperyMax m`, `D = S.factDownSet`):
+- `IsApery.eq_of_mod_eq : n ∈ S → 0 < n → S.IsApery n w₁ → S.IsApery n w₂ → w₁ % n = w₂ % n → w₁ = w₂`
+- `tilePhi_genMod : tilePhi S.genMod x = ((S.wt x : ℕ) : ZMod m)`
+- **`isTile_factDownSet : IsTile S.factDownSet S.genMod`** (every `S`): down-set, `|D| = m`, and `φ` bijective `D → ℤ/m`
+  (injective since distinct cells have distinct Apéry values, which are distinct mod `m`; surjective via `nf (apery m s.val)`).
+- `val_aperyMax_sub_tilePhi : (((M : ZMod m) - tilePhi S.genMod y).val : ℤ) = ((M:ℤ) - S.wt y) % m`
+- `CL_sum_eq_tile_sum : Σ_a Σ_{x∈D, x+e_a∉D} ((x a:ℤ)+1)·(((M:ℤ) - wt x) % m) = ((Σ_{y∈D} tileT D y * ((M : ZMod m) - tilePhi S.genMod y).val : ℕ) : ℤ)`
+  (exchange of summation).
+- **`CL_iff_tileCLAt_aperyMax : S.CL ↔ (d - 1) * (m * (m - 1) / 2) ≤ Σ_{y∈D} tileT D y * ((M : ZMod m) - tilePhi S.genMod y).val`**
+  (every `S`, including `ℕ`: for `d = 0` one has `S = ℕ`, `m = 1`, and both left-hand sides are `0`; for `d ≥ 1`,
+  `(e:ℤ) - 1 - 1 = ((d - 1 : ℕ) : ℤ)` exactly).
+- `CL_of_tileCLAt : TileCLAt S.factDownSet S.genMod → S.CL` (uses only the instance `s = M mod m`).
+- **`wilfConjecture_of_TileCL : TileCL → WilfConjecture`**. `S = ℕ` is `wilf_nat`; for `S ≠ ℕ`, `d = e - 1 ≥ 1`
+  (`two_le_embDim`), so `TileCL` applies to the tile `(D, p mod m)` and `wilf_of_CL` finishes.
+
+## The Ramp Lemma (`Wilf/Ramp.lean`)
+
+Verdict: the Ramp Lemma of `.research/PROOFS.md` is correct as stated (any finite down-set, no tiling hypothesis), and holds
+for `ρ` with values in any linearly ordered commutative ring `K` (`[CommRing K] [LinearOrder K] [IsStrictOrderedRing K]`:
+`ℤ`, `ℚ`, `ℝ`, ...), not only `ℝ`. The proof replaces the lexicographic path of step (1) by an order-free induction.
+
+| Lean | Meaning |
+|---|---|
+| `DirConvex ρ := ∀ a b u, ρ (u + e_a) - ρ u ≤ ρ (u + e_b + e_a) - ρ (u + e_b)` (`e_a = Pi.single a 1`) | `Δ_a ρ(u) ≤ Δ_a ρ(u + e_b)` for all `a, b` (`b = a` included), `ρ : (ι → ℕ) → K` |
+| `tileBeta D y : ℤ := (d : ℤ) + 1 - tileT D y` | `β(y) = d + 1 - T(y)` |
+
+Theorems (all proved):
+- `pi_nat_induction`: a predicate on `ι → ℕ` holding at `0` and every `e_b` and closed under `+` holds everywhere.
+- `DirConvex.delta_mono : DirConvex ρ → ρ (u + e_a) - ρ u ≤ ρ (u + w + e_a) - ρ (u + w)`.
+- **`DirConvex.incr_mono : DirConvex ρ → u ≤ v → ρ (u + w) - ρ u ≤ ρ (v + w) - ρ v`** (increasing differences).
+- Step 1 `DirConvex.sub_zero_le_sum_sub : DirConvex ρ → ρ x - ρ 0 ≤ Σ_a (ρ x - ρ (x - Pi.single a (x a)))`.
+- Step 2 `DirConvex.column_ineq : Σ_{k<y_a+1} (ρ (y - k e_a) - ρ (y - y_a e_a)) ≤ Σ_{k<y_a+1} (ρ y - ρ (y - k e_a))`, and
+  `DirConvex.direction_ineq : IsDownSetFin D → Σ_{x∈D} (ρ x - ρ (x - x_a e_a)) ≤ Σ_{y∈D, y+e_a∉D} ((y a : K) + 1) * ρ y - Σ_{x∈D} ρ x`.
+- `sum_tileT_mul : Σ_{y∈D} (tileT D y : R) * f y = Σ_a Σ_{y∈D, y+e_a∉D} ((y a : R) + 1) * f y` (any `CommRing R`).
+- **`rampLemma : IsDownSetFin D → DirConvex ρ → Σ_{y∈D} (tileBeta D y : K) * ρ y ≤ (D.card : K) * ρ 0`**
+  (`D : Finset (Fin d → ℕ)`, `ρ : (Fin d → ℕ) → K`; every `d`, including `d = 0`, and `D = ∅`).
+- `rampLemma_concave : IsDownSetFin D → DirConvex (fun y => -ρ y) → (D.card : K) * ρ 0 ≤ Σ_{y∈D} (tileBeta D y : K) * ρ y`;
+  `rampLemma_eq` (both hypotheses, i.e. affine-type `ρ`): equality.
+- Instance: `incr_mono_of_convex` and **`dirConvex_comp_linear : (∀ n, g (n+1) - g n ≤ g (n+2) - g (n+1)) → DirConvex (fun y => g (Σ_b q b * y b))`**
+  for `g : ℕ → K`, `q : ι → ℕ` (the paper's `ρ = g(⟨y,q⟩)`, here with `q ∈ ℕ^d` and `g` defined on `ℕ`; real `q` is not formalized).
+
 ## Kernel-checked examples (`Wilf/Examples.lean`, namespace `NumericalSemigroup.Examples`)
 
 Each example is built with `ofPred`, and its generating set is certified by `*_eq_closure : S.toAddSubmonoid = AddSubmonoid.closure {…}`.
@@ -235,6 +288,12 @@ Each example is built with `ofPred`, and its generating set is certified by `*_e
 | TOP'' checks | `S35_multiplicity = 3`, `S35_aperySet : aperySet 3 = {0,10,5}`, `S35_topLayer = {10}`, `S35_primitives' = {5}`, `S35_minFactLen_ten = 2`, `S35_TOP2_eq`, `S35_TOP2`; `S357_aperySet = {0,7,5}`, `S357_topLayer = {7,5}`, `S357_primitives' = {5,7}`, `S357_minFactLen`, `S357_TOP2_vals`, `S357_TOP2` |
 
 ## `#print axioms` output (`lake env lean scripts/PrintAxioms.lean`)
+
+Tile-reduction / Ramp round: the 20 new entries (`IsApery.eq_of_mod_eq, tilePhi_genMod, isTile_factDownSet,
+val_aperyMax_sub_tilePhi, CL_sum_eq_tile_sum, CL_iff_tileCLAt_aperyMax, CL_of_tileCLAt, wilfConjecture_of_TileCL,
+pi_nat_induction, DirConvex.delta_mono, DirConvex.incr_mono, DirConvex.sub_zero_le_sum_sub, DirConvex.column_ineq,
+DirConvex.direction_ineq, sum_tileT_mul, rampLemma, rampLemma_concave, rampLemma_eq, incr_mono_of_convex,
+dirConvex_comp_linear`) all report `[propext, Classical.choice, Quot.sound]`; all 115 entries are standard.
 
 Carry round: the 27 new entries (`sum_columns, card_eq_sum_columns, sum_wt_add_eq_columns, exists_wt_eq,
 mem_factSet, nf_spec, wt_nf, nf_downward, isDownSetFin_factDownSet, nf_injOn, card_factDownSet, sum_wt_factDownSet,
