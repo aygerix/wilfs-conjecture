@@ -29,6 +29,21 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E16 | `src/scratch/pdcl.py` | PDCL: Σ_a min_s f_a(s) ≥ (d−1)m(m−1)/2 | tiles d=2 m ≤ 12; d=3 m ≤ 9 | d=2: 0 failures; d=3: FALSE (6 at m=6, 12 at m=7, …) | 1 min |
 | E17 | `src/scratch/clinj.py 1 12`; `... 2 9` | CL for down-sets with φ merely injective (|D| ≤ m), form (II) | d=1 m ≤ 12; d=2 m ≤ 9 | FALSE (d=1: D={0,1,2}, p=7, m=10, σ=3) | 1 min |
 
+| E18 | `src/scratch/ramp.py` | Ramp Lemma Σ_D βρ ≤ |D|ρ(0), ρ directionally convex | all down-sets d=2 m≤9, d=3 m≤7; q ∈ [1,5]^2 / [1,4]^3 | 0 failures (now PROVED + Lean) | — |
+| E19 | `src/scratch/divis.py` | slack integrality, slack ∈ [0,m−1] | d=2 m≤10, d=3 m≤8 | always integer in range | — |
+| E20 | `src/scratch/ptcl.py`, `rptcl.py`, `pmaj.py` | P-TCL (partial, uncorrected) / RP-TCL (virtual-completion corrected) / partial majorization | d=2 m≤10, d=3 m≤7 | P-TCL FALSE (d=2 m=7, D'={00,01,02,10,11,20}, p=(2,3)); RP-TCL and pmaj 0 failures | — |
+| E21 | `src/scratch/fraccert.py`, `fraccert2.py`, `grcheck.py` | arc certificates (integer/fractional) for majorization | small tiles | FALSE: d=2 m=8, 3×3∖{22}, p=(5,7) | — |
+| E22 | `src/scratch/dslp.py` | LP over region R = {Π(z_a+1) ≤ m} | d=2 m=8..10; d=3 m=4..6 | tight d=2; d=3 NOT tight (13/3 at m=5, 21/4 at m=6) | minutes |
+| **E23** | **`src/scratch/dslpbox.py`** | **LP over box-injective region R'(p), x_0=1** | **d=3 m=5,6,7; d=4 m=5,6 (all p, s)** | **tight: max = m−1, min = 0 in every case** | ~1 h |
+| E24 | `src/scratch/scl.py 2 6 6`, `2 8 7`, `3 6 5` | single-cut lemma F(E) ≤ θ + |D'∖E| (any V-injective down-set) | all down-sets of size N, all weights ≤ P | 0 violations (tight cases exist) | 1 min |
+| E25 | `src/scratch/xscl.py 1` | XSCL d|E| ≤ θ + |∂⁺E| (simplex E, V injective on E∪∂⁺E) | 4000 random p̂, d ∈ {2..5}, weights ≤ 80, seed 1 | max excess 0 | 1 min |
+| E26 | `src/scratch/aperylift.py 2 10`, `3 7` | every tile is an Apéry tile for some lift (LP on exit vectors) | all tiles d=2 m≤10 (462), d=3 m≤7 (624) | strictly feasible in every case | 1 min |
+| E27 | `src/scratch/rampstair.py 2 9 3`, `3 6 2` | ⌊(V+σ*)/m⌋ directionally convex for some Apéry lift (⇒ CL by Ramp) | lifts k ∈ [0,3]^2 / [0,2]^3 | 30/126 tiles (d=2 m=9), 102/126 (d=3 m=6) | 1 min |
+| E28 | `src/scratch/rampdecomp.py 2 9`, `3 7` | Ramp decomposition T1 (supermodular) + T2 (column trapezoid) | all tiles, all σ | T1 ≥ 0 always; T2 ≥ −54 (m=9) | 1 min |
+| **E29** | **`src/scratch/basecl.py 2 9`, `3 7`** | **Base-CL: base-slack ∈ [0,m−1]** | **all tiles, all σ, d=2 m≤9, d=3 m≤7** | **0 violations; always integral** | 1 min |
+| E30 | `src/scratch/colcl.py 9`, `colcl2.py 9`, `mixedex.py` | Column-CL for orthogonally convex polyominoes, split by orientation | d=2, all fixed polyominoes m≤9 | all-(+) and all-(−): 0 failures; general ortho-convex FALSE from m=4; mixed FALSE at m=9 | 3 min |
+| E31 | `src/scratch/topbase.py 2 9`, `3 7` | are base-slack shapes relabelings of top-slack shapes? | all tiles | NO (e.g. d=2 m=9: 54 top shapes, 37 base shapes, 31 base shapes not top shapes) | 2 min |
+
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

@@ -150,3 +150,74 @@ What it does NOT give: Tile-CL needs the sawtooth r = ⟨σ+V⟩, which is neith
 ### Next
 - Perfect-tile single-cut lemma X_s ≤ m−1 (clean, no modular arithmetic): attempt a direct proof.
 - Certificate structure: "one pair per (cell, direction), columns permuted within each (a, height)" — test existence.
+
+## 2026-10-17 (night, 3) — LP tightness, wall-sum formula, single-cut lemma, Apéry lifts, Base-CL
+
+### LP relaxation (dslp.py, dslpbox.py; exact rational simplex src/scratch/exactlp.py)
+max/min Σ_z γ_s(z)x_z over fractional down-set transversals (class sums 1, x monotone).
+- Region R = {z : Π(z_a+1) ≤ m}: LP value = m−1 / 0 (tight) for d=2 m≤10; NOT tight for d=3 (m=5: 13/3, min −1/3;
+  m=6: 21/4, min −1/4).
+- Box-injective region R'(p) = {z : φ injective on [0,z]}: tight (max m−1, min 0) for d=3 m=5,6,7 and d=4 m=5,6.
+  So for every (d,m,p,s) tested there is a dual certificate (u on Z/m, flow f ≥ 0 on edges of R'):
+  u_{φ(z)} + in(z) − out(z) ≥ γ_s(z), Σu = m−1. Min-flow duals (dualbox.py) have no visible closed form
+  (u takes negative values; e.g. d=2 m=9 p=(1,4)). OPEN: a structured dual family.
+
+### Wall-sum formula (PROVED, any positive lift p̂)
+With E_t = {z ∈ D : V(z) ≤ t}, U_t = D∖E_t, F(E) = #{(w,a): w ∈ E, top_a w ∉ E} = Σ_{y∈E}(d − T(y)) (any down-set E ⊆ D):
+    slack(s) = m − 1 − s + Σ_{j≥0} [F(E_{s+jm}) − |U_{s+jm}|]          (s ∈ [0,m)).
+Proof: γ_s(z) = Σ_{walls t≡s, t<V(z)} (w_t(z) − 1) with w_t(z) = Σ_{a: V(z)−p̂_a ≤ t} z_a, and Σ_j|U_{s+jm}| = K + m−1−s
+with K = Σ_z⌊V(z)/m⌋. Equivalently slack(s) = Σ_{r>s}(T(c(r)) − d) − Σ_y β(y)⌊V(y)/m⌋, and
+**Wilf direction (slack ≥ 0) ⇔ X(s) := Σ_j F(E_{s+jm}) ≥ K**: depth-weighted crossings of the walls ≡ s are at least
+the number of (cell, multiple of m below it) incidences. For perfect tiles K = 0 (trivial); only the upper bound has content.
+
+### Single-cut lemma (SCL) — CONJ, implied by Tile-CL; tested
+SCL: D' any finite down-set, p̂ ≥ 1 with V injective on D', E = D'∩{V ≤ θ}: F(E) ≤ θ + |D'∖E|.
+(Implied by Tile-CL via virtual completion with m > max V.) scl.py: d=2 N≤8, d=3 N=6, all weights ≤ 7/5: 0 violations.
+Reduction (PROVED): worst case is D' = E ∪ ∂⁺E with E = {y ∈ ℕ^d : V(y) ≤ θ} (adding a boundary cell b raises
+F − |U| by Σ_{a: b−e_a∈E} b_a − 1 ≥ 0). Sweep identity (PROVED, p̂_1 < … < p̂_d, V injective on E∪∂⁺E):
+    d|E| − |∂⁺E| = Σ_{y∈E} top(y),  top(y) = max{a : y_a ≥ 1}, top(0)=0.
+So **XSCL ⇔ Σ_{t ∈ S∩[1,θ]} rank(t) ≤ θ**, S = ⟨p̂⟩, rank(t) = least b with t ∈ ⟨p̂_1..p̂_b⟩ (unique factorization
+up to θ + boundary). xscl.py: 4000 random p̂, d ≤ 5, weights ≤ 80, all θ in the injective range: max excess 0 (tight often).
+d=2 PROVED: rank-2 elements t = iα+jβ map injectively to gaps via t ↦ (J+1)β − α − t (J = ⌊θ/β⌋), with a fix-up into the
+class of (J+1)β when θ ≥ (J+1)β − α.
+Recursion (PROVED): XSCL_d ⇔ Σ_{k≥0} G'_{d−1}(θ − kα) ≤ #gaps of S in [1,θ] (α = p̂_1, G' = the d−1 dim
+analogue for p̂_2..p̂_d) — a MULTI-wall statement one dimension down with modulus α. So "single wall in dim d" is
+as hard as "multi-wall in dim d−1": no free induction.
+
+### Every tested tile is an Apéry tile (aperylift.py) — OBSERVED
+For each tile (D,p) there is k ≥ 0 with ⟨λ,k⟩ > 0 for all exit vectors λ = z+e_a − z' (z a-top, z' ≡ z+e_a in D):
+d=2 m≤10 (all 462 tiles), d=3 m≤7 (all 624). Then p̂ = p + Nmk (N large) gives V(D) = Ap(⟨m,p̂⟩, m).
+Consequence: Tile-CL ≡ "strong CL" for numerical semigroups with arbitrary generating sets and down-set
+factorization tiles; CL for S itself only needs s* = φ(argmax_D V) (the Frobenius class).
+OPEN: prove it (is every down-set fundamental domain of a cyclic-quotient lattice a Gröbner/weight staircase?).
+
+### Ramp route for CL (PROVED sufficient condition; rampstair.py)
+CL at s* ⇔ Σ_y β(y)ρ(y) ≤ mρ(0) for ρ = ⌊(V + σ*)/m⌋, σ* = m−1−s*. If ρ is directionally convex on D for some
+Apéry lift, CL follows from the Ramp Lemma. Holds for some Apéry lift in 30/126 tiles (d=2 m=9), 102/126 (d=3 m=6, lifts in
+[0,2]^3): a genuine proved subfamily, not the general case.
+Exact Ramp decomposition (PROVED, residue-only): m·(Σβ R) = T1 + T2 with R = ⟨φ+σ⟩,
+  T1 = Σ_aΣ_C L_C R(base_C) − (d−1)m(m−1)/2 (lex/supermodular part), T2 = Σ_C[2Σ_{c∈C}R(c) − L_C(R(base_C)+R(top_C))]
+(column-trapezoid part; T2 = 0 if all columns have length ≤ 2). Observed: T1 ≥ 0 ALWAYS, T2 often negative.
+
+### Base-CL — NEW CONJ (basecl.py, topbase.py): the reversed-orientation twin of Tile-CL
+    base-slack(σ) = (Σ_aΣ_C L_C⟨φ(base_C)+σ⟩ − (d−1)m(m−1)/2)/m ∈ [0, m−1], always an integer.
+Verified d=2 m≤9, d=3 m≤7 (all tiles, all σ). Equivalent forms (PROVED):
+- inversion form: #{(x,a) : R_σ(base_a x) > R_σ(x)} is within (m−1)/2 of its mean (Top-CL: #{(x,a): R_σ(top_a x) < R_σ(x)});
+- carry form: base-slack = σ + Σ_{x∈D}(k(x) − C(x)), C(x) = ⌊(σ + Σ_a⟨x_a p_a⟩)/m⌋ (carries),
+  k(x) = #{a : ⟨x_a p_a⟩ > ⟨φ(x)+σ⟩};
+- Ramp form: Σ_y α(y)⌊(σ + Ṽ(y))/m⌋ ∈ [σ−m+1, σ], α = Λ − (d−1), Λ(y) = Σ_{a: y_a=0} L_a(y), Ṽ(y) = Σ_a⟨y_ap_a⟩;
+  "Base Ramp Lemma" (PROVED): Σ_y α(y)ρ(y) ≤ mρ(0) for every ρ with Δ_aρ nondecreasing in all coordinates b ≠ a
+  (no convexity in the own direction needed — only step (1) of the Ramp proof).
+Base-CL is Tile-CL for −D (column-convex tile oriented the other way). Its slack vectors are NOT relabelings of top
+slack vectors (topbase.py: different shape sets).
+**Orientation obstruction (FALSE, preserved):** "Column-CL" for orthogonally convex tiles fails in general
+(non-integral slack, out of range from m=4), and for MIXED orientations (tops on the staircase in one direction, on the
+flat side in the other) it fails at d=2 m=9: D = column of height 7 with a 2×2 block on top
+(rows: ##,##,#.,#.,#.,#.,#.), p=(2,1): slack = 73/9 > 8; p=(7,8): slack −1/9 (colcl2.py, mixedex.py).
+Only consistent orientations (all tops at the staircase = Tile-CL, all at the flat side = Base-CL) survive.
+
+### Strategic note
+Every route so far reduces to the same coupling: the depth-weighted crossings of several walls (≡ s mod m) must be
+controlled jointly. New handles this round: (i) Wilf direction = "X(s) ≥ K" (crossings vs. multiples of m below cells);
+(ii) the two-orientation symmetry (Top/Base) — a proof should explain why consistent orientation is needed;
+(iii) LP duality on R'(p) is tight through d=4 m=6.
