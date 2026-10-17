@@ -76,3 +76,77 @@
 6. Find the cross-direction coupling for d ≥ 3: a potential Ψ on D whose increments dominate Σ_a(window_a) termwise.
 7. Is the minimum of f over all tiles of a fixed lattice attained at a Gröbner tile (D_θ)? (would reduce to Apéry tiles)
 8. Which test functions g (in place of the sawtooth) satisfy Σ_y T(y) g(σ+φ(y)) ≤ (d+1)Σ g? (cone of valid g)
+
+## 2026-10-17 (night) — proof attempts on Tile-CL; Ramp Lemma; semigroup form of CL
+
+### New PROVED result: Ramp Lemma (all down-sets, no tiling needed) — PROOFS.md
+For any finite down-set D ⊆ ℕ^d, β := d+1−T, and any directionally convex ρ (Δ_aρ(u) nondecreasing in every
+coordinate of u): Σ_{y∈D} β(y)ρ(y) ≤ |D|·ρ(0).  (Reverse inequality for directionally concave ρ.)
+Proof: lex-path decomposition + supermodularity (step 1), trapezoid inequality on each column (step 2).
+Special case ρ = (⟨y,q⟩ − K)^+: the "wall excess" E(θ) = β(H_θ) has all tail sums Σ_{θ>K} E(θ) ≤ 0.
+Checked numerically (ramp.py): d=2 m≤9, d=3 m≤7, all down-sets, all q ∈ [1,5]^d / [1,4]^3: 0 failures.
+What it does NOT give: Tile-CL needs the sawtooth r = ⟨σ+V⟩, which is neither convex nor concave; the AP-sampling
+Σ_j E(jm−σ) is not controlled by tail sums alone.
+
+### Exact reformulations found (all equivalent to CL / Tile-CL; derivations in PROOFS.md)
+- Semigroup form: CL ⇔ #bad pairs ≤ W, where a pair (s,a), s ∈ L = S∩[0,c), 1≤a≤d, is *good* if
+  s + h·n_a ≥ c for h = height of the a-column above the D-cell of s (else bad). Equivalently
+  Σ_{a=1}^{d} Σ_{v=c}^{c+n_a−1} x(v)_a ≥ g (x(v) = D-cell of v mod m), and CL ⇔ W ≥ Σ_aΣ_{x∈D} δ(top_a x),
+  δ = number of left elements in the class. "Strong CL" (all s): Σ_aΣ_{v=t}^{t+n_a−1} x(v)_a ≥ g for EVERY t.
+- Tile form: Σ_aΣ_{j=0}^{p̂_a−1} c_a(t+j) − Σ_y⌊⟨y,p̂⟩/m⌋ ∈ [0, m−1] for every t (two-sided).
+- Geometric: Ψ(t) = total column depth at the hyperplane ⟨y,p̂⟩ = t + 1/2 in the periodic tiling, per period
+  of K_0 = Λ ∩ p̂^⊥ (there are p̂_a a-lines per period). Tile-CL ⇔ Ψ is within (m−1)/2 of its mean.
+- Slack is always an integer in [0,m−1] (divis.py: verified d=2 m≤10, d=3 m≤8); slack(s) + c_0 =
+  #{(x,a): top_a x precedes x in the rotated order} ("ascending pairs"), c_0 constant.
+
+### Failed / negative findings this round
+- y* (cell whose rotated label equals slack(s)) has no fixed type (ystar.py): not always maximal, sometimes 0.
+- Local monotonicity of E on scale m: (U) E(θ) ≤ mean of previous m values would imply the CL side; fails in some
+  tiles (d=2 m≥7, d=3 m≥6). (L) the mirror statement fails in almost all tiles (E jumps up at heavy tops).
+- Convex-majorant/minorant sandwich of k_σ = ⌊(σ+V)/m⌋: loses a factor ~d; a sufficient "touching at heavy tops"
+  condition is already false for d = 1.
+- d=2 per-direction data (perdir.py): Σ_a(max U_a − mean U_a) = (m−1)/2 in most d=2 tiles (PDCL tight).
+
+## 2026-10-17 (night, cont.) — cone of test functions, additive cell formula, virtual completion, certificates
+
+### Lean (verified by me: `lake build` OK, 115 PrintAxioms entries all [propext, Classical.choice, Quot.sound], no sorry)
+- `lean/Wilf/TileReduction.lean`: `wilfConjecture_of_TileCL : TileCL → WilfConjecture` (commit c043ab4).
+- `lean/Wilf/Ramp.lean`: `rampLemma` (Ramp Lemma, any ordered comm ring), concave/equality variants.
+
+### New exact facts (PROVED on paper, numerically re-checked)
+1. **Additive cell formula.** For every tile and s:  slack(s) = Σ_{z∈D} γ_s(z),
+   γ_s(z) = Σ_a z_a·#{t ∈ [V(z)−p̂_a, V(z)) : t ≡ s} − ⌊V(z)/m⌋  (lift-invariant; Σ_s γ_s(z) = φ(z)).
+   On each class r, γ_s is AFFINE in z (slope ε^s(r) − p̂/m).  (gamma.py: 0 mismatches, d=1..2.)
+2. **Tents / interval form.** Valid test functions g (Σ_y T(y) g(s−φ(y)) ≥ (d−1)Σg ∀ tiles, s) include all
+   cyclically concave g (tents τ_k = discrete Green's functions); tents ⇔ I-TCL:
+   |Σ_{t∈I}(Ψ(t) − Ψ̄)| ≤ |I|(m−|I|)/2 for every cyclic interval I. Implied by majorization. (tents.py, cone.py)
+3. **Virtual completion (PROVED).** For a partial down-set D' (φ injective), add one new direction b_r with p̂ = r
+   and cell e_{b_r} for each missing residue r: the result is a full tile in dimension d + |M|, and its slack is
+   Ĝ_s(D') = Σ_{z∈D'} γ_s(z) + #{r ∉ φ(D') : r > s}. So "partial Tile-CL" with this correction ≡ Tile-CL.
+   Every tile is reached from the MED tile {0, e_1..e_{m−1}} (slack = m−1−s, a permutation) by replacing
+   trivial directions with cells one at a time; each step adds ξ_z = γ(z) − 1_{[0,φ(z))}, which depends ONLY on z.
+4. **Landau reformulation.** Majorization slack ≺ (0..m−1) ⇔ slack is the score sequence of a tournament on Z/m
+   (Landau 1953) ⇔ a 0/1 matrix rows s, columns z ∈ D, column sums φ(z), row sums slack(s) (Gale–Ryser).
+5. c0 identity: slack = #{(x,a) : s ∈ [φ(x), φ(top_a x))} − c0 with c0 = Σ_y ⌊Σ_a ⟨y_a p_a⟩/m⌋ ∈ [0, E],
+   E = #pairs − (m−1); column reflection pairs (x,a) ↔ (ρ_a x, a) with arc length φ((ρ_a x)_a e_a).
+
+### Falsified (preserved)
+- **P-TCL** (0 ≤ Σ_{z∈D'}γ_s(z) ≤ |D'|−1 for partial down-sets): FALSE. Smallest: d=2 m=7,
+  D' = {00,01,02,10,11,20}, p=(2,3), G = [2,2,4,6,4,2,0] (6 > 5). All violations by exactly 1. (ptcl.py)
+  Corrected version (RP-TCL, fact 3) holds: d=2 m≤10, d=3 m≤7 exhaustive; partial majorization too (pmaj.py).
+- **Monotone contraction along build-ups** (slack(D_{k+1}) ≺ slack(D_k) in V/deg/lex order): FALSE (chainmaj.py).
+- **Arc certificates** (A_z an arc of length φ(z)): impossible when Σ_y (d−T(y))^+ > m−1 (e.g. every 3×4 box):
+  arc starts minus ends at s equal d − T. Even **fractional** arc certificates (any rotations) FAIL:
+  d=2 m=8, D = 3×3 minus {22}, p=(5,7), slack=[7,4,3,0,2,4,3,5]: slack(0)=m−1 forces all arcs ∋ 0,
+  slack(3)=0 forbids 3, so coverage would be unimodal on {4..7,0,1,2} but it is not. (fraccert*.py, grcheck.py)
+  A non-arc Gale–Ryser certificate exists (unions of disjoint pair-intervals, see below).
+- slack = S^a (direction-a arc family) for some a: holds in many small tiles but not all (dirfam.py).
+
+### Perfect tiles (V: D → [0,m) bijective; e.g. 3×3 minus corner with p̂=(3,1))
+- slack(s) = X_s = #{(x,a): V(x) ≤ s < V(top_a x)} (single cut). Window form: X_s = Σ_a Σ_{j=1}^{p̂_a} c_a(s+j),
+  c(t) = V^{-1}(t). Tile-CL here ⇔ X_s ≤ m−1. In the m=8 example a certificate groups pair-intervals so that each
+  group's differences sum to one cell z (bijectively) with disjoint intervals; it permutes which column's pair is used.
+
+### Next
+- Perfect-tile single-cut lemma X_s ≤ m−1 (clean, no modular arithmetic): attempt a direct proof.
+- Certificate structure: "one pair per (cell, direction), columns permuted within each (a, height)" — test existence.
