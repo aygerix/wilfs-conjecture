@@ -44,6 +44,14 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E30 | `src/scratch/colcl.py 9`, `colcl2.py 9`, `mixedex.py` | Column-CL for orthogonally convex polyominoes, split by orientation | d=2, all fixed polyominoes m≤9 | all-(+) and all-(−): 0 failures; general ortho-convex FALSE from m=4; mixed FALSE at m=9 | 3 min |
 | E31 | `src/scratch/topbase.py 2 9`, `3 7` | are base-slack shapes relabelings of top-slack shapes? | all tiles | NO (e.g. d=2 m=9: 54 top shapes, 37 base shapes, 31 base shapes not top shapes) | 2 min |
 
+| E32 | `src/scratch/wallpair.py 2 8 2`, `3 6 1` | wall pairings of X(s) ≥ K: per wall (P1), tail sums (P2), head sums (P3) | all tiles, lifts k ∈ [0,2]^2 / [0,1]^3 | P1, P3 FALSE (e.g. 336/608 at d=2 m=8); P2 0 failures | 2 min |
+| **E33** | **`src/scratch/tailpair.py 2 10 0`, `3 7 0`, `2 7 2`, `3 6 1`** | **tail pairing TP for all J** | **all tiles; std lift and lifts k ≤ 2 / ≤ 1** | **0 failures** | 5 min |
+| **E34** | **`src/scratch/gtp.py 2 10 0`, `3 7 0`, `2 7 2`, `4 6 0`** | **GTP: Hall condition for upward matching gaps → wall crossings, all thresholds θ** | **all tiles, d=2 m≤10, d=3 m≤7, d=4 m≤6** | **0 failures; intermediate tight thresholds occur** | 5 min |
+| **E35** | **`src/scratch/apramp.py 2 9 1`, `3 7 0`, `3 6 1`** | **AP-Ramp A(t0) ≤ (m−1−t0)⁺ for all t0 ≥ 0** | **all tiles, lifts as listed** | **max excess 0** | 5 min |
+| E36 | `src/scratch/taupos.py 2 9 1`, `3 7 0` | pointwise τ(t) ≤ 0 for t ≥ m−1 | all tiles | FALSE (d=2 m=6 std lift: 2; d=3 m=7: 18) | 2 min |
+| E37 | `src/scratch/colthresh.py 2 8`, `3 6` | column-threshold formula slack = Σ_C[H_C(τ_C) − H_C(κ_C)] | all tiles, all s | 0 mismatches | 1 min |
+| E38 | `src/scratch/colthresh2.py 2 9`, `3 7` | per-column / per-direction / best-order localizations | all tiles, all s | all FALSE in general (best order fails 6/3108 at d=3 m=7) | 10 min |
+
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

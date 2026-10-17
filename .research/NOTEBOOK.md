@@ -221,3 +221,44 @@ Every route so far reduces to the same coupling: the depth-weighted crossings of
 controlled jointly. New handles this round: (i) Wilf direction = "X(s) ≥ K" (crossings vs. multiples of m below cells);
 (ii) the two-orientation symmetry (Top/Base) — a proof should explain why consistent orientation is needed;
 (iii) LP duality on R'(p) is tight through d=4 m=6.
+
+## 2026-10-17 (night, 4) — tail pairing, GTP / AP-Ramp, column-threshold formula
+
+### Strengthening that survives every test: AP-Ramp (= GTP) — CONJ
+τ(t) := β(D ∩ {V > t}) (β-mass above level t), A(t0) := Σ_{j≥0} τ(t0 + jm) = Σ_y β(y)⌈(V(y) − t0)/m⌉⁺.
+    **AP-Ramp:  A(t0) ≤ (m − 1 − t0)⁺  for every integer t0 ≥ 0, every tile, every positive lift.**
+- t0 ∈ [0,m): exactly the Wilf direction of Tile-CL at s = t0 (slack(s) = m−1−s − A(s)).
+- t0 ≥ m: NEW: AP-sampled β-tails are ≤ 0 (the Ramp Lemma gives this only for the full sum Σ_{t≥K} τ(t)).
+- Pointwise τ(t) ≤ 0 for t ≥ m−1 is FALSE (taupos.py: d=2 m=6 std lift 2 cases; many for larger lifts; d=3 m=7: 18):
+  the AP sampling across periods is essential.
+Equivalent (PROVED) forms:
+- Hall/matching form (GTP): for every θ ≥ 0, Σ_{t≡s, t≥θ} F(E_t) ≥ #{gaps of S_D = V(D)+mℕ in [θ,∞)}, i.e. gaps can be
+  matched injectively UPWARD to depth-weighted wall crossings (crossing level ≥ gap level).
+- tail-pairing form (TP): Σ_{j≥J} F(E_{s+jm}) ≥ Σ_z (⌊V(z)/m⌋ − J)⁺ for all J (per-wall version P1 is FALSE).
+- semigroup form (Apéry lift): Σ_{u > t0, u ∉ m+S} β(class of u) ≤ (m − 1 − t0)⁺, where ℕ∖(m+S) = gaps ∪ Ap(S,m)
+  = ⊔_k (Ap − km)∩ℕ ("shifted Apéry layers").
+Evidence (exact integer arithmetic): wallpair.py/tailpair.py (d=2 m≤10, d=3 m≤7, lifts k∈[0,2]^2, [0,1]^3: 0 failures);
+gtp.py (all thresholds θ: d=2 m≤10, d=3 m≤7, d=4 m≤6, d=2 lifts [0,2]^2 m≤7: 0 failures; intermediate thresholds are
+often tight, e.g. 174 cases at d=3 m=7); apramp.py (all t0: d=2 m≤9 lifts [0,1]^2, d=3 m≤7, d=3 m≤6 lifts [0,1]^3: max
+excess exactly 0).
+Why it matters: a statement indexed by a continuous-looking parameter t0 (all levels) with a Hall interpretation; the
+Ramp Lemma's proof is a level-raising bijection Ψ (below), so AP-Ramp is "Ramp with residue bookkeeping".
+
+### The Ramp Lemma as a level-raising bijection (PROVED)
+Ψ: {(x,u): x∈D, 0≤u<V(x)} → {(w,a,u''): V(w) ≤ u'' < V(top_a w)}: for u in the a-th lex segment [V(x^{(a−1)}), V(x^{(a)}))
+of x, set w = reflection of x in its a-column, u'' = u + V(top_a x) − V(x^{(a)}) ≥ u. Ψ is a bijection (step 1: lex
+segments → column segments below x, translation up; step 2: column reflection c_i ↦ c_{L−1−i}). Hence Σ_{t≥K}(|U_t| −
+F(E_t)) ≤ 0 for all K (Ramp for ramps), combinatorially. For AP-Ramp, each translated segment pair (length ℓ = x_a p̂_a)
+carries ⌊ℓ/m⌋ or ⌈ℓ/m⌉ AP points on each side; the defect e(x,a) ∈ {−1,0,1} sits at the TOP AP point of the segment, so
+AP-Ramp ⇔ an upward Hall matching of the e = −1 "demands" to the e = +1 "spares" (plus allowance (m−1−t0)⁺).
+Per-cell residue-preserving versions of step 1 are impossible (Σ_a⌈(ℓ_a−δ)/m⌉⁺ < ⌈(Σℓ_a−δ)/m⌉⁺ can happen).
+
+### Column-threshold formula (PROVED; colthresh.py: 0 mismatches d=2 m≤8, d=3 m≤6)
+For an a-column C of length L_C let H_C(t) = #{1 ≤ i < L_C : ⟨i p_a⟩ ≥ t}. Then
+    slack(s) = Σ_C [ H_C(τ_C) − H_C(κ_C) ],   τ_C = ⟨φ(top_C) − s − 1⟩ + 1,  κ_C = m − ⟨Σ_{b>a}(base_C)_b p_b⟩.
+(Σ_C H_C(τ_C) = #arcs [φ(w), φ(top_a w)) containing s; Σ_C H_C(κ_C) = c0 = Σ_x ⌊Σ_a⟨x_a p_a⟩/m⌋ = total carries,
+computed in the order a = d, d−1, …, 1; any order π of directions gives another decomposition of c0.)
+Both terms are upper-tail counts of the same multiset {⟨i p_a⟩ : 1 ≤ i < L_C}, so a column contributes ≥ 0 iff τ_C ≤ κ_C
+(effectively). Localization tests (colthresh2.py): per-column negative in ~1–2% of columns; per direction with lex order
+direction 1 is negative in 79/1134 (d=2 m=9) cases, the last direction never (κ = m); "some order π makes every direction
+≥ 0" holds for all d=2 m≤9 and d=3 m≤6 but FAILS in 6/3108 cases at d=3 m=7. So no order-based localization proves it.
