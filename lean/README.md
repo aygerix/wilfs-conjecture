@@ -6,16 +6,18 @@
 - Axiom audit: `cd lean && lake env lean scripts/PrintAxioms.lean`.
 - Files: `Wilf.lean` (root), `Wilf/Basic.lean` (definitions and general theorems),
   `Wilf/Chains.lean` (Identity CH, Corollary H, Lemma A, TOP'' ⇒ Wilf; see `.research/PROOFS.md`),
+  `Wilf/Carry.lean` (factorization down-set D, column identity CH', CL ⇒ Wilf, Tile-CL statement),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
-## Status (2026-10-17, after the Chains round)
+## Status (2026-10-17, after the Carry round)
 
 - `lake build`: succeeds, 0 errors, 0 warnings.
 - `sorry` count: **0** (`grep -rnw sorry Wilf Wilf.lean` gives nothing). No `axiom` declarations and no `native_decide`.
-- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (68 of them, including all the main ones below)
+- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (95 of them, including all the main ones below)
   depends only on `[propext, Classical.choice, Quot.sound]`, the standard mathlib axioms.
 - Every theorem below is **proved** (kernel-checked). Wilf's conjecture itself is only *stated* (`WilfConjecture`), not proved.
-  Conjecture TOP'' is only *stated* (`TOP2`); what is proved is the implication `TOP2 S → Wilf for S`.
+  Conjectures TOP'', CL and Tile-CL are only *stated* (`TOP2`, `CL`, `TileCL`); what is proved is the
+  implications `TOP2 S → Wilf(S)` and `CL S → Wilf(S)`. No implication involving `TileCL` is proved.
 
 ## Definitions (`Wilf/Basic.lean`, namespace `NumericalSemigroup`)
 
@@ -170,6 +172,56 @@ formalized forms were tested on all 6,963 semigroups with `S ≠ ℕ` and genus 
 CH (with `Def_p` computed from literal maximal chains), Corollary H and its consequence, Lemma A, and the
 per-direction and refined top-layer bounds for every `p ∈ S` with `p ≤ c + 2m`. TOP'' also had 0 failures there.
 
+## Factorization down-set, CH', CL (`Wilf/Carry.lean`)
+
+Verdict: the "Factorization down-set D and column identity CH'" section and "CL ⇒ Wilf" in `.research/PROOFS.md`
+are correct as stated, with no extra hypotheses. CH' and `CL ⇒ Wilf` hold for every `S`, including `S = ℕ`.
+
+**Monomial order:** lexicographic order (`toLex`) on `Fin d → ℕ`. `P'` is indexed increasingly
+(`gen a = S.primitives'.orderEmbOfFin rfl a`), so coordinate `0`, the smallest generator in `P'`, is the most
+significant. The down-set proof only uses that `toLex` is a linear order compatible with `+` and cancellative
+(mathlib's `Pi.Lex.isOrderedCancelAddMonoid`), so any such order would work.
+
+Definitions (`d = |P'| = e - 1`, `ι = Fin d`):
+
+| Lean | Meaning |
+|---|---|
+| `IsDownSetFin D := ∀ x ∈ D, ∀ y, y ≤ x → y ∈ D` | finite down-set of `ι → ℕ` (componentwise order) |
+| `colHt D a x := sSup {k \| x + Pi.single a k ∈ D}` | height of `x` in its `a`-column |
+| `gen : Fin d → ℕ` | `p_a`, the elements of `P'` in increasing order |
+| `wt x := Σ_a x a * gen a` | `w(x) = ⟨x, p⟩` |
+| `factSet w := (piFinset (fun _ => range (w+1))).filter (wt · = w)` | factorizations of `w` (`mem_factSet : x ∈ factSet w ↔ wt x = w`) |
+| `nf w := ofLex (min' ((factSet w).image toLex))` (junk `0` if no factorization) | `n(w)`, the lex-least factorization |
+| `factDownSet := (aperySet m).image nf` | `D` |
+| `CL : Prop := ((e:ℤ)-1-1) * ((m*(m-1)/2 : ℕ):ℤ) ≤ Σ_a Σ_{x∈D, x+e_a∉D} ((x a:ℤ)+1) * (((M:ℤ) - wt x) % m)` | **Conjecture CL** (for lex order) |
+| `tilePhi p x := Σ_a (x a : ZMod m) * p a`; `tileT D y := Σ_{a : y+e_a∉D} (y a + 1)` | `φ`, `T` |
+| `IsTile D p := IsDownSetFin D ∧ D.card = m ∧ Set.BijOn (tilePhi p) D univ` | tile hypotheses |
+| `TileCLAt D p := ∀ s : ZMod m, (d-1) * (m*(m-1)/2) ≤ Σ_{y∈D} tileT D y * (s - tilePhi p y).val` | Tile-CL for one tile (`⟨x⟩ = ZMod.val`) |
+| `TileCL : Prop := ∀ d m D p, 1 ≤ d → IsTile D p → TileCLAt D p` | **Conjecture Tile-CL** (statement only) |
+
+Theorems (all proved):
+- `sum_columns : IsDownSetFin D → Σ_{x∈D} F x = Σ_{y∈D, y+e_a∉D} Σ_{k<y_a+1} F (y - Pi.single a k)`
+  (columns are `{y - k·e_a | k ≤ y_a}`); `card_eq_sum_columns : D.card = Σ_{a-tops y} (y a + 1)`.
+- `sum_wt_add_eq_columns : Σ_{x∈D} (w(x) + p_a·x_a) = Σ_{a-tops y} (y_a + 1)·w(y)` (in `ℤ`, any weights `p`).
+- `exists_wt_eq : IsApery m w → ∃ x, wt x = w`; `nf_spec : IsApery m w → wt (nf w) = w ∧ ∀ x, wt x = w → toLex (nf w) ≤ toLex x`.
+- **(b)** `nf_downward : IsApery m w → y ≤ nf w → IsApery m (wt y) ∧ nf (wt y) = y`;
+  `isDownSetFin_factDownSet : IsDownSetFin S.factDownSet`.
+- **(a)** `nf_injOn : Set.InjOn S.nf (aperySet m)`; `card_factDownSet : S.factDownSet.card = S.multiplicity`.
+- `dmM_sub_sum_apery : d·m·M - (d+1)·ΣAp = m·W + (d-1)·(m(m-1)/2)` (in `ℤ`, `d = |P'|`).
+- **CH'** `columnIdentity : Σ_a Σ_{x∈D, x+e_a∉D} ((x a:ℤ)+1)·((M:ℤ) - wt x) = m·W + ((e:ℤ)-1-1)·((m(m-1)/2 : ℕ):ℤ)`.
+- **CL ⇒ Wilf** `wilf_of_CL : S.CL → S.conductor ≤ S.embDim * S.ell`; `wilfConjecture_of_CL : (∀ S, S.CL) → WilfConjecture`.
+- `IsTile.mk'`: builds `IsTile` from a down-set proof, `card = m`, and Finset-bounded injectivity/surjectivity
+  that `decide` can check.
+
+Tile-CL sanity checks (`Wilf/Examples.lean`, `decide` only, no `native_decide`):
+- `tile1` (`d=2`, `D={00,01,10}`, `m=3`, `p=(1,2)`): `tile1_isTile`, `tile1_TileCLAt`. It is tight at `s = 2` (`f = 3`, `tile1_tight`).
+- `tile2` (`d=1`, `D={0,1,2}`, `m=3`, `p=(1)`): `tile2_isTile`, `tile2_TileCLAt`.
+- `tile3` (`d=2`, box `{0,1,2}×{0,1}`, `m=6`, `p=(2,1)`): `tile3_isTile`, `tile3_TileCLAt`. It is tight at `s = 5` (`f = 15`, `tile3_tight`).
+
+Independent numerical check by the Lean agent (scratchpad script `check_cl.py`, not in the repo). It uses the lex
+order exactly as formalized, on all 19,814 semigroups with `S ≠ ℕ` and genus ≤ 17. Results: `D` is a down-set with
+`|D| = m`, CH' holds exactly, and CL(lex) holds, with 0 failures in each case.
+
 ## Kernel-checked examples (`Wilf/Examples.lean`, namespace `NumericalSemigroup.Examples`)
 
 Each example is built with `ofPred`, and its generating set is certified by `*_eq_closure : S.toAddSubmonoid = AddSubmonoid.closure {…}`.
@@ -183,6 +235,12 @@ Each example is built with `ofPred`, and its generating set is certified by `*_e
 | TOP'' checks | `S35_multiplicity = 3`, `S35_aperySet : aperySet 3 = {0,10,5}`, `S35_topLayer = {10}`, `S35_primitives' = {5}`, `S35_minFactLen_ten = 2`, `S35_TOP2_eq`, `S35_TOP2`; `S357_aperySet = {0,7,5}`, `S357_topLayer = {7,5}`, `S357_primitives' = {5,7}`, `S357_minFactLen`, `S357_TOP2_vals`, `S357_TOP2` |
 
 ## `#print axioms` output (`lake env lean scripts/PrintAxioms.lean`)
+
+Carry round: the 27 new entries (`sum_columns, card_eq_sum_columns, sum_wt_add_eq_columns, exists_wt_eq,
+mem_factSet, nf_spec, wt_nf, nf_downward, isDownSetFin_factDownSet, nf_injOn, card_factDownSet, sum_wt_factDownSet,
+dmM_sub_sum_apery, columnIdentity, CL, wilf_of_CL, wilfConjecture_of_CL, TileCL, IsTile.mk', Examples.tile{1,2,3}_isTile,
+Examples.tile{1,2,3}_TileCLAt, Examples.tile1_tight, Examples.tile3_tight`) all report
+`[propext, Classical.choice, Quot.sound]`, so all 95 entries are standard. No `native_decide` is used anywhere.
 
 All 68 declarations listed in `scripts/PrintAxioms.lean` report exactly
 `depends on axioms: [propext, Classical.choice, Quot.sound]`. These are the 36 Basic and Examples items listed in an

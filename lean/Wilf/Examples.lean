@@ -1,4 +1,5 @@
-import Wilf.Chains
+import Wilf.Carry
+import Mathlib.Tactic.IntervalCases
 
 /-!
 # Kernel-checked examples
@@ -280,5 +281,87 @@ theorem S357_TOP2_vals :
 
 theorem S357_TOP2 : S357.TOP2 := by
   rw [TOP2, S357_TOP2_vals.1, S357_TOP2_vals.2]; norm_num
+
+
+/-! ### Tile-CL sanity checks (`decide` only; no `native_decide`) -/
+
+theorem vec2_eta (y : Fin 2 → ℕ) : y = ![y 0, y 1] := by
+  funext i; fin_cases i <;> rfl
+
+theorem vec1_eta (y : Fin 1 → ℕ) : y = ![y 0] := by
+  funext i; fin_cases i; rfl
+
+/-- Tile 1: `d = 2`, `D = {00, 01, 10}`, `m = 3`, `p = (1, 2)`. -/
+def tile1D : Finset (Fin 2 → ℕ) := {![0, 0], ![0, 1], ![1, 0]}
+/-- Tile 1 weights. -/
+def tile1p : Fin 2 → ZMod 3 := ![1, 2]
+
+theorem tile1_downset : IsDownSetFin tile1D := by
+  intro x hx y hy
+  have h0 := hy 0
+  have h1 := hy 1
+  rw [vec2_eta y]
+  generalize y 0 = a at h0
+  generalize y 1 = b at h1
+  simp only [tile1D, Finset.mem_insert, Finset.mem_singleton] at hx
+  rcases hx with rfl | rfl | rfl <;>
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] at h0 h1 <;>
+    interval_cases a <;> interval_cases b <;> decide
+
+theorem tile1_isTile : IsTile tile1D tile1p :=
+  IsTile.mk' tile1_downset (by decide) (by decide) (by decide)
+
+theorem tile1_TileCLAt : TileCLAt tile1D tile1p := by unfold TileCLAt; decide
+
+/-- Tile 1 is tight at `s = 2`: `f(2) = 3 = (d-1)·m(m-1)/2`. -/
+theorem tile1_tight : ∑ y ∈ tile1D, tileT tile1D y * ((2 : ZMod 3) - tilePhi tile1p y).val = 3 := by
+  decide
+
+/-- Tile 2: `d = 1`, a single column `D = {0, 1, 2}`, `m = 3`, `p = (1)`. -/
+def tile2D : Finset (Fin 1 → ℕ) := {![0], ![1], ![2]}
+/-- Tile 2 weights. -/
+def tile2p : Fin 1 → ZMod 3 := ![1]
+
+theorem tile2_downset : IsDownSetFin tile2D := by
+  intro x hx y hy
+  have h0 := hy 0
+  rw [vec1_eta y]
+  generalize y 0 = a at h0
+  simp only [tile2D, Finset.mem_insert, Finset.mem_singleton] at hx
+  rcases hx with rfl | rfl | rfl <;>
+    simp only [Matrix.cons_val_fin_one] at h0 <;>
+    interval_cases a <;> decide
+
+theorem tile2_isTile : IsTile tile2D tile2p :=
+  IsTile.mk' tile2_downset (by decide) (by decide) (by decide)
+
+theorem tile2_TileCLAt : TileCLAt tile2D tile2p := by unfold TileCLAt; decide
+
+/-- Tile 3: `d = 2`, box `{0,1,2} × {0,1}`, `m = 6`, `p = (2, 1)` ("perfect" tile, tight at `s = -1`). -/
+def tile3D : Finset (Fin 2 → ℕ) := {![0, 0], ![1, 0], ![2, 0], ![0, 1], ![1, 1], ![2, 1]}
+/-- Tile 3 weights. -/
+def tile3p : Fin 2 → ZMod 6 := ![2, 1]
+
+theorem tile3_downset : IsDownSetFin tile3D := by
+  intro x hx y hy
+  have h0 := hy 0
+  have h1 := hy 1
+  rw [vec2_eta y]
+  generalize y 0 = a at h0
+  generalize y 1 = b at h1
+  simp only [tile3D, Finset.mem_insert, Finset.mem_singleton] at hx
+  rcases hx with rfl | rfl | rfl | rfl | rfl | rfl <;>
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] at h0 h1 <;>
+    interval_cases a <;> interval_cases b <;> decide
+
+theorem tile3_isTile : IsTile tile3D tile3p :=
+  IsTile.mk' tile3_downset (by decide) (by decide) (by decide)
+
+theorem tile3_TileCLAt : TileCLAt tile3D tile3p := by unfold TileCLAt; decide
+
+/-- Tile 3 is tight at `s = 5 = -1`: `f(5) = 15 = (d-1)·m(m-1)/2`. -/
+theorem tile3_tight :
+    ∑ y ∈ tile3D, tileT tile3D y * ((5 : ZMod 6) - tilePhi tile3p y).val = 15 := by
+  decide
 
 end NumericalSemigroup.Examples
