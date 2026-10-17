@@ -1,4 +1,4 @@
-import Wilf.Basic
+import Wilf.Chains
 
 /-!
 # Kernel-checked examples
@@ -201,5 +201,84 @@ theorem S35_isSymmetric : S35.IsSymmetric := by
 /-- Equality case of Wilf: `c = e · ℓ = 8`. -/
 theorem S35_wilf_eq : S35.conductor = S35.embDim * S35.ell := by
   rw [S35_conductor, S35_embDim, S35_ell]
+
+
+/-! ### TOP'' evaluated on two examples (sanity check of the `Wilf.Chains` definitions) -/
+
+theorem S35_multiplicity : S35.multiplicity = 3 :=
+  S35.multiplicity_eq_of (by omega) (mem_S35.2 (by omega))
+    (fun n h0 h3 hn => by rw [mem_S35] at hn; omega)
+
+theorem S35_aperySet : S35.aperySet 3 = {0, 10, 5} := by
+  ext w
+  rw [mem_aperySet (mem_S35.2 (by omega)) (by omega), IsApery, mem_S35, mem_S35]
+  simp only [Finset.mem_insert, Finset.mem_singleton]
+  omega
+
+theorem S35_topLayer : S35.topLayer = {10} := by
+  ext u
+  rw [mem_topLayer, S35_multiplicity, S35_aperySet, S35_conductor]
+  simp only [Finset.mem_insert, Finset.mem_singleton]
+  omega
+
+theorem S35_primitives' : S35.primitives' = {5} := by
+  rw [primitives', S35_primitives, S35_multiplicity]; decide
+
+theorem S35_minFactLen_ten : S35.minFactLen 10 = 2 := by
+  apply le_antisymm
+  · have := minFactLen_le (S := S35) (u := 10) (f := fun _ => 2) (by rw [S35_primitives']; rfl)
+    rwa [S35_primitives'] at this
+  · have hA : S35.IsApery S35.multiplicity 10 := by
+      rw [S35_multiplicity, ← mem_aperySet (mem_S35.2 (by omega)) (by omega), S35_aperySet]
+      simp
+    obtain ⟨f, hf, hlen⟩ := minFactLen_spec hA
+    rw [S35_primitives', Finset.sum_singleton] at hf hlen
+    omega
+
+/-- `⟨3,5⟩` (`W = 0`): TOP'' holds with equality, `9 = 9`. -/
+theorem S35_TOP2_eq :
+    ∑ u ∈ S35.topLayer, (u - S35.conductor + 1) * ((S35.embDim - 1) + S35.minFactLen u) = 9 ∧
+    S35.multiplicity * ((S35.embDim - 1 + 1) * S35.multiplicity + (S35.embDim - 1) - 1) / 2 = 9 := by
+  rw [S35_topLayer, Finset.sum_singleton, S35_conductor, S35_embDim, S35_minFactLen_ten,
+    S35_multiplicity]
+  decide
+
+theorem S35_TOP2 : S35.TOP2 := by
+  rw [TOP2, S35_TOP2_eq.1, S35_TOP2_eq.2]
+
+theorem S357_aperySet : S357.aperySet 3 = {0, 7, 5} := by
+  ext w
+  rw [mem_aperySet (mem_S357.2 (by omega)) (by omega), IsApery, mem_S357, mem_S357]
+  simp only [Finset.mem_insert, Finset.mem_singleton]
+  omega
+
+theorem S357_topLayer : S357.topLayer = {7, 5} := by
+  ext u
+  rw [mem_topLayer, S357_multiplicity, S357_aperySet, S357_conductor]
+  simp only [Finset.mem_insert, Finset.mem_singleton]
+  omega
+
+theorem S357_primitives' : S357.primitives' = {5, 7} := by
+  rw [primitives', S357_primitives, S357_multiplicity]; decide
+
+theorem S357_minFactLen {u : ℕ} (hu : u = 5 ∨ u = 7) : S357.minFactLen u = 1 := by
+  have hA : S357.IsApery S357.multiplicity u := by
+    rw [S357_multiplicity, ← mem_aperySet (mem_S357.2 (by omega)) (by omega), S357_aperySet]
+    rcases hu with rfl | rfl <;> simp
+  obtain ⟨f, hf, hlen⟩ := minFactLen_spec hA
+  rw [S357_primitives', Finset.sum_pair (by norm_num)] at hf hlen
+  omega
+
+/-- `⟨3,5,7⟩` (`W = 1`): TOP'' reads `12 ≤ 15`. -/
+theorem S357_TOP2_vals :
+    ∑ u ∈ S357.topLayer, (u - S357.conductor + 1) * ((S357.embDim - 1) + S357.minFactLen u) = 12 ∧
+    S357.multiplicity * ((S357.embDim - 1 + 1) * S357.multiplicity + (S357.embDim - 1) - 1) / 2
+      = 15 := by
+  rw [S357_topLayer, Finset.sum_pair (by norm_num), S357_conductor, S357_embDim,
+    S357_minFactLen (Or.inl rfl), S357_minFactLen (Or.inr rfl), S357_multiplicity]
+  decide
+
+theorem S357_TOP2 : S357.TOP2 := by
+  rw [TOP2, S357_TOP2_vals.1, S357_TOP2_vals.2]; norm_num
 
 end NumericalSemigroup.Examples

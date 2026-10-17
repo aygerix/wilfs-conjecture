@@ -1,29 +1,30 @@
-# STATE.md — current state (updated 2026-10-17, session 1)
+# STATE.md — current state (updated 2026-10-17, session 1, late)
 
 ## Best current approach
-Identity CH (proved) reduces Wilf to a discrete correction term. Lemma A (proved) shows the
-correction is controlled by the top layer X_q = Ap ∩ [c, c+m). Conjecture TOP'' (two-level, position-weighted
-inequality) implies Wilf and has 0 failures through genus 24 plus 3002 adversarial cases, with equality
-exactly at W = 0.
+Identity CH' (proved) writes m·W = m·(depth part ≥ 0) + [CL bracket]. The Carry Lemma CL (bracket ≥ 0) implies
+Wilf, uses only residues mod m, and is an instance of Tile-CL, a purely combinatorial statement about down-set
+fundamental domains of lattices Λ ⊆ ℤ^d with ℤ^d/Λ cyclic. Tile-CL: 0 failures on every tile with d=2 m≤15,
+d=3 m≤11, d=4 m≤8; CL: 0 failures on all 712,372 semigroups of genus ≤ 24. Proving Tile-CL proves Wilf.
 
-## Verified facts (PROVED on paper; see PROOFS.md)
-- Identity CH; Corollary H (e·n ≥ c − (e−2)(m−1)/2, all S); Lemma A (TOP'' ⇒ Wilf).
-- Top-layer elements are pairwise incomparable maximal Apéry elements; ℓ(u) ≤ q for u ∈ X_q.
+## Verified facts
+- PROVED on paper: CH, Corollary H, Lemma A, CH', CL ⇒ Wilf, all equivalent forms of Tile-CL (PROOFS.md).
+- LEAN (kernel-checked, lean/Wilf/Chains.lean, 0 sorry, standard axioms): CH, Corollary H, Lemma A, TOP'' ⇒ Wilf.
+- FALSE: PDCL for d ≥ 3; CL for non-complete residue systems; all earlier localizations (PROOFS.md list).
 
 ## Open obligations / gaps
-- G-TOP: prove TOP'' (the single remaining gap in this route).
-- Novelty of Corollary H vs literature (not checked).
-- Lean: CH and Lemma A not yet formalized (Lean agent building foundations).
+- G-CL: prove Tile-CL (the single remaining gap of the main route).  [G-TOP is implied numerically by CL.]
+- Lean: formalize CH' and CL ⇒ Wilf (needs factorization down-set D); state Tile-CL as a Prop.
+- Novelty of Corollary H and of CL vs literature (not checked).
 
-## Experiments: see EXPERIMENTS.md (E0–E10), reproducible with `python3 src/<script> <genus>`.
+## Experiments: EXPERIMENTS.md (E0–E17).
 
 ## Three most promising active approaches
-1. TOP'' via an exact identity for its slack (chain-type argument restricted to last two levels).
-2. TOP'' by induction on depth / number of decomposable top elements (adding pseudo-Frobenius numbers
-   f ∈ PF ∩ [c−m, c) moves a top element to the low part).
-3. q = 2 case of TOP'' as an additive-combinatorics inequality (pattern-finding for the general proof);
-   then e = 3 case via L-shaped Apéry sets.
+1. Tile-CL via a cross-direction potential: find Ψ: D → ℤ with Σ_a(window_a sums) − Σ_a p̂_aȲ_a = Ψ-telescoping ≥ −(m−1)/2.
+   Use d=3 PDCL failures (smallest: D={000,001,002,010,100,101}, p=(3,5,4), m=6) as test cases.
+2. d = 2 case of Tile-CL by explicit L-shape floor sums (mechanism probe; PDCL holds for d=2).
+3. Tile moves: D → D∖{z} ∪ {z+λ}; G(D) = Σ_{z∈D} γ(z) is additive over cells; characterize the minimizing tile
+   (is it a Gröbner tile? then reduce to Apéry tiles with extra structure).
 
 ## Next precise task
-Derive the exact expression for slack(TOP'') analogous to CH (identify what nonnegative quantities it is a sum of),
-by redoing the CH computation keeping all low-chain terms and E exactly, then test candidate decompositions.
+Prove Tile-CL for d = 2 (L-shapes): write f(s) as explicit sawtooth sums over the two boundary staircases, and
+extract the inequality's mechanism; in parallel search for a potential function coupling directions for d = 3.

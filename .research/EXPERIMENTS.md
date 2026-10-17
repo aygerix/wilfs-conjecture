@@ -20,8 +20,17 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E8 | `src/exp_flow.py 18` | FLOW (Hall-localized TOP'') | genus ≤ 18 | FALSE once: ⟨10,11,13,19⟩ (top 38 = 2·19 underfunded) | 2 s |
 | E9 | `src/exp_offsets.py 18` | SC′ offsets ≤ m(m−1)/2; offsets positive/distinct | genus ≤ 18 | SC′ fails 16 (⟨5,8,9⟩); offsets not positive/distinct | 2 s |
 | E10 | `src/exp_excess.py 18` | per-direction excess X1/X2/X3 | genus ≤ 18 | X1 fails 1115; X2 fails 3 (⟨9,10,12,13⟩); X3 fails 1 (⟨7,11,12,20⟩) | 3 s |
+| E11 | `src/exp_tree_mono.py 16` | TOP'' slack monotone along the semigroup tree (parent→child) | genus ≤ 16 | FALSE: slack decreases on 1912 of 4106 edges | 2 s |
+| E12 | `src/exp_freepos.py 18` | "free-position" localization of TOP'' | genus ≤ 18 | FALSE in 14 cases | 2 s |
+| E12b | `src/carries.py 18` | CH-λ identity W = Σ|C|δ(top) + ρ + K − Σκ; strong carry claim Σκ − K ≤ ρ | genus ≤ 18 | identity exact; claim 0 failures | 2 s |
+| **E13** | **`src/cl.py 18 grlex,lex,revlex`; `src/cl.py 24 grlex,lex`** | **CL (asserts m·W = m·depth + LHS − target exactly)** | **genus ≤ 18 (3 orders); genus ≤ 24 (712,372 S; grlex, lex)** | **0 failures; tight 6702 (g≤18, grlex), 102,188 (g≤24)** | 1 s / ~4 min |
+| E14 | `src/exp_cl_variants.py 15` | CL with M replaced by any maximal element (V1) / any element (V2) of D | genus ≤ 15 (6963 S) | 0 failures both: CL holds for every reference residue s | 3 s |
+| **E15** | **`src/exp_cl_tiling.py`** | **Tile-CL for ALL down-sets D ⊆ ℕ^d, |D| = m, all p ∈ (ℤ/m)^d bijective on D, all s** | **d=2: m ≤ 15; d=3: m ≤ 11; d=4: m ≤ 8 (exhaustive)** | **0 failures** | ~10 min |
+| E16 | `src/scratch/pdcl.py` | PDCL: Σ_a min_s f_a(s) ≥ (d−1)m(m−1)/2 | tiles d=2 m ≤ 12; d=3 m ≤ 9 | d=2: 0 failures; d=3: FALSE (6 at m=6, 12 at m=7, …) | 1 min |
+| E17 | `src/scratch/clinj.py 1 12`; `... 2 9` | CL for down-sets with φ merely injective (|D| ≤ m), form (II) | d=1 m ≤ 12; d=2 m ≤ 9 | FALSE (d=1: D={0,1,2}, p=7, m=10, σ=3) | 1 min |
 
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.
-- Logs: `logs/top2_g24.log`.
+- Logs: `logs/top2_g24.log`, `logs/cl_g24.log`.
+- E16/E17: run from repo root, e.g. `python3 src/scratch/clinj.py 2 9`.
