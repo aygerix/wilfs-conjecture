@@ -107,22 +107,31 @@
      Next: the H–t trade-off and an inverse theorem ("small H ⇒ D nearly contains a big coordinate simplex"),
      contradicted by the discrete Minkowski bound (a 4-D tile containing Δ_N has m ≥ |X_N| = 21, 55, 131 for
      N = 2, 3, 4).
-2. **Value-based mechanisms (universal line).**
-   - Shape-only HCR / HCR+ provably cannot be universal: on near-star tiles with q ~ βd², HCR = 1 − 1/d + o(1/d)
-     (NOTEBOOK, near-star formula).
-   - There Wilf follows from values: the shift lemma (uniform generator shifts raise mW by km·B(D,1) ≥ 0), plus
-     Eliahou for generators in (m, 2m). Exact formula W = e(e+1) − 2m in the carry-free level-2 case.
-   - Thin regime: equivalent to near-perfect additive N-bases of ℤ/m (sumset excess vs carry arrangement).
-     Fat regime: Minkowski (tiles are ≥ C(2d,d)/2^d times their inscribed λ-simplices).
-   - Goal: one inequality covering both regimes.
+2. **General Wilf: the exchange inequality (universal line).**
+   - Exact split, every e: W = Lev + Car (Kunz coordinate = level + carry; PROOFS "Level/carry split").
+     - Lev (geometric) ≥ 0 by CH whenever the λ-argmax also maximizes x·k.
+     - Car (residue carries) is negative in 25–40% of random S. In the random sample Lev ≥ 1.65|Car| whenever
+       Car < 0 (not adversarial).
+   - Why the proof must be an exchange inequality:
+     - Shape alone fails at large e (near-stars, HCR → 1 − 1/d).
+     - Residues alone fail, because Car < 0 often.
+     - So the proof must show that a carry deficit forces a level surplus. Conjectured mechanism: Car < 0 only when the
+       λ-argmax is chosen by the k-part against the residue order.
+   - Lattice inputs, both dimension-free: residue completeness (Σκ = (Σx·r)/m − (m−1)/2) and minimality (Gröbner
+     cone; geometrically, Minkowski: no large inscribed simplex).
+   - Supporting results: the shift lemma, the near-star formula, W = e(e+1) − 2m in the carry-free level-2 case, and
+     the thin-regime ↔ near-perfect additive bases link (NOTEBOOK 2026-10-18 late night).
+   - Running: adversarial min of W/Lev with Car < 0 (src/scratch/split_climb.py, fejer logs/split_climb_{4,5,6,8}.log).
 3. **e = 4 formal verification (background; G-Lean).** Next Lean items: the cylinder lemma and Wall/Floor from IsTile.
 Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25); ATOP_γ as a universal criterion (6
 two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR for 4-D (φ up to 0.8); the cone-LP
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Codex agent (after its tile4 finalization): the HT4 / H–t trade-off study for 4-D tiles, with brief
-    $SP/codex/ht4_brief.md. Data on the minimizers, a counter-family or a proof of (m+1)H + R ≥ 3m(m−1)/2 for m ≥ M0.
-(b) Lead: an inverse theorem for small H via coordinate simplices plus the discrete Minkowski bound. First target: a
-    4-D tile with H < m·K contains a coordinate k-simplex of level ≥ f(K, m).
-(c) Lead: a value-based bound for thin tiles (level ≤ 3) in all d, using the W = Lev + Car decomposition.
+(a) Read the split_climb extremizers (e = 4, 5, 6, 8). Characterize when Car < 0 and the ratio Lev/|Car| → 1, and
+    formulate the exchange lemma.
+(b) Codex agent, after its tile4 finalization: HT4 / H–t study plus enumeration at scale and CP-SAT searches; brief in
+    the session scratchpad codex/ht4_brief.md.
+(c) The gfan independent re-check of E153 (fejer logs/gfan_hcr_5_36.log) must finish before "Wilf for e = 5, m ≤ 36"
+    is stated as independently verified.
+(d) The 4-D counting lemmas (facet type bound, corner–volume, forest lemmas, discrete Minkowski) for e = 5 at large m.

@@ -775,3 +775,22 @@ qO = 3Q − 3 and #DS = Q − 1 (Q = 4..12, src/scratch/ds_family.py; examples/q
 Wall/Floor constraints, so they are not tiles. A bound qO ≤ t + O(1) therefore needs lattice input. The advisor's revised
 plan (2026-10-18) needs only qO ≤ 2t + O(1) together with a proved sublinear bound on t. That bound is t ≤ C
 (Lemma T′) and C ≤ 3/2 + √(6m − 15/4) (Lemma B), both proved on paper, so no sharper qO constant is pursued for now.
+
+---------------------------------------------------------------------------------------------------
+## Results of 2026-10-18 (late night): exact identities and the limits of shape-only criteria
+**Column form of Wilf (any e; = CH′).** For every S with tile D ⊂ ℕ^d (d = e − 1), mW + (d−1)m(m−1)/2 = B, where
+B = Σ_{(x,a) ∈ D×[d]} (Λ − λ(top_a x)) = dmΛ − (d+1)Σ_D λ. For ANY finite down-set D and positive weights w,
+d|D|·max_D(x·w) − (d+1)Σ_D x·w = Σ_{(x,a)}(max − w·top_a x) ≥ 0. PROVED (column sums).
+**Level/carry split (any e).** n_a = r_a + m k_a (1 ≤ r_a ≤ m − 1), x* = λ-argmax. Then W = Lev + Car with
+Lev = dm(x*·k) − (d+1)Σ_D x·k and Car = d(x*·r) − (d+1)mean_D(x·r) − (d−1)(m−1)/2. Lev ≥ 0 if x* maximizes x·k on D.
+PROVED (Kunz coordinates K(x) = x·k + ⌊x·r/m⌋, Selmer's g = ΣK, Σ_D (x·r mod m) = m(m−1)/2). CHECKED: 1,600+ random S.
+**Shift lemma.** If n and n + km·(1,…,1) have the same tile and the λ-argmax lies at the maximal level N, then
+mW(n + km·1) − mW(n) ≥ km·(dmN − (d+1)Σ_D|x|) ≥ 0. Level-≤ 2 tiles are preserved by such shifts. PROVED.
+**Near-star formula.** D = {0, e_1..e_d} ∪ Q, Q = q level-2 non-square cells covering every e_b, m = d + 1 + q:
+HCR(D) = [(m+1)(d(d+1) − 2q) + (d+2)q(q−1)/2] / [(d−1)m(m−1)/2]; = 112/117 for d = 4, q = 8 (the two m = 13 HCR failures);
+→ 1 − 1/d + O(1/(βd²)) for q = βd². Hence no shape-only criterion of HCR/HCR+ type is universal. PROVED (direct count).
+**Carry-free level 2.** If every n_a = m + r_a, every r_a < m/2 and Ap ⊆ {0} ∪ {n_a} ∪ {n_a + n_b}, then W = e(e+1) − 2m ≥ 0.
+PROVED.
+**Computational theorem (e = 5).** Every 4-D lattice tile with 14 ≤ m ≤ 36 has HCR ≥ 1 (E153, exact certificates); with
+BGOW (m ≤ 18), Wilf holds for every S with e = 5 and m ≤ 36. Independent re-check by 4ti2 + gfan (E160): agrees for
+m ≤ 19 so far, running to 36.
