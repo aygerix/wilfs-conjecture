@@ -541,7 +541,11 @@ top₁ x ∈ Max. Put p' = p − i e₁.
 C ≤ ⌊3/2 + √(6m − 15/4)⌋ ≤ (m + 14)/5 for every m ≥ 131: checked exactly for 131 ≤ m < 2·10⁵, and for m ≥ 160 it holds
 because 5(3/2 + √(6m)) − 14 ≤ m. Hence **δ(D) ≥ 0 (HT) for every D ∈ 𝒞 with |D| ≥ 131.**
 Consequence for e = 4: every non-two-face tile in 𝒞 with m ≥ 131 satisfies the height criterion, so Wilf holds for the
-corresponding semigroups. The tiles still uncovered are (i) 𝒞-tiles with m ≤ 130, handled by the exhaustive HT scan
+corresponding semigroups.
+**Integrality sharpening (chain referee 2026-10-18; checked by the lead).** The height criterion (m+1)H ≤ mW + m(m−1) with
+W ∈ ℤ gives Wilf already when δ ≥ −1 (H ≥ m − 2): then mW ≥ (m+1)(m−2) − m(m−1) = −2, so W ≥ 0 for m ≥ 3. Hence C-HT
+closes for m ≥ 130 (5C ≤ m + 15; the last failing m is 129), and the cone Corollary below for m ≥ 280 (6C + 28 ≤ m; at m = 280,
+C_max = 42). The HT-failing tiles with δ = −1 (m = 17, 23) need no LP certificate. The tiles still uncovered are (i) 𝒞-tiles with m ≤ 130, handled by the exhaustive HT scan
 (tile_scan_HM, complete so far for m ≤ 82, 91–95, 101–104, 109–111), and (ii) cone-class tiles, which need a separate
 bound. In the lattice-free cone class LHS − 5C is unbounded above, and 2|Tri| − t reaches 8 at union ≤ 32.
 Data (E127): on 𝒞 with |D| ≤ 32, max(2Tri − t) = max(qO − t) = max(qU − t) = −1 and max(LHS − 4C) = −10, so the sharper
@@ -717,7 +721,8 @@ Proof.
   night 17).
 - Lemma T′ (t ≤ C) and Lemma B (C ≤ ⌊3/2 + √(6m − 15/4)⌋) then give δ(D) ≥ m − 6C − 29 ≥ m − 6√(6m) − 38.
 - So **δ(D) ≥ m − O(√m)** for all cone tiles, and HT (δ ≥ 0) holds for every cone tile with **m ≥ 281** (checked: the
-  last m with 6⌊3/2 + √(6m − 15/4)⌋ + 30 > m + 1 is 280).
+  last m with 6⌊3/2 + √(6m − 15/4)⌋ + 30 > m + 1 is 280). With the integrality sharpening (above, after Theorem C-HT),
+  δ ≥ −1 suffices for Wilf, and it holds for m ≥ 280.
 - With Theorem C-HT (𝒞-tiles, m ≥ 131) and the complete HT scan for m ≤ 130, the only remaining range is cone tiles
   with 131 ≤ m ≤ 280. That is a finite computation (C scanner; MAXM must be raised from 255).
 Checks (src/scratch/qo_fiber_check.py, qo_fiber_anneal.py, qo_fiber_exh.py):

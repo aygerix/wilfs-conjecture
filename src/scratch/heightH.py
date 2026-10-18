@@ -1,6 +1,10 @@
 # Shape-only criterion via heights: deficit(t) = M - w(t) >= p.(y - t) + (M - w(y)) >= (m+1)|y - t| + 1 for y >= t in D.
 # ht(t) = max{|y - t| : y in D, y >= t};  H(D) = sum over incidences (x,a) of ht(t_a(x)).
 # Def_all >= (m+1) H + 3m, so  (m+1) H + 3m >= m(m-1)  => Wilf  (any e = 4).   usage: heightH.py m0 m1 K
+# CORRECTION (referee, 2026-10-18): the per-incidence '+1' above is FALSE (an incidence whose top is the Apery maximum has
+# deficit 0), and the aggregate '+3m' is UNPROVED (it never failed in ~50k tests). The PROVED criterion is
+# (m+1) H <= mW + m(m-1), i.e. H >= m-1 => Wilf, or H >= m-2 => Wilf by integrality (m >= 3). The slack 'sl' printed
+# below still uses the unproved +3m; it is kept so that old logs reproduce. The e = 4 chain never uses it.
 import sys, itertools
 from math import gcd
 from functools import reduce

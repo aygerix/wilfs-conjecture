@@ -13,20 +13,42 @@
 
 ## The e = 4 argument (our route) and the status of each link
 1. e = 4 ⇒ the factorization tile D ⊂ ℕ³ is a down-set fundamental domain of a lattice, |D| = m. PROVED (PROOFS "Factorization down-set").
+   LEAN for the grlex tile used here: MaxCL.lean `isFactTile_factDownSetG`, `IsFactTile.isTile`, `IsFactTile.columnIdentity`.
+   (TileReduction.lean `isTile_factDownSet` is about the LEX tile.) Not in Lean: e_a ∈ D, and the closed-cone inequality
+   p·q ≥ p·rep(q) used by the LP certificate.
 2. Height criterion: (m+1)H(D) ≤ mW + m(m−1), so δ ≥ 0 ⇒ Wilf. PROVED on paper (NOTEBOOK night 13).
+   Integrality sharpening (referee 2026-10-18, checked by the lead): W ∈ ℤ, so δ ≥ −1 (H ≥ m − 2) ⇒ mW ≥ −2 ⇒ W ≥ 0 for m ≥ 3.
    Per-tile LP certificate (src/tile_lp.py) for tiles with δ < 0.
-3. Two-face tiles ⇒ Wilf. PROVED (paper + exact finite check m ∈ [18, 74]).
-4. Non-two-face tiles lie in 𝒞 (Loomis–Whitney) or the cone class Cyl ∖ (q + ℕ³). PROVED (cylinder lemma; (b) is HRW Prop 2.6).
-5. 𝒞 tiles: δ ≥ m + 14 − 5C, so HT for m ≥ 131 (Theorem C-HT). PROVED on paper.
-6. Cone tiles: δ ≥ m − 6C − 29, so HT for m ≥ 281. PROVED on paper 2026-10-18.
+3. Two-face tiles ⇒ Wilf. PROVED (paper + exact finite check m ∈ [18, 74]). External inputs, cited and not rechecked by us:
+   Eliahou JEMS 2018 (c ≤ 3m ⇒ Wilf) and BGOW IJAC 2020 Thm 4.3 (m ≤ 18 ⇒ Wilf), plus the Lean τ-criterion.
+4. Non-two-face tiles lie in 𝒞 (Loomis–Whitney) or the cone class Cyl ∖ (q + ℕ³). PROVED (cylinder lemma; its part (a) is
+   HRW Prop 2.6(b)). Two-face tiles are all in 𝒞.
+5. 𝒞 tiles: δ ≥ m + 14 − 5C, so HT for m ≥ 131 (Theorem C-HT); δ ≥ −1 for m ≥ 130. PROVED on paper, reviewed (below).
+6. Cone tiles: δ ≥ m − 6C − 29, so HT for m ≥ 281 and δ ≥ −1 for m ≥ 280. PROVED on paper 2026-10-18, reviewed (below).
    Ingredients: Lemma CHT, TF-cone, F-cone, qO-cone (Fiber Lemma), T′ (t ≤ C), B (C ≤ 3/2 + √(6m − 15/4)).
    Lattice input: only |Y| ≤ 6, via the Floor Lemma.
 7. Finite range, by complete computer enumeration of tiles (tile_scan, Python + C port):
-   - All non-two-face tiles m ≤ 130: HT 0 failures except m ∈ {8, 15, 16, 17, 19, 20, 23}, which are LP-certified.
+   - All non-two-face tiles m ≤ 130: HT 0 failures except m ∈ {8, 15, 16, 17, 19, 20, 23}. m = 8 is covered by BGOW (its LP
+     bound fails, κ = 4); the others are LP-certified (κ recomputed independently with HiGHS by the referee). m = 17 and 23
+     have δ = −1, so the integrality sharpening covers them without LP.
      The gaps m = 90, 100, 108, 114, 115 were closed on 2026-10-18 (logs/tile_scan_C_gaps.log).
-   - m = 131–280: RUNNING (logs/tile_scan_C_131_280.log, private MAXM-300 build of src/c/tile_scan.c). HT 0 failures through m = 170.
-   When it finishes, every e = 4 semigroup is covered by links 1–7, subject to the review below.
-- Independent adversarial review of links 5–6 (subagent, report → $SP/review/cone_review.md): RUNNING.
+   - m = 131–255: HT 0 failures (logs/tile_scan_C_131_280.log, local, m = 131–229; logs/tile_scan_C_226_280_fejer_uint8.log,
+     fejer, m = 226–235). The 8-bit build is valid for m ≤ 255.
+   - BUG FOUND by the chain referee (2026-10-18): src/c/tile_scan.c stores coordinates as uint8_t, so a MAXM-300 build wraps
+     coordinates ≥ 256 and corrupts the traversal for m ≥ 257. Confirmed by the lead on fejer: at m = 257 the 8-bit build has
+     127 area-defective lattices, the 16-bit build 0.
+   - FIX: src/c/tile_scan_v.c (16-bit coordinates via -DCT=uint16_t, and a per-lattice completeness certificate: the cone
+     areas, summed mod 2^61−1, must equal the simplex). It is identical to the old build at m = 131, 200, 257, with every
+     lattice certified. RUNNING on fejer: m = 256–280, then a re-certification of m = 120–255
+     (logs/tsv16_*_fejer.log when copied back).
+   When m = 256–280 is done with 0 HT failures and 0 area defects, every e = 4 semigroup is covered by links 1–7.
+- Independent adversarial reviews, 2026-10-18, both COMPLETE:
+  - cone lemmas, all CORRECT (.research/reviews/cone_review_2026-10-18.md);
+  - links 1–6, all CORRECT except the scan bug above, plus minor text fixes, now applied
+    (.research/reviews/e4_chain_review_2026-10-18.md).
+  The chain referee also independently reproduced the HT-failure list for m = 7–26 by a fan-free enumeration of all
+  down-sets, and the LP values κ with a different LP solver. It area-certified traversal completeness for every lattice
+  at m ≤ 40 (exact) and m = 19–119 (C, mod p).
 - In Lean (2026-10-18, lean/Wilf/CornerArea.lean, verified by the lead): Lemma B (`cornerArea`, any finite down-set),
   Lemma CHT (`cht`, any finite D), Lemma T (`typeBound`, class 𝒞), Lemma T′ (lean/Wilf/ConeType.lean `typeBound_cone`, cone
   class). So the sublinear bound on t is kernel-checked for both classes: t ≤ C, and C² − 3C + 6 ≤ 6m.
