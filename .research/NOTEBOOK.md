@@ -1388,3 +1388,24 @@ Our status against that list:
   t + O(1) either.
 Consequence: a proof of qO ≤ t + O(1) would have to bound the z-multiplicity at the quadrant corner using the lattice.
 That is a sharpening, not a gap; it is parked under the advisor's revised plan.
+
+## 2026-10-18 (midday) — e = 4 route complete; first look at the height criterion for e = 5
+**Status.** Every link of our e = 4 route is in place (STATE "The e = 4 argument").
+- The certified 16-bit scan on fejer covers m = 256–280: 0 HT failures and 0 area defects.
+- Combined with the earlier scans, every non-two-face tile with m ≤ 280 satisfies HT, apart from the LP/BGOW-certified small cases.
+- The proved thresholds are m ≥ 281 for cone tiles and m ≥ 131 for 𝒞 tiles (m ≥ 280 and 130 with the δ ≥ −1 sharpening).
+- Lean has CHT, B, T, T′, TF, F, QF and the 𝒞 δ-bound. The cone forest bounds are in progress.
+- The manuscript is being drafted (.research/E4_MANUSCRIPT.md).
+- The re-certification of m = 120–255 is still running on fejer.
+
+**Height criterion in dimension d = e − 1 (OBSERVED; the inequality itself is PROVED).** CH′ and p_a ≥ m + 1 give
+(m+1)·H(D) ≤ mW + (d−1)·C(m,2), where H(D) = Σ_x Σ_a ht(top_a x) over the d directions. So H > ((d−1)C(m,2) − m)/(m+1)
+implies W ≥ 0.
+- src/scratch/height_e.py asserts the inequality on every sample and reports H divided by the threshold.
+- 400 random S each for e = 4 and e = 5, m ∈ [20, 60], generators < 6m, seed 1; 0 assertion failures.
+- e = 5: the criterion fails once (m = 23: ⟨23, 40, 51, 62, 118⟩, ratio 0.95).
+- e = 5: the minimum ratio over the sample is 1.4–3.1 for m ≥ 29 (e.g. 1.42 at m = 53). For e = 4 the same sampler gives
+  ratios 2.8–5.7, but random samples are not adversarial; the e = 4 extremal tiles sit near ratio 1 for m ≈ 25.
+- Question for the reassessment: does "4-D HT", H ≥ 1.5(m−1)·m/(m+1) for all non-degenerate 4-D tiles with large m,
+  hold? If it does, the e = 4 mechanism has a d = 4 analogue: CHT counting plus a structure theorem for 4-D tiles. The
+  missing ingredient is the 4-D cylinder/cone structure, which is much richer than in 3-D.
