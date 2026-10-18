@@ -403,3 +403,17 @@ Statements from these are SECONDARY (quoted from papers that were read) or UNVER
 - 2604.25653 (Apéry sets for e = 4, geometric procedure), 2609.04000 (type vs minimal presentations, e = 4): found by
   discovery search, not read; no Wilf statement in abstracts.
 - τ-criterion novelty search (limited): nothing equivalent found.
+
+### 17. Dated search, 2026-10-18 (night): column-height and residue criteria (HCR); e = 5
+Scope: alphaXiv discover (newest first; keywords Wilf conjecture, numerical semigroup, Apéry set, embedding dimension);
+web search for an e = 5 proof (2026); web search for GitHub or Lean repositories.
+- Nothing found that combines Zhai's column identity with heights of column tops and distinctness of residues (HCR,
+  HCR+, HCR++). Novelty is UNVERIFIED beyond this scope.
+- No proof of Wilf for e = 5 found.
+- New references:
+  - M. F. Marashdeh, arXiv:2608.12531 (2026-08). Type bound t ≤ e − 1 + Ξ(S), genus bound g ≤ e − 1 + t(n − 1), and a
+    reduction of Wilf to an inequality free of c and n. It also corrects Kaplan's c ≤ 2m equality list. Its survey
+    credits Kliem–Stump with extending BGOW to **m ≤ 19**, so our small range is m ≤ 19.
+  - arXiv:2604.25653 (2026-04): a geometric procedure for Apéry sets in e = 4. It is not a Wilf proof.
+  - preprints202604.0551 (prereview, 2026): a first-Kunz-layer bound claimed to imply Wilf under an inequality. Not
+    checked.
