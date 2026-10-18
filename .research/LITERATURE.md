@@ -271,6 +271,18 @@ literature" from 2026-10-17 to 2026-10-18, and nights 13–17 were spent on it. 
 becomes the focus, search GitHub + arXiv (newest first) + the reference page for that exact statement, and record the
 scope and date here.
 
+16. **Search for Wilf with e = 5, and for m | c (2026-10-18, afternoon).**
+    - Scope: alphaXiv discovery, newest first ("Wilf's conjecture", "embedding dimension", "numerical semigroup"; results
+      through 2026-09-30), plus web searches including site:github.com.
+    - e = 5: no proof found. The newest relevant items are e = 4 papers (2604.25653, 2609.04000, kseth/wilf-e4) and the
+      type bound and reduction 2608.12531.
+    - github.com/michelfgaspar-spec/Wilfs13: an archival manuscript with a Lean proof of Wilf for |L| = 13 left
+      elements. This extends Eliahou–Marín-Aragón (#18, |L| ≤ 12). Not read in detail; status unverified by us.
+    - The-Last-Math-Competition PRs #169/#714: claimed disproofs of a "Wilf surplus/Frobenius ratio → 0" conjecture for
+      e = 3. That is a different statement, not Wilf itself. Unverified.
+    - m | c: no result beyond #22 (Eliahou divsets: 4e ≥ m and m | c) was found in this search. So Wilf for all S with
+      m | c is treated as open.
+
 ---------------------------------------------------------------------------------------------------
 
 ## 4. Known-FALSE strengthenings / generalizations (and open stronger conjectures)
