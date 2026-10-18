@@ -135,6 +135,21 @@ D ∩ {x_c = γ} = π_c(D) ∩ [0, R_a^{(b)}(γ)) × [0, R_b^{(a)}(γ)) minus a 
 (k ≥ 3) are not tiles (C(k,2) > 1 full-support generators): the reason top layers stay O(√m) (E101). (iv) Two-face ⇔
 (1,1,0)-type corner: e_a + e_b ∉ D ⇔ π_c(D) ⊆ {x_a x_b = 0}, and then e_a + e_b ≡ t e_c, t e_c ∈ D.
 Novelty: UNVERIFIED (likely known in the language of Artinian lattice ideals / Gomory group problems in 3 variables:
+
+### Cylinder lemma in every dimension — PROVED 2026-10-18 (the 3-D proof is dimension-free); CHECKED 1,200 random tiles e = 4, 5, 6
+Setting: D ⊂ ℕ^d a finite down-set that is a fundamental domain of a lattice Λ ⊂ ℤ^d; G = minimal elements of ℕ^d ∖ D.
+**Lemma.** (a) For q ∈ G let y(q) be the cell of D with q − y(q) ∈ Λ. Then supp y(q) ∩ supp q = ∅.
+(b) If q ≠ q′ ∈ G and supp q ∩ supp q′ ≠ ∅, then y(q) ≠ y(q′). Hence for every nonempty τ ⊆ [d]:
+    #{q ∈ G : supp q ⊇ τ} ≤ |D ∩ {x : x_τ = 0}|. In particular at most one q* ∈ G has full support, and q* ∈ Λ.
+(c) D = Cyl(D) ∖ (q* + ℕ^d) (no orthant removed if q* does not exist), where Cyl(D) = {x : x|_{x_c := 0} ∈ D ∀c}.
+Proof. (a) As in 3-D: q − e_a ∈ D for a ∈ supp q, so q − λ − e_a ∉ D for λ = q − y(q) ≠ 0, which forces y(q)_a = 0.
+(b) If y(q) = y(q′) and a ∈ supp q ∩ supp q′, then (q − e_a) − (q′ − e_a) ∈ Λ ∖ 0 with both in D. τ = [d] gives y = 0.
+(c) x ∉ D ⇔ x ≥ some q ∈ G; if q_c = 0 this says x|_{x_c := 0} ∉ D; the only q with no zero coordinate is q*. ∎
+Consequences. Every lattice tile is in class 𝒞_d (= Cyl) or the cone class Cyl ∖ (q* + ℕ^d), in every d. The facets
+D ∩ {x_c = 0} are not tiles in general: they may have up to L_c full-support (in d − 1 coordinates) corners.
+Simplices {|x| ≤ n} (n ≥ d) are not tiles. Two-face (e_a + e_b ∉ D) ⇔ y(e_a + e_b) is supported off {a, b}.
+Novelty: UNVERIFIED (part (a) for d = 3 is HRW Prop 2.6(b); the general statement is likely folklore for Artinian
+lattice ideals). Check: src/scratch/cyl_d.py.
 "at most one Gröbner leading term of full support"); not searched yet.
 
 ---------------------------------------------------------------------------------------------------
