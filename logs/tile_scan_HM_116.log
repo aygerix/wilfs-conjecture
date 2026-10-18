@@ -1,0 +1,2 @@
+m=116: tiles 434429, non-two-face 208254, HT fails 0, LP-uncertified 0; min H-(m-1) (228, (1, 16, 85)); MAXSUM fails 0, min slack 2m+1-M3 (35, (1, 21, 43), 16) [3277s]
+m=117: tiles 398137, non-two-face 187959, HT fails 0, LP-uncertified 0; min H-(m-1) (230, (1, 73, 75)); MAXSUM fails 0, min slack 2m+1-M3 (36, (1, 54, 85), 16) [3176s]

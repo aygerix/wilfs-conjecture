@@ -34,7 +34,8 @@ m W = d m(M − m + 1) − (d+1)Σw + (d+1)m(m−1)/2 = d mM − (d+1)Σw − (d
 i.e. Wilf holds up to the additive error (d−1)(m−1)/2:  e·n ≥ c − (e−2)(m−1)/2.
 (Immediate from CH. This is a discrete divergence-theorem argument on the Apéry down-set; it shows
 Wilf is exactly "homogeneous Chebyshev inequality + a discrete correction of size (d−1)m(m−1)/2".)
-Novelty: NOT checked against literature yet (literature agent did not report it). Treat as possibly known.
+Novelty: **KNOWN** — this is Zhai, arXiv:1111.2779 (2011), Thm 1 (e·n ≥ c − (e−2)(m−1)/2); CH′ is Zhai's Lemmas 1+3
+in exact form (per the 2026-10-18 audit; LITERATURE §3 item 12).
 
 ---------------------------------------------------------------------------------------------------
 ## Lemma A (top-layer reduction) — PROVED 2026-10-17
@@ -118,7 +119,7 @@ crosses are almost disjoint (one common cell per pair at most), so Σ ℓ ≤ m 
 Setting: D ⊂ ℕ³ a finite down-set that is a fundamental domain of a lattice Λ ⊂ ℤ³ (ℤ³ = ⊔_{λ∈Λ}(D+λ); e.g. every
 e = 4 Apéry factorization tile, Λ = ker φ). G := minimal elements of ℕ³∖D; π_c = projection forgetting coordinate c;
 L_c := |D ∩ ℕe_c|.
-**Lemma.** (a) At most one q ∈ G has full support, and such q* lies in Λ.
+**Lemma.** (a) At most one q ∈ G has full support, and such q* lies in Λ. [KNOWN: Hellus–Rechenauer–Waldi, arXiv:1804.06141, Prop 2.6(b).]
 (b) If q ∈ G has q_c = 0 < q_a, q_b ({a,b,c} = {1,2,3}) then q ≡ t·e_c (mod Λ) for a unique t with t·e_c ∈ D, and
     distinct such q (same c) have distinct t. Hence the slice π_c(D) (= D ∩ {x_c = 0}) has ≤ L_c non-axis inner corners.
 (c) D = {x ∈ ℕ³ : π_c(x) ∈ π_c(D) for c = 1,2,3} ∖ (q* + ℕ³): a 3-D tile is the largest down-set with its three

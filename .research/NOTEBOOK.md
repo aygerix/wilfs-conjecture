@@ -1258,3 +1258,57 @@ real tiles, r(B) = 1 only with ≥ 2 unused maxima.
 **Insight for the next attempt.** In the level picture along any axis c, a cone set is a 𝒞 set except at one
 transition (v = q_c, where the quadrant Q is removed). So every LEVEL-WISE proof of a 𝒞 lemma (Lemma T, Lemma F) has an
 O(1) defect in the cone class. Plan: re-prove TF/QF level-wise (Lemma P becomes "same-level tripods are nested").
+
+## 2026-10-18 (night 17) — cone tiles: crude TF and qU bounds proved; the qO forest fails in the cone class
+
+**Scanner.** The C port src/c/tile_scan.c (written by a parallel session, E132) matches every completed Python HT/MAXSUM
+line: 188 lines over 119 values of m ≤ 130, 0 mismatches (my private copy; the only earlier differences were format
+artifacts of the MAXSUM-only log tile_scan_M_7.log). So HT holds for every non-two-face e = 4 tile with m ≤ 130.
+
+**Lemma TF-cone (PROVED on paper; cone class with the Floor Lemma, i.e. |Y_d| ≤ 2): 2Tri ≤ t + 17.**
+Eliminate tripods by decreasing |x|; s(x) = # tops of x already used. Then 2T − t ≤ −1 + Σ s_cross + Σ (s_same − 1)⁺.
+(i) Cross shares: by S′ a top y used in two directions a ≠ b has y + e_c ∈ K. y cannot lie in two of the Y_d (then y ∈ K),
+so y is used in ≤ 2 directions and gives ≤ 1 cross share. Hence Σ s_cross ≤ |Y_1| + |Y_2| + |Y_3| ≤ 6.
+(ii) Let x have same shares in a and b (partners u = x + ie_a, u' = x + i'e_b, tripods with the same tops). Then P′ on
+(u', u) gives top_c(u') ∈ Y_a or top_c(u) ∈ Y_b. Define Φ(a,b) = {x : some b-partner u' has top_c(u') ∈ Y_a}.
+(iii) x ∈ Φ(a,b) ⇒ x_a = q_a − 1 and x_c < q_c. [y = top_c(u') has y + e_a ∈ K and y ∉ K, so y_a = q_a − 1 and y_b ≥ q_b;
+u' + e_a ∈ D ∖ K forces u'_c < q_c.]
+(iv) All members of Φ(a,b) have the same c-height. [If x̃_c > x_c, apply P′ to x̃ and the a-partner u of x in the (a,c)-plane.
+top_b(x̃) + e_a ∉ K since x̃_c < q_c. top_b(u) + e_c ∈ K would force x_c = q_c − 1 and then x̃_c ≥ q_c.]
+So Φ(a,b) lies on one b-line ℓ.
+(v) |Φ(a,b)| ≤ 2.
+- At most one member has x_b < q_b. For members x <_b x̃, P′ on (x̃, a-partner of x) gives x̃_b ≥ q_b or x_b = q_b − 1.
+- Members with x_b ≥ q_b have top_c ∈ Y_a. The column over (q_a − 1, x_b) is at least as tall as the one under the partner's
+  top, which reaches ≥ q_c. These tops are distinct from each other and from the c-top of the topmost member's b-partner.
+  So there are ≤ |Y_a| − 1 ≤ 1 such members.
+A tripod with s_same = 3 lies in Φ for all three pairs. Hence Σ(s_same − 1)⁺ ≤ Σ_{(a,b)} |Φ(a,b)| ≤ 12, and 2T − t ≤ −1 + 6 + 12.
+Checked: claims (i)–(v) and the budget inequality on every cone tile with m = 30, 40, 50, 60, 64 (0 violations;
+src/scratch/tf_cone_check.py). The observed maxima are cross ≤ 1 and same-excess ≤ 1.
+
+**Lemma F-cone (PROVED on paper; any cone set): qU ≤ t + 2.**
+In the level proof of Lemma F (direction 3), the relation U_{v+1} = U_v ∩ R_{v+1} holds for every v ≠ q₃. So every
+level except q₃ adds ≤ 2 cross-level edges (e_L, e_R) and no cycle. At v = q₃ the removal of the quadrant adds at most
+one more c = 1 edge: p = (p₁, q₂ − 1) with p₁ ≥ q₁, the row end of U_{q₃} at row q₂ − 1. Symmetrically it adds at most one
+c = 2 edge. So ≤ 4 cross edges, ≤ 3 new cycles, rank(G_U) ≤ 3 and qU = t − comp + rank ≤ t + 2.
+Checked on cone tiles m = 30..64 (src/scratch/qu_cone.py): rank(G_U) ≤ 1, qU − t ≤ 0, level counts never exceeded.
+
+**qO in the cone class: the elimination proof FAILS, and so does the forest statement.** (src/scratch/qo_cone.py, qo_cycles.py)
+- Cycle-closing qO cells (increasing |x|) are either cross shares (≤ 6, as above) or doubly-same cells whose QF
+  contradiction is broken by a Q-drop. These come in **stacks**. Example in nonmax direction c: x_z = (W_a, W_b, z) for
+  several z < q_c − 1, under a floor cell w = (W, q_c − 1) of height 1 next to a floor maximum. The partners are stacked on
+  the c-lines (q_a − 1, W_b, ·) and (W_a, q_b − 1, ·), whose c-tops are Y-points.
+- Each z needs both face profiles to take the value z + 1 beyond the quadrant: F(W_a + k_z) = z + 1 = G(W_b + l_z).
+  The stack gives paths y_a – T_a(z) – T_b(z) – y_b, one per z, so rank(G_O) grows with |Z|.
+- RCON (Wall + Floor) anneals: rank(G_O) up to 3, stack size up to 3 (m ≤ 200), elimination excess up to 4.
+  Yet qO − t ≤ 1 throughout. Every extremal example fails PW (lattice_pairwise.py). The infeasible core of one is
+  4 A₁-corner vectors plus q* (src/scratch/pw_core.py), which is not obviously related to the stack.
+- Real tiles (m = 30..64): floor-line qO cells per line ≤ 2 (m = 60). "Doubly realized" levels (the necessary
+  condition) reach 3, so the lattice does not exclude stacks outright (src/scratch/floorline.py).
+- **New conjecture (OBSERVED): t + rank(G_O) ≤ C**, i.e. qO + comp(G_O) ≤ C. Evidence: max 0 on all 82,254 non-two-face
+  tiles of m = 30, 40, 50, 60, 64, and max 0 in every RCON anneal (t+rank−C target, m ≤ 300). By contrast t + exc − C
+  reaches 2, so the crude elimination count does not satisfy it.
+  It would give qO ≤ C − 1 and LHS ≤ 2t + (t + 17) + (t + 2) + (C − 1) ≤ 5C + 18 for cone tiles.
+  Per-level Lemma T′ slack (src/scratch/tslack.py) does not line up level-by-level with the stack levels in the m = 198
+  example. The injection must be global.
+- Threshold arithmetic with Lemma B (C ≤ ⌊3/2 + √(6m − 15/4)⌋): 5C + β ≤ m + 1 holds for all m > 160 (β = 2), m > 191 (β = 18),
+  m > 203 (β = 25). So the conjecture plus an HT scan of m ≤ 191 would settle cone tiles.

@@ -1,4 +1,4 @@
-# LITERATURE.md — what is PROVED about Wilf's conjecture (as of 2026-10-17)
+# LITERATURE.md — what is PROVED about Wilf's conjecture (as of 2026-10-17; e = 4 corrections 2026-10-18)
 
 Scope: bounded literature check (Phase 0). Goal: exact hypotheses of every known result, the
 standard tools, the known-false strengthenings, and the precise uncovered region.
@@ -188,8 +188,54 @@ hit; content not read (UNVERIFIED). e ≤ 3 is in any case settled (#3).
     for c ≤ 2m. Computation: every S with g ≤ 31 and e ≤ t has W ≥ 2 (attained by ⟨7,8,10,19⟩,
     ⟨7,9,10,15⟩: e = t = 4, n = 4, c = 14 — RECOMPUTED). (READ)
 
-No claimed full proof or counterexample of Wilf's conjecture was found in 2021–2026 sources examined.
-Epoch AI (2026) still lists it as unsolved (§5).
+11. **kseth/wilf-e4 (GitHub, https://github.com/kseth/wilf-e4; repo created 2026-09-18, commits 2026-09-11 … 2026-09-24,
+    HEAD caa574d; K. Sethuraman; unrefereed, not on arXiv, no formalization).** CLAIMS a complete computer-assisted proof of
+    **Wilf for e = 4**. The main theorem (manuscript/introduction.tex:17–22) has no extra hypotheses. The proof was generated
+    with AI models ("GPT-6 Astra", then "GPT-5.6 Sol via Codex", per manuscript/construction.tex).
+    - Method: lex factorization ideal T (Zhai); identity m·W₄ = A·D₀ − m(m−1); mass-transport lemma; final-window
+      projection inequality m·W ≥ m·Φ(T,Z) + E(Z); continuous κ-bounds plus box thickening; a case split by the unique
+      full-support corner p; 7 finite lemmas checked by two implementations each (Python + C++).
+    - Audit 2026-10-18 (subagent; report in session scratchpad, kseth_wilf_e4_report.md): analytic steps traced, no error
+      found; strip lemma 2.7 reproduced independently. Lemmas 2.2–2.6, 2.8 and C.3.1/C.4.1 NOT verified, and repo code NOT run.
+    - Status: CLAIMED, plausibly correct, not externally reviewed. Lead spot-checked the theorem statement, dates, the AI
+      provenance and the absence of Lean files.
+    - Also archived (not in the manuscript): a fixed-e finiteness claim (m ≥ B_e ⇒ W_e > 0, astronomically large B_e). UNCHECKED.
+12. **Earlier e = 4 sources MISSED by the Phase-0 search (found by the 2026-10-18 audit):**
+    - **Zhai, arXiv:1111.2779 (2011): Thm 1, e·n ≥ c − (e−2)(m−1)/2. This is our Corollary H.** Lemmas 1 and 3 are our CH′
+      in exact form. Thm 2: for fixed e, all but finitely many S have n/c > 1/e − ε.
+    - **Hellus–Rechenauer–Waldi, arXiv:1804.06141 (2018):**
+      - Prop 2.3/2.5: the lex ideal is an initial ideal and tessellates.
+      - **Prop 2.6(b) = our cylinder lemma (a)** (at most one full-support minimal excluded point, and it lies in Λ).
+      - Remark 2.9: Wilf for e = 4 when the ideal is the double staircase B_n (a two-face family).
+    - HRW, Semigroup Forum 97 (2018) 64–74 ("Note on a theorem of Eliahou"): the family ⟨n², n²+1, n²+n, n²+n+1⟩. NOT read.
+    - HRW arXiv:2107.06752 (2021): n/c ≥ 2/(e² − e + 2). HRW arXiv:2106.07246: a weaker explicit bound. Abstracts only.
+    - Chomicz arXiv:2604.25653 and 2609.04000 (2026): Apéry sets / type for e = 4; no Wilf statement. Abstracts only.
+    (Statements in item 12 are as reported by the audit agent, which read Zhai and HRW 2018 in full; not re-read by the lead.)
+
+No claimed full proof or counterexample of Wilf's conjecture (all e) was found in 2021–2026 sources examined. For e = 4 there
+is an unrefereed claimed proof (item 11). Epoch AI (2026) still lists the conjecture as unsolved (§5).
+
+13. **GitHub sweep 2026-10-18.** Searched with `gh search repos`: "wilf conjecture", "wilf's conjecture", "wilf numerical
+    semigroup", "numerical semigroup(s)", "Apery set", "wilf inequality", "wilf multiplicity" (repos updated since 2025-06).
+    Wilf-relevant results (README level only; CLAIMED, UNCHECKED):
+    - **JC8267/wilf-multiplicity-23** (J. Collier, manuscript dated 2026-10-05, AI-assisted, arXiv submission prepared):
+      computer-assisted proof of **Wilf for m ≤ 23**, extending Kliem–Stump m ≤ 19. Uses a "path certificate" and the shape
+      inequality W ≥ PC ≥ R0 − D, with one exceptional shape at (d, m) = (3, 21). It says it does not rely on "an
+      unrestricted e = 4 claim".
+    - alhafs-hue/wilf-verification (2026-08-12): verification code for Marashdeh's type bound / reduction (item 10).
+    - wytyKen/ai4math-width-bounds (2026-10-06): width bounds for four-generated semigroups and Lean formalization of
+      three-variable lex ideals (Tor/Betti). Not a Wilf statement.
+    - Not Wilf: benkeene/semigroup-betti (Lean, Betti numbers e = 4), stksk310/* (Lean, nearly Gorenstein e = 4),
+      Flaman55/NumericalSemigroups (Huang's quadratic form), michaeliu4/bras-amoros-monotonicity, AxiomMath/fel-polynomial.
+    - aygerix/wilfs-conjecture is THIS project's own remote (origin); its last pushed commit is 73b2c86 (2026-10-18 06:53Z).
+    Observation: many AI-assisted numerical-semigroup projects have appeared on GitHub since Sept 2026. Re-run this sweep
+    before every change of sub-target.
+
+**Search-scope failure (2026-10-18).** The Phase-0 search covered journals, arXiv/alphaXiv and the web, but NOT GitHub. It
+missed item 11 (public since 2026-09-18) and the e = 4 papers in item 12. STATE.md then called e = 4 "open in the
+literature" from 2026-10-17 to 2026-10-18, and nights 13–17 were spent on it. Rule from now on: before any sub-target
+becomes the focus, search GitHub + arXiv (newest first) + the reference page for that exact statement, and record the
+scope and date here.
 
 ---------------------------------------------------------------------------------------------------
 
