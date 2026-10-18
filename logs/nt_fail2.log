@@ -1,0 +1,19 @@
+m=28: non-two-face e=4, c>3m: 15252; tau-criterion failures 0; max excess -1
+m=29: non-two-face e=4, c>3m: 18160; tau-criterion failures 0; max excess -2
+m=30: non-two-face e=4, c>3m: 19581; tau-criterion failures 0; max excess -4
+  FAIL m=31 gens=[31, 33, 46, 50] ex=1 tau=8 P2=17 L=[7, 5, 4] core=3 xf/xc=6/2 W=63 c/m=5.45
+m=31: non-two-face e=4, c>3m: 23138; tau-criterion failures 1; max excess 1
+m=32: non-two-face e=4, c>3m: 24517; tau-criterion failures 0; max excess -4
+m=33: non-two-face e=4, c>3m: 28811; tau-criterion failures 0; max excess -1
+m=34: non-two-face e=4, c>3m: 30462; tau-criterion failures 0; max excess -4
+m=35: non-two-face e=4, c>3m: 35607; tau-criterion failures 0; max excess -4
+m=36: non-two-face e=4, c>3m: 36438; tau-criterion failures 0; max excess -5
+m=37: non-two-face e=4, c>3m: 43323; tau-criterion failures 0; max excess -1
+m=38: non-two-face e=4, c>3m: 44544; tau-criterion failures 0; max excess -2
+m=39: non-two-face e=4, c>3m: 51535; tau-criterion failures 0; max excess -8
+m=40: non-two-face e=4, c>3m: 52686; tau-criterion failures 0; max excess -7
+m=41: non-two-face e=4, c>3m: 61793; tau-criterion failures 0; max excess -2
+m=42: non-two-face e=4, c>3m: 61473; tau-criterion failures 0; max excess -12
+  FAIL m=43 gens=[43, 44, 51, 53] ex=3 tau=10 P2=27 L=[7, 5, 6] core=6 xf/xc=7/3 W=81 c/m=5.37
+m=43: non-two-face e=4, c>3m: 72724; tau-criterion failures 1; max excess 3
+m=44: non-two-face e=4, c>3m: 72576; tau-criterion failures 0; max excess -2

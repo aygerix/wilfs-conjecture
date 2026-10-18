@@ -1,0 +1,77 @@
+  FAIL m=19 gens=[19, 20, 25, 27] ex=8 tau=7 P2=14 L=[5, 4, 4] core=1 xf/xc=6/1 W=27 c/m=3.63
+  FAIL m=19 gens=[19, 21, 24, 49] ex=1 tau=6 P2=9 L=[5, 5, 3] core=1 xf/xc=5/1 W=24 c/m=4.21
+  FAIL m=19 gens=[19, 22, 37, 43] ex=2 tau=6 P2=10 L=[6, 4, 3] core=1 xf/xc=5/1 W=23 c/m=4.89
+  FAIL m=19 gens=[19, 23, 32, 43] ex=1 tau=6 P2=9 L=[5, 4, 3] core=1 xf/xc=5/1 W=32 c/m=4.84
+  FAIL m=19 gens=[19, 25, 29, 55] ex=1 tau=6 P2=9 L=[5, 5, 3] core=1 xf/xc=5/1 W=34 c/m=5.16
+  FAIL m=19 gens=[19, 26, 27, 48] ex=1 tau=6 P2=9 L=[5, 5, 3] core=1 xf/xc=5/1 W=22 c/m=4.74
+  FAIL m=19 gens=[19, 29, 41, 42] ex=8 tau=7 P2=14 L=[5, 4, 4] core=1 xf/xc=6/1 W=37 c/m=5.84
+m=19: non-two-face e=4, c>3m: 3510; tau-criterion failures 7
+m=20: non-two-face e=4, c>3m: 4320; tau-criterion failures 0
+m=21: non-two-face e=4, c>3m: 5315; tau-criterion failures 0
+m=22: non-two-face e=4, c>3m: 6396; tau-criterion failures 0
+  FAIL m=23 gens=[23, 25, 28, 35] ex=9 tau=8 P2=17 L=[5, 5, 4] core=2 xf/xc=7/1 W=25 c/m=3.96
+  FAIL m=23 gens=[23, 29, 30, 42] ex=3 tau=7 P2=13 L=[5, 5, 4] core=2 xf/xc=6/1 W=38 c/m=4.78
+m=23: non-two-face e=4, c>3m: 7577; tau-criterion failures 2
+m=24: non-two-face e=4, c>3m: 8735; tau-criterion failures 0
+  FAIL m=25 gens=[25, 26, 31, 40] ex=1 tau=7 P2=13 L=[5, 5, 4] core=2 xf/xc=6/1 W=49 c/m=4.44
+  FAIL m=25 gens=[25, 27, 32, 40] ex=8 tau=8 P2=18 L=[6, 5, 4] core=2 xf/xc=7/1 W=41 c/m=4.44
+  FAIL m=25 gens=[25, 29, 34, 35] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=48 c/m=4.64
+  FAIL m=25 gens=[25, 31, 35, 36] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=44 c/m=4.80
+  FAIL m=25 gens=[25, 32, 35, 37] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=48 c/m=4.96
+  FAIL m=25 gens=[25, 32, 42, 55] ex=1 tau=7 P2=13 L=[5, 5, 4] core=2 xf/xc=6/1 W=50 c/m=5.84
+  FAIL m=25 gens=[25, 33, 35, 38] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=52 c/m=5.12
+  FAIL m=25 gens=[25, 34, 35, 39] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=56 c/m=5.28
+  FAIL m=25 gens=[25, 34, 39, 40] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=56 c/m=5.44
+  FAIL m=25 gens=[25, 35, 36, 41] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=64 c/m=5.60
+  FAIL m=25 gens=[25, 36, 40, 41] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=52 c/m=5.60
+  FAIL m=25 gens=[25, 37, 40, 42] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=56 c/m=5.76
+  FAIL m=25 gens=[25, 38, 40, 43] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=60 c/m=5.92
+  FAIL m=25 gens=[25, 39, 40, 44] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=64 c/m=6.08
+  FAIL m=25 gens=[25, 40, 41, 46] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=72 c/m=6.40
+  FAIL m=25 gens=[25, 54, 59, 60] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=80 c/m=8.64
+  FAIL m=25 gens=[25, 56, 60, 61] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=76 c/m=8.80
+  FAIL m=25 gens=[25, 57, 60, 62] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=80 c/m=8.96
+  FAIL m=25 gens=[25, 58, 60, 63] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=84 c/m=9.12
+  FAIL m=25 gens=[25, 59, 60, 64] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=88 c/m=9.28
+  FAIL m=25 gens=[25, 59, 64, 65] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=88 c/m=9.44
+  FAIL m=25 gens=[25, 60, 61, 66] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=96 c/m=9.60
+  FAIL m=25 gens=[25, 61, 65, 66] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=84 c/m=9.60
+  FAIL m=25 gens=[25, 62, 65, 67] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=88 c/m=9.76
+  FAIL m=25 gens=[25, 63, 65, 68] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=92 c/m=9.92
+  FAIL m=25 gens=[25, 64, 65, 69] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=96 c/m=10.08
+  FAIL m=25 gens=[25, 65, 66, 71] ex=2 tau=7 P2=14 L=[5, 5, 5] core=2 xf/xc=6/1 W=104 c/m=10.40
+m=25: non-two-face e=4, c>3m: 10412; tau-criterion failures 27
+m=26: non-two-face e=4, c>3m: 11835; tau-criterion failures 0
+  FAIL m=27 gens=[27, 28, 32, 35] ex=3 tau=8 P2=15 L=[5, 5, 4] core=3 xf/xc=6/2 W=28 c/m=4.00
+  FAIL m=27 gens=[27, 29, 34, 35] ex=3 tau=8 P2=15 L=[4, 5, 5] core=3 xf/xc=6/2 W=34 c/m=4.22
+  FAIL m=27 gens=[27, 30, 34, 35] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=30 c/m=4.22
+  FAIL m=27 gens=[27, 34, 38, 39] ex=6 tau=8 P2=18 L=[5, 5, 4] core=3 xf/xc=6/2 W=35 c/m=4.78
+  FAIL m=27 gens=[27, 35, 37, 40] ex=3 tau=8 P2=15 L=[5, 4, 5] core=3 xf/xc=6/2 W=42 c/m=4.96
+  FAIL m=27 gens=[27, 37, 38, 41] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=42 c/m=5.11
+  FAIL m=27 gens=[27, 40, 43, 44] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=38 c/m=5.56
+  FAIL m=27 gens=[27, 41, 44, 46] ex=3 tau=8 P2=15 L=[5, 4, 5] core=3 xf/xc=6/2 W=50 c/m=5.85
+  FAIL m=27 gens=[27, 42, 43, 47] ex=6 tau=8 P2=18 L=[4, 5, 5] core=3 xf/xc=6/2 W=54 c/m=6.00
+  FAIL m=27 gens=[27, 43, 44, 50] ex=1 tau=8 P2=13 L=[5, 5, 4] core=3 xf/xc=6/2 W=53 c/m=6.19
+  FAIL m=27 gens=[27, 46, 47, 51] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=62 c/m=6.59
+  FAIL m=27 gens=[27, 46, 47, 52] ex=3 tau=8 P2=15 L=[5, 5, 4] core=3 xf/xc=6/2 W=55 c/m=6.56
+  FAIL m=27 gens=[27, 46, 49, 53] ex=3 tau=8 P2=15 L=[4, 5, 5] core=3 xf/xc=6/2 W=70 c/m=6.89
+  FAIL m=27 gens=[27, 49, 50, 57] ex=6 tau=8 P2=18 L=[5, 5, 4] core=3 xf/xc=6/2 W=69 c/m=7.22
+  FAIL m=27 gens=[27, 51, 58, 59] ex=6 tau=8 P2=18 L=[4, 5, 5] core=3 xf/xc=6/2 W=66 c/m=7.78
+  FAIL m=27 gens=[27, 53, 58, 61] ex=1 tau=8 P2=13 L=[5, 5, 4] core=3 xf/xc=6/2 W=60 c/m=7.85
+  FAIL m=27 gens=[27, 55, 59, 62] ex=3 tau=8 P2=15 L=[5, 5, 4] core=3 xf/xc=6/2 W=56 c/m=8.00
+  FAIL m=27 gens=[27, 56, 61, 62] ex=3 tau=8 P2=15 L=[4, 5, 5] core=3 xf/xc=6/2 W=62 c/m=8.22
+  FAIL m=27 gens=[27, 57, 61, 62] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=58 c/m=8.22
+  FAIL m=27 gens=[27, 61, 65, 66] ex=6 tau=8 P2=18 L=[5, 5, 4] core=3 xf/xc=6/2 W=63 c/m=8.78
+  FAIL m=27 gens=[27, 62, 64, 67] ex=3 tau=8 P2=15 L=[5, 4, 5] core=3 xf/xc=6/2 W=70 c/m=8.96
+  FAIL m=27 gens=[27, 64, 65, 68] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=70 c/m=9.11
+  FAIL m=27 gens=[27, 67, 70, 71] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=66 c/m=9.56
+  FAIL m=27 gens=[27, 68, 71, 73] ex=3 tau=8 P2=15 L=[5, 4, 5] core=3 xf/xc=6/2 W=78 c/m=9.85
+  FAIL m=27 gens=[27, 69, 70, 74] ex=6 tau=8 P2=18 L=[4, 5, 5] core=3 xf/xc=6/2 W=82 c/m=10.00
+  FAIL m=27 gens=[27, 70, 71, 77] ex=1 tau=8 P2=13 L=[5, 5, 4] core=3 xf/xc=6/2 W=81 c/m=10.19
+  FAIL m=27 gens=[27, 73, 74, 78] ex=2 tau=8 P2=14 L=[5, 5, 5] core=3 xf/xc=6/2 W=90 c/m=10.59
+  FAIL m=27 gens=[27, 73, 74, 79] ex=3 tau=8 P2=15 L=[5, 5, 4] core=3 xf/xc=6/2 W=83 c/m=10.56
+  FAIL m=27 gens=[27, 73, 76, 80] ex=3 tau=8 P2=15 L=[4, 5, 5] core=3 xf/xc=6/2 W=98 c/m=10.89
+m=27: non-two-face e=4, c>3m: 13974; tau-criterion failures 29
+m=28: non-two-face e=4, c>3m: 15252; tau-criterion failures 0
+m=29: non-two-face e=4, c>3m: 18160; tau-criterion failures 0
+m=30: non-two-face e=4, c>3m: 19581; tau-criterion failures 0

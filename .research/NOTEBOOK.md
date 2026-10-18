@@ -952,3 +952,37 @@ contributes 4w; the origin 0. Total face-run length = 2|F| + ΣL − 2 (F = D �
 3Σ_F w + SumAxes = (2|F| + ΣL − 2)M − Def_faces. Eliminate Σ_F w from 3·CH' using |F| = m − |core|. ∎
 (For two-face tiles core = ∅, L_1 = L_2 = 1: reduces to the two-face identity.) Since w(x) ≤ M, each core cell
 contributes ≥ −M; core cells with w ≤ 2M/3 contribute ≥ 0.
+
+## 2026-10-18 (night 13, cont.) — non-two-face e = 4: height criterion H ≥ m − 1 (shape-only), B1, hybrid
+
+**Failure map of existing criteria on NON-two-face e = 4, c > 3m (nt_fail.py, nt_T.py; gens < 3m).** τ-criterion fails
+only at m = 19 (7 S), 23 (2), 25 (27), 27 (29), 31 (1), 43 (1); max excess per m for 28 ≤ m ≤ 44 mostly −1..−12.
+T(X) ≤ 2m+1 (⇔ N ≥ m−1) fails only m ≤ 27; shape-only T(A) ≤ 2m+1 fails up to m = 33 (excess ≤ 7). Failing tiles are
+small compact "staircase" shapes (L ≈ 5,5,5, core 1–3). Correction to night 12: the three-triangle shape (faces = full
+triangles of side L, q* = (1,1,1)) has T(A) = 2m + 6L − 8 (not ≈ 3m) and **is never a lattice tile** (tri3 check
+L = 3..8: no p mod m with p_1+p_2+p_3 ≡ 0 is injective on it).
+
+**Height criterion (PROVED, elementary, any e = 4).** For a column top t let ht(t) = max{|y − t| : y ∈ D, y ≥ t}.
+Since every p_a ≥ m + 1, M − w(t) ≥ w(y) − w(t) = p·(y − t) ≥ (m+1)|y − t|. Summing over incidences (CH'):
+    mW + m(m−1) = Def_all ≥ (m+1)·H(D),   H(D) := Σ_{x∈D} Σ_a ht(t_a(x))   (shape-only).
+So **H(D) ≥ m − 1 ⇒ Wilf**. (General e: (m+1)H ≥ (e−2)m(m−1)/2 ⇒ Wilf.) Refinements: tops t ∉ X have deficit ≥ m and
+≥ (m+1)ht(t), so mW + m(m−1) ≥ m(N + H₂), H₂ = Σ (ht − 1)⁺ ⇒ **hybrid: T(X) ≤ 2m + 1 + H₂ ⇒ Wilf**; and
+B1 := Σ_{(x,a)} max_{y∈A, y≥t}[(m+1)|y−t| + δ̂(y)] (δ̂ = m off X, m − π on X) ≤ Def_all.
+**Data (heightB.py, heightH_climb.py, heightH_rand.py, hybrid.py; NON-two-face, all c):**
+ - HT: H ≥ m − 1 holds for every non-two-face tile with 24 ≤ m ≤ 36 (gens < 3m, exhaustive) and in 40 adversarial climbs
+   (m ∈ [24,60], gens < 10m; min H − (m−1) = 2 at m = 25). Fails only m ∈ {15,16,17,19,20,23}, by ≤ 4.
+   min H − (m−1) for m = 24..36: 8, 2, 5, 2, 4, 7, 10, 12, 12, 10, 12, 14, 16. Random tiles: min H/m = 1.58 (m=40),
+   1.98 (60), 3.0 (90), 3.8 (130) — grows ~ m^{1/2}.
+ - B1 ≥ m(m−1) for every non-two-face S, 10 ≤ m ≤ 36 (gens < 3m), margin (B1 − m(m−1))/m ≥ 8, ≈ 1.5m at m = 36.
+ - hybrid fails only ⟨15,17,18,23⟩-type (m = 15,16,17), ⟨19,20,25,27⟩ (−4), ⟨23,25,28,35⟩ (−1).
+ - per-view: H^{(a)} ≈ m/3 each in extremal tiles; no single view suffices.
+**Structure for a proof (PROVED pieces).** (i) h_a = min(f(v_b), g(v_c), Q) (cylinder lemma) ⇒ level sets E_k of h_a are
+L-shaped strips ∩ B_a; strict corners = maximal cells. H^{(a)} = Σ_k k Σ_{u∈E_k} ht_{E_k}(u) ≥ m − CM_a, CM_a =
+Σ_{y∈A}(y_a+1). (ii) Neighbor map: for an a-top t, t + e_a ∈ D + λ with (t + e_a − λ)_a = 0; t ↦ t + e_a − λ is a
+bijection {a-tops} → B_a; for maximal y the three neighbors λ_1, λ_2, λ_3 are pairwise distinct, and (non-two-face) at
+most one has λ_a = y + e_a (else e_a − e_b ∈ Λ). The a-tops grouped by neighbor ("contact regions", constant height λ_a)
+translate to a PARTITION of the face B_a. (iii) Each a-top z under the foot [π(λ_a), π(y)] of a maximal y has
+ht(z) ≥ |π(y) − π(z)|.
+**Target lemma HT:** every non-two-face 3-D lattice tile with m ≥ 24 has H(D) ≥ m − 1. With BGOW (m ≤ 18) and a
+shape-by-shape finite check for 19 ≤ m ≤ 23 this would prove Wilf for all non-two-face e = 4, hence (with the two-face
+theorem) **Wilf for e = 4**.
