@@ -1,0 +1,7 @@
+d=3 m=16: downsets 10607, tiles (D,p) 24408, Tile-CL failures 0, tight 4644 [] 10s
+d=3 m=17: downsets 17446, tiles (D,p) 48096, Tile-CL failures 0, tight 7326 [] 39s
+d=3 m=18: downsets 28449, tiles (D,p) 34632, Tile-CL failures 0, tight 6252 [] 137s
+d=3 m=19: downsets 45863, tiles (D,p) 81468, Tile-CL failures 0, tight 10578 [] 189s
+d=3 m=20: downsets 73400, tiles (D,p) 61464, Tile-CL failures 0, tight 9600 [] 268s
+d=3 m=21: downsets 116421, tiles (D,p) 95076, Tile-CL failures 0, tight 13278 [] 471s
+d=3 m=22: downsets 183472, tiles (D,p) 103590, Tile-CL failures 0, tight 13434 [] 583s

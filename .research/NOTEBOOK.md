@@ -652,3 +652,69 @@ the hooks max(s,v) = h), T = 3 + max(s,v). If Ω' is a 2-D down-set then D = ψ^
 Minimum normalized MaxCL slack found by hill-climbing semigroup tiles (m ≈ 30–90, all σ): 0.087. The only tight cases
 are tiny (column, simplex, column+spikes, m ≤ d+2). So an argument with o(m²) error plus a finite check would suffice
 for each fixed d — "robust" mechanisms are admissible.
+
+### Tile-CL revisited for d ≤ 3 (night 11) — integral, tight, and a candidate route to e = 4
+Tile-CL: X(σ) = Σ_{y∈D} T(y) r_σ(y) ≤ (d+1)M' with T(y) = Σ_{a: y top of its a-column}(y_a+1) (all column tops).
+Tile-CL ⇒ MaxCL (drop non-maximal tops) ⇒ Wilf. Known FALSE at d = 6 (E47; core ∪ 4 spikes, E51).
+- **Integrality (PROVED):** slack(σ) = (d+1)M' − X(σ) is always a multiple of m. Proof: X(σ+1) − X(σ) = −dm + m·T(x_σ),
+  and slack(0) ≡ M' − Σ_a p_aΣ_{a-cols C} C(|C|,2) ≡ M' − Σ_x φ̃(x) ≡ 0 (mod m), since Σ_x x_a = Σ_C C(|C|,2) and
+  Σ_x φ(x) = M'. So K(σ) := slack/m is an integer walk with steps d − T(x_σ), mean (m−1)/2, and
+  **Tile-CL ⇔ K > −1 ⇔ X(σ) < (d+1)M' + m** (an error budget of m − 1 for free).
+- **Inversion form (PROVED identity):** K(σ) = N(σ) − κ with N(σ) = #{(x,a) : x ≠ top_a(x), r_σ(x) > r_σ(top_a x)}
+  (column inversions) and κ = (Σ_a Σ_{a-cols C} S_a(|C|) − M')/m ∈ ℤ, S_a(L) = Σ_{h<L}⟨h p_a⟩ = m·(average of the
+  column's inversion count over top heights). So Tile-CL ⇔ min_σ N(σ) ≥ κ. (d = 1: κ = 0. Row-major boxes: κ = 0.)
+- **Evidence for d = 3:** exhaustive all d = 3 tiles m ≤ 15 (tilecl_d3_exh.py: 5136 + 12984 + 12210 + 19416 tiles for
+  m = 12..15; 0 failures, ~25% tight), plus E15 (m ≤ 11); 8352 varied e = 4 semigroup tiles (grlex/lex/revlex × all
+  generator orders, conductor truncations; tilecl_e4_var.py) and 1500 random + 12 climbs (tilecl_e4.py): 0 failures,
+  min slack exactly 0 (tight) very often.
+- **2-D L-shapes:** Tile-CL holds on all L-shape tiles m ≤ 40, all p, all σ (lshape_tc.py exh 40; 3837 shapes); slack/m
+  is an integer in [0, m−1] there (lslack.py); tight at σ = end of the top row block when p_1 = 1.
+- The reflected τ-classes of an L-shape never re-tile ℤ/m (zsets.py, 5516 cases) — no direct box reduction.
+- **CONJ Tile-CL(d ≤ 3).** It would give Wilf for e = 4 through the Lean chain (Tile-CL ⇒ MaxCL ⇒ Tile-TOP'' ⇒ Wilf).
+
+### Strategic review (night 11)
+- Distance: Flat-MaxCL is kernel-checked. New PROVED family: two-face box tiles (unbounded height). New maps of e = 4:
+  (a) CR fails only on two-face tiles (exhaustive non-two-face d=3 m ≤ 18: CR always holds); (b) two-face tiles with
+  e_1+e_2 ≡ e_3 are 2-D tiles whose 3-D columns are the rows, columns and DIAGONALS of the picture; (c) Tile-CL(d = 3)
+  survives exhaustive m ≤ 15 and ~10k semigroup tiles, is integral and tight.
+- Theory of success: e = 4 is the open frontier closest to our machinery. Two routes: (I) Tile-CL for d ≤ 3 — exact and
+  integral, so a counting/injection proof (inversions N ≥ κ) is the natural shape; d = 2 L-shapes is the base case
+  (CDL). (II) MaxCL d = 3 = CR (non-two-face; residue-free, needs a structural proof) + two-face (2-D pictures; boxes done).
+- Kill: per-face splits, IntervalCL. Deprioritize: SL for d = 2 (only useful together with LD ⊇ MaxCL(0)).
+- Next: prove Tile-CL for 2-D L-shapes via the inversion form (base case of route I and input for route II).
+
+## 2026-10-18 (night 12) — 2-D Tile-CL PROVED (corner-sum bijection); d=3 structure
+
+### THEOREM (2-D Tile-CL, every 2-D tile) — PROVED; full proof in PROOFS.md ("2-D Tile-CL for EVERY 2-D tile")
+For x ∈ D let τ(x) = (end of its row, top of its column) (the corner; may lie outside D). Then
+**μ(x) := φ(x) + φ(τ(x)) is a bijection D → ℤ/m** (rectangle: translation; L-shape: the three τ-classes translated by
+their corners reassemble, mod Λ = ⟨(a',b'),(a,−c)⟩, into a translate of −D). Since r(t_1x)+r(t_2x) ∈ [0, 2m−2] and
+≡ μ(x) − 2s, X(s) ≤ Σ_{w∈ℤ/m} max{y ≤ 2m−2 : y ≡ w} = 3M'. Exact slack: 3M' − X = m·Σ_x([r(x)+r(τx) ≤ m−2] − ε(x)).
+How found: the L-shape class-discrepancy sum CC = Σ_τ #{x ∈ X_τ : r(x)+ρ_τ ≤ m−2} − Σ_τ n_τ(m−1−ρ_τ)/m turned out to
+be IDENTICALLY 0 (52108 cases), i.e. an identity, which is exactly bijectivity of μ. Old "CDL" (TC section) is this
+identity plus the pointwise bound ε ≤ [r+ρ ≤ m−2].
+Also proved on the way: 2-D down-set tiles have ≤ 2 outer corners (two full-support minimal non-elements q_1 ≠ q_2
+would give q_2 − q_1 ∈ (D−D) ∩ Λ); in ANY dimension a tile has at most one minimal non-element of full support (same
+argument: q_2 − q_1 = δ⁺ − δ⁻ with δ^± ≤ q_i − (1,…,1) ∈ D).
+Consequences: Wilf for e ≤ 3 by a new route (known: FGH 1987); the 2-D input of the two-face reduction is closed.
+
+### Hall's theorem makes the counting identity dimension-free
+Σ_x φ(τ(x)) ≡ 2M' ≡ 0 (mod m) in every dimension (from slack integrality: Σ_aΣ_C |C|φ(top) ≡ (d+1)M' and
+Σ_aφ(t_a x) = (d−1)φ(x) + φ(τx)). By M. Hall (1952: a sequence of |G| elements of an abelian group G with sum 0 is
+the difference sequence of two orderings of G) there is a bijection β: D → ℤ/m with β(x) + φ(τx) bijective, and then
+for every s: Σ_x [⟨β(x) − s⟩ + r(τx) ≤ m−2] = T(s) := Σ_x (m−1−r(τx))/m. So Tile-CL(d) ⇔ Σ_x ε(x) ≤ T(s) where
+ε(x) = (Σ_a r(t_ax) − (d−1)r(x) − r(τx))/m ∈ [−(d−1), d−1], and T(s) has a combinatorial count for any such β.
+For d = 2, β = φ works and ε ≤ the indicator pointwise. For d = 3 no canonical β among φ∘(column-flip words)
+(flipbij.py), and ε = 2 occurs (then u+v ≤ m−3 automatically).
+
+### d = 3 structure (E87)
+- Pairwise 2-D sums inside a 3-D tile can exceed M' (pairs3.py max 1.055M'), total ≤ M': directions must be coupled.
+- Face chain: ε = ε_ab + ε'_c with ε_ab the slice-face carry at x (corner τ_ab(x) = (t_a,t_b,x_c)) and ε'_c the carry of
+  the "diagonal rectangle" (x, τ_ab x, t_c x, τ x). Then **X − M' = Y_c + m·E_ab for every c**, where
+  Y_c = Σ_x [r(τ_ab x) + r(t_c x)], E_ab = Σ_x ε_ab(x).
+- **OBSERVED (P1): Y_c ≤ 3M' for every c** (all 3-D tiles m ≤ 10; tight). P1 is a 2-D Tile-CL for the pair
+  (slice corners, c-columns) inside a 3-D tile. But E_ab can be positive (≤ 2 for m ≤ 10), so P1 is not enough:
+  Tile-CL ⇔ (3M' − Y_c)/m ≥ E_ab.
+- μ-discrepancy A(s) = Σ_x[u+v ≤ m−2] − T(s) ∈ [−2, 2] for m ≤ 9 (small but nonzero).
+- Dimension threshold (E83, E88): Tile-CL exhaustive d=4 m ≤ 14, d=5 m ≤ 12, 0 failures; core+spike failures only at
+  d = 6. Plausibly Tile-CL holds for d ≤ 5 — a d=3 proof need not be specific to d = 3.

@@ -1,0 +1,4 @@
+d=3 m=12: downsets 1251, tiles (D,p) 5136, Tile-CL failures 0, tight 1506 [] 1s
+d=3 m=13: downsets 2185, tiles (D,p) 12984, Tile-CL failures 0, tight 2904 [] 2s
+d=3 m=14: downsets 3765, tiles (D,p) 12210, Tile-CL failures 0, tight 2922 [] 3s
+d=3 m=15: downsets 6354, tiles (D,p) 19416, Tile-CL failures 0, tight 4092 [] 6s

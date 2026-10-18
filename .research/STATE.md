@@ -1,34 +1,44 @@
-# STATE.md — handoff (updated 2026-10-17, end of night 10)
+# STATE.md — handoff (updated 2026-10-18, night 12)
 
 ## Main route
-MaxCL ⇒ Tile-TOP'' (PROVED on paper, PROOFS.md) ⇒ Wilf (LEAN, lean/Wilf/TileTop.lean, 0 sorry, standard axioms).
-**MaxCL**: for every tile (D,p) (down-set D ⊂ ℕ^d, |D| = m, φ(x) = p·x mod m bijective), every σ, r = ⟨φ − σ⟩:
-    Σ_{y∈A} (|y| − 1) r(y) ≤ (d+1) Σ_{z∈N} r(z)     (A = maximal cells, N = the rest).
-Wilf for S needs only σ = c mod m; for m | c that is σ = 0 (Wilf for m | c is itself open).
+MaxCL ⇒ Tile-TOP'' (PROVED on paper; LEAN: tileTOPAt_of_maxCLAt) ⇒ Wilf (LEAN, lean/Wilf/TileTop.lean).
+Tile-CL ⇒ MaxCL (drop non-maximal tops). **Current main target: Tile-CL for d = 3 (⇒ Wilf for e = 4, OPEN in the
+literature).**  Tile-CL: for every tile (D,p) and s, X(s) = Σ_{x∈D} Σ_a r(t_a x) ≤ (d+1)M', r = ⟨φ − s⟩.
 
 ## Proved facts (paper unless marked)
-- CH, Corollary H, Lemma A, TOP'' ⇒ Wilf, CH', CL ⇒ Wilf, Tile-TOP'' ⇒ Wilf: LEAN-checked (lean/Wilf/*.lean).
-- MaxCL ⇒ Tile-TOP''; decomposition identity r(u)+r(v) = r(y)+r(0)+mκ, κ ∈ {−1,0,1}; κ = −1 forces r(y) ≥ m − r(0).
-- **Flat-MaxCL (night 10): MaxCL for all tiles of height ≤ 2.** Corollary: Wilf when Ap(S,m) ⊆ {0} ∪ P ∪ (P+P)
-  (contains reduction number ≤ 2). Novelty unverified: 2 searches (alphaXiv, web) found no such statement.
-- Identities: sawtooth form; exact column form; lift form MaxCL ⇔ Σ_aβ_aρ_a + β_0ρ_0 ≤ m·Σ_x w(x)K(x) (night 10 notes).
+- CH, Corollary H, Lemma A, TOP'' ⇒ Wilf, CH', CL ⇒ Wilf, Tile-TOP'' ⇒ Wilf, MaxCL ⇒ Tile-TOP'': LEAN-checked.
+- Flat-MaxCL (MaxCL for height ≤ 2): LEAN-checked (lean/Wilf/MaxCL.lean). Corollary: Wilf when Ap ⊆ {0} ∪ P ∪ 2P.
+- **2-D Tile-CL for every 2-D tile (night 12)**: corner-sum map μ(x) = φ(x) + φ(τx) is a bijection; exact slack
+  3M' − X = m·Σ_x([r(x)+r(τx) ≤ m−2] − ε(x)) ≥ 0. Classification: 2-D tiles = rectangles and L-shapes. PROOFS.md.
+- Tile-CL slack ≡ 0 mod m (integer walk K, steps d − T, mean (m−1)/2); inversion form K = N − κ.
+- Σ_x φ(τx) ≡ 0 mod m in every d ⇒ (M. Hall 1952) a complete mapping β exists and T(s) = Σ_x (m−1−r(τx))/m is an
+  exact count; Tile-CL(d) ⇔ Σ_x ε(x) ≤ T(s).
+- Two-face box tiles satisfy MaxCL; boxes satisfy Tile-CL in every d (Hajós).
+- At most one minimal non-element of full support in any tile (any d).
 
 ## Refuted (preserved in examples/ and EXPERIMENTS.md)
-CL, Tile-CL (E47), Load Lemma (E64, ⟨39,71,72,77⟩), GLL1, uniform box pairing, crude rearrangement bound in the open
-regime (E69), injective (non-tile) MaxCL (d=1, D={0,1,2}, m=100, p=90, σ=90: 90 > 20).
+CL, Tile-CL at d = 6 (E47/E51/E88), Load Lemma, GLL1, uniform box pairing, CR in the open regime, IntervalCL,
+per-face split, pairwise 2-D Tile-CL inside 3-D tiles (E87).
+
+## Evidence for the main target
+Tile-CL exhaustive: d=3 m ≤ 20, d=4 m ≤ 14, d=5 m ≤ 12 (E83); 10k e=4 semigroup tiles (E82). Tight in ~25% of tiles.
+Failures known only at d = 6.
 
 ## Open gaps
-- G1: MaxCL for height ≥ 3. At height 3 every decomposition of a level-3 cell uses a unit, so unit loads exceed d+1
-  in aggregate once n3 > d(d+1)/2; the flat template (pointwise load ≤ d+1 + window count) cannot work alone.
-- G2: Lean: formalize Flat-MaxCL (statement + proof) and MaxCL ⇒ Tile-TOP''.
-- G3: novelty of the height ≤ 2 corollary (compare Eliahou W_0 ≥ 0, Dhayni, Spirito exact hypotheses).
+- G1: Tile-CL d = 3. Known structure: X − M' = Y_c + m·E_ab for each c (E87); (P1) Y_c ≤ 3M' observed; need
+  E_ab ≤ (3M' − Y_c)/m. No canonical complete mapping found (E86).
+- G2: Lean: formalize 2-D Tile-CL (classification + μ bijection + counting) — high-value, self-contained.
+- G3: two-face L-shape MaxCL (bracket can be negative; must use the exact 2-D slack).
 
 ## Three active approaches
-1. MaxCL by height: find the height-3 mechanism (unit overload paid by distinctness of positions; at σ = 0 the
-   tile is a partition ℤ/m = {0} ⊔ U ⊔ (restricted 2-sums) ⊔ (restricted 3-sums), an additive-combinatorics statement).
-2. m | c case: MaxCL at σ = 0 only (subadditive positions, carries only, no wraps).
-3. Window/lift calculus: general wrap-counting via K(x) = ⌊L(x)/m⌋ and window counts of positions.
+1. Tile-CL d=3 via the face-chain split: prove P1 (a 2-D Tile-CL for (slice corners, c-columns)) with its exact slack,
+   then bound E_ab (sum of slice carries) by that slack.
+2. Tile-CL d=3 via a dimension-free mechanism valid for d ≤ 5 (fails at 6): look for the quantity that changes sign
+   between d = 5 and d = 6 on core+spike tiles.
+3. Route II for e = 4: CR (residue-free) on non-two-face tiles + MaxCL on two-face tiles via 2-D pictures and the
+   exact 2-D slack.
 
 ## Next precise task
-Prove MaxCL at σ = 0 for height-3 tiles (approach 2 ∩ 1): Σ_aβ_aρ_a ≤ m(2Σ_T K + Σ_{E^A}K − (d+1)Σ_{E^N}K) with
-K = carries, using distinctness of the sums. First find the smallest height-3 tiles with the least σ = 0 slack.
+Prove (P1) for d = 3 tiles: Σ_x [r(τ_ab x) + r(t_c x)] ≤ 3M'. First test whether it holds for every tile in every d
+(as a statement about one direction c plus slice corners), find its exact slack formula, and check whether
+E_ab ≤ slack/m has a pointwise/matching proof.

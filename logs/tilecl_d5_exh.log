@@ -1,0 +1,6 @@
+d=5 m=7: downsets 15, tiles (D,p) 2160, Tile-CL failures 0, tight 1200 [] 0s
+d=5 m=8: downsets 110, tiles (D,p) 15480, Tile-CL failures 0, tight 6120 [] 1s
+d=5 m=9: downsets 550, tiles (D,p) 78240, Tile-CL failures 0, tight 23760 [] 6s
+d=5 m=10: downsets 2195, tiles (D,p) 249120, Tile-CL failures 0, tight 64200 [] 39s
+d=5 m=11: downsets 7603, tiles (D,p) 911280, Tile-CL failures 0, tight 181920 [] 218s
+d=5 m=12: downsets 23860, tiles (D,p) 1766760, Tile-CL failures 0, tight 335160 [] 612s
