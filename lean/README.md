@@ -20,6 +20,9 @@
   q ≥ (1,1,1); `faceCorners_coneCut`; sharpness `typeBound_cone_attained`; 0 `sorry`, standard axioms),
   `Wilf/Forest.lean` (2026-10-18: Lemmas **TF** `tripodForest`, **F** `qUForest`, **QF** `qOForest` on `LWClass`, via the
   projection-determined class `IsLW`; **`deltaBound`**: 2|D| + 13 ≤ H + 5C, i.e. δ ≥ m + 14 − 5C on 𝒞; 0 `sorry`, standard axioms),
+  `Wilf/ConeForest.lean` (2026-10-18: C-HT thresholds `chtThreshold` (m ≥ 131 ⇒ δ ≥ 0) and `chtThreshold'`; cone class
+  `ConeSet`: S′, P′, QF-pair, Location, **Fiber Lemma**, `qU_cone` (|qU| ≤ t), `qO_cone` (|qO| + 1 ≤ 2t + |Y|), `tf_cone`,
+  **`coneDelta_sharp`** (2m ≤ H + 6t + 2|Y| + 10) and `coneThreshold` (m ≥ 281), assuming |Y_d| ≤ 2; 0 `sorry`, standard axioms),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)

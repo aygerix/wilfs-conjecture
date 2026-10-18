@@ -59,7 +59,9 @@
   class). So the sublinear bound on t is kernel-checked for both classes: t ≤ C, and C² − 3C + 6 ≤ 6m.
   Also in Lean (lean/Wilf/Forest.lean): TF, F, QF and `deltaBound` (δ ≥ m + 14 − 5C on 𝒞), i.e. all of Theorem C-HT except
   the threshold arithmetic.
-  NOT in Lean: the cone forest lemmas (TF-cone, F-cone, qO-cone), Wall/Floor, links 2–4
+  Also in Lean (lean/Wilf/ConeForest.lean): the C-HT threshold (m ≥ 131 ⇒ δ ≥ 0), F-cone, qO-cone, TF-cone and the cone
+  δ-bound, in sharper forms: δ ≥ m − 6C − 21, so δ ≥ 0 for m ≥ 267. The only hypothesis is |Y_d| ≤ 2.
+  NOT in Lean: Wall/Floor (the |Y_d| ≤ 2 input), links 2–4
   and 7. Earlier Lean: TauCrit, TileCL2 (e ≤ 3), TileTop, MaxCL (see PROOFS).
 - Trust base of link 7: Gröbner-fan traversal enumerating lattices + code. The C port is a re-implementation of the same
   algorithm (0 mismatches against Python on 188 lines), not an independent method. kseth's enumeration uses a different
@@ -86,8 +88,9 @@
 - G-scan: finish HT for cone tiles with 131 ≤ m ≤ 280 (running). If an HT failure appears, LP-certify it with tile_lp.py
   (as for m ≤ 23).
 - G-review: the adversarial review of TF-cone, F-cone, qO-cone, T′, B and the threshold arithmetic.
-- G-Lean: CHT, T, T′, B, TF, F, QF and the 𝒞 δ-bound are done. Next: the C-HT threshold, then the cone forest lemmas
-  (lattice-free, with |Y_d| ≤ 2 as a hypothesis), then Wall/Floor from IsTile, then the height criterion (link 2).
+- G-Lean: all lattice-free counting is done (CHT, B, T, T′, TF, F, QF, the cone bounds, both thresholds). Next: the
+  cylinder lemma (link 4) and Wall/Floor from IsTile, which would give "every 3-D lattice tile with m ≥ 267 has δ ≥ 0" in
+  Lean; then the height criterion (link 2).
 - G-second-check: a method-independent second enumeration for m ≤ 280, or a reduction of the finite range by a sharper
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 

@@ -721,6 +721,17 @@ Proof.
   at most 2 per y. So #DS ≤ t + |Y|, rank ≤ 2|Y| + t, and qO ≤ t − 1 + rank ≤ 2t − 1 + 2|Y|. ∎
 (Refinement: the image of DS lies in Max ∩ (B₁ ∪ B₂ ∪ B₃), so qO ≤ t − 1 + 2|Y| + |Max ∩ B|.)
 
+**LEAN-CHECKED 2026-10-18 (lean/Wilf/ConeForest.lean, verified by the lead; standard axioms, 0 sorry).** For every
+`ConeSet Cyl D q` (Cyl projection-determined, q ≥ (1,1,1), D = Cyl ∖ (q + ℕ³); q ∈ Cyl not needed), the Lean versions
+are SHARPER than the paper's:
+- `qU_cone`: |qU| ≤ t (paper F-cone: t + 2);
+- `qO_cone`: |qO| + 1 ≤ 2t + |Y| (paper: 2t + 2|Y|; the DS fibres have size ≤ 2, so #DS ≤ t);
+- `tf_cone`: 2|Tri| ≤ t + |Y| + 11 when every |Y_d| ≤ 2 (paper: t + 17);
+- `coneDelta_sharp`: 2m ≤ H + 6t + 2|Y| + 10, hence 2m ≤ H + 6C + 22, i.e. **δ ≥ m − 6C − 21**.
+The requested paper forms (`fCone`, `qOCone`, `tfCone`, `coneDeltaBound` with +30, `coneThreshold` m ≥ 281,
+`coneThreshold'` m ≥ 280) are corollaries. The only lattice input left as a hypothesis is |Y_d| ≤ 2 (Floor Lemma).
+**Sharper threshold:** with δ ≥ m − 6C − 21 and Lemma B, δ ≥ 0 for m ≥ 267 and δ ≥ −1 for m ≥ 266 (exact check
+m < 2·10⁵, by the Lean agent and by the lead). The paper constants below are kept for the record.
 **Corollary (HT for large cone tiles).** For every cone tile:
 - Lemma CHT: δ(D) ≥ m + 1 − LHS.
 - LHS = 2t + 2Tri + qU + qO ≤ 2t + (t + 17) + (t + 2) + (2t + 11) = 6t + 30, by TF-cone, F-cone and qO-cone (NOTEBOOK
