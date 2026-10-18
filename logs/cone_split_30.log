@@ -1,0 +1,77 @@
+CYL  1 count 1 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 0
+CYL  2 count 3 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 0
+CYL  3 count 6 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 0
+CYL  4 count 13 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 1
+CYL  5 count 24 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 1
+CYL  6 count 48 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 1
+CYL  7 count 85 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 1
+CYL  8 count 157 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 1
+CYL  9 count 270 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  10 count 469 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  11 count 778 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  12 count 1296 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  13 count 2080 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  14 count 3339 | t-C -2 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  15 count 5220 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 2
+CYL  16 count 8128 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  17 count 12399 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  18 count 18834 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  19 count 28123 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  20 count 41799 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  21 count 61269 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  22 count 89356 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  23 count 128814 | t-C -2 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  24 count 184806 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 3
+CYL  25 count 262468 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CYL  26 count 371056 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -3 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CYL  27 count 520027 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -2 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CYL  28 count 725560 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -2 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CYL  29 count 1004623 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -2 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CYL  30 count 1385224 | t-C -2 | qU+tri-t 1 | 2tri+qO-C -2 | qU-t -1 | tri-t -1 | qO-C -3 | 2tri+q-2C -6 | LHS-4C -10 | qU3+tri-t -1 | qO3+tri-C -3 | qO-t -1 | tri 4
+CONE 7 count 1 | t-C 0 | qU+tri-t 0 | 2tri+qO-C -3 | qU-t 0 | tri-t -3 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t -2 | qO3+tri-C -3 | qO-t -3 | tri 0
+CONE 8 count 3 | t-C -1 | qU+tri-t -1 | 2tri+qO-C -3 | qU-t -2 | tri-t -3 | qO-C -5 | 2tri+q-2C -6 | LHS-4C -8 | qU3+tri-t -2 | qO3+tri-C -4 | qO-t -4 | tri 1
+CONE 9 count 12 | t-C -1 | qU+tri-t -1 | 2tri+qO-C -2 | qU-t -2 | tri-t -3 | qO-C -4 | 2tri+q-2C -6 | LHS-4C -8 | qU3+tri-t -2 | qO3+tri-C -4 | qO-t -3 | tri 2
+CONE 10 count 31 | t-C 0 | qU+tri-t -1 | 2tri+qO-C -1 | qU-t -2 | tri-t -2 | qO-C -3 | 2tri+q-2C -5 | LHS-4C -5 | qU3+tri-t -2 | qO3+tri-C -3 | qO-t -3 | tri 4
+CONE 11 count 81 | t-C 0 | qU+tri-t 0 | 2tri+qO-C -1 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t -2 | qO3+tri-C -3 | qO-t -2 | tri 4
+CONE 12 count 183 | t-C -1 | qU+tri-t -1 | 2tri+qO-C -1 | qU-t -1 | tri-t -2 | qO-C -4 | 2tri+q-2C -6 | LHS-4C -8 | qU3+tri-t -1 | qO3+tri-C -4 | qO-t -3 | tri 4
+CONE 13 count 405 | t-C 0 | qU+tri-t 0 | 2tri+qO-C -1 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -2 | tri 4
+CONE 14 count 825 | t-C 0 | qU+tri-t 0 | 2tri+qO-C -1 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -2 | tri 4
+CONE 15 count 1647 | t-C 0 | qU+tri-t 0 | 2tri+qO-C -1 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -2 | tri 4
+CONE 16 count 3124 | t-C 0 | qU+tri-t 0 | 2tri+qO-C 0 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -2 | tri 4
+CONE 17 count 5802 | t-C 0 | qU+tri-t 1 | 2tri+qO-C 0 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -2 | tri 5
+CONE 18 count 10407 | t-C 0 | qU+tri-t 1 | 2tri+qO-C 1 | qU-t -1 | tri-t -2 | qO-C -3 | 2tri+q-2C -5 | LHS-4C -5 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 5
+CONE 19 count 18331 | t-C 0 | qU+tri-t 1 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 7
+CONE 20 count 31455 | t-C 0 | qU+tri-t 1 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 7
+CONE 21 count 53130 | t-C 0 | qU+tri-t 1 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 7
+CONE 22 count 87939 | t-C 0 | qU+tri-t 2 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 7
+CONE 23 count 143553 | t-C 0 | qU+tri-t 2 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 0 | qO3+tri-C -3 | qO-t -1 | tri 7
+CONE 24 count 230523 | t-C 0 | qU+tri-t 3 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 7
+CONE 25 count 365762 | t-C 0 | qU+tri-t 3 | 2tri+qO-C 2 | qU-t 0 | tri-t -2 | qO-C -3 | 2tri+q-2C -4 | LHS-4C -4 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 7
+CONE 26 count 572440 | t-C 0 | qU+tri-t 3 | 2tri+qO-C 3 | qU-t 0 | tri-t -2 | qO-C -2 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 7
+CONE 27 count 886491 | t-C 0 | qU+tri-t 3 | 2tri+qO-C 3 | qU-t 0 | tri-t -2 | qO-C -2 | 2tri+q-2C -3 | LHS-4C -3 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 7
+CONE 28 count 1357006 | t-C 0 | qU+tri-t 4 | 2tri+qO-C 3 | qU-t 0 | tri-t -2 | qO-C -2 | 2tri+q-2C -2 | LHS-4C -2 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 8
+CONE 29 count 2057881 | t-C 0 | qU+tri-t 4 | 2tri+qO-C 3 | qU-t 0 | tri-t -2 | qO-C -2 | 2tri+q-2C -1 | LHS-4C -1 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 8
+CONE 30 count 3089664 | t-C 0 | qU+tri-t 4 | 2tri+qO-C 4 | qU-t 0 | tri-t -2 | qO-C -2 | 2tri+q-2C 1 | LHS-4C 1 | qU3+tri-t 1 | qO3+tri-C -3 | qO-t 0 | tri 8
+CYL perC C=3 n=276 max(2tri+q) 0 [h=1 F=1 G=1] max(LHS) 2 max(tri) 0 max(q) 0
+CYL perC C=4 n=6606 max(2tri+q) 1 [h=2 F=2 G=2,1] max(LHS) 5 max(tri) 0 max(q) 1
+CYL perC C=5 n=44985 max(2tri+q) 2 [h=3 F=3 G=3,2,1] max(LHS) 8 max(tri) 0 max(q) 2
+CYL perC C=6 n=201445 max(2tri+q) 4 [h=3,2 F=3,2 G=3,1,1] max(LHS) 12 max(tri) 1 max(q) 4
+CYL perC C=7 n=725355 max(2tri+q) 5 [h=4,3 F=4,2 G=4,3,1,1] max(LHS) 15 max(tri) 1 max(q) 5
+CYL perC C=8 n=1474842 max(2tri+q) 8 [h=4,3,1 F=4,2,2 G=4,3,1,1] max(LHS) 20 max(tri) 2 max(q) 8
+CYL perC C=9 n=1529983 max(2tri+q) 11 [h=4,3,1,1 F=4,2,2,1 G=4,3,1,1] max(LHS) 25 max(tri) 2 max(q) 9
+CYL perC C=10 n=730593 max(2tri+q) 13 [h=5,4,2,2 F=5,2,2,1 G=5,4,3,1,1] max(LHS) 29 max(tri) 3 max(q) 12
+CYL perC C=11 n=135054 max(2tri+q) 15 [h=5,4,3,1,1 F=5,4,2,2,1 G=5,3,1,1,1] max(LHS) 33 max(tri) 3 max(q) 12
+CYL perC C=12 n=7106 max(2tri+q) 16 [h=5,4,3,2,1 F=5,4,2,1,1 G=5,3,1,1,1] max(LHS) 34 max(tri) 4 max(q) 12
+CYL perC C=13 n=30 max(2tri+q) 14 [h=6,3,2,1 F=6,2,1,1 G=6,5,4,3,2,1] max(LHS) 32 max(tri) 3 max(q) 8
+CONE perC C=3 n=264 max(2tri+q) 3 [h=2,2 F=2,2 G=2,2 q=(1,1,1)] max(LHS) 9 max(tri) 0 max(q) 3
+CONE perC C=4 n=4068 max(2tri+q) 4 [h=3,3 F=3,3 G=3,3,1 q=(1,1,2)] max(LHS) 12 max(tri) 0 max(q) 4
+CONE perC C=5 n=41550 max(2tri+q) 6 [h=3,3 F=4,3 G=4,2,2 q=(1,2,1)] max(LHS) 16 max(tri) 1 max(q) 6
+CONE perC C=6 n=208072 max(2tri+q) 9 [h=3,3,2 F=3,3,2 G=3,3,2 q=(1,1,1)] max(LHS) 21 max(tri) 1 max(q) 9
+CONE perC C=7 n=773535 max(2tri+q) 10 [h=4,4,3 F=4,4,2 G=4,3,3,2 q=(1,2,1)] max(LHS) 24 max(tri) 2 max(q) 10
+CONE perC C=8 n=1711737 max(2tri+q) 14 [h=4,4,3,1 F=4,4,2,2 G=4,3,3,2 q=(1,2,1)] max(LHS) 30 max(tri) 3 max(q) 14
+CONE perC C=9 n=2718042 max(2tri+q) 17 [h=4,4,3,1 F=5,4,2,2 G=5,3,3,2 q=(1,2,1)] max(LHS) 35 max(tri) 4 max(q) 15
+CONE perC C=10 n=2400045 max(2tri+q) 21 [h=5,3,3,2 F=5,3,3,2 G=5,4,2,2,1 q=(2,1,1)] max(LHS) 41 max(tri) 5 max(q) 17
+CONE perC C=11 n=915198 max(2tri+q) 20 [h=5,4,3,2 F=5,3,3,2 G=5,4,2,1,1 q=(2,1,1)] max(LHS) 40 max(tri) 5 max(q) 14
+CONE perC C=12 n=137261 max(2tri+q) 21 [h=5,4,3,2 F=5,4,3,2 G=5,3,2,1,1 q=(2,1,1)] max(LHS) 41 max(tri) 7 max(q) 14
+CONE perC C=13 n=6846 max(2tri+q) 22 [h=5,4,3,2 F=5,4,3,2 G=5,4,3,2,1 q=(1,1,1)] max(LHS) 44 max(tri) 7 max(q) 11
+CONE perC C=14 n=78 max(2tri+q) 23 [h=5,4,3,2,1 F=5,4,3,2,1 G=5,4,3,1,1 q=(1,1,1)] max(LHS) 45 max(tri) 8 max(q) 8

@@ -1159,3 +1159,32 @@ each coordinate is blocked by one of two faces (x1 by R3/R2, x2 by C3/C1, x3 by 
 (A4) + (B) ⇒ 2t + 2Tri + Q' ≤ 4√(6m) − 4 ≤ m + 1 for m ≥ 94 — i.e. **CHT, hence HT, for every 𝒞-tile with m ≥ 94**;
 the cone version (constant −3) gives m ≥ ~100. With the scan (complete to m = 101 at last check, running to 115) this
 would close G2' for tiles if (A4)/(B)/cone-(A4) are proved.
+
+### Night 14 (latest) — CHT pieces proved: t ≤ C − 2, C² − 3C + 6 ≤ 6m, qU-forest; (K) refuted; cone class needs the lattice
+
+Full statements/proofs in PROOFS.md ("e = 4, asymptotic HT via CHT").
+**PROVED (𝒞):** Lemma T (t ≤ C − 2; level telescoping t = c(A₃) + Σ_v ν_v, ν_v ≤ [a drops] + [b drops]);
+Lemma B (C² − 3C + 6 ≤ 6m, also for the cone class); Lemma F (unit-notch Q' cells form a forest on Max ⇒ qU ≤ t − 1).
+**PROVED (cone class):** t ≤ C (the cone adds ≤ 2 new corners at level q₃).
+**Cone class is different (lattice-free):** three staircase faces with q = (1,1,1): t = C − 3, Tri = C − 5 (axis tripods),
+Q' = C − 9 ⇒ LHS = 5C − 25; CHT holds there only from k = 9 (m = 109). Exhaustively (src/c/peel_lhs.c, cone_split.c)
+max(LHS − 4C) in the cone class rises −3 (≤ 27) → +1 (30), max(2Tri + Q' − 2t) → +3 (31–32).
+**Real cone tiles look like 𝒞** (src/scratch/tile_cht_cone.py, logs/tile_cht_cone.log): m = 30/40/50: max(t − C) = 0,
+max(LHS − 4C) = −5/−3/−5, max C/√m = 1.64/1.90/1.70, CHT slack ≥ 3/9/13; (K)-quantity 2Tri + Q' − 2t ≤ −3 (m ≤ 36,
+logs/tile_K.log). ⇒ for cone tiles the lattice must enter (or a 5C-type bound + scan to ≈ 150).
+**Ω = 2Tri + qO:** Ω ≤ C − 2 holds exhaustively (𝒞, ≤ 34) but annealing (src/scratch/cls_anneal.py) finds Ω − C = +5 at
+m = 248 — FALSE; the split LHS ≤ 3t − 1 + Ω is lossy (when Ω is big, t and qU have slack).
+**Conjecture (K) 2Tri + Q' ≤ 2t − 2 (would give LHS ≤ 4t − 2): exhaustive on 𝒞 for |D| ≤ 32 (max exactly −2), but FALSE:**
+annealing counterexample h = (8,5,4,3,2,2), F = (10,8,3,3,3,2), G = (10,9,7,6,3,3,2,1), m = 104: t = 13, Tri = 5, Q' = 16
+(qU 10, qO 6), C = 16 — K = 0; confirmed with the independent tile_cht.cht. It is EXACTLY tight for (A4b) 2Tri + Q' ≤ 2C − 6
+and has LHS − 4C = −12, CHT slack 53. Lesson: small exhaustive ranges (≤ 32) miss mechanisms that need ≥ 6 corners per face.
+**Other refuted helpers:** per-level form of (K) (fails from |D| = 16, levels compensate); single-peel monotonicity of
+LHS − 4C (fails at 17, 28–30 on sets with slack ≥ 1) and of K; o-pair bound 3Tri + qO ≤ C − 2 (fails at 27);
+tripod row-end injection (two tripods can share their row-end maximum: h = (4,3,1,1), F = (3,2,1,1), G = (3,1,1,1)
+has t = 5, Tri = 2 sharing (3,0,0) — 2Tri = t − 1 tight).
+**Observed (𝒞, |D| ≤ 15):** tripod hypergraph on Max is Berge-acyclic (⇒ 2Tri ≤ t − 1 if true); qO graph is a forest
+(⇒ qO ≤ t − 1); mixtures have cycles. Annealing to m ≈ 200: 2Tri − t ≤ −1, qO − t ≤ −1 not violated.
+**Status of the 𝒞 route:** proved LHS ≤ 3t − 1 + Ω. Two candidate closings:
+ (a) (A4b) 2Tri + Q' ≤ 2C − 6 (no violation: exhaustive ≤ 34, annealing m ≤ 250 incl. restarts from the K-counterexample)
+     ⇒ LHS ≤ 4C − 10 ⇒ CHT for m ≥ 88;
+ (b) 2Tri ≤ t − 1 and qO ≤ t − 1 (hyperforest/forest) ⇒ LHS ≤ 5t − 3 ≤ 5C − 13 ⇒ CHT for m ≥ 131 (scan must reach 130).

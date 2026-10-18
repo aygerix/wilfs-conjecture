@@ -1,0 +1,6 @@
+m=30 C    n=2221: max(t-C) -2 max(2Tri+Q-2C) -6 max(LHS-4C) -10 [r=(1, 2, 6)] min CHT slack 5 [r=(1, 6, 13)] max C/sqrt(m) 2.01
+m=30 cone n=418: max(t-C) 0 max(2Tri+Q-2C) -5 max(LHS-4C) -5 [r=(1, 4, 8)] min CHT slack 3 [r=(2, 21, 25)] max C/sqrt(m) 1.64
+m=40 C    n=5112: max(t-C) -2 max(2Tri+Q-2C) -6 max(LHS-4C) -10 [r=(1, 2, 4)] min CHT slack 9 [r=(1, 12, 17)] max C/sqrt(m) 1.90
+m=40 cone n=1015: max(t-C) 0 max(2Tri+Q-2C) -3 max(LHS-4C) -3 [r=(1, 12, 31)] min CHT slack 9 [r=(1, 6, 25)] max C/sqrt(m) 1.90
+m=50 C    n=11739: max(t-C) -2 max(2Tri+Q-2C) -6 max(LHS-4C) -10 [r=(1, 2, 10)] min CHT slack 14 [r=(1, 11, 45)] max C/sqrt(m) 1.84
+m=50 cone n=2158: max(t-C) 0 max(2Tri+Q-2C) -4 max(LHS-4C) -5 [r=(1, 2, 27)] min CHT slack 13 [r=(1, 15, 21)] max C/sqrt(m) 1.70
