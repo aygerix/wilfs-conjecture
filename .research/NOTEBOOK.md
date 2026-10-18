@@ -1581,3 +1581,15 @@ asserted on every test.
   - The universal target becomes: **HCR+ (or HCR++) for every lattice tile with m ≥ 19** (m ≤ 18 is BGOW).
   - For e = 4: **HCR for every 3-D tile with m ≥ 10**. That would be a uniform e = 4 proof with no two-face split,
     once proved for large m by counting and checked for the finite range.
+- **HCR_exit is too weak (fejer; logs/atop/hcrexit*.log).** HCR_exit replaces column tops by exits:
+  H_n ≥ Σ_x (d − outdeg x)·ht(x).
+  - 3-D tiles: it fails at m = 8, 9, 12 and at most m in 20–26 (worst 0.824 at m = 24).
+  - Random (m ≥ 20, about 246k S): 409 failures at e = 4, 236 at e = 5, 75 at e = 6, 23 at e = 7. HCR passes all of
+    these (e.g. 0.824 vs HCR 1.82).
+  - So HCR's strength comes from the heights of non-maximal column tops away from the exits, not just from the exits.
+  - Kill as a proof target.
+- **4-D lattice-tile enumeration (codex subagent; src/scratch/tile4/, running on fejer).**
+  - Exact volume certificate per lattice; all 2,000 random e = 5 semigroup tiles were found; 3-D counts reproduced.
+  - Status at 20:54 UTC: complete through m = 32, 3.22M tiles. Only 2 HCR failures, both at m = 13 (r = (1,2,6,9),
+    (1,5,8,12); HCR = 112/117; covered by m ≤ 19).
+  - Min HCR rises: 1.055 (m = 14) to 1.234 (m = 32). Not yet verified by the lead.
