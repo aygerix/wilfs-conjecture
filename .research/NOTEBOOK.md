@@ -1404,7 +1404,7 @@ implies W ≥ 0.
 - src/scratch/height_e.py asserts the inequality on every sample and reports H divided by the threshold.
 - 400 random S each for e = 4 and e = 5, m ∈ [20, 60], generators < 6m, seed 1; 0 assertion failures.
 - e = 5: the criterion fails once (m = 23: ⟨23, 40, 51, 62, 118⟩, ratio 0.95).
-- e = 5: the minimum ratio over the sample is 1.4–3.1 for m ≥ 29 (e.g. 1.42 at m = 53). For e = 4 the same sampler gives
+- e = 5: the minimum ratio over the sample is 1.4–3.1 for m ≥ 29 (e.g. 1.42 at m = 53). For e = 4 the same sampler gives (m = 44–59)
   ratios 2.8–5.7, but random samples are not adversarial; the e = 4 extremal tiles sit near ratio 1 for m ≈ 25.
 - Question for the reassessment: does "4-D HT", H ≥ 1.5(m−1)·m/(m+1) for all non-degenerate 4-D tiles with large m,
   hold? If it does, the e = 4 mechanism has a d = 4 analogue: CHT counting plus a structure theorem for 4-D tiles. The
