@@ -1312,3 +1312,39 @@ Checked on cone tiles m = 30..64 (src/scratch/qu_cone.py): rank(G_U) ≤ 1, qU �
   example. The injection must be global.
 - Threshold arithmetic with Lemma B (C ≤ ⌊3/2 + √(6m − 15/4)⌋): 5C + β ≤ m + 1 holds for all m > 160 (β = 2), m > 191 (β = 18),
   m > 203 (β = 25). So the conjecture plus an HT scan of m ≤ 191 would settle cone tiles.
+
+## 2026-10-18 (night 17, cont.) — PIVOT to all e: the final-window criterion generalizes
+
+**Literature event.** github.com/kseth/wilf-e4 (Sept 2026) gives a complete computer-assisted proof of Wilf for e = 4.
+It covers our open cone-class case, and the audit found no error. Our earlier "Corollary H" is Zhai 2011 Thm 1, and our
+cylinder lemma (a) is HRW 2018 Prop 2.6(b) (LITERATURE §3 items 11–13). Decision (ledger review): stop the e = 4 cone
+work and move to all e.
+
+**FW criterion for every e (PROVED; generalizes kseth eq. (p:6) from d = 3).** Notation:
+- S has multiplicity m and other minimal generators a_1..a_d (d = e − 1).
+- T ⊂ ℕ^d is the term-order factorization ideal of Ap(S, m). It is a down-set, λ(x) = a·x is a bijection T → Ap,
+  and M = max Ap = c + m − 1.
+- u(x) = M − λ(x) ≥ 0. Lines are the maximal segments of T in a coordinate direction; P(T) = #lines = Σ_j |π_j T|.
+- Z = {x ∈ T : λ(x) ≥ c}, the τ-set. Z ⊆ Max T, since λ(z) + a_j > M.
+
+EXACT (any d): m·W = C(m,2) + Σ_ℓ σ_ℓ, where σ_ℓ = Σ_{x∈ℓ} (u(t_ℓ) − [u(x)]_m) and t_ℓ is the top of ℓ.
+Equivalently m·W = Σ_x Σ_j u(top_j x) − (d−1)·C(m,2), which is Zhai's Lemma 3 / our CH′.
+Proof sketch:
+- Σ_j Σ_ℓ L_ℓ u(t_ℓ) = d·mM − (d+1)·a·s, where s = Σ_T x.
+- In each direction the residues [u(x)]_m run over 0..m−1 exactly once.
+- Our CH step (3) gives mW = d·mM − (d+1)Σλ − (d−1)C(m,2).
+Bounds:
+- A deep line (t ∉ Z) has σ ≥ m + C(L,2), because its axis-prefix residues [r a_j]_m (r ≥ 1) are distinct and nonzero.
+- A final line has σ = m·C_ℓ − R_j(L), where R_j(L) = Σ_{r<L} [r a_j]_m and C_ℓ counts wraparounds.
+- So **FW: m·W ≥ m·(P(T) − dτ) − (m−1)·E(Z)**, where E(Z) = Σ_Z |z|₁ − Σ_j max_Z z_j.
+  If P(T) − dτ ≥ E(Z), Wilf follows. (Asserted along with EXACT on every S below; src/fw.py.)
+- **FWx** (sharper; exact residues on final lines): m·W ≥ C(m,2) + Σ_deep (m + C(L,2)) − Σ_final R_j(L).
+Data (EXPERIMENTS E134):
+- FW alone proves Wilf for 258,561 of the 258,581 S with genus ≤ 22. All 20 failures have e ∈ {4, 5, 6}; none for e ≥ 7.
+- FWx ≥ 0 on all 258,581, and on all but one of about 22k random hard S (c ≥ 4m or Eliahou-type).
+  The one failure is ⟨13,20,21,23,25⟩ (W = 12, FWx = −15), which is covered by 3e ≥ m. Its τ = 8 of m = 13, so the final
+  lines dominate, and the loss is the ignored wraparounds C_ℓ (13 per final line).
+- Eliahou's ⟨14,22,23⟩₅₆ (W₀ < 0, W = 35) satisfies FW with bound 202 = 14.4m. (An earlier note said "bound exactly 0";
+  that was a bug in fw_hard.py, whose minimum tracker started at 0. Corrected.) The family ⟨16,25,26⟩₆₄, ⟨18,28,29⟩₇₂, ⟨20,31,32⟩₈₀, ⟨22,34,35⟩₈₈ (c = 4m) has FW/m = 24.4, 34.3, 44.3, 54.3.
+- Mechanism of FW failure: T simplex-like with Z the whole top layer gives P − dτ = 0 < E(Z) (interval-type semigroups).
+- Random S almost never lie outside the known theorems (23 of 24k; FW holds on all 23). An adversarial search there is running.

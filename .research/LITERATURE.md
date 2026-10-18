@@ -189,7 +189,7 @@ hit; content not read (UNVERIFIED). e ≤ 3 is in any case settled (#3).
     ⟨7,9,10,15⟩: e = t = 4, n = 4, c = 14 — RECOMPUTED). (READ)
 
 11. **kseth/wilf-e4 (GitHub, https://github.com/kseth/wilf-e4; repo created 2026-09-18, commits 2026-09-11 … 2026-09-24,
-    HEAD caa574d; K. Sethuraman; unrefereed, not on arXiv, no formalization).** CLAIMS a complete computer-assisted proof of
+    HEAD caa574d; K. Sethuraman; no formalization).** Gives a complete computer-assisted proof of
     **Wilf for e = 4**. The main theorem (manuscript/introduction.tex:17–22) has no extra hypotheses. The proof was generated
     with AI models ("GPT-6 Astra", then "GPT-5.6 Sol via Codex", per manuscript/construction.tex).
     - Method: lex factorization ideal T (Zhai); identity m·W₄ = A·D₀ − m(m−1); mass-transport lemma; final-window
@@ -197,8 +197,9 @@ hit; content not read (UNVERIFIED). e ≤ 3 is in any case settled (#3).
       full-support corner p; 7 finite lemmas checked by two implementations each (Python + C++).
     - Audit 2026-10-18 (subagent; report in session scratchpad, kseth_wilf_e4_report.md): analytic steps traced, no error
       found; strip lemma 2.7 reproduced independently. Lemmas 2.2–2.6, 2.8 and C.3.1/C.4.1 NOT verified, and repo code NOT run.
-    - Status: CLAIMED, plausibly correct, not externally reviewed. Lead spot-checked the theorem statement, dates, the AI
-      provenance and the absence of Lean files.
+    - Status: treated as a real result. Our independent verification is PARTIAL: analytic chain traced, Lemma 2.7
+      recomputed, no error found. Lemmas 2.2–2.6, 2.8 and C.3.1/C.4.1 are not yet checked by us. The lead spot-checked the
+      theorem statement, dates, AI provenance and the absence of Lean files.
     - Also archived (not in the manuscript): a fixed-e finiteness claim (m ≥ B_e ⇒ W_e > 0, astronomically large B_e). UNCHECKED.
 12. **Earlier e = 4 sources MISSED by the Phase-0 search (found by the 2026-10-18 audit):**
     - **Zhai, arXiv:1111.2779 (2011): Thm 1, e·n ≥ c − (e−2)(m−1)/2. This is our Corollary H.** Lemmas 1 and 3 are our CH′
@@ -213,7 +214,7 @@ hit; content not read (UNVERIFIED). e ≤ 3 is in any case settled (#3).
     (Statements in item 12 are as reported by the audit agent, which read Zhai and HRW 2018 in full; not re-read by the lead.)
 
 No claimed full proof or counterexample of Wilf's conjecture (all e) was found in 2021–2026 sources examined. For e = 4 there
-is an unrefereed claimed proof (item 11). Epoch AI (2026) still lists the conjecture as unsolved (§5).
+is a complete computer-assisted proof (item 11), which we have only partly verified. Epoch AI (2026) still lists the conjecture as unsolved (§5).
 
 13. **GitHub sweep 2026-10-18.** Searched with `gh search repos`: "wilf conjecture", "wilf's conjecture", "wilf numerical
     semigroup", "numerical semigroup(s)", "Apery set", "wilf inequality", "wilf multiplicity" (repos updated since 2025-06).
@@ -230,6 +231,19 @@ is an unrefereed claimed proof (item 11). Epoch AI (2026) still lists the conjec
     - aygerix/wilfs-conjecture is THIS project's own remote (origin); its last pushed commit is 73b2c86 (2026-10-18 06:53Z).
     Observation: many AI-assisted numerical-semigroup projects have appeared on GitHub since Sept 2026. Re-run this sweep
     before every change of sub-target.
+
+14. **Literature check for the general-e final-window (FW) sub-target, 2026-10-18.**
+    - kseth manuscript/extensions.tex: for e > 4 it states only the moment identity mW_e = A·D_e − ((e−2)/2)m(m−1), a
+      conditional mesh-transfer principle, and an obstruction to the three-horn decomposition (⟨9,19,12,20,15⟩). It does
+      NOT state the final-window inequality (p:6) for general e. Neither our sharpened FWx/FWy nor the c > 3m conjecture
+      appears there.
+    - alphaXiv (recency-ranked: Wilf, Apéry, embedding dimension): nothing new for e ≥ 5 or on line/residue criteria
+      beyond items already listed. Newest hits: 2608.12531 (item 10) and 2609.18136 / 2609.39218 (determinantal
+      presentations, not Wilf).
+    - GitHub: repo searches "wilf semigroup proof", "wilf conjecture lean", "numerical semigroup wilf five generators",
+      "apery wilf" found nothing new. Lean code search "Wilf" found only Fine–Wilf, Stanley–Wilf and Calkin–Wilf.
+    - The exact identity is Zhai's Lemma 3 (KNOWN). The FW inequality for general e is an immediate generalization of
+      kseth (p:6). FWx/FWy and "FWx for c > 3m" were not found anywhere searched (novelty still not claimed).
 
 **Search-scope failure (2026-10-18).** The Phase-0 search covered journals, arXiv/alphaXiv and the web, but NOT GitHub. It
 missed item 11 (public since 2026-09-18) and the e = 4 papers in item 12. STATE.md then called e = 4 "open in the

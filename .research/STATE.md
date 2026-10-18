@@ -3,8 +3,8 @@
 ## Main route
 Wilf ⇐ TOP'' (Lemma A, LEAN `wilf_of_TOP2`) ⇐ Tile-TOP'' ⇐ MaxCL (LEAN) ⇐ Tile-CL (d ≤ 5 only; false at d = 6).
 **τ-criterion (LEAN-CHECKED, lean/Wilf/TauCrit.lean):** with τ = |Ap ∩ [c, c+m)| = #gaps in [c−m, c),
-Wilf holds when (e−2)(m+1) ≥ 2(e−2)τ + 2P₂. Focus through night 17: **Wilf for e = 4**. CORRECTION 2026-10-18: NOT open. kseth/wilf-e4 (GitHub, Sept 2026) claims a
-complete computer-assisted proof (unrefereed); see LITERATURE §3 items 11–12.
+Wilf holds when (e−2)(m+1) ≥ 2(e−2)τ + 2P₂. Focus through night 17: **Wilf for e = 4**. CORRECTION 2026-10-18: NOT open. kseth/wilf-e4 (GitHub, Sept 2026) gives a
+complete computer-assisted proof (we have partly verified it independently; see LITERATURE §3 items 11–12).
 **e = 4 split:** two-face tiles (some e_a + e_b ∉ D) — **PROVED (paper)**; non-two-face tiles — **reduced to HT**
 (H(D) ≥ m − 1, shape-only) and **verified completely for m ≤ 60** (computer-assisted); HT for m > 60 OPEN (G2).
 
