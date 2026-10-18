@@ -1,0 +1,5 @@
+seed 14: 6 uncovered semigroups with e >= 5; FW < 0: 0, FWx < 0: 0
+  e=9: 1 S, FW fails 0, FWx fails 0
+  e=13: 1 S, FW fails 0, FWx fails 0
+  e=14: 3 S, FW fails 0, FWx fails 0
+  e=15: 1 S, FW fails 0, FWx fails 0

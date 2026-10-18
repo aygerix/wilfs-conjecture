@@ -1,0 +1,106 @@
+mode R seed 1: tested 2611
+  e=2: 1 S, FW holds 1, min bound/m 0.000
+  e=3: 19 S, FW holds 19, min bound/m 0.000
+  e=4: 161 S, FW holds 161, min bound/m 0.000
+  e=5: 620 S, FW holds 620, min bound/m 0.000
+  e=6: 629 S, FW holds 629, min bound/m 0.000
+  e=7: 536 S, FW holds 536, min bound/m 0.000
+  e=8: 379 S, FW holds 379, min bound/m 0.000
+  e=9: 195 S, FW holds 195, min bound/m 0.000
+  e=10: 71 S, FW holds 71, min bound/m 0.000
+  failures: 0
+mode R seed 2: tested 2625
+  e=3: 10 S, FW holds 10, min bound/m 0.000
+  e=4: 170 S, FW holds 169, min bound/m -2.348
+  e=5: 595 S, FW holds 595, min bound/m 0.000
+  e=6: 660 S, FW holds 660, min bound/m 0.000
+  e=7: 544 S, FW holds 544, min bound/m 0.000
+  e=8: 411 S, FW holds 411, min bound/m 0.000
+  e=9: 186 S, FW holds 186, min bound/m 0.000
+  e=10: 49 S, FW holds 49, min bound/m 0.000
+  failures: 1
+    ([23, 25, 26, 31], 23, 92, 36, 6, 15, 12, -54, ['c<=4n (#7)', 'g<=100 (DEF)', 'm|c, g<=120 (DEF)'])
+mode E seed 3: tested 3000
+  e=3: 24 S, FW holds 24, min bound/m 0.000
+  e=4: 192 S, FW holds 189, min bound/m -2.333
+  e=5: 460 S, FW holds 456, min bound/m -5.308
+  e=6: 167 S, FW holds 167, min bound/m 0.000
+  e=7: 123 S, FW holds 123, min bound/m 0.000
+  e=8: 109 S, FW holds 109, min bound/m 0.000
+  e=9: 109 S, FW holds 109, min bound/m 0.000
+  e=10: 107 S, FW holds 107, min bound/m 0.000
+  e=11: 92 S, FW holds 92, min bound/m 0.000
+  e=12: 104 S, FW holds 104, min bound/m 0.000
+  e=13: 101 S, FW holds 101, min bound/m 0.000
+  e=14: 92 S, FW holds 92, min bound/m 0.000
+  e=15: 95 S, FW holds 95, min bound/m 0.000
+  e=16: 92 S, FW holds 92, min bound/m 0.000
+  e=17: 91 S, FW holds 91, min bound/m 0.000
+  e=18: 87 S, FW holds 87, min bound/m 0.000
+  e=19: 78 S, FW holds 78, min bound/m 0.000
+  e=20: 75 S, FW holds 75, min bound/m 0.000
+  e=21: 69 S, FW holds 69, min bound/m 0.000
+  e=22: 68 S, FW holds 68, min bound/m 0.000
+  e=23: 76 S, FW holds 76, min bound/m 0.000
+  e=24: 64 S, FW holds 64, min bound/m 0.000
+  e=25: 53 S, FW holds 53, min bound/m 0.000
+  e=26: 63 S, FW holds 63, min bound/m 0.000
+  e=27: 43 S, FW holds 43, min bound/m 0.000
+  e=28: 37 S, FW holds 37, min bound/m 0.000
+  e=29: 47 S, FW holds 47, min bound/m 0.000
+  e=30: 47 S, FW holds 47, min bound/m 0.000
+  e=31: 37 S, FW holds 37, min bound/m 0.000
+  e=32: 39 S, FW holds 39, min bound/m 0.000
+  e=33: 40 S, FW holds 40, min bound/m 0.000
+  e=34: 37 S, FW holds 37, min bound/m 0.000
+  e=35: 31 S, FW holds 31, min bound/m 0.000
+  e=36: 19 S, FW holds 19, min bound/m 0.000
+  e=37: 15 S, FW holds 15, min bound/m 0.000
+  e=38: 17 S, FW holds 17, min bound/m 0.000
+  failures: 7
+    ([15, 17, 18, 22], 15, 47, 17, 5, 9, 7, -21, ['m<=19 (#Kliem-Stump)', 'c<=4n (#7)', 'g<=100 (DEF)'])
+    ([12, 13, 15, 17, 18], 12, 24, 6, 7, 8, 4, -40, ['m<=19 (#Kliem-Stump)', '3e>=m (#21)', 'q<=3 (#13)'])
+    ([11, 13, 15, 16, 21], 11, 26, 14, 6, 7, 5, -15, ['m<=19 (#Kliem-Stump)', '3e>=m (#21)', 'q<=3 (#13)'])
+    ([15, 23, 27, 28], 15, 68, 24, 5, 9, 7, -21, ['m<=19 (#Kliem-Stump)', 'c<=4n (#7)', 'g<=100 (DEF)'])
+    ([23, 29, 30, 33, 41], 23, 85, 50, 9, 19, 18, -4, ['c<=4n (#7)', 'g<=100 (DEF)', 'maxP<=60 (#41)'])
+    ([13, 15, 16, 18, 22], 13, 28, 7, 8, 9, 3, -69, ['m<=19 (#Kliem-Stump)', '3e>=m (#21)', 'q<=3 (#13)'])
+    ([15, 16, 19, 20], 15, 45, 11, 6, 10, 7, -35, ['m<=19 (#Kliem-Stump)', 'q<=3 (#13)', 'c<=4n (#7)'])
+mode E seed 4: tested 3000
+  e=3: 19 S, FW holds 19, min bound/m 0.000
+  e=4: 193 S, FW holds 193, min bound/m 0.000
+  e=5: 460 S, FW holds 460, min bound/m 0.000
+  e=6: 136 S, FW holds 136, min bound/m 0.000
+  e=7: 144 S, FW holds 144, min bound/m 0.000
+  e=8: 118 S, FW holds 118, min bound/m 0.000
+  e=9: 114 S, FW holds 114, min bound/m 0.000
+  e=10: 99 S, FW holds 99, min bound/m 0.000
+  e=11: 102 S, FW holds 102, min bound/m 0.000
+  e=12: 77 S, FW holds 77, min bound/m 0.000
+  e=13: 98 S, FW holds 98, min bound/m 0.000
+  e=14: 107 S, FW holds 107, min bound/m 0.000
+  e=15: 89 S, FW holds 89, min bound/m 0.000
+  e=16: 96 S, FW holds 96, min bound/m 0.000
+  e=17: 87 S, FW holds 87, min bound/m 0.000
+  e=18: 90 S, FW holds 90, min bound/m 0.000
+  e=19: 62 S, FW holds 62, min bound/m 0.000
+  e=20: 84 S, FW holds 84, min bound/m 0.000
+  e=21: 68 S, FW holds 68, min bound/m 0.000
+  e=22: 84 S, FW holds 84, min bound/m 0.000
+  e=23: 55 S, FW holds 55, min bound/m 0.000
+  e=24: 55 S, FW holds 55, min bound/m 0.000
+  e=25: 73 S, FW holds 73, min bound/m 0.000
+  e=26: 54 S, FW holds 54, min bound/m 0.000
+  e=27: 74 S, FW holds 74, min bound/m 0.000
+  e=28: 42 S, FW holds 42, min bound/m 0.000
+  e=29: 44 S, FW holds 44, min bound/m 0.000
+  e=30: 35 S, FW holds 35, min bound/m 0.000
+  e=31: 43 S, FW holds 43, min bound/m 0.000
+  e=32: 38 S, FW holds 38, min bound/m 0.000
+  e=33: 30 S, FW holds 30, min bound/m 0.000
+  e=34: 40 S, FW holds 40, min bound/m 0.000
+  e=35: 28 S, FW holds 28, min bound/m 0.000
+  e=36: 21 S, FW holds 21, min bound/m 0.000
+  e=37: 22 S, FW holds 22, min bound/m 0.000
+  e=38: 17 S, FW holds 17, min bound/m 0.000
+  e=39: 2 S, FW holds 2, min bound/m 0.000
+  failures: 0

@@ -1,0 +1,3 @@
+seed 13: 3 uncovered semigroups with e >= 5; FW < 0: 0, FWx < 0: 0
+  e=12: 1 S, FW fails 0, FWx fails 0
+  e=14: 2 S, FW fails 0, FWx fails 0

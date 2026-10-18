@@ -1348,3 +1348,40 @@ Data (EXPERIMENTS E134):
   that was a bug in fw_hard.py, whose minimum tracker started at 0. Corrected.) The family ⟨16,25,26⟩₆₄, ⟨18,28,29⟩₇₂, ⟨20,31,32⟩₈₀, ⟨22,34,35⟩₈₈ (c = 4m) has FW/m = 24.4, 34.3, 44.3, 54.3.
 - Mechanism of FW failure: T simplex-like with Z the whole top layer gives P − dτ = 0 < E(Z) (interval-type semigroups).
 - Random S almost never lie outside the known theorems (23 of 24k; FW holds on all 23). An adversarial search there is running.
+
+## 2026-10-18 (night 17, late) — the shape of DS cells; the advisor lowers the target to qO ≤ 2t + O(1)
+**Advisor's revision (relayed by the user).** Only the weakest bounds that close the argument are needed:
+2Tri ≤ t + O(1), qO ≤ 2t + O(1), qU ≤ t + O(1), and a PROVED sublinear bound on t. These give δ ≥ m − 6t − O(1). After that,
+compute the threshold and compare it with the exhaustive range before trying to improve constants.
+Our status against that list:
+- All four bounds are proved on paper: TF-cone, qO-cone (qO ≤ 2t − 1 + 2|Y| ≤ 2t + 11), F-cone, and t ≤ C (T′) with
+  C ≤ 3/2 + √(6m − 15/4) (Lemma B, a proof, not the experimental 2√m corner estimate).
+- Threshold: m ≥ 281.
+- Exhaustive range: every tile with m ≤ 130 is done (the gaps m = 90, 100, 108, 114, 115 were closed today). Cone tiles with
+  131 ≤ m ≤ 280 are being scanned.
+- Decision: stop trying to improve the qO coefficient.
+
+**Structure of DS cells (proved on paper, c = 3; not needed for the main line).** Let x = (X, Y, z) be doubly-same.
+(a) ψ(p) = q₃, so p lies in the floor F₃.
+- Each of the four defect cases (α), (β), (α′), (β′) gives F(X) ≥ q₃ or G(Y) ≥ q₃. The non-defective pair supplies the
+  other inequality.
+- Since γ(p) = 1, p = r − e₁ or r − e₂ for an outer corner r of F₃. By the Floor Lemma there are at most 4 such p.
+(b) The 1-partner u = (X − i, Y, z) satisfies X − i < q₁ and ψ(X − i, Y) > q₃.
+- If u's nonmax direction is 3: by (P1′), ψ(X − i, Y) ≠ q₃.
+- If it is 2: u is a peak with ψ(p_u + e₁) ≥ q₃.
+- The mirror statement holds for the 2-partner.
+(c) If either partner has nonmax direction 3, z is determined by p: z = G(h(X) − 1) − 1, resp. z = F(a(Y) − 1) − 1.
+- Suppose top₂(u) is maximal. It lies strictly above top₂(x), so column X is cut by h(X). Then maximality of top₂(x)
+  gives G(h(X) − 1) = z + 1.
+- If the partners have directions 2 and 1, the same argument forces i = i′ = 1, so p = (q₁, q₂), unless z is again
+  determined.
+- So, apart from p = (q₁, q₂), there are at most 4·2 = 8 DS cells per direction.
+(d) At p = (q₁, q₂) the number of z is NOT bounded lattice-free.
+- The family in examples/qO_lattice_free_family.md has #DS = Q − 1 and qO − t = Q − 5.
+- It violates Wall + Floor, so it is not a tile.
+- Real cone tiles (m = 30, 40, 50, 60, 64) have #DS ≤ 1. RCON anneals maximizing #DS (m ∈ [60, 200], seeds 11–12,
+  4000 iterations) also reach only 1.
+- |Max ∩ B_c| is not O(1) on tiles (up to 8 at m = 60), so the refinement qO ≤ t − 1 + 2|Y| + |Max ∩ B| does not give
+  t + O(1) either.
+Consequence: a proof of qO ≤ t + O(1) would have to bound the z-multiplicity at the quadrant corner using the lattice.
+That is a sharpening, not a gap; it is parked under the advisor's revised plan.

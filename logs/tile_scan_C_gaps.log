@@ -1,0 +1,5 @@
+m=90: tiles 263101, non-two-face 122258, HT fails 0, LP-pending 0; min H-(m-1) (134, (1, 17, 57)); MAXSUM fails 0, min slack 2m+1-M3 (24, (1, 10, 21), 14) [4.6s, 4045 lattices, 2 threads]
+m=100: tiles 297749, non-two-face 138709, HT fails 0, LP-pending 0; min H-(m-1) (185, (1, 16, 69)); MAXSUM fails 0, min slack 2m+1-M3 (26, (1, 9, 11), 15) [5.7s, 3471 lattices, 2 threads]
+m=108: tiles 395392, non-two-face 190593, HT fails 0, LP-pending 0; min H-(m-1) (184, (1, 33, 92)); MAXSUM fails 0, min slack 2m+1-M3 (36, (1, 17, 46), 15) [8.3s, 4739 lattices, 2 threads]
+m=114: tiles 505831, non-two-face 249188, HT fails 0, LP-pending 0; min H-(m-1) (218, (1, 62, 105)); MAXSUM fails 0, min slack 2m+1-M3 (33, (1, 31, 63), 16) [11.0s, 5577 lattices, 2 threads]
+m=115: tiles 354601, non-two-face 164537, HT fails 0, LP-pending 0; min H-(m-1) (226, (1, 14, 16)); MAXSUM fails 0, min slack 2m+1-M3 (34, (1, 14, 51), 16) [7.7s, 2729 lattices, 2 threads]

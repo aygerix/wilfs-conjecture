@@ -245,6 +245,26 @@ is a complete computer-assisted proof (item 11), which we have only partly verif
     - The exact identity is Zhai's Lemma 3 (KNOWN). The FW inequality for general e is an immediate generalization of
       kseth (p:6). FWx/FWy and "FWx for c > 3m" were not found anywhere searched (novelty still not claimed).
 
+15. **Sethuraman's foundational geometry, read 2026-10-18 by the lead (manuscript/proof.tex §2.1, 2.5, 2.7, 2.9, 2.10).**
+    Facts relevant to our tile route:
+    - Collision rules (= HRW Prop 2.6): a corner and its representative have disjoint supports; two distinct corners
+      sharing a positive coordinate have distinct residues. Hence there is ≤ 1 full-support corner p, with
+      representative 0. (Our cylinder lemma (a) and (b).)
+    - (p:11) T = U ∖ (p + ℕ³), with U a finite no-full-corner ideal (= our cone class: U = Cyl ∈ 𝒞, p = q*).
+    - Thm A.1.1: every finite no-full-corner ideal is a central box [0, z] plus at most three nonincreasing horns. This is
+      a structure theorem for our class 𝒞, proved via a chordal compatibility graph.
+    - §2.7, p = (1,1,1): each plane has ≤ 1 mixed corner, with representative h_k e_k. (Our Wall Lemma with q* = (1,1,1).)
+    - **(p:19)** each ij-plane has ≤ (p_i − 1) + (p_j − 1) + p_k = |p| − 2 mixed corners. Corners with q_i < p_i are an
+      antichain with distinct i-coordinates; corners ≥ (p_i, p_j) are bounded by collision with the k-axis.
+      (Our Wall Lemma plus the antichain count; matches our "refined Wall count".)
+    - **(p:20)** for every residue-bijective lower ideal (any 3-D lattice tile), |F_i ∩ F_j| ≤ 2 n_k, where
+      F_i = {x : x + e_i ∉ T} and n_k = L_k. Proof: the h_s − 1 inner corners of each k-slice are excluded points whose
+      representatives lie on the k-axis, distinct for distinct corners. So Σ_s (h_s − 1) ≤ L_k. Consequence: t ≤ 2 min_k L_k.
+      **NEW TO US; a reusable tool.**
+    - (p:17) for p a permutation of (2,1,1), |T| ≤ 2r² − r + 3.
+    - Not used by Sethuraman: forest/elimination arguments, tripod/qO/qU graphs, LCL/PW, the height criterion HT. Our
+      cone-tile route remains a different mechanism.
+
 **Search-scope failure (2026-10-18).** The Phase-0 search covered journals, arXiv/alphaXiv and the web, but NOT GitHub. It
 missed item 11 (public since 2026-09-18) and the e = 4 papers in item 12. STATE.md then called e = 4 "open in the
 literature" from 2026-10-17 to 2026-10-18, and nights 13–17 were spent on it. Rule from now on: before any sub-target
