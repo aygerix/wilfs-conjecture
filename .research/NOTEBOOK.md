@@ -1679,3 +1679,21 @@ asserted on every test.
   ⟨26,50,67,71,73⟩). There is no naive two-face reduction to e = 4.
 - **Random level-≤2 semigroups (lev2.py)** have large W (≥ 33 at m = 20–30). Level 2 with c > 3m essentially requires
   near-uniform k, which is the shift-lemma regime.
+- **Level/carry split of the Wilf number (exact, every e; checked on 1,600+ random S with e = 3–9, src/scratch/split.py).**
+  - Setup: write n_a = r_a + m k_a with 1 ≤ r_a ≤ m − 1, so λ(x) = m(x·k) + x·r on the grlex tile, and let x* be the
+    λ-argmax. Then W = Lev + Car, where:
+    - Lev = dm(x*·k) − (d+1)Σ_D x·k is the geometric part. Lev ≥ 0 by CH whenever x* also maximizes x·k.
+    - Car = d(x*·r) − (d+1)·mean_D(x·r) − (d−1)(m−1)/2 is the arithmetic part. Equivalently,
+      Car = dm(κ* − (d+1)κ̄/d) + d(res* − m + 1), with carries κ(x) = ⌊x·r/m⌋.
+  - This is the Kunz coordinate split K(x) = x·k + κ(x), so it is a reorganization. The content is the data:
+    - Lev < 0 in 3 of about 1,600 cases.
+    - Car < 0 in 25–40%.
+    - Whenever Car < 0 in the random sample, Lev ≥ 1.65|Car|. This is not adversarial; near-tight S will push the
+      ratio toward 1.
+  - Reading:
+    - Shape-only proofs fail because Car is needed (near-stars).
+    - Residue-only proofs fail because Car < 0 often.
+    - A general proof must be an exchange inequality: when the residues produce a carry deficit, the λ-argmax is
+      chosen by the k-part against the residue order, and that misalignment must force a matching level surplus.
+  - Adversarial search for min W/Lev with Car < 0: src/scratch/split_climb.py, e = 4, 5, 6, 8 on fejer
+    (logs/split_climb_e.log).
