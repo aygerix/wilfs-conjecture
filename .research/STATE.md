@@ -41,12 +41,13 @@
      areas, summed mod 2^61−1, must equal the simplex). It is identical to the old build at m = 131, 200, 257, with every
      lattice certified.
    - **m = 256–280 DONE (fejer, 16-bit, certified): HT fails 0 and area-defects 0 for every m**
-     (logs/tsv16_256_280_fejer.log; min H − (m−1) ≥ 845). Re-certification of m = 120–255 with the 16-bit build is RUNNING;
-     at last check m = 120–184 were done, all clean.
+     (logs/tsv16_256_280_fejer.log; min H − (m−1) ≥ 845). Re-certification COMPLETE: m = 4–119 and m = 120–255 with the
+     16-bit build (logs/tsv16_4_119_fejer.log, logs/tsv16_120_255_fejer.log). **Every m in [4, 280] is area-certified
+     complete (0 defects).** HT fails only at m ∈ {8, 15, 16, 17, 19, 20, 23}, with the same tiles as the referee's
+     independent fan-free enumeration. All 116 m values that overlap the old 8-bit logs give identical lines.
    **So every link 1–7 is now in place: Wilf holds for every e = 4 semigroup, by our own route**, subject to
-   (i) the cited external inputs Eliahou (c ≤ 3m) and BGOW (m ≤ 18); (ii) the computer enumeration, which is certified
-   complete per lattice (area sums) for m ≤ 119 by the referee and for m = 256–280 by us, and for m = 120–255 once the
-   rerun finishes. Two independent adversarial reviews and the Lean checks are listed below.
+   (i) the cited external inputs Eliahou (c ≤ 3m) and BGOW (m ≤ 18); (ii) the computer enumeration, now certified
+   complete per lattice (area sums mod 2^61−1) for every m ≤ 280, plus exact areas for m ≤ 40 (referee). Two independent adversarial reviews and the Lean checks are listed below.
 - Independent adversarial reviews, 2026-10-18, both COMPLETE:
   - cone lemmas, all CORRECT (.research/reviews/cone_review_2026-10-18.md);
   - links 1–6, all CORRECT except the scan bug above, plus minor text fixes, now applied
