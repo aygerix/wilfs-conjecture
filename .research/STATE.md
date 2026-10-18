@@ -32,8 +32,8 @@
      bound fails, κ = 4); the others are LP-certified (κ recomputed independently with HiGHS by the referee). m = 17 and 23
      have δ = −1, so the integrality sharpening covers them without LP.
      The gaps m = 90, 100, 108, 114, 115 were closed on 2026-10-18 (logs/tile_scan_C_gaps.log).
-   - m = 131–255: HT 0 failures (logs/tile_scan_C_131_280.log, local, m = 131–229; logs/tile_scan_C_226_280_fejer_uint8.log,
-     fejer, m = 226–235). The 8-bit build is valid for m ≤ 255.
+   - [Superseded by E141.] Earlier 8-bit logs: logs/tile_scan_C_131_280.log (local, m = 131–229) and
+     logs/tile_scan_C_226_280_fejer_uint8.log (m = 226–235); m = 236–255 had no log until E141 (manuscript gap G1, closed).
    - BUG FOUND by the chain referee (2026-10-18): src/c/tile_scan.c stores coordinates as uint8_t, so a MAXM-300 build wraps
      coordinates ≥ 256 and corrupts the traversal for m ≥ 257. Confirmed by the lead on fejer: at m = 257 the 8-bit build has
      127 area-defective lattices, the 16-bit build 0.
@@ -86,9 +86,8 @@
 - Shape-only FW3/FW3b.
 
 ## Open gaps (exact)
-- G-scan: finish HT for cone tiles with 131 ≤ m ≤ 280 (running). If an HT failure appears, LP-certify it with tile_lp.py
-  (as for m ≤ 23).
-- G-review: the adversarial review of TF-cone, F-cone, qO-cone, T′, B and the threshold arithmetic.
+- G-scan: CLOSED (E140, E141; every m ≤ 280 area-certified). G-review: CLOSED (both reviews in .research/reviews/).
+- G-doc: logs/tf_bounds2.log does not record its m range (manuscript G4); rerun with the range printed.
 - G-Lean: all lattice-free counting is done (CHT, B, T, T′, TF, F, QF, the cone bounds, both thresholds). Next: the
   cylinder lemma (link 4) and Wall/Floor from IsTile, which would give "every 3-D lattice tile with m ≥ 267 has δ ≥ 0" in
   Lean; then the height criterion (link 2).
@@ -96,8 +95,8 @@
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 
 ## Three active approaches
-1. **e = 4 tile route (current).** Close G-scan and G-review, write the self-contained manuscript of our e = 4 proof,
-   and start G-Lean with Lemma CHT + Lemma T + Lemma B.
+1. **e = 4 tile route (complete on paper; manuscript .research/E4_MANUSCRIPT.md).** Remaining: G-Lean (cylinder lemma,
+   Wall/Floor, height criterion) and G-doc.
 2. **Tiles in dimension d = e − 1 ≥ 4.** Which links generalize? Link 2 (a height criterion for e ≥ 5), the cylinder
    structure and the floor/wall lemmas in ℕ^d. First task: state the e = 5 analogue of the height criterion and test it
    on 4-D tiles with m ≤ 20.

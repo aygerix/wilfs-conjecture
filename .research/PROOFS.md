@@ -85,7 +85,7 @@ D = {n(w) : w ∈ Ap} (grlex factorization down-set, |D| = m, CH' (a),(b)).
 ≤ C(τ,2).
 Proof. cross(y) := {y − k e_a : a ∈ [d], 0 ≤ k ≤ y_a} has |y| + 1 cells and lies in [0,y] ⊆ D for y ∈ D.
 (1) For u ≠ u' in X no cell lies in cross(n(u)) ∩ cross(n(u')) through the same direction a: else n(u), n(u') lie on one
-line x + ℕe_a, say n(u') = n(u) + j e_a (j ≥ 1), and u' = u + j·n_a ≥ c + n_a > c + m, contradicting u' ∈ X.
+line x + ℕe_a, say n(u') = n(u) + j e_a (j ≥ 1), and u' = u + j·p_a ≥ c + p_a > c + m, contradicting u' ∈ X.
 (2) Likewise n(u) ∉ cross(n(u')) (it would give n(u') = n(u) + k'e_b, k' ≥ 1). Hence a common cell x has
 n(u) = x + k e_a, n(u') = x + k' e_b with a ≠ b, k, k' ≥ 1: n(u), n(u') differ exactly in coordinates a, b, and x is
 determined by the pair (x_a = n(u')_a, x_b = n(u)_b, other coordinates common).
@@ -553,7 +553,8 @@ W ∈ ℤ gives Wilf already when δ ≥ −1 (H ≥ m − 2): then mW ≥ (m+1)
 closes for m ≥ 130 (5C ≤ m + 15; the last failing m is 129), and the cone Corollary below for m ≥ 280 (6C + 28 ≤ m; at m = 280,
 C_max = 42). The HT-failing tiles with δ = −1 (m = 17, 23) need no LP certificate. The tiles still uncovered are (i) 𝒞-tiles with m ≤ 130, handled by the exhaustive HT scan
 (tile_scan_HM, complete so far for m ≤ 82, 91–95, 101–104, 109–111), and (ii) cone-class tiles, which need a separate
-bound. In the lattice-free cone class LHS − 5C is unbounded above, and 2|Tri| − t reaches 8 at union ≤ 32.
+bound. [Superseded 2026-10-18: the scan is complete and area-certified for every m ≤ 280 (E140, E141), and Theorem cone
+below supplies the cone bound.] In the lattice-free cone class LHS − 5C is unbounded above, and 2|Tri| − t reaches 8 at union ≤ 32.
 Data (E127): on 𝒞 with |D| ≤ 32, max(2Tri − t) = max(qO − t) = max(qU − t) = −1 and max(LHS − 4C) = −10, so the sharper
 (A4) LHS ≤ 4C − 10 (threshold m ≥ 85) remains OPEN.
 
@@ -752,7 +753,7 @@ every lemma of this section, TF-cone, F-cone, T′, B, Wall, Floor and the Corol
 by an independent checker. The checker (src/review/indep.py) found 0 violations on all lattice-free sets with lengths/values
 ≤ 5 (8,630,220 sets, 7,843,965 cone), on all 82,242 tiles in logs/tiles, on ~112k random sets and in 92 anneals. Wording
 fixes are applied here and in NOTEBOOK night 17 (marked "referee edit"). Report: .research/reviews/cone_review_2026-10-18.md.
-Not formalized (Lemma B, CHT and T are in Lean; T′ and the forest lemmas are not).
+Lean (updated 2026-10-18): B, CHT, T, T′ (ConeType.lean), TF/F/QF (Forest.lean) and the cone bounds (ConeForest.lean) are kernel-checked; Wall/Floor are not (|Y_d| ≤ 2 is a hypothesis there).
 **The coefficient 2 is the natural lattice-free answer (2026-10-18).** In the lattice-free cone class, qO − t is unbounded:
 q = (1, 1, Q), F = (Q+3, Q+1, Q, Q−1, …, 1), G = (Q+3, Q+1, Q−1, Q−2, …, 1), h = (|G|, |G|, 2, …, 2) has t = 2Q + 2,
 qO = 3Q − 3 and #DS = Q − 1 (Q = 4..12, src/scratch/ds_family.py; examples/qO_lattice_free_family.md). These sets violate the

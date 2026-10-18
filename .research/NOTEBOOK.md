@@ -1396,7 +1396,8 @@ That is a sharpening, not a gap; it is parked under the advisor's revised plan.
 - The proved thresholds are m ≥ 281 for cone tiles and m ≥ 131 for 𝒞 tiles (m ≥ 280 and 130 with the δ ≥ −1 sharpening).
 - Lean has CHT, B, T, T′, TF, F, QF and the 𝒞 δ-bound. The cone forest bounds are in progress.
 - The manuscript is being drafted (.research/E4_MANUSCRIPT.md).
-- The re-certification of m = 120–255 is still running on fejer.
+- The re-certification of m = 120–255 is still running on fejer. [Later the same day: finished, E141; m = 236–255 had
+  no log before it, so the "every tile with m ≤ 280" sentence above was premature until E141.]
 
 **Height criterion in dimension d = e − 1 (OBSERVED; the inequality itself is PROVED).** CH′ and p_a ≥ m + 1 give
 (m+1)·H(D) ≤ mW + (d−1)·C(m,2), where H(D) = Σ_x Σ_a ht(top_a x) over the d directions. So H > ((d−1)C(m,2) − m)/(m+1)
