@@ -1801,3 +1801,28 @@ asserted on every test.
     - In the multiplicity form (n_a > m) the corner gap v(y) − m has a canonical second image: the element v(y − e_a)
       < c, for any a with y_a > 0. The map y ↦ y − e_a is injective for each a.
     - Combining these "direction maps" with reflections for the other gaps is the next thing to test.
+- **Box-sum criterion BS (nearly always true).**
+  - The sharp reflection count is g = Σ_{corners y} ℓ_y − Θ, with ℓ_y = Σ_{x≤y} κ(x).
+  - BS: Σ_y ℓ_y ≤ dℓ. BS implies GW.
+  - BS holds on every instance except:
+    - d = 3: 30 of 44,712 at m = 9, 6 of 60,264 at m = 10, 0 at m = 11, 6 of 138,672 at m = 12;
+    - d = 4: no failures (m ≤ 9).
+  - Example failure: m = 9, n = (19,21,22), D = level-≤2 simplex minus e1+e2, with five corners all at κ = 4.
+    - There Σ_y ℓ_y = 34 > 30 = dℓ, while g = 26 because Θ = 8.
+  - So the overlap term Θ matters only for near-stars.
+- **Flip-local minima are not all covered by GW-9.** For d = 3, m = 7–10, 42/1626, 192/3222, 462/6306 and 690/10536 of
+  the local minima of E (no E-decreasing flip) have t > d and fail GW-9. They have E = 6–18, not tight. The descent
+  strategy "flip down to a local minimum, then apply GW-9" needs another ingredient.
+- **RRW (real relaxation of the lifts) is FALSE.**
+  - Replace integer k ≥ 0 by real k ≥ 0. By LP duality, GW for all lifts at once becomes
+    max{(x̄ − p_D)·s : x̄ ∈ conv(D), x̄ ≥ p_D} ≥ (d−1)(m−1)/(2d), with p_D = ((d+1)/d)·centroid.
+  - It fails by 1–2.4 in d = 2, 3 (e.g. d = 2, m = 10, s = (1,7)). Integrality of the lift k is essential.
+- **Near-stars (level ≤ 2), exact reduction.**
+  - Setup: D = {0, e_a} ∪ Q, with Q a multigraph on [d] (loops allowed) and m = 1 + d + q. Put n_a = mk_a + s_a,
+    K = ⌊M/m⌋ and δ_a = K − k_a.
+  - GW ⟺ (d+1)·Σ_a (1+deg a)δ_a ≥ (d+2)qK + (d+1)Σ_Q ε + d(m−1−ρ*), with ε_ab = [s_a + s_b ≥ m].
+  - The constraints are δ_a + δ_b ≥ K + ε_ab on edges.
+  - LP duality with y_e = 1 + 1/(d+1) (feasible because deg a ≤ d+1) gives the left side
+    ≥ (d+2)qK + (d+2)Σε. This proves GW for near-stars whenever the maximum has residue ρ* = m − 1.
+  - The general case needs the residue slack d(m−1−ρ*). The units with residue above ρ* and high degree are the
+    obstacle. NEXT: finish this case, since near-stars are exactly the thin regime that defeats HCR.
