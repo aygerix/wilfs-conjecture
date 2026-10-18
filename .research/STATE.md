@@ -95,15 +95,22 @@
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 
 ## Three active approaches
-1. **e = 4 tile route (complete on paper; manuscript .research/E4_MANUSCRIPT.md).** Remaining: G-Lean (cylinder lemma,
-   Wall/Floor, height criterion) and G-doc.
-2. **Tiles in dimension d = e − 1 ≥ 4.** Which links generalize? Link 2 (a height criterion for e ≥ 5), the cylinder
-   structure and the floor/wall lemmas in ℕ^d. First task: state the e = 5 analogue of the height criterion and test it
-   on 4-D tiles with m ≤ 20.
-3. **All-e final-window criteria (parked).** FWx-deep (FWx ≥ 0 when c > 3m), combined with Eliahou, would give Wilf.
-   Next step when unparked: bound Σ_final R_j(L) through the residues [r a_j]_m.
+1. **Two-face dichotomy, shape side: CR-NTF** (every non-two-face lattice tile satisfies the crude rearrangement bound CR,
+   which implies Wilf for every c through the Lean chain MaxCL ⇒ Tile-TOP'' ⇒ Wilf).
+   - Evidence: 0 non-two-face failures in 152,855 random S with e = 4–9; exhaustive 3-D tiles m ≤ 26; 82,242 stored
+     3-D tiles.
+   - Needs lattice input beyond the cylinder lemma (non-tile failure at m = 17, d = 3).
+   - Tools: the cylinder lemma in every d (PROVED), t ≤ C, forest counting.
+2. **Two-face side: ATOP_γ** (permutation hull + shifted geometric subadditivity; residue-light; any c). It fails only on
+   e = 4 books ⟨n², n²+1, n²+n, n²+n+1⟩ (covered by the e = 4 theorem). No failure for e ≥ 5 (random, hill-climb,
+   exhaustive generators < 2m). Books in d ≥ 4 are the test case: realizable or not?
+3. **e = 4 formal verification (background; G-Lean)** and the e = 5 tile route (cylinder lemma in every d gives link 4).
+Killed this cycle: TL (false at e = 5); ATOP without relations on two-face tiles; single-relation repair ATOP+R2 (fails
+on books n ≥ 7).
 
 ## Next precise task
-When the scan finishes: read logs/tile_scan_C_131_280.log and confirm "HT fails 0" for every m = 131..280. Record E136.
-Read the review report and repair any gap it finds. Then write the e = 4 manuscript (.research/E4_MANUSCRIPT.md) with
-every link and its status, and reassess with the advisor (budget ends 2026-10-19/20).
+Find the mechanism behind CR on non-two-face tiles in d = 3 (fully classified: class 𝒞 or cone). Prove a lower bound on
+Dep, the incidences in columns with non-maximal top, in terms of m and t, using the cylinder lemma and the Wall/Floor
+lemmas. Target: CR for every non-two-face 3-D tile with m ≥ M0 and M0 small. Then test the same mechanism in d = 4.
+In parallel (fejer): CR and ATOP_γ exhaustively for e = 5 with generators < 2m and m ≤ 40, and a structured search
+for realizable books in d = 4.

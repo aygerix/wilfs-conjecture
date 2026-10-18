@@ -1502,3 +1502,22 @@ m((d+1)m + d − 1)/2. When m | c the true residues are feasible, so ATOP ⇒ TO
     d = 4 analogue of a book.
 - **Picture.** Residue-light certificates fail exactly on tiles concentrated on low-dimensional coordinate skeleta
   (books); two-face is the d = 3 case. Everything else in reach passes with margin.
+- **General c: ATOP_γ.** With γ = c mod m and r = (λ − c) mod m, r(x+y) ≤ r(x) + r(y) + γ and r(0) = (−c) mod m. Lemma A
+  gives TOP'' ⇒ Wilf for every c, so ATOP_γ ⇒ Wilf for every c (src/scratch/atop_g.py).
+  - Random, c > 3m, 3e < m: 0 failures at e = 3 (9,870 S, worst 0.81), e = 4 (11,626, worst 0.989), e = 5–7 (13,032,
+    worst 0.891). Books are rare in random samples.
+  - Exhaustive e = 5, generators < 2m, m | c, m = 17–30: 9,693 S, 0 failures, worst 0.928 (atop_exh5.py, fejer).
+- **CR (crude rearrangement, shape only, any c) splits exactly along two-face.** CR: Σ_i T_(i)(m−1−i) ≤ (d+1)m(m−1)/2,
+  with T(y) = d + |y| over the maximal cells. CR ⇒ MaxCL for every σ ⇒ Wilf (Lean chain).
+  - 152,855 random S with e = 4–9, c > 3m, 3e < m (src/scratch/cr_test.py): 111 failures, **all two-face**. Worst
+    non-two-face ratios: 0.976 (e = 4), 0.963 (e = 5), 0.94 (e = 6, 7). For e = 8, 9 every sampled tile was two-face.
+  - Every non-two-face 3-D lattice tile with m ≤ 26 (exhaustive), and all 82,242 stored tiles at m = 30–64, satisfy
+    CR (cr_tiles.py). The worst ratio is 0.982 (m = 8), falling to 0.85 at m = 64. Two-face tiles fail at most m.
+  - It needs lattice input: a cylindrical non-two-face non-tile at m = 17 fails CR (1.0037; seven maximal cells of
+    length 3). The anneal found no other failing m in d = 3 (best 0.964 for m ≤ 16, 0.80 for m ≥ 25; cr_anneal.py).
+  - In d = 4, cylindrical non-two-face sets fail CR (1.11 at m = 25). Adding ⊇ {0,1}^4 gives best 0.993 (no failure).
+- **Conjecture CR-NTF:** every non-two-face lattice tile satisfies CR. Two-face tiles need residues: our e = 4 theorem;
+  ATOP_γ (no failure found for e ≥ 5).
+  - If both hold, Wilf follows for all e: CR-NTF for non-two-face tiles, ATOP_γ for two-face tiles with e ≥ 5.
+  - CR-NTF is a statement about the lengths of the maximal cells of lattice tiles. It is equivalent to a lower bound on
+    Dep = dm − Σ_A(d + |y|), the incidences in columns with non-maximal top (roughly Dep ≳ (d−1)m/2 when t ≪ m).
