@@ -66,6 +66,11 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | **E49** | **`src/exp_top2_regime.py 11 5000 90`** | **TOP'' on the same hard generators (+W0<0, Backelin), every-depth truncations** | **5005 S (seed 11), m ≤ 90 (+213)** | **TOP'' 0 failures (CL(ref) fails on 7 of them); min normalized TOP'' slack 0.0225 (W = 1)** | 16 s |
 | **E50** | **`src/scratch/hajos.py 16`** | **Box tiles: Hajós (some k_a p_a ≡ 0) and the inductive identity ΣG = ΣG'_red − n⌊σ/n⌋ + Σ_{x'}⌊⟨σ+Λ'(x')⟩_m/n⌋; Base-CL range** | **all boxes d=2,3,4, m ≤ 16, all p, all σ** | **0 identity failures; Hajós factor always present; 0 range failures** | 1 min |
 | E51 | `src/scratch/spikes.py` | Tile-CL for core ∪ spikes (core = down-set of dim ≤ 2 with φ injective, spikes on the complement residues) | m ≤ 14 | first failure m = 14, core Δ_3, p = (5,6), spikes (7,8,9,13) (dual of E47's S); none for m ≤ 13 | 3 min |
+| E52 | `src/scratch/clh.py 11 5000 90`, `23 5000 140` | CL-H: CL(ref) + d_high(ℓ − q) ≥ 0; do CL failures need high generators? | 10,009 S (two seeds) | CL-H 0 fails; all 14 CL(ref) fails have high generators | 30 s |
+| E53 | `src/scratch/srcl.py 11 5000 90`, `1 3000 100`; `src/scratch/dspikes.py 5 13` | SR-CL: slack(s) ≥ −#spikes; spike-free Tile-CL; double spikes | 8005 adversarial tiles; core(dim≤2)+spikes+double spikes m≤13 (~90k) | 0 failures; worst min/σ ≈ −0.42 | 2 min |
+| **E54** | **`src/scratch/tiletop.py`** | **Tile-TOP'' (all s) and DR-CL, all tiles** | **d=2 m≤13, d=3 m≤10, d=4 m≤8, d=5 m≤7** | **0 failures; slack 0 only for simplex tiles** | 10 min |
+| **E55** | **`src/scratch/tiletop_adv.py 11 5000 90`, `1 3000 120`** | **Tile-TOP'' and rearranged R-TOP on adversarial Apéry tiles** | **8008 tiles** | **Tile-TOP'' 0 fails; R-TOP FALSE (3 fails: ⟨7,15,16,17⟩∪[28,∞), ⟨7,11,12,13⟩∪[18,∞), one m=59)** | 1 min |
+| E56 | `src/scratch/injtop.py`, `injtop2.py`, `injtight.py`, `stairinj.py` | injective generalizations (A),(B) of Tile-TOP''; tightest cases; 2D staircases | d=1 m≤12, d=2 m≤14, d=3 m≤10, d=4 m≤8; Δ_k, k≤9 | 0 failures; tightest are non-tiles with |D| = m−1; Δ_k needs m ≳ 1.3·|Δ_k| to embed | 15 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

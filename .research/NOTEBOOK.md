@@ -364,3 +364,53 @@ Why the exhaustive tile tests missed it: they covered d = 4 only up to m ≤ 8 a
   semigroups (E5b/E6b) had been run for TOP'' but never for CL; that test would have saved this branch.
 - **Procedure change:** every new candidate inequality must pass `src/exp_cl_adv.py`-style adversarial semigroups
   (W0<0 family, Backelin, Delgado, deep truncations) BEFORE any proof effort.
+
+## 2026-10-17 (night, 7) — depth-aware repair: SR-CL, DR-CL, **Tile-TOP''** (new main conjecture)
+
+### What the CL failure needs: spikes
+A *spike* of a tile is a direction b with {x ∈ D : x_b ≥ 1} = {e_b}. Every high generator (n_b ≥ c) is a spike. A spike's
+columns are {0, e_b} and singletons, and its exact contribution to Σ_C|C|(M − V(t_C)) is K − n_b with K = mℓ + m(m−1)/2.
+- CL loses exactly m(ℓ − q) per high generator (q = ⌈c/m⌉). The counterexample has 4·14·9 = 504 = 14·36, i.e. the whole depth part.
+- Facts: all CL(ref) failures in 10,009 S have high generators. CL-H (CL + d_high·(ℓ − q)) has 0 failures (clh.py, two seeds).
+
+### SR-CL (spike-relaxed Tile-CL) — CONJ, implies Wilf (PROVED implication)
+SR-CL: slack(s) ≥ −σ(D) for every tile and s, where σ(D) = number of spike directions.
+Proof that it implies Wilf:
+- Every spike direction b has depth Σ_{y≠0}δ(y) + δ(e_b) ≥ ℓ − q.
+- If ℓ > q, then W = depth + slack(s_M) ≥ σ + slack(s_M) ≥ 0.
+- If ℓ = q, then S = mℕ ∪ [c, ∞), so e = m (or m = c) and Wilf is trivial. ∎
+Evidence: 0 failures on 8005 adversarial Apéry tiles (srcl.py seeds 11, 1). Spike-free Tile-CL has 0 lower-bound failures there too. Worst min-slack/σ ≈ −0.42.
+Double spikes ({e_b, 2e_b}) plus spikes plus a core of dim ≤ 2: 0 SR-CL failures for m ≤ 13, about 90k tiles (dspikes.py).
+
+### DR-CL and Tile-TOP'' — CONJ, both imply Wilf (PROVED implication; Lean in progress)
+Key observations:
+- If t ∈ D is not maximal (t + e_b ∈ D), then V(t) + n_b ≤ M, so M − V(t) ≥ n_b > m: every column with a non-maximal top has depth ≥ 1.
+- A maximal y tops every column through it, so T(y) = d + |y|.
+Hence, from CH',
+   m·W + (d−1)M' ≥ Σ_{y max} T(y)⟨s_M − φ(y)⟩ + m·Σ_{C: non-max top}|C| = d m² − Σ_{y max}(d+|y|)(m − ⟨s_M − φ(y)⟩).
+
+**Tile-TOP'':** for every tile (D,p) and every s ∈ ℤ/m,
+   Σ_{y ∈ max D} (d + |y|)·π_s(y) ≤ m((d+1)m + d − 1)/2,  π_s(y) = m − ⟨s − φ(y)⟩ ∈ [1,m].
+Clean form (tiles; positions are a bijection D → [1,m]): **m + Σ_{y max}(|y| − 1)π(y) ≤ (d+1)·Σ_{z non-max}π(z)**.
+Properties:
+- Tile-TOP'' ⇒ DR-CL (slack(s) ≥ −Dep(D), Dep = Σ over columns with non-maximal top of |C|) ⇒ Wilf.
+- Tile-TOP'' at s_M is TOP'' with every maximal cell (not just X_q) on the left, so it is stronger than TOP'' and lift-free.
+- Spikes have |y| = 1: they drop out of the left side and only raise d. This is why Tile-TOP'' survives where CL fails.
+- Max over s: LHS(s) is a walk with drift −T(A) and up-jumps m·T(y) at maximal residues. The max is at s = φ(y0) for a maximal y0.
+  In a semigroup, y0 = cell(max Ap), which is the CL/TOP'' reference.
+  Equivalent: ∀ y0 ∈ max D: Σ_{y∈max D∖y0} T(y)⟨φ(y0) − φ(y)⟩ ≥ m(T(A) − ((d+1)m + d − 1)/2). So maximal residues cannot cluster below φ(y0).
+- Tight: the column (d = 1) and the simplex {0, e_1, …, e_d} (m = d+1). These are the e = 2 and T_{m,q} equality cases of Wilf.
+Evidence:
+- tiletop.py: 0 failures on ALL tiles for d=2 m≤13, d=3 m≤10, d=4 m≤8, d=5 m≤7 (all p, all s).
+- tiletop_adv.py: 0 failures on 8008 adversarial Apéry tiles; slack 0 only at simplex-like tiles.
+- The rearranged, residue-free version R-TOP is FALSE (⟨7,15,16,17⟩ ∪ [28,∞), ⟨7,11,12,13⟩ ∪ [18,∞)). Residue structure is essential.
+- The injective generalization holds as well (injtop.py, injtop2.py; ~1.2M cases): for every down-set D with φ merely injective and
+  every s, (A) Σ_{y max}(|y|+1)π(y) ≤ m² + (d−1)Σ_{z non-max}π(z) and (B) the original form. The tightest cases are non-tiles with
+  |D| = m − 1 (e.g. d=3, m=8, D = {000,001,002,010,100,101,200}: slack 5).
+- Staircases Δ_k embed injectively only for m ≳ 1.3–1.5·|Δ_k| (Δ_5 first at m = 19; Δ_6, …, Δ_9 never within |Δ_k|+6). This is a geometry-of-numbers effect
+  (Λ ∩ (D − D) = {0}, Minkowski), and the slack is then positive.
+  **Mechanism hypothesis:** the packing condition forces maximal cells' residues to spread; the proof should use it.
+
+### Strategic note
+Main conjecture now: Tile-TOP'' (lift-free, combinatorial, survives the full adversarial suite, implies Wilf; Lean agent formalizing
+the implication). Secondary: SR-CL (stronger in spirit, still combinatorial). TOP'' remains the weakest Lean-linked target.
