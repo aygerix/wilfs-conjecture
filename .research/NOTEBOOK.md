@@ -600,3 +600,55 @@ B_y = w_y·(|[0,y] ∩ {r ≤ s_y}| − 2[y not wrapped]), and SL(t) ⇔ Σ_{y�
   remove the common obstruction and is a concrete test of a "face decomposition" mechanism.
 - Decision: CONTINUE MaxCL; PIVOT the next session to (1) MaxCL for two-face tiles, (2) SL proof for d = 2.
   KILL: further local-relation LPs (RGCL variants) — the obstruction is established.
+
+## 2026-10-17 (night, 11) — Lean closes Flat-MaxCL; e = 4 structure: CR misses only two-face tiles
+
+### Lean (verified by the lead)
+lean/Wilf/MaxCL.lean: MaxCLAt, tileTOPAt_of_maxCLAt, maxCLAt_of_height_le_two, wilf_of_factDownSet_height_le_two,
+wilf_of_apery_height_le_two (Ap ⊆ {0} ∪ P ∪ 2P ⇒ Wilf). lake build OK; #print axioms: propext, Classical.choice,
+Quot.sound only; no sorry. Flat-MaxCL is now KERNEL-CHECKED.
+
+### AMaxCL (affine relaxation) — OBSERVED for every down-set (not only tiles)
+For every affine L ≥ 0 on D: Σ_A (|y|−1) L(y) ≤ (d+1) Σ_N L(z) (amaxcl.py: all non-degenerate down-sets d=2 m≤13,
+d=3 m≤10, d=4 m≤8, and 400 adversarial tiles; 0 failures, max exactly 0 when some β_a = 0).
+Equivalent (Farkas): Σ_x w(x)(1,x) = −(m+Dep)(1,C) with **C = −β/(m+Dep) ∈ conv(D)** (a barycenter lemma), and then
+Σ_x w(x)L(x) = −(m+Dep)L(C) for every affine L. Consequence: MaxCL holds for every rotation in which r is affine on D
+(carry-free rotations). Leverage low (carries are the whole difficulty), but it is the exact "linear part".
+
+### IntervalCL — FALSE (trivially)
+Replacing group subadditivity by integer subadditivity (f(a)+f(b) ≥ f(a+b) only for a+b < m) fails: f = δ_1 is
+integer-subadditive and a maximal cell can sit at position 1 (⟨39,71,72,77⟩, σ = 0, LP min −5). Low positions need wrap
+relations; certificates must allow wraps, whose identity cost is m each.
+
+### Smallest tile where geometric splits cannot certify MaxCL(0): m = 13 (gcl_cert.py)
+⟨13,14,16,17⟩ (two-face, D_1 = {(0,j,k): j+k ≤ 3}). Units (0,1,0), (0,0,1) are overloaded under geometric splits by
+exactly one unit. A carry-free GROUP certificate exists using one non-geometric relation 2·(0,2,0) ≡ (0,0,3)
+(lattice vector (0,4,−3); positions 6 + 6 = 12). All relations in the certificate are carry-free (g + h < m).
+
+### e = 4: where the residue-free crude bound CR fails (heavy3.py, twoface_census.py, heavy_nontwo.py)
+For d = 3, CR ⇔ Σ_i i·T_(i) ≥ (m−1)(T(A) − 2m), automatic when T(A) ≤ 2m (Dep ≥ m).
+- Random e = 4 grlex tiles: 35/2286 have T(A) > 2m; CR fails on 3 of them; 29/35 are two-face.
+- All 8 known CR failures (hill-climb) are TWO-FACE with e_a + e_b ≡ e_c (a unit vector), e.g. 54+75 = 60+3·23.
+- Non-two-face tiles (all e_a+e_b ∈ D): hill-climb of CR slack (30 runs, m ∈ [20,70]): 0 failures, min normalized
+  0.045; hill-climb of T(A)/m: max 2.0 at m = 24, ≤ 1.81 for m ≥ 40 (16 runs, m ≤ 90).
+  **CONJ NT: a non-two-face d = 3 tile with m ≥ m_0 has T(A) ≤ 2m, hence satisfies CR, hence MaxCL.**
+- So Wilf for e = 4 reduces (modulo NT and a finite check) to MaxCL for two-face tiles.
+
+### Two-face tiles with e_1 + e_2 ≡ e_3 are 2-D tiles in disguise (PROVED, elementary)
+ψ(i,j,k) = (i+k, j+k) is injective on {x_1x_2 = 0} and φ = s·p_1 + v·p_2 on the image (since p_3 ≡ p_1 + p_2).
+So Ω' = ψ(D) ⊂ ℕ² is a fundamental domain of a 2-D lattice with linear positions; |y| = max(s,v) (levels of D are
+the hooks max(s,v) = h), T = 3 + max(s,v). If Ω' is a 2-D down-set then D = ψ^{-1}(Ω') is automatically a 3-D down-set;
+3-D maximal cells = row ends below the diagonal ∪ column tops above it (∪ diagonal corner).
+- ⟨36,37,42,43⟩: Ω' = 6×6 box, p' = (1,6); A = the outer hook (11 cells, T = 8). ⟨29,50,69,90⟩: Ω' = 5×5 box + row
+  tail (an L-shape). Census: of two-face tiles with z* = e_c, 50 have Ω' a down-set, 143 do not (Ω' = L-shape with a
+  bump, still a 2-D lattice tile); 418 two-face tiles have z* ≠ e_c (mostly e_a + e_b ≡ 0).
+- Box case, proof sketch (CONJ → to be written): for a box tile with lattice ⟨(a,−t),(0,b)⟩ the right column is a full
+  coset of ⟨p_2⟩ (spread: Σ r ≤ b(a−1) + ab(b−1)/2) and the top row is an AP with step p_1 (crude bound); the sum is
+  ≤ 4M' once 3a²b − 2ab² − a² − 4ab + b² + b + 2 ≥ 0 (a ≥ b ≥ 2, a ≥ 7; small cases by computation). The other lattice
+  type swaps the roles; for a ≫ b the crude bound on the heavy column suffices.
+- FALSE: per-face split Σ_{A∩D_i} T r ≤ 2 Σ_{D_i} r (facecl.py; ⟨36,37,42,43⟩ −0.20): faces must be coupled.
+
+### MaxCL has uniform room away from tiny tiles (from logs/maxcl_search_*.log)
+Minimum normalized MaxCL slack found by hill-climbing semigroup tiles (m ≈ 30–90, all σ): 0.087. The only tight cases
+are tiny (column, simplex, column+spikes, m ≤ d+2). So an argument with o(m²) error plus a finite check would suffice
+for each fixed d — "robust" mechanisms are admissible.
