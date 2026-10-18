@@ -262,3 +262,105 @@ Both terms are upper-tail counts of the same multiset {⟨i p_a⟩ : 1 ≤ i < L
 (effectively). Localization tests (colthresh2.py): per-column negative in ~1–2% of columns; per direction with lex order
 direction 1 is negative in 79/1134 (d=2 m=9) cases, the last direction never (κ = m); "some order π makes every direction
 ≥ 0" holds for all d=2 m≤9 and d=3 m≤6 but FAILS in 6/3108 cases at d=3 m=7. So no order-based localization proves it.
+
+## 2026-10-17 (night, 5) — covering pairs, transport views, Base-CL for d = 2, boxes, τ-class decomposition
+
+### Clean equivalent forms (PROVED, elementary)
+- β-positivity: Tile-CL (Wilf direction) ⇔ Σ_{y∈D} β(y)·⟨σ + φ(y)⟩ ≥ 0 for every σ (increasing labeling).
+  Both bounds of Tile-CL for all tiles ⇔ this for all tiles, since slack_{−p}(−1−s) = m−1−slack_p(s) (walk increments cancel).
+- Transfer form: slack(s) = Ψ(s+1) − K, Ψ(r) = Σ_a Σ_{k=0}^{p̂_a−1} c_a(r+k) (c_a(r) = a-coordinate of φ^{-1}(r)); T − d is a
+  τ_1-coboundary on the torus and Ψ is its transfer function.
+- Semigroup form: CL ⇔ Σ_{u ∈ L} β(x(u)) ≥ c  (L = left elements, x(u) = factorization cell of u's class); ⇔ Σ_a |R_a| ≥ g,
+  R_a = {u ∈ L : the a-run u, u+n_a, … inside the D-column reaches ≥ c}. (Wilf is the same with R_a replaced by L.)
+- Arc/transport form: slack(s) = N(s) − c0, N(s) = #column arcs [φ(x), φ(top_a x)) ∋ s. Equivalently the min-cost clockwise
+  transport from supply d·1 to demand T on ℤ/m costs ≤ m(m−1)/2; the column plan costs m(m−1)/2 + m·c0.
+
+### Covering-pair certificate PCL (s-independent strengthening) — d=2 TRUE in tests, FALSE in general
+PCL: the multiset of column arcs contains c0 pairwise disjoint pairs, each pair covering ℤ/m (⇒ N(s) ≥ c0 for all s).
+coverpairs*.py: d=2 m≤10, d=3 m≤7, d=4 m≤7: TRUE; pairs from different directions suffice for d=2.
+FALSE at d=3 m=8 (6 tiles): D = {0,1}^3, p = (2,3,4), c0 = 1 — every arc has length ≤ 4, no pair covers (a triple does).
+Restricted versions FALSE: same-direction pairs; head-to-tail pairs (d=2 m=8); "ABOVE"/"BELOW" types; line pairs
+(start cells differing in one coordinate) FALSE at d=3 m=8 (12 tiles).
+### Monotone mechanisms FALSE (the proof must use the torus wrap-around)
+- Monotone transport (each unit goes to a top ≥ its cell): FALSE, d=2 m=8, D = 3×3 minus (2,2), p = (5,7): min cost 36 > 28.
+- Monotone gap routing (gap of class x ↦ a straddling column edge on a monotone path 0→x): FALSE (406/1134 at d=2 m=9).
+- LocCL (carries of x absorbed by arcs in columns through x): FALSE already for the 2×2 box, p = (2,3), s = 1.
+
+### Base-CL for d = 2 — PROVED
+Carry form (re-derived): base-slack(σ) = σ + Σ_x G(x), G(x) = #{a : ℓ_a(x) > r(x)} − ⌊(σ + Σ_aℓ_a(x))/m⌋,
+ℓ_a(x) = ⟨x_a p_a⟩, r(x) = ⟨σ + φ(x)⟩. [Σ_a r(base_a x) − (d−1)r(x) = σ + m(k(x) − C(x)) since r(base_a x) = r(x) − ℓ_a(x) + m[ℓ_a > r].]
+For d = 2 and ANY ℓ_1, ℓ_2 ∈ [0,m), u := m − σ: G ∈ {−1,0,1}; G = 1 ⇔ ℓ_1, ℓ_2 < u ≤ ℓ_1+ℓ_2, forcing r ∈ [0, u−2];
+G = −1 ⇔ ℓ_1, ℓ_2 ≥ u and ℓ_1+ℓ_2 < m+u, forcing r ∈ [u, m−1]. r is a bijection D → [0,m), so
+−σ ≤ Σ_x G ≤ u − 1, i.e. base-slack ∈ [0, m−1]. ∎  (basecheck.py confirms the carry form, 0 mismatches.)
+For d ≥ 3 the per-cell bound FAILS: cube {0,1}^3, p = (1,2,4), m = 8, σ = 1: G(1,1,1) = 2 at r = 0 (Base-CL still holds).
+The pure lemma "distinct subset sums of ℓ ⇒ |G| ≤ 1" is FALSE (glemma.py, ℓ = (1,2,4), m = 8, σ = 1).
+
+### Tile-CL for box tiles = Base-CL for box tiles (PROVED, any d); hence Tile-CL holds for all 2-dim box tiles
+x ↦ κ − x (κ = far corner) maps a-columns to a-columns, tops ↔ bases: slack_Tile(s) = base-slack(s − φ(κ))
+(basecheck.py: 0 mismatches on 2- and 3-dim boxes). With Base-CL(d=2): Tile-CL holds for every rectangle tile.
+
+### τ-class decomposition (PROVED identity; tauclass.py 0 mismatches d=2 m≤9, d=3 m≤7)
+τ(x) := (t_1(x),…,t_d(x)), t_a(x) = a-coordinate of top_a x; X_τ = {x : τ(x) = τ}. With ℓ'_a(x) = ⟨(t_a(x) − x_a)p_a⟩,
+ρ_x = ⟨s − φ(x)⟩, Ĝ(x) = #{a : ℓ'_a(x) > ρ_x} − ⌈(Σ_a ℓ'_a(x) − ρ_x)/m⌉:
+    slack(s) = Σ_τ [ Σ_{x∈X_τ} Ĝ(x) + |X_τ|·⟨s − φ(τ)⟩/m ].
+Ĝ(x) is the Base-CL per-cell function of the reflected point τ − x with offset e_τ = ⟨φ(τ) − s⟩. One class ⇔ box.
+Per-class nonnegativity FALSE (classes interact). For d = 2 (Ĝ ∈ {−1,0,1}, Ĝ = −1 ⇒ ρ_x ≥ e_τ ≥ 1) Tile-CL follows from
+**CDL (class discrepancy, d=2):** #{x ∈ D : ρ_x < e_{τ(x)}} ≥ (1/m)Σ_x e_{τ(x)}, i.e. Σ_τ |φ(X_τ) ∩ (s−e_τ, s]| ≥ Σ_τ |X_τ|e_τ/m.
+lshape.py: CDL holds for all d = 2 tiles m ≤ 10. L-shape classes: Q = [0,a')×[0,b') (τ = (a−1,b−1) ∉ D), R_1 = [a',a)×[0,b')
+(τ = (a−1,b'−1)), R_2 = [0,a')×[b',b) (τ = (a'−1,b−1)); φ(a−1,b−1) = φ(a−1,b'−1) + a p_1 = φ(a'−1,b−1) + b p_2.
+OPEN: prove CDL for L-shapes (gives Tile-CL for d = 2, i.e. CL for every 3-generated semigroup); Base-CL for d ≥ 3.
+
+## 2026-10-17 (night, 6) — Base-CL for all boxes (Hajós induction); **CL and Tile-CL are FALSE**; pivot to TOP''
+
+### Theorem (Base-CL, hence Tile-CL, for every box tile in every dimension) — PROVED (uses Hajós's theorem, CITED)
+D = Π_a [0,k_a), m = Π k_a, φ bijective. With C(x) = ⌊(σ + Σ_a ℓ_a(x))/m⌋ (ℓ_a = ⟨x_a p_a⟩) and G as in the carry form:
+1. Face formula (G(x) = #{a : C(x − x_a e_a) = C(x) − 1} − C(x), each difference ∈ {0,1}):
+   ΣG = (d−1)·Σ_D C − Σ_a k_a·Σ_{F_a} C,  F_a = {x_a = 0}.
+2. Hajós (1941; factorizations of finite abelian groups into cyclic subsets): Z/m = ⊕_a {0, p_a, …, (k_a−1)p_a} forces
+   some factor to be a subgroup, wlog {j p_1 : j < k_1} = nZ/mZ with n = m/k_1.
+3. Hermite: Σ_{i<k}⌊(Z + i n)/m⌋ = ⌊Z/n⌋. So every C-sum over full 1-lines becomes ⌊(σ + Λ'(x'))/n⌋, Λ' = Σ_{a≥2} ℓ_a.
+4. Reduce mod n: box' = Π_{a≥2}[0,k_a) with p_a mod n is a box tile of Z/n. Write ℓ_a = ℓ_a^{(n)} + n q_a and σ = σ_n + n q_σ.
+   The linear terms q_a cancel in (d−2)Σ − Σ k_a Σ_{F'_a}; the constant gives −n q_σ.
+5. ΣG(σ) = ΣG'(σ_n) − n q_σ + Σ_{x'∈box'} ⌊⟨σ + Λ'(x')⟩_m / n⌋, where the last sum has n terms, each in [0, k_1 − 1].
+   Induction (ΣG' ∈ [−σ_n, n−1−σ_n]; d = 1 gives G ≡ 0) yields ΣG ∈ [−σ, m−1−σ]. ∎
+Check: hajos.py (E50) — the identity of step 5 has 0 failures on all boxes with d ≤ 4, m ≤ 16, all p, all σ.
+**Scope remark:** a box Apéry tile means S is symmetric. The map w ↦ w_κ − w preserves Ap, so Ap has a unique ≤_S-maximum.
+So this theorem only reaches a family where Wilf is trivial. Its value is the mechanism: a Hajós subgroup factor plus
+Hermite's identity gives an exact induction on dimension.
+
+### CL and Tile-CL are FALSE (E47; examples/CL_counterexample.md) — decisive for the main route
+S = ⟨14,22,23,57,61,62,63⟩ (Eliahou's W0<0 example ⟨14,22,23⟩ ∪ [56,∞)) has c = 56, g = 43, e = 7, W = 35. Facts:
+- Every Apéry element has a unique factorization.
+- The tile is D = Δ_3 ∪ {4 spikes}, with p = (8,9,1,5,6,7) mod 14.
+- CL: LHS = 441 < 455 = target, so slack(M mod m) = −1. Wilf is carried entirely by the depth part (36).
+- Check: independent brute force (clverify.py) for every monomial order.
+- E47 also shows violations of the Tile-CL upper bound.
+Consequences:
+- Tile-CL ⇒ CL ⇒ Wilf has a false premise. The route "prove Tile-CL" is CLOSED.
+- AP-Ramp/GTP is CLOSED too: at t0 ∈ [0,m) it is the Wilf direction of Tile-CL.
+- PCL, CDL-for-general-d and all other strengthenings of Tile-CL are dead as routes to Wilf.
+- The d = 2 results (Base-CL, rectangles, τ-classes) and the box theorem stay TRUE but only cover e = 3 and symmetric S.
+Spike mechanism (spikes.py, E51):
+- A direction a whose only cells are 0 and e_a contributes m[s < p̂_a] − p̂_a to m·slack(s).
+- So any injective core plus spikes on the missing residues is a tile, which lets the E17 failure (CL for injective φ) propagate.
+- The first spiky failure is at m = 14 (core Δ_3).
+Why the exhaustive tile tests missed it: they covered d = 4 only up to m ≤ 8 and d = 3 only up to m ≤ 11. The failures need many spikes and m ≥ 14.
+
+### Regime split (E48) and the surviving inequality TOP'' (E49)
+- **Regime 3e < m (4000 S, seed 7):** CL at the reference residue 0/1664 failures, Tile-CL (some s) 9 failures. All CL(ref) failures so far have 3e ≥ m, where Wilf is a theorem (LITERATURE #21, Eliahou EJC 2020).
+- **TOP'' (5005 hard S, seed 11):** 0 failures, while CL(ref) fails on 7 of the same S. TOP'' is strictly more robust.
+  Its minimum normalized slack is 0.0225, attained with W = 1.
+  Lemma A + TOP'' ⇒ Wilf is LEAN-checked (wilf_of_TOP2).
+
+### Strategic review (mandatory after a major obstruction)
+- **Distance:** the single gap of the main route (G-CL) was refuted. Proof work on Tile-CL produced true theorems that do not reach Wilf.
+- **Lesson:** residue-only (depth-free) statements are false once d is large: spikes cost m·[s < p̂] − p̂ with no compensation.
+  A true route must use depth (actual Apéry values). Two such statements exist:
+  (a) TOP'' (top layer + shortest factorization lengths, depth through π(u) = u − c + 1);
+  (b) CL(ref) restricted to 3e < m and c > 3m, combined with the theorems #13 (c ≤ 3m) and #21 (3e ≥ m).
+- **Kill:** Tile-CL in general, AP-Ramp/GTP, PCL, CDL for L-shapes (it would only yield CL for e = 3).
+- **Continue:** (1) TOP'' as the main line; (2) the hybrid CL(ref) for 3e < m; (3) a new depth-aware mechanism.
+- **Bias check:** the last ~15 attempts were all residue-level reformulations of one statement. The adversarial
+  semigroups (E5b/E6b) had been run for TOP'' but never for CL; that test would have saved this branch.
+- **Procedure change:** every new candidate inequality must pass `src/exp_cl_adv.py`-style adversarial semigroups
+  (W0<0 family, Backelin, Delgado, deep truncations) BEFORE any proof effort.

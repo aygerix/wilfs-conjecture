@@ -52,6 +52,20 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E37 | `src/scratch/colthresh.py 2 8`, `3 6` | column-threshold formula slack = Σ_C[H_C(τ_C) − H_C(κ_C)] | all tiles, all s | 0 mismatches | 1 min |
 | E38 | `src/scratch/colthresh2.py 2 9`, `3 7` | per-column / per-direction / best-order localizations | all tiles, all s | all FALSE in general (best order fails 6/3108 at d=3 m=7) | 10 min |
 
+| E39 | `src/scratch/coverpairs.py`, `coverpairs2-5.py` (+`blossom.py`) | PCL: c0 disjoint covering pairs of column arcs; restricted types | d=2 m≤10, d=3 m≤8, d=4 m≤7 | TRUE d=2, d=3 m≤7, d=4 m≤7; FALSE d=3 m=8 (cube {0,1}^3, p=(2,3,4)); line/HT/ABOVE/BELOW restrictions FALSE | 30 min |
+| E40 | `src/scratch/monotrans.py` (+`mcf.py`) | monotone transport cost ≤ m(m−1)/2 | d=2 m≤9, d=3 m≤6 | FALSE (2 tiles at d=2 m=8) | 5 min |
+| E41 | `src/scratch/gaproute.py` (+`maxflow.py`) | monotone gap routing b-matching | d=2 m≤9, d=3 m≤6 | FALSE (406/1134 at d=2 m=9) | 5 min |
+| E42 | `src/scratch/loccl.py` | LocCL: carries absorbed by columns through the cell | d=2 m≤10, d=3 m≤7 | FALSE (2×2 box) | 5 min |
+| E43 | `src/scratch/slackrange.py`, `uppercarry.py` | distribution of min/max slack; upper vs lower carries | d=2 m≤10, d=3 m≤7 | min slack ∈ {0,1,2,3}; Σĉ ≠ c0 in general | 2 min |
+| **E44** | **`src/scratch/basecheck.py 2 9`, `3 8`** | **Base-CL carry form; box reflection Tile = Base; Base-CL range** | **all tiles** | **0 mismatches; 0 range failures** | 3 min |
+| E45 | `src/scratch/basecl3.py`, `glemma.py` | per-cell G ∈ {−1,0,1} with localization (d=3); pure subset-sum lemma | d=3 tiles m≤7; ℓ-vectors m≤40 (d=3), ≤34 (d=4) | holds on tiles m≤7; FALSE for cube m=8 and as a pure lemma | 15 min |
+| **E46** | **`src/scratch/tauclass.py`, `lshape.py`** | **τ-class decomposition identity; per-class positivity; CDL (d=2)** | **d=2 m≤10, d=3 m≤7** | **identity 0 mismatches; per-class FALSE; CDL 0 failures** | 10 min |
+| E46b | `src/scratch/sametile.py`, `mincorner.py`, `cdlparts.py` | slack lattice-invariance; min slack at s = φ(maximal cell); partial CDL class sums | d=2 m≤11, d=3 m≤7 | slack NOT lattice-invariant; "min at a maximal cell" FALSE (2×3 box, p=(3,5): slack [5,2,2,2,1,3]); every proper partial CDL class sum goes negative, only the full sum is ≥ 0 | 2 min |
+| **E47** | **`src/exp_cl_adv.py 1 3000 100`** (+ `src/scratch/clverify.py`) | **Tile-CL and CL on adversarial + random large S (seed 1; m ≤ 100 random, plus W0<0, Backelin, Delgado; up to 12 extra gens; truncations)** | **3001 S, max d 98, max m 213** | **CL FALSE: S = ⟨14,22,23,57,61,62,63⟩ (c=56, g=43, e=7, W=35): LHS 441 < 455 (examples/CL_counterexample.md); 9 Tile-CL failures (both bounds)** | 16 s |
+| **E48** | **`src/exp_cl_regime.py 7 4000 90`** | **CL (reference s) and Tile-CL (all s) split by regime 3e < m vs 3e ≥ m; clustered gens; truncations with c > 3m** | **4000 S (seed 7)** | **3e<m: 1664 S, CL 0 fails, Tile-CL 9 fails; 3e≥m: 2336 S, CL 3 fails, Tile-CL 43 fails** | 26 s |
+| **E49** | **`src/exp_top2_regime.py 11 5000 90`** | **TOP'' on the same hard generators (+W0<0, Backelin), every-depth truncations** | **5005 S (seed 11), m ≤ 90 (+213)** | **TOP'' 0 failures (CL(ref) fails on 7 of them); min normalized TOP'' slack 0.0225 (W = 1)** | 16 s |
+| **E50** | **`src/scratch/hajos.py 16`** | **Box tiles: Hajós (some k_a p_a ≡ 0) and the inductive identity ΣG = ΣG'_red − n⌊σ/n⌋ + Σ_{x'}⌊⟨σ+Λ'(x')⟩_m/n⌋; Base-CL range** | **all boxes d=2,3,4, m ≤ 16, all p, all σ** | **0 identity failures; Hajós factor always present; 0 range failures** | 1 min |
+| E51 | `src/scratch/spikes.py` | Tile-CL for core ∪ spikes (core = down-set of dim ≤ 2 with φ injective, spikes on the complement residues) | m ≤ 14 | first failure m = 14, core Δ_3, p = (5,6), spikes (7,8,9,13) (dual of E47's S); none for m ≤ 13 | 3 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.
