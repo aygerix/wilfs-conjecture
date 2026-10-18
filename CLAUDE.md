@@ -138,6 +138,8 @@ Your assignment is to conduct mathematical research **beyond** the current front
 
 An explanation of why an existing approach fails is an intermediate research finding, **not** the completion of the investigation.
 
+Continue actual research beyond planning and explanations of familiar obstacles. Identify missing ingredients, attempt to derive them, and explore alternatives when warranted. Do not claim exhaustion merely because established approaches are difficult.
+
 **Identify the missing ingredient. Attempt to derive it. If that attempt fails, investigate a different mechanism.**
 
 **Do not confuse understanding the current mathematical frontier with exhausting the mathematics beyond it.**
