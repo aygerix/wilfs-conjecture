@@ -1,0 +1,3 @@
+m=40: non-two-face 6127; Hp<m-1: 0; min Hp-(m-1) (17, (1, 6, 25), 40, 11); max sigma (61, (1, 12, 17), 21)
+m=44: non-two-face 8019; Hp<m-1: 0; min Hp-(m-1) (17, (1, 25, 39), 50, 12); max sigma (67, (1, 7, 25), 30)
+m=48: non-two-face 12823; Hp<m-1: 0; min Hp-(m-1) (24, (1, 19, 22), 52, 11); max sigma (75, (1, 11, 19), 36)

@@ -1,0 +1,67 @@
+m=7: tiles 49, non-two-face 1, HT fails 0, LP-uncertified 0; min H-(m-1) (0, (1, 2, 4)) [0s]
+m=8: tiles 123, non-two-face 3, HT fails 1, LP-uncertified 1; min H-(m-1) (-3, (1, 2, 5)) [0s]
+    HT-fail (-3, (1, 2, 5), False, 4.0)
+    UNCERTIFIED ((1, 2, 5), [(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 2, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0)])
+m=9: tiles 144, non-two-face 2, HT fails 0, LP-uncertified 0; min H-(m-1) (5, (1, 2, 6)) [0s]
+m=10: tiles 255, non-two-face 11, HT fails 0, LP-uncertified 0; min H-(m-1) (1, (1, 2, 7)) [0s]
+m=11: tiles 236, non-two-face 8, HT fails 0, LP-uncertified 0; min H-(m-1) (1, (1, 2, 8)) [0s]
+m=12: tiles 561, non-two-face 39, HT fails 0, LP-uncertified 0; min H-(m-1) (4, (1, 3, 7)) [0s]
+m=13: tiles 429, non-two-face 25, HT fails 0, LP-uncertified 0; min H-(m-1) (4, (1, 4, 6)) [0s]
+m=14: tiles 781, non-two-face 74, HT fails 0, LP-uncertified 0; min H-(m-1) (0, (1, 9, 11)) [1s]
+m=15: tiles 893, non-two-face 82, HT fails 2, LP-uncertified 0; min H-(m-1) (-4, (1, 4, 6)) [1s]
+    HT-fail (-4, (1, 4, 6), True, 15.0)
+    HT-fail (-4, (1, 10, 12), True, 15.0)
+m=16: tiles 1129, non-two-face 122, HT fails 2, LP-uncertified 0; min H-(m-1) (-2, (1, 3, 7)) [1s]
+    HT-fail (-2, (1, 3, 7), True, 28.0)
+    HT-fail (-2, (1, 3, 7), True, 22.666666666666668)
+m=17: tiles 1019, non-two-face 97, HT fails 2, LP-uncertified 0; min H-(m-1) (-1, (1, 3, 11)) [1s]
+    HT-fail (-1, (1, 3, 11), True, 26.0)
+    HT-fail (-1, (1, 4, 10), True, 23.333333333333332)
+m=18: tiles 1882, non-two-face 264, HT fails 0, LP-uncertified 0; min H-(m-1) (0, (1, 3, 7)) [2s]
+m=19: tiles 1469, non-two-face 176, HT fails 1, LP-uncertified 0; min H-(m-1) (-4, (1, 6, 8)) [2s]
+    HT-fail (-4, (1, 6, 8), True, 32.5)
+m=20: tiles 2501, non-two-face 389, HT fails 2, LP-uncertified 0; min H-(m-1) (-2, (1, 13, 15)) [3s]
+    HT-fail (-2, (1, 13, 15), True, 44.5)
+    HT-fail (-2, (1, 13, 15), True, 33.333333333333336)
+m=21: tiles 2501, non-two-face 392, HT fails 0, LP-uncertified 0; min H-(m-1) (0, (1, 4, 9)) [3s]
+m=22: tiles 3163, non-two-face 521, HT fails 0, LP-uncertified 0; min H-(m-1) (4, (1, 5, 7)) [5s]
+m=23: tiles 2665, non-two-face 410, HT fails 1, LP-uncertified 0; min H-(m-1) (-1, (1, 4, 10)) [4s]
+    HT-fail (-1, (1, 4, 10), True, 40.0)
+m=24: tiles 4868, non-two-face 977, HT fails 0, LP-uncertified 0; min H-(m-1) (8, (1, 15, 19)) [7s]
+m=25: tiles 3669, non-two-face 651, HT fails 0, LP-uncertified 0; min H-(m-1) (2, (1, 5, 11)) [7s]
+m=26: tiles 5310, non-two-face 1055, HT fails 0, LP-uncertified 0; min H-(m-1) (5, (1, 8, 11)) [11s]
+m=27: tiles 4940, non-two-face 983, HT fails 0, LP-uncertified 0; min H-(m-1) (2, (1, 4, 17)) [7s]
+m=28: tiles 6799, non-two-face 1507, HT fails 0, LP-uncertified 0; min H-(m-1) (4, (1, 21, 24)) [9s]
+m=29: tiles 5494, non-two-face 1100, HT fails 0, LP-uncertified 0; min H-(m-1) (7, (1, 7, 17)) [9s]
+m=30: tiles 10339, non-two-face 2639, HT fails 0, LP-uncertified 0; min H-(m-1) (10, (2, 21, 25)) [15s]
+m=31: tiles 6778, non-two-face 1455, HT fails 0, LP-uncertified 0; min H-(m-1) (12, (1, 5, 22)) [13s]
+m=32: tiles 9480, non-two-face 2302, HT fails 0, LP-uncertified 0; min H-(m-1) (12, (1, 9, 20)) [32s]
+m=33: tiles 9753, non-two-face 2391, HT fails 0, LP-uncertified 0; min H-(m-1) (10, (1, 8, 10)) [33s]
+m=34: tiles 12037, non-two-face 3062, HT fails 0, LP-uncertified 0; min H-(m-1) (12, (1, 20, 29)) [37s]
+m=35: tiles 11073, non-two-face 2863, HT fails 0, LP-uncertified 0; min H-(m-1) (14, (1, 26, 28)) [27s]
+m=36: tiles 15636, non-two-face 4438, HT fails 0, LP-uncertified 0; min H-(m-1) (16, (1, 5, 16)) [26s]
+m=37: tiles 11638, non-two-face 2918, HT fails 0, LP-uncertified 0; min H-(m-1) (14, (1, 6, 14)) [21s]
+m=38: tiles 16882, non-two-face 4684, HT fails 0, LP-uncertified 0; min H-(m-1) (17, (1, 5, 17)) [30s]
+m=39: tiles 16039, non-two-face 4485, HT fails 0, LP-uncertified 0; min H-(m-1) (20, (1, 15, 17)) [29s]
+m=40: tiles 20436, non-two-face 6127, HT fails 0, LP-uncertified 0; min H-(m-1) (22, (1, 6, 25)) [36s]
+m=41: tiles 15812, non-two-face 4294, HT fails 0, LP-uncertified 0; min H-(m-1) (24, (1, 8, 26)) [32s]
+m=42: tiles 27736, non-two-face 8890, HT fails 0, LP-uncertified 0; min H-(m-1) (27, (1, 25, 35)) [54s]
+m=43: tiles 18284, non-two-face 5155, HT fails 0, LP-uncertified 0; min H-(m-1) (22, (1, 8, 10)) [41s]
+m=44: tiles 25680, non-two-face 8019, HT fails 0, LP-uncertified 0; min H-(m-1) (24, (1, 25, 39)) [53s]
+m=45: tiles 25332, non-two-face 7990, HT fails 0, LP-uncertified 0; min H-(m-1) (26, (1, 36, 40)) [54s]
+m=46: tiles 29974, non-two-face 9466, HT fails 0, LP-uncertified 0; min H-(m-1) (28, (1, 13, 29)) [61s]
+m=47: tiles 23805, non-two-face 7128, HT fails 0, LP-uncertified 0; min H-(m-1) (36, (1, 11, 26)) [52s]
+m=48: tiles 37589, non-two-face 12823, HT fails 0, LP-uncertified 0; min H-(m-1) (35, (1, 19, 22)) [81s]
+m=49: tiles 27996, non-two-face 8806, HT fails 0, LP-uncertified 0; min H-(m-1) (34, (1, 22, 42)) [63s]
+m=50: tiles 40566, non-two-face 13897, HT fails 0, LP-uncertified 0; min H-(m-1) (40, (1, 8, 19)) [90s]
+m=51: tiles 35645, non-two-face 11774, HT fails 0, LP-uncertified 0; min H-(m-1) (42, (1, 10, 12)) [84s]
+m=52: tiles 41981, non-two-face 14477, HT fails 0, LP-uncertified 0; min H-(m-1) (44, (1, 23, 41)) [120s]
+m=53: tiles 34091, non-two-face 10998, HT fails 0, LP-uncertified 0; min H-(m-1) (46, (1, 15, 33)) [96s]
+m=54: tiles 54114, non-two-face 19634, HT fails 0, LP-uncertified 0; min H-(m-1) (48, (1, 43, 45)) [130s]
+m=55: tiles 41619, non-two-face 14330, HT fails 0, LP-uncertified 0; min H-(m-1) (52, (1, 6, 25)) [105s]
+m=56: tiles 53771, non-two-face 19524, HT fails 0, LP-uncertified 0; min H-(m-1) (47, (1, 16, 35)) [144s]
+m=57: tiles 49498, non-two-face 17400, HT fails 0, LP-uncertified 0; min H-(m-1) (46, (1, 13, 33)) [157s]
+m=58: tiles 59838, non-two-face 21630, HT fails 0, LP-uncertified 0; min H-(m-1) (56, (1, 6, 37)) [218s]
+m=59: tiles 46864, non-two-face 16074, HT fails 0, LP-uncertified 0; min H-(m-1) (43, (1, 7, 23)) [171s]
+m=60: tiles 79051, non-two-face 31156, HT fails 0, LP-uncertified 0; min H-(m-1) (60, (1, 17, 38)) [296s]
+m=61: tiles 51850, non-two-face 18101, HT fails 0, LP-uncertified 0; min H-(m-1) (74, (1, 6, 19)) [179s]

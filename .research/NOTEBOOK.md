@@ -986,3 +986,81 @@ ht(z) ≥ |π(y) − π(z)|.
 **Target lemma HT:** every non-two-face 3-D lattice tile with m ≥ 24 has H(D) ≥ m − 1. With BGOW (m ≤ 18) and a
 shape-by-shape finite check for 19 ≤ m ≤ 23 this would prove Wilf for all non-two-face e = 4, hence (with the two-face
 theorem) **Wilf for e = 4**.
+
+## 2026-10-18 (night 13, late) — COMPLETE tile enumeration; Wilf for every e = 4 semigroup with m ≤ 60 (computer-assisted)
+
+**Complete enumerator of 3-D Apéry tiles (src/tile_enum.py).** For residues r = (p_1,p_2,p_3) mod m the grlex tile
+depends only on the lattice Λ_r = {x : r·x ≡ 0 (m)} and the open Gröbner cone containing p + ε(1,1,1) + ε²(lex)
+(grlex tie-break = limit of an adjacent open cone). Cone of a tile D = {p : p·(q − rep(q)) > 0, q minimal non-element}.
+The positive orthant (slice p_1+p_2+p_3 = 1) is a polyhedral fan of such cones; BFS by facet flips (flip point = facet
+midpoint pushed out by ε, ε halved until the new cone's closure contains the midpoint; exact Fractions) visits all of
+them. Lattices taken up to units of ℤ/m and coordinate permutations, residues distinct and nonzero (forced for minimal
+generators). Validation (src/scratch/tile_enum_validate.py, logs/tile_enum_validate.log): every grlex tile of every
+e = 4 semigroup ⟨m,a,b,c⟩ with gens < 5m, m = 5..13 (≈ 36,000 semigroups) is in the enumeration: 0 missing. Counts:
+m = 10: 21 lattices / 255 tiles; m = 20: 2,501; m = 40: 20,436; m = 60: 79,051 (31,156 non-two-face).
+
+**Per-tile LP certificate (src/tile_lp.py) — PROVED (elementary).** By CH', mW + m(m−1) = Def(p) := 3m·M(p) − p·T(D)
+(T(D) = Σ_{(x,a)} t_a(x) ∈ ℕ³, M(p) = max_{x∈D} p·x). Def is convex and positively homogeneous in p, so over
+{p ∈ closed cone C_D, p_a ≥ m+1}: Def(p) ≥ (m+1)·κ_D, κ_D := min_{p ∈ C_D ∩ simplex} Def(p)/min_a p_a. On each cell of the
+arrangement {p·x = p·x' (x,x' maximal)} ∪ {p_a = p_b} ∪ edges(C_D ∩ simplex) the ratio is linear-fractional, so the min
+is at an arrangement vertex; we enumerate them exactly. **(m+1)κ_D ≥ m(m−1) ⇒ Wilf for every semigroup with tile D.**
+
+**COMPLETE SCAN (src/scratch/tile_scan_H.py, logs/tile_scan_H.log), m = 7..60 (running on to 70).** Every
+non-two-face tile satisfies HT (H ≥ m − 1) except at m ∈ {8, 15, 16, 17, 19, 20, 23} (one, two, two, two, one, two, one
+tiles); all of these except the m = 8 tile (covered by BGOW, m ≤ 18) are LP-certified. min H − (m−1) for m = 24..60:
+8,2,5,2,4,7,10,12,12,10,12,14,16,14,17,20,22,24,27,22,24,26,28,36,35,34,40,42,44,46,48,52,47,46,56,43,60 (m = 61: 74).
+**⇒ COMPUTER-ASSISTED THEOREM: Wilf's conjecture holds for every numerical semigroup with e = 4 and m ≤ 60.**
+(Two-face tiles: two-face theorem, all m. Non-two-face: HT or LP certificate; m = 8: BGOW.) Trust base: fan traversal
+completeness (standard Gröbner-fan facts; validated m ≤ 13), the CH' identity (LEAN), code correctness. NOT yet
+independently re-implemented. Remaining gap for e = 4: **HT for non-two-face tiles with m > 60 (or wherever the scan ends).**
+
+**Data toward the asymptotic step (all complete enumerations, non-two-face).**
+ - max |A| = 8 (m ≤ 32), 9 (36–40), 10 (44–48). Type is unbounded for e = 4 (Backelin ⟨213,216,226,227⟩: |A| = 15,
+   non-two-face, H − (m−1) = 896). Bresinsky ⟨(2h−1)2h, (2h−1)(2h+1), 2h(2h+1), 2h(2h+1)+2h−1⟩ (two-face): |A| = 4h−3
+   ~ 2√m, P₂(A) + 2|A| − m − 1 = 4h − 5 > 0 while H − (m−1) ≈ 1.75h⁴ — **the |A|/P₂ (Cross-Lemma) route cannot work in
+   general**; HT itself has huge slack there.
+ - N-counts (n(x) = #maximal tops of x; HT ⇔ N₃ ≤ N₁ + 2N₀ + 1 + H₂): min(N₁ + 2N₀ − N₃) = −4, −1, 0, 0, 5, 3, 7 at
+   m = 16, 24, 30, 36, 40, 44, 48: **H₂ is needed** below m ≈ 37; N₀ = 0 occurs at every m ((1,2,k) family).
+ - Contact pieces (tile_pieces.py): Hp := Σ_{a,λ} λ_a S(P_λ) ≤ H; min Hp − (m−1) = −4 (m=20), 1, 5, 10, 17, 17, 24 at
+   m = 24, 30, 36, 40, 44, 48: **Hp ≥ m − 1 for all tiles with 24 ≤ m ≤ 48.** Singleton pieces cost λ_a/3 each
+   (weight σ up to 75 at m = 48); the surplus comes from a few large "fin" contacts (e.g. m = 51 min-H tile: one piece
+   |P| = 19, S = 43, w = 1 pays 37 of the 38 margin).
+ - q*-classes: tiles without q* are the tight class (min H − (m−1) = 11, 16 at m = 30, 36); three-face tiles
+   (q* = (1,1,1)) are slack (30, 55); other q*: 10, 22.
+
+**Exact terrace formula (PROVED, any finite down-set D ⊂ ℕ³).** For an a-top t, every up-path from t stays in the layer
+x_a = t_a (moving +e_a from any v ≥ t in that layer would give t + e_a ∈ D). Hence ht(t) = ht_{S^a(t_a)}(π_a t), where
+S^a(k) = π_a(D ∩ {x_a = k}) (a 2-D down-set), and
+        H_a = Σ_k (k+1) Σ_{u ∈ S^a(k) ∖ S^a(k+1)} ht_{S^a(k)}(u).
+For a q*-free cylindrical tile S^3(k) = F_3 ∩ [0,X(k)) × [0,Y(k)) (X, Y = row lengths of F_2, F_1 at height k), and the
+band S(k) ∖ S(k+1) = V ∪ Hz with V = F_3 ∩ [X(k+1),X(k)) × [0,Y(k)), Hz = F_3 ∩ [0,X(k)) × [Y(k+1),Y(k)) — each a translated
+2-D down-set, so Σ_band ht ≥ |band|/3 unless V or Hz is a single cell. **Single cells occur only at exposed outer corners
+of the faces with a unit step**: V = {pt} ⇔ X(k+1) = X(k) − 1 and (X(k)−1, 1, k) ∉ D; the cell is y = (X(k)−1, 0, k), a
+maximal element on F_2 lying in the fin Φ_2 = {x ∈ F_2 : x + e_2 ∉ D} = F_2 ∖ [0, a_2) × [0, b_2) (a_2 = #{i : h(i) ≥ 2},
+b_2 = g(1)), an L-shaped up-set of F_2. Fin cells have singleton normal columns and ht = ht_{F_2} there, so
+H_2 ≥ Σ_{u∈Φ_2} ht_{F_2}(u): the fin pays for its own corners when it is large.
+
+**Cylindrical sets are NOT enough (src/scratch/cyl_exhaust.py, cyl_search.py).** q*-free cylindrical non-two-face sets
+D = {x_2 < h(x_1), x_3 < min(f(x_1), g(x_2))}: exhaustive for |D| ≤ 22 — HT fails at every size 13..22 (min −7 at 17);
+annealing: −2 at m = 30, then +5, +7, +13, +29, +97 at m = 36, 45, 48, 60, 100 (upper bounds on the min). With one
+removed cone (q*): three triangular fins (faces = triangles of side n, q* = (1,1,1)) have exactly H = 3·C(n−1,3),
+m = (3n² − 3n + 2)/2, so **HT fails for n ≤ 7 (m ≤ 64)**; annealing also finds q* = (2,1,1) shapes with −11 at m = 48.
+These shapes are not lattice tiles (tri3 check; walls). ⇒ for q*-tiles the lattice is essential at least up to
+m ≈ 64; for q*-free tiles the cylinder structure alone plausibly suffices from m ≈ 32 on.
+
+**Wall lemma (lattice ingredient, from the cylinder lemma).** Inner corners q_j = (α_j, β_j, 0) of F_3 (α increasing)
+satisfy q_j ≡ t_j e_3 with distinct t_j, and the translates D + (q_j − t_j e_3) are disjoint from each other and from D:
+at height 0 the translate occupies (α_j, β_j) + S^3(t_j). For j < k: α_k − α_j ≥ X(t_j) or β_j − β_k ≥ Y(t_k). A unit
+step (Δα = Δβ = 1) therefore needs t_j ≥ f(1) or t_{j+1} ≥ g(1): unit steps of F_3 consume distinct t-values from the
+part of the x_3-axis where F_2 or F_1 has width 1 (a spike/fin, which itself contributes ≈ C(len, 2) to H). This is the
+mechanism that kills triangular fins in tiles.
+
+**Failed attempts this round.** (1) Grid-box decomposition (boxes from minimal-non-element breakpoints): degenerates to
+unit boxes, bound −(m−1) — useless. (2) N-route without H₂: fails (above). (3) Local rule "maximal y owns y − e_a when
+y − e_a + e_b, y − e_a + e_c ∉ D": covers interior maximal elements but leaves face/axis ones (≤ 8 per tile at m = 30).
+(4) HT for all cylindrical sets: false up to m ≥ 30 (q*-free) and m = 64 (q*).
+
+**Next precise target.** Asymptotic HT in two parts: (A) q*-free cylindrical sets with m ≥ m_A: prove
+Σ_{a,k}(k+1)[Σ_band ht − |band|/3] ≥ −1 by charging exposed unit-step face corners to the fin of that face (Φ_c) and
+to the spike/arm cells (stretch argument along columns); (B) tiles with q*: wall lemma ⇒ unit steps are paid by spikes.
+In parallel push the complete scan beyond 60 (parallel/compiled) to lower the analytic threshold requirement.
