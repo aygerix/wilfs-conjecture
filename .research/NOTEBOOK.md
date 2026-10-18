@@ -800,3 +800,27 @@ geometry (NT' for non-two-face tiles) and two-face tiles (2-D pictures). First t
 tiles (tf_mu.py, all two-face tiles m ≤ 13, both conventions). In the k = 1 picture Ω' the 3-D columns are rows
 (below the diagonal), columns (above) and DIAGONALS: two-face Tile-CL is a three-direction statement inside a 2-D
 tile, so the 2-D bijection does not transfer verbatim.
+
+## 2026-10-18 (night 12, late) — NEW THEOREM: the τ-criterion (Cross Lemma); Wilf for e = 4, τ ≤ 4 (or ≤ 5)
+
+### How it was found
+Route II data (ta_by_type.py, E95): over ALL 3-D tile shapes, max_{type t}(T(A) − m) is CONSTANT in m (4, 8, 12, 16,
+21, 26 for t = 2..7, m ≤ 20): extremal shapes are compact two-face cores plus rods, and lengthening a rod adds 1 to
+both T(A) and m. Explanation (proved): T(A) − m = Σ_x (c(x) − 1), c(x) = #{a : t_a(x) maximal}; a non-maximal x with
+c(x) ≥ 2 is the meet of two maximal cells agreeing in exactly one coordinate, and each such pair meets once. So
+T(A) ≤ m + 2t + P₁ for every 3-D down-set (P₁ = pairs agreeing in exactly one coordinate). Applied not to all maximal
+cells but to the TOP LAYER X_q = Ap ∩ [c, c+m) inside TOP'' (Lemma A), the same cross count gives the theorem below.
+
+### THEOREM (τ-criterion) — PROVED on paper; final step Lean (wilf_of_TOP2); formalization in progress
+τ := |Ap(S,m) ∩ [c, c+m)| = #{f ∈ PF(S) : f ≥ c − m} ≤ t(S). If e ≥ 3 and (e−2)(m+1) ≥ τ(τ + 2e − 5), Wilf holds.
+Sharper: (e−2)(m+1) ≥ 2(e−2)τ + 2P₂, P₂ = pairs of top-layer elements whose grlex-least factorizations differ in exactly
+two coordinates. Key: Cross Lemma Σ_{u∈X_q}(ℓ(u)+1) ≤ m + P₂ (crosses of top-layer factorizations are disjoint except
+one cell per pair). Corollaries: e = 4 & τ ≤ 4 ⇒ Wilf (m ≤ 12 by 3e ≥ m, Eliahou 2020); e = 4 & τ ≤ 5 ⇒ Wilf (with
+Kliem–Stump m ≤ 19); any e: τ ≤ e − 1 ⇒ Wilf (contains the FGH range t ≤ e − 1). Full statement/proof: PROOFS.md.
+Checks: src/taucrit.py 20 asserts every step on all 93,141 S ≠ ℕ of genus ≤ 20 (E96).
+Novelty: UNVERIFIED (limited search found nothing equivalent; Marashdeh 2026: no theorem in the literature assumes t ≥ e).
+
+### Consequence for e = 4 (new reduction)
+The open e = 4 cases now have τ ≥ 5 AND P₂ > m + 1 − 2τ: many top-layer Apéry factorizations pairwise sharing a
+coordinate — top layers concentrated on coordinate planes (two-face-like). This is exactly the planar regime where the
+2-D theorems (2-D Tile-CL, two-face box theorem) live. Next: quantify the residual and attack it with 2-D methods.

@@ -109,6 +109,9 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E92 | `src/scratch/flipgraph.py d m0 m1` | wall-crossing move graph per p; local minima of K_s | d=2 m ≤ 10, d=3 m ≤ 8 | connected for every p; many non-global, non-box local minima | 10 min |
 | E93 | `src/scratch/boxmin.py`, `kmin_shape.py` | do boxes minimize K_s over tiles of fixed p? distribution of min K | d=2 m ≤ 12, d=3 m ≤ 10 | FALSE (gap up to m−3); min K per (p,s) varies | 5 min |
 | E94 | `src/scratch/nt_exh.py 5 17`, `nt_struct.py 14 20` | NT: T(A) ≤ 2m on non-two-face 3-D tile shapes; CR slack | exhaustive m ≤ 20 | NT FALSE at small m (max excess 6); CR slack ≥ 15; logs/nt_exh.log, nt_struct.log | 15 min |
+| E95 | `src/scratch/ta_by_type.py 8 20`, `ta_extremal.py 16 3` | max T(A) − m by type over all 3-D tile shapes | exhaustive m ≤ 20 | constant in m: 4, 8, 12, 16, 21, 26 (t = 2..7); extremal = two-face cores + rods; logs/ta_by_type.log | 10 min |
+| **E96** | **`src/taucrit.py 20`** | **Cross Lemma and τ-criterion ⇒ TOP''; independent shortest-length DP** | **all 93,141 S ≠ ℕ, genus ≤ 20** | **all assertions pass; criterion holds for 68,221 (195 with t ≥ e)** | 6 min |
+| E97 | `src/scratch/twobox.py`, `mu_vs_A.py`, `tf_mu.py`, `tf_mu2.py`, `pfcrit.py` | μ-bijectivity vs type; two-face face-wise corner sums; PF-length criterion coverage | d=3 m ≤ 16 | μ bijective for all |A| ≤ 2, never |A| ≥ 4; face-wise μ never bijective on two-face tiles; e=4 W₀ = W + 4q (Eliahou's hypothesis is Wilf-type for e = 4) | 20 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

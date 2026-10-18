@@ -299,3 +299,15 @@ Eliahou–Marín-Aragón 2021, Kliem–Stump 2022, Sammartano 2012, Dhayni 2018,
 Moscariello–Sammartano 2015, FGH 1987, Dobbs–Matthews 2006, Zhai 2013, Kaplan–Singhal 2023,
 Barucci 2009, Bras-Amorós papers, Cisto et al. 2020, García-García et al. 2018, arXiv:2406.13580.
 Statements from these are SECONDARY (quoted from papers that were read) or UNVERIFIED as marked.
+
+### Night-12 additions (2026-10-18)
+- Nakamura, "Hilbert schemes of abelian group orbits", J. Algebraic Geom. 10 (2001): our tiles = Nakamura's G-graphs for
+  G = ℤ/m ⊂ GL(d) diagonal with weights p; for abelian G ⊂ GL(3) the cones σ(Γ) form a fan (normalization of G-Hilb).
+  SECONDARY (via web summary). Craw–Reid / Craw–Maclagan–Thomas for SL(3) structure. Not read in full.
+- Gomory group problem: coherent tiles = solution sets of min w·x, Σ x_a p_a ≡ g (mod m) (standard; our observation
+  that all tiles d ≤ 3, m ≤ 9 are coherent is OURS, computational).
+- Marashdeh 2608.12531 re-checked: Θ(S) = Σ_{gaps}(ν_S(x) − 1); Prop 5.1 W ≥ Θ − Σ_{i≤t+1−e} λ_S(f_i) for t ≥ e;
+  Conj 5.2 Θ ≥ Σ λ_S(f_i) (open, checked g ≤ 35). Different mechanism from our τ-criterion.
+- 2604.25653 (Apéry sets for e = 4, geometric procedure), 2609.04000 (type vs minimal presentations, e = 4): found by
+  discovery search, not read; no Wilf statement in abstracts.
+- τ-criterion novelty search (limited): nothing equivalent found.

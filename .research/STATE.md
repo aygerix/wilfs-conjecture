@@ -1,44 +1,44 @@
-# STATE.md — handoff (updated 2026-10-18, night 12)
+# STATE.md — handoff (updated 2026-10-18, night 12 late)
 
 ## Main route
-MaxCL ⇒ Tile-TOP'' (PROVED on paper; LEAN: tileTOPAt_of_maxCLAt) ⇒ Wilf (LEAN, lean/Wilf/TileTop.lean).
-Tile-CL ⇒ MaxCL (drop non-maximal tops). **Current main target: Tile-CL for d = 3 (⇒ Wilf for e = 4, OPEN in the
-literature).**  Tile-CL: for every tile (D,p) and s, X(s) = Σ_{x∈D} Σ_a r(t_a x) ≤ (d+1)M', r = ⟨φ − s⟩.
+Wilf ⇐ TOP'' (Lemma A, LEAN `wilf_of_TOP2`) ⇐ Tile-TOP'' ⇐ MaxCL (LEAN) ⇐ Tile-CL (d ≤ 5 only; false at d = 6).
+**New this session: the τ-criterion** (PROOFS.md "τ-criterion"): with τ = |Ap ∩ [c, c+m)| = #{f ∈ PF : f ≥ c − m},
+Wilf holds when (e−2)(m+1) ≥ τ(τ+2e−5) (sharper: ≥ 2(e−2)τ + 2P₂). Corollaries: e = 4 & τ ≤ 4 (no computation),
+e = 4 & τ ≤ 5 (with m ≤ 19), any e with τ ≤ e − 1 (⊇ FGH range t ≤ e − 1). Paper proof complete; Lean formalization
+running (lean/Wilf/TauCrit.lean, background agent).
 
 ## Proved facts (paper unless marked)
-- CH, Corollary H, Lemma A, TOP'' ⇒ Wilf, CH', CL ⇒ Wilf, Tile-TOP'' ⇒ Wilf, MaxCL ⇒ Tile-TOP'': LEAN-checked.
-- Flat-MaxCL (MaxCL for height ≤ 2): LEAN-checked (lean/Wilf/MaxCL.lean). Corollary: Wilf when Ap ⊆ {0} ∪ P ∪ 2P.
-- **2-D Tile-CL for every 2-D tile (night 12)**: corner-sum map μ(x) = φ(x) + φ(τx) is a bijection; exact slack
-  3M' − X = m·Σ_x([r(x)+r(τx) ≤ m−2] − ε(x)) ≥ 0. Classification: 2-D tiles = rectangles and L-shapes. PROOFS.md.
-- Tile-CL slack ≡ 0 mod m (integer walk K, steps d − T, mean (m−1)/2); inversion form K = N − κ.
-- Σ_x φ(τx) ≡ 0 mod m in every d ⇒ (M. Hall 1952) a complete mapping β exists and T(s) = Σ_x (m−1−r(τx))/m is an
-  exact count; Tile-CL(d) ⇔ Σ_x ε(x) ≤ T(s).
-- Two-face box tiles satisfy MaxCL; boxes satisfy Tile-CL in every d (Hajós).
-- At most one minimal non-element of full support in any tile (any d).
+- CH, Corollary H, Lemma A, TOP'' ⇒ Wilf, CH', CL ⇒ Wilf, Tile-TOP'' ⇒ Wilf, MaxCL ⇒ Tile-TOP'': LEAN.
+- Flat-MaxCL (height ≤ 2): LEAN. Corollary Ap ⊆ {0} ∪ P ∪ 2P ⇒ Wilf: LEAN.
+- 2-D Tile-CL for every 2-D tile: LEAN (TileCL2.lean: tileCLAt_of_two, wilf_of_embDim_le_three).
+- Cross Lemma + τ-criterion (paper; asserted on all S of genus ≤ 20).
+- Any 3-D down-set: T(A) ≤ m + 2t + P₁ (cross counting over all maximal cells).
+- At most one minimal non-element of full support in any tile; Σ_x φ(τx) ≡ 0 and Hall reformulation of Tile-CL.
 
-## Refuted (preserved in examples/ and EXPERIMENTS.md)
-CL, Tile-CL at d = 6 (E47/E51/E88), Load Lemma, GLL1, uniform box pairing, CR in the open regime, IntervalCL,
-per-face split, pairwise 2-D Tile-CL inside 3-D tiles (E87).
+## Observed (not proved)
+- Every tile with d ≤ 3 is coherent (Gröbner/Gomory; m ≤ 9) ⇒ every 3-D tile is an e = 4 Apéry factorization tile.
+- Tile-CL exhaustive d=3 m ≤ 20, d=4 m ≤ 14, d=5 m ≤ 12. μ = φ + φ∘τ bijective iff type ≤ 2 (always), sometimes 3,
+  never ≥ 4. max(T(A) − m) by type constant in m (4, 8, 12, 16, 21, 26).
 
-## Evidence for the main target
-Tile-CL exhaustive: d=3 m ≤ 20, d=4 m ≤ 14, d=5 m ≤ 12 (E83); 10k e=4 semigroup tiles (E82). Tight in ~25% of tiles.
-Failures known only at d = 6.
+## Refuted this session (preserved in NOTEBOOK/EXPERIMENTS)
+Partition-CL in d = 4; coupling CI_c; box extremality of K; K-descent along wall-crossings (non-box local minima);
+non-monomial (G-cluster) Tile-CL; layer decompositions for d = 3 (proved impossible); NT (T(A) ≤ 2m) for non-two-face
+tiles at small m; face-wise corner-sum bijection on two-face tiles.
 
 ## Open gaps
-- G1: Tile-CL d = 3. Known structure: X − M' = Y_c + m·E_ab for each c (E87); (P1) Y_c ≤ 3M' observed; need
-  E_ab ≤ (3M' − Y_c)/m. No canonical complete mapping found (E86).
-- G2: Lean: formalize 2-D Tile-CL (classification + μ bijection + counting) — high-value, self-contained.
-- G3: two-face L-shape MaxCL (bracket can be negative; must use the exact 2-D slack).
+- G1 (e = 4 residual after the τ-criterion): τ ≥ 5 (≥ 6 with computation) and P₂ > m + 1 − 2τ, i.e. top-layer
+  factorizations concentrated on coordinate planes (two-face-like). Needs a 2-D-type argument.
+- G2: Tile-CL d = 3 in general (no 3-way mechanism found).
+- G3: Lean τ-criterion (running).
 
 ## Three active approaches
-1. Tile-CL d=3 via the face-chain split: prove P1 (a 2-D Tile-CL for (slice corners, c-columns)) with its exact slack,
-   then bound E_ab (sum of slice carries) by that slack.
-2. Tile-CL d=3 via a dimension-free mechanism valid for d ≤ 5 (fails at 6): look for the quantity that changes sign
-   between d = 5 and d = 6 on core+spike tiles.
-3. Route II for e = 4: CR (residue-free) on non-two-face tiles + MaxCL on two-face tiles via 2-D pictures and the
-   exact 2-D slack.
+1. τ-criterion refinements: use exact positions π(u) (not π ≤ m), P₂ exactly, cells outside crosses, and Lemma A's
+   E(w) slack; aim to close the e = 4 residual or push the general range τ ≲ √((e−2)m).
+2. Planar residual via 2-D theory: when top-layer factorizations lie on few coordinate planes, reduce TOP''/MaxCL to
+   2-D tiles (proved 2-D Tile-CL) — the two-face picture.
+3. Tile-CL d = 3 (route I) — deprioritized; only revisit with a genuinely new 3-way mechanism.
 
 ## Next precise task
-Prove (P1) for d = 3 tiles: Σ_x [r(τ_ab x) + r(t_c x)] ≤ 3M'. First test whether it holds for every tile in every d
-(as a statement about one direction c plus slice corners), find its exact slack formula, and check whether
-E_ab ≤ slack/m has a pointwise/matching proof.
+Quantify the e = 4 residual of the sharp τ-criterion (P₂ version) on all e = 4 semigroups of genus ≤ 22 and on random /
+hill-climbed e = 4 semigroups with m up to ~150: what fraction fails, and is every failure two-face (some e_a + e_b ∉ D)?
+Then try to prove TOP'' for the residual using positions π(u) on the planar top layer.
