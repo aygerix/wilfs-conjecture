@@ -18,6 +18,8 @@
   `[propext, Classical.choice, Quot.sound]`),
   `Wilf/ConeType.lean` (2026-10-18: **Lemma T′** `typeBound_cone`: t ≤ C for `coneCut Cyl q` = Cyl ∖ (q + ℕ³), Cyl in `LWClass`,
   q ≥ (1,1,1); `faceCorners_coneCut`; sharpness `typeBound_cone_attained`; 0 `sorry`, standard axioms),
+  `Wilf/Forest.lean` (2026-10-18: Lemmas **TF** `tripodForest`, **F** `qUForest`, **QF** `qOForest` on `LWClass`, via the
+  projection-determined class `IsLW`; **`deltaBound`**: 2|D| + 13 ≤ H + 5C, i.e. δ ≥ m + 14 − 5C on 𝒞; 0 `sorry`, standard axioms),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)

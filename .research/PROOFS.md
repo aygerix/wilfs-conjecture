@@ -536,6 +536,12 @@ top₁ x ∈ Max. Put p' = p − i e₁.
 (2) Symmetrically, if x'' = x − i' e₂ (i' ≥ 1) is a qO cell, then G(Y) < F(X).
 (1) and (2) are incompatible. ∎
 
+**LEAN-CHECKED 2026-10-18 (lean/Wilf/Forest.lean, verified by the lead; standard axioms, 0 sorry):** Lemma TF (`tripodForest`,
+`tripodForest''`: 2|Tri| + 1 ≤ t), Lemma F (`qUForest`: |qU| + 1 ≤ t), Lemma QF (`qOForest`: |qO| + 1 ≤ t),
+`forestBound` (LHS + 3 ≤ 5t) and **`deltaBound`: 2m + 13 ≤ H + 5C, i.e. δ ≥ m + 14 − 5C, for every D in `LWClass`**.
+The proofs go through `IsLW` (a down-set determined by its three projections), so the paper's "by symmetry" is a
+general frame (a, b, c). TF and QF are injections Σ_x N(x) → Max rather than elimination orders. Lemma F has a new short
+proof: an explicit injection qU → Max ∖ {y*}. Not yet in Lean: the threshold arithmetic (5C ≤ m + 14 for m ≥ 131).
 **Theorem C-HT (𝒞; proved on paper 2026-10-18 night 15).** Every D ∈ 𝒞 satisfies LHS = 2t + 2|Tri| + |qU| + |qO|
 ≤ 2t + 3(t − 1) = 5t − 3 ≤ 5C − 13 (Lemmas TF, F, QF, T). With Lemma CHT this gives δ(D) ≥ m + 14 − 5C. By Lemma B,
 C ≤ ⌊3/2 + √(6m − 15/4)⌋ ≤ (m + 14)/5 for every m ≥ 131: checked exactly for 131 ≤ m < 2·10⁵, and for m ≥ 160 it holds
