@@ -417,3 +417,13 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   - arXiv:2604.25653 (2026-04): a geometric procedure for Apéry sets in e = 4. It is not a Wilf proof.
   - preprints202604.0551 (prereview, 2026): a first-Kunz-layer bound claimed to imply Wilf under an inequality. Not
     checked.
+
+18. **Search before making "HCR / the height functional for 4-D tiles (e = 5)" the focus, 2026-10-18 (late night).**
+    - Web, extended: "Wilf conjecture numerical semigroups embedding dimension five". Found only known items:
+      Sammartano 1111.1863 (2e ≥ m, m ≤ 8), Dobbs–Matthews 1610.08726 (m − e = 5), Marashdeh 2608.12531 (#35),
+      Singh–Srinivasan (gluing, #29), DEF genus 100 (#39).
+    - Web: Wilf with reduction number, or with Apéry elements that are sums of two generators. Nothing.
+    - GitHub, `gh search repos` "wilf conjecture" and "numerical semigroup", sorted by update. New since #13:
+      Flaman55/NumericalSemigroups (Huang's quadratic form, not Wilf); Aurantium-47 (shifted semigroups, endpoint
+      residues); methodtrace/2026-numerical-semigroup-mass (no README).
+    - Result: no e = 5 proof, no height or column criterion, and no statement that shape-only criteria fail for large e.

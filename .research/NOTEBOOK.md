@@ -1645,3 +1645,37 @@ asserted on every test.
   that the mean Apéry element is at most (d/(d+1))Λ − (d−1)(m−1)/(2(d+1)). For star-shaped continuous sets,
   dΛ|F| − (d+1)∫λ = ∫_θ R(θ)^d (Λ − R(θ)) dθ ≥ 0, with equality only for the simplex. Wilf is thus a quantitative
   "lattice tiles are far from λ-simplices" statement.
+- **Exact Wilf number in the thin regime (PROVED; checked on ⟨5,6,7⟩, W = 2).**
+  - Setup: generators n_a = m + r_a, so k_a = 1. Write the Kunz coordinate of tile cell x as K(x) = |x| + κ(x), with
+    carry κ(x) = ⌊x·r/m⌋.
+  - Then W = Lev + Car, where:
+    - Lev = dmN − (d+1)Σ_D|x|, with N = |x*| the level of the λ-argmax. Lev ≥ 0 by LYM when x* is at maximal level.
+    - Car = d(ρ* − m + 1) − (d+1)Σ_D κ(x), with ρ* = x*·r.
+  - Corollary: if Ap consists of sums of ≤ 2 generators and every r_a < m/2, then all carries vanish and ρ* = m − 1, so
+    **W(S) = e(e+1) − 2m**. Wilf holds since m ≤ |Δ_2| = C(e+1, 2).
+  - In general (n = r + mk), Lev uses the weights k (weighted DSI), and the carries obey Σκ = (s·r)/m − (m−1)/2,
+    because the residues form a complete system.
+- **Thin tiles and additive bases.**
+  - A level-2 near-star tile with residues R′ = {0, r_1..r_d} needs R′ + R′ = ℤ/m. Its excess j = C(e+1,2) − m counts the
+    sum collisions, and Lev = 2j.
+  - Under the uniform shift n → n + km·1, mW grows by km·Lev. The normalized slack σ = Φ/(mΛ) tends to j/m.
+  - So σ is bounded below on thin tiles exactly when near-perfect additive 2-bases of ℤ/m are impossible
+    (|R′|² ≥ (2 + ε)m). Level-N thin tiles correspond likewise to N-fold bases.
+  - Hence the hard core of Wilf in the thin regime is additive-combinatorial (sumset excess vs. carry arrangement).
+    In the fat regime it is geometric: by Minkowski, (D − D) ∩ L = {0} and D ⊇ Δ_n(T) force
+    vol K_T ≤ 2^d m, i.e. a tile is ≥ C(2d,d)/2^d times larger than any λ-simplex it contains (d = 4: 4.4×).
+    The same bound applies to every k-dimensional coordinate simplex inside D (k = 3: 2.5×, k = 2: 1.5×).
+  - Continuous consequence: a down-set with vol ≥ (1−η)vol Δ contains (1 − η^{1/d})Δ. So rescaled tiles have
+    η ≥ (1 − ρ_d)^d with ρ_d = (2^d/C(2d,d))^{1/d}, i.e. a positive but small DSI slack (d = 4: η ≥ 0.009) in the fat
+    regime only.
+- **Correction (simpler proof).** The LYM / normalized-matching step in the shift lemma is unnecessary.
+  - For every finite down-set D and positive weights w, d|D|·max_D(x·w) − (d+1)Σ_D x·w = Σ_{(x,a)} (max − w·top_a x) ≥ 0.
+    This is CH, valid for any down-set.
+  - So Lev = dmN − (d+1)Σ|x| is the unit-weight column-top sum B(D, 1) ≥ 0, and the "discrete star inequality" is
+    trivial.
+  - All of Wilf's content is the lattice lower bound B ≥ (d−1)m(m−1)/2.
+- **Test: generator-drop induction fails (tf_drop.py, fejer, 300 two-face e = 5 S, c > 3m).** Let S_a, S_b be S with
+  n_b, resp. n_a, removed. Then W(S) ≥ min(W(S_a), W(S_b)) fails in 50/300 cases (worst ratio 0.52 at
+  ⟨26,50,67,71,73⟩). There is no naive two-face reduction to e = 4.
+- **Random level-≤2 semigroups (lev2.py)** have large W (≥ 33 at m = 20–30). Level 2 with c > 3m essentially requires
+  near-uniform k, which is the shift-lemma regime.

@@ -95,24 +95,34 @@
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 
 ## Three active approaches
-1. **HCR, a shape-only criterion through CH′ (MAIN).** Bound each column deficit by (m+1)·height for non-maximal tops,
-   with distinct residues for maximal tops. HCR ≥ 1 implies Wilf for every S with that tile.
-   - Evidence: holds on every 3-D tile with 10 ≤ m ≤ 25, and on all 637,806 e = 5 semigroups with generators < 2m and
-     m ≤ 40 (exhaustive), two-face included.
-   - Fails only on rare two-face tiles at e ≥ 6. The stronger shape-only HCR+ (assignment) and HCR++ (MILP) repair
-     every failure seen.
-   - Target: HCR+ for every lattice tile with m ≥ 19 (m ≤ 18 is BGOW). For e = 5: HCR for 4-D tiles, proved by counting
-     at large m plus a finite 4-D tile enumeration.
-2. **Two-face structure.** CR-NTF (CR on non-two-face tiles) and ATOP / ATOP_γ are now subsumed as diagnostics. Two-face
-   tiles are where HCR is tight at high e. The cylinder lemma in every d (PROVED) supplies the structure.
-3. **e = 4 formal verification (background; G-Lean).** HCR may also give a uniform e = 4 proof (HCR for every 3-D tile
-   with m ≥ 10).
+1. **HCR, a shape-only criterion through CH′ (MAIN for e = 5).** Bound each column deficit by (m+1)·height for
+   non-maximal tops, with distinct residues for maximal tops. HCR ≥ 1 implies Wilf for every S with that tile.
+   - **Computational theorem (E153):** the complete exact 4-D tile enumeration gives HCR ≥ 1 on every 4-D lattice tile
+     with 14 ≤ m ≤ 36 (only failures: two tiles at m = 13). With BGOW (m ≤ 18), **Wilf holds for every e = 5 S with
+     m ≤ 36.** Trust base: the enumerator and its exact volume and facet certificates, checked by an independent
+     checker pass, but the same codebase.
+   - 4-D tightness: thin near-simplex tiles (levels ≤ 3, t ≈ m/2, mostly two-face), with H/m ≈ 0.8–1.2 and R carrying
+     about 45%. The m = 13 failures are exactly the near-star formula with d = 4, q = 8.
+   - Open link: a proof for m ≥ M0. HT4 alone (H ≥ 1.5m) fails up to at least m = 27, because thin tiles persist.
+     Next: the H–t trade-off and an inverse theorem ("small H ⇒ D nearly contains a big coordinate simplex"),
+     contradicted by the discrete Minkowski bound (a 4-D tile containing Δ_N has m ≥ |X_N| = 21, 55, 131 for
+     N = 2, 3, 4).
+2. **Value-based mechanisms (universal line).**
+   - Shape-only HCR / HCR+ provably cannot be universal: on near-star tiles with q ~ βd², HCR = 1 − 1/d + o(1/d)
+     (NOTEBOOK, near-star formula).
+   - There Wilf follows from values: the shift lemma (uniform generator shifts raise mW by km·B(D,1) ≥ 0), plus
+     Eliahou for generators in (m, 2m). Exact formula W = e(e+1) − 2m in the carry-free level-2 case.
+   - Thin regime: equivalent to near-perfect additive N-bases of ℤ/m (sumset excess vs carry arrangement).
+     Fat regime: Minkowski (tiles are ≥ C(2d,d)/2^d times their inscribed λ-simplices).
+   - Goal: one inequality covering both regimes.
+3. **e = 4 formal verification (background; G-Lean).** Next Lean items: the cylinder lemma and Wall/Floor from IsTile.
 Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25); ATOP_γ as a universal criterion (6
-two-face e = 5 failures); the cube version of ATOP (false in d = 4).
+two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR for 4-D (φ up to 0.8); the cone-LP
+relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Derive a general-d counting lower bound for HCR, (m+1)·H_n + Σ_i T_(i)·i, and compute its threshold M0 for d = 4,
-using the cylinder lemma in every d and the count of maximal cells.
-(b) Prototype a 4-D lattice-tile enumerator (Gröbner tiles of index-m lattices with cyclic quotient), cross-checked
-against semigroup tiles, to measure feasibility of the finite range 19 ≤ m < M0 (codex subagent candidate).
-(c) Novelty check for HCR (Zhai column identity follow-ups; Eliahou).
+(a) Codex agent (after its tile4 finalization): the HT4 / H–t trade-off study for 4-D tiles, with brief
+    $SP/codex/ht4_brief.md. Data on the minimizers, a counter-family or a proof of (m+1)H + R ≥ 3m(m−1)/2 for m ≥ M0.
+(b) Lead: an inverse theorem for small H via coordinate simplices plus the discrete Minkowski bound. First target: a
+    4-D tile with H < m·K contains a coordinate k-simplex of level ≥ f(K, m).
+(c) Lead: a value-based bound for thin tiles (level ≤ 3) in all d, using the W = Lev + Car decomposition.
