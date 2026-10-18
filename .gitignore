@@ -6,3 +6,7 @@ src/c/*
 !src/c/*.c
 !src/c/*.h
 !src/c/Makefile
+
+# 4-D tile certificates (366 MB): kept on fejer ~/wilf/tile4/src/scratch/tile4/, hashes in artifact_manifest.sha256
+src/scratch/tile4/certificate_all_*.jsonl.gz
+src/scratch/tile4/*.part

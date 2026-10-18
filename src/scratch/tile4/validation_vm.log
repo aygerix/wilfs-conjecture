@@ -1,0 +1,16 @@
+DIMENSION {"m": 4, "reference_tiles": 7, "unused_coordinate_tiles": 7, "lattices": 1}
+DIMENSION {"m": 5, "reference_tiles": 10, "unused_coordinate_tiles": 10, "lattices": 1}
+DIMENSION {"m": 6, "reference_tiles": 45, "unused_coordinate_tiles": 45, "lattices": 6}
+DIMENSION {"m": 7, "reference_tiles": 49, "unused_coordinate_tiles": 49, "lattices": 4}
+DIMENSION {"m": 8, "reference_tiles": 123, "unused_coordinate_tiles": 123, "lattices": 11}
+DIMENSION {"m": 9, "reference_tiles": 144, "unused_coordinate_tiles": 144, "lattices": 10}
+DIMENSION {"m": 10, "reference_tiles": 255, "unused_coordinate_tiles": 255, "lattices": 21}
+SMALL {"m": 5, "cumulative_tiles": 170}
+SMALL {"m": 6, "cumulative_tiles": 650}
+SMALL {"m": 7, "cumulative_tiles": 1193}
+SMALL {"m": 8, "cumulative_tiles": 2494}
+RANDOM {"accepted": 500, "attempts": 1296, "lattices": 211, "ties": 67}
+RANDOM {"accepted": 1000, "attempts": 2659, "lattices": 271, "ties": 152}
+RANDOM {"accepted": 1500, "attempts": 4003, "lattices": 301, "ties": 216}
+RANDOM {"accepted": 2000, "attempts": 5288, "lattices": 319, "ties": 311}
+PASS {"geometry_tests": 11, "primitive_vectors": 4559, "dimension_reduction": [{"m": 4, "reference_tiles": 7, "unused_coordinate_tiles": 7, "lattices": 1}, {"m": 5, "reference_tiles": 10, "unused_coordinate_tiles": 10, "lattices": 1}, {"m": 6, "reference_tiles": 45, "unused_coordinate_tiles": 45, "lattices": 6}, {"m": 7, "reference_tiles": 49, "unused_coordinate_tiles": 49, "lattices": 4}, {"m": 8, "reference_tiles": 123, "unused_coordinate_tiles": 123, "lattices": 11}, {"m": 9, "reference_tiles": 144, "unused_coordinate_tiles": 144, "lattices": 10}, {"m": 10, "reference_tiles": 255, "unused_coordinate_tiles": 255, "lattices": 21}], "small_exhaustive": {"tiles": 2494, "hcr_crosschecks": 2494, "independent_vertex_crosschecks": 1193}, "seconds": 25.622, "status": "PASS"}

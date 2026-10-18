@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "execution_host": "fejer.us-east1-b.c.littlewood-paley-8375.internal",
+  "range": [
+    5,
+    39
+  ],
+  "multiplicities": 35,
+  "lattices": 56188,
+  "tiles": 9532388,
+  "non_two_face": 309906,
+  "min_hcr": "112/117",
+  "hcr_failures": 2,
+  "independently_checked_through": 39,
+  "validation_semigroups": 2000,
+  "validation_ties": 311
+}

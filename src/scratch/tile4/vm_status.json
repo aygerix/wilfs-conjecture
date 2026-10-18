@@ -1,0 +1,17 @@
+{
+  "host": "fejer.us-east1-b.c.littlewood-paley-8375.internal",
+  "pid": 192576,
+  "workers": 8,
+  "domain": "all",
+  "start_utc": "2026-10-18T22:22:41.093142+00:00",
+  "budget_seconds": 1800,
+  "checked_m": [
+    39
+  ],
+  "phase": "finished",
+  "active_m": null,
+  "lattices_done": 4662,
+  "lattices_total": 4662,
+  "elapsed_seconds": 768.869,
+  "remaining_seconds": 1031.131
+}

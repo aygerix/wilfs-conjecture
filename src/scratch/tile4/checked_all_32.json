@@ -1,0 +1,12 @@
+{
+  "m": 32,
+  "lattices": 3116,
+  "tiles": 523442,
+  "min_hcr": "153/124",
+  "hcr_failures": 0,
+  "status": "PASS",
+  "certificate": "exact-volume",
+  "seconds": 111.488,
+  "execution_host": "fejer.us-east1-b.c.littlewood-paley-8375.internal",
+  "workers": 8
+}

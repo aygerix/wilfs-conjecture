@@ -1,0 +1,862 @@
+{
+  "m": 6,
+  "domain": "all",
+  "lattices": 57,
+  "tiles": 480,
+  "non_two_face": 0,
+  "certificate": "exact-volume+facets",
+  "min_hcr": "17/15",
+  "min_hcr_witness": {
+    "r": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "tile": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "hcr_failures": [],
+  "tuple_orbits_sum": 1200,
+  "lattice_orbits_sum": 600,
+  "minimal_generator_lattices": 3,
+  "minimal_generator_tiles": 63,
+  "seconds": 0.247,
+  "lattices_detail": [
+    {
+      "r": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 1,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 2,
+      "tiles": 2,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        1,
+        2
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 2,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        1,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 2,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        1,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        1,
+        5
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 1,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        0,
+        2,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 1,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        1,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        1,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        1,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 11,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        2,
+        2
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 5,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 12,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        3,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 7,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 1,
+      "tiles": 12,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        1,
+        4,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 5,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        2,
+        2,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 2,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        2,
+        3,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 2,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 1,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tuple_orbit": 2,
+      "lattice_orbit": 1,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        1,
+        4
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 9,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        1,
+        5
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 16,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        2,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 11,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        2,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 10,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        2,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 21,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        3,
+        3
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 2,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        3,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 13,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        3,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 22,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        4,
+        4
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 2,
+      "tiles": 10,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        4,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 22,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        1,
+        5,
+        5
+      ],
+      "tuple_orbit": 6,
+      "lattice_orbit": 3,
+      "sorted_orbit": 1,
+      "tiles": 20,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        2,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 10,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        2,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 7,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        2,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 18,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        3,
+        3
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 10,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 15,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "tuple_orbit": 48,
+      "lattice_orbit": 24,
+      "sorted_orbit": 2,
+      "tiles": 26,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        4,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 8,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 1,
+      "tiles": 22,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        3,
+        3,
+        3
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        3,
+        3,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 11,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        3,
+        3,
+        5
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 1,
+      "tiles": 18,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        3,
+        4,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 12,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        1,
+        4,
+        4,
+        4
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 7,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        2,
+        2,
+        2,
+        3
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        2,
+        2,
+        3,
+        3
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 2,
+      "tiles": 4,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        2,
+        2,
+        3,
+        4
+      ],
+      "tuple_orbit": 24,
+      "lattice_orbit": 12,
+      "sorted_orbit": 2,
+      "tiles": 5,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        2,
+        3,
+        3,
+        3
+      ],
+      "tuple_orbit": 8,
+      "lattice_orbit": 4,
+      "sorted_orbit": 2,
+      "tiles": 3,
+      "normalized_volume": "1",
+      "facet_closure": true
+    },
+    {
+      "r": [
+        2,
+        3,
+        3,
+        4
+      ],
+      "tuple_orbit": 12,
+      "lattice_orbit": 6,
+      "sorted_orbit": 1,
+      "tiles": 6,
+      "normalized_volume": "1",
+      "facet_closure": true
+    }
+  ],
+  "certificate_file": "certificate_all_6.jsonl.gz"
+}

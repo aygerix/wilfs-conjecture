@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "execution_host": "fejer.us-east1-b.c.littlewood-paley-8375.internal",
+  "seed": 884120261018,
+  "determinant_crosschecks": 1500,
+  "arbitrary_polytope_crosschecks": 300,
+  "corruption_rejection_tests": [
+    [
+      "wrong exact cone volume",
+      true
+    ],
+    [
+      "omitted tile",
+      true
+    ],
+    [
+      "duplicated tile",
+      true
+    ],
+    [
+      "wrong cyclic lattice",
+      true
+    ],
+    [
+      "invalid down-set cell",
+      true
+    ]
+  ],
+  "seconds": 2.909
+}
