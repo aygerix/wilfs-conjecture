@@ -752,3 +752,51 @@ unchanged), tileCLAt_of_le_two (d ≤ 2), wilf_of_embDim_le_three : e ≤ 3 → 
 now kernel-checked end to end). Lead checks: lake build OK; scripts/PrintAxioms.lean 170/170 entries only
 [propext, Classical.choice, Quot.sound]; no sorry/admit/native_decide; Carry.lean definitions untouched (git diff).
 Formalization showed L2 needs only one lattice relation ((a,−c) ∈ Λ) and L3 is ⟨u⟩+⟨v⟩ ≥ ⟨u+v⟩ summed (PROOFS.md).
+
+## 2026-10-18 (night 12, cont.) — coherence of 3-D tiles; local-move landscape; refutations; Route II revisited
+
+### OBSERVED: every tile with d ≤ 3 is COHERENT (coherent.py, E91)
+LP-certified for all tiles d=2 m ≤ 12 and d=3 m ≤ 9: D = {w-minimal representative of each Λ-class in ℕ^d} for some
+w ∈ ℝ^d_{>0}. Equivalently D is the solution set of Gomory's group problem min w·x s.t. Σ x_a p_a ≡ g (mod m).
+Consequences (conditional on coherence in general, d = 3):
+- every 3-D tile is the factorization tile of the numerical semigroup ⟨m, w_1, w_2, w_3⟩ for integral w ≡ p (mod m) in
+  its chamber (scale up so w_a > m); maximal cells ↔ PF(S) + m, |A| = type t(S);
+- tiles of a fixed p = chambers of the Gröbner fan of I_Λ on the positive octant; literature: Nakamura (abelian
+  G ⊂ GL(3): the cones σ(Γ) of G-graphs form a fan; tiles = Nakamura's G-graphs). Wall-crossing = λ-shift
+  y ↦ y + k(y)λ, k(y) = max{k ≥ 0 : y + kλ ≥ 0}, λ the primitive lattice vector of a corner relation q − f(q).
+- Boundary chambers (w_a → 0) are products D' × [0, ord p_a) over 2-D tiles of the quotient.
+
+### Move graph and K-landscape (flipgraph.py, E92)
+Corner-relation wall crossings connect all tiles of every p (d=2 m ≤ 10, d=3 m ≤ 8). But K_s has MANY non-global local
+minima that are not boxes (d=3 m=8: 9366 local minima, 3096 non-global, 3678 non-box). K-descent to boxes is dead.
+### Box extremality — FALSE (boxmin.py, E93)
+min over boxes of K_s exceeds min over all tiles by up to m − 3, already in d = 2 (p = (1, −1)). Per-(p,s) minimum of
+K over tiles is not 0 in general either (kmin_shape.py), so no universal equality structure per (p, s).
+### Non-monomial generalization — FALSE (by hand)
+G-cluster k[x,y]/(x² − y, xy, y²) for ℤ/3 with weights (1,2): the Jordan-type version of Tile-CL gives X(0) = 11 > 9.
+Injectivity of φ on exponents (monomial G-graphs = tiles) is essential.
+### Layer obstruction for d = 3 (proved, elementary)
+A "layer" proof f(s) ≥ Σ_layers Σ_groups ⟨k s − Σφ⟩ needs uniform group sizes per layer and Σ sizes ≤ d; for d = 3
+this forces a singleton layer whose tops form a complete residue system, impossible when some cell is a top in no
+direction (e.g. 0 in a non-degenerate tile). So 3-D Tile-CL needs carries: no pure equidistribution proof exists.
+### μ-defect (mudefect.py)
+Defect multiset of μ = φ + φ∘τ grows with m (up to (−1)^5, 2, 3 at m = 8); collisions are driven by cells (0 and
+similar) whose corner τ(x) lies far outside D. μ is the wrong 3-D object.
+
+### Route II revisited: NT is FALSE as stated, but with small excess (nt_exh.py, nt_struct.py, E94)
+T(A) = Σ_{y∈A}(3 + |y|) = #{(x,a) : t_a(x) maximal} = Σ_x (3 − ν(x)), ν(x) = #{a : t_a(x) not maximal};
+T(A) ≤ 2m ⇒ MaxCL trivially (Σ_A T r ≤ (m−1)T(A)). Exhaustive non-two-face 3-D tile shapes m ≤ 20: T(A) − 2m > 0
+occurs (m = 7, 8, 10, 14–20), max excess 6 (m = 19); CR slack ≥ 15 always. Max-excess shapes: core {0,1}³ (with
+(1,1,1) maximal) plus three 2-D face staircases ("three-face-like"); |A| ≤ 7.
+Revised CONJ NT': non-two-face d = 3 tiles with m ≥ m_0 satisfy T(A) ≤ 2m (night 11 hill-climbs: T(A)/m ≤ 1.81 for
+m ≥ 40). Combined with exhaustive Tile-CL m ≤ 20 (E83) this would reduce MaxCL d = 3 to two-face tiles.
+NT ⇔ #{exposed cells (ν = 0)} ≤ #{ν = 2} + 2·#{ν = 3} (buried cells outnumber exposed ones).
+
+### Strategic review (night 12, cont.) — decision PIVOT to Route II pieces
+Route I (Tile-CL d = 3) has no 3-way correlation mechanism after ~10 refuted attempts (this session: CI_c, box
+extremality, K-descent, non-monomial generalization, layer decomposition). Route II splits e = 4 into residue-free
+geometry (NT' for non-two-face tiles) and two-face tiles (2-D pictures). First test of R2: the face-wise corner-sum map
+(φ(x) + φ(2-D corner of x in its face; axis cells in the right face, or the left) is NEVER a bijection on two-face
+tiles (tf_mu.py, all two-face tiles m ≤ 13, both conventions). In the k = 1 picture Ω' the 3-D columns are rows
+(below the diagonal), columns (above) and DIAGONALS: two-face Tile-CL is a three-direction statement inside a 2-D
+tile, so the 2-D bijection does not transfer verbatim.

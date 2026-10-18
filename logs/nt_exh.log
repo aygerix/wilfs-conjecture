@@ -1,0 +1,20 @@
+m=5: non-two-face shapes 0 max T(A)-2m -1000000000 (#>0: 0); two-face shapes 6 max T(A)-2m 3  [0s]
+m=6: non-two-face shapes 0 max T(A)-2m -1000000000 (#>0: 0); two-face shapes 18 max T(A)-2m 2  [0s]
+m=7: non-two-face shapes 1 max T(A)-2m 1 (#>0: 1); two-face shapes 42 max T(A)-2m 5  [0s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0)], (1, 2, 4))
+m=8: non-two-face shapes 4 max T(A)-2m 4 (#>0: 3); two-face shapes 87 max T(A)-2m 4  [0s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0)], (1, 5, 2))
+m=9: non-two-face shapes 9 max T(A)-2m -2 (#>0: 0); two-face shapes 156 max T(A)-2m 7  [0s]
+m=10: non-two-face shapes 18 max T(A)-2m 2 (#>0: 6); two-face shapes 255 max T(A)-2m 6  [0s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 2, 0), (0, 3, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 2, 0)], (1, 2, 7))
+m=11: non-two-face shapes 36 max T(A)-2m 0 (#>0: 0); two-face shapes 390 max T(A)-2m 5  [0s]
+m=12: non-two-face shapes 72 max T(A)-2m 0 (#>0: 0); two-face shapes 558 max T(A)-2m 4  [0s]
+m=13: non-two-face shapes 110 max T(A)-2m -2 (#>0: 0); two-face shapes 780 max T(A)-2m 8  [1s]
+m=14: non-two-face shapes 186 max T(A)-2m 1 (#>0: 12); two-face shapes 1083 max T(A)-2m 7  [1s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 2, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 2, 0), (2, 0, 0), (2, 0, 1), (3, 0, 0)], (1, 9, 11))
+m=15: non-two-face shapes 276 max T(A)-2m 5 (#>0: 12); two-face shapes 1308 max T(A)-2m 6  [3s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (2, 0, 0), (2, 0, 1), (2, 1, 0)], (1, 4, 9))
+m=16: non-two-face shapes 378 max T(A)-2m 4 (#>0: 12); two-face shapes 1764 max T(A)-2m 10  [5s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 2, 0), (0, 3, 0), (0, 4, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 2, 0), (2, 0, 0), (2, 0, 1), (3, 0, 0)], (1, 5, 7))
+m=17: non-two-face shapes 522 max T(A)-2m 3 (#>0: 24); two-face shapes 2121 max T(A)-2m 9  [21s]
+    NT-violating example ([(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 2, 0), (0, 3, 0), (0, 4, 0), (0, 5, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 2, 0), (2, 0, 0), (2, 0, 1), (3, 0, 0)], (1, 11, 13))

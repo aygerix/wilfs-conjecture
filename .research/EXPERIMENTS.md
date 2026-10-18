@@ -105,6 +105,10 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E88 | `src/scratch/spike_dim.py`, `spike_dim2.py 5` | dimension threshold of Tile-CL in core+spike tiles | random cores m ≤ 40, k ≤ 4; triangles/hooks/staircases all p, k ≤ 5 | failures only at k = 4 (d = 6): tri4 m=14, tri5 m=19; none for d ≤ 5 | 20 min |
 | E89 | `src/scratch/kpart.py d m0 m1`, `p1gen.py` | partition-CL Y_Π ≤ (k+1)M' over all set partitions Π of [d] | exhaustive d=3 m ≤ 16, d=4 m=11,12; d=6 spike tile m=19 | d=3 all hold; d=4 m=11 (1,1,2),(2,2) fail by m; d=6 fails for every k; logs/kpart_d3.log, kpart_d4.log | 40 min |
 | E90 | `src/scratch/coupling3.py 4 11` | coupling CI_c: X_c − M' ≤ m·#{r(t_a)+r(t_b) ≤ m−2} | all 3-D tiles m ≤ 11, all s, c | FAILS (~40% triples, worst 1.82m at m=11) | 3 min |
+| E91 | `src/scratch/coherent.py d m0 m1` (system python3 with scipy) | coherence: LP w ≥ 1, w·(z − f(z)) ≥ 1 for all z ∉ D in box | all tiles d=2 m ≤ 12, d=3 m ≤ 9 | ALL coherent | 3 min |
+| E92 | `src/scratch/flipgraph.py d m0 m1` | wall-crossing move graph per p; local minima of K_s | d=2 m ≤ 10, d=3 m ≤ 8 | connected for every p; many non-global, non-box local minima | 10 min |
+| E93 | `src/scratch/boxmin.py`, `kmin_shape.py` | do boxes minimize K_s over tiles of fixed p? distribution of min K | d=2 m ≤ 12, d=3 m ≤ 10 | FALSE (gap up to m−3); min K per (p,s) varies | 5 min |
+| E94 | `src/scratch/nt_exh.py 5 17`, `nt_struct.py 14 20` | NT: T(A) ≤ 2m on non-two-face 3-D tile shapes; CR slack | exhaustive m ≤ 20 | NT FALSE at small m (max excess 6); CR slack ≥ 15; logs/nt_exh.log, nt_struct.log | 15 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.
