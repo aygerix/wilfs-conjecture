@@ -1106,3 +1106,56 @@ logs/cyl_class_44.log; agrees with peel_class.py at |D| = 9, 13, 15, 16).** Per 
  Tiles (no lattice-free analogue): peeling the largest face gives Ψ ≥ 0 for every tile at m = 24, 30 (min 0, 2).
 
 **Scan:** m = 68 complete (36,279 non-two-face tiles, HT fails 0, min δ = 80; logs/tile_scan_H_68.log, running on).
+
+### Night 14 (cont.) — MAXSUM (heights dropped), private cells, peeling rules
+
+**MAXSUM criterion (PROVED ⇒ HT).** H = Σ_y w(y)·ht(y), Σ_y w(y) = 3m, ht ≥ 1 off Max ⇒ H ≥ 3m − M3 with
+M3 := Σ_{y∈Max(D)} (|y| + 3) = #{(x,a) : top_a(x) maximal}. So **M3 ≤ 2m + 1 ⇒ HT** (this is the old "N-route without
+H₂": M3 ≤ 2m+1 ⇔ N₃ ≤ N₁ + 2N₀ + 1; night 13 called it refuted because it fails for small m).
+Complete enumeration (src/scratch/tile_scan_HM.py; logs/tile_scan_M_7.log, tile_scan_HM_*.log), min slack 2m+1−M3 over
+non-two-face tiles: fails at m = 8, 10, 15–23, 25–28, **33 (2 tiles, −2), 38 (1 tile, −1)**; holds for m = 24, 29–32,
+34–37 and **every m ∈ [39, 54]** (slack 1..10) and m = 71, 72, 73, 91, 101 (slack 12, 13, 14, 28, 27). Margin ≈ (m − 38)/2.3,
+far below HT's (≈ 0.9(m − 20)). Over the cylinder class 𝒞 (src/c/cyl_class3.c, |D| ≤ 40) MAXSUM fails massively
+(min slack −11..−15 for 31..40; tens of thousands of sets): **MAXSUM is a lattice phenomenon** (staircase flaps make
+N₃ large; in tiles the wall lemma forces axis spikes whose cells have n ≤ 1).
+**Structure (PROVED, any down-set).** For non-maximal x, n(x) = 3 iff x is a *tripod centre* (x + s_a e_a maximal,
+s_a ≥ 1, a = 1,2,3); crosses of two maxima meet in ≤ 1 cell (their meet). Hence MAXSUM ⇔
+#crowded + #tripods ≤ 1 + 2N₀ + Σ_y (priv(y) − 1)⁺, priv(y) = #non-maximal cells lying only on the cross of y, crowded ⇔
+priv = 0. Tiles (src/scratch/tile_private.py): ≤ 5 crowded maxima and ≤ 4 tripods per tile for m ≤ 50; the excess is
+paid by axis spikes (e.g. m = 50, r = (1,7,15): three unit-step corners of F_2 crowded, x_2-spike gives 13 excess).
+**Peeling rules over 𝒞** (src/c/cyl_class4.c, |D| ≤ 36): shortest axis (min Ψ −4..−5), longest axis (−8), largest face
+(−8) all fail; **Σ_c Ψ_c ≥ 0 for every D ∈ 𝒞 with 30 ≤ |D| ≤ 36** (min 1, 1, 5, 1, 2, 6, 7) — a symmetric statement
+Σ_x z(x)(h(x) − 1) ≥ 0 (z = #zero coordinates), stronger than (P1).
+**Unpaid-peak analysis for 𝒞 (PROVED; = terrace formula re-derived).** 3δ − 3 = Σ_c Γ_c, Γ_c = Σ_{u∈A_c} ℓ_c(u)(3π_c(u) − 1)
+(π_c = height of the column top). Per level v, γ_v = Σ_{L_v}(3 ht_{U_v} − 1) ≥ g(V_v) + g(Hz_v) for the two arms of
+L_v = U_v ∖ U_{v+1}, and g(P) ≥ −1 with equality iff P is one cell (L-tromino: 0). An interior maximum is never a
+singleton (in 𝒞, y − e_a + e_c, y − e_b + e_c ∈ D force y + e_c ∈ D). Singletons = exposed planar corners with a unit
+step on that side; cost = the corresponding coordinate + 1. For lattice tiles: a corner unpaid in face c has
+σ_c(y) on an axis (σ_c = translation by e_c mod Λ, a bijection B_c → F_c), so unpaid corners inject into axis points.
+
+### Night 14 (late) — CHT: counting criterion #{h ≥ 2} ≥ #{h = 0} − 1; type bound; corner inequalities
+
+**CHT (PROVED ⇒ HT, any finite down-set D ⊂ ℕ³).** δ = 1 + Σ_x (h(x) − 1) with h ≥ 0 integer, so
+#{h ≥ 2} ≥ #{h = 0} − 1 ⇒ δ ≥ 0. Structure of h (PROVED): with n(x) = #{a : top_a(x) maximal} (top_a(x) = end of the a-ray),
+ {h = 0} = Max ∪ Tri (Tri = tripod centres: non-maximal, n = 3); h = 1 ⇔ n = 2 and the third top has height 1;
+ n ≤ 1 ⇒ h ≥ 2. Counting cells with n = 2 via pairs of maxima: N'_2 + 3|Tri| = P_2 (P_2 = #pairs of maxima agreeing in
+ exactly one coordinate). Hence CHT ⇔ **2t + 2|Tri| + Q' ≤ m + 1**, t = |Max|, Q' = #{x : n(x) = 2, h(x) = 1}.
+
+**Type bound (PROVED for 𝒞):** t ≤ c(A1) + c(A2) + c(A3) + 2 =: C + 2, c(A) = #outer corners of face A. For a maximal y
+each coordinate is blocked by one of two faces (x1 by R3/R2, x2 by C3/C1, x3 by T2/T1); the blocking combos {R3,C3},
+{R2,T2}, {C1,T1} host the column top over a face corner (injective per face), and the two cyclic combos (R3,C1,T2),
+(R2,C3,T1) are fixed points of a nonincreasing composite map — ≤ 1 maximum each. (With a cone: + O(1) via Q-blocking.)
+
+**Lattice-free evidence (exhaustive):**
+ 𝒞, |D| ≤ 40 (src/c/cyl_cht.c, logs/cyl_cht_40.log, logs/cyl_cht_36b.log): **max(t − C) = −2** (every size 6..40);
+ **max(2t + 2Tri + Q' − 4C) = −10** (tight for boxes); max(2Tri + Q' − 2C) = −6; max(Tri − C) = −3; max(Q' − C) = +1;
+ max C/√|D| ≤ 2.42 (decreasing, 2.21 at 40). CHT itself fails on 𝒞 at |D| ≤ 39 (min slack −4..−1), holds at 40 (+1).
+ Cone class (cylinder minus one cone q ≥ (1,1,1), faces with union ≤ 24; src/c/cone_class.c, logs/cone_class_24.log):
+ max(t − C) ≤ 0, max(2Tri + Q' − 2C) ≤ −3, max(LHS − 4C) ≤ −3 for every size 7..24; max(2Tri + Q' − 2t) rises
+ −4 → 0 (so Tri/Q' are NOT controlled by t alone in the cone class); maxTri 7, maxQ' 11 at 24.
+**Conjectured (A4) on 𝒞:** (A4a) t ≤ C − 2, (A4b) 2Tri + Q' ≤ 2C − 6, hence 2t + 2Tri + Q' ≤ 4C − 10.
+**(B) corner bound (sketch, not yet rigorous):** |A| ≥ k(k+1)/2 + arms for a face with k corners, and
+|A1 ∪ A2 ∪ A3| ≤ m; at most two faces can be "staircase flaps" without the third losing area ⇒ C ≲ √(6m) + 1.5.
+(A4) + (B) ⇒ 2t + 2Tri + Q' ≤ 4√(6m) − 4 ≤ m + 1 for m ≥ 94 — i.e. **CHT, hence HT, for every 𝒞-tile with m ≥ 94**;
+the cone version (constant −3) gives m ≥ ~100. With the scan (complete to m = 101 at last check, running to 115) this
+would close G2' for tiles if (A4)/(B)/cone-(A4) are proved.

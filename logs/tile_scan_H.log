@@ -73,3 +73,4 @@ m=66: tiles 103574, non-two-face 41912, HT fails 0, LP-uncertified 0; min H-(m-1
 m=67: tiles 68410, non-two-face 25026, HT fails 0, LP-uncertified 0; min H-(m-1) (73, (1, 25, 52)) [243s]
 m=68: tiles 92038, non-two-face 36279, HT fails 0, LP-uncertified 0; min H-(m-1) (80, (1, 37, 50)) [322s]
 m=69: tiles 86655, non-two-face 33426, HT fails 0, LP-uncertified 0; min H-(m-1) (78, (1, 21, 43)) [373s]
+m=70: tiles 116174, non-two-face 48142, HT fails 0, LP-uncertified 0; min H-(m-1) (86, (1, 26, 55)) [493s]
