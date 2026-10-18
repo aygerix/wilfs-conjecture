@@ -27,7 +27,10 @@
    - m = 131–280: RUNNING (logs/tile_scan_C_131_280.log, private MAXM-300 build of src/c/tile_scan.c). HT 0 failures through m = 170.
    When it finishes, every e = 4 semigroup is covered by links 1–7, subject to the review below.
 - Independent adversarial review of links 5–6 (subagent, report → $SP/review/cone_review.md): RUNNING.
-- Not in Lean: links 2–7. In Lean: TauCrit, TileCL2 (e ≤ 3), TileTop, MaxCL (see PROOFS).
+- In Lean (2026-10-18, lean/Wilf/CornerArea.lean, verified by the lead): Lemma B (`cornerArea`, any finite down-set),
+  Lemma CHT (`cht`, any finite D), Lemma T (`typeBound`, class 𝒞). So the sublinear bound t ≤ C − 2 ≤ √(6m) on 𝒞 is
+  kernel-checked. NOT in Lean: T′ (cone class), the forest lemmas (TF, F, QF, TF-cone, F-cone, qO-cone), Wall/Floor, links 2–4
+  and 7. Earlier Lean: TauCrit, TileCL2 (e ≤ 3), TileTop, MaxCL (see PROOFS).
 - Trust base of link 7: Gröbner-fan traversal enumerating lattices + code. The C port is a re-implementation of the same
   algorithm (0 mismatches against Python on 188 lines), not an independent method. kseth's enumeration uses a different
   method: a second check exists but has not been run by us (session card proposed; we do not execute their code).
@@ -53,7 +56,7 @@
 - G-scan: finish HT for cone tiles with 131 ≤ m ≤ 280 (running). If an HT failure appears, LP-certify it with tile_lp.py
   (as for m ≤ 23).
 - G-review: the adversarial review of TF-cone, F-cone, qO-cone, T′, B and the threshold arithmetic.
-- G-Lean: formalize Lemma CHT, T/T′, B and the forest lemmas (lattice-free, finite combinatorics), then Wall/Floor.
+- G-Lean: CHT, T and B are done. Next: T′ (cone class), then the forest lemmas, then Wall/Floor and the height criterion (link 2).
 - G-second-check: a method-independent second enumeration for m ≤ 280, or a reduction of the finite range by a sharper
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 

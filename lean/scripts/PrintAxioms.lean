@@ -195,3 +195,9 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.wilf_of_embDim_four_tau_le_four
 #print axioms NumericalSemigroup.wilf_of_embDim_four_tau_le_five
 #print axioms NumericalSemigroup.wilf_of_tau_le_embDim_sub_one
+#print axioms NumericalSemigroup.CornerArea.cornerArea
+#print axioms NumericalSemigroup.CornerArea.Grid2.area
+#print axioms NumericalSemigroup.CornerArea.cht
+#print axioms NumericalSemigroup.CornerArea.ht_eq_zero_of_mem_maxSet
+#print axioms NumericalSemigroup.CornerArea.ht_spec
+#print axioms NumericalSemigroup.CornerArea.typeBound

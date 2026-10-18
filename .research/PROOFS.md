@@ -434,7 +434,8 @@ F(0) = G(0) = L₃; faces A₃ = {x₂ < h(x₁)}, A₂ = {x₃ < F(x₁)}, A₁
 (c(A₃) = #values of h, c(A₂) = #values of F, c(A₁) = #values of G); C = c(A₁) + c(A₂) + c(A₃).
 Cone class: D = Cyl ∖ (q + ℕ³) with Cyl ∈ 𝒞, q ≥ (1,1,1), q ∈ Cyl (every non-two-face 3-D lattice tile is in 𝒞 or here).
 
-**Lemma CHT (any D).** δ(D) ≥ m + 1 − (2t + 2|Tri| + |Q'|).
+**Lemma CHT (any D).** δ(D) ≥ m + 1 − (2t + 2|Tri| + |Q'|). **LEAN-CHECKED 2026-10-18** (lean/Wilf/CornerArea.lean `cht`, for
+every finite D ⊆ ℕ³; the down-set hypothesis is not needed. Axioms propext, Classical.choice, Quot.sound; verified by the lead).
 Proof. δ = 1 + Σ_x (h(x) − 1) (since H = Σ_x h(x)), h ≥ 0 integer, {h = 0} = Max ∪ Tri, {h = 1} = Q' (a non-maximal top has ht ≥ 1;
 h = 1 forces two maximal tops and the third of height 1). So δ ≥ 1 − (t + Tri) + (m − t − Tri − Q'). ∎
 
@@ -444,7 +445,9 @@ a_v = #{i : F(i) ≥ v}, b_v = #{j : G(j) ≥ v}; U₁ = A₃, U_{L₃+1} = ∅,
 (ii) A corner p of U_{v+1} that is not a corner of U_v is the top cell of column a_{v+1} − 1 (then a_{v+1} < a_v) or the last
 cell of row b_{v+1} − 1 (then b_{v+1} < b_v). [If p + e₁ ∈ U_v ∖ U_{v+1} then p + e₁ ∉ R_{v+1} ∋ p, so p₁ = a_{v+1} − 1 < a_v − 1.]
 
-**Lemma T (type bound; 𝒞).** t ≤ C − 2.
+**Lemma T (type bound; 𝒞).** t ≤ C − 2. **LEAN-CHECKED 2026-10-18** (`typeBound`: (maxSet D).card + 2 ≤ Σ_c |faceCorners D c|
+for every D in `LWClass`, the class 𝒞 with 0-based coordinates. The Lean proof is an explicit injection of Max into
+corners(A₂) ⊔ (corners(A₁) ∖ {column-end corner}) ⊔ (corners(A₀) ∖ {row-end corner}), not the telescoping below).
 Proof. Corners of U_v lying in U_{v+1} are corners of U_{v+1}; so |M_v| = κ(U_v) − κ(U_{v+1}) + ν_v with ν_v = #corners of U_{v+1}
 that are not corners of U_v ≤ [a_{v+1} < a_v] + [b_{v+1} < b_v] by (ii), and ν_{L₃} = 0. Telescoping,
 t = κ(A₃) + Σ_{v<L₃} ν_v ≤ c(A₃) + (c(A₂) − 1) + (c(A₁) − 1), because a drops at v exactly when v is a value of F, and the
@@ -455,6 +458,9 @@ U_{v+1} = U_v ∩ R_{v+1} for v ≠ q₃; at v = q₃ the removal of Q creates a
 q₁ − 1 and the end of row q₂ − 1). ∎ (Exhaustive: max(t − C) = 0, attained, union ≤ 34.)
 
 **Lemma B (corner–area bound; 𝒞 and cone class).** C² − 3C + 6 ≤ 6m, i.e. C ≤ 3/2 + √(6m − 15/4).
+**LEAN-CHECKED 2026-10-18** (`cornerArea`, for EVERY nonempty finite down-set D ⊆ ℕ³ with C = Σ_c #maximal elements of the
+face D ∩ {x_c = 0}. This covers 𝒞 and the cone class, since there the faces are those of Cyl. Equality for D = {0}
+and D = {0, e₁, e₂, e₃}).
 Proof. A_c × {0}-type embeddings of the three faces lie in D (the cone misses the coordinate planes), so
 m ≥ |A₁ ∪ A₂ ∪ A₃| = Σ|A_c| − (L₁ + L₂ + L₃) + 1. A 2-D down-set with k ≥ 1 corners and arms L, L' contains the two arms
 (L + L' − 1 cells) and, for k ≥ 3, the triangle {(u,w) : u, w ≥ 1, u + w ≤ k − 1} (corner number s = u + 1 has coordinates

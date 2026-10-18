@@ -12,6 +12,10 @@
   `Wilf/MaxCL.lean` (MaxCL statement; **MaxCL ⇒ Tile-TOP''**; **Flat-MaxCL**; **Wilf when every Apéry element has a factorization of length ≤ 2**),
   `Wilf/Ramp.lean` (the Ramp Lemma for finite down-sets and directionally convex `ρ`),
   `Wilf/TileCL2.lean` (**2-D Tile-CL for every 2-D tile**, `tileCLAt_of_two : IsTile D p → TileCLAt D p` for `D : Finset (Fin 2 → ℕ)`, via corner-sum injectivity (L3 `tileCLAt_two_of_injOn`), the rectangle/L-shape classification (L1 `Tile2.classify`) and `shape_inj` (L2); corollaries `tileCLAt_of_le_two` and `wilf_of_embDim_le_three : S.embDim ≤ 3 → S.conductor ≤ S.embDim * S.ell`; 0 `sorry`, axioms `[propext, Classical.choice, Quot.sound]`),
+  `Wilf/CornerArea.lean` (2026-10-18: **Lemma B** `cornerArea`: C² + 6 ≤ 6|D| + 3C for every nonempty finite down-set
+  D ⊆ ℕ³, C = total number of corners of the three coordinate faces; **Lemma CHT** `cht`: 2|D| ≤ H + 2t + 2|Tri| + |Q′| for every
+  finite D ⊆ ℕ³; **Lemma T** `typeBound`: t + 2 ≤ C on the Loomis–Whitney class `LWClass`; 0 `sorry`, axioms
+  `[propext, Classical.choice, Quot.sound]`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)
