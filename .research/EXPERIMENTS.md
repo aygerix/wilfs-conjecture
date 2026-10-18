@@ -72,6 +72,11 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | **E55** | **`src/scratch/tiletop_adv.py 11 5000 90`, `1 3000 120`** | **Tile-TOP'' and rearranged R-TOP on adversarial Apéry tiles** | **8008 tiles** | **Tile-TOP'' 0 fails; R-TOP FALSE (3 fails: ⟨7,15,16,17⟩∪[28,∞), ⟨7,11,12,13⟩∪[18,∞), one m=59)** | 1 min |
 | E56 | `src/scratch/injtop.py`, `injtop2.py`, `injtight.py`, `stairinj.py` | injective generalizations (A),(B) of Tile-TOP''; tightest cases; 2D staircases | d=1 m≤12, d=2 m≤14, d=3 m≤10, d=4 m≤8; Δ_k, k≤9 | 0 failures; tightest are non-tiles with |D| = m−1; Δ_k needs m ≳ 1.3·|Δ_k| to embed | 15 min |
 | E57 | `src/scratch/boxtop.py`, `src/scratch/semicrude.py` | strengthenings of Tile-TOP'': Box weight |[0,y]|−2, |[0,y]|−1, 2|y|−2; semi-crude (π ↦ m on maximal cells) | all tiles d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7 | all FALSE (Box: d=2 m=5; semi-crude: d=3 m=9,10); weight |y|−1 exact | 10 min |
+| **E58** | **`src/scratch/maxcl.py`** | **MaxCL: Σ_A(|y|−1)r ≤ (d+1)Σ_N r for all rotations** | **all tiles d=2 m≤13, d=3 m≤10, d=4 m≤8, d=5 m≤7** | **0 failures** | 10 min |
+| **E59** | **`src/scratch/maxcl_adv.py 11 5000 90`, `1 3000 120`; `src/scratch/maxcl_d3.py`** | **MaxCL on adversarial Apéry tiles; random 4/5-generated S with large m** | **8008 tiles; 6800 S, m ≤ 260, type ≤ 22** | **0 failures; worst slack/m² ≈ 0.25 (random)** | 5 min |
+| E60 | `src/scratch/chaincharge.py` | is the worst σ = φ(0)? chain charging with uniform load at σ = 0 | all tiles, ranges of E58 | worst σ ≠ φ(0) in most tiles; chain charging 0 failures | 10 min |
+| **E61** | **`src/scratch/loadlemma.py`** (+`exactlp.py`) | **Load Lemma (exact LP) and count condition** | **all tile shapes d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7** | **0 failures** | 10 min |
+| E62 | `src/scratch/loadcount_adv.py 3 6000 100` | count condition 2Σ_A(|y|−1) ≤ (d+1)(|N|−1) | 6002 adversarial Apéry tiles | 0 failures; min slack 0 (N = {0}) | 20 s |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

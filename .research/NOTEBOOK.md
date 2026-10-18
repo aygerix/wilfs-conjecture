@@ -414,3 +414,42 @@ Evidence:
 ### Strategic note
 Main conjecture now: Tile-TOP'' (lift-free, combinatorial, survives the full adversarial suite, implies Wilf; Lean agent formalizing
 the implication). Secondary: SR-CL (stronger in spirit, still combinatorial). TOP'' remains the weakest Lean-linked target.
+
+## 2026-10-17 (night, 8) — **MaxCL** (Tile-TOP'' without the Dep term), decomposition identity, Load Lemma
+
+### MaxCL — CONJ, strongest surviving tile statement; MaxCL ⇒ Tile-TOP'' ⇒ Wilf (PROVED implications)
+For a tile (D,p), maximal cells A, non-maximal cells N (0 ∈ N unless D = {0}), and every rotation r = ⟨φ − σ⟩ (a bijection D → [0,m−1]):
+   **Σ_{y∈A} (|y| − 1)·r(y) ≤ (d+1)·Σ_{z∈N} r(z)**   ⇔   Σ_{y∈A} T(y) r(y) ≤ (d+1)M'   (T(y) = d + |y|, M' = m(m−1)/2).
+- Tile-TOP'' in r-form is Σ_A T r ≤ (d+1)M' + Dep (r = π − 1 = ⟨φ − s − 1⟩), so MaxCL = Tile-TOP'' with Dep dropped.
+- Column form: Σ_a Σ_{a-columns C with maximal top} |C|·r(top C) ≤ (d+1)M'. Tile-CL was the same sum over ALL columns (FALSE);
+  MaxCL drops exactly the non-maximal-top columns, which carry the spike losses.
+- Semigroup meaning of the Wilf-relevant rotation: σ = c mod m, so r(x) = (w(x) − c) mod m = position of w(x)'s class in the
+  window [c, c+m). Exact identity (CH' rewritten): **m·W = (d+1)M' − Σ_a Σ_C |C|·(w(top C) − c)**. MaxCL replaces w(top) − c by
+  r(top) ≥ w(top) − c on maximal tops and drops non-maximal tops (where w(top) − c ≤ −n_b − 1 + m < 0).
+- Tight: column (d = 1, r(top) = m − 1) and simplex {0, e_1..e_d} (r(0) = 0).
+Evidence (0 failures everywhere):
+- maxcl.py: all tiles d=2 m≤13, d=3 m≤10, d=4 m≤8, d=5 m≤7, all p, all σ.
+- maxcl_adv.py: 8008 adversarial Apéry tiles (same suite as tiletop_adv).
+- maxcl_d3.py: 6800 random 4- and 5-generated S, m ≤ 260, type ≤ 22; worst normalized slack (slack/m²) ≈ 0.25.
+
+### Worst rotation
+F(σ) := Σ_A(|y|−1)⟨φ(y)−σ⟩ − (d+1)Σ_N⟨φ(z)−σ⟩ satisfies F(σ+1) − F(σ) = −W_tot + m·w(x_σ) (x_σ = cell with φ = σ,
+w = |y|−1 on A, −(d+1) on N, W_tot = Σw < 0). So F rises when σ passes a maximal residue and falls at a non-maximal one:
+the max is at σ = φ(z0) with z0 ∈ N and φ(z0) − 1 ∈ φ(A). chaincharge.py: the worst σ is usually NOT φ(0).
+
+### Decomposition identity (PROVED, trivial)
+For u + v = y (all in D): r(u) + r(v) = r(y) + r(0) + mκ, κ ∈ {−1,0,1}. At r(0) = 0, κ ∈ {0,1}, so r is subadditive on D.
+More generally, for any cells with Σ_i φ(x_i) ≡ φ(y) + (k−1)σ: r(y) ≤ Σ_i r(x_i) (least nonnegative representative).
+
+### Load Lemma (residue-free) — CONJ; with the identity it gives MaxCL at σ = φ(0)
+For each maximal y with |y| ≥ 2 there are weights λ ≥ 0 on unordered pairs {u, y−u}, 0 < u < y, with Σλ = |y| − 1, such that
+every nonzero non-maximal cell carries total load ≤ d+1 (a pair {u,u} loads u twice).
+- Proof of "Load Lemma ⇒ MaxCL at σ = φ(0)": (|y|−1) r(y) ≤ Σ_pairs λ (r(u)+r(y−u)) by subadditivity; sum over A;
+  u, y−u < y are non-maximal; load ≤ d+1. ∎ It is valid for EVERY nonnegative r subadditive on D with r(0) = 0.
+- General σ: the same computation gives Σ_A(|y|−1)r ≤ (d+1)Σ_N r provided m(B − P) ≤ (H + d + 1)·r(0), with H = Σ_A(|y|−1),
+  B / P = λ-weight of pairs with κ = −1 / +1. This "bad event" bound is unproved.
+- Necessary count condition (r = 1 off 0): 2Σ_A(|y|−1) ≤ (d+1)(|N| − 1). Tight for column and simplex. FALSE for non-tile
+  down-sets (Δ_3 in d=2: 16 > 15), so the tile property is used already here.
+Evidence: loadlemma.py (exact LP, Fractions): all tile SHAPES d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7: 0 count fails, 0 Load fails.
+loadcount_adv.py: count condition on 6002 adversarial Apéry tiles (seed 3, m ≤ 100): 0 fails (min 0, at tiles with N = {0}).
+Chain charging with the uniform load load(z) = Σ_{y>z} 2Π_a C(y_a,z_a)/C(|y|,|z|): 0 failures at σ = 0 on the same exhaustive range.
