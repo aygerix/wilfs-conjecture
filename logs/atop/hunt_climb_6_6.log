@@ -1,0 +1,1 @@
+climb E=6 seed 6 mmax 45: 27488 S, ATOP(X) fails 0 (non-two-face 0); worst non-two-face (rX, rA, P, c) (0.4812, 0.6476, [37, 39, 40, 46, 58, 63], 148); worst two-face (0.7615, 0.8123, [26, 33, 34, 40, 42, 45], 104); 1500s

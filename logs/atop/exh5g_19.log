@@ -1,0 +1,6 @@
+e=5 m=19: 3008 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.898, [19, 22, 23, 26, 35], 63, 6), 27s
+e=5 m=23: 7309 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.9543, [23, 38, 39, 42, 45], 113, 21), 91s
+e=5 m=27: 14880 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.8887, [27, 28, 47, 48, 49], 135, 0), 257s
+e=5 m=31: 27405 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.9657, [31, 32, 38, 43, 46], 112, 19), 522s
+e=5 m=35: 46360 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.8681, [35, 39, 42, 44, 69], 146, 6), 1022s
+e=5 m=39: 73320 S (gens<2m, c>3m, any c), ATOP_gamma fails 0, worst (0.9428, [39, 44, 45, 50, 64], 176, 20), 2116s

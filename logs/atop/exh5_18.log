@@ -1,0 +1,4 @@
+m=18: 195 S (e=5, gens<2m, m|c, c>3m), ATOP fails 0, worst ratio (0.7778, [18, 22, 25, 29, 30], 72), 2s
+m=22: 363 S (e=5, gens<2m, m|c, c>3m), ATOP fails 0, worst ratio (0.9025, [22, 27, 32, 35, 41], 88), 6s
+m=26: 739 S (e=5, gens<2m, m|c, c>3m), ATOP fails 0, worst ratio (0.8337, [26, 27, 45, 46, 47], 130), 16s
+m=30: 1486 S (e=5, gens<2m, m|c, c>3m), ATOP fails 0, worst ratio (0.8291, [30, 31, 52, 53, 55], 150), 37s

@@ -95,22 +95,24 @@
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 
 ## Three active approaches
-1. **Two-face dichotomy, shape side: CR-NTF** (every non-two-face lattice tile satisfies the crude rearrangement bound CR,
-   which implies Wilf for every c through the Lean chain MaxCL ⇒ Tile-TOP'' ⇒ Wilf).
-   - Evidence: 0 non-two-face failures in 152,855 random S with e = 4–9; exhaustive 3-D tiles m ≤ 26; 82,242 stored
-     3-D tiles.
-   - Needs lattice input beyond the cylinder lemma (non-tile failure at m = 17, d = 3).
-   - Tools: the cylinder lemma in every d (PROVED), t ≤ C, forest counting.
-2. **Two-face side.** ATOP (m | c) has no failure for e ≥ 5. ATOP_γ (general c) FAILS on 6 two-face e = 5 tiles
-   (m = 25, 26; exhaustive generators < 2m). So two-face tiles need a residue argument of the e = 4 two-face-theorem
-   type (two-face identity, τ-criterion) in general d. Candidate: induction on d, with D = D_a ∪ D_b, two
-   (d−1)-dimensional pieces.
-3. **e = 4 formal verification (background; G-Lean)** and the e = 5 tile route (cylinder lemma in every d gives link 4).
-Killed this cycle: TL (false at e = 5); ATOP without relations on two-face tiles; single-relation repair ATOP+R2 (fails
-on books n ≥ 7).
+1. **HCR, a shape-only criterion through CH′ (MAIN).** Bound each column deficit by (m+1)·height for non-maximal tops,
+   with distinct residues for maximal tops. HCR ≥ 1 implies Wilf for every S with that tile.
+   - Evidence: holds on every 3-D tile with 10 ≤ m ≤ 25, and on all 637,806 e = 5 semigroups with generators < 2m and
+     m ≤ 40 (exhaustive), two-face included.
+   - Fails only on rare two-face tiles at e ≥ 6. The stronger shape-only HCR+ (assignment) and HCR++ (MILP) repair
+     every failure seen.
+   - Target: HCR+ for every lattice tile with m ≥ 19 (m ≤ 18 is BGOW). For e = 5: HCR for 4-D tiles, proved by counting
+     at large m plus a finite 4-D tile enumeration.
+2. **Two-face structure.** CR-NTF (CR on non-two-face tiles) and ATOP / ATOP_γ are now subsumed as diagnostics. Two-face
+   tiles are where HCR is tight at high e. The cylinder lemma in every d (PROVED) supplies the structure.
+3. **e = 4 formal verification (background; G-Lean).** HCR may also give a uniform e = 4 proof (HCR for every 3-D tile
+   with m ≥ 10).
+Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25); ATOP_γ as a universal criterion (6
+two-face e = 5 failures); the cube version of ATOP (false in d = 4).
 
 ## Next precise task
-Prove S1 = Σ_A(3 + |y|) ≤ 2m for cylindrical (class 𝒞) non-two-face sets D ⊂ ℕ³ with m ≥ 25. This is purely
-combinatorial (anneal max 0.86): with F_a·m = Σ over strict corners of h_a of h_a, show F_1 + F_2 + F_3 ≤ 2. Then handle
-cone tiles with Wall/Floor, and test the d = 4 analogue (CR with sorting).
-Pending on fejer: ATOP_γ exhaustive e = 5, m = 35–40 (logs land in logs/atop/ via the poller).
+(a) Derive a general-d counting lower bound for HCR, (m+1)·H_n + Σ_i T_(i)·i, and compute its threshold M0 for d = 4,
+using the cylinder lemma in every d and the count of maximal cells.
+(b) Prototype a 4-D lattice-tile enumerator (Gröbner tiles of index-m lattices with cyclic quotient), cross-checked
+against semigroup tiles, to measure feasibility of the finite range 19 ≤ m < M0 (codex subagent candidate).
+(c) Novelty check for HCR (Zhai column identity follow-ups; Eliahou).

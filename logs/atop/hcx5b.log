@@ -1,0 +1,12 @@
+e=5 m=17: non-two-face 70 S, HCR fails 0, worst (1.3824, [17, 19, 21, 28, 33]) | two-face 1666, fails 0, worst (1.2206, [17, 26, 27, 28, 31]) | 1s
+e=5 m=19: non-two-face 213 S, HCR fails 0, worst (1.4737, [19, 29, 32, 36, 37]) | two-face 2795, fails 0, worst (1.1423, [19, 20, 24, 30, 36]) | 2s
+e=5 m=21: non-two-face 459 S, HCR fails 0, worst (1.3381, [21, 31, 34, 35, 40]) | two-face 4352, fails 0, worst (1.2492, [21, 22, 26, 28, 39]) | 3s
+e=5 m=23: non-two-face 1026 S, HCR fails 0, worst (1.3123, [23, 36, 40, 43, 45]) | two-face 6283, fails 0, worst (1.1937, [23, 31, 40, 41, 42]) | 5s
+e=5 m=25: non-two-face 1875 S, HCR fails 0, worst (1.2356, [25, 37, 43, 45, 46]) | two-face 8749, fails 0, worst (1.0911, [25, 27, 29, 38, 41]) | 7s
+e=5 m=27: non-two-face 3075 S, HCR fails 0, worst (1.1899, [27, 28, 33, 37, 40]) | two-face 11805, fails 0, worst (1.2707, [27, 37, 41, 43, 52]) | 12s
+e=5 m=29: non-two-face 5005 S, HCR fails 0, worst (1.2348, [29, 31, 32, 43, 51]) | two-face 15470, fails 0, worst (1.2463, [29, 30, 50, 51, 55]) | 18s
+e=5 m=31: non-two-face 7562 S, HCR fails 0, worst (1.1964, [31, 32, 38, 43, 46]) | two-face 19843, fails 0, worst (1.228, [31, 37, 46, 53, 57]) | 26s
+e=5 m=33: non-two-face 10895 S, HCR fails 0, worst (1.2955, [33, 41, 46, 47, 50]) | two-face 24855, fails 0, worst (1.3712, [33, 34, 35, 41, 60]) | 37s
+e=5 m=35: non-two-face 15470 S, HCR fails 0, worst (1.363, [35, 39, 50, 51, 56]) | two-face 30890, fails 0, worst (1.3429, [35, 48, 53, 65, 67]) | 52s
+e=5 m=37: non-two-face 21167 S, HCR fails 0, worst (1.4059, [37, 39, 46, 63, 68]) | two-face 37738, fails 0, worst (1.3979, [37, 50, 59, 65, 73]) | 72s
+e=5 m=39: non-two-face 28249 S, HCR fails 0, worst (1.2924, [39, 61, 66, 74, 75]) | two-face 45071, fails 0, worst (1.3864, [39, 40, 46, 50, 74]) | 98s

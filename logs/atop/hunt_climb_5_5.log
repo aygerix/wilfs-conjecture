@@ -1,0 +1,1 @@
+climb E=5 seed 5 mmax 55: 30833 S, ATOP(X) fails 0 (non-two-face 0); worst non-two-face (rX, rA, P, c) (0.7922, 0.8398, [41, 42, 45, 55, 60], 164); worst two-face (0.8695, 0.8695, [37, 38, 41, 42, 58], 148); 1500s

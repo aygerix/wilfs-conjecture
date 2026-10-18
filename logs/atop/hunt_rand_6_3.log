@@ -1,0 +1,1 @@
+rand E=6 seed 3 mmax 50: 6736 S, ATOP(X) fails 0 (non-two-face 0); worst non-two-face (rX, rA, P, c) (0.7322, 0.812, [35, 54, 68, 76, 93, 96], 210); worst two-face (0.9053, 0.9053, [26, 36, 37, 38, 43, 120], 104); 1500s

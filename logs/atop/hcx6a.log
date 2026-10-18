@@ -1,0 +1,8 @@
+e=6 m=19: non-two-face 0 S, HCR fails 0, worst None | two-face 7377, fails 0, worst (1.0614, [19, 20, 22, 28, 34, 36]) | 4s
+HCR-FAIL two-face [21, 23, 31, 33, 37, 38] c 79 W 113 0.9917
+HCR-FAIL two-face [21, 25, 26, 30, 32, 40] c 70 W 92 0.9917
+e=6 m=21: non-two-face 0 S, HCR fails 0, worst None | two-face 14409, fails 2, worst (0.9917, [21, 25, 26, 30, 32, 40]) | 9s
+e=6 m=23: non-two-face 10 S, HCR fails 0, worst (1.6551, [23, 24, 33, 35, 40, 43]) | two-face 25453, fails 0, worst (1.0672, [23, 33, 35, 39, 41, 42]) | 18s
+e=6 m=25: non-two-face 59 S, HCR fails 0, worst (1.45, [25, 28, 30, 31, 42, 46]) | two-face 41789, fails 0, worst (1.0417, [25, 27, 33, 37, 40, 44]) | 32s
+e=6 m=27: non-two-face 227 S, HCR fails 0, worst (1.3711, [27, 37, 38, 41, 47, 49]) | two-face 65098, fails 0, worst (1.0221, [27, 29, 37, 39, 43, 50]) | 56s
+e=6 m=29: non-two-face 793 S, HCR fails 0, worst (1.3282, [29, 30, 32, 35, 42, 50]) | two-face 97270, fails 0, worst (1.0252, [29, 31, 32, 36, 37, 39]) | 92s
