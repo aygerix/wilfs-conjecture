@@ -678,7 +678,8 @@ u_d < x_d has top_d(u) = top_d(x). (Such u is then x − i e_d.)
 **Location Corollary.** A DS cell x with nonmax direction c lies in B_c.
 Proof (c = 3). If neither the 1-partner pair nor the 2-partner pair is defective, then F(X) < G(Y) < F(X). Under (α),
 top₃(u) = (X − i, Y, ψ(p′) − 1) ∉ K while +e₁ ∈ K. So X − i = q₁ − 1, Y ≥ q₂, and u + e₁ = (q₁, Y, z) ∈ D ∖ K forces
-z < q₃. Under (β), p ∈ Quad and z < ψ(p) = q₃. The mirror cases are symmetric. ∎
+z < q₃ (u + e₁ ∈ D because u is a qO cell, so every u + e_d lies in D). Under (β), p ∈ Quad and z < ψ(p) = q₃. The
+mirror cases are symmetric. ∎
 
 **Fiber Lemma.** Two distinct DS cells never share a maximal top in the same direction.
 Proof. Let x̂ = x + k e_a (k ≥ 1) with the same top_a, and let c, ĉ be their nonmax directions (both ≠ a).
@@ -690,14 +691,17 @@ Proof. Let x̂ = x + k e_a (k ≥ 1) with the same top_a, and let c, ĉ be their
     (α′) gives top₃(û) = (X+k, q₂−1, ψ − 1) with ψ(X+k, q₂−1) = min(F(X+k), G(q₂−1)) ≥ q₃ + 1, contradicting (ii). ∎
 
 **Theorem (qO-cone).** For every cone-class set, qO ≤ 2t − 1 + 2|Y|. For cone tiles (|Y| ≤ 6) this is qO ≤ 2t + 11.
-(Correction 2026-10-18: this line first read "t − 1 + 2|Y|", a typo; the proof below gives 2t − 1 + 2|Y|.)
+(Correction 2026-10-18: this line first read "t − 1 + 2|Y|", a typo; the proof below gives 2t − 1 + 2|Y|. The typo'd bound is
+FALSE lattice-free; do not revive it as a sharpening. Referee counterexample: h = (11, 11, 2×10), F = (11, 11, 10, 9, …, 1),
+G = (11, 11, 9, 8, …, 1), q = (1, 1, 10), with m = 243, t = 21, |Y| = 3, qO = 27 > 26. Rechecked by the lead.)
 Proof.
 - Let G_O be the multigraph on Max with one edge {top_a x, top_b x} per qO cell. Then qO = t − comp(G_O) + rank(G_O),
   and rank = #cycle-closing edges when the cells are added in increasing |x|.
 - A cycle-closing x has both maximal tops already used. For each such top y_d, either an earlier user uses it in
   direction d (then that user lies on the d-line below x), or every earlier user uses it in another direction. In the
   second case y_d ∈ Y by S′, and x is the first user of y_d in direction d. Each y is a top in ≤ 2 directions (three
-  would put y in K), so the second case happens for ≤ |Y| cells.
+  would put y in K), so the second case happens for ≤ |Y| cells. [The first user of y, in any direction, is not
+  second-case at y, and in y's second direction only its first user is; so each y ∈ Y is second-case for ≤ 1 cell.]
 - All other cycle-closers are DS. Map each DS cell x to top_{a(x)}(x), where a(x) is its smaller maximal direction.
   Collisions in the same direction are excluded by the Fiber Lemma. Collisions in different directions land in Y (S′),
   at most 2 per y. So #DS ≤ t + |Y|, rank ≤ 2|Y| + t, and qO ≤ t − 1 + rank ≤ 2t − 1 + 2|Y|. ∎
@@ -717,7 +721,12 @@ Checks (src/scratch/qo_fiber_check.py, qo_fiber_anneal.py, qo_fiber_exh.py):
   m = 30, 40, 50, 60, 64 and on the RCON extremes.
 - RCON anneals maximizing the fiber size never exceed 1.
 - Exhaustive lattice-free cone sets: see EXPERIMENTS E135.
-Status: PROVED on paper by the lead. Not yet independently reviewed or formalized.
+Status: PROVED on paper by the lead. **Independently reviewed 2026-10-18** by an adversarial referee agent. Verdict:
+every lemma of this section, TF-cone, F-cone, T′, B, Wall, Floor and the Corollary's arithmetic is CORRECT, by argument and
+by an independent checker. The checker (src/review/indep.py) found 0 violations on all lattice-free sets with lengths/values
+≤ 5 (8,630,220 sets, 7,843,965 cone), on all 82,242 tiles in logs/tiles, on ~112k random sets and in 92 anneals. Wording
+fixes are applied here and in NOTEBOOK night 17 (marked "referee edit"). Report: .research/reviews/cone_review_2026-10-18.md.
+Not formalized (Lemma B, CHT and T are in Lean; T′ and the forest lemmas are not).
 **The coefficient 2 is the natural lattice-free answer (2026-10-18).** In the lattice-free cone class, qO − t is unbounded:
 q = (1, 1, Q), F = (Q+3, Q+1, Q, Q−1, …, 1), G = (Q+3, Q+1, Q−1, Q−2, …, 1), h = (|G|, |G|, 2, …, 2) has t = 2Q + 2,
 qO = 3Q − 3 and #DS = Q − 1 (Q = 4..12, src/scratch/ds_family.py; examples/qO_lattice_free_family.md). These sets violate the

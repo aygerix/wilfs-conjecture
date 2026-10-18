@@ -3,7 +3,7 @@
 #  top in the same direction) or 'cross';  claims: (i) <= 1 cross share per floor maximum y in Y; (ii) a tripod with two
 #  same shares (dirs a, b) has witness top_c(x + i'e_b) in Y_a or top_c(x + ie_a) in Y_b (P');  (iii) the family
 #  Phi(a,b) = {x : same shares a, b, witness via the b-partner in Y_a} lies on one b-line with x_a = q_a - 1;
-#  (iv) |Phi(a,b)| <= 3;  (v) 2T - t <= -1 + #cross + sum (s_same - 1)^+.
+#  (iv) |Phi(a,b)| <= 2 (header said <= 3 until the 2026-10-18 review; the code tests <= 2);  (v) 2T - t <= -1 + #cross + sum (s_same - 1)^+.
 import sys, json
 sys.path.insert(0, 'src/scratch')
 from tile_dump import rebuild

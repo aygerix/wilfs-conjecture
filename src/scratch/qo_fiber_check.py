@@ -2,7 +2,9 @@
 #  (A) every doubly-same qO cell x (nonmax dir c, max dirs a, b) lies in B_c = {x_a >= q_a, x_b >= q_b, x_c < q_c};
 #  (B) no two doubly-same cells share a maximal top in the same direction;
 #  (C) cells whose cycle-closing is due to a cross share number <= |Y|;
-#  (D) rank(G_O) <= #cross-only + #doubly-same and qO <= t - 1 + rank;  final bound qO <= 2t + 11 (with |Y| <= 6).
+#  (D) rank(G_O) <= #cross-only + #doubly-same and qO <= t - 1 + rank.  NOTE (review 2026-10-18): 'Drank' holds by construction
+#      and 'Dq' is the identity qO = t - comp + rank, so (D) adds no information; the real tests are (A)-(C) and (E).
+#  (E) #DS <= t + |Y|, #cross-only closers <= |Y|, and the theorem's bound qO <= 2t - 1 + 2|Y| (=> 2t + 11 when |Y| <= 6).
 import sys, json
 sys.path.insert(0, 'src/scratch')
 from qo_cone import add, E
@@ -63,7 +65,9 @@ def check(D, q):
     t = len(Max)
     if rank > cross_only + ds_close: viol.append(('Drank',))
     if len(qO) > t - 1 + rank: viol.append(('Dq',))
-    if len(qO) > 2 * t + 5 + 2 * len(Y): viol.append(('final', len(qO), t, len(Y)))
+    if len(DS) > t + len(Y): viol.append(('E-ds', len(DS), t, len(Y)))
+    if cross_only > len(Y): viol.append(('E-cross', cross_only, len(Y)))
+    if len(qO) > 2 * t - 1 + 2 * len(Y): viol.append(('final', len(qO), t, len(Y)))
     return viol, len(DS), cross_only, rank, len(qO) - t, len(Y)
 if __name__ == '__main__':
     from cls_anneal import build

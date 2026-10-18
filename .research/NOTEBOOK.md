@@ -1270,14 +1270,16 @@ Eliminate tripods by decreasing |x|; s(x) = # tops of x already used. Then 2T �
 (i) Cross shares: by S′ a top y used in two directions a ≠ b has y + e_c ∈ K. y cannot lie in two of the Y_d (then y ∈ K),
 so y is used in ≤ 2 directions and gives ≤ 1 cross share. Hence Σ s_cross ≤ |Y_1| + |Y_2| + |Y_3| ≤ 6.
 (ii) Let x have same shares in a and b (partners u = x + ie_a, u' = x + i'e_b, tripods with the same tops). Then P′ on
-(u', u) gives top_c(u') ∈ Y_a or top_c(u) ∈ Y_b. Define Φ(a,b) = {x : some b-partner u' has top_c(u') ∈ Y_a}.
+(u', u) gives top_c(u') ∈ Y_a or top_c(u) ∈ Y_b. Define Φ(a,b) = {tripods x with same shares in BOTH a and b : some
+b-partner u' has top_c(u') ∈ Y_a}. [Referee edit 2026-10-18: "in both a and b" added; (iv) and (v) use the a-partner.]
 (iii) x ∈ Φ(a,b) ⇒ x_a = q_a − 1 and x_c < q_c. [y = top_c(u') has y + e_a ∈ K and y ∉ K, so y_a = q_a − 1 and y_b ≥ q_b;
 u' + e_a ∈ D ∖ K forces u'_c < q_c.]
 (iv) All members of Φ(a,b) have the same c-height. [If x̃_c > x_c, apply P′ to x̃ and the a-partner u of x in the (a,c)-plane.
 top_b(x̃) + e_a ∉ K since x̃_c < q_c. top_b(u) + e_c ∈ K would force x_c = q_c − 1 and then x̃_c ≥ q_c.]
 So Φ(a,b) lies on one b-line ℓ.
 (v) |Φ(a,b)| ≤ 2.
-- At most one member has x_b < q_b. For members x <_b x̃, P′ on (x̃, a-partner of x) gives x̃_b ≥ q_b or x_b = q_b − 1.
+- At most one member has x_b < q_b. For members x <_b x̃, P′ on (x̃, a-partner of x) gives x̃_b ≥ q_b or x_b ≥ q_b − 1, hence x_b = q_b − 1
+  when x_b < q_b. [Referee edit 2026-10-18; first written "or x_b = q_b − 1".]
 - Members with x_b ≥ q_b have top_c ∈ Y_a. The column over (q_a − 1, x_b) is at least as tall as the one under the partner's
   top, which reaches ≥ q_c. These tops are distinct from each other and from the c-top of the topmost member's b-partner.
   So there are ≤ |Y_a| − 1 ≤ 1 such members.
@@ -1304,7 +1306,8 @@ Checked on cone tiles m = 30..64 (src/scratch/qu_cone.py): rank(G_U) ≤ 1, qU �
   4 A₁-corner vectors plus q* (src/scratch/pw_core.py), which is not obviously related to the stack.
 - Real tiles (m = 30..64): floor-line qO cells per line ≤ 2 (m = 60). "Doubly realized" levels (the necessary
   condition) reach 3, so the lattice does not exclude stacks outright (src/scratch/floorline.py).
-- **New conjecture (OBSERVED): t + rank(G_O) ≤ C**, i.e. qO + comp(G_O) ≤ C. Evidence: max 0 on all 82,254 non-two-face
+- **New conjecture (OBSERVED): t + rank(G_O) ≤ C**, i.e. qO + comp(G_O) ≤ C. Evidence: max 0 on all 82,242 [corrected
+  2026-10-18 from 82,254 by the referee's count of logs/tiles] non-two-face
   tiles of m = 30, 40, 50, 60, 64, and max 0 in every RCON anneal (t+rank−C target, m ≤ 300). By contrast t + exc − C
   reaches 2, so the crude elimination count does not satisfy it.
   It would give qO ≤ C − 1 and LHS ≤ 2t + (t + 17) + (t + 2) + (C − 1) ≤ 5C + 18 for cone tiles.

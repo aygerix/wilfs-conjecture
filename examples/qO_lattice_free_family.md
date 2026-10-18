@@ -4,8 +4,9 @@ The intermediate conjecture "qO ≤ t + O(1) on the lattice-free cone class" is 
 
 Family (Q ≥ 4): q = (1, 1, Q),
 - F = (Q+3, Q+1, Q, Q−1, …, 1)   (length Q+2)
-- G = (Q+3, Q+1, Q−1, Q−2, …, 1) (length Q+2)
-- h = (Q+2, Q+2, 2, 2, …, 2)     (length Q+2)
+- G = (Q+3, Q+1, Q−1, Q−2, …, 1) (length Q+1)
+- h = (Q+1, Q+1, 2, 2, …, 2)     (length Q+2)
+(Corrected 2026-10-18 after review: this note first gave |G| = Q+2 and h(0) = Q+2, but the code and the table use Q+1.)
 - D = {x : x₂ < h(x₁), x₃ < min(F(x₁), G(x₂))} ∖ (q + ℕ³)
 
 | Q | m | t | qO | rank(G_O) | #DS |
