@@ -2,3 +2,7 @@ __pycache__/
 lean/.lake/
 *.pyc
 .DS_Store
+src/c/*
+!src/c/*.c
+!src/c/*.h
+!src/c/Makefile

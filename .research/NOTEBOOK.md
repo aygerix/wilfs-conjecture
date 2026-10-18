@@ -1218,3 +1218,43 @@ Elimination: tripods in decreasing |x| each bring ≥ 2 new maxima; qO cells in 
 and qO − t ≤ 1 at union ≤ 32, and the three-staircase family makes 2Tri − t unbounded. Real cone tiles (m ≤ 50):
 LHS − 4C ≤ −3. Next: (1) localize the failures of Lemmas S/P/QF to cells near q* and count them with the tile lattice
 (q* ∈ Λ, wall lemma). (2) Alternatively prove a cone bound LHS ≤ 5C + β and scan up to the matching threshold.
+
+## 2026-10-18 (night 16) — cone tiles: the Lattice Corner Lemma, the pairwise relaxation PW, corner–area data
+
+**Goal of the night.** The cone class is the last gap for e = 4. Proving LHS ≤ 5C + β there needs lattice input beyond
+Wall/Floor, or a better corner–area bound than Lemma B, or both. Threshold arithmetic (PROVED, trivial): if C ≤ 2√m + c
+and LHS ≤ 5C + β then CHT gives HT once m − 10√m − 5c − β + 1 ≥ 0. For (c, β) = (2, −2): m ≥ 114; (2, 5): 127;
+(3, 5): 136. So a sharp-constant corner bound plus a crude forest bound would close e = 4 with the scan up to ~130.
+
+**Lattice Corner Lemma (PROVED, PROOFS.md).** Let w, w' be non-axis inner corners of A_c (w left of w'), α = Δx_a,
+β = −Δx_b, t, t' their cylinder-lemma multipliers. Then t' > t ⇒ t' − t ≥ #{z : βe_b + ze_c ∈ D}, and t' < t ⇒
+t − t' ≥ #{z : αe_a + ze_c ∈ D}. (v = λ' − λ is a nonzero lattice vector, and v⁺, v⁻ cannot both lie in D.) With the
+Wall Lemma (quadrant corners have t ∈ [L_c − q_c, L_c − 1]) this kills the 2×2-block excess pattern by hand: for h=(4,3,2,1),
+F=(6,5,1,1), G=(6,4,1,1), q*=(1,1,3), the three quadrant corners need t ∈ {3,4,5}, but LCL needs consecutive gaps ≥ 4.
+
+**PW relaxation (necessary condition, PROVED).** All face inner-corner vectors (w, −t_w e_c) (unknown t_w) and q*, with
+all pairwise differences and sums, satisfy NOT(v⁺ ∈ D ∧ v⁻ ∈ D). Data (E130):
+- Every real tile passes, as it must.
+- Every one of the 4,311 Wall+Floor sets with tripod excess fails.
+- On the PW class (union ≤ 34): 2Tri − t ≤ −1, qO − t ≤ −2, qU − t ≤ 0, LHS − 5C ≤ −6.
+So the needed lattice input is captured by pairwise Gröbner-vector consistency. Caveat: tiles can have a tripod CYCLE
+(m = 23 example in E130). The forest statement is false for tiles, and the bound must use maxima unused by tripods; in
+real tiles, r(B) = 1 only with ≥ 2 unused maxima.
+
+**Corner–area (E129, E131).**
+- Real tiles: C − 2√m ≤ +0.05 (m = 30) and decreasing (−1.0 at m = 64); the smallest face has ≤ 4 corners for m ≤ 64.
+- Annealing: 𝒞 reaches C − 2√m = 2.17. Wall+Floor cone sets stay ≤ 1.64 up to m = 160; the extremal shape is two
+  staircase faces inside one slab x_c < q_c.
+- 𝒞 proof sketch: with k₁ ≥ k₂ ≥ k₃, m ≥ ΣT(k) + ΣL − 2 + |P(k)|, where P(k) = {(u,w,z) ≥ 1 : u+w ≤ k₃−1,
+  u+z ≤ k₂−1, w+z ≤ k₁−1} ⊆ D. The case k₃ ≤ 2 gives exactly C ≤ 2√m + 2; k₃ = 3 needs c ≈ 2.25.
+  For the cone class, K deletes part of P(k), and Wall/Floor must make up the loss (OPEN).
+
+**Rejected tonight.**
+- "Tripod graph B is a forest for tiles": false (m = 23).
+- "LHS(D) − LHS(Cyl) small": it is 13 at m = 40/50, too lossy.
+- Slab reduction C(D) ≤ C(D_c) + (lost corners): the lost corners are ≤ 2(q_a + q_b) + 2, not O(1).
+- Slab decomposition of Tri: the interface term λ ≤ q_a + q_b is unbounded.
+
+**Insight for the next attempt.** In the level picture along any axis c, a cone set is a 𝒞 set except at one
+transition (v = q_c, where the quadrant Q is removed). So every LEVEL-WISE proof of a 𝒞 lemma (Lemma T, Lemma F) has an
+O(1) defect in the cone class. Plan: re-prove TF/QF level-wise (Lemma P becomes "same-level tripods are nested").
