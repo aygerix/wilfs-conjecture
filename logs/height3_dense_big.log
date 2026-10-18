@@ -1,0 +1,1 @@
+dense height-3 tiles 80 tries 20000 ; scheme fails 0 ; MaxCL fails 0 ; max |L3|/d^2 0.57 ; worst normalized scheme slack (Fraction(9023, 32400), [81, 332, 333, 337, 342], 36, 9)

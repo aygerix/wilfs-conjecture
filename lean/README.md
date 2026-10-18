@@ -9,6 +9,7 @@
   `Wilf/Carry.lean` (factorization down-set D, column identity CH', CL ⇒ Wilf, Tile-CL statement),
   `Wilf/TileReduction.lean` (the factorization down-set is a tile; CL = Tile-CL at `s = M`; **Tile-CL ⇒ Wilf**),
   `Wilf/TileTop.lean` (Tile-TOP'' statement; **Tile-TOP'' ⇒ Wilf**),
+  `Wilf/MaxCL.lean` (MaxCL statement; **MaxCL ⇒ Tile-TOP''**; **Flat-MaxCL**; **Wilf when every Apéry element has a factorization of length ≤ 2**),
   `Wilf/Ramp.lean` (the Ramp Lemma for finite down-sets and directionally convex `ρ`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
@@ -22,6 +23,22 @@
   Conjectures TOP'', CL and Tile-CL are only *stated* (`TOP2`, `CL`, `TileCL`); what is proved is the
   implications `TOP2 S → Wilf(S)`, `CL S → Wilf(S)`, and **`TileCL → WilfConjecture`** (`wilfConjecture_of_TileCL`).
   The Ramp Lemma is proved (`rampLemma`); it does not by itself imply Tile-CL (see `.research/PROOFS.md`).
+
+### MaxCL ⇒ Tile-TOP'', Flat-MaxCL, height-≤-2 Wilf (`Wilf/MaxCL.lean`, 2026-10-17)
+
+Kernel-checked (0 `sorry`, axioms `⊆ [propext, Classical.choice, Quot.sound]`). MaxCL in general is only *stated*.
+- `MaxCLAt D p : ∀ σ : ZMod m, ∑ y ∈ D.filter (IsMaxCell D), (d + ∑ a, y a) * (tilePhi p y - σ).val ≤
+  (d + 1) * ∑ x ∈ D, (tilePhi p x - σ).val`.
+- (A) **`tileTOPAt_of_maxCLAt : 1 ≤ d → IsTile D p → MaxCLAt D p → TileTOPAt D p`** (the hypothesis `1 ≤ d` is
+  not used by the proof). Uses `m - ⟨s - z⟩ = ⟨z - (s+1)⟩ + 1`, `2·Σ_D r = m(m-1)`, `Σ_{max} (d + |y|) ≤ d·m`.
+- (B) **`maxCLAt_of_height_le_two : IsTile D p → (∀ x ∈ D, ∑ a, x a ≤ 2) → MaxCLAt D p`** (Flat-MaxCL; key step
+  `sum_edges_le : Σ_{|e|=2} r(e) ≤ (d+1)·Σ_{non-max} r`).
+- (C) **`wilf_of_factDownSet_height_le_two (S) : (∀ x ∈ S.factDownSet, ∑ a, x a ≤ 2) → S.conductor ≤ S.embDim * S.ell`**.
+- (D) `IsFactTile S D` (finite down-set, `S.wt` a bijection `D → Ap(S,m)`); **`wilf_of_tileTOPAt_of_isFactTile`**
+  (Tile-TOP'' ⇒ Wilf for any such `D`), `isFactTile_factDownSet`, the graded-lex factorization set
+  `S.factDownSetG` (`grKey` = degree, then lex) with `isFactTile_factDownSetG`, and
+  **`wilf_of_apery_height_le_two (S) : (∀ w ∈ S.aperySet S.multiplicity, ∃ x, S.wt x = w ∧ ∑ a, x a ≤ 2) →
+  S.conductor ≤ S.embDim * S.ell`**.
 
 ### Tile-TOP'' ⇒ Wilf (`Wilf/TileTop.lean`, 2026-10-17)
 

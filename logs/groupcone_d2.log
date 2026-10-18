@@ -1,0 +1,9 @@
+d 2 m 3 (tile,sigma) 6 distinct LPs 2 group-cone fails 0 None
+d 2 m 4 (tile,sigma) 32 distinct LPs 9 group-cone fails 0 None
+d 2 m 5 (tile,sigma) 100 distinct LPs 17 group-cone fails 0 None
+d 2 m 6 (tile,sigma) 168 distinct LPs 39 group-cone fails 0 None
+d 2 m 7 (tile,sigma) 462 distinct LPs 64 group-cone fails 0 None
+d 2 m 8 (tile,sigma) 608 distinct LPs 102 group-cone fails 0 None
+d 2 m 9 (tile,sigma) 1134 distinct LPs 160 group-cone fails 0 None
+d 2 m 10 (tile,sigma) 1360 distinct LPs 254 group-cone fails 0 None
+d 2 m 11 (tile,sigma) 2970 distinct LPs 332 group-cone fails 0 None
