@@ -1521,3 +1521,26 @@ m((d+1)m + d − 1)/2. When m | c the true residues are feasible, so ATOP ⇒ TO
   - If both hold, Wilf follows for all e: CR-NTF for non-two-face tiles, ATOP_γ for two-face tiles with e ≥ 5.
   - CR-NTF is a statement about the lengths of the maximal cells of lattice tiles. It is equivalent to a lower bound on
     Dep = dm − Σ_A(d + |y|), the incidences in columns with non-maximal top (roughly Dep ≳ (d−1)m/2 when t ≪ m).
+- **ATOP_γ FAILS at e = 5 for m ∤ c (fejer exhaustive, generators < 2m, c > 3m, m = 16–34; atop_exh5g.py).**
+  - 6 failures in about 350k S:
+    - m = 25: ⟨25,31,32,33,39⟩, ⟨25,34,37,38,41⟩, ⟨25,34,43,46,47⟩, ⟨25,42,43,46,49⟩ (each 1.0237), ⟨25,36,42,43,44⟩
+      (1.0019);
+    - m = 26: ⟨26,29,31,34,43⟩ (1.011).
+  - All are two-face, all fail CR (1.023–1.036), and all have t = 12 maximal cells of length 3. True TOP ratios are
+    0.61–0.76 and W = 36–52.
+  - For m | c, ATOP still has no failure.
+  - So the two-face side needs more than residue-light certificates when m ∤ c, as in our e = 4 two-face theorem
+    (τ-criterion).
+- **Cube version of ATOP is FALSE (abstract):** the d = 4 anneal (cylindrical, ⊇ {0,1}^4) found ratio 1.0074 at m = 36
+  (fejer, seed 11). Seeds 12–14 (d = 4, 5) stayed ≤ 0.92.
+- **Mechanism in d = 3 (OBSERVED):** S1 := Σ_A(3 + |y|) ≤ 2m, i.e. Dep ≥ m, implies CR without sorting.
+  - It holds on all 82,242 stored non-two-face tiles (m = 30–64; max S1 − 2m = 0) and fails only at small m (≤ 23,
+    excess ≤ 6), where CR's rank discount takes over (maxsum.py, colcount.py).
+  - On cylindrical non-two-face sets (tile or not), the anneal max of S1/(2m) is 0.861 for m ∈ [25, 90] and 0.721 for
+    m ∈ [40, 150] (s1_anneal.py). So for class 𝒞 the large-m statement looks purely combinatorial.
+  - Per cell: S1 = Σ_{x∉A} c(x) + 3t with c(x) = #{a : the a-column top of x is maximal}. Cells with c(x) = 3 are rare
+    (≤ 5 per tile).
+  - Column form: the a-column over p has a maximal top iff p is a strict corner of the a-height function h_a. So
+    F_a·m = Σ_{strict corners} h_a, and the target is F_1 + F_2 + F_3 ≤ 2.
+  - Books: F_spine = 1 and F_page ≈ 1/2, so the sum ≈ 2 + 3/n > 2.
+  - MAXSUM_d fails on some non-two-face tiles in d ≥ 4 (excess up to 0.76m at e = 7). There CR's sorting is essential.

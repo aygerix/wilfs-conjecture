@@ -101,16 +101,16 @@
      3-D tiles.
    - Needs lattice input beyond the cylinder lemma (non-tile failure at m = 17, d = 3).
    - Tools: the cylinder lemma in every d (PROVED), t ≤ C, forest counting.
-2. **Two-face side: ATOP_γ** (permutation hull + shifted geometric subadditivity; residue-light; any c). It fails only on
-   e = 4 books ⟨n², n²+1, n²+n, n²+n+1⟩ (covered by the e = 4 theorem). No failure for e ≥ 5 (random, hill-climb,
-   exhaustive generators < 2m). Books in d ≥ 4 are the test case: realizable or not?
+2. **Two-face side.** ATOP (m | c) has no failure for e ≥ 5. ATOP_γ (general c) FAILS on 6 two-face e = 5 tiles
+   (m = 25, 26; exhaustive generators < 2m). So two-face tiles need a residue argument of the e = 4 two-face-theorem
+   type (two-face identity, τ-criterion) in general d. Candidate: induction on d, with D = D_a ∪ D_b, two
+   (d−1)-dimensional pieces.
 3. **e = 4 formal verification (background; G-Lean)** and the e = 5 tile route (cylinder lemma in every d gives link 4).
 Killed this cycle: TL (false at e = 5); ATOP without relations on two-face tiles; single-relation repair ATOP+R2 (fails
 on books n ≥ 7).
 
 ## Next precise task
-Find the mechanism behind CR on non-two-face tiles in d = 3 (fully classified: class 𝒞 or cone). Prove a lower bound on
-Dep, the incidences in columns with non-maximal top, in terms of m and t, using the cylinder lemma and the Wall/Floor
-lemmas. Target: CR for every non-two-face 3-D tile with m ≥ M0 and M0 small. Then test the same mechanism in d = 4.
-In parallel (fejer): CR and ATOP_γ exhaustively for e = 5 with generators < 2m and m ≤ 40, and a structured search
-for realizable books in d = 4.
+Prove S1 = Σ_A(3 + |y|) ≤ 2m for cylindrical (class 𝒞) non-two-face sets D ⊂ ℕ³ with m ≥ 25. This is purely
+combinatorial (anneal max 0.86): with F_a·m = Σ over strict corners of h_a of h_a, show F_1 + F_2 + F_3 ≤ 2. Then handle
+cone tiles with Wall/Floor, and test the d = 4 analogue (CR with sorting).
+Pending on fejer: ATOP_γ exhaustive e = 5, m = 35–40 (logs land in logs/atop/ via the poller).
