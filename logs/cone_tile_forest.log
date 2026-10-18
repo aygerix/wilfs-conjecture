@@ -1,0 +1,18 @@
+m=24 cone tiles 175: t-C 0 2Tri-t -2 qO-t -3 qU-t 0 LHS-4C -3 LHS-5C -8 Sviol 0 floorMax 6 floorTri 2 Tri 2 C 8
+   ex: {'LHS-4C': ((1, 7, 20), (1, 1, 2)), '2Tri-t': ((1, 2, 13), (1, 5, 1)), 'Sviol': ((1, 2, 7), (1, 1, 3)), 'floorMax': ((1, 4, 19), (1, 1, 1))}
+m=30 cone tiles 418: t-C 0 2Tri-t -2 qO-t -2 qU-t -1 LHS-4C -5 LHS-5C -8 Sviol 0 floorMax 6 floorTri 3 Tri 3 C 9
+   ex: {'LHS-4C': ((1, 4, 8), (2, 1, 3)), '2Tri-t': ((1, 2, 19), (1, 1, 3)), 'Sviol': ((1, 2, 9), (1, 1, 3)), 'floorMax': ((1, 4, 25), (1, 1, 1))}
+m=36 cone tiles 702: t-C 0 2Tri-t -2 qO-t -3 qU-t -1 LHS-4C -5 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 3 C 10
+   ex: {'LHS-4C': ((1, 2, 23), (1, 1, 3)), '2Tri-t': ((1, 2, 11), (1, 1, 3)), 'Sviol': ((1, 4, 23), (1, 3, 1)), 'floorMax': ((1, 4, 27), (1, 2, 1))}
+m=40 cone tiles 1015: t-C 0 2Tri-t -2 qO-t -3 qU-t 0 LHS-4C -3 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 3 C 12
+   ex: {'LHS-4C': ((1, 12, 31), (1, 4, 1)), '2Tri-t': ((1, 2, 7), (1, 2, 5)), 'Sviol': ((1, 6, 25), (3, 2, 1)), 'floorMax': ((1, 4, 31), (1, 2, 1))}
+m=44 cone tiles 1256: t-C 0 2Tri-t -2 qO-t -2 qU-t 0 LHS-4C -3 LHS-5C -6 Sviol 1 floorMax 6 floorTri 3 Tri 3 C 12
+   ex: {'LHS-4C': ((1, 3, 9), (2, 2, 4)), '2Tri-t': ((1, 2, 23), (1, 10, 1)), 'Sviol': ((1, 5, 28), (1, 3, 1)), 'floorMax': ((1, 4, 31), (1, 3, 1))}
+m=48 cone tiles 2138: t-C 0 2Tri-t -2 qO-t -3 qU-t -1 LHS-4C -5 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 3 C 12
+   ex: {'LHS-4C': ((1, 2, 29), (1, 4, 3)), '2Tri-t': ((1, 2, 5), (1, 1, 9)), 'Sviol': ((1, 7, 18), (2, 4, 1)), 'floorMax': ((1, 4, 35), (1, 3, 1))}
+m=52 cone tiles 2291: t-C 0 2Tri-t -2 qO-t -3 qU-t -1 LHS-4C -5 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 4 C 13
+   ex: {'LHS-4C': ((1, 2, 7), (1, 1, 7)), '2Tri-t': ((1, 2, 9), (1, 3, 5)), 'Sviol': ((1, 7, 32), (1, 1, 3)), 'floorMax': ((1, 4, 39), (1, 3, 1))}
+m=56 cone tiles 3009: t-C 0 2Tri-t -2 qO-t -3 qU-t 0 LHS-4C -3 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 4 C 12
+   ex: {'LHS-4C': ((1, 15, 44), (1, 1, 6)), '2Tri-t': ((1, 2, 17), (1, 2, 3)), 'Sviol': ((1, 12, 33), (1, 1, 3)), 'floorMax': ((1, 4, 39), (1, 4, 1))}
+m=60 cone tiles 5356: t-C 0 2Tri-t -2 qO-t -2 qU-t -1 LHS-4C -5 LHS-5C -8 Sviol 1 floorMax 6 floorTri 3 Tri 4 C 14
+   ex: {'LHS-4C': ((1, 2, 11), (1, 2, 5)), '2Tri-t': ((1, 2, 13), (1, 1, 9)), 'Sviol': ((1, 5, 44), (1, 3, 1)), 'floorMax': ((1, 4, 43), (1, 4, 1))}
