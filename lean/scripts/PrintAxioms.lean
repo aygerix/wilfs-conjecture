@@ -119,3 +119,13 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.rampLemma_eq
 #print axioms NumericalSemigroup.incr_mono_of_convex
 #print axioms NumericalSemigroup.dirConvex_comp_linear
+-- Wilf.TileTop
+#print axioms NumericalSemigroup.TileTOPAt
+#print axioms NumericalSemigroup.TileTOP
+#print axioms NumericalSemigroup.filter_isMaxCell
+#print axioms NumericalSemigroup.multiplicity_le_aperyMax_sub_wt
+#print axioms NumericalSemigroup.val_le_aperyMax_sub_wt
+#print axioms NumericalSemigroup.tileTop_column_bound
+#print axioms NumericalSemigroup.tileTop_sum_columns
+#print axioms NumericalSemigroup.wilf_of_tileTOPAt
+#print axioms NumericalSemigroup.wilfConjecture_of_TileTOP

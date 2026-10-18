@@ -8,6 +8,7 @@
   `Wilf/Chains.lean` (Identity CH, Corollary H, Lemma A, TOP'' ⇒ Wilf; see `.research/PROOFS.md`),
   `Wilf/Carry.lean` (factorization down-set D, column identity CH', CL ⇒ Wilf, Tile-CL statement),
   `Wilf/TileReduction.lean` (the factorization down-set is a tile; CL = Tile-CL at `s = M`; **Tile-CL ⇒ Wilf**),
+  `Wilf/TileTop.lean` (Tile-TOP'' statement; **Tile-TOP'' ⇒ Wilf**),
   `Wilf/Ramp.lean` (the Ramp Lemma for finite down-sets and directionally convex `ρ`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
@@ -15,12 +16,28 @@
 
 - `lake build`: succeeds, 0 errors, 0 warnings.
 - `sorry` count: **0** (`grep -rnw sorry Wilf Wilf.lean` gives nothing). No `axiom` declarations and no `native_decide`.
-- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (115 of them, including all the main ones below)
+- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (124 of them, including all the main ones below)
   depends only on `[propext, Classical.choice, Quot.sound]`, the standard mathlib axioms.
 - Every theorem below is **proved** (kernel-checked). Wilf's conjecture itself is only *stated* (`WilfConjecture`), not proved.
   Conjectures TOP'', CL and Tile-CL are only *stated* (`TOP2`, `CL`, `TileCL`); what is proved is the
   implications `TOP2 S → Wilf(S)`, `CL S → Wilf(S)`, and **`TileCL → WilfConjecture`** (`wilfConjecture_of_TileCL`).
   The Ramp Lemma is proved (`rampLemma`); it does not by itself imply Tile-CL (see `.research/PROOFS.md`).
+
+### Tile-TOP'' ⇒ Wilf (`Wilf/TileTop.lean`, 2026-10-17)
+
+Kernel-checked (0 `sorry`, axioms `[propext, Classical.choice, Quot.sound]`). Tile-TOP'' itself is only *stated*.
+- `TileTOPAt D p : ∀ s : ZMod m, 2 * ∑ y ∈ D.filter (fun y => ∀ a, y + Pi.single a 1 ∉ D),
+  (d + ∑ a, y a) * (m - (s - tilePhi p y).val) ≤ m * ((d + 1) * m + d - 1)` (all in `ℕ`; for `m ≥ 1` no subtraction
+  truncates); `TileTOP : ∀ d m D p, 1 ≤ d → IsTile D p → TileTOPAt D p`; `IsMaxCell D y : ∀ a, y + Pi.single a 1 ∉ D`
+  (`filter_isMaxCell` identifies the filter with `D.filter (IsMaxCell D)`, by `rfl`).
+- **`wilf_of_tileTOPAt : TileTOPAt S.factDownSet S.genMod → S.conductor ≤ S.embDim * S.ell`**, for every `S`
+  (no `S ≠ nat` hypothesis; only `s = M mod m` is used).
+- **`wilfConjecture_of_TileTOP : TileTOP → WilfConjecture`**.
+- Proof (as in `.research/PROOFS.md`): CH' (`columnIdentity`); a non-maximal `x ∈ D` has `M - w(x) ≥ m`
+  (`multiplicity_le_aperyMax_sub_wt`, via `x + e_b ∈ D`, `wt_le_aperyMax` and `p_b > m`), a maximal one has
+  `M - w(x) ≥ ⟨s - φ(x)⟩` (`val_le_aperyMax_sub_wt`); per direction `tileTop_column_bound`, summed with
+  `tileTop_sum_columns`, gives `LHS(CH') ≥ d·m² - Σ_{max} (d + |y|)(m - ⟨s - φ(y)⟩)`, and
+  `2·d·m² - m((d+1)m + d - 1) = (d - 1)·m(m-1)`.
 
 ## Definitions (`Wilf/Basic.lean`, namespace `NumericalSemigroup`)
 

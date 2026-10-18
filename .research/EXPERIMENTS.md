@@ -71,6 +71,7 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | **E54** | **`src/scratch/tiletop.py`** | **Tile-TOP'' (all s) and DR-CL, all tiles** | **d=2 m≤13, d=3 m≤10, d=4 m≤8, d=5 m≤7** | **0 failures; slack 0 only for simplex tiles** | 10 min |
 | **E55** | **`src/scratch/tiletop_adv.py 11 5000 90`, `1 3000 120`** | **Tile-TOP'' and rearranged R-TOP on adversarial Apéry tiles** | **8008 tiles** | **Tile-TOP'' 0 fails; R-TOP FALSE (3 fails: ⟨7,15,16,17⟩∪[28,∞), ⟨7,11,12,13⟩∪[18,∞), one m=59)** | 1 min |
 | E56 | `src/scratch/injtop.py`, `injtop2.py`, `injtight.py`, `stairinj.py` | injective generalizations (A),(B) of Tile-TOP''; tightest cases; 2D staircases | d=1 m≤12, d=2 m≤14, d=3 m≤10, d=4 m≤8; Δ_k, k≤9 | 0 failures; tightest are non-tiles with |D| = m−1; Δ_k needs m ≳ 1.3·|Δ_k| to embed | 15 min |
+| E57 | `src/scratch/boxtop.py`, `src/scratch/semicrude.py` | strengthenings of Tile-TOP'': Box weight |[0,y]|−2, |[0,y]|−1, 2|y|−2; semi-crude (π ↦ m on maximal cells) | all tiles d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7 | all FALSE (Box: d=2 m=5; semi-crude: d=3 m=9,10); weight |y|−1 exact | 10 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.
