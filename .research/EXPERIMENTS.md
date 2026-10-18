@@ -77,6 +77,12 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E60 | `src/scratch/chaincharge.py` | is the worst σ = φ(0)? chain charging with uniform load at σ = 0 | all tiles, ranges of E58 | worst σ ≠ φ(0) in most tiles; chain charging 0 failures | 10 min |
 | **E61** | **`src/scratch/loadlemma.py`** (+`exactlp.py`) | **Load Lemma (exact LP) and count condition** | **all tile shapes d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7** | **0 failures** | 10 min |
 | E62 | `src/scratch/loadcount_adv.py 3 6000 100` | count condition 2Σ_A(|y|−1) ≤ (d+1)(|N|−1) | 6002 adversarial Apéry tiles | 0 failures; min slack 0 (N = {0}) | 20 s |
+| **E63** | **`src/scratch/groupcone.py 2 11`, `3 8`, `4 7`; `src/scratch/groupcone_adv.py 7 200 60 all`, `13 3000 120 ref`, `11 600 100 all`** | **GCL: MaxCL on the whole group-subadditive cone (exact LP small; HiGHS adversarial)** | **all tiles, all σ (small); 202 tiles × all σ; 3002 tiles × {c mod m, 0}** | **0 failures; minimizers are quotient positions ⟨ug⟩_k** | 30 min |
+| **E64** | **`src/scratch/loadlemma_adv.py 7 600 70`, `5 3000 90`** | **Load Lemma on adversarial tiles (HiGHS, min max-load)** | **3600 tiles** | **FALSE: S = ⟨39,71,72,77⟩, L* = 5.037 > 4 (MaxCL slack 1910 there)** | 10 min |
+| E65 | `src/scratch/gll1.py 2 11`, `3 8`, `4 7`; `src/scratch/gll1_adv.py 3 1500 90 ref` | GLL1: one-level lattice pairing in N∖z0 | small tiles all z0; 1500 adversarial at σ = c | FALSE (d=2 m=4,5; d=3 m=7,8; d=4 m≤7; 5/535 LPs with m > 3e, all "no admissible pair", spike-heavy) | 15 min |
+| E66 | `src/scratch/maxcl_tight.py` | near-tight MaxCL tiles | all tiles d≤5 small m | tight: column, simplex, column+spikes (m = d+2); next ≈ 0.012 normalized | 5 min |
+| E67 | `src/scratch/ecount.py exh`, `adv 5 3000 90` | E-count (Hall condition): 2Σ_Y(|y|−1) ≤ (d+1)(|↓Y|−|Y|−1) ∀Y ⊆ A | all tile shapes small; 3001 adversarial | 0 failures | 5 min |
+| E68 | `src/scratch/boxload.py exh`, `adv 7 3000 90` | uniform box pairing load ≤ d+1 | small exhaustive; 3002 adversarial | exhaustive 0 fails (max exactly d+1 at e_a); adversarial FALSE 319/3002 | 5 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

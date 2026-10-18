@@ -453,3 +453,53 @@ every nonzero non-maximal cell carries total load ≤ d+1 (a pair {u,u} loads u 
 Evidence: loadlemma.py (exact LP, Fractions): all tile SHAPES d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7: 0 count fails, 0 Load fails.
 loadcount_adv.py: count condition on 6002 adversarial Apéry tiles (seed 3, m ≤ 100): 0 fails (min 0, at tiles with N = {0}).
 Chain charging with the uniform load load(z) = Σ_{y>z} 2Π_a C(y_a,z_a)/C(|y|,|z|): 0 failures at σ = 0 on the same exhaustive range.
+
+## 2026-10-17 (night, 9) — Load Lemma REFUTED; group-cone strengthening GCL; why residue-free routes must fail
+
+### Load Lemma — **FALSE** (E64)
+S = ⟨39,71,72,77⟩ (m = 39, d = 3, c = 394, W = 190). D is two 2-D staircases glued along the x_1-axis
+(no cell with x_2, x_3 ≥ 1); A = 11 maximal cells at levels 5 and 6 (H = 47), |N| = 28, count slack 14.
+Optimal max load (HiGHS) = 5.037 > d + 1 = 4. MaxCL at σ = 0 has slack 1910 here, so only the residue-free sufficient
+condition fails. Consequence: **the conditional "Load Lemma ⇒ Wilf for m | c" is void.** What survives:
+**MaxCL at σ = 0 ⇒ Wilf for every S with m | c** (σ = c mod m = 0; Wilf for m | c is OPEN in general: LITERATURE #5 has
+it only with 4e ≥ m, DEF to g ≤ 120). Also FALSE: uniform box pairing (load Σ_{y>z} 2(|y|−1)/(|[0,y]|−2); 319/3002
+adversarial tiles, max ratio 2.29; exhaustive small tiles pass with max load exactly d+1 at unit vectors).
+
+### GCL: MaxCL holds on the whole cone of group-subadditive functions — CONJ (E63)
+For a tile and z0 ∈ D (σ = φ(z0)) put ψ(x) = φ(x) − σ. Claim: for every r: ℤ/m → ℝ≥0 with r(0) = 0 and
+r(g) + r(h) ≥ r(g+h): Σ_A(|y|−1) r(ψ y) ≤ (d+1) Σ_N r(ψ z). (Positions ⟨g⟩ are one such r, so GCL ⇒ MaxCL.)
+Evidence: exact LP, all tiles d=2 m≤11, d=3 m≤8, d=4 m≤7, all σ: 0 failures; HiGHS, 202 adversarial tiles × all σ and
+3002 adversarial tiles × {c mod m, 0} (m ≤ 120), incl. the Load Lemma counterexample: 0 failures.
+Equivalent forms: (i) token splitting — tokens start at maximal y (|y|−1 each), a token at g may be split into g = h + (g−h),
+tokens at 0 vanish, final tokens on N∖{z0} ≤ d+1 each; (ii) additive: for every cost q ≥ 0 on P = ψ(N∖z0),
+Σ_y (|y|−1)·dist_q(ψ y) ≤ (d+1)Σ_P q, dist_q = cheapest representation as a sum of elements of P.
+Structure of the dual: the minimizing r in small cases are quotient positions r(g) = ⟨u g⟩_k (k | m), i.e. MaxCL itself for
+(D, up) and its quotients ℤ/k. **So the cone relaxation is tight exactly at the original instances: GCL is not easier than
+MaxCL** (it adds only quotient instances). Important negative structural fact.
+- Certificates need lattice (non-geometric) triples: on the 39-tile, 27.6 of 47 split units are lattice pairs.
+- GLL1 (one-level pairing inside N∖z0) is FALSE: small tiles (d=2 m=4,5; d=3 m=7,8; d=4 m≤7) and 5/535 adversarial LPs with
+  m > 3e, all "no admissible pair" cases with many spikes (|A| > m/2, huge W). Spikes serve as relays.
+- E-count (Hall condition of the transport): for every Y ⊆ A, 2Σ_Y(|y|−1) ≤ (d+1)(|↓Y| − |Y| − 1): 0 failures (exhaustive
+  + 3001 adversarial). It is necessary for the Load Lemma but the pair symmetry makes it insufficient.
+
+### Exact tight cases of MaxCL (E66)
+Column (d = 1), simplex (m = d+1), and **column-plus-spikes** {0, e_1, …, (k−1)e_1} ∪ {e_2, …, e_d} (seen for k = 3,
+m = d + 2, at σ ≠ 0: e.g. d=3, m=5, p=(4,1,2), z0 = e_1: certificate r(2e_1) ≤ 2r(e_2) ≤ 4r(0), positions 4, 2, 1).
+Next-tightest: staircase-like A (normalized slack ≈ 0.012). A proof must be exact on spike relays at σ ≠ 0.
+
+### Reformulations recorded (all PROVED identities)
+- Sawtooth form: MaxCL ⇔ ∀σ: Σ_{y∈A} T(y)·(⟨φ(y)−σ⟩ − (m−1)/2) ≤ (m−1)(m + Dep)/2 (a weighted discrepancy bound).
+- With any linear lift w, positions r = w − σ − m⌊(w−σ)/m⌋ and F(w) = Σ_{non-max-top columns}|C|·w(top) (column identity
+  holds for every linear function), so MaxCL(0) ⇔ m(d+1)g ≤ Σ_{nonmax}|C|w(top) + mΣ_A T(y)K(y) (K = Kunz coordinate).
+- Position language: x maximal ⇔ r(x) + p_a ∈ B_a for all a (B_a = positions of the a-floor); y_a + 1 = distance back to B_a.
+
+### Strategic review (night 9)
+- Distance to result: the main conjecture MaxCL survives everything; but every residue-free or "soft" sufficient condition
+  tried (Load Lemma, GLL1, uniform pairings) is false, and the soft cone relaxation is tight at the original instances.
+  A proof must use the arithmetic of positions (φ mod m) together with the tile geometry.
+- Theory of success: MaxCL is exact on column/simplex/column+spikes; any proof is an exact inequality. Candidates:
+  (a) additive combinatorics (Kneser/Vosper: indicator duals reduce to count conditions on quotients; the extremal r are AP-
+  structured exactly as in Vosper), (b) induction on tiles with a potential that is exact on column+spikes.
+- Kill: Load Lemma / box pairing / GLL1 as proof targets. Keep E-count (true, necessary, residue-free) as a lemma target.
+- Third line (CLAUDE.md requires ≥ 3): the m | c case — MaxCL at σ = 0 alone gives Wilf for m | c (open), and σ = 0 has
+  geometric subadditivity for free; attack it as a self-contained theorem.
