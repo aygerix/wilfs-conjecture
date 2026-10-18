@@ -519,3 +519,21 @@ S_a(L) = Σ_{h<L} ⟨h p_a⟩ and N_a(L,t) = #{h < L : ⟨h p_a⟩ > t} (σ-inde
    **MaxCL ⇔ Σ_a Σ_{C: top ∈ A} S_a(|C|) ≤ M' + Σ_a R_a + m·Σ_a Σ_{C: top∈A} N_a(|C|, r(top C))**,
 R_a = Σ of positions over non-maximal-top a-columns. The left side depends only on (D, p); the column-subadditive bound (★)
 is this with the N_a carry terms dropped (and fails on staircases). Averaged over σ, m·N_a = S_a exactly.
+
+## 2026-10-17 (night, 10) — first unconditional MaxCL family: height ≤ 2 (PROVED); height 3 scheme
+
+### Flat-MaxCL (PROVED; full proof in PROOFS.md)
+Tiles of height ≤ 2: the identity ρ_a + ρ_b = ρ_ab + ρ_0 + mκ, the degree bound deg(a) ≤ d+1 and the window-counting
+B ≤ ρ_0 (wrapped cells sit at distinct positions ≥ m − ρ_0) close the inequality exactly (m = 1 + d + |E|).
+Corollary: Wilf for reduction number ≤ 2 (Ap ⊆ {0} ∪ P ∪ 2P). Novelty unverified (see PROOFS.md).
+- The mechanism answers the "bad-event control" gap left open in night 8 for this family: m(B − P) ≤ (H+d+1)r(0)
+  holds because H + d + 1 = m and B ≤ r(0).
+- src/known.py: reusable checker of literature conditions; flat_new.py found height-2 S with 3e < m outside all of them.
+
+### Height-3 natural scheme (CONJ, strong evidence)
+Pairs: level-3 maximal y → (e_a, y − e_a) for a ∈ supp(y), weight 2/|supp y| each; level-2 maximal y → (e_a, e_b).
+Sufficient inequality Σ_z (load(z) − d − 1) r(z) + m(B − P) ≤ (H + d + 1) r(0) for all σ:
+0 failures on all height ≤ 3 tiles (d=2 m≤8, d=3 m≤10, d=4 m≤8, d=5 m≤7, all p, σ), 300 random height-3 semigroups,
+300 dense constructed ones (|L3|/d² ≤ 0.58; worst normalized slack 0.12). Level-2 loads are ≤ d+1 (proved: load(z) =
+Σ_c [z+e_c ∈ L3]·2/|supp(z+e_c)| ≤ d+1); only unit vectors can be overloaded (up to 1.44(d+1) seen), and the deficit is
+paid by spare capacity of level-2 cells (empirically by a wide margin). Open: a proof of that transfer.
