@@ -12,22 +12,25 @@ def stairs(L, top, first_min):
         for v in range(min(prefix[-1], top), lo - 1, -1): yield from rec(prefix + [v])
     if L < 2 or top < first_min: return
     yield from rec([top])
-M = int(sys.argv[1])
-res = {}
-for L1 in range(2, M):
-    for L2 in range(2, M):
-        if L1 + L2 + 2 > M: break
-        for L3 in range(2, M):
-            if L1 + L2 + L3 + 4 > M: break      # D contains 3 axes + 3 cells e_a+e_b
-            for h in stairs(L1, L2, 2):
-                s3 = sum(h)
-                if s3 + L3 + 2 > M: continue
-                for f in stairs(L1, L3, 2):
-                    for g in stairs(L2, L3, 2):
-                        m = sum(min(f[i], g[j]) for i in range(L1) for j in range(h[i]))
-                        if m > M: continue
-                        D = {(i, j, k) for i in range(L1) for j in range(h[i]) for k in range(min(f[i], g[j]))}
-                        v = H_of(D) - (m - 1)
-                        c, mn, fl, arg = res.get(m, (0, None, 0, None))
-                        res[m] = (c + 1, v if mn is None else min(mn, v), fl + (v < 0), arg if (mn is not None and mn <= v) else (h, f, g))
-for m in sorted(res): print(m, res[m], flush=True)
+def main():
+  M = int(sys.argv[1])
+  res = {}
+  for L1 in range(2, M):
+      for L2 in range(2, M):
+          if L1 + L2 + 3 > M: break      # |D| >= L1+L2+L3+1 (axes + e_a+e_b) with L3 >= 2
+          for L3 in range(2, M):
+              if L1 + L2 + L3 + 1 > M: break
+              for h in stairs(L1, L2, 2):
+                  s3 = sum(h)
+                  if s3 + L3 + 1 > M: continue   # F3 + rest of x3-axis + e1+e3, e2+e3
+                  for f in stairs(L1, L3, 2):
+                      for g in stairs(L2, L3, 2):
+                          m = sum(min(f[i], g[j]) for i in range(L1) for j in range(h[i]))
+                          if m > M: continue
+                          D = {(i, j, k) for i in range(L1) for j in range(h[i]) for k in range(min(f[i], g[j]))}
+                          v = H_of(D) - (m - 1)
+                          c, mn, fl, arg = res.get(m, (0, None, 0, None))
+                          res[m] = (c + 1, v if mn is None else min(mn, v), fl + (v < 0), arg if (mn is not None and mn <= v) else (h, f, g))
+  for m in sorted(res): print(m, res[m], flush=True)
+
+if __name__ == '__main__': main()

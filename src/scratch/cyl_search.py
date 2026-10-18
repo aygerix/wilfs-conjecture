@@ -4,6 +4,10 @@
 import sys, random
 sys.path.insert(0, 'src/scratch')
 from heightH import H_of
+import os
+from bounds_lib import all_bounds
+OBJ = os.environ.get('OBJ', 'H')
+ALLC = bool(os.environ.get('ALLC'))
 def build(h, f, g, q=None):
     D = set()
     for i in range(len(h)):
@@ -16,7 +20,7 @@ def build(h, f, g, q=None):
 def valid(h, f, g):
     ok = lambda s: all(s[i] >= s[i+1] for i in range(len(s)-1)) and s[-1] >= 1
     return (ok(h) and ok(f) and ok(g) and h[0] == len(g) and f[0] == g[0] and len(h) == len(f)
-            and len(h) >= 2 and len(g) >= 2 and h[1] >= 2 and f[1] >= 2 and g[1] >= 2)
+            and (ALLC or (len(h) >= 2 and len(g) >= 2 and h[1] >= 2 and f[1] >= 2 and g[1] >= 2)))
 def rand_stair(n, top):
     s = sorted((random.randint(1, top) for _ in range(n)), reverse=True); s[0] = top
     return s
@@ -30,10 +34,10 @@ def mutate(h, f, g):
     elif c == 2:
         j = random.randrange(1, len(g)); g[j] += random.choice((-1, 1))
     elif c == 3:  # change L1 (append/remove last of h, f)
-        if random.random() < .5 and len(h) > 2: h.pop(); f.pop()
+        if random.random() < .5 and len(h) > (1 if ALLC else 2): h.pop(); f.pop()
         else: h.append(1); f.append(1)
     elif c == 4:  # L2
-        if random.random() < .5 and len(g) > 2: g.pop(); h = [min(x, len(g)) for x in h]; h[0] = len(g)
+        if random.random() < .5 and len(g) > (1 if ALLC else 2): g.pop(); h = [min(x, len(g)) for x in h]; h[0] = len(g)
         else: g.append(1); h[0] = len(g)
     else:         # L3
         d = random.choice((-1, 1)); f[0] += d; g[0] += d
@@ -42,7 +46,13 @@ def score(h, f, g, mlo, mhi, q=None):
     D = build(h, f, g, q); m = len(D)
     if q and (q not in build(h, f, g) or any(q[i] == 0 for i in range(3))): return (10**9, m)
     pen = max(0, mlo - m, m - mhi) * 10
-    return H_of(D) - (m - 1) + pen, m
+    if OBJ == 'H': v = H_of(D) - (m - 1)
+    elif OBJ == 'Pi': v = all_bounds(D)['Pi'] - 2*(m - 1)
+    elif OBJ == 'psi':
+        from peel_test import psis
+        v = max(psis(D))
+    else: v = all_bounds(D)[OBJ] - (m - 1)
+    return v + pen, m
 if __name__ == '__main__':
     mlo, mhi, iters, seed = map(int, sys.argv[1:5]); random.seed(seed)
     USEQ = len(sys.argv) > 5

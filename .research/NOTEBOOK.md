@@ -1064,3 +1064,45 @@ y − e_a + e_b, y − e_a + e_c ∉ D": covers interior maximal elements but le
 Σ_{a,k}(k+1)[Σ_band ht − |band|/3] ≥ −1 by charging exposed unit-step face corners to the fin of that face (Φ_c) and
 to the spike/arm cells (stretch argument along columns); (B) tiles with q*: wall lemma ⇒ unit steps are paid by spikes.
 In parallel push the complete scan beyond 60 (parallel/compiled) to lower the analytic threshold requirement.
+
+## 2026-10-18 (night 14) — Peeling induction; exhaustive cylinder class to |D| = 44 (C); cone-layer reduction
+
+**Peeling identity (PROVED, any finite down-set D ⊂ ℕ³).** For D'_c = {x : x + e_c ∈ D}: chains from x in D' are chains
+from x + e_c in D, and a-rays commute with the shift, so h_{D'}(x) = h_D(x + e_c) (h(x) = Σ_a ht(top_a x)). Hence
+H(D) = H(D'_c) + Σ_{x∈F_c} h(x) and, with δ(D) := H(D) − (|D| − 1),
+        δ(D) = δ(D'_c) + Ψ_c(D),   Ψ_c(D) := Σ_{x ∈ F_c} (h(x) − 1)        (F_c = {x ∈ D : x_c = 0}).
+Iterating to ∅ just re-sums δ = 1 + Σ_x (h(x) − 1); the content is in the induction class. Also H = Σ_y w(y)·ht(y) with
+w(y) = Σ_{a : y+e_a ∉ D} (y_a + 1) and ht(y) = max{|z| : z ∈ D, z ≥ y} − |y|.
+
+**Class 𝒞 (Loomis–Whitney down-sets).** D = {x : π_c(x) ∈ A_c for c = 1,2,3} for three compatible 2-D partitions A_c —
+exactly the q*-free cylindrical sets {x_2 < h(x_1), x_3 < min(F(x_1), G(x_2))} (two-face and degenerate included).
+𝒞 is symmetric and closed under peeling. A cylinder minus one cone q* + ℕ³ lands in 𝒞 after q*_c peels in direction c
+(the cone becomes the cut {x_a ≥ q*_a, x_b ≥ q*_b}, which only lowers one face function) — PROVED.
+
+**Exhaustive enumeration of 𝒞, |D| ≤ 44 (src/c/cyl_class.c, C, independent of the Python code; ≈ 3.3·10^8 sets,
+logs/cyl_class_44.log; agrees with peel_class.py at |D| = 9, 13, 15, 16).** Per size: min δ / min max_c Ψ_c:
+ |D| ≤ 30: min δ < 0 at every size 3..30 except 1, 2; **global min δ = −7** (|D| = 16, 17); at 29: −4, at 30: −2.
+ **31..44: min δ = 0, 2, 1, 0, 2, 5, 6, 8, 6, 8, 8, 9, 11, 9 — HT holds for every D ∈ 𝒞 with 31 ≤ |D| ≤ 44.**
+ (P1) max_c Ψ_c ≥ 0: fails only for |D| ≤ 19 and at |D| = 29 (two sets, −1); min max Ψ = 3..8 for |D| = 31..44.
+ Peeling the largest face is NOT enough (min Ψ = −8 at 28..44). Slack (logs/cyl_class2_38.log, src/c/cyl_class2.c):
+ max_c(3Ψ_c − |F_c|) ≥ 0 for 33 ≤ |D| ≤ 38; max_c(2Ψ_c − |F_c|) < 0 throughout ≤ 38.
+ (This supersedes the night-13 cyl_exhaust figures: that run's pruning was too aggressive — complete only for |D| ≤ 19,
+ not 22 as written; the corrected Python script and the C code agree.)
+ Extremal sets are small and thin (unit-width spikes, staircase faces of side 5–6); the triple staircase
+ {x_1+x_2, x_1+x_3, x_2+x_3 < n} has δ = 2, 8, 49, …, 2242 (n = 3..12): fat sets have huge slack.
+
+**REDUCTION (PROVED): HT for all non-two-face tiles with m ≥ 31 follows from (I) + (II):**
+ (I) [𝒞-theorem] every D ∈ 𝒞 has δ(D) ≥ −7, and δ(D) ≥ 0 when |D| ≥ 31;
+ (II) [cone lemma] every non-two-face tile T with a cone q* has a direction c with
+      S_c := Σ_{k<q*_c} Ψ_c(T_k) ≥ 7, or S_c ≥ 0 and |T_{q*_c}| ≥ 31        (T_k = k-fold peel of T in direction c).
+ Proof: tiles without q* lie in 𝒞; otherwise δ(T) = S_c + δ(T_{q*_c}) with T_{q*_c} ∈ 𝒞. ∎
+ (I) is verified for |D| ≤ 44 and follows for all sizes from **(P1*)**: for |D| ≥ 45 there is c with Ψ_c(D) ≥ 0 and
+ (|D| − |F_c| ≥ 31 or Ψ_c(D) ≥ 7) (strong induction on |D|). (P1*) and (II) are the two OPEN analytic statements.
+ **q* ∈ Λ (PROVED):** reduced Gröbner-basis binomials of the saturated lattice ideal I_Λ have disjoint supports, and q*
+ has full support, so its binomial is x^{q*} − 1.
+ Data for (II) (src/scratch/tile_cone_peel.py, tile_cone_stats.py, complete enumerations): min over q*-tiles of max_c S_c
+ = 8, 11, 22, 22 at m = 24, 30, 36, 40 (requirement met with margin ≥ 1, 4, 15 at m = 24, 30, 36). q* is (1,1,k) for
+ the vast majority (m = 40: 805 of 1015), else (1,2,k), (1,3,k), (2,2,2). A single cone layer can have Ψ = −4.
+ Tiles (no lattice-free analogue): peeling the largest face gives Ψ ≥ 0 for every tile at m = 24, 30 (min 0, 2).
+
+**Scan:** m = 68 complete (36,279 non-two-face tiles, HT fails 0, min δ = 80; logs/tile_scan_H_68.log, running on).
