@@ -1409,3 +1409,43 @@ implies W ≥ 0.
 - Question for the reassessment: does "4-D HT", H ≥ 1.5(m−1)·m/(m+1) for all non-degenerate 4-D tiles with large m,
   hold? If it does, the e = 4 mechanism has a d = 4 analogue: CHT counting plus a structure theorem for 4-D tiles. The
   missing ingredient is the 4-D cylinder/cone structure, which is much richer than in 3-D.
+
+## 2026-10-18 (afternoon) — strategic review after e = 4; shape-only criteria fail in high d; window subadditivity for m | c
+**Decision (lead, with the user's delegation of direction).**
+- The e = 4 tile method needs a structure theorem for each e, so it cannot reach all e by itself.
+- Main line: residue-weighted universal statements (TOP'', MaxCL, FWx).
+- Second line: e = 5 tiles, deprioritized (see the shape-only result below).
+- Background: Lean verification of e = 4.
+
+**Shape-only criteria are not universal (OBSERVED, src/scratch/shape_d.py).** Sample: random S with 3e < m and c > 3m, e = 4..12, 150 s, seed 1.
+- HT_d ((m+1)H > (d−1)C(m,2) − m ⇒ Wilf) fails in 30/11644 (e=4), 16/11042 (e=5), …, 1889/4233 (e=12).
+- MAXSUM_d (Σ_Max(|y|+d) ≤ (d+1)m/2 + (d−1)/2) fails even more often.
+- So a proof for all e must use the generator arithmetic.
+- For fixed e = 5 the HT failures sit at small m: 47,625 random S, failures only for m ≤ 28; the min ratio rises from 1.09 (m ≈ 30) to 2.7 (m = 120); src/scratch/ht_e_bands.py.
+- But a crude O(t)-counting proof in 4-D would need m ≳ 10⁴ before the threshold, far beyond 4-D tile enumeration. So the e = 5 tile route needs near-sharp constants.
+- Literature check, 2026-10-18 (arXiv via alphaXiv newest first; GitHub via web search): no proof of Wilf for e = 5 found. Related: github.com/michelfgaspar-spec/Wilfs13 (Lean proof for |L| = 13).
+
+**Slack in the open range (OBSERVED, src/scratch/open_slack.py).** Random S, 3e < m, c > 3m: min e·ℓ/c is 1.24 (e=3) … 3.63 (e=14), and the τ-criterion applies to ≥ 89%. Random samples are not adversarial.
+
+**FWx decomposition (OBSERVED, src/scratch/fwx_decomp.py).** Genus ≤ 18 with c > 3m: F > C(m,2) in 159/5815 S, so the deep-line term is needed. FWx = 0 exactly for e = 2.
+
+**Window subadditivity (PROVED; asserted on 38,859 splits, genus ≤ 16, src/scratch/winsub.py).**
+- Setting: ρ(x) = ((λ(x) − c) mod m) + 1 ∈ [1, m] (window position, a bijection T → [1, m]), γ = c mod m. For u ∈ X and a split n(u) = x + y (x, y ∈ T ∖ {0}):
+    ρ(x) + ρ(y) − 1 = ρ(u) − γ + mκ, κ ∈ {0, 1, 2}.
+- **If m | c then κ ∈ {0, 1}, so ρ(u) ≤ ρ(x) + ρ(y) − 1.** Proof: ρ(u) − 1 = λ(u) − c exactly, λ(u) = λ(x) + λ(y), and the range forces κ ∈ {0, 1}. Also ρ(0) = 1, and every split cell is outside X.
+- TOP'' in window form (PROVED equivalent): m + Σ_{u∈X} ρ(u)(ℓ(u) − 1) ≤ (d+1)·Σ_{x∈T∖X} ρ(x).
+
+**Top-layer load condition TL (residue-free) and TL ⇒ TOP'' when m | c (PROVED).**
+- TL: each u ∈ X with ℓ(u) ≥ 2 spreads ℓ(u) − 1 units over splits {x, n(u) − x}, and every nonzero cell receives load ≤ d + 1.
+- Proof that TL ⇒ TOP'' (m | c): subadditivity gives Σ_X ρ(ℓ−1) ≤ Σ L(x)ρ(x) − H with H = Σ(ℓ−1). The remaining term m is covered because Σ_{u∈X}(ℓ(u) + d) ≤ dm (incidences ending in X).
+- So TL ⇒ Wilf for every S with m | c, any e. This case is open in the literature; LITERATURE #22 needs 4e ≥ m as well.
+- Evidence (src/scratch/topload.py, HiGHS LP):
+  - all 33,242 S of genus ≤ 18 (6,417 with m | c): 0 failures; tight (L* = d+1) at ⟨5,6,8⟩;
+  - 52,060 random S with m | c, c ≥ 4m, e = 3..9, m ≤ 60: 1 failure.
+- **TL is FALSE.** Counterexamples:
+  - ⟨24,25,29,30⟩ (m | c, c = 4m, L* = 4.364 > 4);
+  - ⟨36,37,42,43⟩ (m | c, c = 5m, L* = 5.5 > 4; TOP'' slack 300 there);
+  - ⟨25,44,45,49⟩ (L* = 4.909).
+- All three are e = 4 two-face tiles: two 2-D staircases glued along an axis, whose cells are loaded by both planes. This is the same family that broke the old Load Lemma and every residue-free MaxCL method.
+
+**Next (main line).** A position-aware TL. Splits with κ = 1 gain m, so the axis overload of glued staircases must be paid by wrap splits. Test whether the LP with the gain m·κ_s always certifies TOP'' when m | c. If it does, the remaining task is a provable rule for where wraps occur.
