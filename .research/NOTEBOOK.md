@@ -1593,3 +1593,16 @@ asserted on every test.
   - Status at 20:54 UTC: complete through m = 32, 3.22M tiles. Only 2 HCR failures, both at m = 13 (r = (1,2,6,9),
     (1,5,8,12); HCR = 112/117; covered by m ≤ 19).
   - Min HCR rises: 1.055 (m = 14) to 1.234 (m = 32). Not yet verified by the lead.
+- **Where HCR is tight in 3-D (fejer, src/scratch/hcr_tight.py).** For 10 ≤ m ≤ 22, the only tiles with HCR < 1.15 are
+  two-face books: r = (1,3,4) at m = 13 (1.058), and the n = 4 book at m = 16 (1.092; r = (1,4,5), (1,5,12)). Every
+  non-two-face tile there is ≥ 1.15.
+- **Books, exactly (PROVED by direct count).** Book_n: two triangular pages {i + j ≤ n−1} on a common axis, m = n²,
+  t = 2n − 1 maximal cells, all of length n − 1.
+  - Cross-page lemma (any two-face tile with e_a + e_b ∉ D): every x with x_b ≥ 1 has x + e_a ∉ D, so it is its own
+    a-column top. Hence H_n ≥ Σ_{x_b ≥ 1} ht(x) + Σ_{x_a ≥ 1} ht(x).
+  - In books these are the only nonzero terms: H_n = 2Σ_{s=1}^{n−1} s(n−1−s) = n(n−1)(n−2)/3, and
+    R = (n+2)(2n−1)(n−1).
+  - HCR(book_n) = [(n²+1)n(n−1)(n−2)/3 + (n+2)(2n−1)(n−1)] / (n²(n²−1)): 0.972, 1.092, 1.287 for n = 3, 4, 5
+    (matches computation); ≥ 1 iff n ≥ 4; ~ n/3.
+  - So two-face tiles are carried by the heights of the other page's cells. A general two-face HCR proof needs
+    Σ_page ht large unless the page is thin, in which case t is large and R takes over.
