@@ -1697,3 +1697,67 @@ asserted on every test.
       chosen by the k-part against the residue order, and that misalignment must force a matching level surplus.
   - Adversarial search for min W/Lev with Car < 0: src/scratch/split_climb.py, e = 4, 5, 6, 8 on fejer
     (logs/split_climb_e.log).
+
+## 2026-10-18 (late night, continued) — Down-set Wilf (GW): the inequality holds on every residue-complete down-set
+
+- **RW is Wilf itself, not a reduction.**
+  - Selmer's formulas hold for the Apéry set Ap(T, t) of ANY nonzero t ∈ T, not only the multiplicity:
+    F(T) = max Ap − t and g(T) = ΣAp/t − (t−1)/2.
+  - Hence, for every d ≥ e(T) − 1:
+    (d+1)ℓ(T) ≥ c(T) ⟺ dt·max Ap(T,t) − (d+1)ΣAp(T,t) ≥ (d−1)t(t−1)/2.
+  - Let T = ⟨s_1, …, s_d, m⟩ with m the LARGEST generator, and let D be a factorization tile of Ap(T, m) under the
+    weight s. Then RW(D, s) is exactly Wilf for T.
+  - So RW on tiles that are Gröbner for s is Wilf, written through the Apéry set of the largest generator. RW on
+    other residue-bijective down-sets is a strengthening.
+- **The general statement (GW).** Take a down-set D ⊂ ℕ^d with |D| = m and an integer vector n such that x ↦ x·n mod m
+  is a bijection D → ℤ/m. Put v = x·n and M = max_D v. Then
+  d·m·M − (d+1)·Σ_D v ≥ (d−1)m(m−1)/2,
+  equivalently (d+1)·Σ_D ⌊v/m⌋ ≤ d·(M − m + 1).
+  - On the Apéry tile of S (multiplicity m, n the other generators, d = e − 1) this is Wilf(S).
+  - No minimality is assumed.
+- **Exhaustive evidence, every down-set (not only tiles).** All down-sets using all d directions, all residue
+  representatives s ∈ [1, m−1]^d, all lifts n = s + mk:
+  - d = 2: m ≤ 26 with k ∈ {0..3}²;
+  - d = 3: m ≤ 14 with k ∈ {0,1,2}³;
+  - d = 4: m ≤ 10 with k ∈ {0,1,2}⁴.
+  - 0 failures. Equality occurs ONLY on minimal domains (v(D) = Ap(⟨m,n⟩, m)).
+  - On non-minimal domains, min E = 2–12, where E = d(M−m+1) − (d+1)Σκ.
+- **Signed weights.** GW also holds with entries of n of any sign: k ∈ [−2,2]² for d = 2, m ≤ 12, and k ∈ [−1,1]³ for
+  d = 3, m ≤ 9. So the statement is about (D, Λ) and the dual lattice Λ^∨ = ℤs + mℤ^d, not about positive weights.
+- **Residue completeness is essential.** Requiring only distinct values (an injective v) is FALSE. Smallest
+  counterexample: d = 2, D = {(0,0),(0,1),(0,2),(1,0)}, n = (3,2).
+  - Values {0,2,4,3}, M = 4, Σ = 9, so B = 32 − 27 = 5 < 6 = τ.
+  - Residues mod 4 are {0,2,0,3}, not complete.
+  - Up to m = 12 (d = 2) and m = 9 (d = 3) the failures reach B − τ = −27 and −12.
+- **GW is strictly stronger than Wilf, even for the same weights.**
+  - In d = 2 (m ≤ 16) the Apéry tile always minimizes E over all residue-bijective down-sets for its n.
+  - In d = 3 non-minimal domains beat it, also when every n_a is a minimal generator. For n = (19,17,12), m = 10:
+    - D = {0, e3, e2, 2e2, 3e2, e1, e1+e2, e1+2e2, 2e1, 2e1+e2};
+    - values 0,12,17,34,51,19,36,53,38,55, residues complete;
+    - E = 165 − 108 − 27 = 30, against E(Apéry) = 46.
+  - So GW is not "Wilf plus flip monotonicity".
+- **Reformulations (exact).**
+  - Put A = v(D) and Δ = A + mℕ. Then:
+    - g(Δ) = Σ_D κ with κ = ⌊v/m⌋;
+    - ℓ(Δ) = Σ_D λ with λ = ⌊(M − v)/m⌋;
+    - c(Δ) = M − m + 1 = g + ℓ.
+  - GW ⟺ (d+1)ℓ(Δ) ≥ c(Δ) ⟺ d·ℓ(Δ) ≥ g(Δ): "Wilf for Δ with e replaced by d+1".
+  - Δ need not be a semigroup. It is the image of a down-set plus mℕ, so it is closed under going down in D.
+- **Boxes (proved, needs only injectivity).**
+  - For a box D = ∏[0, L_a) and any n: Σ_a u(top_a x) = (d−1)u(x) for every cell, with u = M − v.
+  - Hence B = (d−1)Σu = (d−1)mM/2, using the symmetry x ↦ L−1−x.
+  - GW then follows from M ≥ m − 1. A box gives a symmetric Δ (c = 2g).
+- **Geometry-of-numbers form.**
+  - For fixed D, B(D,n) = h_P(n) with P = dm·conv(D) − (d+1)Σ_D x. This is a support function: convex and
+    1-homogeneous.
+  - GW for D ⟺ the convex body τ·P° contains no unit-class point of Λ^∨, where τ = (d−1)m(m−1)/2.
+  - Its volume is of order m^{d−1} = det Λ^∨, so the statement is at the scale of the lattice.
+  - Residue completeness is the discrete shadow of the tiling D + Λ = ℤ^d. The ISI counterexamples do not tile.
+- **Why GW matters for the proof.** Since minimality is not needed, moves that leave the Apéry world are allowed:
+  - flips (remove a corner y, add an addable y' ≡ y);
+  - lifts n → n ± m e_a;
+  - unit changes s → us.
+  - A proof can be a local-minimum analysis. Show that every (D, n) that no E-decreasing move improves has E ≥ 0.
+    The richer move set should make the local minima rare (carry-free domains, boxes, the MED stars).
+  - Adversarial annealing over exactly these moves is running on fejer: d = 3..6, m ≤ 40
+    (src/scratch/gw/gw_anneal.py).

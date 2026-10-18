@@ -427,3 +427,18 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
       Flaman55/NumericalSemigroups (Huang's quadratic form, not Wilf); Aurantium-47 (shifted semigroups, endpoint
       residues); methodtrace/2026-numerical-semigroup-mass (no README).
     - Result: no e = 5 proof, no height or column criterion, and no statement that shape-only criteria fail for large e.
+19. **Search before making Down-set Wilf (GW) the focus (2026-10-18, late night).**
+    - Queries (web, arXiv-weighted):
+      - Wilf + monomial ideal / standard monomials / complete residue system / non-minimal Apéry set;
+      - Wilf + order ideal / lattice tile / fundamental domain (2025–2026);
+      - Wilf + Apéry set of the largest generator.
+    - Hits: only items already listed. These are:
+      - the generalized numerical semigroups of Cisto et al. (1909.13120);
+      - the semimodule extension (2012.01358, false, F6);
+      - BGOW (1903.04342), the graph approach (1909.03699), DKM (2501.04417), Marashdeh (2608.12531), and Eliahou's
+        Macaulay paper (1703.01761).
+    - None states Wilf for arbitrary residue-complete down-sets (non-minimal factorization domains), nor the
+      lattice-tile/dual-lattice form.
+    - Background fact used: Selmer's formulas for Ap(T, t) hold for every t ∈ T, so Wilf has the same Apéry form for every
+      element (standard).
+    - Absence of hits is not proof of novelty. GitHub was not searched in this pass.

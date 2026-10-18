@@ -107,31 +107,33 @@
      Next: the H–t trade-off and an inverse theorem ("small H ⇒ D nearly contains a big coordinate simplex"),
      contradicted by the discrete Minkowski bound (a 4-D tile containing Δ_N has m ≥ |X_N| = 21, 55, 131 for
      N = 2, 3, 4).
-2. **General Wilf: the exchange inequality (universal line).**
-   - Exact split, every e: W = Lev + Car (Kunz coordinate = level + carry; PROOFS "Level/carry split").
-     - Lev (geometric) ≥ 0 by CH whenever the λ-argmax also maximizes x·k.
-     - Car (residue carries) is negative in 25–40% of random S. In the random sample Lev ≥ 1.65|Car| whenever
-       Car < 0 (not adversarial).
-   - Why the proof must be an exchange inequality:
-     - Shape alone fails at large e (near-stars, HCR → 1 − 1/d).
-     - Residues alone fail, because Car < 0 often.
-     - So the proof must show that a carry deficit forces a level surplus. Conjectured mechanism: Car < 0 only when the
-       λ-argmax is chosen by the k-part against the residue order.
-   - Lattice inputs, both dimension-free: residue completeness (Σκ = (Σx·r)/m − (m−1)/2) and minimality (Gröbner
-     cone; geometrically, Minkowski: no large inscribed simplex).
-   - Supporting results: the shift lemma, the near-star formula, W = e(e+1) − 2m in the carry-free level-2 case, and
-     the thin-regime ↔ near-perfect additive bases link (NOTEBOOK 2026-10-18 late night).
-   - Running: adversarial min of W/Lev with Car < 0 (src/scratch/split_climb.py, fejer logs/split_climb_{4,5,6,8}.log).
+2. **General Wilf: Down-set Wilf GW (MAIN universal line, PROOFS "Down-set Wilf").**
+   - Statement: for EVERY down-set D ⊂ ℕ^d (|D| = m) on which x ↦ x·n mod m is bijective,
+     dmM − (d+1)Σ_D v ≥ (d−1)m(m−1)/2; equivalently (d+1)ℓ(Δ) ≥ c(Δ) for Δ = v(D) + mℕ.
+     - GW ⟹ Wilf (Apéry tile).
+     - GW on largest-generator tiles is Wilf itself (Lemma GW-1).
+   - Evidence:
+     - Exhaustive over ALL down-sets: d = 2 (m ≤ 26), d = 3 (m ≤ 14), d = 4 (m ≤ 10), with k-lifts and signed n.
+       0 failures. Equality only on minimal domains.
+     - Non-minimal domains can beat the Apéry tile (d = 3), so GW is strictly stronger than Wilf.
+     - Residue completeness is essential: the injective-only version is false (GW-6).
+   - Proved: the reformulations, the column form, and boxes (B = (d−1)mM/2).
+   - Plan: a local-minimum analysis under the moves allowed by non-minimality (flips, lifts n ± m e_a, units). Show
+     that every move-stable (D, n) has E ≥ 0. Candidates for the stable set: carry-free domains, boxes, MED stars.
+   - Running: adversarial annealing over the same moves (E169).
+   - The level/carry split (W = Lev + Car) and the exchange-inequality picture are kept as tools. RW = GW with k = 0.
 3. **e = 4 formal verification (background; G-Lean).** Next Lean items: the cylinder lemma and Wall/Floor from IsTile.
 Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25); ATOP_γ as a universal criterion (6
 two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR for 4-D (φ up to 0.8); the cone-LP
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Read the split_climb extremizers (e = 4, 5, 6, 8). Characterize when Car < 0 and the ratio Lev/|Car| → 1, and
-    formulate the exchange lemma.
-(b) Codex agent (RUNNING since 2026-10-18 22:45 UTC, session 01a150a5-…): HT4 / H–t study plus enumeration at scale and
-    CP-SAT searches. Brief: session scratchpad codex/ht4_brief.md; report: src/scratch/tile4/HT4_REPORT.md.
-(c) The gfan independent re-check of E153 (fejer logs/gfan_hcr_5_36.log) agrees through m = 27. It must reach 39 before
-    "Wilf for e = 5, m ≤ 39" is stated as method-independently verified.
-(d) The 4-D counting lemmas (facet type bound, corner–volume, forest lemmas, discrete Minkowski) for e = 5 at large m.
+(a) GW local-minimum analysis:
+    - classify the (D, n) that no flip, lift or unit move improves (start with d = 2, 3 exhaustively);
+    - try to prove E ≥ 0 on that class;
+    - read the gw_anneal logs (E169) for counterexamples or near-misses.
+(b) Codex HT4 pipeline (PID 539098 on fejer) continues. Verify the subclass proofs in src/scratch/tile4/HT4_REPORT.md
+    (products, two-face) before recording them as proved.
+(c) The gfan re-check of E153 (fejer logs/gfan_hcr_5_36.log) is at m = 31 with 0 failures. It must reach 39 before
+    "Wilf for e = 5, m ≤ 39" is called method-independent.
+(d) The e = 5 large-m counting lemmas (facet type bound, corner–volume, discrete Minkowski).

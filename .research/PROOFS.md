@@ -794,3 +794,68 @@ PROVED.
 **Computational theorem (e = 5).** Every 4-D lattice tile with 14 ≤ m ≤ 39 has HCR ≥ 1 (E153: 9,532,388 tiles,
 exact volume and facet certificates, checked through m = 39); with BGOW (m ≤ 18), Wilf holds for every S with e = 5 and m ≤ 39.
 Independent re-check by 4ti2 + gfan (E160): agrees for m ≤ 27 so far, running to 36.
+
+## Down-set Wilf (GW) — CONJECTURE; the equivalences and the box case are PROVED
+
+**Setting.**
+- D ⊂ ℕ^d is a finite down-set with |D| = m, and n ∈ ℤ^d is such that x ↦ x·n mod m is a bijection D → ℤ/m.
+- Equivalently, D is a fundamental domain of the lattice Λ = {x : x·n ≡ 0 mod m}, and n is a unit-class element of
+  Λ^∨ = ℤn + mℤ^d.
+- Notation:
+  - v(x) = x·n and M = max_D v;
+  - κ = ⌊v/m⌋ and λ = ⌊(M − v)/m⌋;
+  - B(D,n) = dmM − (d+1)Σ_D v and τ = (d−1)m(m−1)/2.
+
+**Conjecture GW.** B(D,n) ≥ τ. Equivalently, (d+1)Σ_D κ ≤ d(M − m + 1).
+
+**Lemma GW-1 (Apéry form for any element; PROVED).**
+- Statement: let T be a numerical semigroup, 0 ≠ t ∈ T, and d ≥ e(T) − 1. Then (d+1)ℓ(T) ≥ c(T) holds iff
+  dt·max Ap(T,t) − (d+1)ΣAp(T,t) ≥ (d−1)t(t−1)/2.
+- Proof:
+  - Selmer: F(T) = max Ap(T,t) − t and g(T) = ΣAp(T,t)/t − (t−1)/2.
+  - Then (d+1)(c − g) ≥ c ⟺ dc ≥ (d+1)g. Substitute c = F + 1. □
+- Wilf with e(T) implies the d+1 form for d + 1 ≥ e(T).
+
+**Lemma GW-2 (GW ⟹ Wilf; PROVED).**
+- Let S ≠ ℕ have multiplicity m and other minimal generators n_1, …, n_d, with d = e − 1. Fix a term order refining
+  the weight n.
+- The standard monomials of the residue map form a down-set D ⊂ ℕ^d.
+  - They are the minimal factorization of each Apéry element: a divisor of a minimal monomial is minimal.
+  - |D| = m, v(D) = Ap(S, m), and residues are bijective.
+- By GW-1 with t = m, GW(D, n) is Wilf(S).
+- It also covers Ap(T, t) for any element t, in particular the largest generator, where every n_a < t. □
+
+**Lemma GW-3 (reformulations; PROVED).**
+- Put Δ = v(D) + mℕ for n > 0. Then:
+  - the gaps of Δ in the class of x are v(x) − jm for 1 ≤ j ≤ κ(x), so g(Δ) = Σκ;
+  - c(Δ) = M − m + 1;
+  - ℓ(Δ) = #{δ ∈ Δ : δ < c} = Σλ, because v(x) + jm ≤ M − m ⟺ j ≤ λ(x) − 1;
+  - κ(x) + λ(x) = ⌊M/m⌋ − [v(x) mod m > M mod m], so g + ℓ = c.
+- Since Σ_D (v mod m) = m(m−1)/2, Σv = mΣκ + m(m−1)/2.
+- Hence B − τ = m[d(M − m + 1) − (d+1)Σκ], and
+  GW ⟺ (d+1)ℓ(Δ) ≥ c(Δ) ⟺ dℓ(Δ) ≥ g(Δ). □
+
+**Lemma GW-4 (column form; PROVED).**
+- B(D,n) = Σ_{x∈D} Σ_a u(top_a x), with u = M − v and top_a x the top of the a-column through x.
+- Proof: Σ_x v(top_a x) = Σ_D v + n_a Σ_D x_a. Sum over a and use dmM = Σ_{(x,a)} M. □
+
+**Proposition GW-5 (boxes; PROVED; injectivity suffices).**
+- Statement: if D = ∏_a [0, L_a) and v is injective on D, then B(D,n) = (d−1)mM/2 ≥ τ.
+- Proof:
+  - u(top_a x) = Σ_{b≠a} n_b(L_b − 1 − x_b), so Σ_a u(top_a x) = (d−1)u(x).
+  - The reflection x ↦ L − 1 − x gives Σu = mM/2. Apply GW-4.
+  - Injectivity gives M ≥ m − 1. □
+- For boxes, Δ is symmetric: ℓ = g.
+
+**Remark GW-6 (the hypotheses are needed).**
+- Injectivity alone does not suffice for non-boxes. With d = 2, D = {(0,0),(0,1),(0,2),(1,0)}, n = (3,2):
+  v(D) = {0,2,4,3} and B = 5 < τ = 6.
+- So the complete residue system (the tiling D + Λ = ℤ^d) is essential.
+
+**Remark GW-7 (GW is stronger than Wilf for the same weights).**
+- Take d = 3, m = 10, n = (19,17,12), and D = {0, e3, e2, 2e2, 3e2, e1, e1+e2, e1+2e2, 2e1, 2e1+e2}.
+- Residues are complete and d(M−m+1) − (d+1)Σκ = 165 − 108 − 27 = 30. The Apéry tile of ⟨10,12,17,19⟩ gives 46.
+- So GW for non-minimal D is not a consequence of Wilf for ⟨m, n⟩.
+
+**Status.** GW holds in every exhaustive range tested, including signed n (EXPERIMENTS E164–E168). It is OPEN in
+general. The e = 2 case is GW with d = 1, where D = {0..m−1} and equality always holds.

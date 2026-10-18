@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "execution_host": "fejer.us-east1-b.c.littlewood-paley-8375.internal",
+  "analytic_threshold": 38,
+  "checked_ordered_pairs": 1280,
+  "exact_HT4_min_ratio": "10/9",
+  "worst": {
+    "m": 9,
+    "n": 3,
+    "s": 3,
+    "shape_A": [
+      2,
+      1
+    ],
+    "shape_B": [
+      2,
+      1
+    ],
+    "H": 12
+  },
+  "coverage": "All planar order ideals A,B containing both unit vectors, |A|>=3, |B|>=3, |A||B|<38. Integer partitions encode all planar down-sets. Sizes of either factor are at most 12."
+}
