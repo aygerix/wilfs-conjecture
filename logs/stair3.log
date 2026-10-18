@@ -1,0 +1,14 @@
+m=4: tile shapes 1; S1 fails 1 (max excess 1); non-two-face 0, NT fails 0 (max excess -1000000000)
+    S1 worst [(0, 0, 0), (0, 0, 1), (0, 1, 0), (1, 0, 0)]
+m=5: tile shapes 6; S1 fails 0 (max excess 0); non-two-face 0, NT fails 0 (max excess -1000000000)
+m=6: tile shapes 18; S1 fails 0 (max excess -1); non-two-face 0, NT fails 0 (max excess -1000000000)
+m=7: tile shapes 43; S1 fails 3 (max excess 1); non-two-face 1, NT fails 1 (max excess 1)
+    S1 worst [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (1, 0, 0), (1, 0, 1), (2, 0, 0)]
+m=8: tile shapes 91; S1 fails 0 (max excess 0); non-two-face 4, NT fails 3 (max excess 4)
+m=9: tile shapes 165; S1 fails 3 (max excess 2); non-two-face 9, NT fails 0 (max excess -2)
+    S1 worst [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 2, 0), (1, 0, 0), (1, 0, 1), (2, 0, 0)]
+m=10: tile shapes 273; S1 fails 6 (max excess 1); non-two-face 18, NT fails 6 (max excess 2)
+m=11: tile shapes 426; S1 fails 0 (max excess 0); non-two-face 36, NT fails 0 (max excess 0)
+m=12: tile shapes 630; S1 fails 0 (max excess -1); non-two-face 72, NT fails 0 (max excess 0)
+m=13: tile shapes 890; S1 fails 6 (max excess 2); non-two-face 110, NT fails 0 (max excess -2)
+m=14: tile shapes 1269; S1 fails 12 (max excess 1); non-two-face 186, NT fails 12 (max excess 1)

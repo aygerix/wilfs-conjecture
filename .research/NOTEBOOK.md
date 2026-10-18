@@ -888,3 +888,27 @@ growing margin, so a cruder-than-TOP'' argument can suffice.
 Insight: in the simplex-like model (p_a = m + r_a, D = {|x| ≤ k}) Wilf ⇔ k(2r_max − r_others) ≥ m − 1, and the tile
 condition (r·x distinct mod m on Δ_k) is exactly what forces the spread in r. The discrete correction (m−1)/4 in
 "mean(Ap) ≤ (3/4)M − (m−1)/4" comes from distinct residues forcing generator spread.
+
+## 2026-10-18 (night 12, latest) — Λ-criterion; cylinder structure of 3-D tiles; S1/NT' need arithmetic
+
+**Λ-criterion (PROVED sufficient).** For every column top t: M − w(t) = m·λ_L(t) + (m − pos(t)), λ_L(t) = number of
+left elements ≡ w(t) (mod m). Summing CH' over incidences: m·W + (d−1)m(m−1)/2 = m·Λ + R, Λ = Σ_z λ_L(z)T(z),
+R = Σ_z T(z)(m − pos z) ∈ [0, dm(m−1)]. So W = Λ + dm − P/m − (d−1)(m−1)/2 ≥ Λ − (d−1)(m−1)/2:
+**Λ ≥ (e−2)(m−1)/2 ⇒ Wilf.** CL is "R alone suffices", Λ-criterion is "level part alone suffices"; Λ ≥ N contains the
+τ-criterion. Data (lam.py): genus ≤ 17, all e: every failure has m ≤ 3e (Eliahou's range!) — but the dichotomy is
+FALSE on adversarial S (lam_adv.py: ⟨16,27,28,31⟩ 14 < 15; ⟨29,30,34,42,43,48,51,53⟩ 76 < 84; EF-type e = 24, m = 77,
+829 < 836; all near-boundary with large W) and for e = 4 at m = 23 (⟨23,25,28,35⟩, 21 < 22; 13/73,014 fail, m ≤ 23).
+
+**Cylinder structure of 3-D tiles (PROVED; PROOFS.md; cylinder.py all tiles m ≤ 12).** ≤ 1 full-support minimal
+non-element q* (q* ∈ Λ); every other non-axis minimal non-element lies on a coordinate plane x_c = 0 and is ≡ t e_c with
+distinct t, t e_c ∈ D; D = (∩ cylinders over coordinate slices) ∖ (q* + ℕ³). Horizontal slices are (base slice ∩
+rectangle) minus a quadrant; column tops are min of two 1-D step functions (and q*). Explains no simplex-like tiles.
+Generalizes to any d: minimal non-elements with support U inject into the face D ∩ {x_U = 0} via q ↦ q − λ.
+
+**S1 / NT' (stair3.py, cdist.py).** Exact: Σ_{y∈A}(|y|+2) = Σ_{z∉A} c(z) + 2|A|, c(z) = #{a : t_a(z) maximal}; in 2-D
+this gives the staircase inequality Σ(|y|+2) ≤ 2|F| trivially (c ≤ 2). In 3-D, S1 (avg c over non-max ≤ 2) holds for
+all tile shapes m ≤ 14 up to excess 2 but FAILS on the box family (excess a−1 = #axis triple points). NT' (T(A) ≤ 2m) on
+non-two-face shapes: excess ≤ 2 for m ≤ 14; random non-two-face tiles ≤ −0.095m. Geometry alone (cylinder structure)
+permits D = three triangular faces with q* = (1,1,1) and T(A) ≈ 3m: excluded only by arithmetic (slice inner corners
+i p_1 + (n+1−i) p_2 ≡ t_i p_3 form an AP whose t_i must be distinct in [0, n], forcing p_1 − p_2 ≡ ±p_3, etc.).
+So NT' needs the inner-corner arithmetic, not just geometry.
