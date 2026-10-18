@@ -1761,3 +1761,43 @@ asserted on every test.
     The richer move set should make the local minima rare (carry-free domains, boxes, the MED stars).
   - Adversarial annealing over exactly these moves is running on fejer: d = 3..6, m ≤ 40
     (src/scratch/gw/gw_anneal.py).
+
+## 2026-10-18 (late night, continued) — GW proved in dimension 2; how far the reflection method goes
+
+- **Corner reflection (PROOFS GW-8).**
+  - For n > 0, every gap v(x) − im reflects through any maximal y ≥ x to the element v(y − x) + (i−1)m of Δ below c.
+  - Hence |U_i| ≤ t_i|L_i| and g ≤ t(D)·ℓ, so GW holds when t(D) ≤ d.
+  - This is FGH's g ≤ tℓ, valid for all residue-complete down-sets. Checked on every instance: d = 2 (m ≤ 20),
+    d = 3 (m ≤ 12), d = 4 (m ≤ 9), with 0 violations.
+- **Dimension 2 (PROOFS GW-10, GW-11).**
+  - A residue-bijective staircase has ≤ 2 corners. Proof: three-distance theorem on each fibre mod gcd(s_1, m), plus a
+    splitting argument showing that all fibres have the same size.
+  - So GW holds for d = 2: Down-set Wilf in dimension 2 is a theorem.
+  - Computer check of the lemma: no residue-bijective staircase with ≥ 3 corners for m ≤ 34 (all s), nor for
+    m = 35–42 with both s_i non-units (E172).
+- **What does not work (each recorded with data in EXPERIMENTS E171–E176).**
+  - **Continuous relaxation.** Replace the down-set by a star-shaped density φ with periodization 1 mod m. The resulting
+    bound ∫⌊t/m⌋φ ≤ (d/(d+1))(M − m) FAILS when d ≫ K = ⌊M/m⌋: the mass can sit in the top window with exponentially
+    small mass below.
+    - The discrete inequality survives because 0 and the d unit vectors are cells.
+    - The MED star (d = m − 1) is exactly that extreme. Discreteness is essential.
+  - **GW\*** (no residue hypothesis, right side (d−1)Σ(v mod m)): false. Example: m = 3, D = {0, e1, e2}, n = (2,2).
+  - **Reflection Hall** (match every gap into d copies using reflection edges only): holds for d = 2 but fails for
+    d = 3, needing capacity 4 > 3.
+    - Example: m = 7, n = (8,11,5), D = {0, e3, 2e3, e2, e1, e1+e3, 2e1}.
+    - Every corner's own gap v(y) − m can reflect only to 0. With t₁ > d such corners, 0 is overloaded.
+  - **Lift monotonicity** (some n_a → n_a − m never raises E): fails in about 10% of instances. So GW does not reduce to
+    the residue form RW by lifts.
+  - **Single-flip corner reduction** (a flip with E' ≤ E and t' < t whenever t > d): fails in 10–40% of the t > d
+    instances for d = 3.
+  - **Depth-refined reflection** (GW-9, weighted by |L_i|): covers 50–60% of the t > d instances for d = 3, and 85–95%
+    for d = 4 (m ≤ 9).
+- **Exact accounting for t > d.**
+  - Put Θ = Σ_{gaps}(ν − 1), where ν(z) is the number of corners above the class cell of z. Put σ = Σ_y(ℓ − ℓ_y), where
+    ℓ_y = Σ_{x ≤ y} κ(x) is the exact image size of y's reflection.
+  - Then g = Σ_y ℓ_y − Θ, so GW ⟺ (t − d)ℓ ≤ σ + Θ. This is the GW analogue of Marashdeh's identity
+    W = (e−t−1)ℓ + σ + Θ.
+  - The missing ingredient for d ≥ 3: a second family of injections that absorbs the corner gaps v(y) − m.
+    - In the multiplicity form (n_a > m) the corner gap v(y) − m has a canonical second image: the element v(y − e_a)
+      < c, for any a with y_a > 0. The map y ↦ y − e_a is injective for each a.
+    - Combining these "direction maps" with reflections for the other gaps is the next thing to test.

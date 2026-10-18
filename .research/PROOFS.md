@@ -859,3 +859,69 @@ Independent re-check by 4ti2 + gfan (E160): agrees for m ≤ 27 so far, running 
 
 **Status.** GW holds in every exhaustive range tested, including signed n (EXPERIMENTS E164–E168). It is OPEN in
 general. The e = 2 case is GW with d = 1, where D = {0..m−1} and equality always holds.
+
+### GW: corner reflection and dimension two — PROVED
+
+Notation as in "Down-set Wilf (GW)", with n > 0. Put:
+- U_i = {x ∈ D : κ(x) ≥ i} (up-sets of D);
+- L_i = {x ∈ D : λ(x) ≥ i} = {x : v(x) ≤ M − im} (down-sets);
+- t_i = #{maximal y ∈ D : κ(y) ≥ i} and t(D) = #maximal elements.
+
+By GW-3, g(Δ) = Σ_{i≥1}|U_i| and ℓ(Δ) = Σ_{i≥1}|L_i|.
+
+**Theorem GW-8 (corner reflection).** For every i ≥ 1, |U_i| ≤ t_i·|L_i|. Hence g ≤ Σ_i t_i|L_i| ≤ t(D)·ℓ.
+- Proof:
+  - Let x ∈ U_i and let y be a maximal element of D with y ≥ x. Then y ∈ U_i, because U_i is an up-set.
+  - y − x ∈ D, since D is a down-set, and v(y − x) = v(y) − v(x) ≤ M − im. So y − x ∈ L_i.
+  - For fixed y, the map x ↦ y − x is injective.
+  - Choosing one such y for each x gives an injection U_i → {maximal y with κ(y) ≥ i} × L_i. □
+- Exactness: for each maximal y, the map is a bijection {x ≤ y : κ(x) ≥ i} → {w ≤ y : v(w) ≤ v(y) − im}, with inverse
+  w ↦ y − w.
+- In gap language, the gap v(x) − im is sent to the element v(y) − m − (v(x) − im) of Δ below c, a reflection through
+  (v(y) − m)/2.
+- For a minimal tile the maximal cells are the maximal Apéry elements, so t(D) = type(S). The theorem is then
+  Fröberg–Gottlieb–Häggkvist's g ≤ t·ℓ, here valid for every residue-complete down-set.
+
+**Corollary GW-9.** GW holds whenever Σ_i t_i|L_i| ≤ d·Σ_i|L_i|, in particular whenever t(D) ≤ d. (GW ⟺ g ≤ dℓ.)
+
+**Lemma GW-10 (two corners in dimension two).** Let D ⊂ ℕ² be a finite down-set with |D| = m, and let s ∈ ℤ² be such
+that x ↦ x·s mod m is bijective on D. Then D has at most two maximal elements.
+- Setup:
+  - Write row j (0 ≤ j < N) as {(i,j) : i < λ_j}, with λ_0 ≥ … ≥ λ_{N−1} ≥ 1. The number of maximal elements is the
+    number of distinct λ_j.
+  - Put g = gcd(s_1, m) and A = m/g. Bijectivity forces gcd(s_1, s_2, m) = 1, so s_2 is a unit mod g.
+- Fibres:
+  - Modulo g the residue of (i,j) is j·s_2. So the rows with j ≡ c (mod g) carry exactly the A residues of the coset
+    C_c = c·s_2 + gℤ/mℤ.
+  - C_c is one cycle of r ↦ r + s_1. Identify it with ℤ/A by c·s_2 + gt ↦ t·u, where u = (s_1/g)^{−1} mod A; adding s_1
+    becomes adding 1.
+  - Row j = c + gi then occupies the arc [iβ, iβ + λ_j) with β = s_2·u mod A.
+  - These arcs partition ℤ/A. So λ_{c+gi} is the gap after the point iβ in the cyclic order of
+    P_c = {iβ : 0 ≤ i < N_c}, whose points are distinct.
+- Three-distance theorem (Sós, Świerczkowski; indexed form):
+  - If N_c ≥ 2, there are 1 ≤ a, b < N_c with a + b ≥ N_c such that the gap after iβ is
+    - G_1 for i < N_c − a,
+    - G_1 + G_2 for N_c − a ≤ i < b,
+    - G_2 for i ≥ b,
+    with G_1, G_2 > 0.
+  - λ_{c+gi} is non-increasing in i and the first range is nonempty, so the middle range is empty.
+  - Hence each fibre's gap sequence takes at most two values and depends only on (A, β, N_c).
+- Two fibre sizes cannot coexist:
+  - Write N = gq + r with 0 ≤ r < g. Every coset contains a cell, so q ≥ 1. N_c = q + 1 for c < r and N_c = q
+    otherwise.
+  - Suppose 0 < r. P_{c'} has q points for c' ≥ r, and P_c = P_{c'} ∪ {qβ} for c < r.
+  - The new point splits exactly one gap, the one after i_0β, into strictly shorter gaps; all other gaps are unchanged.
+  - Then for c < r ≤ c', λ_{c+gi_0} < λ_{c'+gi_0} although c + gi_0 < c' + gi_0. This contradicts monotonicity.
+- Conclusion: r = 0. All fibres have the same two-valued gap sequence G(i), and λ_{c+gi} = G(i). □
+
+**Theorem GW-11 (Down-set Wilf in dimension ≤ 2).** GW holds for d ≤ 2 and every n > 0.
+- For d = 1, t = 1. For d = 2, t(D) ≤ 2 by GW-10. Apply GW-9. A down-set using fewer directions is covered by the
+  smaller d, because d/(d+1) increases with d. □
+- This contains Wilf for e ≤ 3 (FGH 1987). It adds every non-minimal residue-bijective L-shape, including those for
+  generators below m (Apéry sets of the largest generator) and arbitrary lifts.
+
+**Limits of the reflection method (EXPERIMENTS E171–E176).**
+- For d ≥ 3, t(D) is unbounded (in 3-D, t = 4, 5 already for m = 7–12).
+- The reflection graph alone needs capacity > d at δ = 0 whenever more than d corners have κ ≥ 1. Every corner's own
+  gap v(y) − m reflects only to 0.
+- GW-9 covers about half of the t > d instances for d = 3.
