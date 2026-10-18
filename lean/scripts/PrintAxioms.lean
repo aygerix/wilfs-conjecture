@@ -177,3 +177,21 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.tileCLAt_of_two
 #print axioms NumericalSemigroup.tileCLAt_of_le_two
 #print axioms NumericalSemigroup.wilf_of_embDim_le_three
+-- Wilf.TauCrit
+#print axioms NumericalSemigroup.card_cross
+#print axioms NumericalSemigroup.eq_inf_of_mem_cross
+#print axioms NumericalSemigroup.card_cross_inter_le_one
+#print axioms NumericalSemigroup.card_ne_eq_two_of_cross_inter
+#print axioms NumericalSemigroup.two_mul_sum_card_le
+#print axioms NumericalSemigroup.sum_nfG_eq_minFactLen
+#print axioms NumericalSemigroup.not_nfG_le_nfG
+#print axioms NumericalSemigroup.crossLemma_two_mul_P2
+#print axioms NumericalSemigroup.crossLemma_two_mul
+#print axioms NumericalSemigroup.crossLemma
+#print axioms NumericalSemigroup.top2_of_crossBound
+#print axioms NumericalSemigroup.top2_of_tauCriterion
+#print axioms NumericalSemigroup.wilf_of_tauCriterion
+#print axioms NumericalSemigroup.wilf_of_tauCriterion_P2
+#print axioms NumericalSemigroup.wilf_of_embDim_four_tau_le_four
+#print axioms NumericalSemigroup.wilf_of_embDim_four_tau_le_five
+#print axioms NumericalSemigroup.wilf_of_tau_le_embDim_sub_one

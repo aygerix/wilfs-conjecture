@@ -7,3 +7,4 @@ import Wilf.MaxCL
 import Wilf.Ramp
 import Wilf.Examples
 import Wilf.TileCL2
+import Wilf.TauCrit

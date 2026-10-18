@@ -824,3 +824,29 @@ Novelty: UNVERIFIED (limited search found nothing equivalent; Marashdeh 2026: no
 The open e = 4 cases now have τ ≥ 5 AND P₂ > m + 1 − 2τ: many top-layer Apéry factorizations pairwise sharing a
 coordinate — top layers concentrated on coordinate planes (two-face-like). This is exactly the planar regime where the
 2-D theorems (2-D Tile-CL, two-face box theorem) live. Next: quantify the residual and attack it with 2-D methods.
+
+## 2026-10-18 (night 12, later) — τ-criterion kernel-checked; residual is NOT two-face; positions carry the slack
+
+**Lean.** lean/Wilf/TauCrit.lean (Lean agent; verified by the lead: lake build OK, 0 sorryAx, axioms propext/Choice/
+Quot.sound, statements as requested, no existing definition changed). Kernel-checked: Cross Lemma (plain and P₂ form),
+TOP'' from the criterion (e ≥ 2), Wilf from the criterion, e = 4 & τ ≤ 4 & m ≥ 13, e = 4 & τ ≤ 5 & m ≥ 19,
+τ ≤ e−1 & m ≥ 3e−4. Proof simplification found by Lean: common cross cells of incomparable y, y' are exactly min(y,y').
+
+**Residual (E98).** Conjecture "sharp-criterion residual ⇒ two-face tile" is FALSE: exhaustive over ⟨m,a,b,c⟩ with
+generators < 3m gives non-two-face residual semigroups for m = 14..19 (⟨15,39,41,44⟩: τ = 5, P₂ = 7; ⟨19,29,41,42⟩:
+τ = 7, P₂ = 14, deficit 16), none for m = 20..22 in that box. Kliem–Stump (m ≤ 19) covers them, but the pattern has no
+mechanism; dropped as a route. The real two-face residual (box family) stays.
+
+**Where TOP'' slack lives (E99).** Decomposing crude-bound loss: L_pos = Σ_u (m−π(u))(d+ℓ(u)) vs
+L_cross = m(m+P₂−Σ(ℓ+1)). Box ⟨36,37,42,43⟩: L_pos 840, L_cross 180, needed 720. ⟨19,29,41,42⟩: L_pos 451, needed 152.
+So the residual is closed by *positions*, not by better overlap counting. Box family: positions on the face x₂ = 0 are
+6, 12, …, 30 (an AP with difference p₃ − p₁ = a): a line of top cells in direction v has positions in AP with
+difference p·v, so k cells on a line need (k−1)|p·v| < m.
+
+**Reformulation (exact).** For a non-top cell y ∈ D∖X let ψ(y) ∈ [1,m] be the position of the unique element of
+w(y) + mℕ in the last layer [c−m, c). Then ψ: D∖X → Π^c is a BIJECTION (left elements of the last layer = lifts of
+non-top Apéry elements). Each non-top cell lies on ≤ 1 arm per direction. So
+  TOP'' ⇔ Σ_{(y,a): y on the a-arm of u_a(y)} (π(u_a(y)) − ψ(y)) ≤ m(m−1)/2 + Σ_y (d − deg y)·ψ(y),
+with π(u) − ψ(y) ≡ k·p_a (mod m) for y = n(u) − k e_a. In T_{m,q} the origin carries the whole budget m(m−1)/2.
+Per-direction form: TOP'' ⇔ Σ_a B_a ≤ m(m−1)/2, B_a = Σ_u π(u) n_a(u) − Σ_{Π^c} j; B_a alone can reach 2.6(m−1)
+for d = 3 (so no per-direction bound of size m−1).
