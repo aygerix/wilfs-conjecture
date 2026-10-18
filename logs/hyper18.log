@@ -1,0 +1,6 @@
+cycles in incidence graph T (0, ((1,), (1,), (1,)))
+cycles in incidence graph TO (1, ((4, 2, 2), (4, 2, 1), (4, 3, 2, 1)))
+cycles in incidence graph TU (4, ((4, 3, 2, 1), (4, 3, 2, 1), (4, 1, 1, 1)))
+cycles in incidence graph TOU (5, ((4, 3, 2, 1), (4, 3, 1, 1), (4, 2, 1, 1)))
+cycles in incidence graph O (0, ((1,), (1,), (1,)))
+cycles in incidence graph OU (3, ((4, 3, 1), (4, 2, 2), (4, 3, 1, 1)))

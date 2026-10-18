@@ -9,3 +9,6 @@ m=78: tiles 168444, non-two-face 73013, HT fails 0, LP-uncertified 0; min H-(m-1
 m=79: tiles 110918, non-two-face 43781, HT fails 0, LP-uncertified 0; min H-(m-1) (96, (1, 15, 50)); MAXSUM fails 0, min slack 2m+1-M3 (15, (1, 8, 36), 14) [585s]
 m=80: tiles 155065, non-two-face 66652, HT fails 0, LP-uncertified 0; min H-(m-1) (113, (1, 7, 37)); MAXSUM fails 0, min slack 2m+1-M3 (18, (1, 7, 37), 14) [779s]
 m=81: tiles 133699, non-two-face 54996, HT fails 0, LP-uncertified 0; min H-(m-1) (108, (1, 37, 72)); MAXSUM fails 0, min slack 2m+1-M3 (15, (1, 9, 19), 14) [640s]
+m=82: tiles 166109, non-two-face 70461, HT fails 0, LP-uncertified 0; min H-(m-1) (106, (1, 23, 25)); MAXSUM fails 0, min slack 2m+1-M3 (23, (1, 9, 19), 13) [848s]
+m=83: tiles 128087, non-two-face 51576, HT fails 0, LP-uncertified 0; min H-(m-1) (118, (1, 19, 58)); MAXSUM fails 0, min slack 2m+1-M3 (21, (1, 24, 53), 14) [691s]
+m=84: tiles 205190, non-two-face 92310, HT fails 0, LP-uncertified 0; min H-(m-1) (97, (2, 9, 35)); MAXSUM fails 0, min slack 2m+1-M3 (25, (1, 75, 77), 13) [1048s]

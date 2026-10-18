@@ -11,7 +11,7 @@ static int M, L1, L2, L3, h[N], F[N], G[N];
 static unsigned char cyl[N+1][N+1][N+1], in[N+1][N+1][N+1];
 static int ht[N+1][N+1][N+1], T1[N+1][N+1][N+1], T2[N+1][N+1][N+1], T3[N+1][N+1][N+1];
 #define NS 12
-static const char *SN[NS] = {"t-C", "qU+tri-t", "2tri+qO-C", "qU-t", "tri-t", "qO-C", "2tri+q-2C", "LHS-4C", "qU3+tri-t", "qO3+tri-C", "qO-t", "tri"};
+static const char *SN[NS] = {"t-C", "qU+tri-t", "2tri+qO-C", "qU-t", "2tri-t", "qO-C", "2tri+q-2C", "LHS-4C", "qU3+tri-t", "qO3+tri-C", "qO-t", "tri"};
 typedef struct { long long cnt; int mx[NS]; char ex[NS][200]; } St;
 static St st[2][N+1];
 static int pc[2][3*N+3][4], pcn[2][3*N+3]; static char pcex[2][3*N+3][4][200]; /* per-C maxima: 2tri+q, LHS, tri, q */
@@ -50,7 +50,7 @@ static void evalD(int n, int hasq, int q1, int q2, int q3) {
         if (i == 0 && !in[0][j+1][k] && !in[0][j][k+1]) C++;
     }
     St *s = &st[hasq][n]; int first = s->cnt == 0; s->cnt++;
-    int v[NS] = {t - C, qU + tri - t, 2*tri + qO - C, qU - t, tri - t, qO - C, 2*tri + qU + qO - 2*C, 2*t + 2*tri + qU + qO - 4*C,
+    int v[NS] = {t - C, qU + tri - t, 2*tri + qO - C, qU - t, 2*tri - t, qO - C, 2*tri + qU + qO - 2*C, 2*t + 2*tri + qU + qO - 4*C,
                  qU3 + tri - t, qO3 + tri - C, qO - t, tri};
     for (int a = 0; a < NS; a++) if (first || v[a] > s->mx[a]) { s->mx[a] = v[a]; fmt(s->ex[a], q1, q2, q3); }
     int w[4] = {2*tri + qU + qO, 2*t + 2*tri + qU + qO, tri, qU + qO};

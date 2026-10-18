@@ -1188,3 +1188,33 @@ has t = 5, Tri = 2 sharing (3,0,0) — 2Tri = t − 1 tight).
  (a) (A4b) 2Tri + Q' ≤ 2C − 6 (no violation: exhaustive ≤ 34, annealing m ≤ 250 incl. restarts from the K-counterexample)
      ⇒ LHS ≤ 4C − 10 ⇒ CHT for m ≥ 88;
  (b) 2Tri ≤ t − 1 and qO ≤ t − 1 (hyperforest/forest) ⇒ LHS ≤ 5t − 3 ≤ 5C − 13 ⇒ CHT for m ≥ 131 (scan must reach 130).
+
+## 2026-10-18 (night 15) — 𝒞 closed for m ≥ 131: tripod forest + qO forest (PROVED); vector peeling data
+
+**Result (PROVED on paper, PROOFS.md "Theorem C-HT").** For every Loomis–Whitney set D ∈ 𝒞: 2|Tri| ≤ t − 1 (Lemma TF),
+|qO| ≤ t − 1 (Lemma QF). With qU ≤ t − 1 (Lemma F) and t ≤ C − 2 (Lemma T) this gives LHS ≤ 5t − 3 ≤ 5C − 13. With CHT and
+Lemma B, δ ≥ 0 for every D ∈ 𝒞 with |D| ≥ 131. So **Wilf holds for every e = 4 semigroup whose tile lies in 𝒞 and has
+m ≥ 131.** The remaining e = 4 gaps are cone-class tiles (all m beyond the scan) and the unscanned m ≤ 130.
+
+How it was found. The vector-peel data (E126) showed that a fixed potential needs growing peel vectors: |s| = 2 is
+needed at 17 and 28–30, and |s| = 3 by 31–34 is used with growing counts. So I stopped that line. Per-level telescoping of
+(A4b) is exactly single peeling, and it fails at 18. Instead I tested elimination orders on the incidence hypergraphs.
+Every order passes for tripods, and increasing |x| passes for qO. That pointed to two local statements:
+- Lemma S (one line, uses only that an LW set is cut out by its projections): two cells whose three forward neighbours
+  all lie in D can share a maximal top only in the same direction.
+- Lemma P: tripod projections to any coordinate plane form a chain. The proof uses the peak inequalities
+  F(X+1) < G(Y) and G(Y'+1) < F(X'), which close into a cycle of strict inequalities.
+- For qO with non-maximal direction 3 at p = (X, Y): an earlier qO on the 1-ray forces F(X) < G(Y), and one on the 2-ray
+  forces G(Y) < F(X). Both of x′'s possible types give the same inequality: a peak via P0, a plateau-1 point via the
+  plateau inclusion P1.
+Elimination: tripods in decreasing |x| each bring ≥ 2 new maxima; qO cells in increasing |x| each bring ≥ 1.
+
+**What did not work tonight (preserved, E126/E127).**
+- Single peel needs |s| up to 3 at |D| ≤ 34, with growing counts.
+- Per-level (A4b) fails at 18.
+- Simple parent-direction rules for tripods (longest/shortest arm, fixed direction) fail at 9.
+
+**Cone class: the new obstacle.** Lemma S uses the LW property, which fails near q*. Lattice-free cone data: 2Tri − t ≤ 8
+and qO − t ≤ 1 at union ≤ 32, and the three-staircase family makes 2Tri − t unbounded. Real cone tiles (m ≤ 50):
+LHS − 4C ≤ −3. Next: (1) localize the failures of Lemmas S/P/QF to cells near q* and count them with the tile lattice
+(q* ∈ Λ, wall lemma). (2) Alternatively prove a cone bound LHS ≤ 5C + β and scan up to the matching threshold.

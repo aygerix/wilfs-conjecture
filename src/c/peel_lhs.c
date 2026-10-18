@@ -9,13 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 #define N 40
+static int SMAXV = 3;
 static int WM = 2, WT = 2, WU = 1, WO = 1, KAP = 4;
 static int M, L1, L2, L3, h[N], F[N], G[N];
 static unsigned char cyl[N+1][N+1][N+1], in[N+1][N+1][N+1];
 static int ht[N+1][N+1][N+1], T1[N+1][N+1][N+1], T2[N+1][N+1][N+1], T3[N+1][N+1][N+1];
 #define NS 12
 static const char *SN[NS] = {"W-KC", "min_c PI_c", "PI_3", "lev(nontop)", "lev(top)", "", "", "", "", "", "", ""};
-typedef struct { long long cnt, nfail; int mx[NS], maxfailslack; char ex[NS][200]; } St;
+typedef struct { long long cnt, nfail, nvfail, nunit, nmixed, ndouble; char exm[200], exd[200]; int mx[NS], maxfailslack; char ex[NS][200]; } St;
 static St st[2][N+1];
 static int pc[2][3*N+3][4], pcn[2][3*N+3]; static char pcex[2][3*N+3][4][200]; /* per-C maxima: 2tri+q, LHS, tri, q */
 static void fmt(char *b, int q1, int q2, int q3) {
@@ -87,7 +88,30 @@ static void evalD(int n, int hasq, int q1, int q2, int q3) {
         allpi[c] = pi;
         if (pi < best) { best = pi; bestc = c; }
     }
+    int vbest = 1 << 30, smax = SMAXV, gm = 0;
+    for (int s1 = 0; s1 <= smax; s1++) for (int s2 = 0; s2 <= smax; s2++) for (int s3 = 0; s3 <= smax; s3++) {
+        if (s1 + s2 + s3 == 0 || s1 + s2 + s3 > smax) continue;
+        if (s1 >= Lx[0] || s2 >= Lx[1] || s3 >= Lx[2]) continue;
+        if (!in[s1][s2][s3]) continue;
+        int out = 0, Cs = 0;
+        for (int i = 0; i < L1; i++) for (int j = 0; j < L2; j++) for (int k = 0; k < L3; k++) {
+            if (!in[i][j][k]) continue;
+            if (i < s1 || j < s2 || k < s3) { out += wt[i][j][k]; continue; }
+            int y[3] = {i - s1, j - s2, k - s3};
+            for (int b = 0; b < 3; b++) {
+                if (y[b] != 0) continue;
+                int ok = 1;
+                for (int a = 0; a < 3; a++) if (a != b) { int z[3] = {i, j, k}; z[a]++; if (in[z[0]][z[1]][z[2]]) ok = 0; }
+                Cs += ok;
+            }
+        }
+        int pv = out - KAP * (C - Cs);
+        if (pv < vbest) vbest = pv;
+        if (pv <= 0) { int ss = s1 + s2 + s3; if (ss == 1) gm |= 1; else if (s1 == 2 || s2 == 2 || s3 == 2) gm |= 4; else gm |= 2; }
+    }
     St *s = &st[hasq][n]; int first = s->cnt == 0; s->cnt++;
+    if (vbest != (1 << 30) && vbest > 0) s->nvfail++;
+    if (gm & 1) s->nunit++; else if (gm & 2) { if (!s->nmixed) fmt(s->exm, q1, q2, q3); s->nmixed++; } else if (gm & 4) { if (!s->ndouble) fmt(s->exd, q1, q2, q3); s->ndouble++; }
     if (best != (1 << 30) && best > 0) { if (!s->nfail || lhs - KAP*C > s->maxfailslack) s->maxfailslack = lhs - KAP*C; s->nfail++; }
     int mn = allpi[0]; for (int c = 1; c < 3; c++) if (allpi[c] < mn) mn = allpi[c];
     int v[NS] = {lhs - KAP*C, best == (1 << 30) ? -99 : best, allpi[2] == 99 ? -99 : allpi[2], lvmax, lvtop, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -129,7 +153,7 @@ static void recH(int i) {
     for (int v = h[i-1]; v >= 1; v--) { h[i] = v; for (int ii = i + 1; ii < L1; ii++) h[ii] = 1; if (unionsize(1, 1) > M) continue; recH(i + 1); }
 }
 int main(int argc, char **argv) {
-    M = atoi(argv[1]); if (argc > 6) { WM = atoi(argv[2]); WT = atoi(argv[3]); WU = atoi(argv[4]); WO = atoi(argv[5]); KAP = atoi(argv[6]); }
+    M = atoi(argv[1]); if (argc > 6) { WM = atoi(argv[2]); WT = atoi(argv[3]); WU = atoi(argv[4]); WO = atoi(argv[5]); KAP = atoi(argv[6]); } if (getenv("SMAXV")) SMAXV = atoi(getenv("SMAXV"));
     for (L1 = 1; L1 <= M; L1++) for (L2 = 1; L1 + L2 - 1 <= M; L2++) for (L3 = 1; L1 + L2 + L3 - 2 <= M; L3++) {
         h[0] = L2; F[0] = L3; G[0] = L3; for (int i = 1; i < L1; i++) h[i] = 1; recH(1);
     }
@@ -137,7 +161,8 @@ int main(int argc, char **argv) {
         St *s = &st[q][n]; if (!s->cnt) continue;
         printf("%s %d count %lld", q ? "CONE" : "CYL ", n, s->cnt);
         for (int a = 0; a < 5; a++) printf(" | %s %d", SN[a], s->mx[a]);
-        printf(" | PIfail %lld maxW-KC among fails %d", s->nfail, s->nfail ? s->maxfailslack : 0);
+        printf(" | PIfail %lld maxW-KC among fails %d | vecPIfail(|s|<=3) %lld", s->nfail, s->nfail ? s->maxfailslack : 0, s->nvfail);
+        printf(" | unit %lld mixedonly %lld [%s] doubleonly %lld [%s]", s->nunit, s->nmixed, s->exm, s->ndouble, s->exd);
         printf("\n");
     }
     if (0) for (int q = 0; q < 2; q++) for (int C = 0; C < 3*N+3; C++) if (pcn[q][C])
