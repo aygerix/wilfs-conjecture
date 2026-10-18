@@ -539,3 +539,36 @@ A scheme says something only once its two terms are bounded SEPARATELY (as in th
 term 2 ≤ m·r(0)). Facts that do hold: level-2 loads ≤ d+1 (load(z) = Σ_c [z+e_c ∈ L3]·2/|supp(z+e_c)| ≤ d+1); unit
 loads can exceed d+1 (up to 1.44(d+1) seen), and Σ over units of load = 2(n2^A + n3^A) can exceed d(d+1), so NO choice of
 weights gives pointwise load ≤ d+1 at height 3: every decomposition of a level-3 cell uses one unit and one level-2 cell.
+
+### Lift form of MaxCL (PROVED identity, liftform.py asserts it on all small tiles)
+ρ_0 = r(0), ρ_a = r(e_a), L(x) = Σ_a x_aρ_a − (|x|−1)ρ_0, K(x) = ⌊L(x)/m⌋ (so r = L − mK), w = |y|−1 on A, −(d+1) on N:
+   (d+1)Σ_N r − Σ_A(|y|−1)r = m·F − (Σ_a β_aρ_a − β'ρ_0),   F = Σ_x w(x)K(x),
+   β_a = Σ_A(|y|−1)y_a − (d+1)Σ_N z_a,   β' = Σ_aβ_a + m + Dep   (uses H − (d+1)|N| = −(m + Dep)).
+Simplices Δ_k: β = 0, β' = m, so MaxCL there ⇔ F ≥ −ρ_0.
+- OBSERVED: β_a ≤ 0 for every a on all tiles d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7 (residue-free; unproved).
+- FALSE: F ≥ 0 at σ = 0 (F0) and F ≥ −ρ_0 (600/924 d=2 tiles; smallest D = {00,01,10,20,30}, p = (3,2), F = −1):
+  the linear part and the carry part cannot be bounded separately (the column needs the negativity of Σβ_aρ_a).
+
+### Uniform split scheme: Wrap Lemma (WL), Sumset Lemma (SL), and LD — CONJ, strong evidence
+Uniform scheme: each maximal y (|y| ≥ 2) spreads |y|−1 over its q_y − 2 ordered geometric splits (u, y−u), 0<u<y,
+q_y = |[0,y]|, weight w_y = (|y|−1)/(q_y−2) ≤ 1. All splits of y have position sum ≡ r(y)+r(0): the low value
+s_y = ⟨r(y)+ρ_0⟩ or s_y + m; the s_y are distinct over y.
+- **SL(t)**: for every σ and every t ∈ [0, m): Σ_{y∈A} w_y·#{0<u<y : r(u)+r(y−u) ≤ t} ≤ t+1.
+  Evidence: all tiles d=2 m≤12, d=3 m≤10, d=4 m≤8, d=5 m≤7, all σ, t: 0 failures (sumlemma.py). **Holds also for non-tile
+  down-sets with φ merely injective** (sumlemma_inj.py: d=1..3, |D| ≤ 8, m ≤ 30, ~110k instances, 0 failures), so the
+  tile property is NOT needed — SL is a statement about down-sets with injective linear positions, amenable to induction.
+- For t < ρ_0 every counted split wraps, so SL(t) is the nested-window form **WL-t** and SL(ρ_0−1) is **WL: B ≤ ρ_0**
+  (generalizes "B ≤ ρ_0" of the flat proof to all heights). Box-local Hall versions are FALSE (wlhall.py: per-box 176
+  d=2 fails; spikes in the top window serve as relays).
+- **LD**: Σ_{N∖0}(load−d−1)r − mP ≤ (H+d+1−m)ρ_0, equivalently MaxCL-slack(σ) ≥ m(ρ_0 − B). Then WL + LD ⇒ MaxCL.
+  LD at σ = 0 is MaxCL(0); LD holds for flat tiles (flat proof). Evidence: 0 failures on 700 semigroup tiles of height ≥ 3
+  (m ≤ 70; wraplemma_adv.py seeds 1, 2) together with WL.
+- Status: SL/WL are the σ-part of MaxCL isolated as a residue-light lemma; LD still contains MaxCL(0).
+
+### Wilf for e = 4 as a target (e = 4 is OPEN; literature check: web search 2026-10-17 finds only e ≤ 3)
+MaxCL (even Tile-TOP'') for d = 3 tiles ⇒ Wilf for e = 4. Height ≤ 2 gives nothing there (m ≤ 10).
+Residue-free crude bound CR for d = 3 rewrites as **Σ_i i·T_(i) ≥ (m−1)(T(A) − 2m)** (T sorted decreasing), automatic when
+T(A) ≤ 2m. Random e=4 tiles: 1 failure in 2353 (⟨9,10,12,16⟩, m = 9 ≤ 19, Wilf known). Hill-climb (m ∈ [20,60]):
+minimum CR slack exactly 0 at ⟨29,50,69,90⟩ (m = 29): D = Δ_4(x_2,x_3) ∪ Δ_4(x_1,x_3) ∪ tail (5..8,0,0) — two 2-D
+staircases glued along an axis (relation 50+69 = 29+90). There Dep ≈ m − O(√m) and both sides of CR are Θ(m^{3/2}):
+CR is borderline on this family, while MaxCL slack is ≈ 0.29 (lots of arithmetic room).
