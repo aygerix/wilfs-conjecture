@@ -1606,3 +1606,42 @@ asserted on every test.
     (matches computation); ≥ 1 iff n ≥ 4; ~ n/3.
   - So two-face tiles are carried by the heights of the other page's cells. A general two-face HCR proof needs
     Σ_page ht large unless the page is thin, in which case t is large and R takes over.
+
+## 2026-10-18 (late night) — where HCR is tight in 4-D; the near-star formula; shape-only limits
+- **4-D low-HCR tiles are thin (fejer, src/scratch/tile4/hcr4_low.py, e = 5 domain: distinct nonzero residues, all
+  e_a ∈ D).** For 12 ≤ m ≤ 34 every tile with HCR < 1.2 has all maximal cells at level |y| ∈ {2, 3} (max level ≤ 4),
+  t ≈ m/2 maximal cells, φ = S_T/(dm) ≈ 0.75–0.92, and is two-face in all but three cases (m = 22, 26, 27).
+  Per-m minimum: 1.030 (m = 12), 0.957 (13), 1.055, 1.095, 1.136, >1.2 (17), 1.113, 1.142, 1.153, >1.2 (21), 1.160, 1.194,
+  1.117, 1.091 (25), 1.166, 1.190, >1.2 (28); whole-table minima 1.108 (m = 30), 1.196, 1.234, 1.295 (m = 33).
+- **φ does not decay.** The share of (cell, direction) pairs whose column top is maximal reaches 0.73–0.80 at every
+  m ≤ 29 (phi4.py). So the crude bound H ≥ dm − S_T (CR) cannot prove HCR. Heights ≥ 2 and R are both needed.
+- **Near-star formula (PROVED by direct count).** Let D = {0, e_1..e_d} ∪ Q with Q a set of q level-2 non-square cells,
+  every e_b below some cell of Q, and m = d + 1 + q. Then:
+  - H = d(d+1) − 2q;
+  - the maximal cells are exactly Q, each with T = d + 2;
+  - HCR = [(m+1)(d(d+1) − 2q) + (d+2)q(q−1)/2] / [(d−1)m(m−1)/2].
+
+  Checks:
+  - d = 4, q = 8 gives 112/117, exactly the two m = 13 failures. Those are Δ_2 minus 2 cells, i.e. near-stars.
+  - q = αd: HCR → 1 + 1/(1+α)².
+  - q = βd² (0 < β < 1/2): HCR = 1 − 1/d + O(1/(βd²)). So for large e, shape-only HCR (and HCR+, whose residue
+    bound is the same here) fails on near-stars with m ~ βe², far outside Eliahou's m ≤ 3e.
+  - Random near-stars (hcr_star.py) at m = 150, 250 with d = 37, 47 give HCR 1.022 and 1.010. The predicted crossing
+    below 1 needs βd ≫ 1, around d ≈ 100.
+- **Shift lemma (PROVED).** Replace n by n + km·(1,…,1).
+  - Condition: (i) the tile is unchanged (true for level-≤ 2 tiles, since distinct residues forbid a lower-level
+    representative), and (ii) the λ-argmax cell lies at maximal level N.
+  - Conclusion: mW increases by km[dmN − (d+1)Σ_D|x|] ≥ 0.
+  - Proof of the sign: ℕ^d truncated at level N is a product of chains, hence LYM (normalized matching). So the level
+    densities f_j / C(j+d−1, d−1) of a down-set are non-increasing, and Chebyshev gives mean|x| ≤ dN/(d+1).
+  - Consequence: on near-star shapes Wilf reduces to the unshifted generators in (m, 2m), where c ≤ Λ − m + 1 ≤ 3m,
+    which is Eliahou's range. The near-star HCR failures are therefore not threats to Wilf. They show that any
+    universal proof must use the actual Apéry values (residue structure), not only the shape.
+- **Cone-LP relaxation is weak (lp4.py).** Minimize Φ(n) = dmΛ − (d+1)Σλ over the closed Gröbner cone with n ≥ m+1.
+  On the thin tiles it gives 0.24–1.46 of the target. Its optimum sits at ties n = (m+1)·(1,1,1,1), where all
+  top-level deficits vanish. So HCR's R term (distinct deficits) is essential: the integrality of n is what HCR uses
+  beyond the cone.
+- **Reformulation used above (exact; it is CH′).** mW + (d−1)m(m−1)/2 = Φ(n) = dmΛ − (d+1)Σ_{x∈D} λ(x). So Wilf says
+  that the mean Apéry element is at most (d/(d+1))Λ − (d−1)(m−1)/(2(d+1)). For star-shaped continuous sets,
+  dΛ|F| − (d+1)∫λ = ∫_θ R(θ)^d (Λ − R(θ)) dθ ≥ 0, with equality only for the simplex. Wilf is thus a quantitative
+  "lattice tiles are far from λ-simplices" statement.
