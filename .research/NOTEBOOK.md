@@ -850,3 +850,41 @@ non-top Apéry elements). Each non-top cell lies on ≤ 1 arm per direction. So
 with π(u) − ψ(y) ≡ k·p_a (mod m) for y = n(u) − k e_a. In T_{m,q} the origin carries the whole budget m(m−1)/2.
 Per-direction form: TOP'' ⇔ Σ_a B_a ≤ m(m−1)/2, B_a = Σ_u π(u) n_a(u) − Σ_{Π^c} j; B_a alone can reach 2.6(m−1)
 for d = 3 (so no per-direction bound of size m−1).
+
+## 2026-10-18 (night 12, late 2) — the e = 4 accounting: ARM / Depth / N; NAW; τ ~ 2√m; min W ~ m
+
+**Exact decomposition (PROVED, elementary; CH' with D-columns).** For every S with e = 4 (d = 3), summing over all
+(cell x, direction a) incidences with column top t = t_a(x):
+  m·W + m(m−1) = Σ_{(x,a)} (M − w(t)) = ARM + m·N + Depth, where
+  ARM = Σ_{u∈X} (ℓ(u)+3)(m − π(u))  [incidences whose column top is in the top layer X],
+  N = #incidences whose top t has w(t) < c (= 3(m−τ) − Σ_u ℓ(u)),  Depth = Σ over those of (c−1−w(t)) ≥ 0.
+Hence
+  τ-criterion  ⇔  m·N ≥ m(m−1);   TOP'' ⇔ ARM + m·N ≥ m(m−1);   **NAW ⇔ Depth + m·N ≥ m(m−1)**;
+  Wilf ⇔ ARM + Depth + m·N ≥ m(m−1).  (General d: replace m(m−1) by (d−1)m(m−1)/2, 3 by d.)
+Lemma A / TOP'' discard Depth entirely. NAW ("non-arm Wilf") discards the top-layer positions entirely.
+
+**Max-arm PE is trivial; PE false; κ form.** PE (Σ over arm incidences of (π(top) − ψ(cell))⁺ ≤ m(m−1)/2) is FALSE
+(⟨5,8,9⟩: 11 > 10). Restricting to the max arm at each cell it is trivial (each non-top cell z owns the row of pairs
+(ψ(z), j), j > ψ(z); ψ injective). Exact per-cell form: TOP'' ⇔ Σ_{z∉X} κ(z) ≤ Σ_{u∈X} (m − π(u)),
+κ(z) = Σ_{arms at z} π(top) − m − (d−1)ψ(z); κ > 0 only at cells where ≥ 2 crosses meet (src/scratch/kappa.py).
+In the box family ⟨36,37,42,43⟩ every non-top cell is a 2- or 3-arm cell; positive κ only on the 5 axis triple points.
+Every reformulation of CH'/Selmer of the form "Σ_x (3M − 4w(x)) ≥ m(m−1)" is a tautology; the content is always the
+inequality used for M − w(t) (residue bound ⇒ CL/Tile-CL; ≥ m ⇒ TOP''; exact depth ⇒ NAW).
+
+**NAW data (E100).** genus ≤ 18 (1,092 e = 4 S): fails only for m ≤ 9. All 75,588 e = 4 S with m ∈ [10,24], generators
+< 3m: fails for 8, all with m ≤ 16 (incl. box a = 4, ⟨16,17,20,21⟩). Large m: box family NA/need ≈ a/3 (1.13 at a = 5,
+3.8 at a = 13), arithmetic ⟨m..m+3⟩ ratio 8–35, ⟨m,m+1,m+k,m+k+1⟩ ≥ 3.3, Backelin ≥ 7.5, 400 random (m ≤ 200) ≥ 4.2.
+CONJ (NAW, e = 4, m ≥ 17): Σ over (x,a) whose a-column tops below c of (M − w(t_a x)) ≥ m(m−1); equivalently
+m·W ≥ Σ_{f∈PF, f ≥ c−m} (F − f)(ℓ(f+m) + 3) — a strong Wilf inequality with a pseudo-Frobenius correction.
+
+**max τ for e = 4 (E101).** All ⟨m,a,b,c⟩ with generators < 3m, m ≤ 30: max τ = max type ≈ 2√m − 1 (box-like
+⟨m, m+1, m+k, m+k+1⟩); hill-climbing with unrestricted generators never exceeded τ/√m = 0.79. Heuristic reason:
+maximal cells of a 3-D down-set ↔ strict local maxima of the column-height function on its shadow; a "hook" of τ such
+cells needs ≥ τ²/4 cells (box family), a 2-D region of them needs ~τ^{3/2}, but simplex-like tiles would need perfect
+B_k-type residue sets (none found). CONJ: τ ≤ t ≤ 2√m for e = 4 (not checked against literature).
+**min W for e = 4 (E102).** m ∈ [10,30], generators < 3m: min W/m ∈ [0.5, 2.3]; for m ≥ 17 min W ≥ m except m = 25
+(box a = 5, W = 20); minimizers are two-face box-like. Box family W = a³/3 + O(a²) ~ m^{1.5}/3: e = 4 Wilf has a
+growing margin, so a cruder-than-TOP'' argument can suffice.
+Insight: in the simplex-like model (p_a = m + r_a, D = {|x| ≤ k}) Wilf ⇔ k(2r_max − r_others) ≥ m − 1, and the tile
+condition (r·x distinct mod m on Δ_k) is exactly what forces the spread in r. The discrete correction (m−1)/4 in
+"mean(Ap) ≤ (3/4)M − (m−1)/4" comes from distinct residues forcing generator spread.
