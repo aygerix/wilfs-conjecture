@@ -572,3 +572,31 @@ T(A) ≤ 2m. Random e=4 tiles: 1 failure in 2353 (⟨9,10,12,16⟩, m = 9 ≤ 19
 minimum CR slack exactly 0 at ⟨29,50,69,90⟩ (m = 29): D = Δ_4(x_2,x_3) ∪ Δ_4(x_1,x_3) ∪ tail (5..8,0,0) — two 2-D
 staircases glued along an axis (relation 50+69 = 29+90). There Dep ≈ m − O(√m) and both sides of CR are Θ(m^{3/2}):
 CR is borderline on this family, while MaxCL slack is ≈ 0.29 (lots of arithmetic room).
+
+### Low splits = low box cells (PROVED, slexcess.py asserts it)
+For maximal y and the rotation r: the ordered split (u, y−u) is low (sum s_y = ⟨r(y)+r(0)⟩) iff r(u) ≤ s_y.
+(Proof: r(u)+r(y−u) ∈ {s_y, s_y+m}; if r(u) ≤ s_y then r(y−u) ≡ s_y − r(u) ∈ [0,s_y].) Hence the uniform low mass is
+B_y = w_y·(|[0,y] ∩ {r ≤ s_y}| − 2[y not wrapped]), and SL(t) ⇔ Σ_{y∈A, s_y ≤ t} B_y ≤ t+1.
+- FALSE sharpenings: "(B_y−1)^+ summed ≤ free s-slots" (with or without spikes as free slots; 116/924 d=2): deficits
+  B_y < 1 are needed, SL is genuinely cumulative. Proved special case sketch: L-shapes with one corner on an axis
+  (w_2 ≤ 1/2 and the box involution maps overlap cells outside the overlap) — to be written carefully.
+
+### Which relations certify MaxCL(0)? (E76, E77)
+- PALL(0) (position-aware load lemma, one-level geometric splits, capacities only on top windows of positions): FAILS
+  on ⟨39,71,72,77⟩ and ⟨25,44,45,49⟩ (2/400; pointwise Load Lemma fails 8/400). In ⟨25,44,45,49⟩ (p ≡ (−6,−5,−1)) every
+  geometric split carries (r(u)+r(v) = r(y)+m), so carry-free subadditivity is useless although MaxCL(0) slack is 0.60.
+- RGCL0 (LP: geometric subadditivity + column successor relations r(f_a(x)) ≤ r(x) + r(e_a)): FAILS on exactly the hard
+  tiles ⟨39,71,72,77⟩, ⟨25,44,45,49⟩, ⟨36,37,42,43⟩, ⟨29,50,69,90⟩, ⟨58,240,…⟩ (passes 145 random). GCL (all group
+  relations) holds on them. **So MaxCL(0) needs non-local lattice relations on these tiles.**
+
+### Strategic review (night 10b)
+- Distance: Flat-MaxCL proved (Lean in progress). General MaxCL: every local / residue-free method (Load Lemma, PALL,
+  RGCL0, crude CR, box pairing) fails on ONE recurring family: **two-face tiles** D = D_1 ∪ D_2 with D_1 ⊂ {x_1 = 0},
+  D_2 ⊂ {x_2 = 0} (relation n_1 + n_2 = m + n_3, so x_1x_2 = 0 on D), e.g. ⟨36,37,42,43⟩, ⟨29,50,69,90⟩, ⟨25,44,45,49⟩,
+  ⟨39,71,72,77⟩. They are also the e = 4 cases where CR fails. MaxCL slack there is 0.11–0.60, so they are not tight —
+  they defeat the methods, not the inequality.
+- Theory of success: on two-face tiles the geometry is two 2-D down-sets sharing an axis; 2-D is the regime where
+  crude/rearrangement arguments work. A proof of MaxCL for two-face tiles (any d with the x_1x_2 = 0 structure) would
+  remove the common obstruction and is a concrete test of a "face decomposition" mechanism.
+- Decision: CONTINUE MaxCL; PIVOT the next session to (1) MaxCL for two-face tiles, (2) SL proof for d = 2.
+  KILL: further local-relation LPs (RGCL variants) — the obstruction is established.
