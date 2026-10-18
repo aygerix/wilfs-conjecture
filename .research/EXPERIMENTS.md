@@ -83,6 +83,7 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E66 | `src/scratch/maxcl_tight.py` | near-tight MaxCL tiles | all tiles d≤5 small m | tight: column, simplex, column+spikes (m = d+2); next ≈ 0.012 normalized | 5 min |
 | E67 | `src/scratch/ecount.py exh`, `adv 5 3000 90` | E-count (Hall condition): 2Σ_Y(|y|−1) ≤ (d+1)(|↓Y|−|Y|−1) ∀Y ⊆ A | all tile shapes small; 3001 adversarial | 0 failures | 5 min |
 | E68 | `src/scratch/boxload.py exh`, `adv 7 3000 90` | uniform box pairing load ≤ d+1 | small exhaustive; 3002 adversarial | exhaustive 0 fails (max exactly d+1 at e_a); adversarial FALSE 319/3002 | 5 min |
+| E69 | `src/scratch/crude_regime.py 21 4000 120`; `src/scratch/crude_open.py 1 400`; `src/scratch/crude_search.py 1 400 12` | crude rearrangement bound Σ T_(i)(m−1−i) ≤ (d+1)M' (residue-free ⇒ MaxCL) | 4001 adversarial tiles; 400 open-regime S; hill-climb in open regime | holds 3883/4001 and all 400 random open-regime S; FALSE in open regime by hill-climb (⟨34,46,65,66,75,81,88,105⟩: −0.021) while MaxCL slack there ≥ 0.108 | 40 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

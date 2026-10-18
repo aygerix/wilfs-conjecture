@@ -503,3 +503,19 @@ Next-tightest: staircase-like A (normalized slack ≈ 0.012). A proof must be ex
 - Kill: Load Lemma / box pairing / GLL1 as proof targets. Keep E-count (true, necessary, residue-free) as a lemma target.
 - Third line (CLAUDE.md requires ≥ 3): the m | c case — MaxCL at σ = 0 alone gives Wilf for m | c (open), and σ = 0 has
   geometric subadditivity for free; attack it as a self-contained theorem.
+
+### Crude rearrangement bound and the open regime (E69)
+CR(D): Σ_i T_(i)·(m−1−i) ≤ (d+1)M' (T sorted decreasing) is residue-free and implies MaxCL for all p, σ.
+- Holds on 3883/4001 adversarial tiles (crude_regime.py, seed 21); on 400 random semigroups in the open Wilf regime
+  (q ≥ 4, 3e < m, t ≥ e, m ≥ 20; crude_open.py) it never fails (worst normalized slack 0.024, ⟨20,43,45,48⟩).
+- **FALSE in the open regime** under hill-climbing (crude_search.py): ⟨34,46,65,66,75,81,88,105⟩ (c=160, q=5, e=8, t=17)
+  normalized crude slack −0.021; four more examples −0.005 … −0.014. All have T(A)/(dm) ≈ 0.85–0.87, Dep/m ≈ 1.1–1.6.
+  MaxCL's true normalized slack on them: 0.108–0.168 (min over σ), ≈ 0.21 at σ = c. So the arithmetic of positions buys
+  13–20% there; a residue-free proof of MaxCL is impossible even restricted to the open regime.
+
+### Exact column form of MaxCL (PROVED identity)
+For an a-column C with top at position t = r(top) and length L: E_C := L·t − Σ_{x∈C} r(x) = S_a(L) − m·N_a(L,t), where
+S_a(L) = Σ_{h<L} ⟨h p_a⟩ and N_a(L,t) = #{h < L : ⟨h p_a⟩ > t} (σ-independent except through t). Hence
+   **MaxCL ⇔ Σ_a Σ_{C: top ∈ A} S_a(|C|) ≤ M' + Σ_a R_a + m·Σ_a Σ_{C: top∈A} N_a(|C|, r(top C))**,
+R_a = Σ of positions over non-maximal-top a-columns. The left side depends only on (D, p); the column-subadditive bound (★)
+is this with the N_a carry terms dropped (and fails on staircases). Averaged over σ, m·N_a = S_a exactly.
