@@ -912,3 +912,43 @@ non-two-face shapes: excess ≤ 2 for m ≤ 14; random non-two-face tiles ≤ �
 permits D = three triangular faces with q* = (1,1,1) and T(A) ≈ 3m: excluded only by arithmetic (slice inner corners
 i p_1 + (n+1−i) p_2 ≡ t_i p_3 form an AP whose t_i must be distinct in [0, n], forcing p_1 − p_2 ≡ ±p_3, etc.).
 So NT' needs the inner-corner arithmetic, not just geometry.
+
+## 2026-10-18 (night 13) — Wilf for all two-face e = 4 tiles (PROVED); general faces+core identity
+
+**Two-face survey (twoface_survey.py, tf_cr.py, tf1_hooks.py).** Two-face tile: e_a + e_b ∉ D, so D = F_1 ∪ F_2 glued
+along the c-axis (length L_3), e_a + e_b ≡ t·e_c. t = 0 is rigid (PROVED: each face has ≤ 1 inner corner, |A| ≤ 4;
+planar argument, inner corners ≡ (−(h_2−1), 0) mod the face lattice). CR fails only for t = 1 (exhaustive m ≤ 18,
+random m ≤ 80). t = 1 picture: ψ(i,j,k) = (i+k, j+k) maps D onto a union of diagonal hooks Ω'; Ω' is a Young diagram
+iff ρ_1, ρ_2 strictly decrease. S = ⟨m, p_a, p_b, p_a + p_b − nm⟩, Ap_g = min over class g of the convex function
+f(s,v) = s p_a + v p_b − nm·min(s,v).
+
+**Two-face identity** 3mW + 3m(m−1) = (m − 4L_3)M + 4Def2D + 2p_c L_3(L_3−1) (PROOFS.md). It is CH' rewritten; the
+content: singleton columns make each face 2-dimensional (mean ≈ (2/3)max). Four bounds A', B'', C, D cover every
+(m, L_3) with m ≥ 18 (tf_bounds2.py exact to m = 400 + analytic m ≥ 75). With Eliahou (c ≤ 3m) and BGOW (m ≤ 18):
+**THEOREM: Wilf for every e = 4 semigroup with a two-face tile.** Every intermediate inequality asserted on 26,779
+two-face semigroups (tf_verify.py). This covers the box family (where the τ-criterion fails). Bound refinement
+history: crude bounds left m ≤ 55 uncovered; B'', D, x_i ≤ L_3 − x_ax, p_c ≥ m + 1 and distinct-position gains
+reduced it to m ≤ 17.
+
+**Non-two-face: τ-criterion FAILS (nt_tau.py).** Exhaustive non-two-face e = 4, generators < 3m: max(2τ + P₂ − m − 1)
+= −1, −1, −1, **9**, 0, **8**, 0 for m = 20..26 (⟨23,25,28,35⟩ τ = 8, P₂ = 17, W = 25; ⟨25,27,32,40⟩). Hill-climb with
+free generators: best −2 (⟨25,110,113,118⟩). So non-two-face needs Depth or more than C.
+
+**θ law (meanmax.py).** θ := mean(Ap)/max(Ap). Wilf ⇔ θ ≤ 3/4 − (m−1)/(4M); with c > 3m (M ≥ 4m) it suffices that
+θ ≤ 11/16 (⇔ Def := Σ_Ap (M − w) ≥ mM/4). Non-two-face, m ≤ 20, generators < 4m, c > 3m: max θ = 0.664
+(⟨8,27,30,31⟩); extremals are three-face-like (core ≤ 1 cell). Two-face θ reaches 0.6935 (> 11/16, handled by the
+theorem). Continuum model: D = three-triangle cylinder minus cone (q* + ℝ³₊) with q* = r·(1,1,1): Monte Carlo θ(r) =
+0.6684 (r = .01), .6714 (.03), .6735 (.05), .675 (.07), .676 (.09), **.6766 (.12)**, .6758 (.15). So the continuum
+sup over this family ≈ 0.677 < 0.6875 but > 2/3: a homogeneous (shape-only) θ bound has margin ≈ 0.011 and needs the
+lattice-tile condition (cylinder structure) at least.
+
+**General e = 4 faces+core identity (face_core_ident.py; 7,019 e = 4 S, m ≤ 14, generators < 3m, 2,243 with
+nonempty core: exact).** With L_i = axis lengths, Def_faces = Σ over the 2-D runs lying in the three coordinate faces
+(each axis run once) of |R|(M − w(end R)), SumAxes = Σ_i p_i L_i(L_i−1)/2, core = {x ∈ D : min x ≥ 1}:
+    3mW + 3m(m−1) = (m − 4(L_1+L_2+L_3−2))·M + 4·Def_faces + 4·SumAxes + 4·Σ_{x∈core}(2M − 3w(x)).
+Proof (PROVED). CH' in the form mW + m(m−1) = 3mM − 4Σ_D w. AP identity on each face run, summed: a face cell with one
+zero coordinate lies in 2 face runs and contributes 2w + (w) = 3w; an axis cell k e_i (k ≥ 1) lies in 3 face runs and
+contributes 4w; the origin 0. Total face-run length = 2|F| + ΣL − 2 (F = D ∖ core). Hence
+3Σ_F w + SumAxes = (2|F| + ΣL − 2)M − Def_faces. Eliminate Σ_F w from 3·CH' using |F| = m − |core|. ∎
+(For two-face tiles core = ∅, L_1 = L_2 = 1: reduces to the two-face identity.) Since w(x) ≤ M, each core cell
+contributes ≥ −M; core cells with w ≤ 2M/3 contribute ≥ 0.
