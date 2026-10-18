@@ -791,6 +791,6 @@ HCR(D) = [(m+1)(d(d+1) − 2q) + (d+2)q(q−1)/2] / [(d−1)m(m−1)/2]; = 112/1
 → 1 − 1/d + O(1/(βd²)) for q = βd². Hence no shape-only criterion of HCR/HCR+ type is universal. PROVED (direct count).
 **Carry-free level 2.** If every n_a = m + r_a, every r_a < m/2 and Ap ⊆ {0} ∪ {n_a} ∪ {n_a + n_b}, then W = e(e+1) − 2m ≥ 0.
 PROVED.
-**Computational theorem (e = 5).** Every 4-D lattice tile with 14 ≤ m ≤ 36 has HCR ≥ 1 (E153, exact certificates); with
-BGOW (m ≤ 18), Wilf holds for every S with e = 5 and m ≤ 36. Independent re-check by 4ti2 + gfan (E160): agrees for
-m ≤ 19 so far, running to 36.
+**Computational theorem (e = 5).** Every 4-D lattice tile with 14 ≤ m ≤ 39 has HCR ≥ 1 (E153: 9,532,388 tiles,
+exact volume and facet certificates, checked through m = 39); with BGOW (m ≤ 18), Wilf holds for every S with e = 5 and m ≤ 39.
+Independent re-check by 4ti2 + gfan (E160): agrees for m ≤ 27 so far, running to 36.

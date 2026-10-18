@@ -98,8 +98,8 @@
 1. **HCR, a shape-only criterion through CH′ (MAIN for e = 5).** Bound each column deficit by (m+1)·height for
    non-maximal tops, with distinct residues for maximal tops. HCR ≥ 1 implies Wilf for every S with that tile.
    - **Computational theorem (E153):** the complete exact 4-D tile enumeration gives HCR ≥ 1 on every 4-D lattice tile
-     with 14 ≤ m ≤ 36 (only failures: two tiles at m = 13). With BGOW (m ≤ 18), **Wilf holds for every e = 5 S with
-     m ≤ 36.** Trust base: the enumerator and its exact volume and facet certificates, checked by an independent
+     with 14 ≤ m ≤ 39 (only failures: two tiles at m = 13; 9,532,388 tiles, exact certificates checked through 39).
+     With BGOW (m ≤ 18), **Wilf holds for every e = 5 S with m ≤ 39.** Trust base: the enumerator and its exact volume and facet certificates, checked by an independent
      checker pass, but the same codebase.
    - 4-D tightness: thin near-simplex tiles (levels ≤ 3, t ≈ m/2, mostly two-face), with H/m ≈ 0.8–1.2 and R carrying
      about 45%. The m = 13 failures are exactly the near-star formula with d = 4, q = 8.
@@ -130,8 +130,8 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
 ## Next precise task
 (a) Read the split_climb extremizers (e = 4, 5, 6, 8). Characterize when Car < 0 and the ratio Lev/|Car| → 1, and
     formulate the exchange lemma.
-(b) Codex agent, after its tile4 finalization: HT4 / H–t study plus enumeration at scale and CP-SAT searches; brief in
-    the session scratchpad codex/ht4_brief.md.
-(c) The gfan independent re-check of E153 (fejer logs/gfan_hcr_5_36.log) must finish before "Wilf for e = 5, m ≤ 36"
-    is stated as independently verified.
+(b) Codex agent (RUNNING since 2026-10-18 22:45 UTC, session 01a150a5-…): HT4 / H–t study plus enumeration at scale and
+    CP-SAT searches. Brief: session scratchpad codex/ht4_brief.md; report: src/scratch/tile4/HT4_REPORT.md.
+(c) The gfan independent re-check of E153 (fejer logs/gfan_hcr_5_36.log) agrees through m = 27. It must reach 39 before
+    "Wilf for e = 5, m ≤ 39" is stated as method-independently verified.
 (d) The 4-D counting lemmas (facet type bound, corner–volume, forest lemmas, discrete Minkowski) for e = 5 at large m.
