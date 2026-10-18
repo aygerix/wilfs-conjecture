@@ -9,3 +9,4 @@ import Wilf.Examples
 import Wilf.TileCL2
 import Wilf.TauCrit
 import Wilf.CornerArea
+import Wilf.ConeType

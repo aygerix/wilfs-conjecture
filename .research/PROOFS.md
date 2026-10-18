@@ -453,7 +453,11 @@ that are not corners of U_v ≤ [a_{v+1} < a_v] + [b_{v+1} < b_v] by (ii), and �
 t = κ(A₃) + Σ_{v<L₃} ν_v ≤ c(A₃) + (c(A₂) − 1) + (c(A₁) − 1), because a drops at v exactly when v is a value of F, and the
 value L₃ = F(0) is excluded (same for G). ∎ (Tight for boxes; exhaustive check: max(t − C) = −2 for every |D| ≤ 40, E125.)
 
-**Lemma T' (cone class).** t ≤ C. Proof: as Lemma T; for v > q₃ the slices are U_v = (A₃ ∩ R_v) ∖ Q, Q = [q₁,∞) × [q₂,∞), and
+**Lemma T' (cone class).** t ≤ C. **LEAN-CHECKED 2026-10-18** (lean/Wilf/ConeType.lean `typeBound_cone`: for Cyl in `LWClass`
+and q ≥ (1,1,1), |Max(Cyl ∖ (q + ℕ³))| ≤ Σ_c |faceCorners|. q ∈ Cyl is not needed. `faceCorners_coneCut`: the faces are
+unchanged, for any finite Cyl. `typeBound_cone_attained`: equality for the box [0,2)³ with q = (1,1,1). The Lean proof is an
+injection with two exceptional cells: the top of column q₁ − 1 and the end of row q₂ − 1. Axioms propext, Classical.choice,
+Quot.sound; verified by the lead.) Proof: as Lemma T; for v > q₃ the slices are U_v = (A₃ ∩ R_v) ∖ Q, Q = [q₁,∞) × [q₂,∞), and
 U_{v+1} = U_v ∩ R_{v+1} for v ≠ q₃; at v = q₃ the removal of Q creates at most two further new corners (the top of column
 q₁ − 1 and the end of row q₂ − 1). ∎ (Exhaustive: max(t − C) = 0, attained, union ≤ 34.)
 

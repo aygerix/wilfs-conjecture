@@ -201,3 +201,8 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.CornerArea.ht_eq_zero_of_mem_maxSet
 #print axioms NumericalSemigroup.CornerArea.ht_spec
 #print axioms NumericalSemigroup.CornerArea.typeBound
+#print axioms NumericalSemigroup.CornerArea.faceCorners_coneCut
+#print axioms NumericalSemigroup.CornerArea.typeBound_cone
+#print axioms NumericalSemigroup.CornerArea.typeBound_cone'
+#print axioms NumericalSemigroup.CornerArea.typeBound_cone_attained
+#print axioms NumericalSemigroup.CornerArea.box2_class

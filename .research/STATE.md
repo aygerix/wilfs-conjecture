@@ -28,8 +28,9 @@
    When it finishes, every e = 4 semigroup is covered by links 1–7, subject to the review below.
 - Independent adversarial review of links 5–6 (subagent, report → $SP/review/cone_review.md): RUNNING.
 - In Lean (2026-10-18, lean/Wilf/CornerArea.lean, verified by the lead): Lemma B (`cornerArea`, any finite down-set),
-  Lemma CHT (`cht`, any finite D), Lemma T (`typeBound`, class 𝒞). So the sublinear bound t ≤ C − 2 ≤ √(6m) on 𝒞 is
-  kernel-checked. NOT in Lean: T′ (cone class), the forest lemmas (TF, F, QF, TF-cone, F-cone, qO-cone), Wall/Floor, links 2–4
+  Lemma CHT (`cht`, any finite D), Lemma T (`typeBound`, class 𝒞), Lemma T′ (lean/Wilf/ConeType.lean `typeBound_cone`, cone
+  class). So the sublinear bound on t is kernel-checked for both classes: t ≤ C, and C² − 3C + 6 ≤ 6m.
+  NOT in Lean: the forest lemmas (TF, F, QF, TF-cone, F-cone, qO-cone), Wall/Floor, links 2–4
   and 7. Earlier Lean: TauCrit, TileCL2 (e ≤ 3), TileTop, MaxCL (see PROOFS).
 - Trust base of link 7: Gröbner-fan traversal enumerating lattices + code. The C port is a re-implementation of the same
   algorithm (0 mismatches against Python on 188 lines), not an independent method. kseth's enumeration uses a different
@@ -56,7 +57,8 @@
 - G-scan: finish HT for cone tiles with 131 ≤ m ≤ 280 (running). If an HT failure appears, LP-certify it with tile_lp.py
   (as for m ≤ 23).
 - G-review: the adversarial review of TF-cone, F-cone, qO-cone, T′, B and the threshold arithmetic.
-- G-Lean: CHT, T and B are done. Next: T′ (cone class), then the forest lemmas, then Wall/Floor and the height criterion (link 2).
+- G-Lean: CHT, T, T′ and B are done. Next: the forest lemmas (TF, F, QF and their cone versions), then Wall/Floor and the
+  height criterion (link 2).
 - G-second-check: a method-independent second enumeration for m ≤ 280, or a reduction of the finite range by a sharper
   constant (e.g. LHS ≤ 5C + β ⇒ threshold ≈ 160).
 

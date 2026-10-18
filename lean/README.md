@@ -16,6 +16,8 @@
   D ⊆ ℕ³, C = total number of corners of the three coordinate faces; **Lemma CHT** `cht`: 2|D| ≤ H + 2t + 2|Tri| + |Q′| for every
   finite D ⊆ ℕ³; **Lemma T** `typeBound`: t + 2 ≤ C on the Loomis–Whitney class `LWClass`; 0 `sorry`, axioms
   `[propext, Classical.choice, Quot.sound]`),
+  `Wilf/ConeType.lean` (2026-10-18: **Lemma T′** `typeBound_cone`: t ≤ C for `coneCut Cyl q` = Cyl ∖ (q + ℕ³), Cyl in `LWClass`,
+  q ≥ (1,1,1); `faceCorners_coneCut`; sharpness `typeBound_cone_attained`; 0 `sorry`, standard axioms),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)
