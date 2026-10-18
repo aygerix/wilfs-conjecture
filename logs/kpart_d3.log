@@ -1,0 +1,5 @@
+d=3 m=12 tiles 5136: max (Y-(k+1)M')/m by part sizes {(1, 1, 1): np.float64(0.0), (1, 2): np.float64(0.0)}
+d=3 m=13 tiles 12984: max (Y-(k+1)M')/m by part sizes {(1, 1, 1): np.float64(0.0), (1, 2): np.float64(0.0)}
+d=3 m=14 tiles 12210: max (Y-(k+1)M')/m by part sizes {(1, 1, 1): np.float64(0.0), (1, 2): np.float64(0.0)}
+d=3 m=15 tiles 19416: max (Y-(k+1)M')/m by part sizes {(1, 1, 1): np.float64(0.0), (1, 2): np.float64(0.0)}
+d=3 m=16 tiles 24408: max (Y-(k+1)M')/m by part sizes {(1, 1, 1): np.float64(0.0), (1, 2): np.float64(0.0)}

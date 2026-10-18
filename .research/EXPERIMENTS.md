@@ -103,6 +103,8 @@ Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by ge
 | E86 | `src/scratch/corner_bij.py`, `flipbij.py` | is μ(x) = φ(x)+φ(τx) (or φ(g x)+φ(τx), g a column-flip word) bijective? | d=2 m ≤ 16; d=3 m ≤ 12 | d=2: always; d=3: μ only ~1/3 of tiles, no flip word always works | 5 min |
 | E87 | `src/scratch/pairs3.py`, `eps3.py`, `chain3.py` | d=3 direction excesses, carry law, face-chain split ε = ε_ab + ε'_c | all 3-D tiles m ≤ 12 | pair excess can exceed M' (1.055 at m=11); Σ_x ε'_c ≤ T(s) always (P1); Σ ε_ab ≤ 2 | 10 min |
 | E88 | `src/scratch/spike_dim.py`, `spike_dim2.py 5` | dimension threshold of Tile-CL in core+spike tiles | random cores m ≤ 40, k ≤ 4; triangles/hooks/staircases all p, k ≤ 5 | failures only at k = 4 (d = 6): tri4 m=14, tri5 m=19; none for d ≤ 5 | 20 min |
+| E89 | `src/scratch/kpart.py d m0 m1`, `p1gen.py` | partition-CL Y_Π ≤ (k+1)M' over all set partitions Π of [d] | exhaustive d=3 m ≤ 16, d=4 m=11,12; d=6 spike tile m=19 | d=3 all hold; d=4 m=11 (1,1,2),(2,2) fail by m; d=6 fails for every k; logs/kpart_d3.log, kpart_d4.log | 40 min |
+| E90 | `src/scratch/coupling3.py 4 11` | coupling CI_c: X_c − M' ≤ m·#{r(t_a)+r(t_b) ≤ m−2} | all 3-D tiles m ≤ 11, all s, c | FAILS (~40% triples, worst 1.82m at m=11) | 3 min |
 Notes
 - "Tight" in E6 means equality in TOP''. Observed: TOP'' equality ⇔ W = 0 for genus ≤ 24.
 - A bounded search excludes only the enumerated sets; nothing here is a proof for all S.

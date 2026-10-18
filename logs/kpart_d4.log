@@ -1,0 +1,2 @@
+d=4 m=11 tiles 86280: max (Y-(k+1)M')/m by part sizes {(1, 1, 1, 1): np.float64(0.0), (1, 1, 2): np.float64(1.0), (1, 3): np.float64(0.0), (2, 2): np.float64(1.0)}
+d=4 m=12 tiles 109392: max (Y-(k+1)M')/m by part sizes {(1, 1, 1, 1): np.float64(0.0), (1, 1, 2): np.float64(0.0), (1, 3): np.float64(0.0), (2, 2): np.float64(0.0)}

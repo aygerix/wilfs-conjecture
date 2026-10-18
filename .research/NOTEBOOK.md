@@ -718,3 +718,37 @@ For d = 2, β = φ works and ε ≤ the indicator pointwise. For d = 3 no canoni
 - μ-discrepancy A(s) = Σ_x[u+v ≤ m−2] − T(s) ∈ [−2, 2] for m ≤ 9 (small but nonzero).
 - Dimension threshold (E83, E88): Tile-CL exhaustive d=4 m ≤ 14, d=5 m ≤ 12, 0 failures; core+spike failures only at
   d = 6. Plausibly Tile-CL holds for d ≤ 5 — a d=3 proof need not be specific to d = 3.
+
+### Partition-CL is NOT a robust law (kpart.py, E89) — refutes STATE's "test P1 in every d"
+For a set partition Π of [d] into k ≥ 2 parts, τ_S(x) := x with the coordinates in S replaced by the tops t_a(x).
+Partition-CL(Π): Y_Π = Σ_x Σ_{S∈Π} r(τ_S x) ≤ (k+1)M'. Π = all singletons is Tile-CL; d = 3, Π = {ab | c} is P1.
+- d = 3, m ≤ 16 (exhaustive): every partition holds (max excess 0). So P1 is exhaustively true for d = 3, m ≤ 16.
+- d = 4, m = 11 (exhaustive): Tile-CL and (1,3) hold, but **(1,1,2) and (2,2) FAIL** (excess exactly 1·m);
+  m = 12: all hold.
+- d = 6 core+spike tile at m = 19: partitions of every k fail, including k = 2 types (1,5), (3,3).
+Merge rule: K_Π = K_{Π'} − E_{S1,S2} (merging two parts subtracts the slice-carry sum), so partition-CL for a coarser
+Π is Tile-CL *minus* carries, and the carries are not controlled in d ≥ 4. Conclusion: P1 is not a dimension-free
+statement; any proof of P1 for d = 3 must use d = 3 (a 2-part split there is (1,2), whose 2-element part is a 2-D
+slice, where 2-D Tile-CL is a theorem). Tile-CL (all singletons) is the distinguished partition.
+
+### Coupling inequality CI_c (coupling3.py) — REFUTED
+Exact (any 3-D tile): X_a + X_b = Σ_x H(w_ab x) − m·Q_ab, w_ab = ⟨r(t_a x)+r(t_b x)⟩, Q_ab = #{x : r(t_a)+r(t_b) ≤ m−2},
+H(w) = w + m (w ≤ m−2), H(m−1) = m−1. Hence Tile-CL ⇔ X_c − m·Q_ab ≤ 4M' − Σ_x H(w_ab x). If w_ab is bijective
+(Σ H = 3M') this reads E_c := X_c − M' ≤ m·Q_ab ("CI_c"). Tested unconditionally on all 3-D tiles m ≤ 11: CI_c fails
+in ~40% of (tile, s, c) triples, worst (E_c − mQ_ab)/m = 1.82 at m = 11. So when it fails, Σ H(w_ab) < 3M' must
+compensate: the non-bijectivity of the pair map is load-bearing, not a nuisance. Pair-by-pair coupling is dead in
+this form.
+
+### Literature check (night 12)
+e = 4 Wilf remains OPEN. Delgado–Kumar (arXiv 2512.23891, Dec 2025) verify Wilf for maximum primitive ≤ 60; known
+classes: e ≤ 3, c ≤ 3m, e ≥ m/3, |L| ≤ 12, m ≤ 19, g ≤ 100, arithmetic-sequence generators. Nothing equivalent to
+Tile-CL / corner-sum bijection was found (search over arXiv 2306.09876, 1610.08726, 2106.07246, 2512.23891,
+Dobbs–Matthews notes); this is a limited search, not a priority claim.
+
+### Lean: 2-D Tile-CL KERNEL-CHECKED (night 12; verified by the lead)
+lean/Wilf/TileCL2.lean (529 lines): tileCLAt_two_of_injOn (L3 from μ injective), Tile2.classify (L1), shape_inj /
+cornerSum_injOn_of_two (L2), tileCLAt_of_two : IsTile D p → TileCLAt D p for d = 2 (the original TileCLAt of Carry.lean,
+unchanged), tileCLAt_of_le_two (d ≤ 2), wilf_of_embDim_le_three : e ≤ 3 → c ≤ e·ℓ (known result, FGH 1987; new route,
+now kernel-checked end to end). Lead checks: lake build OK; scripts/PrintAxioms.lean 170/170 entries only
+[propext, Classical.choice, Quot.sound]; no sorry/admit/native_decide; Carry.lean definitions untouched (git diff).
+Formalization showed L2 needs only one lattice relation ((a,−c) ∈ Λ) and L3 is ⟨u⟩+⟨v⟩ ≥ ⟨u+v⟩ summed (PROOFS.md).

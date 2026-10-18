@@ -11,13 +11,14 @@
   `Wilf/TileTop.lean` (Tile-TOP'' statement; **Tile-TOP'' ⇒ Wilf**),
   `Wilf/MaxCL.lean` (MaxCL statement; **MaxCL ⇒ Tile-TOP''**; **Flat-MaxCL**; **Wilf when every Apéry element has a factorization of length ≤ 2**),
   `Wilf/Ramp.lean` (the Ramp Lemma for finite down-sets and directionally convex `ρ`),
+  `Wilf/TileCL2.lean` (**2-D Tile-CL for every 2-D tile**, `tileCLAt_of_two : IsTile D p → TileCLAt D p` for `D : Finset (Fin 2 → ℕ)`, via corner-sum injectivity (L3 `tileCLAt_two_of_injOn`), the rectangle/L-shape classification (L1 `Tile2.classify`) and `shape_inj` (L2); corollaries `tileCLAt_of_le_two` and `wilf_of_embDim_le_three : S.embDim ≤ 3 → S.conductor ≤ S.embDim * S.ell`; 0 `sorry`, axioms `[propext, Classical.choice, Quot.sound]`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)
 
 - `lake build`: succeeds, 0 errors, 0 warnings.
 - `sorry` count: **0** (`grep -rnw sorry Wilf Wilf.lean` gives nothing). No `axiom` declarations and no `native_decide`.
-- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (124 of them, including all the main ones below)
+- `#print axioms`: every declaration listed in `scripts/PrintAxioms.lean` (170 of them, including all the main ones below)
   depends only on `[propext, Classical.choice, Quot.sound]`, the standard mathlib axioms.
 - Every theorem below is **proved** (kernel-checked). Wilf's conjecture itself is only *stated* (`WilfConjecture`), not proved.
   Conjectures TOP'', CL and Tile-CL are only *stated* (`TOP2`, `CL`, `TileCL`); what is proved is the

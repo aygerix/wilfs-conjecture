@@ -157,3 +157,23 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.nfG_downward
 #print axioms NumericalSemigroup.isFactTile_factDownSetG
 #print axioms NumericalSemigroup.wilf_of_apery_height_le_two
+-- Wilf.TileCL2
+#print axioms NumericalSemigroup.colHt_eq_of_iff
+#print axioms NumericalSemigroup.colTop_sub_single
+#print axioms NumericalSemigroup.sum_colTop
+#print axioms NumericalSemigroup.sum_tileT_mul_colTop
+#print axioms NumericalSemigroup.sum_val_mul_two_of_injOn
+#print axioms NumericalSemigroup.tileCLAt_two_of_injOn
+#print axioms NumericalSemigroup.Tile2.row
+#print axioms NumericalSemigroup.Tile2.col
+#print axioms NumericalSemigroup.Tile2.nbr0
+#print axioms NumericalSemigroup.Tile2.nbr1
+#print axioms NumericalSemigroup.Tile2.corner
+#print axioms NumericalSemigroup.Tile2.corner_unique
+#print axioms NumericalSemigroup.Tile2.classify
+#print axioms NumericalSemigroup.shape_inj
+#print axioms NumericalSemigroup.tile2_of_isTile
+#print axioms NumericalSemigroup.cornerSum_injOn_of_two
+#print axioms NumericalSemigroup.tileCLAt_of_two
+#print axioms NumericalSemigroup.tileCLAt_of_le_two
+#print axioms NumericalSemigroup.wilf_of_embDim_le_three
