@@ -1544,3 +1544,40 @@ m((d+1)m + d − 1)/2. When m | c the true residues are feasible, so ATOP ⇒ TO
     F_a·m = Σ_{strict corners} h_a, and the target is F_1 + F_2 + F_3 ≤ 2.
   - Books: F_spine = 1 and F_page ≈ 1/2, so the sum ≈ 2 + 3/n > 2.
   - MAXSUM_d fails on some non-two-face tiles in d ≥ 4 (excess up to 0.76m at e = 7). There CR's sorting is essential.
+
+## 2026-10-18 (night) — S1-C refuted; HCR, HCR+ and HCR++: shape-only criteria that combine heights with distinct residues
+**S1 ≤ 2m for class 𝒞 is FALSE** (codex subagent, Sol 6.1 xhigh; verified by the lead). Counterexample:
+h = (4,2,1,1,1), F = (8,4,3,2,1), G = (8,2,2,1). It is cylindrical, non-two-face, m = 25, S1 = 56 > 50, and passes all
+cylinder count conditions. CR still holds on it (0.972).
+- Exhaustive class-𝒞 sets, m ≤ 25: 53,345 sorted-axis triples, max excess 6 at m = 25, attained by 21 orbits
+  (src/scratch/s1c/, .research/drafts/S1C_PROOF.md). No threshold M0 in range.
+- Kill: the unsorted S1 bound. CR's rank discount is needed even in 3-D.
+
+**HCR (PROVED implication; shape-only).** Use CH′ exactly: mW + (d−1)m(m−1)/2 = B := Σ_{(x,a)} (Λ − λ(top_a x)). This was
+asserted on every test.
+- Bound the deficits:
+  - for a non-maximal top t, Λ − λ(t) ≥ (m+1)·ht(t), where ht is the longest upward path in D;
+  - the maximal tops have distinct values in [0, m−1].
+- Hence HCR(D) := [(m+1)·Σ_{(x,a): top non-maximal} ht(top_a x) + Σ_i T_(i)·i] / ((d−1)m(m−1)/2) ≥ 1 ⇒ W ≥ 0, for every
+  S with tile D.
+- HCR dominates HT (which drops the residue term) and the CR/Tile-TOP'' route (which uses m in place of (m+1)·ht).
+- It is tight at both classical equality families (e = 2 and T_{m,q}).
+- Evidence:
+  - **every 3-D lattice tile with 10 ≤ m ≤ 25 satisfies HCR, two-face included** (exhaustive; src/scratch/hcr_shape.py).
+    The only failures for m ≤ 25 are 2 two-face tiles at m = 9 (r = (1,3,4), 0.972), covered by BGOW. The worst value
+    for m ≥ 10 is 1.058 (m = 13), and it is ≥ 1.29 at m = 25;
+  - books ⟨n², …⟩ pass (1.29, 1.52, 1.79 for n = 5, 6, 7), as do all ATOP_γ failures;
+  - random e = 4–9 (≈ 280k S): failures only at e ≥ 6, all two-face (1 at e = 6, 8 at e = 8, 2 at e = 9).
+    Non-two-face tiles pass with margin ≥ 1.16 at every e.
+- **HCR+** (assignment; src/scratch/hcrp.py): all top deficits are distinct mod m and v(t) ≥ (m+1)ht(t). Minimize
+  Σ_t w(t)·v over assignments of residue classes to cells (an m × m assignment problem).
+  - It fixes every HCR failure at e = 8, 9 (1.14–1.22).
+  - 138,790 random S with e = 5–9: 0 HCR+ failures.
+  - The only HCR+ failure seen is ⟨19,26,28,36,41,42⟩ (e = 6, m = 19, two-face, 0.994).
+- **HCR++** (MILP; src/scratch/hcrpp.py) adds the path constraints v(t) ≥ v(t+e_a) + m + 1, with distinct residues and
+  integer v. On ⟨19,26,28,36,41,42⟩ it gives 1.294, solved to optimality.
+- **Consequence.** "Shape-only criteria fail in high d" was true only of HT_d and MAXSUM_d. Adding the distinctness of
+  the residues of column-top deficits, with no residue arithmetic, certifies Wilf on every semigroup tested.
+  - The universal target becomes: **HCR+ (or HCR++) for every lattice tile with m ≥ 19** (m ≤ 18 is BGOW).
+  - For e = 4: **HCR for every 3-D tile with m ≥ 10**. That would be a uniform e = 4 proof with no two-face split,
+    once proved for large m by counting and checked for the finite range.

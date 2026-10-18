@@ -1,0 +1,43 @@
+{
+  "m": 12,
+  "complete": true,
+  "sorted_axis_count": 23,
+  "labelled_count": 72,
+  "max_excess": -1,
+  "extrema": [
+    [
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        4,
+        2,
+        1
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    [
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        1
+      ],
+      [
+        4,
+        2
+      ]
+    ]
+  ],
+  "seconds": 0.001,
+  "python": "3.9.6"
+}

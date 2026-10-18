@@ -1,0 +1,134 @@
+{
+  "complete": true,
+  "volumes": [
+    {
+      "m": 8,
+      "checked": 1,
+      "labelled": 1,
+      "max_excess": -10,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 9,
+      "checked": 1,
+      "labelled": 3,
+      "max_excess": -7,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 10,
+      "checked": 4,
+      "labelled": 12,
+      "max_excess": -4,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 11,
+      "checked": 9,
+      "labelled": 28,
+      "max_excess": -1,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 12,
+      "checked": 23,
+      "labelled": 72,
+      "max_excess": -1,
+      "extremal_orbits": 2
+    },
+    {
+      "m": 13,
+      "checked": 45,
+      "labelled": 147,
+      "max_excess": 2,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 14,
+      "checked": 89,
+      "labelled": 309,
+      "max_excess": 2,
+      "extremal_orbits": 3
+    },
+    {
+      "m": 15,
+      "checked": 160,
+      "labelled": 576,
+      "max_excess": 5,
+      "extremal_orbits": 3
+    },
+    {
+      "m": 16,
+      "checked": 289,
+      "labelled": 1080,
+      "max_excess": 4,
+      "extremal_orbits": 11
+    },
+    {
+      "m": 17,
+      "checked": 494,
+      "labelled": 1881,
+      "max_excess": 8,
+      "extremal_orbits": 2
+    },
+    {
+      "m": 18,
+      "checked": 835,
+      "labelled": 3273,
+      "max_excess": 7,
+      "extremal_orbits": 4
+    },
+    {
+      "m": 19,
+      "checked": 1362,
+      "labelled": 5415,
+      "max_excess": 6,
+      "extremal_orbits": 12
+    },
+    {
+      "m": 20,
+      "checked": 2207,
+      "labelled": 8922,
+      "max_excess": 6,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 21,
+      "checked": 3462,
+      "labelled": 14187,
+      "max_excess": 5,
+      "extremal_orbits": 3
+    },
+    {
+      "m": 22,
+      "checked": 5390,
+      "labelled": 22425,
+      "max_excess": 9,
+      "extremal_orbits": 1
+    },
+    {
+      "m": 23,
+      "checked": 8197,
+      "labelled": 34518,
+      "max_excess": 8,
+      "extremal_orbits": 3
+    },
+    {
+      "m": 24,
+      "checked": 12393,
+      "labelled": 52821,
+      "max_excess": 7,
+      "extremal_orbits": 9
+    },
+    {
+      "m": 25,
+      "checked": 18384,
+      "labelled": 79152,
+      "max_excess": 6,
+      "extremal_orbits": 21
+    }
+  ],
+  "sorted_axis_total": 53345,
+  "labelled_total": 224822,
+  "seconds": 2.541
+}
