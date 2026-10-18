@@ -39,9 +39,14 @@
      127 area-defective lattices, the 16-bit build 0.
    - FIX: src/c/tile_scan_v.c (16-bit coordinates via -DCT=uint16_t, and a per-lattice completeness certificate: the cone
      areas, summed mod 2^61−1, must equal the simplex). It is identical to the old build at m = 131, 200, 257, with every
-     lattice certified. RUNNING on fejer: m = 256–280, then a re-certification of m = 120–255
-     (logs/tsv16_*_fejer.log when copied back).
-   When m = 256–280 is done with 0 HT failures and 0 area defects, every e = 4 semigroup is covered by links 1–7.
+     lattice certified.
+   - **m = 256–280 DONE (fejer, 16-bit, certified): HT fails 0 and area-defects 0 for every m**
+     (logs/tsv16_256_280_fejer.log; min H − (m−1) ≥ 845). Re-certification of m = 120–255 with the 16-bit build is RUNNING;
+     at last check m = 120–184 were done, all clean.
+   **So every link 1–7 is now in place: Wilf holds for every e = 4 semigroup, by our own route**, subject to
+   (i) the cited external inputs Eliahou (c ≤ 3m) and BGOW (m ≤ 18); (ii) the computer enumeration, which is certified
+   complete per lattice (area sums) for m ≤ 119 by the referee and for m = 256–280 by us, and for m = 120–255 once the
+   rerun finishes. Two independent adversarial reviews and the Lean checks are listed below.
 - Independent adversarial reviews, 2026-10-18, both COMPLETE:
   - cone lemmas, all CORRECT (.research/reviews/cone_review_2026-10-18.md);
   - links 1–6, all CORRECT except the scan bug above, plus minor text fixes, now applied
