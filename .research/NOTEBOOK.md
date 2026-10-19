@@ -2994,3 +2994,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   m = 61 near-miss. That near-miss is again height 2.
 - Open risk: a mixed S with a height-2 interval core plus a length-3 element that does NOT raise M. With pure level-k
   generators a length-3 element forces level ≥ 3k > M, so mixed levels are needed; the targeted test is next.
+- (later) **Induction test, negative.** Along the semigroup tree (parent P = S ∪ {F(S)}, same m), the chain slack
+  B_chain − need is NOT monotone.
+  - Genus ≤ 26 (`chain_mono.c`): among h≥3 ← h≥3 edges, 21,193 of 40,847 decrease (min change −531 at
+    ⟨16,17..22,31⟩); among h≥3 ← h≤2 edges, 4,656 of 29,253 decrease.
+  - So no naive genus induction for CHAIN-H3.
+- **Kunz-face observation (proved, elementary).** On a face of the Kunz polyhedron with fixed argmax of w, the generators
+  and the chain structure are constant (chains are runs of tight inequalities w_t + n_a = w_{t+a}). Hence
+  B_chain − need is affine there.
+  - At a boundary point the chains are at least as long, so the face's affine extension L_F satisfies L_F ≥ B_chain.
+  - But d drops at the boundary, so "CHAIN at the vertices" does NOT imply CHAIN on the face.
+  - As with Wilf-by-faces, this gives finite checks per m, not a universal proof.
+- **e = 3 remark (proved).** For e = 3 the Apéry factorizations within the L-shaped tile are such that Apéry chains equal
+  tile rows: a relation αn_1 = vn_2 + km with k ≥ 1 ends every row. So B_chain = B_tile and CHAIN ⟺ Wilf.
+  Generally, CHAIN loses exactly the "factorization switches", O = B_tile − B_chain, and CHAIN-H3 ⟺ O ≤ mW on its
+  class.
