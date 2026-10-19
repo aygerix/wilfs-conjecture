@@ -1298,6 +1298,45 @@ So the cells using any other direction never make things worse than the pure A-f
 - Residue-free, TR failed in these ranges (d = 2, m ≤ 13, k ≤ 6; d = 3, m ≤ 8, k ≤ 4) only with A = ∅, i.e. only
   where GW itself fails (e.g. {|x| ≤ 2}, n = (9,9)).
 
+**Conjecture PMC (top-d corner window family; stronger than PGW).**
+Setting:
+- D is a finite down-set in ℕ^d (multiplicity form, n_a > m on active directions).
+- V_1 ≥ V_2 ≥ … ≥ V_t are the values of its maximal cells. For a semigroup tile, use instead the maximal Apéry elements
+  for ≤_S, i.e. PF(S) + m.
+- d′ = min(d, t) and λ_k(x) = ⌊(V_k − v(x))/m⌋₊.
+
+For every i ≥ 1:
+
+    (MC_i)   Σ_{x∈D} min(i, κ(x))  ≤  Σ_{k=1}^{d′} Σ_{x∈D} min(i, λ_k(x)).
+
+Relations:
+- MC_i ⟹ P_i, since λ_k ≤ λ_1 = λ.
+- For t ≤ d, MC_i follows residue-free from per-depth corner reflection.
+  - For x ∈ U_j, take a corner c ≥ x; then c − x ∈ L_j(v(c)), and x ↦ c − x is injective for each c.
+- At i = K on the Apéry tile, MC_K is Marashdeh's Conj 5.2 (arXiv:2608.12531) in the equivalent form
+  g ≤ Σ_{top e−1 PF f} |S ∩ [0, f]|, i.e. W(S) ≥ Σ_{top e−1 PF f} |S ∩ (f, F]|. So MC_K ⟹ Wilf.
+- Semigroup form of MC_2: #(gaps < 2m) ≤ Σ_{top e−1 PF f} #(S ∩ (f − 2m, f]). This strengthens GW-17.
+
+Evidence (E214):
+- MC_i for all i ≤ K, with residues: 0 failures.
+  - 75,362 random semigroups with t > d (m ≤ 40).
+  - 3,814 random residue-complete down-sets with t > d.
+  - Exhaustive down-sets d = 3, m ≤ 10, and d = 4, m ≤ 8, weights ≤ 3m (resp. 2m + 4): 6,576 residue-complete
+    instances with t > d.
+- Residue-free: MC_1 and MC_2 have 0 failures in the same exhaustive ranges (≈ 1.8M (D, n) pairs) and on random
+  down-sets. MC_3 fails exactly alongside residue-free GW (e.g. d = 3, m = 10: 86 vs 88).
+- So PMC has the residue profile of PGW: depths 1, 2 residue-free, residues needed from depth 3.
+
+FALSE strengthening LMC (E214): each cell uses only its own top-d corners above it,
+Σ min(i, κ) ≤ Σ_w Σ_{k≤d} min(i, h_k(w)). This would imply both LW and MC.
+- It fails in 22 of 52,753 random semigroups. Smallest: m = 9, e = 4, t = 5, i = 3, with 18 > 16.
+- LW and MC each hold on the same sample.
+
+Reduction remark (induction on corners, residue-free scale-q form):
+- Removing a non-top corner c (t > d) is valid whenever min(i, κ(c)) ≤ Σ_{k≤d} min(i, ⌊(V_k − v(c))/q⌋₊).
+- This holds if V_d − v(c) ≥ iq. So the hard configurations for MC are those with all non-top corners within about
+  iq of V_d: corners concentrated near the top, which is the hard PF class of E212.
+
 **Conjecture LW (local Wilf; intrinsic, stronger than Wilf).** For every numerical semigroup S with multiplicity m and
 Apéry poset (Ap(S, m), ≤_S), put H(w) = max(↑w) − w = max{u ∈ Ap : w + u ∈ Ap}. Then
 
