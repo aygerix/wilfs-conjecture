@@ -33,7 +33,8 @@ static ll gcover(ll r,ll z,ll d){ if(r==0) return 0; if(z<0) return -1; ll g=(ll
   ll D0=1+((C2(r)-z)>0? (C2(r)-z+r-1)/r : -((z-C2(r))/r)); if(D0>=3){ ll g2=1+z/(D0-2); if(g2<g) g=g2; } if(g>d) g=d; return g; }
 static ll Gamma_(ll a,ll d0,ll q,ll r){ ll hi=Cn(d0+1,2)-r-1, best=-1; int f=0; for(ll x=q;x<=hi;x++){ ll v=(d0+2)*x-3*mac2(x); if(!f||v<best){best=v;f=1;} } return f? best-2*(a-1)*r : (1LL<<60); }
 static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0,GCAP=0; static ll ngcap=0; static ll ALMIN=3, ALMAX=1000000;
-static ll nmix=0,nlink=0,npack=0;
+static ll nmix=0,nlink=0,npack=0; static ll nbig64=0; /* k-cover ranges longer than 64 (diagnostic) */
+#define KCAP 4096
 static int mixgap_kills(ll a,ll b,ll r,ll q,ll q2,ll u,ll t,ll K,ll B0){
   ll d0=a+b; ll G=Gamma_(a,d0,q,r); if(B0>=G) return 0;
   ll rem=B0-b*u-2*b*r; if(rem<0) return 1;
@@ -62,7 +63,7 @@ int main(int argc,char**argv){
   ll tot=0;
   for(ll a=amin;a<=amax;a++){
     ll Q=Cn(a+1,2), U=Cn(a+2,3), F=Cn(a+1,3); ll sq=(ll)floor(sqrt((double)(2*F+1))); while((sq+1)*(sq+1)<=2*F+1) sq++; while(sq*sq>2*F+1) sq--;
-    ll nbase=0,nu=0,npre=0,nprof=0,nsurv=0; nmix=nlink=npack=0;
+    ll nbase=0,nu=0,npre=0,nprof=0,nsurv=0; nmix=nlink=npack=0; nbig64=0;
     for(ll al=(ALMIN>3?ALMIN:3);al<=a&&al<=ALMAX;al++){ ll p=a-al, Qa=Cn(al+1,2), Ua=Cn(al+2,3);
      for(ll r=0;r<=Q;r++){ ll q=Q-r, tf=U-mac2(q);
       for(ll n0=(Qa-r>0?Qa-r:0);n0<=Qa;n0++){ ll rLL=Qa-n0;
@@ -91,8 +92,8 @@ int main(int argc,char**argv){
             ll zA=t-a*r+C2(r), vlow=t0-al*rLL; if(vlow<0) vlow=0; ll zz=zA-vlow; ll kmin0=0,kmax0=0; int linkimp=0;
             if(LINK){ if(r>0){ if(zz<0) linkimp=1; else { kmin0=1; kmax0=gcover(r,zz,a); if(kmax0<1) linkimp=1; } } else { if(zz<0) linkimp=1; } }
             /* E-REPAIR: fix the actual minimum cover k first; E_k=min(p,l+min(r-rLL,r-k+1)) (r>0), E_0=min(p,l) */
-            ll kE[64]; int nkE=1; kE[0]=-1;
-            if(EREP){ if(linkimp){ nlink++; continue; } nkE=0; for(ll k=kmin0;k<=kmax0&&nkE<64;k++) kE[nkE++]=k; }
+            static ll kE[KCAP]; int nkE=1; kE[0]=-1; if(kmax0-kmin0+1>64) nbig64++; if(kmax0-kmin0+1>KCAP){ fprintf(stderr,"KCAP overflow\n"); exit(2); }
+            if(EREP){ if(linkimp){ nlink++; continue; } nkE=0; for(ll k=kmin0;k<=kmax0;k++) kE[nkE++]=k; }
             for(int ie=0;ie<nkE;ie++){ ll kf=kE[ie]; ll Ek=E;
             if(kf>=0){ if(r>0){ ll m1=r-rLL; if(r-kf+1<m1) m1=r-kf+1; Ek=(p<l+m1)?p:l+m1; } else Ek=(p<l)?p:l; }
             if(LCOV && kf>=1){ /* LOCAL-COVER (section 50): j low vertices in the minimum cover; Ehat_k */
@@ -119,8 +120,8 @@ int main(int argc,char**argv){
                if(dmin>dmax) continue; nprof++;
                if(MIX && mixgap_kills(a,b,r,q,q2,u,t,K,B0)){ nmix++; continue; }
                /* LINK global: keep k values whose global bound <= mup */
-               ll klist[64]; int nk=0;
-               if(LINK){ if(linkimp){ nlink++; continue; } for(ll k=kmin;k<=kmax&&nk<64;k++){ ll ek=eps; if(zA-C2(k)<ek) ek=zA-C2(k); if(ek<0) continue; ll lo=packlow(a+1-k,ek); ll l2=psp(a+1,r,ek); if(l2>lo) lo=l2; if(lo<=mup) klist[nk++]=k; } if(nk==0){ nlink++; continue; } }
+               static ll klist[KCAP]; int nk=0;
+               if(LINK){ if(linkimp){ nlink++; continue; } for(ll k=kmin;k<=kmax;k++){ ll ek=eps; if(zA-C2(k)<ek) ek=zA-C2(k); if(ek<0) continue; ll lo=packlow(a+1-k,ek); ll l2=psp(a+1,r,ek); if(l2>lo) lo=l2; if(lo<=mup) klist[nk++]=k; } if(nk==0){ nlink++; continue; } }
                if(PACK && mixpack_kills(a,b,r,q,q2,u,t,K,D3,WAbar,Hh)){ npack++; continue; }
                int any=0;
                for(ll dl=dmin;dl<=dmax&&!any;dl++){ ll w=(dl+1)/2, sj=(3*dl+1)/2;
@@ -137,5 +138,5 @@ int main(int argc,char**argv){
                if(any){ nsurv++; if(nsurv<=10) printf("  SURV a=%lld al=%lld r=%lld n0=%lld l=%lld t=%lld u0=%lld u1=%lld c0=%lld beta=%lld R=%lld b=%lld WAbar=%lld Hh=%lld mup=%lld mlow=%lld k=%lld E=%lld\n",a,al,r,n0,l,t,u0,u1,c0,beta,R,b,WAbar,Hh,mup,mlow,kf,Ek); }
               } } } } } } } }
         if(hit) nbase++; } } } }
-    printf("a=%lld base=%lld u=%lld profiles(card test)=%lld nonempty-delta=%lld killed: MIX=%lld LINK=%lld PACK=%lld survivors=%lld\n",a,nbase,nu,npre,nprof,nmix,nlink,npack,nsurv); fflush(stdout); tot+=nsurv; }
+    printf("a=%lld base=%lld u=%lld profiles(card test)=%lld nonempty-delta=%lld killed: MIX=%lld LINK=%lld PACK=%lld survivors=%lld krange>64=%lld\n",a,nbase,nu,npre,nprof,nmix,nlink,npack,nsurv,nbig64); fflush(stdout); tot+=nsurv; }
   printf("total survivors %lld\n",tot); return 0; }

@@ -2367,3 +2367,56 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - So an analytic threshold a ≈ 2.5–3R0 is plausible. It is still quadratic in α: below a ≈ R0 the budget Ka is of
     order a³, and the global count alone cannot win. That strip a ∈ (5α/3, cα²) is where the window, joint and
     LOW-FIN tests, or the asymptotic analysis of codex P5f, are needed.
+
+## 2026-10-19 (afternoon) — a certificate bug fixed; MaxCL without wraps; the height-3 tight family
+
+- **Certificate bug (found and fixed).** In lead_t2small.c the k-cover lists kE[64] and klist[64] silently dropped
+  k values past 64. That can skip a k (EREP) or kill a profile wrongly (LINK). They are now sized KCAP = 4096, with a
+  hard abort on overflow and a `krange>64` counter.
+  - Rerun of α = 4, a = 19..99: 0 survivors, and krange>64 = 0 for every a. The truncation never fired, so GW-26h
+    stands as recorded.
+  - α = 5, a = 19 (fixed build): 0 survivors. The killers are MIX-GAP 663,128 and MIX-PACK 349,923, with no LINK
+    kills. Note that α = 4 never reaches these tests.
+- **Column-top lemma (PROVED).** For every finite down-set D ⊂ ℕ^d and every direction a,
+
+      Φ_a(D) := Σ_{y∈A} (d+|y|)·y_a − (d+1)·Σ_{x∈D} x_a ≤ 0,
+
+  with equality iff every column top that is counted (b-columns with t_a > 0, or a-columns of length ≥ 2) is maximal.
+  - Proof: d + |y| = Σ_b (y_b + 1), and a maximal y is the top of its b-column, which has length y_b + 1.
+  - For b ≠ a, x_a is constant on b-columns, so Σ_{y∈A}(y_b+1)y_a ≤ Σ_{b-cols} len·x_a = Σ_D x_a.
+  - For b = a, an a-column {0..J} gives (J+1)J = 2·Σ_{j≤J} j.
+  - Summing gives at most (d−1+2)Σ_D x_a. □
+  - Consequence: with ℓ(x) = ρ_0 + x·δ (δ_a = ρ_a − ρ_0) and K = ⌊ℓ/m⌋, MaxCL at ANY height is exactly
+    −ρ_0(m + Dep) + Σ_a δ_aΦ_a ≤ m·Γ, where Γ = Σ_A(d+|y|)K(y) − (d+1)Σ_D K and Dep = dm − Σ_A T(y) ≥ 0.
+  - So **MaxCL holds trivially when there are no carries and every δ_a ≥ 0**. Equality holds only for ρ_0 = 0 and
+    simplex-like D, in which every column reaches a maximal cell.
+- **The tight height-3 family is postage-stamp bases.** Let B be an extremal basis for the h = 3 postage-stamp
+  problem, so {0} ∪ B has ≤3-fold sums covering [0, m). Then generators m + b (b ∈ B) give a height-3 Apéry tile with no
+  wraps at σ = 0.
+  - Example: ⟨16, 17, 20, 21⟩, B = {1, 4, 5}, m = 16. Every pair is non-maximal and there are 7 cubics.
+    MaxCL slack is 30 (normalized 0.0625), the minimum over 3,385 sampled height-3 tiles (h3_extremal.py, seeds 11
+    and 12).
+  - In this regime the MaxCL slack at height 3 is exactly the failure of B to be a PERFECT B_3 basis. That is the same
+    additive-combinatorics phenomenon as P(C), the "end-loaded" near-B_3 extremisers, in the primary regime.
+  - So a height-3 proof must spend the wraps (K ≠ 0) against −ρ_0(m+Dep) + Σδ_aΦ_a; on the no-wrap part it has
+    nothing to prove.
+  - Random height-3 tiles have cubic carries κ = −1 that are NOT window-confined, e.g. 26 of 26 cubics at
+    ρ_0 = 68 ≈ m (pairform_h3.py). So the height-2 top-window argument does not extend cubic by cubic.
+- **Column-top lemma, LEAN.** lean/Wilf/ColumnTop.lean `column_top_lemma` is kernel-checked (0 sorry, standard
+  axioms). It is the only general-height input to the carry form of MaxCL.
+- **Unit form at height 3 (exact, PROOFS).** Expanding every cell around the units makes every residue coefficient
+  nonnegative, via 2Σ_T y_a = Σ_{N2} z_aψ(z). Height-3 MaxCL is then a pure carry inequality.
+  - Its negative carries are: maximal pairs with ρ_a + ρ_b < ρ_0; cubics with Σρ < 2ρ_0, in the window
+    [m − 2ρ_0, m), at cost 2 each; and non-maximal pairs with ρ_a + ρ_b ≥ m + ρ_0, at cost ψ − 1 each.
+  - Window counting alone pays the first two only up to a factor 4 (≤ 4ρ_0 against mρ_0/m). The third needs the
+    cubics above the pair.
+- **Per-α closure stops at α = 5 (fast build, E242).**
+  - α = 5 is clean so far.
+  - α = 6, a = 20 leaves 3 B-loop rows (b = 7–8, β = 21, c0 = 0).
+  - α = 8, a = 19, 20 leaves 61 and 781 matching rows (r = k = 4–5, b = 0, near-full low cubic simplex).
+  - These are P5f's two leading-order obstruction families, already present at small α. So per-α certificates with
+    the current tests cannot close α ≥ 6.
+  - The α = 8 rows show what the global card test discards. The low 9-set is nearly a perfect B_3 set, with
+    defect ≤ 2, but every SP test uses the global ε (17–29). Even P(5.83) on the deleted 15-set is needed for the
+    worst row. So the next lemma must use LOCALIZED defects, or retained pairs (MATCH-P), not a sharper global
+    constant.

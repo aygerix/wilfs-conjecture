@@ -421,6 +421,52 @@ tileTOPAt_of_maxCLAt; maxCLAt_of_height_le_two; wilf_of_factDownSet_height_le_tw
 wilf_of_apery_height_le_two: (∀ w ∈ Ap(S,m), ∃ x, wt x = w ∧ |x| ≤ 2) ⇒ c ≤ e·ℓ — the corollary exactly as stated above
 (via a general IsFactTile reduction and the grlex factorization tile factDownSetG).
 
+### Column-top lemma and the carry form of MaxCL — PROVED 2026-10-19 (paper; lemma LEAN-checked)
+**Lemma (column-top).** For every finite down-set D ⊂ ℕ^d (no tile hypothesis) and every direction a,
+    Φ_a(D) := Σ_{y∈A} (d + |y|)·y_a − (d+1)·Σ_{x∈D} x_a ≤ 0.
+Equality holds iff every b-column top with t_a > 0 (b ≠ a), and every a-column top of length ≥ 2, is maximal.
+Proof. d + |y| = Σ_b (y_b + 1). A maximal y tops its b-column, which has length y_b + 1.
+- For b ≠ a, x_a is constant on b-columns, so Σ_{y∈A}(y_b + 1)y_a ≤ Σ_{b-tops}(len)·t_a = Σ_D x_a.
+- For b = a, Σ_{a-tops}(y_a + 1)y_a = 2Σ_D x_a, by Gauss on each column.
+- Summing gives at most (d − 1 + 2)Σ_D x_a. ∎
+LEAN (2026-10-19, lean/Wilf/ColumnTop.lean, `column_top_lemma`, 0 sorry, axioms propext/Classical.choice/Quot.sound;
+built with lake on fejer): Σ_{y ∈ D.filter (IsMaxCell D)} (d + Σ_b y b)·y a ≤ (d+1)·Σ_{x∈D} x a, for IsDownSetFin D.
+
+**Carry form of MaxCL (exact, any height; checked on 1,844 (tile, σ) pairs, src/scratch/h3/maxcl_ident.py).**
+Setup.
+- r(x) = ⟨φ(x) − σ⟩, ρ_0 = r(0), δ_a = (r(e_a) − ρ_0) mod m ≥ 0.
+- ℓ(x) = ρ_0 + x·δ, so r = ℓ − mK with K = ⌊ℓ/m⌋.
+- Dep = dm − Σ_A (d+|y|) ≥ 0, and X_a = Σ_D x_a.
+Then
+    MaxCL(σ)  ⟺  −ρ_0(m + Dep) + Σ_a δ_a Φ_a ≤ m·Γ,    Γ := Σ_A (d+|y|) K(y) − (d+1) Σ_D K(x).
+- K is monotone and nonnegative. Write U_j = {x ∈ D : ℓ(x) ≥ jm}; these are nested up-sets, and
+  Γ = Σ_{j≥1} γ(U_j), where
+    γ(U) = Σ_b (sh_b(U) − nm_b(U)) − |U|.
+  - sh_b(U) counts the cells x ∉ U whose b-column meets U and has a maximal top.
+  - nm_b(U) counts the cells of U whose b-column top is not maximal.
+- Bijectivity gives Σ_D K = ρ_0 + Σ_a δ_a X_a/m − (m−1)/2.
+Consequences.
+- MaxCL holds at every height when no residue wraps (Γ = 0).
+- The no-wrap equality cases are ρ_0 = 0 with every column topped by a maximal cell, i.e. simplex-like D. At height 3
+  these are the postage-stamp (near-perfect B_3) bases: ⟨16,17,20,21⟩ has normalized MaxCL slack 0.0625, the
+  minimum observed.
+- So a MaxCL proof has only to pay the wrapped up-sets U_j.
+
+**Unit form at height ≤ 3 (exact; checked on 1,158 (tile, σ) pairs, src/scratch/h3/unitform_h3.py).**
+Notation.
+- ℓ(x) = (1 − |x|)ρ_0 + Σ_a x_a ρ_a and K = ⌊ℓ/m⌋.
+- For a non-maximal pair z, ψ(z) = Σ_{c : z+e_c ∈ D}(z_c + 1) ≤ d+2.
+- deg(a) = Σ_{pairs z} z_a ≤ d+1.
+Then
+    RHS − LHS = Σ_{a non-max}(d+1−deg a)ρ_a + mρ_0 + Σ_{z∈N2}(d+2−ψ(z))ρ_z
+                + m·[Σ_{A2}K + 2Σ_T K − Σ_{N2}(ψ(z)−1)K(z)].
+Every residue coefficient is ≥ 0 (from 2Σ_T y_a = Σ_{N2} z_a ψ(z)). So height-3 MaxCL is exactly a carry inequality:
+the bracket's negative terms must be paid by the nonnegative linear terms. The negative terms are:
+- maximal pairs with ρ_a + ρ_b < ρ_0;
+- cubics with Σ y_a ρ_a < 2ρ_0, which lie in the window [m − 2ρ_0, m);
+- non-maximal pairs with ρ_a + ρ_b ≥ m + ρ_0, which cost ψ − 1 each.
+Status: the reduction is PROVED; the carry inequality is OPEN.
+
 ### Two-face tiles: 2-D picture, reduction to 2-D Tile-CL, and the box theorem — PROVED 2026-10-17 (paper; finite part
 ### by exact computation, src/scratch/twoface_box.py; identities asserted in scratchpad box_ident.py, b ≤ a ≤ 10)
 Setting: (D,p) a d = 3 tile with x_1x_2 = 0 on D ("two-face") and p_3 ≡ p_1 + p_2 (i.e. e_1 + e_2 ≡ e_3 mod Λ).
