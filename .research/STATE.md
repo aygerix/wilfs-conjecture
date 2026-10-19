@@ -190,7 +190,8 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       Literature checks must now include Preprints.org.
     - Macaulay on bands is FALSE with carries (E273). In P18, W = W_0, and Wilf ⟺ (k+1)Σ_{i<q}(q−i)α_i ≥ qm − ρ (Eliahou's
       α_i). The obstruction is the ±1 carry.
-    - Codex P8 finished; review pending.
+    - Codex P8 REVIEWED and accepted (PROOFS "Codex P8", E274): SR packing lemma; GENERAL-FEW21+240; SHADOW-225; DISJOINT-CUBICS.
+    - Codex P9 launched: Problem 1.8 (generators < 2m). Message $SP/codex/p9_msg.md, log $SP/codex/p9_log.txt.
 (0J) 2026-10-19 latest+.
     - **Theorem LAYER-KNESER (PROVED, PROOFS).** For every S: ℓ ≥ D + (D−2)k, where k = |S∩(m,2m)| and D = ⌈c/m⌉.
       If moreover gcd(m, B) = 1, then ℓ ≥ D + (D−2)k + δ⌊(D−3)²/4⌋, with δ = ⌈(k+1)/2⌉ (k for m prime).

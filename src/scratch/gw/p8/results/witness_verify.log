@@ -1,0 +1,197 @@
+{
+  "status": "COUNTEREXAMPLE TO GLOBAL LPLUS >= mt; NOT TO MAXCL",
+  "m": 20,
+  "P": [
+    12,
+    3,
+    5,
+    9,
+    19
+  ],
+  "Q": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      3
+    ]
+  ],
+  "T": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3
+    ]
+  ],
+  "sigma": 18,
+  "rho": 2,
+  "exact": {
+    "k": 5,
+    "s": 0,
+    "d": 5,
+    "q": 10,
+    "p": 3,
+    "t": 4,
+    "w": 9,
+    "e": 5,
+    "v": 4,
+    "S": 99,
+    "HC": 99,
+    "L": 79,
+    "pairmass": 27,
+    "rankpair": 0,
+    "paid_bound": -28,
+    "linked_slack": 6096,
+    "naive_pair_slack": 9,
+    "L_minus_mt": -1,
+    "beta": 3
+  },
+  "original_MaxCL_slack": 99,
+  "all_phase_minimum": 99,
+  "minimum_omitted_excess_counter": {
+    "m": 6,
+    "P": [
+      2,
+      3
+    ],
+    "Q": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "T": [
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "rho": 2,
+    "exact": {
+      "k": 2,
+      "s": 0,
+      "d": 2,
+      "q": 2,
+      "p": 2,
+      "t": 1,
+      "w": 1,
+      "e": 1,
+      "v": 1,
+      "S": 30,
+      "HC": 30,
+      "L": 12,
+      "pairmass": 2,
+      "rankpair": 2,
+      "paid_bound": 6,
+      "linked_slack": 80,
+      "naive_pair_slack": -1,
+      "L_minus_mt": 6,
+      "beta": 1
+    }
+  },
+  "minimum_t_ge_2_omitted_excess_counter": {
+    "m": 7,
+    "P": [
+      5,
+      3
+    ],
+    "Q": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "T": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "rho": 6,
+    "exact": {
+      "k": 2,
+      "s": 0,
+      "d": 2,
+      "q": 2,
+      "p": 2,
+      "t": 2,
+      "w": 4,
+      "e": 1,
+      "v": 1,
+      "S": 43,
+      "HC": 43,
+      "L": 8,
+      "pairmass": 0,
+      "rankpair": -1,
+      "paid_bound": -7,
+      "linked_slack": 64,
+      "naive_pair_slack": -3,
+      "L_minus_mt": -6,
+      "beta": 0
+    }
+  }
+}

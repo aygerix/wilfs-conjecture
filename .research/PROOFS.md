@@ -716,6 +716,38 @@ m = 1 + d + q + t.
   - Preserved false claims F1–F6. F1 is β ≤ P_+ at the origin (m = 14, U = (8,9), the binary quartet; S = 90).
   - Residual height-3 family: k ≥ 5, d ≥ 6, t ≥ 2, k < 40t + 8, failing all criteria. At the origin it has at least
     two high and two low core units and β ≥ 4. Codex's next lemma: ABSENT-ZERO (Λ_F + m·O_rest ≥ Σ_F (m − r(z))).
+- **Codex P8 (2026-10-19; src/scratch/gw/p8/P8_REPORT.md, code in p8/; REVIEWED by the lead, see status per item).**
+  Setting as in P6e: a height-3 core with k non-maximal units, q pairs (p covered), t cubics, s spikes; m = M0 − e + t + s
+  with M0 = C(k+2,2) and e missing pairs on v defective directions. The accepted window bound is HC′ ≥ L − mβ ≥ L − mt.
+  - **SYMMETRIC-RECTANGLE (SR; PROVED, lead re-derived).** If the origin, k units and a quadratic down-set have injective
+    labels mod m (no completeness needed), then m ≥ k(k+1) + 1 − v(v−1) − 4e.
+    - Proof: G = the zero label plus the h = k − v + 1 good units, V = the zero label plus all units, D₁ = {g − b : g ∈ G,
+      b ∈ V, g ≠ b}. Then |D₁| = hk, |D₁ ∩ −D₁| ≤ h(h−1) + 4e, and 0 ∉ D₁ ∪ −D₁.
+    - Height-independent. For v = e = 0 it is the Sidon-set bound m ≥ k(k+1) + 1.
+  - **RETAINED-MOMENT (lead re-derived).** A = Σ δ_i u_i ≥ F(v, e) = [C(q_D,2) + (v+1)(X²/(2v) − X/2)]/v, where
+    q_D = v(v+1)/2 − e and X = 2e − v. Ingredients: the rank bound on the weights δ_i − 1 ≤ v, and distinct integer pair
+    sums on the defective directions.
+  - **SHADOW-RANK (lead re-derived).** Σ_{N2}(d+2−ψ)r ≥ (d+1)C(p,2) − w(p−1), with w = 3t − p, because Σ_{N2} ψ = 3t.
+  - **NEGATIVE-CAPS (lead re-derived).** At a negative phase, with k ≥ 150 and t < k/4: s < k/2,
+    m < k²/2 + 9k/4 + 1 − e, v ≥ k/2 − 5/4 + e/k, and (v+2)² + 3e ≥ k²/2.
+  - **GENERAL-FEW21+240 (PROVED; lead re-derived both cases; (NL) checked independently).** HC′ ≥ 0 (hence MaxCL) at
+    every phase for height-3 tiles with t ≥ 2 and k ≥ 21t + 240.
+    - Together with FEW40, the threshold is k ≥ min(40t+8, 21t+240).
+    - **H-FEW21+240**, every height: k ≥ 21B + 240 with B = Σ_{j≥3}(j−2)|C_j| ≥ 2.
+  - **SHADOW-DENSE / SHADOW-225 (PROVED; finite part independently re-implemented by the lead).** HC′ ≥ 0 at every phase
+    when t ≥ 2, p ≥ 9t/4 and k ≥ 255. Also p ≥ 11t/5 with k ≥ 6500, and p ≥ 13t/6 with k ≥ 162500.
+  - **DISJOINT-CUBICS (PROVED; certificate re-run by the lead).** HC′ ≥ 0 at every phase, in every dimension, when the
+    cubics are squarefree and pairwise share no quadratic divisor (p = 3t), t ≥ 2.
+    Corollary: Wilf for every S with a height-≤3 factorization tile of this kind.
+  - Lead checks (E274):
+    - (NL) dense grid: minimum +1.36·10⁻⁴ near x = 0.584 on x² + 3y = 1/2.
+    - SHADOW-225 finite part, re-implemented (src/scratch/gw/p8lead/p8_lead_check.py; F from its definition, exact
+      quadratic fits): minimum G = 3278015777/25852500 at (k, v, e) = (255, 150, 3282), as reported.
+    - symmetric.py, review.py, small_disjoint.py re-run: identical (585,036 domains, minimum 15355/507).
+  - **FALSE, preserved:** L ≥ mt for arbitrary height-3 cores (m = 20, P = (12,3,5,9,19), σ = 18: L = 79 < 80, S = 99);
+    the pair bound without the w(p−1) term (m = 6); f ≥ z/20 on (D) (x = 29/50, y = 409/7500).
+  - Residual height-3 family: k ≥ 5, t ≥ 2, k < min(40t+8, 21t+240), p < 3t; p < 9t/4 above k = 255. Codex's next lemma:
+    MAXMATCH-RESIDUAL, Λ_F + m·O_rest ≥ Σ_F (m − r(z)) + m(β_D − ν).
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
   failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
   flat window for A2.

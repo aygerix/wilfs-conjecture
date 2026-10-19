@@ -2861,3 +2861,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     reach.
   - Lesson: the search before LK covered arXiv and GitHub but not Preprints.org/MDPI. Add Preprints.org (and Google
     Scholar) to the standard literature check.
+
+## 2026-10-19 (night, latest+++) — codex P8 reviewed; P9 launched on Problem 1.8
+
+- **P8 accepted (PROOFS "Codex P8", E274).** New height-independent cyclic packing lemma SR: m ≥ k(k+1) + 1 − v(v−1) − 4e.
+  New all-phase infinite classes at height 3:
+  - k ≥ 21t + 240;
+  - p ≥ 9t/4 with k ≥ 255;
+  - squarefree, pair-disjoint cubics in every dimension.
+  Plus H-FEW21+240 at every height. The lead re-derived the analytic chain and re-implemented the finite part.
+- What P8 shows about the method: the moment relaxation alone cannot close height 3. The concentrated-shadow point
+  (11.1) is a negative leading-order profile. The residual needs local window or overlap payments (MAXMATCH-RESIDUAL).
+- **Decision.** Pause the height-3 line. P9 = Problem 1.8 (all generators < 2m), a published open problem.
+  - Covered: q ≤ 3, e ≤ 4, (k+1)(k+2) ≥ 2m, LK+YZ (deep), NO-WRAP, and c ≤ 4m with ≤ 18 low generators.
+  - Open: 4 ≤ q ≲ 4m/k², k < √(2m), with carries.
+  - First target: q = 4, where only 19 ≤ k < √(2m) − 1.5 with m ≥ 211 remains.

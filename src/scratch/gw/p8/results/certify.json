@@ -1,0 +1,96 @@
+{
+  "status": "EXACT ALGEBRA CERTIFICATE",
+  "parameters": [
+    {
+      "h": "72/25",
+      "gamma": "625/10368",
+      "L": "43433/268738560",
+      "high": "2190211/3240000000",
+      "mu": "217165/5804752896",
+      "cutoff": 66825,
+      "mu_decimal": 3.741158390215824e-05,
+      "checks": [
+        "linked-expansion",
+        "linked-square",
+        "leading-square",
+        "boundary-quartic",
+        "positive-cap-polynomials",
+        "error-bounds"
+      ]
+    },
+    {
+      "h": "29/10",
+      "gamma": "50/841",
+      "L": "385073/396077360",
+      "high": "928403/1051250000",
+      "mu": "1925365/8555270976",
+      "cutoff": 11109,
+      "mu_decimal": 0.00022505014807844235,
+      "checks": [
+        "linked-expansion",
+        "linked-square",
+        "leading-square",
+        "boundary-quartic",
+        "positive-cap-polynomials",
+        "error-bounds"
+      ]
+    },
+    {
+      "h": "59/20",
+      "gamma": "200/3481",
+      "L": "2837159/969388880",
+      "high": "6016523/4351250000",
+      "mu": "14185795/20938799808",
+      "cutoff": 3691,
+      "mu_decimal": 0.0006774884487209288,
+      "checks": [
+        "linked-expansion",
+        "linked-square",
+        "leading-square",
+        "boundary-quartic",
+        "positive-cap-polynomials",
+        "error-bounds"
+      ]
+    },
+    {
+      "h": "3",
+      "gamma": "1/18",
+      "L": "31/6480",
+      "high": "20897/11250000",
+      "mu": "155/139968",
+      "cutoff": 2258,
+      "mu_decimal": 0.0011073959762231368,
+      "checks": [
+        "linked-expansion",
+        "linked-square",
+        "leading-square",
+        "boundary-quartic",
+        "positive-cap-polynomials",
+        "error-bounds"
+      ]
+    }
+  ],
+  "cap_t_polynomial": {
+    "(2, 0)": "23/625",
+    "(1, 0)": "14651/2500",
+    "(0, 0)": "2309/50"
+  },
+  "cap_s_polynomial": {
+    "(2, 0)": "1/2",
+    "(1, 0)": "1177/8",
+    "(0, 0)": "43271/4"
+  },
+  "shift_error_polynomial": {
+    "(2, 0)": "1/8",
+    "(1, 0)": "135/4",
+    "(0, 0)": "17987/8"
+  },
+  "moment_grid_checks": 26160,
+  "moment_grid_minimum": {
+    "k": 150,
+    "v": 76,
+    "e": 300,
+    "h": "72/25",
+    "slack": "477580483714307/9701462016"
+  }
+}

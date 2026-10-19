@@ -1,0 +1,8 @@
+{
+  "status": "INDEPENDENT EXACT REVIEW",
+  "bernstein_intervals": 9,
+  "rational_identity_points": 50,
+  "finite_tables_checked": true,
+  "relaxed_twenty_obstruction": "-229819/261000000",
+  "P7_sidon_all_phase_HC_lower_bound": 3657269855418
+}

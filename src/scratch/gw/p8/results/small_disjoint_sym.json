@@ -1,0 +1,955 @@
+{
+  "status": "FINITE EXACT CONVEX CERTIFICATE",
+  "range": [
+    5,
+    191
+  ],
+  "symmetric_rectangle": true,
+  "intervals": 245620,
+  "negative_intervals": 0,
+  "failures": [],
+  "minimum": {
+    "k": 23,
+    "t": 2,
+    "v": 13,
+    "e": "95/3",
+    "value": "15355/507"
+  },
+  "progress": [
+    {
+      "k": 5,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 6,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 7,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 8,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 9,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 10,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 11,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 12,
+      "states": 0,
+      "failures": 0
+    },
+    {
+      "k": 13,
+      "states": 14,
+      "failures": 0
+    },
+    {
+      "k": 14,
+      "states": 29,
+      "failures": 0
+    },
+    {
+      "k": 15,
+      "states": 45,
+      "failures": 0
+    },
+    {
+      "k": 16,
+      "states": 62,
+      "failures": 0
+    },
+    {
+      "k": 17,
+      "states": 80,
+      "failures": 0
+    },
+    {
+      "k": 18,
+      "states": 99,
+      "failures": 0
+    },
+    {
+      "k": 19,
+      "states": 119,
+      "failures": 0
+    },
+    {
+      "k": 20,
+      "states": 140,
+      "failures": 0
+    },
+    {
+      "k": 21,
+      "states": 162,
+      "failures": 0
+    },
+    {
+      "k": 22,
+      "states": 208,
+      "failures": 0
+    },
+    {
+      "k": 23,
+      "states": 256,
+      "failures": 0
+    },
+    {
+      "k": 24,
+      "states": 306,
+      "failures": 0
+    },
+    {
+      "k": 25,
+      "states": 358,
+      "failures": 0
+    },
+    {
+      "k": 26,
+      "states": 412,
+      "failures": 0
+    },
+    {
+      "k": 27,
+      "states": 468,
+      "failures": 0
+    },
+    {
+      "k": 28,
+      "states": 526,
+      "failures": 0
+    },
+    {
+      "k": 29,
+      "states": 586,
+      "failures": 0
+    },
+    {
+      "k": 30,
+      "states": 648,
+      "failures": 0
+    },
+    {
+      "k": 31,
+      "states": 744,
+      "failures": 0
+    },
+    {
+      "k": 32,
+      "states": 843,
+      "failures": 0
+    },
+    {
+      "k": 33,
+      "states": 945,
+      "failures": 0
+    },
+    {
+      "k": 34,
+      "states": 1050,
+      "failures": 0
+    },
+    {
+      "k": 35,
+      "states": 1158,
+      "failures": 0
+    },
+    {
+      "k": 36,
+      "states": 1269,
+      "failures": 0
+    },
+    {
+      "k": 37,
+      "states": 1383,
+      "failures": 0
+    },
+    {
+      "k": 38,
+      "states": 1500,
+      "failures": 0
+    },
+    {
+      "k": 39,
+      "states": 1620,
+      "failures": 0
+    },
+    {
+      "k": 40,
+      "states": 1784,
+      "failures": 0
+    },
+    {
+      "k": 41,
+      "states": 1952,
+      "failures": 0
+    },
+    {
+      "k": 42,
+      "states": 2124,
+      "failures": 0
+    },
+    {
+      "k": 43,
+      "states": 2300,
+      "failures": 0
+    },
+    {
+      "k": 44,
+      "states": 2480,
+      "failures": 0
+    },
+    {
+      "k": 45,
+      "states": 2664,
+      "failures": 0
+    },
+    {
+      "k": 46,
+      "states": 2852,
+      "failures": 0
+    },
+    {
+      "k": 47,
+      "states": 3044,
+      "failures": 0
+    },
+    {
+      "k": 48,
+      "states": 3240,
+      "failures": 0
+    },
+    {
+      "k": 49,
+      "states": 3490,
+      "failures": 0
+    },
+    {
+      "k": 50,
+      "states": 3745,
+      "failures": 0
+    },
+    {
+      "k": 51,
+      "states": 4005,
+      "failures": 0
+    },
+    {
+      "k": 52,
+      "states": 4270,
+      "failures": 0
+    },
+    {
+      "k": 53,
+      "states": 4540,
+      "failures": 0
+    },
+    {
+      "k": 54,
+      "states": 4815,
+      "failures": 0
+    },
+    {
+      "k": 55,
+      "states": 5095,
+      "failures": 0
+    },
+    {
+      "k": 56,
+      "states": 5380,
+      "failures": 0
+    },
+    {
+      "k": 57,
+      "states": 5670,
+      "failures": 0
+    },
+    {
+      "k": 58,
+      "states": 6024,
+      "failures": 0
+    },
+    {
+      "k": 59,
+      "states": 6384,
+      "failures": 0
+    },
+    {
+      "k": 60,
+      "states": 6750,
+      "failures": 0
+    },
+    {
+      "k": 61,
+      "states": 7122,
+      "failures": 0
+    },
+    {
+      "k": 62,
+      "states": 7500,
+      "failures": 0
+    },
+    {
+      "k": 63,
+      "states": 7884,
+      "failures": 0
+    },
+    {
+      "k": 64,
+      "states": 8274,
+      "failures": 0
+    },
+    {
+      "k": 65,
+      "states": 8670,
+      "failures": 0
+    },
+    {
+      "k": 66,
+      "states": 9072,
+      "failures": 0
+    },
+    {
+      "k": 67,
+      "states": 9548,
+      "failures": 0
+    },
+    {
+      "k": 68,
+      "states": 10031,
+      "failures": 0
+    },
+    {
+      "k": 69,
+      "states": 10521,
+      "failures": 0
+    },
+    {
+      "k": 70,
+      "states": 11018,
+      "failures": 0
+    },
+    {
+      "k": 71,
+      "states": 11522,
+      "failures": 0
+    },
+    {
+      "k": 72,
+      "states": 12033,
+      "failures": 0
+    },
+    {
+      "k": 73,
+      "states": 12551,
+      "failures": 0
+    },
+    {
+      "k": 74,
+      "states": 13076,
+      "failures": 0
+    },
+    {
+      "k": 75,
+      "states": 13608,
+      "failures": 0
+    },
+    {
+      "k": 76,
+      "states": 14224,
+      "failures": 0
+    },
+    {
+      "k": 77,
+      "states": 14848,
+      "failures": 0
+    },
+    {
+      "k": 78,
+      "states": 15480,
+      "failures": 0
+    },
+    {
+      "k": 79,
+      "states": 16120,
+      "failures": 0
+    },
+    {
+      "k": 80,
+      "states": 16768,
+      "failures": 0
+    },
+    {
+      "k": 81,
+      "states": 17424,
+      "failures": 0
+    },
+    {
+      "k": 82,
+      "states": 18088,
+      "failures": 0
+    },
+    {
+      "k": 83,
+      "states": 18760,
+      "failures": 0
+    },
+    {
+      "k": 84,
+      "states": 19440,
+      "failures": 0
+    },
+    {
+      "k": 85,
+      "states": 20214,
+      "failures": 0
+    },
+    {
+      "k": 86,
+      "states": 20997,
+      "failures": 0
+    },
+    {
+      "k": 87,
+      "states": 21789,
+      "failures": 0
+    },
+    {
+      "k": 88,
+      "states": 22590,
+      "failures": 0
+    },
+    {
+      "k": 89,
+      "states": 23400,
+      "failures": 0
+    },
+    {
+      "k": 90,
+      "states": 24219,
+      "failures": 0
+    },
+    {
+      "k": 91,
+      "states": 25047,
+      "failures": 0
+    },
+    {
+      "k": 92,
+      "states": 25884,
+      "failures": 0
+    },
+    {
+      "k": 93,
+      "states": 26730,
+      "failures": 0
+    },
+    {
+      "k": 94,
+      "states": 27680,
+      "failures": 0
+    },
+    {
+      "k": 95,
+      "states": 28640,
+      "failures": 0
+    },
+    {
+      "k": 96,
+      "states": 29610,
+      "failures": 0
+    },
+    {
+      "k": 97,
+      "states": 30590,
+      "failures": 0
+    },
+    {
+      "k": 98,
+      "states": 31580,
+      "failures": 0
+    },
+    {
+      "k": 99,
+      "states": 32580,
+      "failures": 0
+    },
+    {
+      "k": 100,
+      "states": 33590,
+      "failures": 0
+    },
+    {
+      "k": 101,
+      "states": 34610,
+      "failures": 0
+    },
+    {
+      "k": 102,
+      "states": 35640,
+      "failures": 0
+    },
+    {
+      "k": 103,
+      "states": 36784,
+      "failures": 0
+    },
+    {
+      "k": 104,
+      "states": 37939,
+      "failures": 0
+    },
+    {
+      "k": 105,
+      "states": 39105,
+      "failures": 0
+    },
+    {
+      "k": 106,
+      "states": 40282,
+      "failures": 0
+    },
+    {
+      "k": 107,
+      "states": 41470,
+      "failures": 0
+    },
+    {
+      "k": 108,
+      "states": 42669,
+      "failures": 0
+    },
+    {
+      "k": 109,
+      "states": 43879,
+      "failures": 0
+    },
+    {
+      "k": 110,
+      "states": 45100,
+      "failures": 0
+    },
+    {
+      "k": 111,
+      "states": 46332,
+      "failures": 0
+    },
+    {
+      "k": 112,
+      "states": 47688,
+      "failures": 0
+    },
+    {
+      "k": 113,
+      "states": 49056,
+      "failures": 0
+    },
+    {
+      "k": 114,
+      "states": 50436,
+      "failures": 0
+    },
+    {
+      "k": 115,
+      "states": 51828,
+      "failures": 0
+    },
+    {
+      "k": 116,
+      "states": 53232,
+      "failures": 0
+    },
+    {
+      "k": 117,
+      "states": 54648,
+      "failures": 0
+    },
+    {
+      "k": 118,
+      "states": 56076,
+      "failures": 0
+    },
+    {
+      "k": 119,
+      "states": 57516,
+      "failures": 0
+    },
+    {
+      "k": 120,
+      "states": 58968,
+      "failures": 0
+    },
+    {
+      "k": 121,
+      "states": 60554,
+      "failures": 0
+    },
+    {
+      "k": 122,
+      "states": 62153,
+      "failures": 0
+    },
+    {
+      "k": 123,
+      "states": 63765,
+      "failures": 0
+    },
+    {
+      "k": 124,
+      "states": 65390,
+      "failures": 0
+    },
+    {
+      "k": 125,
+      "states": 67028,
+      "failures": 0
+    },
+    {
+      "k": 126,
+      "states": 68679,
+      "failures": 0
+    },
+    {
+      "k": 127,
+      "states": 70343,
+      "failures": 0
+    },
+    {
+      "k": 128,
+      "states": 72020,
+      "failures": 0
+    },
+    {
+      "k": 129,
+      "states": 73710,
+      "failures": 0
+    },
+    {
+      "k": 130,
+      "states": 75544,
+      "failures": 0
+    },
+    {
+      "k": 131,
+      "states": 77392,
+      "failures": 0
+    },
+    {
+      "k": 132,
+      "states": 79254,
+      "failures": 0
+    },
+    {
+      "k": 133,
+      "states": 81130,
+      "failures": 0
+    },
+    {
+      "k": 134,
+      "states": 83020,
+      "failures": 0
+    },
+    {
+      "k": 135,
+      "states": 84924,
+      "failures": 0
+    },
+    {
+      "k": 136,
+      "states": 86842,
+      "failures": 0
+    },
+    {
+      "k": 137,
+      "states": 88774,
+      "failures": 0
+    },
+    {
+      "k": 138,
+      "states": 90720,
+      "failures": 0
+    },
+    {
+      "k": 139,
+      "states": 92820,
+      "failures": 0
+    },
+    {
+      "k": 140,
+      "states": 94935,
+      "failures": 0
+    },
+    {
+      "k": 141,
+      "states": 97065,
+      "failures": 0
+    },
+    {
+      "k": 142,
+      "states": 99210,
+      "failures": 0
+    },
+    {
+      "k": 143,
+      "states": 101370,
+      "failures": 0
+    },
+    {
+      "k": 144,
+      "states": 103545,
+      "failures": 0
+    },
+    {
+      "k": 145,
+      "states": 105735,
+      "failures": 0
+    },
+    {
+      "k": 146,
+      "states": 107940,
+      "failures": 0
+    },
+    {
+      "k": 147,
+      "states": 110160,
+      "failures": 0
+    },
+    {
+      "k": 148,
+      "states": 112544,
+      "failures": 0
+    },
+    {
+      "k": 149,
+      "states": 114944,
+      "failures": 0
+    },
+    {
+      "k": 150,
+      "states": 117360,
+      "failures": 0
+    },
+    {
+      "k": 151,
+      "states": 119792,
+      "failures": 0
+    },
+    {
+      "k": 152,
+      "states": 122240,
+      "failures": 0
+    },
+    {
+      "k": 153,
+      "states": 124704,
+      "failures": 0
+    },
+    {
+      "k": 154,
+      "states": 127184,
+      "failures": 0
+    },
+    {
+      "k": 155,
+      "states": 129680,
+      "failures": 0
+    },
+    {
+      "k": 156,
+      "states": 132192,
+      "failures": 0
+    },
+    {
+      "k": 157,
+      "states": 134878,
+      "failures": 0
+    },
+    {
+      "k": 158,
+      "states": 137581,
+      "failures": 0
+    },
+    {
+      "k": 159,
+      "states": 140301,
+      "failures": 0
+    },
+    {
+      "k": 160,
+      "states": 143038,
+      "failures": 0
+    },
+    {
+      "k": 161,
+      "states": 145792,
+      "failures": 0
+    },
+    {
+      "k": 162,
+      "states": 148563,
+      "failures": 0
+    },
+    {
+      "k": 163,
+      "states": 151351,
+      "failures": 0
+    },
+    {
+      "k": 164,
+      "states": 154156,
+      "failures": 0
+    },
+    {
+      "k": 165,
+      "states": 156978,
+      "failures": 0
+    },
+    {
+      "k": 166,
+      "states": 159984,
+      "failures": 0
+    },
+    {
+      "k": 167,
+      "states": 163008,
+      "failures": 0
+    },
+    {
+      "k": 168,
+      "states": 166050,
+      "failures": 0
+    },
+    {
+      "k": 169,
+      "states": 169110,
+      "failures": 0
+    },
+    {
+      "k": 170,
+      "states": 172188,
+      "failures": 0
+    },
+    {
+      "k": 171,
+      "states": 175284,
+      "failures": 0
+    },
+    {
+      "k": 172,
+      "states": 178398,
+      "failures": 0
+    },
+    {
+      "k": 173,
+      "states": 181530,
+      "failures": 0
+    },
+    {
+      "k": 174,
+      "states": 184680,
+      "failures": 0
+    },
+    {
+      "k": 175,
+      "states": 188024,
+      "failures": 0
+    },
+    {
+      "k": 176,
+      "states": 191387,
+      "failures": 0
+    },
+    {
+      "k": 177,
+      "states": 194769,
+      "failures": 0
+    },
+    {
+      "k": 178,
+      "states": 198170,
+      "failures": 0
+    },
+    {
+      "k": 179,
+      "states": 201590,
+      "failures": 0
+    },
+    {
+      "k": 180,
+      "states": 205029,
+      "failures": 0
+    },
+    {
+      "k": 181,
+      "states": 208487,
+      "failures": 0
+    },
+    {
+      "k": 182,
+      "states": 211964,
+      "failures": 0
+    },
+    {
+      "k": 183,
+      "states": 215460,
+      "failures": 0
+    },
+    {
+      "k": 184,
+      "states": 219160,
+      "failures": 0
+    },
+    {
+      "k": 185,
+      "states": 222880,
+      "failures": 0
+    },
+    {
+      "k": 186,
+      "states": 226620,
+      "failures": 0
+    },
+    {
+      "k": 187,
+      "states": 230380,
+      "failures": 0
+    },
+    {
+      "k": 188,
+      "states": 234160,
+      "failures": 0
+    },
+    {
+      "k": 189,
+      "states": 237960,
+      "failures": 0
+    },
+    {
+      "k": 190,
+      "states": 241780,
+      "failures": 0
+    },
+    {
+      "k": 191,
+      "states": 245620,
+      "failures": 0
+    }
+  ]
+}
