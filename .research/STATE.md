@@ -76,10 +76,9 @@
 - DS structure (NOTEBOOK night 17 late): DS cells sit over the floor; outside the quadrant corner there are ≤ 8 per direction.
 - FW, FWx, FWy are proved as inequalities, for any e (parked).
 
-- **GW-27 (2026-10-19): Wilf for every S whose Apéry set is quadratic (each element 0, a generator or a sum of two
-  generators), at every depth.** Hence Wilf whenever 3n_1 > c + m, without Spirito's conditions. Also holds in down-set
-  form (residue-complete, degree ≤ 2) and with Ap(S, n) for any minimal generator n. Paper proof in PROOFS; every step
-  checked on 62M semigroups (E219). Lean: queued.
+- Wilf for every S whose Apéry set is quadratic (Ap ⊆ {0} ∪ P ∪ (P+P)), at every depth: Flat-MaxCL (2026-10-17, LEAN
+  `wilf_of_apery_height_le_two`). GW-27 (2026-10-19) is a second proof in Kunz coordinates, not a new result. Hence Wilf
+  whenever 3n_1 > c + m, without Spirito's conditions.
 - GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. P5b reports a one-low-unit extension
   (2n_2 ≥ c − m); not yet verified by the lead.
 
@@ -170,5 +169,6 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
     - WQ (units + window (μ, 2μ] pay all deficits) holds for all e ≥ 4, genus ≤ 30, but is FALSE in general. It fails
       for cubic and higher D at μ ≈ m − 1 or μ ≈ 1, where pairs with λ ≥ 1 pay. Next: the cubic case (Wilf for
       4n_1 > c + m) with window + lower-cover payments.
-(c) Lean, queued after P5b (one agent at a time): GW-27 first (elementary, self-contained, down-set form), then GW-19/GW-25.
+(c) Lean, queued after P5b (one agent at a time): GW-19/GW-25 (GW-27 needs no Lean work: its semigroup form is already
+    `wilf_of_apery_height_le_two`).
 (d) Background: gfan re-check of E153 (m = 38–39); codex HT4 subclass claims are unverified.

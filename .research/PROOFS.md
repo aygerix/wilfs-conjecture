@@ -1368,6 +1368,13 @@ L = min_A t_a, δ = max(0, h − 2L), K = q₃ + b + c + e + s₄ + t₄.
 
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
+CORRECTION (2026-10-19, same day): this is NOT a new result of this project. It is the corollary of Flat-MaxCL
+(PROOFS "Flat-MaxCL", proved 2026-10-17), already kernel-checked as `wilf_of_apery_height_le_two`
+(lean/Wilf/MaxCL.lean). GW-27 is an independent second proof in Kunz coordinates (identity GW-27a), using the same
+mechanism: wrapped cells sit at distinct positions of the top window. Additions over the 2026-10-17 entry:
+- the explicit corollary 3n_1 > c + m ⇒ Wilf;
+- the remark that Ap(S, n) may be taken for any minimal generator n;
+- the cell identity G-ID for every degree (NOTEBOOK 2026-10-19 midday).
 Down-set form. Let D ⊂ ℕ^d be a finite down-set with weights n_a > 0 and values v(x) = Σ x_a n_a. Assume D is
 residue complete mod m (v is a bijection D → ℤ/m) and every cell has total degree ≤ 2. Put M = max v,
 λ(x) = ⌊(M − v(x))/m⌋, κ(x) = ⌊v(x)/m⌋, ℓ = Σ λ, g = Σ κ. Then dℓ ≥ g.
@@ -1406,8 +1413,9 @@ Proof of GW-27. Let U = #deficient cells. Each residue class holds exactly one c
 - Case 2μ ≥ m. The m − 1 − μ residues in (μ, m) hold all D_hi high units and m − 1 − μ − D_hi pairs with c_x ≥ 1.
   Deficient cells lie in [2μ + 2 − m, μ], a set of m − 1 − μ residues. Hence W ≥ F + D_hi + (m − 1 − μ − D_hi) − U
   ≥ F ≥ 0. □
-- Minimality of the generators is not used. The mechanism is new to this record: carries are paid by residue
-  occupancy of the window (μ, 2μ] just above the top residue μ = M mod m. Lean: queued.
+- Minimality of the generators is not used. The mechanism is that of Flat-MaxCL: carries are paid by residue occupancy
+  of the window (μ, 2μ] just above the top residue μ = M mod m. Lean: already done for the semigroup form
+  (`wilf_of_apery_height_le_two`).
 
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
@@ -1645,7 +1653,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
   - whenever LOW+ holds (GW-26b).
   Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete
-  down-sets: GW-27. Open: the primary regime for a ≥ 7 with a low unit
+  down-sets: Flat-MaxCL (2026-10-17, LEAN) and GW-27 (second proof). Open: the primary regime for a ≥ 7 with a low unit
   violating LOW+, and 5m ≤ M ≤ 6m − 4. The primary
   regime is Wilf for 3m < c ≤ 4m, which is OPEN in the literature (LITERATURE item 22).
   - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1

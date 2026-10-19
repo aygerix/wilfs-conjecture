@@ -2025,6 +2025,10 @@ asserted on every test.
     arcs, which see positions inside bands. This should be tried as the K-uniform mechanism.
 
 ## 2026-10-19 (midday) — Wilf for quadratic Apéry sets at every depth (GW-27); a general cell identity
+CORRECTION (same day): GW-27 re-proves the Flat-MaxCL corollary of 2026-10-17 (night 10), which is already LEAN-checked
+(`wilf_of_apery_height_le_two`). It is not a new theorem of the project. The height-3 obstruction found below
+(every cubic split uses a unit, so no pointwise load bound) was also recorded on 2026-10-17 ("Height-3 natural scheme —
+CORRECTION"). New here: the G-ID cell identity for all degrees, the location data of E220, and the refutation of WQ.
 
 - **GW-27 (proved, checked on 62M semigroups).** If every Apéry element is 0, a generator or a sum of two
   generators, Wilf holds. Corollary: Wilf whenever 3n_1 > c + m, with no condition on e or m. This removes Spirito's
