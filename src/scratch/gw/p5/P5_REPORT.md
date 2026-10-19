@@ -1440,3 +1440,1006 @@ still available: PACK-A succeeds in the near-full pure-A phase,
 but its current coefficient loses a factor of a as the missing
 cubic family grows. No assertion is made that all packing
 approaches or all proof routes have been exhausted.
+
+## 20. Multi-low continuation: the two-low theorem (2026-10-19)
+
+Sections 1–19 are retained. The lead has independently verified the
+one-low theorem and recorded it as GW-26c. The new theorem of this
+continuation is the following; its proof uses residue injectivity in
+addition to arc occupancy.
+
+**Theorem T2.2 (two low directions).** In the exact P4 primary setting,
+if at most two A directions satisfy `2t<h`, then `W>=0`.
+There is no restriction on b,c,e. In particular, if
+
+```
+S=<m,n1,n2,n3,...>,  m<n1<n2<n3<...,
+3m<c_S<=4m,  2n3>=c_S-m,
+```
+
+then Wilf's conjecture holds. If fewer than three non-m minimal
+generators exist, the condition is vacuous and GW-24 applies.
+
+The cases with no low direction, one low direction, or a<=6 were
+already proved. It remains to prove the theorem for a>=7 and exactly
+two low directions. The proof below is analytic for every a and all
+outside-direction counts. No finite-instance check is used as a
+proof step.
+
+Write x,y for the two low directions, with offsets L<=L_y, and put
+
+```
+p=a-2, theta=ceil(3h/2), delta=h-2L>0,
+q=q2+q3, r_A=Q-q, D3=(a+2)q-3(u3+u4),
+LC=(a+1)(q2+u3)-4k,
+P=(a-1)+LC+2q2+k-2J_A.
+```
+
+Here J_A uses the fixed arc of section 13. Further local counts are:
+
+```
+n0 = number of present pairs on x,y;              0<=n0<=3;
+l_x,l_y = numbers of I2 low--high A pairs;
+l=l_x+l_y, so q2=n0+l and 0<=l_x,l_y<=p;
+u0 = number of I3 cubics supported on x,y;
+u1 = number of I3 cubics with two low factors and one high factor;
+k0 = number of quartics supported on x,y;
+k1 = number of quartics with three low factors and one high factor.
+```
+
+All quartics have tau<h, so no quartic contains two high factors.
+Likewise no I3 cubic contains two high factors. Consequently
+`u3=u0+u1` and `k=k0+k1`.
+
+## 21. The local two-low payment and the Macaulay gap
+
+The two-variable shadow inequalities are
+
+```
+4k0<=5u0,             3k1<=4u1.                       (2L-SH)
+```
+
+For the second, fix the high direction and apply the degree-two to
+degree-three shadow inequality to its link on x,y, then sum. These
+are ordinary shadows of present cells and require no full-face
+assumption.
+
+A pure-A intruder is one of the following:
+
+- a low unit, a low--low pair, a pure-low cubic, or a pure-low quartic;
+- a cubic with two low factors and one high factor;
+- a cubic with one low factor and two high factors.
+
+High units miss the low part of the fixed arc. A quartic containing
+a high factor also misses it, since the upper endpoint of the low
+part is at most ceil(h/2). Pure-high cubics miss both parts.
+
+There are at most 2 low units, n0 low pairs, 4 pure-low cubics and k0
+pure-low quartics. Of the at most `p*n0` two-low--one-high cubics,
+the u1 I3 cubics miss the arc. For a one-low--two-high cubic to
+intrude, both its low--high pair divisors must be in I2: its raw tau
+is below theta, whereas each high offset is at least ceil(h/2).
+The number of these cubics is therefore at most
+`C(l_x+1,2)+C(l_y+1,2)`. Thus
+
+```
+J_A <= 6+(p+1)n0+k0-u1
+       +C(l_x+1,2)+C(l_y+1,2).                        (2L-COUNT)
+```
+
+On substituting into P and using (2L-SH), for a>=7 we obtain
+
+```
+P >= a-13+(5-a)n0
+     +l_x(a+2-l_x)+l_y(a+2-l_y) >= 2-2a.             (2L-ROUGH)
+```
+
+Indeed the discarded terms are
+`(a+1)u0-5k0 >= (a-21/4)u0` and
+`(a+3)u1-3k1 >= (a-1)u1`. The minimum in n0 is at n0=3.
+Also, if l>=2, the two star terms sum to at least 2a: if one star
+has size at least 2, use
+`s(a+2-s)>=2a` for `2<=s<=a-2`; otherwise both have size 1.
+Consequently
+
+```
+l>=2  ==>  P>=2.                                    (2L-STARS)
+```
+
+The following gap is the reason a missing A pair pays the entire
+rough loss.
+
+**Macaulay gap.** If a>=4 and `2<=q<Q=C(a+1,2)`, then
+
+```
+(a+2)q-3q^{<2>} >= 2a-2.                            (MG2)
+```
+
+Proof. Write `q=C(j+1,2)+s`, `0<=s<=j`, `1<=j<=a-1`.
+On this block, the left side is the concave quadratic
+
+```
+f_j(s)=(a-j)C(j+1,2)+(a+2)s-3s(s+1)/2.
+```
+
+It is enough to check its endpoints. The endpoint s=j is verified
+by the exact factorization
+
+```
+f_j(j)-(2a-2)=(j-1)(a-1-j)(j+4)/2 >=0.
+```
+
+At s=0, j=1 is excluded because q>=2. For j=2 use
+`3(a-2)>=2a-2`. For j>=3 use `j(a-j)>=a-1` and j+1>=4.
+This proves MG2. By Macaulay, `u3+u4<=q^{<2>}`, hence
+
+```
+r_A>0, q>=2  ==> D3>=2a-2, P+D3>=0.                 (2L-MISS)
+```
+
+If q<=1, then u3+u4<=1, and
+`W_A=3a(a+1)+(a-3)q-4(u3+u4)+LC>=0` for a>=7.
+Here LC>=0 by the existing LC lemma. We may therefore assume
+q>=2 whenever we assume W_A<0.
+
+## 22. The full-quadratic case: two complementary arcs and Sidon packing
+
+It remains to consider r_A=0 and l<=1. Now n0=3 and `D3=3t_A`.
+Set
+
+```
+H0=h-L,       R=#{high A directions with t<theta-2L}.
+```
+
+We will prove the two independent bounds
+
+```
+P+D3 >= 4a-4+(a+1)l-6R;                             (2L-FIX)
+P_H >= delta-(2a-2)-(3a-5)l,                         (2L-HIGHARC)
+P_H=(a-1)+LC+2q2+k+delta-2J_{H0,A}.
+```
+
+The arc for H0 is the corrected arc `Y_H` in section 13, with
+endpoint h+H0. Since `h-2H0=-delta`, P_H is exactly its pure-A
+payment expression.
+
+For 2L-FIX, let q_c be the number of the three low pairs in the
+low part of the fixed arc, c0 the number of present pure-low
+cubics, and t0=4-c0. A cold pair has tau<ceil(h/2); each of its
+extensions by x or y has tau<h. The union of these extensions
+contains at least q_c+1 distinct cubics if q_c>0. Therefore
+
+```
+u0+t0>=q_c+1   (q_c>0).
+```
+
+For u0=0,1,2,3,4, the largest possible k0 is respectively
+0,1,2,3,5. At a=7 the corresponding lower bounds for
+`(a+1)u0-5k0` are 0,3,6,9,7; they increase with a. The preceding
+extension inequality, or this five-entry table directly, proves
+
+```
+(a+1)u0-5k0+3t0 >= 2q_c.                            (COLD2)
+```
+
+Every intruding two-low--one-high cubic uses a high direction
+counted by R. The u1 I3 cubics also use such directions and miss
+the arc. As l<=1, there are at most l one-low--two-high intruders.
+Thus the more precise count is
+
+```
+J_A<=2+q_c+4+k0+3R-u1+l.
+```
+
+Substitute this count into P, use COLD2 with `D3>=3t0`, and
+discard `(a+3)u1-3k1>=0`. This is 2L-FIX.
+
+For 2L-HIGHARC, call a high A direction exceptional if t<H0.
+Since every A pair is present, such a direction makes an I2 pair
+with x. Hence there are at most l exceptional high directions.
+An intruder with one low and two nonexceptional high factors is
+impossible, because `L+H0=h`. A cubic supported only on high
+directions and containing a nonexceptional direction is also
+impossible: the other two high offsets sum to at least h.
+There are at most 2p one-low--two-high candidates if l=1, and at
+most one pure-high cubic. There are at most l exceptional high
+units and l low--high I2 pairs. Counting all quartics, whether or
+not they intrude, gives
+
+```
+J_{H0,A} <= 9+3p+(2p+3)l+k.                          (2L-HCOUNT)
+```
+
+Here the 9 counts 2 low units, 3 low pairs and 4 pure-low
+cubics. Substitution yields 2L-HIGHARC after discarding
+`(a+1)u0-5k0>=0` and `(a+1)u1-5k1>=0` by 2L-SH.
+Notice that I3 mixed cubics can be cold in this wider arc; they
+were **not** subtracted in 2L-HCOUNT.
+
+We now use residue injectivity beyond arc occupancy. Apart from
+at most l exceptions, the R high offsets lie in the integer window
+
+```
+[h-L,theta-2L),  of length w=ceil(delta/2).
+```
+
+Let n=max(0,R-l). All the pairs on these n directions are present.
+Their residues are distinct. In particular their ordinary pair
+sums are distinct. Therefore their C(n,2) positive differences are
+distinct integers in `[1,w-1]`: equality of two distinct positive
+differences would give two equal pair sums, including the possible
+diagonal-pair case. Consequently
+
+```
+n(n-1)<=2w-2<=delta-1.                               (SIDON2)
+```
+
+**Arc alternative.** For a>=7, r_A=0 and l<=1,
+
+```
+P+D3>=0  or  P_H>=0.                                (ALT2)
+```
+
+For l=0, failure of both would give
+`R>2(a-1)/3` and `delta<2a-2`. But
+
+```
+[2(a-1)/3][2(a-1)/3-1]-(2a-3)
+ =(4a^2-32a+37)/9
+ =(4(a-7)^2+24(a-7)+9)/9 >0.
+```
+
+This contradicts SIDON2. For l=1 and a=7,8,9, 2L-FIX is at least
+9-a since R<=a-2. For a=10, its failure forces R=8; SIDON2 then
+gives delta>=43, exactly the high-arc threshold 5a-7. Finally, if
+a>=11 and both fail, `n=R-1>(5a-9)/6`. Hence
+
+```
+n(n-1)>[(5a-9)(5a-15)]/36 >=5a-8,
+```
+
+where the last difference, times 36, is
+
+```
+25a^2-300a+423
+ =25(a-11)^2+250(a-11)+148 >0.
+```
+
+Again this contradicts `n(n-1)<=delta-1<5a-8`.
+This proves ALT2 with symbolic verification of every unbounded
+parameter range and explicit checks of a=7,8,9,10.
+
+## 23. Paying for B,C,E and completing T2.2
+
+The only nonpure intruders in the fixed arc are a low A times B,
+a low A times C, and a low--low pair times B. Thus
+
+```
+J-J_A <= b(2+n0)+2c.                                (OUT2)
+```
+
+Let beta be the number of present low pairs with
+`tau<theta-h=ceil(h/2)`. An intruding AAB cell must use one of
+these pairs, giving the useful refinement
+
+```
+J-J_A <= b(2+beta)+2c.                              (OUT2b)
+```
+
+For r_A=0, l<=1, the H0 arc has the bounds
+
+```
+J_H-J_{H,A} <= b(2+l+q2)+c(2+l).                    (HOUT2)
+```
+
+Indeed AB and AC intruders must use a low or exceptional A
+direction. An AAB intruder has AA tau<H0<h, hence uses an I2
+pair; there are at most bq2 such cells. ABB and the remaining
+mixed types miss the arc by their tau lower bounds.
+
+For clarity use the weaker, valid version of I-LOW that retains
+only D3 from Cdef. Define
+
+```
+A2=(a-1)(b+1)+G+LC+b u3+(c+e)(2q2+u3)+D3.
+```
+
+It is sufficient that, for one of our arcs,
+
+```
+A2+(b+2)q2+k-eta>=0.                               (PAY2)
+```
+
+With the fixed arc eta=2J, OUT2 makes its left side at least
+
+```
+P+D3 + b[a-1+q2+u3-2(2+n0)]
+     +G+(c+e)(2q2+u3)-4c.                          (PAY2-F)
+```
+
+The C/E part is nonnegative whenever q>=2. For c>0 its c
+contribution is at least `c[2+q+q2+u3]>=4c`; the e part is
+nonnegative. If a>=8, the b coefficient is at least a-8>=0.
+Thus 2L-MISS or 2L-STARS completes every case with r_A>0 or l>=2.
+
+Suppose r_A=0,l=0. The same outside bound holds for the H0 arc,
+because q2=3 and HOUT2 is 5b+2c, equal to OUT2. Its pure payment
+is P_H, with the extra nonnegative D3 available. ALT2 therefore
+completes this case for a>=8.
+
+Suppose r_A=0,l=1. If b>=1, the fixed-arc bound is enough even
+without ALT2: 2L-FIX is at least 9-a and the b coefficient in
+PAY2-F is at least a-7. Their sum is at least 2 for a>=7. If b=0,
+use ALT2. For the wider arc HOUT2 costs 6c, whereas the C part
+of `G+(c+e)(2q2+u3)` is at least 10c since q2=4. This pays
+the wider-arc outside cost. This completes all a>=8 cases and
+also all a=7 cases except a small boundary considered next.
+
+At a=7 the b coefficient of PAY2-F can be negative only when
+
+```
+n0=q2=3,  l=u3=0.                                   (B7)
+```
+
+Then k=0 and LC=24. Assuming W_A<0, Macaulay forces r_A<=1.
+To see this, `q^{<2>}-q` is nondecreasing (each successive
+Macaulay-growth increment is at least 1), and at q=26 it is
+`71-26=45`. If q<=26, then
+
+```
+W_A=192+4q-4(u3+u4)>=192-4*45=12,
+```
+
+a contradiction.
+
+If beta=3, then `4L_y<h`. Any high A direction with `3t<2h`
+therefore makes a formal I2 pair with x. Because l=0, that pair
+is absent. There are at most r_A such high directions. HIGH from
+section 15 thus has p>=5-r_A. At r_A=0 its lower bound is at
+least `24+C(7,3)-C(8,3)=3`. At r_A=1 use MG2, D3>=12;
+the lower bound is at least
+`24+C(6,3)-C(8,3)+5+12=5`. The nonnegative T is available
+in both cases. Thus beta=3 is complete, for every b,c,e.
+
+If beta<=2, OUT2b makes the b contribution at least b. At
+r_A=1 the fixed pure payment is nonnegative by 2L-MISS. At
+r_A=0, 2L-FIX is `P+D3>=24-6R`. If R<=4 it is
+nonnegative. If R=5, SIDON2 gives delta>=21, so
+`P_H>=delta-12>=9`. For b>=6, use the fixed arc and its lower
+bound `-6+b>=0`. For b<=5, use the wider arc; its b cost in
+B7 is at worst -b, leaving at least `9-b>=4`.
+The C/E payments already proved apply. This completes B7 and
+therefore the proof of T2.2.
+
+For the semigroup translation, h=c_S-3m and t_i=n_i-m. A
+direction is low precisely when `2n_i<c_S-m`. B,C,E directions
+cannot be low. Thus at most two low directions is exactly
+`2n3>=c_S-m`, with the convention in section 20.
+
+## 24. General low population: a local-payment criterion and a three-low theorem
+
+The counting part extends to any alpha. This is useful even though
+the final two-low Sidon alternative has not yet been extended to
+all alpha.
+
+Let p=a-alpha, n0 be the number of present low--low pairs, and l_i
+the number of I2 pairs between low direction i and the high
+directions. Let c0 count all present pure-low cubics, u0 their I3
+subfamily, and u1 the I3 cubics with two low and one high factor.
+Let k0,k1 count quartics with respectively zero and one high
+factor. Then
+
+```
+q2=n0+sum_i l_i,  u3=u0+u1,  k=k0+k1.
+```
+
+The same range proof as in section 21 gives, without any full-face
+assumption,
+
+```
+J_A <= alpha+n0+c0+k0+p*n0-u1+sum_i C(l_i+1,2),
+J-J_A <= b(alpha+n0)+alpha*c.                        (GEN-COUNT)
+```
+
+Every I3 mixed pure-A cubic has two low factors and one high
+factor, so the u1 subtraction is valid for the fixed arc. A
+quartic containing a high direction misses the fixed arc. A hot
+one-low--two-high cubic forces both low--high pair divisors into
+I2, as before.
+
+**General local criterion (GLOC).** Put
+
+```
+Phi = D3+(a-1)-2alpha-2c0+(2alpha+1-a)n0
+      +sum_i l_i(a+2-l_i)
+      +(a+1)u0-5k0+(a+3)u1-3k1
+      +b[a-1+q2+u3-2alpha-2n0]
+      +G+(c+e)(2q2+u3)-2alpha*c.
+```
+
+For a>=3 in the P4 primary setting, `Phi>=0` implies `W>=0`.
+This assertion is uniform in a,alpha,b,c,e. Proof: substitute
+GEN-COUNT into the sufficient I-LOW payment
+`A2+(b+2)q2+k-2J>=0`. Its lower bound is exactly Phi, by
+coefficient comparison. No further bound on the low face is used.
+
+For a simpler scalar version, let
+`Q_alpha=C(alpha+1,2)` and `U_alpha=C(alpha+2,3)`. The shadows are
+
+```
+4k0<=(alpha+3)u0,      3k1<=(alpha+2)u1.
+```
+
+If `a>=2alpha+1` and alpha>=3, their terms in Phi are
+nonnegative. Discarding the star terms, using n0<=Q_alpha and
+c0<=U_alpha gives
+
+```
+P >= -M_alpha,
+M_alpha=(a-2alpha-1)Q_alpha+2alpha+2U_alpha-a+1
+       =(Q_alpha-1)a+2alpha+1
+         -alpha(alpha+1)(4alpha-1)/6.                 (GEN-ROUGH)
+```
+
+Here `P=(a-1)+LC+2q2+k-2J_A` as in section 20. For example
+`M_2=2a-2`, `M_3=5a-15`, `M_4=9a-41`. The alpha=2 statement
+holds for a>=7 by its separately checked shadow signs.
+The exact Phi, rather than this scalar relaxation, is retained
+in the final frontier.
+
+There is an unconditional additional exclusion for three lows.
+
+**Theorem T2.3-M (three lows with at least three missing A pairs).**
+In the primary setting, suppose alpha=3, a>=13 and r_A>=3.
+Then `W>=0`, with no restrictions on b,c,e.
+
+We need the following explicit Macaulay gap:
+
+```
+a>=13, 6<=q<=Q-3
+  ==> (a+2)q-3q^{<2>} >=6a-18.                       (MG6)
+```
+
+To prove it, use the same concave blocks f_j(s) as in MG2. The
+lower endpoints `(a-j)j(j+1)/2` for 3<=j<=a-1 have their minimum
+at an endpoint: their derivative is a quadratic with negative
+leading coefficient and one positive root, so the cubic first
+increases and then decreases on j>=0. The two endpoint values
+are `6a-18` and `a(a-1)/2`; the latter differs from 6a-18 by
+`(a-4)(a-9)/2>=0`.
+
+The upper endpoints f_j(j), for 3<=j<=a-2, have the same
+increase-then-decrease property: their derivative is
+`[-3j^2+2(a-4)j+3a+1]/2`, again with exactly one positive root.
+Their endpoint values are
+
+```
+f_3(3)=9a-30,
+f_{a-2}(a-2)=(a^2+3a-10)/2.
+```
+
+These exceed 6a-18 by respectively `3a-12` and
+`[(a-4)(a-5)+6]/2`. In the last, truncated block j=a-1,
+the top endpoint s=a-3 corresponds to q=Q-3 and equals
+`6a-15`. Concavity now proves MG6 on every block.
+
+For T2.3-M assume W_A<0, since otherwise transfer finishes.
+Then q>=6: for q<=5, Macaulay gives u3+u4<=7, and
+`W_A>=3a(a+1)-28>=0`. Thus MG6 applies and D3>=6a-18.
+GEN-ROUGH with alpha=3 gives `P>=15-5a`, hence
+
+```
+P+D3>=a-3.
+```
+
+The fixed-arc b payment has coefficient
+`a-1+q2+u3-6-2n0>=a-7-n0>=a-13>=0`.
+The C part of `G+(c+e)(2q2+u3)` is at least
+`c[2+q+q2+u3]>=8c`, paying the outside cost 6c; the E part is
+nonnegative. Therefore the fixed-arc I-LOW payment is
+nonnegative, proving T2.3-M.
+
+## 25. The strongest exact HARC and a short-residue supplement for all h
+
+**End-arc lemma (END).** For a residue-injective D, the exact loss
+
+```
+eta_H=h-2H+2J_H
+```
+
+is nonincreasing as integer H runs from ceil(h/2) to h-1.
+Indeed `Y_{H+1}\Y_H` contains at most one residue. Thus
+`J_{H+1}-J_H` is either 0 or 1, and
+`eta_{H+1}-eta_H=-2+2(J_{H+1}-J_H)<=0`. The possible omitted
+zero residue only makes the difference smaller.
+
+Consequently, when h>=2, the exact best upper-core arc is always
+H=h-1, and I-LOW is valid with
+
+```
+eta_end=min(3delta, 2-h+2J_{h-1}).                    (END-ETA)
+```
+
+This dominates the fixed arc and all actual-unit thresholds in
+section 13. The smaller threshold H0=h-L remains useful for
+*analytic upper bounds* on intruders, as in T2.2; END concerns
+their exact counts. In particular, the cardinality-correct full
+simplex relaxations of section 17, which are not residue
+injective, cannot be used to invalidate END.
+
+There is also a uniform version of ASR-small. Put
+
+```
+sigma=max(0,2h-m),
+X_SR=#{cells among 0, A units, q2, u3, k with tau>=sigma}.
+```
+
+All the named cells have tau<h. The short-residue interval
+`[2h,m+h) mod m` contains, among residues in `[0,h)`, exactly
+`[sigma,h)`. This is immediate by separating h<=m/2 from
+h>m/2. The new cells have disjoint types from SR's five families
+and from H3. Residue injectivity therefore gives
+
+```
+rho >= t3+I+v3+w+z+H3+X_SR.                         (ASR-ALL)
+W >= W_A+T+H3+X_SR;                                 (HOT-ALL)
+W >= LC+C(p_hi+2,3)-F+5r_A+D3+T+X_SR.               (HIGH-ALL)
+```
+
+Here `p_hi=#{A directions with 3t>=2h}`, to distinguish it from
+the high population p=a-alpha used in sections 20–24. HOT-ALL
+follows by retaining these extra occupants in the short-residue
+slack in the transfer identity. The proof of HIGH in section 15
+then gives HIGH-ALL without further loss. When h<=m/2,
+`X_SR=1+a+q2+u3+k`; this recovers ASR-small exactly. When
+h>m/2, it is the requested analogue, counting the actual A-face
+cells above the cutoff 2h-m. No X_SR term is asserted for I-LOW,
+whose arc endpoint can have zero short-residue multiplier.
+
+## 26. Three lows: a near-full-face certificate and bounded a
+
+The two-low packing argument has a quantitative extension when
+only a few A pairs are missing. We first record the exact loss
+in the Sidon estimate.
+
+**Partial Sidon lemma.** Suppose n distinct integer offsets lie
+in an interval of length w. Among their formal unordered pairs,
+including loops, suppose at most r are absent, and the present
+pairs have distinct residues modulo m. Then
+
+```
+n(n-1) <= 2w-2+2r(r+1).                             (PSID)
+```
+
+Proof. In any group of equal *ordinary* pair sums, at most one
+pair is present. With at most r absent pairs, the total number
+of unordered collisions of pair sums is at most C(r+1,2).
+This follows by writing the group excesses as g_i-1: their sum
+is at most r, and `sum C(g_i,2)<=C(r+1,2)`.
+Each equality of two distinct positive differences induces a
+collision of pair sums. A pair-sum collision induces at most two
+unordered equal-difference pairs; it induces only one if one of
+the pair monomials is a loop. Thus the number of unordered
+collisions among positive differences is at most r(r+1).
+The excess number of differences above the number of distinct
+differences is no larger than that collision count. Since the
+distinct differences lie in `[1,w-1]`, we obtain
+`C(n,2)<=w-1+r(r+1)`, proving PSID.
+
+Now assume alpha=3, a>=13. Retain the notation of section 24,
+and write r=r_A and l=sum l_i. If l>=6, the star sum pays the
+entire scalar loss M_3=5a-15. In fact, if some l_i>=6,
+
+```
+l_i(a+2-l_i)>=min(6a-24,5a-15)>=5a-15,
+```
+
+using l_i<=a-3. Otherwise each l_i<=5 and their sum is at least
+6, so the star sum is at least `6(a-3)>=5a-15`. Outside
+payments are nonnegative just as in T2.3-M. Therefore
+
+```
+alpha=3, a>=13, l>=6  ==> W>=0.                     (3L-STARS)
+```
+
+By T2.3-M the only further case requiring analysis has
+
+```
+r in {0,1,2},  l in {0,1,2,3,4,5}.
+```
+
+Put H0=h-L, delta=h-2L, and let
+`R=#{high A directions with t<theta-2L}` as before.
+The following bounds hold:
+
+```
+P+D3 >= A_{r,l}(a)-12R,
+A_{r,l}(a)=(7+l-2r)a-9+2l-l^2-5r;                  (3L-FIX)
+
+P_H >= delta-B_{r,l}(a),
+B_{r,l}(a)=(5+5l+7r)a-15-17l-13r
+            +2 C(l+r+2,3).                         (3L-HIGHARC)
+```
+
+Here P and P_H have exactly the definitions of section 22,
+with J_A and J_{H0,A} now for three low directions.
+
+To prove 3L-FIX, let q_c count cold low--low pairs and let
+t0=10-c0 count missing pure-low cubics. Each cold pair has three
+extensions by low directions, all with tau<h. Each cubic has at
+most three distinct pair divisors, so their union has at least
+q_c cubics. Hence u0+t0>=q_c. The low-face shadow gives
+
+```
+(a+1)u0-5k0 >= (a-13/2)u0 >=3u0,
+```
+
+and consequently `(a+1)u0-5k0+3t0>=2q_c`.
+Now use the sharper fixed-arc count
+
+```
+J_A<=3+q_c+10+k0+n0 R-u1+sum C(l_i+1,2).
+```
+
+Use `D3=3t_A-(a+2)r` to pay the cold pairs. The remaining bound
+is
+
+```
+a-27+(a+3)n0+sum l_i(a+2-l_i)-2n0 R-(a+2)r.
+```
+
+Since `6-r<=n0<=6` and `sum l_i(a+2-l_i)>=l(a+2-l)`, it is
+at least 3L-FIX. The discarded mixed shadow term is
+`(a+3)u1-3k1>=0`, because `3k1<=5u1`.
+
+For 3L-HIGHARC, there are at most l+r exceptional high
+directions below H0. Every such direction makes a formal I2
+pair with the lowest low direction, which is either present
+and counted by l or absent and counted by r. Set e0=l+r.
+Pure-high intruding cubics must be supported on these exceptions;
+there are at most C(e0+2,3). One-low--two-high intruders must
+use an exception; there are at most `3e0(a-3)` candidates.
+There are at most l low--high I2 pairs, e0 exceptional units,
+and at most `6(a-3)` two-low--one-high cubic candidates. Thus
+
+```
+J_{H0,A}<=19+l+e0+C(e0+2,3)
+          +(6+3e0)(a-3)+k.
+```
+
+Substitution, using q2>=6-r+l, gives 3L-HIGHARC after
+discarding `(a+1)u0-5k0` and `(a+1)u1-5k1`, both nonnegative
+for a>=13. This derivation also counts all possible cold mixed
+cubics and quartics.
+
+At least n=max(0,R-l-r) of the R offsets lie in
+`[h-L,theta-2L)`, of length ceil(delta/2). Applying PSID with
+at most r missing A pairs gives
+
+```
+n(n-1)<=delta-1+2r(r+1).                            (3L-PACK)
+```
+
+It is essential to retain the Macaulay gap in the near-full
+case. For r=1,2 the exact degree-two growth at q=Q-r gives
+
+```
+D3>=D_r(a)=r(4a-3r-1)/2.                            (NEAR-GAP)
+```
+
+There is also a sharper star exclusion. For r=0,1,2 put
+`s0=5-2r`. If l>=s0, then the star sum is at least
+`s0(a+2-s0)`. Indeed, if one star has size at least s0,
+minimize its concave quadratic on `[s0,a-3]`; otherwise all
+stars have size at most s0-1 and use their total size. The
+two possible endpoint values are at least the asserted bound
+for a>=13. The resulting lower bounds for P+D3 are respectively
+0,10,9. The fixed-arc outside payments are nonnegative. Thus
+
+```
+alpha=3, a>=13, r<=2, l>=5-2r ==> W>=0.             (3L-GAP-STARS)
+```
+
+For r>=1, instead of charging the cold pairs to `3t_A`, simply
+use q_c<=6 and retain D3. The sharper fixed payment is
+
+```
+P+D3 >= Ahat_{r,l}(a)-12R,
+Ahat_{r,l}(a)=(7+r+l)a-21+2l-l^2-r(3r+7)/2.          (3L-SHARP)
+```
+
+Indeed the intermediate bound is
+`a-39+(a+3)n0+sum l_i(a+2-l_i)-2n0 R+D3`; use
+n0>=6-r, n0<=6, and NEAR-GAP. For r=0 retain the better
+earlier bound, so set `Ahat_{0,l}=A_{0,l}`.
+For all r=0,1,2 set D_0=0 and
+
+```
+Bhat_{r,l}=B_{r,l}-D_r,
+P_H+D3>=delta-Bhat_{r,l}.                            (3L-HSHARP)
+```
+
+Here are explicit infinite-region certificates. For each row
+and column of the next table, Wilf holds if a is at least the
+displayed A. The table applies to alpha=3, r=r_A<=2,
+l=sum l_i<=5 and arbitrary b,c,e.
+
+| r \ l | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---:|---:|---:|---:|---:|---:|
+| 0 | 16 | 26 | 33 | 37 | 41 | 43 |
+| 1 | 32 | 37 | 40 | 43 | 45 | 47 |
+| 2 | 39 | 42 | 44 | 46 | 47 | 49 |
+
+For complete symbolic verification set
+
+```
+C(a)=Ahat_{r,l}(a)-12(l+r),
+G_{r,l}(a)=C(a)[C(a)-12]
+           -144[Bhat_{r,l}(a)-1+2r(r+1)].           (3L-POLY)
+```
+
+Explicitly, for r=0,
+`C(a)=(7+l)a-9-10l-l^2`. For r=1,2,
+`C(a)=(7+l+r)a-21-10l-l^2-r(3r+31)/2`.
+
+Failure of both payments gives
+`R>Ahat_{r,l}(a)/12` and `delta<Bhat_{r,l}(a)`. Hence
+`n>C(a)/12`. In every displayed region C(a)>12; if G>=0,
+
+```
+n(n-1)>C(a)[C(a)-12]/144
+       >=Bhat_{r,l}(a)-1+2r(r+1),
+```
+
+contrary to 3L-PACK. The following table gives **all three
+coefficients** of `G_{r,l}(A+t)=g2*t^2+g1*t+g0` for t>=0.
+They are nonnegative, verifying every infinite a-region.
+
+| r | l | A | g2 | g1 | g0 |
+|---:|---:|---:|---:|---:|---:|
+|0|0|16|49|638|157|
+|0|1|26|64|1472|112|
+|0|2|33|81|2484|1296|
+|0|3|37|100|3440|28|
+|0|4|41|121|4760|3100|
+|0|5|43|144|5904|144|
+|1|0|32|64|1952|1852|
+|1|1|37|81|2844|1936|
+|1|2|40|100|3760|316|
+|1|3|43|121|4980|2160|
+|1|4|45|144|6240|2188|
+|1|5|47|169|7752|4572|
+|2|0|39|81|3006|253|
+|2|1|42|100|4020|909|
+|2|2|44|121|5112|828|
+|2|3|46|144|6456|3421|
+|2|4|47|169|7726|1141|
+|2|5|49|196|9556|8293|
+
+For example C(A)>12 follows at the smallest entry (r,l)=(0,0)
+from C(16)=103 and is checked by direct substitution at the
+other 17 listed endpoints; C increases with a since its slope
+is at least 7.
+These direct substitutions are also included in
+`t3/three_low_table.py`.
+
+Finally pay the outside directions. In the wider arc,
+
+```
+J_H-J_{H,A}<=b(3+l+r+q2)+c(3+l+r).
+```
+
+The b coefficient after pure payment is at least
+`a-13-3l-2r`, nonnegative at every A in the table. The C part
+of `G+(c+e)(2q2+u3)` is at least
+`c[2+2(6-r+l)]`, which pays `2c(3+l+r)` since r<=2.
+For the fixed arc the b coefficient is at least a-13, and
+the C/E payment was already checked in T2.3-M. This completes
+all 18 certificates.
+
+**Theorem T2.3 (large-a three-low regime).** If alpha<=3 and
+a>=41 in the primary setting, then W>=0. More precisely, for
+alpha=3 and a>=13, the only possible remaining cases have
+`r_A in {0,1,2}`, `0<=l<=4-2r_A`, and a strictly below the
+corresponding table entry. The largest relevant entry is 41:
+it is (r,l)=(0,4); the relevant maxima for r=1 and r=2 are
+40 and 39. Entries for the other columns remain valid but
+are superseded by 3L-GAP-STARS.
+This is a bounded set of A-count parameters, not a claim that
+the remaining semigroups themselves form a finite set.
+
+## 27. Local signed packing and a finite three-low certificate
+
+The bound a>=41 can be reduced by applying the **existing P4
+signed packing lemma inside the high-unit window**, and by
+removing the cubic defect already forced by missing pairs.
+This gives a computer-assisted refinement with two independent
+integer implementations. The two-low theorem remains entirely
+analytic.
+
+Write `H(n)=n(C(n,2)+1)`. Let lambda_n be the SP constant from
+P4 section 17:
+
+```
+lambda_0=lambda_1=0,
+lambda_2=1, lambda_3=2, lambda_4=4,
+lambda_n=3n/2          if n>=5 and 3 divides n,
+lambda_n=3(n-1)/2      if n>=5 and 3 does not divide n.
+```
+
+**Local SP lemma.** Suppose n selected A offsets lie in an
+integer interval of length s, every pair on them is present,
+and at most epsilon cubic monomials on them are missing. Then
+
+```
+3s-2 >= H(n)-lambda_n*epsilon.                       (LSP)
+```
+
+Translate their minimum to zero and use modulus `m'=3s-2`.
+Pair sums lie in `[0,2s-2]`, and triple sums in `[0,3s-3]`.
+Present pairs and triples have distinct ordinary sums because
+their original residues are distinct. Thus the pair residues
+are injective modulo m', and the full triple collision excess
+is at most epsilon. Apply P4's SP lemma with its n-element
+set B0. This proves LSP. The n=0,1 cases are immediate.
+
+**Localization of the missing-cubic budget (uniform in alpha
+and r_A).** Put
+
+```
+epsilon_M=q^{<2>}-(u3+u4)>=0.
+```
+
+The legal cubics are the formal A cubics all of whose pair
+divisors are present. Together with zero, the A units and the
+present A pairs, they form a down-set, so their number is at
+most q^{<2>}. Every actual A cubic is legal. A selected set of
+directions with all pairs present has no illegal cubic, and
+its missing cubics are therefore among the absent legal
+cubics. It has at most epsilon_M missing cubics. This proves
+the localization assertion without any restriction on r_A or
+the number of low directions.
+
+For r=r_A in {0,1,2}, the exact Macaulay formula specializes to
+
+```
+t=t_A, t_forced=0,a,2a-1 respectively,
+epsilon=t-t_forced>=0.                              (LOC-DEF)
+```
+
+Every cubic divisible by an absent pair is absent. There are a
+distinct cubic multiples of a single missing pair; two missing
+pairs have at least 2a-1 distinct cubic multiples, since their
+two sets of multiples intersect in at most their one degree-3
+least common multiple. None of these forced missing cubics
+lies on a set of directions whose pairs are all present.
+Consequently epsilon, rather than t, is a valid upper bound
+for the missing cubics on **any** such selected set. This is
+the important improvement over charging the entire global
+defect to each window.
+
+For alpha=3 and the notation of section 26, all R high offsets
+lie in the window
+
+```
+[ceil(h/2),theta-2L),   length delta.
+```
+
+At least `max(0,R-l-r)` lie in the shorter window of length
+`w=ceil(delta/2)`. Deleting one endpoint from each missing
+pair loses at most r further directions and leaves every pair
+present. Therefore LSP and LOC-DEF give
+
+```
+n_s=max(0,R-l-2r), n_w=max(0,R-r),
+3w-2     >= H(n_s)-lambda_{n_s}*epsilon,
+3delta-2 >= H(n_w)-lambda_{n_w}*epsilon.             (WINDOW-SP)
+```
+
+In fact WINDOW-SP is valid for any alpha>=1 and r_A, using
+epsilon=epsilon_M: the exception and deletion counts use only
+l and r_A, and the two window lengths do not depend on alpha.
+The closed form LOC-DEF is needed only for the finite
+three-low certificate below.
+
+Two elementary counts, which do not require all the pairs to
+be present, are also retained:
+
+```
+n_c=max(0,R-l-r),
+C(n_c+2,3)-t <=3w-2,
+C(R+2,3)-t   <=3delta-2,
+R(R-1)<=2delta-2+2r(r+1).                           (WINDOW-COUNT)
+```
+
+The cubic inequalities count present cubics in the ordinary
+sum interval; the last inequality is PSID in the wider window.
+
+**Theorem T2.3F (bounded certificate).** In the primary setting,
+if alpha<=3 and a>=16, then W>=0, for arbitrary b,c,e.
+For a>=41 this is the analytic theorem of section 26. For
+16<=a<=40 the following is a complete bounded certificate.
+
+Assume W<0. Previous results give
+
+```
+r in {0,1,2}, 0<=l<=4-2r, 6-r<=n0<=6,
+q2=n0+l, t>=t_forced,
+4t<=F-(a+1)q2+(a-3)r-1,
+D3=3t-(a+2)r, S_l=l(a+2-l), 0<=R<=a-3.
+```
+
+Here we used `LC_actual>=(a+1)q2`, which is a consequence
+of W_A<0 in LC-minus, already verified by the lead. Define
+
+```
+F_rough=15-5a+S_l+D3,
+F_cold =a-27+(a+3)n0+S_l-2n0 R-(a+2)r,
+F_raw  =a-39+(a+3)n0+S_l-2n0 R+D3,
+K=max(F_rough,F_cold,F_raw),
+B_f=a-7-n0+l >=1,
+B_h=a-7-n0-3l-2r,
+e0=l+r,
+B=2[13+n0+l+e0+C(e0+2,3)+(n0+3e0)(a-3)]
+  -(a-1)-(a+3)(n0+l).
+```
+
+The fixed-arc full payment is at least `K+b B_f`. F_rough is
+GEN-ROUGH retaining stars and D3. F_cold is the cold-pair
+payment retaining n0 instead of replacing it by its extreme
+values. F_raw uses the same count with `q_c<=6`, pays at most
+12 for cold pairs, and retains D3. The H0-arc full payment is
+at least `delta-B+D3+b B_h`, by the exact-n0 high-arc count.
+The C/E terms in both payments are nonnegative, as proved in
+section 26. Thus W<0 requires
+
+```
+K+b B_f<=-1,
+1<=delta<=B-D3-b B_h-1.                             (FIN)
+```
+
+This is a finite parameter problem. Explicit complete bounds
+are
+
+```
+0<=b<=5a-16,
+t_forced<=t<=min(
+ floor([F-(a+1)(n0+l)+(a-3)r-1]/4),
+ floor([5a-16-S_l+(a+2)r]/3)).
+```
+
+The b bound follows from K>=F_rough>=15-5a and B_f>=1.
+The second t bound follows from F_rough<0. For each tuple
+(a,r,l,n0,t,R,b), test FIN, PSID, WINDOW-SP and WINDOW-COUNT.
+No tuple survives for 16<=a<=40.
+
+The independent programs [three_profiles.py](t3/three_profiles.py)
+and [three_profiles.c](t3/three_profiles.c) implement the
+certificate differently. Python solves the monotone packing
+inequalities for a lower endpoint of delta. C enumerates every
+integer delta up to FIN's upper endpoint and tests each original
+inequality directly. They agree on the following complete
+pre-packing profile counts:
+
+```
+a=14..40:
+1573,1137,1018,992,1019,1054,1100,1166,1228,1304,1382,
+1477,1569,1665,1761,1873,1989,2100,2217,2341,2464,2598,
+2723,2864,3017,3160,3298.
+```
+
+The corresponding surviving profile counts are 46 at a=14,
+13 at a=15, and zero at every a=16..40. Expanding the delta
+intervals gives 1,302 surviving tuples below a=16. The two
+implementations give the identical 64-bit rolling checksum
+`2605186666962456684` for their ordered 59-profile list,
+including both delta endpoints. That full list is saved as
+[three_profiles_survivors.json](t3/three_profiles_survivors.json).
+These are relaxed count profiles, not actual down-sets.
+
+This completes T2.3F. Its finite computation is a stated proof
+dependency. The analytic T2.3 and T2.2 do not depend on it.
+For three lows, the remaining unbounded parameters have now
+been restricted to a<=15; at a=14,15 their count data must lie
+in the explicit 59-profile list in addition to the general
+frontier inequalities below.

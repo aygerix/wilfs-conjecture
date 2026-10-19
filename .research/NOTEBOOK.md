@@ -2098,3 +2098,38 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     - Far cubics, s > (m+3μ)/2. Their lower covers are again carry pairs above μ.
 - **H_E refuted:** E < 0 does not force 3e ≥ m (⟨37,47,48⟩ ∪ [252,∞)). PREFIX (value-ordered payment) is false at
   height ≥ 5.
+
+## 2026-10-19 (evening) — CP survives where downward G-ID payment dies; intrinsic layer-profile conjectures
+
+- **CP is robust (E225).** Conjecture CP (PROOFS) says the column-reflection cells
+  Δ(x) = Σ_b λ(R_b x) − κ(x) = Σ_b ⌊(u_b(x) + x_b n_b)/m⌋ − ⌊v(x)/m⌋ have nonnegative sum on every order ideal.
+  - It has 0 failures on all 38.9M semigroups of genus ≤ 32 (both orders).
+  - It has 0 failures on ≈ 260k random instances with m ≤ 220, including the deep near-arithmetic families
+    (⟨80,291,292,293⟩, ⟨114,305,307,310⟩, heights to 31) where downward payment of the G-ID cells is false.
+  - So the choice of localization matters. G-ID concentrates large deficits (up to K − |x|) in the crown, with the slack
+    far away. The column reflection leaves deficits of at most |supp| − 1, almost only at top corners, and the slack
+    directly below them.
+- **Binding ideals are principal.** For a deficient y, min_{Z∋y} Σ_Z Δ = Σ_{x≤y} Δ in 9,304 of 9,306 cases, with
+  margin ≥ 4 at m ≥ 8.
+  - In the continuous limit with every column through ↓y extended to M, the principal-ideal sum is exactly balanced:
+    the (d−1)Σλ gain equals the column-extension loss to leading order. So PI is not "easy with room"; the floor
+    terms decide.
+  - Canonical payments fail. Equal fractional splitting (FS) fails at ⟨14,15,23,24,26⟩: three deficient corners
+    share the cells 0 and e_2. Fixed corner regions fail in 1.5–6% of random instances. CP needs genuine Hall
+    flexibility, but only among principal ideals.
+- **Intrinsic layer profiles (E226; PROOFS "Layer-profile domination").**
+  - Put a_j = #gaps in [(j−1)m, jm) and b_j = #S ∩ [c − jm, c − (j−1)m).
+  - Exact identity: a_j = b_j + p_j, where p_j counts gaps x in the bottom layer whose mirror F − x is also a gap.
+  - The chain per-depth ⇒ STAIR ⇒ RECT ⇒ {PGW, MAJ} ⇒ Wilf.
+  - STAIR, RECT and MAJ have 0 failures on all 14.4M semigroups of genus ≤ 30 and on 64k random instances. Per-depth
+    fails 217k times.
+  - MAJ is precisely "W admits a pointwise nonnegative localization by d bijections". FGH gives it with t in place of d.
+- **Additive route (assessed, not pursued).**
+  - The Kunz layers B_j = {r : κ_r ≤ j} satisfy B_i + B_j ⊆ B_{i+j+1}. For prime m, Cauchy–Davenport makes A_j − 1
+    superadditive in j + 1. That alone nearly gives Wilf when all generators lie in (m, 2m) (a quadratic area bound).
+  - But it loses the fractional part of every generator's depth. Wilf is an identity at e = 2, so any proof by this
+    route must keep carries exactly.
+  - Literature (searched today): only Yang–Zhang's linear first-layer bound; no sumset-growth argument.
+- **Decision.** CP and STAIR are the two localized/intrinsic forms with the best evidence. Neither has a proof idea
+  beyond Hall reformulation yet. The concrete theorem lines remain P5c (c ≤ 4m, codex) and P6 (height ≤ 3; brief
+  updated with CP as a second route).

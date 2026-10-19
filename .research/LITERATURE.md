@@ -529,3 +529,17 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   The NOTEBOOK "Height-3 natural scheme" of 2026-10-17 has no proof.
 - Hits: only Spirito 1710.09245 (n_1 > (c+m)/3), Eliahou 3e ≥ m, Sammartano 2e ≥ m, and the c ≤ 3m results.
 - No statement for height 3 at every depth was found.
+
+### Search 2026-10-19 (evening): additive combinatorics / Kunz-layer growth and Wilf
+- Queries (web, extended): "Wilf conjecture numerical semigroup prime multiplicity Cauchy-Davenport Kneser sumset";
+  "numerical semigroup Kneser theorem Apéry set sumset lower bound"; "arXiv 2026 Wilf's conjecture numerical
+  semigroups". GitHub repository search: "wilf conjecture", "wilf numerical semigroup", "wilf-e4", "wilf semigroup
+  lean", "numerical semigroups wilf conjecture proof"; code search "wilf semigroup conductor".
+- Found, closest:
+  - Y. Yang, Y. Zhang, "Wilf's Conjecture from the First Kunz Layer", Preprints.org 202604.0551 (April 2026, not
+    peer reviewed; abstract only — full text returned 403). Claimed: |L| ≥ q + (q−2)η + ηρ with η = |S ∩ (m,2m)|,
+    c = qm − ρ, hence Wilf when e(η+2) ≥ 2m (and e(3η+4) ≥ 4m when m | c). Linear in q; no sumset-growth theorem.
+  - Delgado–Kumar–Marion, arXiv:2501.04417 (Wilf when |S ∩ (m,2m)| is large; counting by maximum primitive);
+    Delgado–Kumar, arXiv:2512.23891 (algorithms, no counterexample with maximum primitive ≤ 60).
+  - GitHub: only kseth/wilf-e4 (known) and our own repo.
+- No source applies Cauchy–Davenport / Kneser growth of the Kunz layers B_j = {r : κ_r ≤ j} ⊂ ℤ/m to Wilf.

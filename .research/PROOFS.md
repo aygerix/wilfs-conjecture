@@ -1399,6 +1399,29 @@ has 2t < h, then W ≥ 0, for every b, c, e.
 - False route, preserved: the unrestricted OL (any number of low units) fails on a relaxed, non-residue-complete full
   cubic simplex (a = 7, m = h = 5, offsets (2,2,3,3,3,3,3)).
 
+**Theorem GW-26d (two low units; PROVED 2026-10-19 on paper by codex P5c, src/scratch/gw/p5/P5_REPORT.md §§20–23;
+verified by the lead: MG2 and the ALT2 polynomial identities re-derived symbolically (sympy; MG2 also exhaustively
+with exact Macaulay pseudo-powers for a ≤ 60); every displayed counting inequality checked numerically by an
+independent implementation, E227).** In the primary regime 4m ≤ M < 5m, if at most two A directions have 2t < h, then
+W ≥ 0, for every b, c, e.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and 2n_3 ≥ c − m, n_3 the third generator above m.
+- Ingredients (x, y the low directions, L = t_x ≤ t_y, p = a − 2, δ = h − 2L, H0 = h − L):
+  - Structure: no I3 cubic and no quartic has two high factors, so u3 = u0 + u1, k = k0 + k1, q2 = n0 + l.
+  - 2L-SH: 4k0 ≤ 5u0 and 3k1 ≤ 4u1. 2L-COUNT: J_A ≤ 6 + (p+1)n0 + k0 − u1 + C(l_x+1,2) + C(l_y+1,2).
+  - 2L-ROUGH: P := (a−1) + LC + 2q2 + k − 2J_A ≥ a − 13 + (5−a)n0 + l_x(a+2−l_x) + l_y(a+2−l_y). Hence l ≥ 2 ⇒ P ≥ 2.
+  - MG2 (Macaulay gap): a ≥ 4, 2 ≤ q < C(a+1,2) ⇒ (a+2)q − 3q^{⟨2⟩} ≥ 2a − 2. Hence r_A > 0 ⇒ P + D3 ≥ 0.
+  - Full quadratic face (r_A = 0, l ≤ 1):
+    - COLD2 and the fixed-arc count give 2L-FIX: P + D3 ≥ 4a − 4 + (a+1)l − 6R, R = #{high A : t < ⌈3h/2⌉ − 2L}.
+    - The arc Y_{H0} gives 2L-HIGHARC: P_H ≥ δ − (2a−2) − (3a−5)l.
+    - SIDON2: the R − l non-exceptional high offsets in [h − L, ⌈3h/2⌉ − 2L) have all pair residues present and
+      distinct, so their differences are distinct and n(n−1) ≤ 2⌈δ/2⌉ − 2.
+    - Together: ALT2, P + D3 ≥ 0 or P_H ≥ 0 (a ≥ 7).
+  - Outside cells: OUT2 J − J_A ≤ b(2+n0) + 2c, OUT2b, HOUT2. They are paid in PAY2 through I-LOW with η = 2J or
+    η = −δ + 2J_{H0}. The a = 7 boundary B7 (n0 = q2 = 3, l = u3 = 0) uses Macaulay (r_A ≤ 1) and HIGH.
+- Residue injectivity enters beyond arc occupancy only in SIDON2 (distinct pair sums ⇒ Sidon set of offsets).
+- Codex's continuation (§§24–26, three low units) is NOT yet verified: T2.3-M (three lows, at least three missing A
+  pairs) and T2.3 (three lows, large a) are reported there.
+
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
 CORRECTION (2026-10-19, same day): this is NOT a new result of this project. It is the corollary of Flat-MaxCL
@@ -1467,12 +1490,53 @@ can be routed along lower covers: there is a flow, with
 that meets every demand. CP ⇒ GW.
 - Evidence (E202): flow feasible on every residue-complete instance in d = 2, m ≤ 10, K ≤ 4; d = 3, m ≤ 10, K ≤ 3;
   d = 4, m ≤ 8, K ≤ 2; and on every semigroup of genus ≤ 17 (lex-min factorization tile).
-- No-sharing form: deficit(y) ≤ Σ_b Δ⁺(y − e_b) holds on all data.
+- Evidence, 2026-10-19 (E225): 0 failures on ALL 38,858,195 semigroups of genus ≤ 32 (lex and grlex tiles), and on
+  ≈ 260k random instances with m ≤ 220, including the near-arithmetic deep families (⟨80,291,292,293⟩,
+  ⟨62,87,88,89⟩, ⟨114,305,307,310⟩, heights up to 31) on which downward payment of the G-ID cells is FALSE (E222–E224).
+  - Per cell, Δ(x) = Σ_b ⌊(u_b(x) + x_b n_b)/m⌋ − ⌊v(x)/m⌋, with u_b(x) = M − v(top of the b-column through x) ≥ 0.
+    For a corner (top in every direction) with λ = 0 this is #{b : (x_b n_b mod m) ≥ m − (M − v(x))} − carry(x).
+  - Deficient cells are top corners in 99.8% of cases; deficits are ≤ 2 for genus ≤ 32 and ≤ 4 in all data.
+  - The binding order ideals are principal: for 9,304 of 9,306 deficient y, min_{Z ∋ y} Σ_Z Δ = Σ_{x≤y} Δ.
+- No-sharing form: deficit(y) ≤ Σ_b Δ⁺(y − e_b) holds on all semigroups of genus ≤ 32 but is FALSE in general
+  (≈ 0.1% of random instances with m ≤ 220, mostly near-arithmetic generators).
+- FALSE refinement FS (canonical fractional payment: each cell with Δ > 0 splits Δ equally among the deficient cells
+  above it): ⟨14,15,23,24,26⟩, lex and grlex, genus 32 — the deficient corners (0,1,1,0), (0,1,0,1), (0,0,1,1) share
+  the surplus cells 0 and e_2; FS gives (0,1,1,0) only 5/6. CP holds there.
+- FALSE refinement: canonical corner regions (assign each cell to one corner above it by a fixed climbing or extreme
+  rule; require every region sum ≥ 0) fail in 1.5–6% of random instances.
 - FALSE refinements:
   - equal split among lower covers: ⟨5,8,9⟩; d = 3, m = 7, n = (8,11,12);
   - pay from y − e_b with b = argmax n_b (⟨5,8,9⟩) or b = argmin n_b (⟨8,9,13,14⟩).
 - Residue-free, CP fails even where GW holds (d = 2, m = 9, n = (12,12), GW slack 2). So CP needs residues more than
   GW does.
+
+**Layer-profile domination: Conjectures MAJ, RECT, STAIR (2026-10-19; intrinsic, tile-free).** Let S ≠ ℕ have
+multiplicity m, conductor c, Frobenius number F = c − 1 and embedding dimension e = d + 1. For j ≥ 1 put
+
+    a_j = #((ℕ∖S) ∩ [(j−1)m, jm)),     b_j = #(S ∩ [c − jm, c − (j−1)m)).
+
+Both sequences are non-increasing (x ∉ S ⇒ x − m ∉ S; x ∈ S ⇒ x + m ∈ S), so they are partitions with |a| = g and
+|b| = ℓ. In Apéry terms a_j = #{w ∈ Ap(S,m) : ⌊w/m⌋ ≥ j} and b_j = #{w : ⌊(M − w)/m⌋ ≥ j}, M = max Ap.
+- **Exact identity (PROVED).** a_j = b_j + p_j with p_j = #{gaps x ∈ [(j−1)m, jm) : F − x is also a gap}.
+  - Proof: x ↦ F − x maps the bottom layer [(j−1)m, jm) onto the top layer (F − jm, F − (j−1)m] = [c − jm, c − (j−1)m).
+  - If s ∈ S lies in that top layer, F − s is a gap, because otherwise F ∈ S. So the gaps of the bottom layer are the
+    b_j images of top-layer elements plus the p_j gaps whose mirror is a gap. □
+  - Hence Wilf ⟺ Σ_j p_j ≤ (d − 1)ℓ, and e = 2 (symmetric) is p ≡ 0.
+- **STAIR (conjecture).** For every non-increasing sequence z_1 ≥ z_2 ≥ … ≥ 0,
+
+      Σ_j min(a_j, z_j) ≤ d · Σ_j min(b_j, z_j).
+
+  - Equivalently (Hall), there is a map from the cells {(j,s) : s ≤ a_j} of the gap diagram to the cells
+    {(j',s') : s' ≤ b_{j'}} of the left-element diagram that is at most d-to-1 and has j' ≤ j, s' ≤ s.
+- **RECT** is STAIR for rectangles, z = (k,…,k,0,…) of length i: Σ_{j≤i} min(a_j,k) ≤ dΣ_{j≤i} min(b_j,k).
+  - k ≥ m gives PGW (P_i); i ≥ K gives MAJ.
+- **MAJ.** For every k, the sum of the k largest ⌊w/m⌋ over w ∈ Ap is ≤ d × the sum of the k largest ⌊(M − w)/m⌋.
+  - This is exactly the condition for W to have a pointwise nonnegative localization Σ_x[Σ_b λ(σ_b x) − κ(x)] with d
+    arbitrary bijections σ_b of Ap (fractional version, by weak majorization).
+  - Corner reflection (FGH) gives MAJ with t (type) in place of d.
+- Implications: per-depth (a_j ≤ d b_j ∀j) ⇒ STAIR ⇒ RECT ⇒ {PGW, MAJ} ⇒ Wilf.
+- Status: per-depth is FALSE on semigroups (217,493 failures at genus ≤ 30). STAIR, RECT and MAJ have 0 failures on all
+  semigroups of genus ≤ 30 and on ≈ 64k random instances with m ≤ 200 (E226). All are tight for e = 2.
 
 **Identity GW-CR (column–residue decomposition; PROVED, exact, any down-set).** Let D be a finite down-set in
 ℕ^d, n_a > 0, M = max v, and r(x) = v(x) mod m. For a b-column C = {z + j e_b : 0 ≤ j ≤ J} with top t, write
@@ -1685,6 +1749,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - for a ≤ 5 on paper and a = 6 with two finite certificates;
   - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
   - with at most one low unit (GW-26c; semigroups: 2n_2 ≥ c − m);
+  - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
   - whenever LOW+ holds (GW-26b).
   Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete
   down-sets: Flat-MaxCL (2026-10-17, LEAN) and GW-27 (second proof). Open: the primary regime for a ≥ 7 with a low unit

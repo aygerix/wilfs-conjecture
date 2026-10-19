@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, afternoon; GW-27 quadratic Apéry sets, G-ID line)
+# STATE.md — handoff (updated 2026-10-19, evening; GW-26d two low units; CP and layer-profile conjectures)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -80,7 +80,8 @@
   `wilf_of_apery_height_le_two`). GW-27 (2026-10-19) is a second proof in Kunz coordinates, not a new result. Hence Wilf
   whenever 3n_1 > c + m, without Spirito's conditions.
 - GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. GW-26c (codex P5b, verified by the lead, E221):
-  the same when 2n_2 ≥ c − m (at most one low unit).
+  the same when 2n_2 ≥ c − m (at most one low unit). GW-26d (codex P5c, verified by the lead, E227): the same when
+  2n_3 ≥ c − m (at most two low units).
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -161,11 +162,20 @@ Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25)
 two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR for 4-D (φ up to 0.8); the cone-LP
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
+## New conjectures with strong evidence (2026-10-19 evening; PROOFS "Conjecture CP", "Layer-profile domination")
+- CP (column-reflection cells Δ, every order ideal has Σ Δ ≥ 0): 0 failures on all semigroups of genus ≤ 32 and on
+  ≈ 260k random instances with m ≤ 220. It survives the deep families on which G-ID downward payment is false. The
+  binding ideals are principal; equal fractional splitting (FS) is false.
+- STAIR ⇒ RECT ⇒ {PGW, MAJ} ⇒ Wilf (intrinsic, tile-free): 0 failures at genus ≤ 30 and on 64k random instances.
+  Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
+
 ## Next precise task
 (a) Codex P5c is RUNNING (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31, brief scratchpad codex/p5c_msg.md, log
-    codex/p5c_log.txt). Target: the multi-low case α ≥ 2, which would close Wilf for all 3m < c ≤ 4m. P5b's one-low
-    theorem is verified and recorded as GW-26c (Wilf for 3m < c ≤ 4m when 2n_2 ≥ c − m). Verify P5c step by step
-    when it lands.
+    codex/p5c_log.txt). Its two-low theorem T2.2 is verified and recorded as GW-26d. It is now on three low units
+    (§§24–26: T2.3-M, and T2.3 for large a; a scan for 20 ≤ a ≤ 40; survivors at a ≤ 19), which is not yet verified.
+    The α-by-α route shows case growth. When it reports, verify T2.3* with lead_t22_check.c extended to three lows,
+    and ask for a uniform-in-α argument rather than α = 4, 5, ….
+    Next codex task after P5c: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
     - Deficient cells (c_x < 0) are almost all top cells with residue ≤ μ, in every degree (E220).
