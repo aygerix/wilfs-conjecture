@@ -415,6 +415,102 @@ theorem ell_ge_lkyz_prime' (hp : m.Prime) (hmS : m ∈ S) {q : ℕ} (hq : 1 ≤ 
   have e : (q + 1) * m = q * m + m := by ring
   omega
 
+/-! ### LK-SUPER: the shift inclusion from every band
+
+`G_{H+j+1} - R_j ⊆ G_H` (mod `m`) for every band `j`, where `R_j = {r < m : j m + r ∈ S}` is the full residue
+population of band `j` (`0 ∈ R_j`). For prime `m`, Cauchy–Davenport gives `#G_H ≥ #G_{H+j+1} + #R_j - 1`; in terms of
+`Θ_t = m - 1 - #G_t` this is the shifted superadditivity `Θ_{a+b+1} ≥ Θ_a + Θ_b`.
+-/
+
+/-- Residues present in band `j`. -/
+noncomputable def bandRes (S : NumericalSemigroup) (m j : ℕ) : Finset ℕ :=
+  (range m).filter (fun r => j * m + r ∈ S)
+
+theorem card_bandRes_add (S : NumericalSemigroup) (m j : ℕ) :
+    #(S.bandRes m j) + #(S.bandGaps m j) = m := by
+  have h := card_filter_add_card_filter_not (s := range m) (fun r => j * m + r ∈ S)
+  rw [card_range] at h
+  exact h
+
+theorem zero_mem_bandRes (hmS : m ∈ S) (hm : 0 < m) (j : ℕ) : 0 ∈ S.bandRes m j := by
+  simp only [bandRes, mem_filter, mem_range, add_zero]
+  exact ⟨hm, mul_mem_of_mem hmS j⟩
+
+/-- **Shift inclusion from band `j`.** -/
+theorem shift_mem_band (hmS : m ∈ S) (hm : 0 < m) (H j r b : ℕ) (hr : r ∈ S.bandGaps m (H + j + 1))
+    (hb : b ∈ S.bandRes m j) :
+    (r + m - b) % m ∈ S.bandGaps m H := by
+  have hbm : b < m := mem_range.1 (mem_filter.1 hb).1
+  have hgen : j * m + b ∈ S := (mem_filter.1 hb).2
+  simp only [bandGaps, mem_filter, mem_range] at hr ⊢
+  refine ⟨Nat.mod_lt _ hm, fun hmem => hr.2 ?_⟩
+  by_cases hrb : b ≤ r
+  · have he : (r + m - b) % m = r - b := by
+      rw [show r + m - b = (r - b) + m by omega, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega)]
+    rw [he] at hmem
+    have := add_mem (add_mem hmem hgen) hmS
+    have e : (H + j + 1) * m + r = H * m + (r - b) + (j * m + b) + m := by
+      have : (H + j + 1) * m = H * m + j * m + m := by ring
+      rw [this]; omega
+    rw [e]; exact this
+  · have he : (r + m - b) % m = r + m - b := Nat.mod_eq_of_lt (by omega)
+    rw [he] at hmem
+    have := add_mem hmem hgen
+    have e : (H + j + 1) * m + r = H * m + (r + m - b) + (j * m + b) := by
+      have : (H + j + 1) * m = H * m + j * m + m := by ring
+      rw [this]; omega
+    rw [e]; exact this
+
+/-- **LK-SUPER step** (prime `m`): `#G_{H+j+1} + #R_j ≤ #G_H + 1` when `G_{H+j+1} ≠ ∅`. -/
+theorem card_bandGaps_step_band (hp : m.Prime) (hmS : m ∈ S) (H j : ℕ)
+    (hne : (S.bandGaps m (H + j + 1)).Nonempty) :
+    #(S.bandGaps m (H + j + 1)) + #(S.bandRes m j) ≤ #(S.bandGaps m H) + 1 := by
+  have hm := hp.pos
+  have hinj : Set.InjOn (Nat.cast : ℕ → ZMod m) (range m : Set ℕ) := by
+    intro a ha b hb hab
+    simp only [coe_range, Set.mem_Iio] at ha hb
+    have := (ZMod.natCast_eq_natCast_iff' a b m).1 hab
+    rwa [Nat.mod_eq_of_lt ha, Nat.mod_eq_of_lt hb] at this
+  have hRsub : S.bandRes m j ⊆ range m := filter_subset _ _
+  have hXc : #((S.bandGaps m (H + j + 1)).image (Nat.cast : ℕ → ZMod m)) =
+      #(S.bandGaps m (H + j + 1)) :=
+    card_image_of_injOn (hinj.mono (by
+      intro r hr; exact mem_coe.2 (mem_filter.1 (mem_coe.1 hr)).1))
+  have hYc : #((S.bandRes m j).image (fun b : ℕ => -(b : ZMod m))) = #(S.bandRes m j) := by
+    rw [card_image_of_injOn]
+    intro a ha b hb hab
+    exact hinj (hRsub (mem_coe.1 ha)) (hRsub (mem_coe.1 hb)) (neg_inj.1 hab)
+  have hsub : (S.bandGaps m (H + j + 1)).image (Nat.cast : ℕ → ZMod m) +
+      (S.bandRes m j).image (fun b : ℕ => -(b : ZMod m)) ⊆ (S.bandGaps m H).image Nat.cast := by
+    intro z hz
+    obtain ⟨x, hx, y, hy, rfl⟩ := mem_add.1 hz
+    obtain ⟨r, hr, rfl⟩ := mem_image.1 hx
+    obtain ⟨b, hb, rfl⟩ := mem_image.1 hy
+    refine mem_image.2 ⟨(r + m - b) % m, shift_mem_band hmS hm H j r b hr hb, ?_⟩
+    have hbm : b ≤ r + m := by
+      have := mem_range.1 (hRsub hb); omega
+    rw [ZMod.natCast_mod, Nat.cast_sub hbm, Nat.cast_add, ZMod.natCast_self]
+    ring
+  have hcd := ZMod.cauchy_davenport hp (hne.image (Nat.cast : ℕ → ZMod m))
+    (⟨_, mem_image_of_mem _ (zero_mem_bandRes hmS hm j)⟩ :
+      ((S.bandRes m j).image (fun b : ℕ => -(b : ZMod m))).Nonempty)
+  have hle := (card_le_card hsub).trans card_image_le
+  have hlt := card_bandGaps_le hmS hm H
+  have hRpos : 0 < #(S.bandRes m j) := card_pos.2 ⟨0, zero_mem_bandRes hmS hm j⟩
+  rw [hXc, hYc] at hcd
+  omega
+
+/-- **Shifted superadditivity** (prime `m`): with `Θ_t = m - 1 - #G_t`, `Θ_a + Θ_b ≤ Θ_{a+b+1}` whenever band
+`a + b + 1` still has a gap. Stated without subtraction. -/
+theorem band_superadditive (hp : m.Prime) (hmS : m ∈ S) (a b : ℕ)
+    (hne : (S.bandGaps m (a + b + 1)).Nonempty) :
+    (m - 1 - #(S.bandGaps m a)) + (m - 1 - #(S.bandGaps m b)) ≤ m - 1 - #(S.bandGaps m (a + b + 1)) := by
+  have h := card_bandGaps_step_band hp hmS a b hne
+  have h2 := card_bandRes_add S m b
+  have ha := card_bandGaps_le hmS hp.pos a
+  have hb := card_bandGaps_le hmS hp.pos b
+  omega
+
 /-- The multiplicity case of LAYER-KNESER (prime multiplicity). -/
 theorem ell_ge_layer_multiplicity (hp : S.multiplicity.Prime) {q : ℕ} (hq : 1 ≤ q)
     (hqc : q * S.multiplicity < S.conductor) (hcq : S.conductor ≤ (q + 1) * S.multiplicity) :

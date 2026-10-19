@@ -2448,8 +2448,11 @@ Checks (E275):
   - Example: ⟨137, 275, 276, 278, 280, 281, 282⟩, c = 4658 (q = 34), e = 7, ℓ = 2206, bound 1156.
 - Literature: first-layer methods (DKM, YZ) need S ∩ (m,2m) ≠ ∅. We found no Kneser/Cauchy–Davenport band argument
   (searches of 2026-10-19, LITERATURE).
-- Lean: not yet. The j = 1 prime case is LayerKneser.lean. The general j needs only `shift_mem` with R_j in place of
-  lowRes.
+- **LEAN (kernel-checked 2026-10-19, lean/Wilf/LayerKneser.lean; standard axioms only):**
+  - `shift_mem_band`, which is (a) for any m ∈ S;
+  - `card_bandGaps_step_band`, which is (b) for prime m: #G_{H+j+1} + #R_j ≤ #G_H + 1;
+  - `band_superadditive`, which is (c) for prime m: Θ_a + Θ_b ≤ Θ_{a+b+1}.
+  The general-m Kneser form is paper only.
 
 ## Theorem LK+YZ (Kneser growth combined with the Yang–Zhang staircase) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 34, E272)
 Setting as in LK, with q = D = ⌈c/m⌉ ≥ 3, ρ = qm − c, η = k = |S∩(m,2m)|, η_ρ = |S ∩ (m, 2m−ρ)|,
