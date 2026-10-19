@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, late evening; codex P6b ACCEPTED (DENSE075, DENSE9, THREE-CUBICS, FEW-CUBICS, ROW-PACK, SHADOW-COVER, FLAT-CR); codex P6c RUNNING; lead annealers: no MaxCL/HC′ violation at heights 3–5)
+# STATE.md — handoff (updated 2026-10-19, night; codex P6c and P6d ACCEPTED: height-3 MaxCL PROVED for ≤ 1 cubic (ONE-CUBIC), BAD-NARROW, WINDOW-H at all heights; lead: phase-free NO-WRAP MaxCL at all heights; codex P6e RUNNING)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,6 +184,26 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0G) NEW 2026-10-19 night, read first.
+    - **Codex P6c and P6d accepted** (d699d04, 0ca1a29; PROOFS "Codex P6c", "Codex P6d"; E258, E261).
+      - ONE-CUBIC: HC′ ≥ 0 and MaxCL at every phase for every height-3 tile with exactly one cubic. Hence Wilf for every
+        S with a factorization tile of height ≤ 3 and ≤ 1 cubic.
+      - BAD-NARROW (ρ = 0, core units in (m/2, 2m/3)), GENERAL-SHAPE, ONE-BAD-SHAPE.
+      - WINDOW-H: exact all-height identity with local loss (j−2)m. The lead re-implemented it independently on
+        heights 2–19.
+      - Remaining at height 3: t ≥ 2 bad cubics, k ≥ 5, d ≥ 6. Next lemma: HIGH-ORIGIN.
+    - **Codex P6e RUNNING** (same session 01a1525d; message $SP/codex/p6e_msg.md; log $SP/codex/p6e_log.txt; waiter
+      on PID 70732; report src/scratch/gw/p6/P6E_REPORT.md).
+      - Order: HIGH-ORIGIN; then the origin phase with one low factor; then general phases t ≥ 2; then a short note on
+        which tools scale under WINDOW-H.
+      - After it ends: review, commit, then decide P6f vs Lean (NO-WRAP and ONE-CUBIC) vs P5h.
+    - **Lead, general height** (PROOFS "Column form for any lift, and phase-free NO-WRAP"; E260):
+      - Phase-free NO-WRAP is PROVED: x·P < m on D ⇒ MaxCL at every σ. The elementary proof is ready for Lean.
+      - Corollary: Wilf when every Apéry element w_i has a factorization with residue sum exactly i.
+      - Exact cell form at any height; WRAP-MAX target (only maximal cells wrap). Pure-counting H1 is FALSE (m = 17).
+      - Single-flip WRAP-DESCENT is FALSE.
+      - Literature search 2026-10-19 night (LITERATURE.md) found no prior statement of these classes.
+    - Lean queue (one agent at a time): NO-WRAP MaxCL ⇒ Wilf corollary (small), then ONE-CUBIC (large).
 (0F) NEW 2026-10-19 late evening, read first.
     - **Codex P6b accepted** (bcce63c; PROOFS "Height-3 MaxCL: partial results"; lead re-check E256).
       - New proved classes, at every σ with any spikes:
