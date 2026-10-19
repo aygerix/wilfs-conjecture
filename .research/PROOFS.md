@@ -1121,6 +1121,25 @@ src/scratch/gw/p4/P4_REPORT.md.
     regime.
   - The window 5m ≤ M ≤ 6m − 2 when cubic cells are present.
 
+**Conjecture H_i (uniform residue-free window theorem).** For every i ≥ 2, any scale q ≥ 1, any finite down-set
+D ⊂ ℕ^d, and n_a > q on active directions: if M ≥ (2i−2)q − 1, then
+
+    Σ_D min(i, ⌊v/q⌋) ≤ d Σ_D min(i, ⌊(M−v)/q⌋).
+
+- PROVED: i = 2 (GW-16, all M), i = 3 (Theorem H), i = 4 (H4). The cutoff is sharp for i = 3, 4.
+- Simplex evidence (E208): over full simplices {|x| ≤ t} ⊂ ℕ^k (k ≤ 8, t ≤ 13) with equal weights n ∈ (q, 3q],
+  q ≤ 60, the failures have sup (M+1)/q equal to 2i − 2 for i = 3, 4, 5, 6. The extremal shape is n = 2q − 1 with
+  degree ≈ i − 1. For i = 7, 8 the searched range only reaches 10 and 12.
+- Exhaustive residue-free check (E208): no failure for d = 2, m ≤ 14, q ≤ 9, n ≤ 3q, i = 3, 4, 5. Larger runs are
+  in progress.
+- Conditional consequence (with GW-PF): Wilf holds whenever at most e − 1 PF numbers are ≥ i·m, with i = ⌊(K+2)/2⌋
+  (K = ⌊maxAp/m⌋). That is FGH's type condition restricted to the upper half, uniformly in K. Its residual class is
+  concentrated at K = 4, 5 (E206).
+- Proof pattern (H, H4): each deficit (mixed carried cell of degree < i) picks b = its largest-weight direction and
+  is paid by the first surplus cell up its b-column, or by that column's slack when the column ends early. M ≥
+  (2i−2)q − 1 is exactly what makes the early-ending column have δ = M − v(top) ≥ q. For i ≥ 6 deficits can be ≥ 2,
+  and a general-i payment table is needed.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
