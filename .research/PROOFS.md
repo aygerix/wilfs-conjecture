@@ -1100,6 +1100,45 @@ that meets every demand. CP ⇒ GW.
 - Residue-free, CP fails even where GW holds (d = 2, m = 9, n = (12,12), GW slack 2). So CP needs residues more than
   GW does.
 
+**Identity GW-CR (column–residue decomposition; PROVED, exact, any down-set).** Let D be a finite down-set in
+ℕ^d, n_a > 0, M = max v, and r(x) = v(x) mod m. For a b-column C = {z + j e_b : 0 ≤ j ≤ J} with top t, write
+M − v(t) = mλ(t) + ε_t (0 ≤ ε_t < m) and ρ_b(j) = (j n_b) mod m. Then
+
+    dℓ − g = Σ_x r(x)/m + Σ_b Σ_{b-columns C} Ψ_b(C),
+
+with Ψ_b(C) = (J+1)λ(t) + #{0 ≤ j ≤ J : ρ_b(j) + ε_t ≥ m} − (1/m)Σ_{j=0}^{J} ρ_b(j).
+If D is residue complete, Σ_x r(x)/m = (m−1)/2, so
+
+    GW  ⟺  Σ_{b,C} Ψ_b(C) ≥ −(m−1)/2.
+
+Proof:
+- Column reflection gives dℓ = Σ_x Σ_b λ(R_b x).
+- For x = z + j e_b, M − v(R_b x) = M − v(t) + j n_b, so λ(R_b x) = λ(t) + ⌊j n_b/m⌋ + [ε_t + ρ_b(j) ≥ m].
+- κ(x) = Σ_b ⌊x_b n_b/m⌋ + (Σ_b ρ_b(x_b) − r(x))/m.
+- Subtract and sum over x. □
+
+Remarks:
+- A column can be negative only if its top lies in the last band (λ(t) = 0). Then Ψ = Σ_j([ρ_b(j) ≥ m − ε_t] − ρ_b(j)/m).
+- The tight cases have every per-cell term zero, e.g. ⟨5,6⟩ (one column, Ψ = −(m−1)/2) and T_{m,4} (Ψ = −s_b/m on
+  the columns {0, e_b}).
+- Residue completeness enters ONLY through the constant (m−1)/2 and through which column/residue patterns can
+  coexist.
+- FALSE refinement: the negative columns cannot always be paid from the bonuses r(x)/m of their own cells alone
+  (column-bonus Hall). It fails in ≈ 10% of instances, e.g. ⟨5,7,9⟩ and d = 2, m = 5, n = (8,9). Positive columns
+  must be used (E203).
+
+**Conjecture CCP (carry–column payment; local).** Residue-complete D, multiplicity form. Write
+carry(x) = κ(x) − Σ_a ⌊x_a n_a/m⌋ and let s(b, z) ≥ 0 be the slack of a column (H1). Then the carries can be routed:
+- from each cell x to columns, in any direction, that pass through x or through a lower cover x − e_a;
+- with each column receiving at most its slack.
+CCP ⇒ GW.
+- Evidence (E203): 0 failures on semigroups of genus ≤ 18 (33,281; lex-min tile), and on residue-complete down-sets
+  d = 2, m ≤ 9, K ≤ 4; d = 3, m ≤ 9, K ≤ 3; d = 4, m ≤ 8, K ≤ 2.
+- FALSE refinement: allowing only the columns through x itself fails in ≈ 25% of instances (⟨4,6,7⟩: the corner
+  e_1 + e_2 has carry 1 and zero slack on both of its columns).
+- Residue-free, CCP fails exactly where GW fails (d = 2, m = 6). It also fails at n = (12,12), m = 9, where GW holds:
+  the same instance as for CP.
+
 **Conjecture LW (local Wilf; intrinsic, stronger than Wilf).** For every numerical semigroup S with multiplicity m and
 Apéry poset (Ap(S, m), ≤_S), put H(w) = max(↑w) − w = max{u ∈ Ap : w + u ∈ Ap}. Then
 
