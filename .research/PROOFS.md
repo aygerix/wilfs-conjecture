@@ -2791,6 +2791,25 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
       i.e. with Wilf itself.
     - So the chain + overlap route reduces exactly to the multiplicity-free core. That core is the tile (MaxCL /
       Tile-TOP'') problem. It gives no route around it, but it says where the difficulty lives.
+- **Θ-form of Wilf (2026-10-19, lead; PROVED identity, checked).**
+  - Definition: for v ∈ Ap, Θ(v) := λ(v) + L1(v) + Σ_a λ(top_a(v)), with L1(v) = Σ_a depth_a(v)(λ(v−n_a) − λ(v)).
+  - Identity: Σ_{v∈Ap} Θ(v) = (d+1)ℓ.
+    Proof: Σ_v λ(v) = ℓ. In each direction, Σ_w λ(w) = Σ_w λ(top_a(w)) + Σ_v depth_a(v)(λ(v−n_a) − λ(v)), because
+    the layers telescope along chains. ∎
+  - Hence Wilf ⟺ Σ_v (mΘ(v) − c) ≥ 0. Exactly: Σ_v (mΘ(v) − c) = m·W.
+  - The terms equal c − mΘ(v) = β(v) − (m−1−s_v) − mΣ_aλ(top_a(v)), with β(v) = v − mL1(v) the local balance.
+  - **Generators and 0 are never deficient (PROVED).** Θ(0) ≥ λ(0) ≥ q. For a generator n_a, L1(n_a) = λ(0) − λ(n_a),
+    so Θ(n_a) ≥ λ(0) ≥ q ≥ c/m.
+  - Data, genus ≤ 26 (1,950,367 S): identity exact; 22% of S have a deficient element. Every deficient element is
+    decomposable: 744,091 in layer 0 ([c, M]) and 9 in layers 1–2.
+    - 0's surplus alone covers all deficits except in 760 S; worst ⟨6,11,43⟩.
+    - So in Θ-form, Wilf says the decomposable elements of the top window [c, M] are paid by the surpluses of 0, the
+      generators and the deeper elements.
+    - This is the same population as Eliahou's D_q. A comparison with his W_0 is still to do.
+  - Per-element candidates, FALSE:
+    - β(v) ≤ m−1−s_v fails in 477,205 S (worst ⟨7,13,36,37⟩).
+    - Σβ⁺ ≤ C2 without the m·Λ_top credit fails in 5,685 S (⟨7,11,38⟩).
+    So the deep-top credit Λ_top is essential.
 - **The n_1 dichotomy, general height (PROVED).** If M < (h+1)·n_1, then every Apéry element has a factorization of
   length ≤ h, so the grlex factorization tile has height ≤ h.
   - Hence MaxCL for tiles of height ≤ h ⇒ Wilf for every S with (h+1)·n_1 > c + m − 1.
