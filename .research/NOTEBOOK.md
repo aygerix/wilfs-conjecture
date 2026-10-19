@@ -2604,3 +2604,30 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     codex (P6d) tests it.
   - Kill: face-free packing (DIGITAL-STAR), CR-alone, and scalar-only payments (F3).
   - Continue: P6d (ONE-RELAY, then β-charging). P5h stays parked, because P4 needs height-3 MaxCL first.
+
+## 2026-10-19 (night) — column form for any lift; phase-free NO-WRAP; WRAP-MAX and the window-boundary count H1
+
+- **Column form (PROVED, exact).** The identity holds for any lift f ≡ φ − σ:
+  S = Σ_{nonmax-top cols} |C| r(t) + m·Σ_cols Σ_{x∈C} (K(t) − K(x)) − (Φ(f) − M').
+  - For the canonical lift, Φ − M' = m·E with E = Σ_D ⌊x·P/m⌋. For the semigroup lift, Φ − M' = m·g.
+  - It is a rearrangement of the carry form in PROOFS, not a new inequality. First-order terms cancel exactly
+    (Gauss on columns), so MaxCL is purely a second-order lattice-point statement.
+- **Phase-free NO-WRAP (PROVED).** If x·P < m on D, MaxCL holds at every σ. This extends "Γ = 0 ⇒ MaxCL", which
+  was a phase-dependent condition.
+- **Tile freedom.** Wilf needs Tile-TOP'' only at s = max Ap and only for SOME factorization tile
+  (Lean `wilf_of_tileTOPAt_of_isFactTile`).
+  - The P-min tile (least factorizations for the weight x·P, refined by grlex) minimizes E over all factorization
+    tiles. E = g − Σ_i max_x x·q, with q_a = ⌊n_a/m⌋.
+  - E = 0 for only ≈ 10% of random S (132 of 1,383; grlex gives 106; src/scratch/nowrap/pmin_tile.py). So the
+    no-wrap class is small, and tile choice alone does not remove wraps.
+- **Exact cell form (PROVED; asserted on 2,746 tiles × all σ, src/scratch/nowrap/wrapmax_test.py).** With
+  k = ⌊v/m⌋ (phase-free wrap), c = [label ∈ [m−ρ_0, m)] (carry) and K = k + c:
+  S = Σ_{nonmax-top cols} |C|(ρ_0 + v(t)) + m·[Σ_A ((|y|−1)k_y + |y|c_y) − Σ_N (d·c_x + (d+1)·k_x)].
+- **WRAP-MAX (target).** Hypothesis: every non-maximal cell has v < m. This contains height ≤ 2 tiles and no-wrap
+  tiles. It holds for 594 of the 2,746 sampled tiles.
+  - Charge each (window cell, direction) to its column top. Every top pays, except the failing set
+    F = {y ∈ A : k_y = 1, c_y = 0, all |y| cells below y in its columns are window cells}, each short by exactly m.
+  - Hence S/m ≥ β − |F|, where β = #{(x, b) : x ∉ Win, top_b(x) ∈ Win, x below the top}.
+  - **H1: β ≥ |F|.** It held on every sampled (tile, σ): 1,012 cases with F ≠ ∅, 0 failures.
+  - H1 would give WRAP-MAX MaxCL, which generalizes Flat-MaxCL. The tight examples printed so far are height-2
+    tiles: the β-pairs sit at the cell 0, and the F cells are pairs e_a + e_b with both units in the window.

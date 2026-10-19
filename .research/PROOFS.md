@@ -452,6 +452,42 @@ Consequences.
   minimum observed.
 - So a MaxCL proof has only to pay the wrapped up-sets U_j.
 
+**Column form for any lift, and phase-free NO-WRAP — PROVED 2026-10-19 (paper).** Checks: the identity was asserted at
+every σ on 360 Apéry tiles (src/scratch/nowrap/wrap_identity.py); 6,000 no-wrap tiles gave 0 negatives
+(src/scratch/nowrap/nowrap_maxcl.py).
+Let f: D → ℤ be any function with f ≡ φ − σ (mod m), and K = (f − r)/m. For each direction b the b-columns C are the
+maximal chains along e_b, with top t = t(C). Then, exactly,
+
+    S(σ) = Σ_{b-cols, t ∉ A} |C|·r(t) + m·Σ_b Σ_{b-cols} Σ_{x∈C} (K(t) − K(x)) − (Φ(f) − M'),
+    where Φ(f) := Σ_b Σ_{b-cols} Σ_{x∈C} (f(t) − f(x)).
+
+Proof: Σ_b Σ_cols Σ_{x∈C} (r(t) − r(x)) = Σ_{all tops} |C|·r(t) − d·M'. The maximal tops give Σ_A (d+|y|) r(y). ∎
+- For a linear lift f = ρ_0 + x·P with P ≡ p, Φ(f) = Σ_D x·P (Gauss on each column).
+  - For the canonical lift P_a = ⟨p_a⟩ ∈ [1, m−1], Φ − M' = m·E with E := Σ_D ⌊x·P/m⌋ ≥ 0, because x·P mod m is the label.
+  - If every P_b ≥ 0 then f is monotone on columns, so both column sums are ≥ 0.
+  - Among linear lifts with P ≥ 0, the canonical lift minimizes Φ.
+- The difference (column sums) − Φ(f) does not depend on f. The lift only decides which terms are visibly ≥ 0.
+- Level form. Put U_j = {x·P ≥ jm} and U'_j = {ρ_0 + x·P ≥ jm}, so U_j ⊆ U'_j ⊆ U_{j−1}. Let B_b(U) be the set of cells
+  outside U whose b-column meets U. Then
+
+      S = Σ_{t ∉ A} |C|·r(t) + m·Σ_{j≥1} (Σ_b |B_b(U'_j)| − |U_j|).
+
+- Semigroup lift P = n (the generators, f = ρ_0 + w). Then Φ − M' = m·g, where g is the genus. So MaxCL ⟺
+  Σ_{t∉A} |C| r(t) + m·Σ_cols Σ_{x∈C} (K(t) − K(x)) ≥ m·g.
+
+**Corollary (phase-free NO-WRAP).** Suppose the canonical lift satisfies x·P < m on D, i.e. v(x) = x·P is a bijection
+D → [0, m). Then MaxCL holds at EVERY σ. Proof: E = 0 in the column form.
+- This strengthens "Γ = 0 ⇒ MaxCL" above, which needs ρ_0 + x·P < m and so depends on the phase.
+- It covers:
+  - postage-stamp tiles (grlex-min representations of 0..m−1 over a coin set containing 1);
+  - mixed-radix products (DIGITAL-STAR);
+  - columns, simplices and lex boxes;
+  - spike lifts with spikes at labels ≥ the core size.
+
+**FALSE extension (partial tiles), preserved.** MaxCL needs φ to be onto ℤ/m. A down-set with injective labels can
+fail it. Example: D = {0, e_1, 2e_1} ⊂ ℕ¹ with p = 8 in ℤ/10 and σ = 7. Then r = (3, 1, 9), and
+Σ_A (d+|y|) r = 27 > (d+1) Σ_D r = 26. So there is no induction by deleting cells.
+
 **Unit form at height ≤ 3 (exact; checked on 1,158 (tile, σ) pairs, src/scratch/h3/unitform_h3.py).**
 Notation.
 - ℓ(x) = (1 − |x|)ρ_0 + Σ_a x_a ρ_a and K = ⌊ℓ/m⌋.
