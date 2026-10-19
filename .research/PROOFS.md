@@ -1076,6 +1076,51 @@ then S satisfies Wilf's conjecture.
   involves the smallest t + 1 − e PF numbers and is a different mechanism. No statement of GW-18 was found. Novelty
   is UNVERIFIED beyond this search.
 
+**Theorem GW-21 (P_4: partial; PROVED on paper 2026-10-19 by codex P4; every step re-checked by the lead, the
+identities (4), (5) and the EF expansion verified by exact polynomial arithmetic, src/scratch/gw/p4/lead_identity_check.py).**
+Same hypotheses as GW-19, with the target P_4: Σ min(4, κ) ≤ d Σ min(4, λ). Full proofs are in
+src/scratch/gw/p4/P4_REPORT.md.
+- **(H4) Residue-free, sharp.** For any scale q ≥ 1, any finite down-set, n_a > q on active directions and
+  M ≥ 6q − 1: Σ min(4, ⌊v/q⌋) ≤ d Σ min(4, ⌊(M−v)/q⌋).
+  - Proof as Theorem H. The deficits are the mixed quadratics (floors 1+1 → 3, 1+2 → 4) and the mixed cubics
+    (B = 3, F(v) = 4), each of size 1.
+  - Each deficit x chooses b = its largest-weight direction and the column (b, x with x_b zeroed). These columns are
+    distinct.
+  - Payment: either the cell z + j*e_b has surplus (table in P4_REPORT §7), or the column ends below j* and has
+    slack ≥ 1.
+  - Sharp: the degree-4 simplex in ℕ³ with q = m = 35 and n = (52,52,52) has M = 6q − 2 and 115 > 114.
+- **(Band identity, primary regime 4m ≤ M < 5m.)**
+  - Put ρ = 5m − 1 − M. The classes A, B, C, E are the bands of n_a. The types are those of the E200 table, with
+    AAB split by the band of its AA divisor.
+  - Exact identity W = dℓ − g = W_A + T + R, with T, R ≥ 0 explicit, where
+    W_A = 3a(a+1) + (2a−2)q₂ + (a−3)(q₃+u₃) − 4(u₄+k).
+  - Ingredients: weighted shadows, monomial capacities, and the joint short-residue lemma
+    t₃ + BC + AAB₃ + ABB + BBB ≤ ρ (five families with residues in one cyclic interval of length ρ).
+  - Also 3W_A = 18(Q − q₂ − q₃) − (a−1)q₃ + 4D₃ + 2D_low + 3D₄ with D_* ≥ 0 (shadow defects). So P_4 holds whenever
+    18(Q − q₂ − q₃) ≥ (a−1)q₃.
+- **(Signed B₃ packing.)** If an a-direction face contains every monomial of degree ≤ 3 (residue injective), then
+  m ≥ C(a+3,3) + 2C(a+1,3).
+  - Proof: the residues p + q − r, with p, q ∈ B₀ ∖ {r} and B₀ = {0, s_1, …, s_a}, are distinct and avoid B₀.
+  - Quantitative form: m ≥ s(s(s−1)/2 + 1) − J_s r(r+1)/2, where r = the triple-collision excess and
+    J_s = min(9, ⌊s²/4⌋).
+  - Corollary: no residue-complete down-set is a full cubic simplex, nor a full cubic simplex minus one cubic.
+- **(Primary regime, a ≤ 3: PROVED.)** a = #{a : n_a < 2m − ρ}.
+  - For a ≤ 1, W_A ≥ 0.
+  - For a = 2 or 3, W_A < 0 forces the face to be the full cubic simplex with every AA in I₃ and every AAA in I₄.
+    W < 0 would then force T + R ≤ 3 (resp. = 0), which makes D a full cubic simplex minus ≤ 1 cubic.
+    The packing corollary excludes this.
+- **(Saturated EF face, any a, ρ = 0: PROVED.)** The packing gives d − a > (a−1)/3. Then
+  W − W_A ≥ (d−a)·a(a+1)/2 > C(a+1,3) = −W_A.
+- **(Quadratic down-sets: PROVED for every M.)**
+- **Semigroup corollaries.**
+  - **Wilf holds for every S with 3m < c ≤ 4m that has at most 3 minimal generators in (m, c − 2m).** Here
+    2m − ρ = c − 2m. Genus ≤ 28: this covers 640,993 of the 642,239 such S.
+  - Via H4 and GW-PF: Wilf holds if c ≥ 5m and at most e − 1 PF numbers are ≥ 4m.
+- **OPEN (precise).**
+  - RC4: (a−1)q₃ ≤ 18(Q − q₂ − q₃) + 4D₃ + 2D_low + 3D₄ + 3T + 3R for a ≥ 4. This is equivalent to the primary
+    regime.
+  - The window 5m ≤ M ≤ 6m − 2 when cubic cells are present.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
@@ -1267,8 +1312,9 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
 - depths j ≤ k_min (GW-13/14);
 - P_1 and P_2 in the multiplicity form, without residues (GW-14, GW-16).
 - P_3 (GW-19): residues are needed only for 3m ≤ M < 4m. It contains Eliahou's c ≤ 3m theorem.
-- Next case P_4: its regime 4m ≤ M < 5m is exactly Wilf for 3m < c ≤ 4m, which is OPEN in the literature
-  (LITERATURE item 22).
+- P_4: PARTIAL (GW-21). Proved: H4 for M ≥ 6m − 1 (residue-free, sharp), the primary regime 4m ≤ M < 5m for
+  a ≤ 3, quadratic down-sets, and saturated EF faces. Open: RC4 for a ≥ 4, and 5m ≤ M ≤ 6m − 2. The primary
+  regime is Wilf for 3m < c ≤ 4m, which is OPEN in the literature (LITERATURE item 22).
   - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1
     gives 27 > 26.
   - The class-face splitting of the band proof also fails at K = 4 (E200).

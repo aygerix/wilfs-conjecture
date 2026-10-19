@@ -1,0 +1,4 @@
+{"mode": "EF", "m": 14, "A": [22, 23], "e": 7, "ell": 13, "W": 35, "WA": -1, "face": 10}
+{"mode": "EF", "m": 16, "A": [25, 26], "e": 9, "ell": 13, "W": 53, "WA": -1, "face": 10}
+{"mode": "EF", "m": 17, "A": [26, 28], "e": 10, "ell": 13, "W": 62, "WA": -1, "face": 10}
+{"mode": "EF", "last": 90, "counts": {"semigroups": 30863, "negative_face": 10663, "B3": 6578, "saturated_proof_checks": 6578}}

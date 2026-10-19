@@ -1,0 +1,15 @@
+d=3 m=4 canonical_shapes=1 instances=384 K4=222 quadratic=222 no_A=162 saturated_rho0=0 short_members=0 carry_units=0 minW=0
+d=3 m=5 canonical_shapes=2 instances=1024 K4=216 quadratic=216 no_A=116 saturated_rho0=0 short_members=40 carry_units=36 minW=4
+d=3 m=6 canonical_shapes=5 instances=2048 K4=207 quadratic=193 no_A=89 saturated_rho0=0 short_members=78 carry_units=95 minW=7
+d=3 m=7 canonical_shapes=11 instances=6912 K4=443 quadratic=268 no_A=128 saturated_rho0=0 short_members=218 carry_units=203 minW=4
+d=3 m=8 canonical_shapes=21 instances=12032 K4=376 quadratic=58 no_A=64 saturated_rho0=0 short_members=279 carry_units=260 minW=8
+d=3 m=9 canonical_shapes=39 instances=22272 K4=494 quadratic=54 no_A=50 saturated_rho0=0 short_members=373 carry_units=362 minW=4
+d=3 m=10 canonical_shapes=73 instances=27136 K4=253 quadratic=0 no_A=20 saturated_rho0=0 short_members=248 carry_units=175 minW=11
+d=3 m=11 canonical_shapes=129 instances=64000 K4=341 quadratic=0 no_A=16 saturated_rho0=0 short_members=284 carry_units=263 minW=12
+d=3 m=12 canonical_shapes=227 instances=63744 K4=198 quadratic=0 no_A=7 saturated_rho0=0 short_members=149 carry_units=133 minW=13
+d=3 m=13 canonical_shapes=390 instances=148224 K4=239 quadratic=0 no_A=5 saturated_rho0=0 short_members=173 carry_units=162 minW=10
+d=3 m=14 canonical_shapes=662 instances=139008 K4=127 quadratic=0 no_A=3 saturated_rho0=0 short_members=79 carry_units=60 minW=15
+d=3 m=15 canonical_shapes=1103 instances=224768 K4=143 quadratic=0 no_A=3 saturated_rho0=0 short_members=116 carry_units=140 minW=12
+d=3 m=16 canonical_shapes=1829 instances=280576 K4=66 quadratic=0 no_A=0 saturated_rho0=0 short_members=33 carry_units=29 minW=14
+d=3 m=17 canonical_shapes=2986 instances=532480 K4=79 quadratic=0 no_A=0 saturated_rho0=0 short_members=6 carry_units=36 minW=20
+d=3 m=18 canonical_shapes=4844 instances=395136 K4=26 quadratic=0 no_A=0 saturated_rho0=0 short_members=5 carry_units=5 minW=20
