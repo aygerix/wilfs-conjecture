@@ -81,7 +81,8 @@
   whenever 3n_1 > c + m, without Spirito's conditions.
 - GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. GW-26c (codex P5b, verified by the lead, E221):
   the same when 2n_2 ≥ c − m (at most one low unit). GW-26d (codex P5c, verified by the lead, E227): the same when
-  2n_3 ≥ c − m (at most two low units).
+  2n_3 ≥ c − m (at most two low units). GW-26e (codex P5c + lead refinements, E228–E232): exactly three low units
+  and a ≥ 13.
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -175,9 +176,8 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
     codex/p5d_log.txt; report P5_REPORT.md §31 onward).
     - P5c finished. It claims T2.3-M, T2.3 (α ≤ 3, a ≥ 41, analytic) and T2.3F (α ≤ 3, a ≥ 16, finite certificate),
       plus the residual family α = 3, 13 ≤ a ≤ 15 (c = e = 0, d ≤ 26, m ≤ 5474, 172 profiles).
-    - Lead review: algebra, finite certificate and LSP are DONE (E228–E230). The instance runs of lead_t23_check.c
-      (53 checks, incl. JOINT-SP) are RUNNING on fejer, ~/wilf/lead23/{r_*,j_*}.log. When they finish clean, record
-      GW-26e = T2.3F in PROOFS, together with JOINT-SP ⇒ a ≥ 14 once codex confirms it.
+    - Lead review DONE (E228–E230, E232: 471,750 instances, 0 failures). Recorded as GW-26e: three lows, a ≥ 13,
+      using JOINT-SP and the retained cold-pair step. Seeds 14 and 22 were still running; append them to E232.
     - JOINT-SP (lead, NOTEBOOK 2026-10-19 night) cuts the 172 profiles to 11, all at a = 13.
     - P5d task: one argument for every α. Lead heuristic (NOTEBOOK 2026-10-19 night): the arc/arc/JOINT-SP
       trichotomy closes at leading order for EVERY a ≥ α when the localized defect is small.

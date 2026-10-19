@@ -1419,8 +1419,43 @@ W ≥ 0, for every b, c, e.
   - Outside cells: OUT2 J − J_A ≤ b(2+n0) + 2c, OUT2b, HOUT2. They are paid in PAY2 through I-LOW with η = 2J or
     η = −δ + 2J_{H0}. The a = 7 boundary B7 (n0 = q2 = 3, l = u3 = 0) uses Macaulay (r_A ≤ 1) and HIGH.
 - Residue injectivity enters beyond arc occupancy only in SIDON2 (distinct pair sums ⇒ Sidon set of offsets).
-- Codex's continuation (§§24–26, three low units) is NOT yet verified: T2.3-M (three lows, at least three missing A
-  pairs) and T2.3 (three lows, large a) are reported there.
+- Codex's continuation (§§24–27, three low units) is verified and recorded as GW-26e (a ≥ 13).
+
+**Theorem GW-26e (three low units, a ≥ 13; PROVED 2026-10-19).** Sources: codex P5c, src/scratch/gw/p5/P5_REPORT.md
+§§24–27 (T2.3-M, T2.3, T2.3F), plus two lead refinements that close 13 ≤ a ≤ 15. Verification by the lead: the
+algebra symbolically (E230); the finite certificate by an independent implementation (E228); LSP exhaustively for
+n ≤ 8 (E229); every inequality used, on 471,750 actual three-low semigroups (E232). Statement: in the primary regime
+4m ≤ M < 5m, if exactly three A directions have 2t < h and a ≥ 13, then W ≥ 0, for every b, c, e.
+- Semigroup form, together with GW-26d and GW-24: Wilf holds whenever 3m < c ≤ 4m and at most three minimal
+  generators n satisfy 2n < c − m, unless exactly three do and 7 ≤ #{minimal generators n < c − 2m} ≤ 12.
+- Notation: α = 3, p = a − 3, r = r_A, l = Σ_i l_i (low–high I2 pairs), n0 = present low–low pairs, θ = ⌈3h/2⌉,
+  L = least low offset, δ = h − 2L, R = #{high A : t < θ − 2L}, t = t_A, ε = t − t_forced with t_forced = 0, a, 2a−1
+  for r = 0, 1, 2.
+- Uniform counts (any α), with P = (a−1) + LC + 2q2 + k − 2J_A as in GW-26d:
+  - GEN-COUNT: J_A ≤ α + n0 + c0 + k0 + p·n0 − u1 + Σ C(l_i+1,2), and J − J_A ≤ b(α + n0) + αc.
+  - GLOC: the fixed-arc I-LOW payment is ≥ Φ, by coefficient comparison.
+  - Shadows 4k0 ≤ (α+3)u0 and 3k1 ≤ (α+2)u1. GEN-ROUGH: P ≥ 15 − 5a for α = 3, a ≥ 7.
+- Cases:
+  - r ≥ 3 (T2.3-M, a ≥ 13). MG6: a ≥ 13 and 6 ≤ q ≤ Q−3 ⇒ (a+2)q − 3q^{⟨2⟩} ≥ 6a − 18. Hence P + D3 ≥ a − 3.
+  - l ≥ 6: 3L-STARS. l ≥ 5 − 2r: 3L-GAP-STARS (P + D3 ≥ 0, 10, 9). Both use NEAR-GAP D3 ≥ r(4a−3r−1)/2.
+  - a ≥ 13, r ≤ 2 and c + e > 0: the C/E terms pay the rough loss, so c = e = 0 may be assumed. At a = 13 the b
+    coefficient is max(1, B_f), via OUT3b (J − J_A ≤ b(3+β) + 3c) and the β = 6, u3 = 0 subcase.
+  - r ≤ 2, l ≤ 4 − 2r, W_A < 0: FIN. The fixed-arc payment is ≥ K + b·B_f, and the H0-arc payment is
+    ≥ δ − B + D3 + b·B_h. Both are combined with PSID (3L-PACK), WINDOW-SP, WINDOW-COUNT (LSP + LOC-DEF) and two
+    lead refinements:
+    - JOINT-SP (lead): all α + R offsets lie in [L, θ−2L), an interval of ⌈3δ/2⌉ integers. So
+      3⌈3δ/2⌉ − 2 ≥ H(α+R−r) − λ·ε.
+    - Retained cold-pair step (lead; codex reached the same independently): in F_cold keep D3 − 3t0 ≥ 3(t − t0max)
+      − (a+2)r. When n0 = 6 the forced missing cubics contain a high, so t0max = min(10, t − t_forced).
+  - No count profile survives for 13 ≤ a ≤ 40 (E228). For a ≥ 41 the analytic T2.3 applies (3L-POLY table,
+    18 positive-coefficient polynomials, E230).
+- Proof dependencies: the P4 SP lemma (GW-24; LSP is its interval form) and the GW-26/26c/26d framework (I-LOW,
+  transfer, LC, LC-minus).
+- Caveats:
+  - The finite certificate is a computation over count profiles, re-implemented independently.
+  - No instance with a ≥ 41 was sampled; the Sidon samplers cannot reach it for m < 6000.
+- Open in this regime: α = 3 with 7 ≤ a ≤ 12, and α ≥ 4. The reduction of all α to the bounded-defect packing
+  lemma LSP* is heuristic (NOTEBOOK 2026-10-19 night).
 
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
@@ -1758,6 +1793,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
   - with at most one low unit (GW-26c; semigroups: 2n_2 ≥ c − m);
   - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
+  - with exactly three low units and a ≥ 13 (GW-26e);
   - whenever LOW+ holds (GW-26b).
   - Semigroup corollary of the a ≤ 6 case: since a ≤ d = e − 1, **Wilf holds for every S with e ≤ 7 and c ≤ 4m**
     (with Eliahou, or our GW-19, for c ≤ 3m). More generally, it holds when 3m < c ≤ 4m and at most six minimal
