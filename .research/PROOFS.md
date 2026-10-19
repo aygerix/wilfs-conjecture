@@ -2314,7 +2314,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
 - A proof by induction on i must move mass across depths, because the per-depth inequalities are false.
 
 ---------------------------------------------------------------------------------------------------
-## Theorem LAYER-KNESER (LK) — PROVED 2026-10-19 (paper; exhaustive check genus ≤ 33, E271)
+## Theorem LAYER-KNESER (LK) — PROVED 2026-10-19 (paper; exhaustive check genus ≤ 33, E271); (a) and prime-m (b) KERNEL-CHECKED
 Setting. S a numerical semigroup with multiplicity m ≥ 2 and conductor c > m. Put D = ⌈c/m⌉, so (D−1)m < c ≤ Dm,
 and c = (D−1)m + c′ with 1 ≤ c′ ≤ m. Let B = {0} ∪ {s − m : s ∈ S, m < s < 2m} ⊂ ℤ/m and k = |B| − 1, the number of
 elements of S in (m, 2m). These are all primitive, so e ≥ k + 1. For H ≥ 0 let G_H = {r ∈ [0, m) : Hm + r ∉ S}
@@ -2361,5 +2361,14 @@ Checks.
   sometimes with extra higher generators) satisfy LK and none of c ≤ 3m, 3e ≥ m, m ≤ 18, DKM Thm 1.5 / Cor 1.6,
   Kaplan's 2g < 3m, the type bound t ≤ e − 1, or symmetry. Example: m = 150, gens 153–159, 161, 163, e = 10, c = 1803,
   type 10.
-Lean: the prime-m case uses only `ZMod.cauchy_davenport` (in Mathlib). Kneser is not in Mathlib.
+**LEAN (kernel-checked 2026-10-19, lean/Wilf/LayerKneser.lean; axioms propext, Classical.choice, Quot.sound; no sorry).**
+The Lean statements hold for **any** m ∈ S with m > 0, not only the multiplicity. Band 0 then only satisfies g_0 ≤ m − 1,
+which is all step 5 uses. With q = D − 1 ≥ 1, q·m < c ≤ (q+1)·m, k = #lowRes m = |S ∩ (m, 2m)|:
+- `ell_ge_layer_basic`: q + 1 + (q−1)k ≤ ℓ. This is (a), with no primality assumption and no upper bound on c needed.
+- `ell_ge_layer_prime` (m prime): q + 1 + (q−1)k + k·Σ_{j<q−1}⌊j/2⌋ ≤ ℓ. This is (b) with δ = k. For prime m,
+  "k ≥ 1 and gcd(m, B) = 1" is automatic or vacuous: k = 0 makes the extra term 0.
+- `wilf_of_layer_prime`: c ≤ e·(that bound) ⇒ Wilf. `ell_ge_layer_multiplicity`: the m = multiplicity instance.
+- Ingredients: `shift_mem` (step 2) and `card_bandGaps_step` (step 3, via Mathlib `ZMod.cauchy_davenport`).
+- The general-m Kneser case (δ = ⌈(k+1)/2⌉) is NOT formalized, because Kneser's theorem is not in Mathlib. It stays at
+  "proved on paper; Kneser cited".
 

@@ -192,7 +192,8 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       - Exhaustive check genus ≤ 33 (E271).
       - It settles the deep (slow-growth) part of their open Problem 1.8 (all generators < 2m).
     - Next for this line:
-      - (i) Lean: the prime-m case via `ZMod.cauchy_davenport`, plus part (a) for all m.
+      - (i) DONE: Lean kernel-checked (lean/Wilf/LayerKneser.lean). Covers part (a) and the prime-m case, for any m ∈ S
+        (not only the multiplicity). The general-m Kneser case is paper only.
       - (ii) The fast-growth remainder of Problem 1.8 (4 ≤ D ≲ 8m/k²), via an inverse-theorem (Freiman/Vosper)
         dichotomy.
       - (iii) Whether the band-Kneser growth combines with the MaxCL/HCR machinery for general S.
