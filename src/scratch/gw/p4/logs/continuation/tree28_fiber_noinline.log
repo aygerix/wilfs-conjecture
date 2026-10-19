@@ -1,0 +1,6 @@
+genus<=28 all=5311726 K4=642239 quadratic=479231 no_A=453098 saturated_rho0=0 short_members=981715 carry_units=834429 minW=0 A_le2=633345 A2_negative_face=0 A_le3=640993 A3_negative_face=0
+H4=0 deficits=0 cell_charges=0 column_charges=0
+A4=1116 negative_faces=0 types=0,0,0,0,0,0 bad_neighbors=0 quartic_faces=0 min_negative_face_W=1000000000
+HD4=1 deficits=0 cell_charges=0 column_charges=0
+A5=122
+FIBER faces=98808 HP=0 full_support_fibers=0 A6=8 A7=0 LC=8894 neighbors=3

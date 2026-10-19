@@ -1,0 +1,7 @@
+saved_cases=7
+K4=7 quadratic=0 no_A=0 saturated_rho0=0 short_members=69 carry_units=149 minW=945 A_le2=0 A2_negative_face=0 A_le3=0 A3_negative_face=0
+H4=0 deficits=0 cell_charges=0 column_charges=0
+A4=7 negative_faces=7 types=2,1,0,3,0,1 bad_neighbors=34 quartic_faces=1 min_negative_face_W=945
+HD4=0 deficits=0 cell_charges=0 column_charges=0
+A5=0
+FIBER faces=7 HP=0 full_support_fibers=0 A6=0 A7=0 LC=7 neighbors=36

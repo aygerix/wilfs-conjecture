@@ -1,0 +1,135 @@
+{
+  "mode": "catalog",
+  "a": 4,
+  "table": [
+    {
+      "q2": 0,
+      "u3max": 0,
+      "minimum_5q2_5u3_minus4k": 0,
+      "at_u3": 0,
+      "at_k": 0
+    },
+    {
+      "q2": 1,
+      "u3max": 1,
+      "minimum_5q2_5u3_minus4k": 5,
+      "at_u3": 0,
+      "at_k": 0
+    },
+    {
+      "q2": 2,
+      "u3max": 2,
+      "minimum_5q2_5u3_minus4k": 10,
+      "at_u3": 0,
+      "at_k": 0
+    },
+    {
+      "q2": 3,
+      "u3max": 4,
+      "minimum_5q2_5u3_minus4k": 15,
+      "at_u3": 0,
+      "at_k": 0
+    },
+    {
+      "q2": 4,
+      "u3max": 5,
+      "minimum_5q2_5u3_minus4k": 20,
+      "at_u3": 0,
+      "at_k": 0
+    },
+    {
+      "q2": 5,
+      "u3max": 7,
+      "minimum_5q2_5u3_minus4k": 24,
+      "at_u3": 7,
+      "at_k": 9
+    },
+    {
+      "q2": 6,
+      "u3max": 10,
+      "minimum_5q2_5u3_minus4k": 20,
+      "at_u3": 10,
+      "at_k": 15
+    },
+    {
+      "q2": 7,
+      "u3max": 11,
+      "minimum_5q2_5u3_minus4k": 25,
+      "at_u3": 10,
+      "at_k": 15
+    },
+    {
+      "q2": 8,
+      "u3max": 13,
+      "minimum_5q2_5u3_minus4k": 29,
+      "at_u3": 13,
+      "at_k": 19
+    },
+    {
+      "q2": 9,
+      "u3max": 16,
+      "minimum_5q2_5u3_minus4k": 25,
+      "at_u3": 16,
+      "at_k": 25
+    },
+    {
+      "q2": 10,
+      "u3max": 20,
+      "minimum_5q2_5u3_minus4k": 10,
+      "at_u3": 20,
+      "at_k": 35
+    }
+  ],
+  "negative_count": 6,
+  "negative": [
+    [
+      0,
+      10,
+      0,
+      18,
+      0,
+      -2
+    ],
+    [
+      0,
+      10,
+      0,
+      19,
+      0,
+      -6
+    ],
+    [
+      0,
+      10,
+      0,
+      20,
+      0,
+      -10
+    ],
+    [
+      1,
+      9,
+      0,
+      19,
+      0,
+      -1
+    ],
+    [
+      1,
+      9,
+      0,
+      20,
+      0,
+      -5
+    ],
+    [
+      1,
+      9,
+      1,
+      19,
+      1,
+      -4
+    ]
+  ]
+}
+{"mode": "packing", "trials": 100000, "seed": 20261019, "counts": {"pair_injective": 42024, "linear_distinct_omitted": 40995, "intersecting_omitted": 33572, "all_quadratics_chosen": 7806}}

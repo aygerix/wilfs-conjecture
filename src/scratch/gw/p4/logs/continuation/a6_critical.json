@@ -1,0 +1,16 @@
+{
+  "mode": "a6_critical",
+  "bmax": 11,
+  "counts": {
+    "critical_vectors": 36389,
+    "A_packing": 3118,
+    "global_packing": 32639,
+    "delete_pair_endpoints": 564,
+    "complete_support_packing": 65,
+    "one_good_B_face": 3
+  },
+  "survivor_count": 0,
+  "survivor_group_count": 0,
+  "groups": [],
+  "survivors": []
+}

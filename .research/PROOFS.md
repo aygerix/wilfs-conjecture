@@ -1217,6 +1217,48 @@ Corollary GW-23c:
 - The row-pairing bound term_j + term_{J+1−j} ≤ 2β (w ≥ 2q) holds for i ≤ 8, q ≤ 12. It FAILS at i = 12: q = 20, w = 46,
   β = 3, u = 117, J = 7, j = 3 gives S = 7.
 
+**Theorem GW-24 (P_4 primary regime for a ≤ 6; distinct-weight H4; packing lemmas. a ≤ 5 PROVED on paper,
+a = 6 PROVED with two finite certificates; 2026-10-19, codex P4 §§12–19, every step re-checked by the lead; both a = 6
+certificates and the a = 7 subcase re-implemented independently by the lead, src/scratch/gw/p4/lead/).**
+Notation of GW-21 (bands I_j = [jm−ρ, (j+1)m−ρ), classes A, B, C, E, cell types q₂ … k, W = W_A + T + R).
+Full proofs: src/scratch/gw/p4/P4_REPORT.md §§12–19.
+- **Packing lemmas** (B₀ = {0, s_1, …, s_{s−1}} with injective unordered-pair residues; r = triple-collision excess;
+  H_{s−1} = s(s(s−1)/2 + 1)).
+  - (Linear, omitted family) If the represented triples and the omitted triples each have distinct residues, then
+    m ≥ H_{s−1} − Σ_{omitted x} |supp x|·min(3, s − |supp x|). Holds when the omitted triples pairwise share a variable.
+  - (LP) 2m ≥ 2H_{s−1} − 3s·r. (SP) m ≥ H_{s−1} − L_s r with L_s = 3s/2 (3 | s), 3(s−1)/2 otherwise (s ≥ 5); 1, 2, 4
+    for s = 2, 3, 4. L_s is the exact max of Σ_{i<j} t_it_j/(g−1) over support partitions (checked s ≤ 100).
+  - (HP, s = 3k ≥ 6) A fiber of k disjoint squarefree triples covering B₀ has residue R with kR ≡ Σ B₀ (mod m), so there
+    are ≤ gcd(k, m) such fibers, and m ≥ H_{s−1} − (3s/2 − 3) r − 3(k−1) gcd(k, m).
+  - Consequences: no residue-complete tile is (d ≥ 5) all quadratics + all but ≤ 4 cubics + ≤ 2 quartics, or (d ≥ 6)
+    a full cubic simplex minus ≤ 6 cubics.
+- **Uniform low-cost lemma (LC), any a ≥ 3.** For the low sub-ideal (degree counts q₂, u₃, k):
+  (a+1)(q₂+u₃) − 4k ≥ min((a+1)q₂, C(a+1,3)). Proof: condensed Macaulay twice and the factorization
+  ℓ_a(r) − F_a = (a−r)[r³ + 5r² + (5−a)r − a² + 1]/6 ≥ 0 on [a−2, a]. Consequence: W_A < 0 forces
+  q₂ < a(a−1)/6 and 3(a+1)q₂ + (a+17)r_A < 3C(a+1,3).
+- **AB-neighbor loss (any a).** If all AA are present, a B direction missing p_j ≥ 1 of its I₃ A-neighbors costs
+  ≥ p_j(4a+3−3p_j)/2 ≥ 2a in p + D_v.
+- **Primary regime, a = 4, 5: PROVED (paper).** W_A < 0 leaves 6 (a = 4) resp. 22 (a = 5) Macaulay profiles. In each,
+  W < 0 forces c = e = 0 and an explicit near-simplex face, which the packing lemmas exclude (§§13, 16).
+- **Primary regime, a = 6: PROVED (computer-assisted).** Analytic reductions:
+  - W_A < 0 gives r_A ≤ 1, q₂ ≤ 4, c = e = 0. The one-missing-AA family reduces to one profile (A6.1): m = 74,
+    ρ ∈ {0,1}.
+  - For the full AA family, b ≥ 12 is excluded by packing polynomials 2d³ − 6d² − 118d − 74 > 0 and
+    2d³ − 6d² − 115d + 40 > 0 (d ≥ 18).
+  - Certificate 1 (A6.1 weights): the only lower-injective weight vector with ≥ 47 eligible cubics is
+    t = (38,39,42,43,49,51) at ρ = 0 (omitted pair (1,4) or (2,3)). It leaves 18 residues uncovered.
+  - Certificate 2 (count domain, b ≤ 11): 75 profiles and 36,389 count vectors. Exclusions: pure-A face 3,118; whole
+    face (SP) 32,639; (HP) 65; deleted-endpoint face 564. The 3 survivors (b = 2, m = 148) are excluded on paper by a
+    7-direction face with one missing cubic: m ≥ 221.5.
+- **Distinct-weight H4.** If the active weights are pairwise distinct and > q and M ≥ 6q − 3, then P_4 holds at scale q
+  with no residue hypothesis (the H4 table, with sharper early-column bounds). Hence the residue-complete P_4 holds
+  for M ≥ 6m − 3.
+- **a = 7 subcase (computer-assisted).** For b = c = e = 0, all AA present and q₂ = 0, W ≥ 0.
+  (SP) and W < 0 leave m ∈ {107, 108}, and residue coverage fails in all 12 parameter sets (min 24 uncovered).
+- **Semigroup corollary.** Wilf holds for every S with 3m < c ≤ 4m having at most 6 minimal generators in
+  (m, c − 2m). On paper this holds for ≤ 5. (a = #{n_a < 2m − ρ} and 2m − ρ = c − 2m.)
+- **OPEN.** Primary regime a ≥ 7 (the Macaulay profile list grows with a). Secondary window 5m ≤ M ≤ 6m − 4.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
@@ -1447,8 +1489,10 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
 - depths j ≤ k_min (GW-13/14);
 - P_1 and P_2 in the multiplicity form, without residues (GW-14, GW-16).
 - P_3 (GW-19): residues are needed only for 3m ≤ M < 4m. It contains Eliahou's c ≤ 3m theorem.
-- P_4: PARTIAL (GW-21). Proved: H4 for M ≥ 6m − 1 (residue-free, sharp), the primary regime 4m ≤ M < 5m for
-  a ≤ 3, quadratic down-sets, and saturated EF faces. Open: RC4 for a ≥ 4, and 5m ≤ M ≤ 6m − 2. The primary
+- P_4: PARTIAL (GW-21, GW-24). Proved: H4 for M ≥ 6m − 1 (residue-free, sharp), and M ≥ 6m − 3 with residues
+  (distinct weights). The primary regime 4m ≤ M < 5m is proved for a ≤ 5 on paper and for a = 6 with two finite
+  certificates. Also proved: quadratic down-sets and saturated EF faces. Open: the primary regime for a ≥ 7, and
+  5m ≤ M ≤ 6m − 4. The primary
   regime is Wilf for 3m < c ≤ 4m, which is OPEN in the literature (LITERATURE item 22).
   - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1
     gives 27 > 26.

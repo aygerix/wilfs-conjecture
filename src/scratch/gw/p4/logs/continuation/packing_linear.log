@@ -1,0 +1,1 @@
+{"mode": "packing", "trials": 200000, "seed": 20261019, "counts": {"pair_injective": 84001, "universal_linear_checks": 84001, "linear_distinct_omitted": 81944, "intersecting_omitted": 67146, "all_quadratics_chosen": 15558}}

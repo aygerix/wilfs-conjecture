@@ -1,0 +1,6 @@
+fiber_check.h:9:13:fiberface	3776	static
+../h4_check.h:15:12:hF.part.0	16	static
+../hd4_check.h:15:12:hdF.part.0	16	static
+../h4_check.h:16:13:h4verify	264416	static
+a4_tree.c:10:13:visit	331696	dynamic,bounded
+a4_tree.c:52:5:main	128	dynamic,bounded

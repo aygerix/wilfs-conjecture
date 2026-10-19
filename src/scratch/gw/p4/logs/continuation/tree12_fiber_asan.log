@@ -1,0 +1,6 @@
+genus<=12 all=1413 K4=157 quadratic=141 no_A=136 saturated_rho0=0 short_members=73 carry_units=57 minW=0 A_le2=157 A2_negative_face=0 A_le3=157 A3_negative_face=0
+H4=0 deficits=0 cell_charges=0 column_charges=0
+A4=0 negative_faces=0 types=0,0,0,0,0,0 bad_neighbors=0 quartic_faces=0 min_negative_face_W=1000000000
+HD4=1 deficits=0 cell_charges=0 column_charges=0
+A5=0
+FIBER faces=14 HP=0 full_support_fibers=0 A6=0 A7=0

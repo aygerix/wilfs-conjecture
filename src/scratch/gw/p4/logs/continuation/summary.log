@@ -1,0 +1,42 @@
+{
+  "quartic_counterexample": {
+    "m": 74,
+    "h": 37,
+    "rho": 37,
+    "d": 42,
+    "a": 4,
+    "b": 0,
+    "c": 0,
+    "e": 38,
+    "WA": -4,
+    "W": 945,
+    "ell": 28,
+    "q2": 1,
+    "q3": 9,
+    "u3": 1,
+    "u4": 19,
+    "k": 1,
+    "p": 0,
+    "Dv": 0,
+    "Dw": 0
+  },
+  "saved_cases": 7,
+  "certificate_agreement": {
+    "a6_count": {
+      "profiles": 75,
+      "bmax": 11,
+      "critical": 36389,
+      "A": 3118,
+      "global": 32639,
+      "HP": 65,
+      "forced": 0,
+      "deleted": 564,
+      "good_B": 3,
+      "survivors": 0
+    },
+    "a6_weight_parameters": 2,
+    "a7_parameters": 12,
+    "a7_min_holes": 24
+  },
+  "nonempty_error_logs": []
+}

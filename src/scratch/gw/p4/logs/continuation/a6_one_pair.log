@@ -1,0 +1,5 @@
+CASE rho=0 missing_pair=0,3 holes=18 eligible_cubics=47 t=38,39,42,43,49,51
+BEST rho=0 missing_pair=0,3 holes=18 eligible_cubics=47 t=38,39,42,43,49,51
+CASE rho=0 missing_pair=1,2 holes=18 eligible_cubics=47 t=38,39,42,43,49,51
+SUMMARY m=74 rho=0 nodes=2736005 pairsets=663140 eligible=2 top_eligible=2 minholes=18 W=-2
+SUMMARY m=74 rho=1 nodes=2318811 pairsets=525989 eligible=0 top_eligible=0 minholes=74 W=-1

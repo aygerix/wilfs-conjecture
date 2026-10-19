@@ -1,0 +1,11 @@
+BEST m=107 rho=0 h=107 holes=28 eligible_cubics=71 t=54,55,57,62,66,72,85
+BEST m=107 rho=0 h=107 holes=27 eligible_cubics=71 t=54,55,57,62,68,72,84
+SUMMARY m=107 rho=0 nodes=61133 pairsets=951 eligible=3 top_eligible=3 pruned=56762 minholes=27 potential_W=-4
+BEST m=107 rho=1 h=106 holes=27 eligible_cubics=71 t=53,55,56,61,65,72,85
+BEST m=107 rho=1 h=106 holes=24 eligible_cubics=74 t=53,55,56,63,69,74,78
+SUMMARY m=107 rho=1 nodes=68739 pairsets=1455 eligible=5 top_eligible=5 pruned=63342 minholes=24 potential_W=-3
+BEST m=107 rho=2 h=105 holes=28 eligible_cubics=71 t=53,55,56,61,68,72,82
+BEST m=107 rho=2 h=105 holes=25 eligible_cubics=72 t=53,55,56,63,69,74,78
+SUMMARY m=107 rho=2 nodes=64775 pairsets=1089 eligible=2 top_eligible=2 pruned=60067 minholes=25 potential_W=-2
+BEST m=107 rho=3 h=104 holes=25 eligible_cubics=73 t=52,53,56,62,64,69,84
+SUMMARY m=107 rho=3 nodes=75589 pairsets=1683 eligible=14 top_eligible=11 pruned=69416 minholes=25 potential_W=-1
