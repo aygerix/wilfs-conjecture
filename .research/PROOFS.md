@@ -680,9 +680,13 @@ m = 1 + d + q + t.
   needs β > O_rest + P_+ + gain + ⌊M_shape/m⌋; for β = 1 it also needs Ξ < 0. Next lemma (open), HIGH-ORIGIN:
   at ρ = 0 with every core unit > m/2, L_+/m + p + t ≥ 2β. BAD-NARROW is its case with all units below 2m/3.
 - **Codex P6e (2026-10-19; src/scratch/gw/p6/P6E_REPORT.md, code in p6/e/; PARTIALLY reviewed by the lead).**
-  Review status: BAD-TWO re-derived in full by the lead (all five K-cases). DEFECT-CUBIC and the GENERAL-FEW80
-  skeleton checked. The other proofs (HALF-ID, ORIGIN-ONE-LOW, SMALL-LOW-BAND, LINKED-CUBIC, FEW40, ZERO-EXTENSION)
-  are codex-proved and NOT yet re-derived by the lead. Treat them as unverified inputs until reviewed.
+  Review status:
+  - BAD-TWO: re-derived in full by the lead (all five K-cases).
+  - DEFECT-CUBIC, LINKED-CUBIC, GENERAL-FEW80/72/40 and H-FEW40: logic re-derived by the lead. Every polynomial
+    identity is checked symbolically (src/scratch/gw/p6/e_review/few40_check.py: LC, R increasing, FP40 and its
+    k = 40t + 7 endpoint, FP72, the C − 2kt − 2t² − 2t margins). H-FEW40 additionally uses L_H ≥ A + s·C(k,2) at
+    height H (unit and missing-pair terms of WINDOW-H), as asserted in the report.
+  - HALF-ID, ORIGIN-ONE-LOW, SMALL-LOW-BAND and ZERO-EXTENSION: codex-proved, NOT yet re-derived by the lead.
   - **BAD-TWO (PROVED, lead-checked).** At any phase a cubic is bad (b_y = −1) iff it has one of two types:
     - A: K = +1, outside the window, all three face carries +1, all factor residues > ρ;
     - D: K = −1, inside the window, all face carries 0, all factor residues < ρ.
