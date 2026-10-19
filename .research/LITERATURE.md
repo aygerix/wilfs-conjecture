@@ -442,3 +442,26 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
     - Background fact used: Selmer's formulas for Ap(T, t) hold for every t ∈ T, so Wilf has the same Apéry form for every
       element (standard).
     - Absence of hits is not proof of novelty. GitHub was not searched in this pass.
+
+20. **Search before making the prefix/window family (PGW, WW_i) the focus (2026-10-19, early).**
+    - Queries:
+      - web: Wilf + gaps below km + elements in [c − km, c) + Apéry set of km;
+      - web: Wilf + "for every k" + windows below the conductor;
+      - arXiv API: abs:Wilf AND abs:semigroup, newest first (through 2609.32078, submitted 2026-09-25);
+      - GitHub: repositories "wilf conjecture", "numerical semigroups", "wilf inequality", "kunz polyhedron".
+    - GitHub: Delgado's bibliography repository ManuelAFDelgado/NumericalS-bib, last commit 2026-10-12, read as data.
+      Its numericals.bib and preprints.bib were scanned for Wilf titles.
+    - The semimodule paper 2012.01358 was read (ar5iv). Its "Wilf function" is W_Δ(k) = k·δ(Δ) − c(Δ): a family in the
+      multiplier k, not in the window. It does not state WW_i.
+    - No source found states WW_i, P_i, or any window/prefix interpolation between WW_1 and Wilf. WW_1 itself is
+      elementary (GW-15) and may be folklore.
+    - New items seen, NOT READ (metadata/abstract only):
+      - Chatterjee–Narula, "A note on Wilf's Conjecture", Semigroup Forum 113 (2026) 387–396,
+        doi 10.1007/s00233-026-10640-8. Springer is behind a login; no arXiv version found.
+      - Gaspar, arXiv:2609.32078 (2026-09-25): forcing results plus Wilf for semigroups with 13 left elements.
+        Unverified.
+      - Hellus–Hübl–Rechenauer, arXiv:2604.21948: semigroups with largest generator 2g + 1.
+      - Ojeda–Rosales, arXiv:2605.14775: semigroups with a fixed quotient.
+      - Almirón–Moyano-Fernández, arXiv:2104.03793 (Quaest. Math. 46 (2023)): Eliahou number, Wilf function,
+        concentration.
+    - Absence of hits is not proof of novelty.
