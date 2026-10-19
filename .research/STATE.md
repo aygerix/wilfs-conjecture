@@ -1,7 +1,35 @@
 # STATE.md — handoff (updated 2026-10-19, latest; codex P7 DONE: H1′ is FALSE (Sidon family, lead-verified); every pure-counting form of MaxCL is dead; next: P8 choice below)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
-## Current directive (user + advisor, 2026-10-18)
+## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
+Frame:
+- Wilf ⟺ B_tile ≥ (e−2)·m(m−1)/2 (CH′, PROVED).
+- Known theorems settle c ≤ 3m (Eliahou), 3e ≥ m (Eliahou) and the very deep regime (VOL-MINK).
+- So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
+  in e.
+Lines, in order of cost to decide:
+1. **CHAIN-WILF(3e<m)** (lead, now). With Eliahou it would imply Wilf.
+   - (a) Break it first: Kunz annealing up to m ≈ 150–200 at e ∈ [m/4, m/3), plus level-2 sets B with
+     B ∪ (B+B) = ℤ_m \ {0} (the m = 61 near-miss, ratio 1.08).
+   - (b) Sub-lemma: Σ_{w≠0} con(w) ≤ C2/3, which suffices by Lemma W0 since con(0) ≤ d(m−1) < (2/3)C2. Template: the
+     layer-1 identity (chain links charged to gaps in [c−m, c−1]), extended to all layers.
+   - Decision: a counterexample ⇒ record it and drop the line. It survives ⇒ codex task after P11.
+2. **c ≤ 4m closure** (codex P11, running). A theorem either way, and the prototype for higher depth. If its
+   mechanism is not specific to q = 4, push to c ≤ 5m, 6m, …
+3. **Tile height payments, uniform in e** (robust, harder).
+   - P10's missing-direction payment (B2/B4) handles support-restricted tiles.
+   - Next: FULL-INTERIOR H + 7|max D| ≥ 2|D| (d = 4, closes e = 5 for large m).
+   - Then dimension d with constants polynomial in d, giving "Wilf for m ≥ F(e)". This leaves the window
+     3e < m < F(e), which line 1 or the band/Kneser tools must cover.
+Operating rules:
+- One codex agent at a time; lead verifies everything independently.
+- Review every 1–2 days: which infinite class closed? Kill census-only lines.
+- Stable results go to Lean.
+Pivot triggers:
+- A counterexample to line 1 shifts everything to line 3.
+- A depth-independent P11 mechanism makes depth induction the main line.
+
+## Current directive (user + advisor, 2026-10-18) — SUPERSEDED for direction by the plan above (kept for history)
 - FOCUS: our own route to Wilf for e = 4, a standalone structural theorem on 3-D lattice tiles:
   HT, δ(D) = H(D) − (m − 1) ≥ 0, via the forest/tripod/qO-cycle counting and the lattice restrictions (Wall/Floor).
   kseth/wilf-e4 (GitHub, Sept 2026) has a different, complete proof. We have read it; our argument is independent.
