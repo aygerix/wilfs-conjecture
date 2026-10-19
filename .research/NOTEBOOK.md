@@ -2803,3 +2803,29 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - **Height 3, exact dimension count.** For a complete height-3 tile, d + 1 = m − Q − t, where Q counts all pairs.
   So at height 3, MaxCL reads 2Σ_cubics r + Σ_{max pairs} r ≤ (m − Q − t)·Σ_N r. The spike bonus is m − Q − t − k − 1.
 
+## 2026-10-19 (night, latest+) — Problem 1.8 (generators < 2m) and the LAYER-KNESER theorem
+
+- **Target found in the literature.** Delgado–Kumar–Marion, arXiv 2501.04417v3 (Oct 2026), Problem 1.8: if the largest
+  minimal generator is < 2m, does Wilf hold? Their Theorem 1.5 covers |S∩(m,2m)| ≥ √(dm/(d−2)) by the count
+  ℓ ≥ (d−2)k. Eliahou covers depth ≤ 3.
+- Census of the open part (src/scratch/p18/p18_census.py: generators < 2m, c > 3m, outside Thm 1.5; 375 S, m ≤ 80):
+  - HCR 100%, NOWRAP 22%, WRAP-MAX 38%.
+  - In this class NOWRAP ⟺ every Apéry element has a factorization of length ⌊w/m⌋, which forces m+1 ∈ S.
+  - The adversarial minimum of eℓ/c rises with e: 1.29 (e = 4), 1.53 (5), 1.96 (8), 2.67 (12) (p18_margin.py).
+  - For generic members it is stable as m grows: ≈ 1.47, 1.9, 2.2, 2.5 for e = 3–6, up to m = 25,601
+    (p18_asym.py). So ℓ/c ≈ 1/2 there, and Wilf is NOT tight for generic members. (My volume heuristic predicting
+    eℓ/c → 1 was wrong: it ignores the coupon-collector tail that sets c.)
+- **LAYER-KNESER (PROVED, PROOFS).** Gap residues per band satisfy G_{H+2} − B ⊆ G_H (mod m). Kneser's theorem then
+  gives a loss of at least δ = ⌈(k+1)/2⌉ gaps every two bands (δ = k for m prime), provided gcd(m, B) = 1. So
+  ℓ ≥ D + (D−2)k + δ⌊(D−3)²/4⌋: quadratic in the depth, where DKM's count is linear. Wilf follows for depth
+  D ≳ 8m/(k+1)², while DKM need k ≳ √m.
+- Checks: exhaustive over genus ≤ 33 (0 failures, sharp), random, and new coverage (60/398 structured S that none of
+  the known criteria reach).
+- First wrong version, preserved: without gcd(m, B) = 1 the step fails (52 random S; e.g. k = 0, ⟨93, 397⟩). The
+  periodic case of Kneser needs B to generate ℤ/m.
+- What remains of Problem 1.8 after LK + DKM + Eliahou + our c ≤ 4m results: 4 ≤ D ≲ 8m/k² with k < √(2m), i.e.
+  FAST layer growth. Data say the margin there is large, but a proof needs an upper-growth ("no late explosion")
+  principle. Natural tool: Freiman/Vosper-type inverse theorems. If the gap sets shrink slowly, they are AP-like and
+  LK-type growth persists; if they shrink fast early, the early bands are already large. The difficulty is a fast
+  shrink concentrated in the last bands.
+

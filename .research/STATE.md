@@ -184,6 +184,19 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0J) NEW 2026-10-19 latest+, read first.
+    - **Theorem LAYER-KNESER (PROVED, PROOFS).** For every S: ℓ ≥ D + (D−2)k, where k = |S∩(m,2m)| and D = ⌈c/m⌉.
+      If moreover gcd(m, B) = 1, then ℓ ≥ D + (D−2)k + δ⌊(D−3)²/4⌋, with δ = ⌈(k+1)/2⌉ (k for m prime).
+      - Method: Kneser on the band gap sets, G_{H+2} − B ⊆ G_H.
+      - It strictly contains Delgado–Kumar–Marion Thm 1.5 (arXiv 2501.04417v3) and gives Wilf for D ≳ 8m/(k+1)².
+      - Exhaustive check genus ≤ 33 (E271).
+      - It settles the deep (slow-growth) part of their open Problem 1.8 (all generators < 2m).
+    - Next for this line:
+      - (i) Lean: the prime-m case via `ZMod.cauchy_davenport`, plus part (a) for all m.
+      - (ii) The fast-growth remainder of Problem 1.8 (4 ≤ D ≲ 8m/k²), via an inverse-theorem (Freiman/Vosper)
+        dichotomy.
+      - (iii) Whether the band-Kneser growth combines with the MaxCL/HCR machinery for general S.
+    - Codex P8 (height-3 MaxCL, many-cubic regime) is RUNNING (log $SP/codex/p8_log.txt; waiter on PID 94093).
 (0I) NEW 2026-10-19 latest, read first.
     - **H1′ is FALSE** (codex P7; lead re-check E269; examples/h1prime_sidon_counterexample.md). An infinite height-3
       WRAP-MAX family built from a Sidon set has (S − Λ_r)/m = −536, at the conductor phase of an actual semigroup.

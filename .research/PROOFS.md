@@ -2312,3 +2312,54 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
     gives 27 > 26.
   - The class-face splitting of the band proof also fails at K = 4 (E200).
 - A proof by induction on i must move mass across depths, because the per-depth inequalities are false.
+
+---------------------------------------------------------------------------------------------------
+## Theorem LAYER-KNESER (LK) — PROVED 2026-10-19 (paper; exhaustive check genus ≤ 33, E271)
+Setting. S a numerical semigroup with multiplicity m ≥ 2 and conductor c > m. Put D = ⌈c/m⌉, so (D−1)m < c ≤ Dm,
+and c = (D−1)m + c′ with 1 ≤ c′ ≤ m. Let B = {0} ∪ {s − m : s ∈ S, m < s < 2m} ⊂ ℤ/m and k = |B| − 1, the number of
+elements of S in (m, 2m). These are all primitive, so e ≥ k + 1. For H ≥ 0 let G_H = {r ∈ [0, m) : Hm + r ∉ S}
+(the gap residues of band H) and g_H = |G_H|.
+
+**Statement.**
+- (a) Always: ℓ(S) ≥ D + (D−2)k.
+- (b) If k ≥ 1 and gcd(m, B) = 1, then ℓ(S) ≥ D + (D−2)k + δ·⌊(D−3)²/4⌋, where δ = k if m is prime and
+  δ = ⌈(k+1)/2⌉ otherwise.
+- Hence Wilf holds whenever e·[D + (D−2)k + δ⌊(D−3)²/4⌋] ≥ c. In particular it holds whenever
+  (k+1)·[D + (D−2)k + δ⌊(D−3)²/4⌋] ≥ Dm, asymptotically when D ≳ 8m/(k+1)² (general m) or D ≳ 4m/k² (m prime).
+
+**Proof.**
+1. G_{H+1} ⊆ G_H, since S + m ⊆ S. Also 0 ∉ G_H, g_0 = m − 1, g_1 = m − 1 − k. G_{D−1} ≠ ∅ (it contains the residue
+   of the Frobenius number), and G_{D−1} ⊆ [1, c′), so g_{D−1} ≤ c′ − 1. G_H = ∅ for H ≥ D.
+2. (Shift inclusion) G_{H+2} − B ⊆ G_H in ℤ/m. Let r ∈ G_{H+2} and b ∈ B. If r − b mod m were in R_H := [0,m) ∖ G_H,
+   then Hm + ((r − b) mod m) ∈ S. Adding m + b ∈ S gives (H+1)m + r when r ≥ b, which is in S, so r ∈ R_{H+1} ⊆ R_{H+2};
+   when r < b it gives (H+2)m + r ∈ S. Either way r ∉ G_{H+2}, a contradiction.
+3. (Growth) If G_{H+2} ≠ ∅ (i.e. H + 2 ≤ D − 1), then g_H ≥ g_{H+2} + δ under the hypothesis of (b).
+   - Put X = G_{H+2} and Y = −B. Then X + Y ⊆ G_H ⊊ ℤ/m, because 0 ∉ G_H.
+   - m prime: Cauchy–Davenport gives |X + Y| ≥ min(m, |X| + k) = |X| + k.
+   - General m: Kneser gives |X + Y| ≥ |X + K| + |Y + K| − |K|, with K = Stab(X + Y), a proper subgroup.
+     - If K = {0}, the gain is |Y| − 1 = k.
+     - Otherwise Y ⊄ K: B generates ℤ/m since gcd(m, B) = 1. As 0 ∈ Y, Y meets β ≥ 2 cosets of K, so
+       |Y + K| − |K| = (β−1)|K| ≥ β|K|/2 ≥ |Y|/2 = (k+1)/2.
+4. Chaining over odd indices from g_1, together with monotonicity (step 1): g_H ≤ m − 1 − k − ⌊(H−1)/2⌋·δ for
+   1 ≤ H ≤ D − 1. For (a), use only g_H ≤ g_1 = m − 1 − k.
+5. Then ℓ = c − Σ_{H=0}^{D−1} g_H ≥ (D−1)m + c′ − (m−1) − Σ_{H=1}^{D−2}(m − 1 − k − ⌊(H−1)/2⌋δ) − (c′ − 1)
+   = D + (D−2)k + δ·Σ_{j=0}^{D−3}⌊j/2⌋ = D + (D−2)k + δ⌊(D−3)²/4⌋. ∎
+
+**Relation to the literature** (search 2026-10-19, LITERATURE.md).
+- Delgado–Kumar–Marion (arXiv 2501.04417v3, Thm 1.5) prove ℓ ≥ (d−2)k and conclude Wilf when k ≥ √(dm/(d−2)).
+  (a) contains that count, so LK strictly contains their Theorem 1.5. The Kneser term is new as far as we can find:
+  no Cauchy–Davenport or Kneser argument for Wilf turned up.
+- Their open Problem 1.8 asks whether every S whose largest minimal generator is < 2m satisfies Wilf. LK settles
+  the slow-growth (deep) part of that class.
+- LK uses only the residues of S ∩ (m, 2m). It does not need the other generators to be < 2m.
+
+Checks.
+- Exhaustive: every numerical semigroup of genus ≤ 33 (24.9M at genus 33), src/scratch/p18/lk_tree.c. The step
+  inequality and (b) have 0 failures, min(ℓ − bound) = 0 (sharp).
+- Random: 2,549 S with m ≤ 150 (layer_kneser.py).
+- New coverage (lk_novel.py): 60 of 398 structured S (generators m + A*, A* a random subset of a short interval,
+  sometimes with extra higher generators) satisfy LK and none of c ≤ 3m, 3e ≥ m, m ≤ 18, DKM Thm 1.5 / Cor 1.6,
+  Kaplan's 2g < 3m, the type bound t ≤ e − 1, or symmetry. Example: m = 150, gens 153–159, 161, 163, e = 10, c = 1803,
+  type 10.
+Lean: the prime-m case uses only `ZMod.cauchy_davenport` (in Mathlib). Kneser is not in Mathlib.
+

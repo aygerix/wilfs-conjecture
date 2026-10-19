@@ -586,3 +586,24 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
   and Aurantium-47/numerical-semigroup-endpoint-residues (shifted-semigroup endpoint residues; not Wilf). alphaXiv
   (recency): no new Wilf result. Newest relevant items are 2608.12531 (item 10), the e = 4 papers, and 2610.06426
   (reflexive ideals; not Wilf). No statement resembling NO-WRAP, WRAP-MAX or H1′ was found.
+
+### Search 2026-10-19 (latest): generators < 2m (Problem 1.8), Kneser/Cauchy–Davenport and Wilf, shifted families
+- Delgado, Kumar, Marion, "On counting numerical semigroups by maximum primitive and Wilf's conjecture",
+  arXiv 2501.04417 (v1 Jan 2025; v3 1 Oct 2026).
+  - Thm 1.5: depth d > 2 and |S∩(m,2m)| ≥ √(dm/(d−2)) ⇒ Wilf. The proof is the disjointness count ℓ ≥ (d−2)·k, with
+    Eliahou for d ≤ 3.
+  - Cor 1.6: g < 2m − √(2m) ⇒ Wilf.
+  - Thm 1.7: asymptotic, almost all S by maximum primitive.
+  - **Problem 1.8 (open): if the maximum primitive is < 2m, does S satisfy Wilf?**
+  - Remark 5.2: S ∩ (m, 2m) consists of primitives.
+- No Wilf result using Kneser's theorem or Cauchy–Davenport was found. Web searches: "Wilf conjecture Kneser theorem",
+  "Cauchy–Davenport numerical semigroup Wilf", "generators in short interval Wilf".
+- Nearby results with different hypotheses:
+  - Sammartano (arXiv 1111.1863): 2e ≥ m; m ≤ 8; generalized arithmetic sequences.
+  - Dhayni (arXiv 1610.08726): w_{m−1} ≥ w_1 + w_α and (2 + (α−3)/q)ν ≥ m.
+  - Spirito (arXiv 1710.09245): large second generator.
+  - Stamate–Strazzanti (arXiv 2601.19629, 2026): PF sets of shifted families ⟨n, n+r_1, …⟩; not Wilf.
+  - BGOW (arXiv 1903.04342): m ≤ 18.
+- Conclusion: LAYER-KNESER (PROOFS) appears new. It strictly contains DKM Thm 1.5. It was checked against the exact
+  hypotheses above, but not against every paper in the field. Before any public claim, ask Delgado or Eliahou.
+
