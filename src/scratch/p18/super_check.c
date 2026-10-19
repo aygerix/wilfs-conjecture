@@ -1,4 +1,6 @@
-/* LK-SUPER: for every band j >= 1, G_{H+j+1} - R_j subset G_H (mod m), R_j = {r : jm + r in S}, u_j = |R_j|.
+/* (also LK-SHARP: for m prime, H >= 1, H+j <= q-1: g_H + a_H >= g_{H+j} + u_j - 1, a_H = #{r in [m - beta_j, m) : x_r = H}, beta_j = max R_j;
+ *  general m with gcd(m,R_j) = 1: g_H + a_H >= g_{H+j} + ceil(u_j/2).)
+ * LK-SUPER: for every band j >= 1, G_{H+j+1} - R_j subset G_H (mod m), R_j = {r : jm + r in S}, u_j = |R_j|.
  * Step: if gcd(m, R_j) = 1 and u_j >= 2: g_{t-j-1} >= g_t + delta_j for j+1 <= t <= q-1, delta_j = u_j - 1 (m prime) or ceil(u_j/2).
  * Bound (prime m, any j): Theta_t >= floor((t+1)/(j+1)) * Theta_j (t <= q-1); ell >= q + sum_{t=1}^{q-2} Theta_t + Theta_{q-1} - rho.
  * Coverage (k = |S cap (m,2m)| = 0, outside LIT): SUPER = e * [q + sum_t max_j floor((t+1)/(j+1)) Theta_j_lower + max(0, ...)] >= c,
@@ -9,7 +11,7 @@
 #include <stdint.h>
 typedef unsigned __int128 u128;
 static int G;
-static uint64_t cnt[80], stepfail, stepchk, k0[80], k0deep[80], cov_super[80], open_[80];
+static uint64_t sharpchk, sharpfail, cnt[80], stepfail, stepchk, k0[80], k0deep[80], cov_super[80], open_[80];
 static inline int gapq(u128 g, int z) { return z < 128 && ((g >> z) & 1); }
 static int gcd(int a, int b) { while (b) { int t = a % b; a = b; b = t; } return a; }
 static int isprime(int n) { if (n < 2) return 0; for (int p = 2; p * p <= n; p++) if (n % p == 0) return 0; return 1; }
@@ -24,6 +26,19 @@ static void visit(u128 gm, int F, int m, int *gens, int e, int g) {
       if (uj[j] < 2 || gcd(gj[j], m) != 1) continue;
       int delta = pr ? uj[j] - 1 : (uj[j] + 1) / 2;
       for (int t = j + 1; t <= q - 1; t++) { stepchk++; if (gh[t - j - 1] < gh[t] + delta) { stepfail++; if (stepfail <= 3) fprintf(stderr, "STEP FAIL m=%d c=%d j=%d t=%d\n", m, c, j, t); } }
+    }
+    {
+      int xr[128]; for (int r = 0; r < m; r++) { int H = 0; while (gapq(gm, H * m + r)) H++; xr[r] = H; }
+      for (int j = 1; j <= q - 2; j++) {
+        if (uj[j] < 2 || gcd(gj[j], m) != 1) continue;
+        int beta = 0; for (int r = 0; r < m; r++) if (!gapq(gm, j * m + r)) beta = r;
+        int delta = pr ? uj[j] - 1 : (uj[j] + 1) / 2;
+        for (int H = 1; H + j <= q - 1; H++) {
+          int a = 0; for (int r = m - beta; r < m; r++) if (xr[r] == H) a++;
+          sharpchk++;
+          if (gh[H] + a < gh[H + j] + delta) { sharpfail++; if (sharpfail <= 3) fprintf(stderr, "SHARP FAIL m=%d c=%d j=%d H=%d\n", m, c, j, H); }
+        }
+      }
     }
     int k = uj[1] - 1;
     int lit = (c <= 3 * m) || (3 * e >= m) || (m <= 18);
@@ -65,6 +80,6 @@ int main(int argc, char **argv) {
   visit(0, -1, 1, gens, 1, 0);
   printf("g,count,k0_prime_m,k0_q>=4,k0_outside_LIT,SUPER_covers\n");
   for (int g = 0; g <= G; g++) printf("%d,%llu,%llu,%llu,%llu,%llu\n", g, (unsigned long long)cnt[g], (unsigned long long)k0[g], (unsigned long long)k0deep[g], (unsigned long long)open_[g], (unsigned long long)cov_super[g]);
-  printf("step_checks=%llu step_failures=%llu\n", (unsigned long long)stepchk, (unsigned long long)stepfail);
+  printf("step_checks=%llu step_failures=%llu sharp_checks=%llu sharp_failures=%llu\n", (unsigned long long)stepchk, (unsigned long long)stepfail, (unsigned long long)sharpchk, (unsigned long long)sharpfail);
   return 0;
 }

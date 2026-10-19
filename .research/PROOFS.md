@@ -2458,6 +2458,32 @@ Checks (E275):
   - `band_superadditive`, which is (c) for prime m: Θ_a + Θ_b ≤ Θ_{a+b+1}.
   The general-m Kneser form is paper only.
 
+## Lemma LK-SHARP (no lost band: the wrap goes to a short top window) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 33, E276)
+Setting as in LK-SUPER, m the multiplicity. Let β_j = max R_j, W_j = [m − β_j, m), and
+a_H(j) = #{r ∈ W_j : x_r = H} (the residues of the window whose Kunz coordinate is exactly H).
+
+**Statement.** For H ≥ 1 with H + j ≤ q − 1, if u_j ≥ 2 and gcd(m, R_j) = 1:
+
+    g_H + a_H(j) ≥ g_{H+j} + δ_j       (δ_j = u_j − 1 for m prime, ⌈u_j/2⌉ in general).
+
+Equivalently Θ_{H+j} ≥ Θ_H + δ_j − a_H(j). Along a chain H = j, 2j, …, the corrections add up to at most
+#{r ∈ W_j : x_r ≥ 1} ≤ β_j. Hence, for m prime, Θ_{sj} ≥ s(u_j − 1) − β_j. This is growth u_j − 1 per j bands, against
+per j + 1 bands in LK-SUPER, at a one-time cost β_j.
+
+**Proof.** Let r ∈ G_{H+j} and b ∈ R_j.
+- If b ≤ r and r − b ∈ R_H: adding jm + b gives (H+j)m + r ∈ S, a contradiction. So r − b ∈ G_H.
+- If b > r: the residue r − b + m lies in [m − β_j, m) = W_j. If it were in R_{H−1}, then (H−1)m + (r − b + m) + jm + b
+  = (H+j)m + r ∈ S, a contradiction. So it lies in G_{H−1} ∩ W_j.
+- Hence G_{H+j} − R_j ⊆ G_H ∪ (G_{H−1} ∩ W_j). This target has g_H + a_H(j) elements and misses 0.
+- Cauchy–Davenport (Kneser for general m, as in LK) finishes. ∎
+
+P18 form (j = 1, β = max B): Θ_t ≥ max(k + δ⌊(t−1)/2⌋, k + (t−1)δ − β), inserted in the YZ exact formula.
+For B in an interval [0, k] this gives Θ_t ≥ (t−1)k, against the true tk.
+
+Checks (E276): exhaustive genus ≤ 33, every j, 65,568,154 checks, 0 failures (prime and general forms;
+src/scratch/p18/super_check.c). Coverage on the 996 structured P18 S of E272: LK-SHARP+YZ covers 610 (LK+YZ 545);
+29 S are covered by it and by none of LK+YZ, the YZ criteria, DKM, LIT, Kaplan, FGH, or symmetric.
+
 ## Theorem LK+YZ (Kneser growth combined with the Yang–Zhang staircase) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 34, E272)
 Setting as in LK, with q = D = ⌈c/m⌉ ≥ 3, ρ = qm − c, η = k = |S∩(m,2m)|, η_ρ = |S ∩ (m, 2m−ρ)|,
 Θ_t = #{1 ≤ i < m : tm + i ∈ S} = m − 1 − g_t, and Θ_{t,ρ} the same count restricted to i ≤ m − ρ − 1.
