@@ -23,6 +23,9 @@
   `Wilf/ConeForest.lean` (2026-10-18: C-HT thresholds `chtThreshold` (m ≥ 131 ⇒ δ ≥ 0) and `chtThreshold'`; cone class
   `ConeSet`: S′, P′, QF-pair, Location, **Fiber Lemma**, `qU_cone` (|qU| ≤ t), `qO_cone` (|qO| + 1 ≤ 2t + |Y|), `tf_cone`,
   **`coneDelta_sharp`** (2m ≤ H + 6t + 2|Y| + 10) and `coneThreshold` (m ≥ 281), assuming |Y_d| ≤ 2; 0 `sorry`, standard axioms),
+  `Wilf/Window2.lean` (2026-10-19: **GW-16** `depth_two`: depth-two window inequality Σ min(2, ⌊v/m⌋) ≤ d·Σ min(2, ⌊(M−v)/m⌋)
+  for every finite down-set with n_a > m on active directions, no residues; **GW-17** `semigroup_depth_two`:
+  #(gaps < 2m) ≤ (e−1)·#(S ∩ [c−2m, c)); 0 `sorry`, standard axioms; audit in `WINDOW2_REPORT.md`),
   `Wilf/Examples.lean` (kernel-checked examples), `scripts/PrintAxioms.lean` (axiom report; not part of the library).
 
 ## Status (2026-10-17, after the Tile-reduction / Ramp round)

@@ -245,3 +245,20 @@ open NumericalSemigroup NumericalSemigroup.Examples
 #print axioms NumericalSemigroup.CornerArea.coneThreshold
 #print axioms NumericalSemigroup.CornerArea.coneThreshold'
 #print axioms NumericalSemigroup.CornerArea.box2_Yset_le
+-- Wilf.Window2: GW-16 (no residue or nonemptiness hypothesis)
+#print axioms NumericalSemigroup.Window2.routing
+#print axioms NumericalSemigroup.Window2.corner_count
+#print axioms NumericalSemigroup.Window2.counting
+#print axioms NumericalSemigroup.Window2.left_sum
+#print axioms NumericalSemigroup.Window2.right_sum
+#print axioms NumericalSemigroup.Window2.depth_two
+#print axioms NumericalSemigroup.Window2.depth_two_of_le
+#print axioms NumericalSemigroup.Window2.apery_gap_count
+#print axioms NumericalSemigroup.Window2.chain_window
+#print axioms NumericalSemigroup.Window2.apery_left_count
+#print axioms NumericalSemigroup.Window2.sum_fact
+#print axioms NumericalSemigroup.Window2.fact_sup
+#print axioms NumericalSemigroup.Window2.tile_gap_count
+#print axioms NumericalSemigroup.Window2.tile_left_count
+#print axioms NumericalSemigroup.Window2.semigroup_depth_two
+#print axioms NumericalSemigroup.Window2.inactive_unit_counterexample

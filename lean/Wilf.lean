@@ -12,3 +12,4 @@ import Wilf.CornerArea
 import Wilf.ConeType
 import Wilf.Forest
 import Wilf.ConeForest
+import Wilf.Window2

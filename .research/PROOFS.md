@@ -989,7 +989,8 @@ multiplicity m, embedding dimension e and type t. Then:
     one. So |D| − 1 ≤ d(|D| − t(D)), i.e. d·t(D) ≤ (d − 1)|D| + 1.
   - For the minimal tile, Max_{≤S} Ap(S, m) ⊂ v(Max D), since x + e_a ∈ D gives v(x) + n_a ∈ Ap. So t ≤ t(D).
 
-**Theorem GW-16 (P_2 in the multiplicity form; no residue hypothesis).** Let D ⊂ ℕ^d be a finite down-set, m = |D|,
+**Theorem GW-16 (P_2 in the multiplicity form; no residue hypothesis) — KERNEL-CHECKED (Lean, `Window2.depth_two`).**
+Let D ⊂ ℕ^d be a finite nonempty down-set (D = ∅ is the trivial 0 ≤ 0 under ℕ conventions), m = |D|,
 and n ∈ ℤ^d with n_a > m for every a such that e_a ∈ D. Put v = x·n, M = max_D v, κ = ⌊v/m⌋, λ = ⌊(M − v)/m⌋. Then
 
     Σ_{x∈D} min(2, κ(x))  ≤  d · Σ_{x∈D} min(2, λ(x)).
@@ -1001,7 +1002,7 @@ and n ∈ ℤ^d with n_a > m for every a such that e_a ∈ D. Put v = x·n, M = 
 - Step 1 (left side = 2(m − 1) − |A|).
   - κ(0) = 0, and κ(x) ≥ 1 for x ≠ 0 since v(x) ≥ n_a > m.
   - If |x|_1 ≥ 2 then x ≥ e_a + e_b for some a, b, so v(x) ≥ n_a + n_b > 2m and κ(x) ≥ 2.
-  - κ(e_a) ≥ 2 iff a ∉ A.
+  - For e_a ∈ D: κ(e_a) ≥ 2 iff a ∉ A. (The qualification e_a ∈ D is needed; Lean audit, `inactive_unit_counterexample`.)
 - Step 2 (right side ≥ d(2|NonMax| − |T|)).
   - If w + e_a ∈ D then v(w) ≤ M − n_a < M − m, so λ(w) ≥ 1 on NonMax.
   - Let w ∈ N. Either some w + e_a ∈ D has a ∉ A, so v(w) ≤ M − n_a ≤ M − 2m. Or some w + e_a ∈ D is non-maximal,
@@ -1029,7 +1030,7 @@ and n ∈ ℤ^d with n_a > m for every a such that e_a ∈ D. Put v = x·n, M = 
   - The counting lemma of Step 5 on every down-set and every A ⊂ [d]: d = 2 (m ≤ 9), d = 3 (m ≤ 9), d = 4 (m ≤ 8).
   - P_2 on every (D, n) with n_a ∈ (m, Km], no residue condition: 0 failures.
 
-**Corollary GW-17 (window Wilf at depth 2).** For every numerical semigroup S with multiplicity m, embedding dimension e
+**Corollary GW-17 (window Wilf at depth 2) — KERNEL-CHECKED (Lean, `Window2.semigroup_depth_two`, library definitions).** For every numerical semigroup S with multiplicity m, embedding dimension e
 and conductor c:
 
     #((ℕ∖S) ∩ [0, 2m))  ≤  (e − 1) · #(S ∩ [c − 2m, c)).
@@ -1037,6 +1038,11 @@ and conductor c:
 - Proof: apply GW-16 to the minimal (lex-largest factorization) tile of Ap(S, m) in ℕ^{e−1}. It is a down-set with
   v(D) = Ap(S, m) and n_a the generators other than m, all > m. Then use the semigroup form of P_i above.
 - For c ≤ 2m both windows are everything, and this is Wilf: Kaplan's theorem (c ≤ 2m) is the special case.
+- Lean (lean/Wilf/Window2.lean, codex audit lean/WINDOW2_REPORT.md):
+  - Both statements were checked exactly as above; `depth_two_of_le` also allows n_a ≥ m.
+  - Only the standard axioms [propext, Classical.choice, Quot.sound] are used, with no sorry.
+  - The lead rebuilt the file on fejer and printed its axioms.
+  - The audit's only substantive remark is the e_a ∈ D qualification in Step 1.
 - Literature (item 20): no statement of the window inequality was found. Not claimed new until checked against Kaplan's
   paper and its citations.
 
