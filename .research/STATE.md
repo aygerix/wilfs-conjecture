@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, late afternoon; GW-26g a ≤ 18, GW-26h α ≤ 4 (α = 5 sweep nearly done), LARGE-A′ a ≥ 10Q_α; per-α certificate FAILS at α = 6, 8; codex P5g running)
+# STATE.md — handoff (updated 2026-10-19, evening; H3-D5/H3-E6 (codex P6, lead independent re-check d ≤ 5); CR + spike reduction; quartic cap; codex P6b running)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,7 +184,28 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
-(0) NEW 2026-10-19 late afternoon, read first.
+(0E) NEW 2026-10-19 evening, read first.
+    - **Codex P6 (accepted):**
+      - H3-D5: MaxCL for every height-≤3 tile with d ≤ 5, by finite certificate. The lead's independent DFS
+        enumerator reproduces every count for d ≤ 5, with 0 failures on 7.67M height-3 tiles (E249).
+      - Hence H3-E6: Wilf for height-3 Apéry sets with e ≤ 6.
+      - Also H3-CORE2 (k ≤ 2 non-maximal units, any number of spikes), PAIR-ZERO, CENTERED-PAIR, UNIT-LOAD-0.
+      - Remaining: d ≥ 6, k ≥ 3 (PROOFS "Height-3 MaxCL: partial results").
+    - **Codex P6b RUNNING** (log $SP/codex/p6b_log.txt; report src/scratch/gw/p6/P6B_REPORT.md): that remaining
+      family.
+    - Lead tools sent to codex:
+      - the spike reduction MaxCL ⟺ IMaxCL;
+      - the CR rearrangement bound (proves almost every tile; L-CR3 FALSE, because of maximal pairs);
+      - cyclic a+b−c packing (NOTEBOOK 2026-10-19 evening; E244–E248).
+    - **GW-26i: α = 5 CLOSED for every a** (sweep a = 19..149, 0 survivors). The primary regime is proved for α ≤ 5.
+    - Per-α sweeps (fejer ~/wilf/lead23, al_sweep2.sh).
+      - The binary now has the quartic face cap k1 ≤ p·u0 (q1cap=1 in lines after 13:03 UTC) and counts
+        withquartic.
+      - α = 8, a = 19: 58 survivors, only 1 with a quartic.
+      - So after full height-3 MaxCL, P4 reduces to the quartic rows only.
+    - e = 5: CR has 0 failures on all 4-D tiles for m = 35–39, but its minimum ratio ≈ 1.0–1.08. Height-≤3 4-D
+      tiles end at m = 25, so e = 5 needs CR/HCR for near-simplices of every height (E247).
+(0) 2026-10-19 late afternoon.
     - **Convergence (proved reduction).** In the primary regime every height-4 cell is an A-quartic. So quartic-free
       primary tiles have Apéry height ≤ 3, and height-3 MaxCL (codex P6, RUNNING) would close every quartic-free
       profile: BASE and all α = 6/8 residual rows (u0 = u1 = 0 ⇒ no A-quartic; the printed `k` there is the LINK

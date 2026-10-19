@@ -6,7 +6,9 @@ injective linear labeling of C into Z/m with s = m-|C| and k+s >= 6, the crude b
 Method: enumerate all down-sets C (pair set, then down-closed cubic set), keep those with a failing s in the range
 s >= max(0, 6-k) (CR is linear in s; the failing set is s < s*), and for each failing (C, s) search all labelings
 p in (Z/m)^k (p sorted up to the coordinate symmetry of C is NOT used; all p with 1 <= p_i < m are tried).
-usage: python lcr3_exh.py k"""
+usage: python lcr3_exh.py k [full]
+   full: for every CR-failing (C,s) with k+s>=6, check the MaxCL spike form (k+s+1)sum_N r - sum_A (|y|-1) r >= 0
+         on EVERY injective labeling p in [1,m-1]^k and every sigma (closing the core dimension k, given H3-D5 for d<=5)."""
 import sys, itertools
 from fractions import Fraction
 
@@ -44,7 +46,7 @@ def vec(c, k):
 
 
 if __name__ == '__main__':
-    k = int(sys.argv[1]); nsh = 0; nfail = 0; nreal = 0; cases = 0; ninf = 0
+    k = int(sys.argv[1]); FULL = len(sys.argv) > 2; nlab = 0; nphase = 0; minsl = None; nsh = 0; nfail = 0; nreal = 0; cases = 0; ninf = 0
     for P, T in shapes(k):
         nsh += 1
         if not T: continue          # height <= 2 cores: Flat-MaxCL (LEAN); CR is not the tool there
@@ -57,16 +59,28 @@ if __name__ == '__main__':
             if s >= ss: break
             nfail += 1; m = size+s
             found = None
+            Tset = set(T); PNs = set(z for z in P if any(tuple(sorted(z+(c,))) in Tset for c in range(k)))
+            # coefficient per cell in the spike form: N cells (origin, units, non-max pairs) d+1; max pairs -1; cubics -2
+            dd = k+s
+            coef = [dd+1]+[dd+1]*k+[(dd+1) if z in PNs else -1 for z in P]+[-2]*len(T)
             for p in itertools.product(range(1, m), repeat=k):
-                lab = set()
-                ok = True
+                lab = []
+                seen = set(); ok = True
                 for x in cells:
                     v = sum(x[i]*p[i] for i in range(k)) % m
-                    if v in lab: ok = False; break
-                    lab.add(v)
-                if ok: found = p; break
+                    if v in seen: ok = False; break
+                    seen.add(v); lab.append(v)
+                if not ok: continue
+                found = p
+                if not FULL: break
+                nlab += 1
+                for sg in range(m):
+                    S = sum(c*((v-sg) % m) for c, v in zip(coef, lab)); nphase += 1
+                    if minsl is None or S < minsl: minsl = S
+                    if S < 0: print("MAXCL FAIL k", k, "m", m, "s", s, "P", P, "T", T, "p", p, "sigma", sg, "S", S, flush=True)
             cases += 1
             if found:
                 nreal += 1
                 if nreal <= 15: print("L-CR3 VIOLATION: k", k, "m", m, "s", s, "pairs", P, "cubics", T, "p", found, flush=True)
+    print("full-check labelings", nlab, "phase checks", nphase, "min slack", minsl) if FULL else None
     print("k", k, "shapes", nsh, "height-3 shapes failing CR for all s (capped at s<60):", ninf, " CR-failing (C,s) with k+s>=6:", nfail, "realizable:", nreal)

@@ -471,6 +471,61 @@ FALSE strengthening, preserved: dropping L_+ and asking Br_0 ≥ −ρ_0 (H3-BR;
 the E47 tile ⟨14,22,23,57,61,62,63⟩ (height 3, d = 6): min ΣΔ + r(0) = −1. So any height-3 proof must spend L_+,
 which is exactly the slack of MaxCL over Tile-CL coming from missing upper covers.
 
+### Height-3 MaxCL: partial results (codex P6, 2026-10-19; src/scratch/gw/p6/P6_REPORT.md; reviewed by the lead)
+Notation (tile of height ≤ 3): q pairs, of which p are non-maximal; t cubics; k non-maximal units; d−k spikes;
+m = 1 + d + q + t.
+- **PAIR-ZERO (PROVED, paper; lead re-derived).**
+  - Hypothesis: K = 0 on N2 and K ≥ 0 on A2.
+  - Conclusion: S ≥ L_+ + m(ρ_0 mod 2).
+  - Key identity, CUBIC-LIFT: 2ℓ(y) + ρ_0 = Σ_a y_a ℓ(y − e_a). Hence negative cubics have K = −1 and residues in
+    [m − ⌊ρ_0/2⌋, m).
+- **CENTERED-PAIR (PROVED, paper; lead re-derived).** Write ℓ_1 = ℓ + (|x|−1)m and K1 = K + |x| − 1.
+  - Then Br1 = Br0 + q + t and S = L_+ + m(d+1−ν) + m·Br1.
+  - Conclusion: if ν ≤ d+1 and K1 = 0 on N2, then S ≥ L_+ + m(d+1−ν).
+- **UNIT-LOAD-0 / PSI3 (PROVED, paper; lead re-derived).**
+  - At ρ_0 = 0: MaxCL holds if 3·adeg(a) + 2·tc(a) ≤ 3(d+1) for every a.
+  - In particular it holds if ψ ≤ 3 on N2.
+  - It pays the E47 bracket exactly (S = 90).
+- **MIN-PHASE (PROVED).** A slack-minimizing phase has its 0-residue cell in N and its (m−1)-residue cell in A.
+- **FACE-EXTENSION / CONTAINER (PROVED).** Height-≤3 tiles = a pair face Q plus one eligible cubic per remaining
+  residue. MaxCL for all extensions ⟺ COVER-PAY over feasible containers (MIN-COVER form).
+- **H3-D5 (PROVED by finite certificate).**
+  - Statement: MaxCL at every σ for every height-≤3 tile with ≤ 5 active directions (m ≤ C(d+3,3)).
+  - Codex certificate: height3_certificate.c, two evaluation methods, plus an independent Python check for d ≤ 3.
+  - **Lead independent re-check** (src/scratch/h3/h3_tiles_dfs.c: direct residue-by-residue DFS over actual tiles,
+    no faces/containers/dominance, every σ):
+    - d = 2, 3, 4 reproduce every count (sets 120 / 4,845 / 324,632; covered 40 / 549 / 9,601; height-3 faces
+      36 / 854 / 34,457; flat faces 11 / 82 / 823);
+    - d = 4: 58,722 height-3 tiles, 0 failures;
+    - d = 5 also reproduces every count (32,468,436 / 229,082 / 2,443,823 / 13,820), with 7,605,820 height-3 tiles
+      and 0 failures at every σ.
+    So H3-D5 rests on two independent implementations (EXPERIMENTS E249).
+  - **Corollary H3-E6:** Wilf for every S with e ≤ 6 whose Apéry elements all have a factorization of length ≤ 3.
+    This includes e ≤ 6 with 4n_1 > c + m. Status: computer-assisted, not in Lean.
+- **SPIKE-BOUND / H3-CORE2 (PROVED, paper plus a finite base for m ≤ 13).**
+  - SPIKE-BOUND: (m−q−t)·C(1+k+p,2) ≥ (q−p+2t)(m−1) ⇒ MaxCL.
+  - H3-CORE2: MaxCL at every σ when k ≤ 2, with arbitrarily many spikes.
+- **H3-CORE3 (lead, 2026-10-19; PROVED, computer-assisted).** MaxCL holds at every σ for every height-≤3 tile with
+  exactly 3 non-maximal unit directions and any number of spikes. Proof:
+  1. Delete the spikes; the core C ⊂ ℕ³ (all units non-maximal) is one of 2,291 down-set shapes, all enumerated.
+  2. Height-≤2 cores are Flat-MaxCL (LEAN). If d = 3 + s ≤ 5, use H3-D5.
+  3. Otherwise, if CR holds for (C, s), MaxCL holds at every σ. CR is linear in s, with slope (2t+q−p) on the left
+     and n(n+1)/2 on the right. For k = 3 no height-3 shape has a non-positive slope difference with CR failing, so
+     CR fails exactly for s < s*(C).
+  4. That leaves 11 (C, s) with s ≥ 3. Nine have injective labelings: 672 labelings, all checked at every σ by the
+     spike form (k+s+1)Σ_N r − Σ_A(|y|−1)r: 10,200 checks, min slack 39, 0 failures. The other two have none.
+  Script: src/scratch/h3/lcr3_exh.py 3 full. With H3-CORE2, height-3 MaxCL holds whenever k ≤ 3.
+- **Remaining family:** d ≥ 6, k ≥ 4 (after H3-CORE3), failing SPIKE and the carry criteria (P6_REPORT §9). Next lemma: MIN-COVER, or
+  the lead's hybrid (maximal pairs by the flat window, cubics by rearrangement or CUBIC-LIFT, near-perfect cores
+  excluded by cyclic packing).
+- **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
+  failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
+  flat window for A2.
+- Codex's other preserved failures:
+  - the [−1,1] cubic carry range (it is [−2,2]);
+  - "some origin lift removes all carries";
+  - "the forced-pair intersection suffices" (m = 6, p = (1,5)).
+
 ### Two-face tiles: 2-D picture, reduction to 2-D Tile-CL, and the box theorem — PROVED 2026-10-17 (paper; finite part
 ### by exact computation, src/scratch/twoface_box.py; identities asserted in scratchpad box_ident.py, b ≤ a ≤ 10)
 Setting: (D,p) a d = 3 tile with x_1x_2 = 0 on D ("two-face") and p_3 ≡ p_1 + p_2 (i.e. e_1 + e_2 ≡ e_3 mod Λ).
@@ -1595,6 +1650,21 @@ lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 18 then 
   re-implementation is independent code written from the report text, and it agrees with codex on every count column
   at a = 14..17.
 
+**Theorem GW-26i (α = 5, every a; PROVED 2026-10-19 by the lead, computer-assisted).** In the primary regime
+4m ≤ M < 5m, if α = 5 then W ≥ 0. With GW-26h, the primary regime is proved whenever α ≤ 5.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most five minimal generators lie in (m, (c − m)/2).
+- Proof, in three ranges.
+  - a ≤ 18 is GW-26g.
+  - a ≥ 150 = 10·C(6,2) is LARGE-A′.
+  - 19 ≤ a ≤ 149 is the lead certificate (flags MLPEHG), restricted to α = 5 and run for every a: 0 survivors.
+    Log: fejer ~/wilf/lead23/al_sweep_5f.log; summary line "alpha=5 a=19..149 total_survivors=0 time=5623s".
+- Builds used during the sweep, each valid and with only necessary conditions as tests:
+  - the fast build of E242;
+  - from 12:41 UTC, the same build plus a survivor counter;
+  - from 13:03 UTC, the quartic face cap k1 ≤ p·u0 (lines marked q1cap=1). This is a proved valid tightening: a
+    3-low+1-high A-quartic is a 3-low I3 cubic plus a high unit (E246).
+- Every line has krange>64 = 0 (no k-cover truncation).
+
 **Theorem GW-26h (α = 4, every a; PROVED 2026-10-19 by the lead, computer-assisted).** In the primary regime
 4m ≤ M < 5m, if α = 4 then W ≥ 0. With GW-26/26c/26d/26e/26f, the primary regime is therefore proved whenever α ≤ 4.
 - Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most four minimal generators n satisfy m < 2n − m < c − 2m,
@@ -1613,8 +1683,7 @@ lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 18 then 
   (KCAP 4096 plus a counter): identical result, krange>64 = 0 for every a (E241).
 - §39 domain audit for large a: every lemma used carries only LOWER bounds on a (a ≥ 3, 7, 13) or α ≥ 3/4, so the
   certificate is valid for all a ≥ 19. The bound "q > 2a ≥ 2(α+E) for a ≥ 7" uses E ≤ p = a − α.
-- **Extension attempts (E242).** α = 5: 0 survivors for a = 19..104 so far; the sweep runs to 149, and with LARGE-A′
-  (a ≥ 150) that would close α = 5. α ≥ 6 does NOT close with the current tests:
+- **Extension attempts (E242).** α = 5: CLOSED (GW-26i above). α ≥ 6 does NOT close with the current tests:
   - α = 6, a = 20, 21 leave 3 and 136 B-loop-like rows;
   - α = 8, a = 19, 20 leave 61 and 781 matching rows.
   These are finite relaxed-profile families, not semigroups.
@@ -2029,7 +2098,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - whenever a ≤ 13, for every low population (GW-26f; semigroups: at most 13 minimal generators in (m, c − 2m));
   - whenever a ≤ 18, for every low population (GW-26g; semigroups: at most 18 minimal generators in (m, c − 2m));
   - whenever α ≥ 4 and a ≥ 10·C(α+1,2) (LARGE-A′);
-  - whenever α ≤ 4, for every a (GW-26h);
+  - whenever α ≤ 4, for every a (GW-26h); whenever α ≤ 5, for every a (GW-26i);
   - whenever LOW+ holds (GW-26b).
   - Semigroup corollary of GW-26g (superseding GW-26f's e ≤ 14): **Wilf holds for every S with e ≤ 19 and c ≤ 4m**,
     and, with Eliahou's 3e ≥ m theorem, for every S with c ≤ 4m and m ≤ 60.
