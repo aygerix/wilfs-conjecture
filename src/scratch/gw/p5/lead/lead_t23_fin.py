@@ -18,7 +18,7 @@ def Hn(n): return n*(comb(n, 2)+1)
 
 def C3(x): return comb(x, 3) if x >= 3 else 0
 
-def run(a, joint=False):
+def run(a, joint=False, retain=False):
     F = comb(a+1, 3)
     pre = 0; surv = []; ntup = 0
     for r in (0, 1, 2):
@@ -40,6 +40,9 @@ def run(a, joint=False):
                     for R in range(0, a-3+1):
                         Fr = 15-5*a+Sl+D3
                         Fc = a-27+(a+3)*n0+Sl-2*n0*R-(a+2)*r
+                        if retain:  # keep D3-3t0 >= 3(t-t0max)-(a+2)r; forced cubics avoid the pure-low face when n0=6
+                            t0max = min(10, t-tf) if n0 == 6 else min(10, t)
+                            Fc += 3*(t-t0max)
                         Fw = a-39+(a+3)*n0+Sl-2*n0*R+D3
                         K = max(Fr, Fc, Fw)
                         if K > -1: continue
@@ -71,10 +74,10 @@ def run(a, joint=False):
     return pre, surv, ntup
 
 if __name__ == '__main__':
-    amin, amax = int(sys.argv[1]), int(sys.argv[2]); joint = len(sys.argv) > 3
+    amin, amax = int(sys.argv[1]), int(sys.argv[2]); joint = 'joint' in sys.argv[3:]; retain = 'retain' in sys.argv[3:]
     tot = []
     for a in range(amin, amax+1):
-        pre, surv, ntup = run(a, joint)
+        pre, surv, ntup = run(a, joint, retain)
         tot += surv
         print(f"a={a} pre-packing profiles={pre} surviving profiles={len(surv)} expanded delta tuples={ntup} "
               f"max b={max((s[6] for s in surv), default=-1)}", flush=True)

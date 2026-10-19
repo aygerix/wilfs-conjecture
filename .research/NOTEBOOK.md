@@ -2207,3 +2207,9 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   The α lows alone lie in [L, h/2), of length δ/2, so δ ≳ α³/3 by LSP; this matches 2c0 ≈ α³/3 at leading order.
   **Heuristic conclusion: the whole primary regime 3m < c ≤ 4m reduces, at leading order, to an LSP-type lemma with
   a bounded defect constant (LSP*), plus exact lower-order bookkeeping.**
+- **α = 3, a ≥ 13 closed by the lead's independent certificate** (E228), with two refinements of FIN:
+  - JOINT-SP;
+  - in F_cold, keep D3 − 3t0 = 3(t − t0) − (a+2)r instead of −(a+2)r. With n0 = 6 the forced missing cubics are not
+    pure-low, so t0 ≤ min(10, t − t_forced).
+  Survivors: 0 for every a = 13..40. Codex reported the same closure mid-turn, by two routes; its write-up is
+  pending. Remaining for α = 3: 7 ≤ a ≤ 12.
