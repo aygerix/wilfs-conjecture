@@ -2662,6 +2662,27 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
   Every failing interval has width ≈ m/3, so 3e ≥ m, which is already covered by Eliahou. Wilf holds there with a large
   margin (W ≈ 6.5m): the loss is in the step B_tile ≥ B_chain. Apéry chains of intervals run through many
   factorizations, so they are much longer than tile columns. PACK-W, which implies CHAIN-WILF, is false there too.
+- **Conjecture CHAIN-H3 (2026-10-19, lead; the preferred repair).** If some Apéry element has least factorization
+  length ≥ 3 (equivalently Ap(S,m) ⊄ {0} ∪ P ∪ (P+P), P = minimal generators other than m), then B_chain ≥ need.
+  - Consequence (PROVED implication): CHAIN-H3 + Flat-MaxCL (Ap ⊆ {0} ∪ P ∪ (P+P) ⇒ Wilf; LEAN
+    `wilf_of_apery_height_le_two`) ⇒ **Wilf for every S**. No depth or 3e < m condition is needed, and Eliahou is not
+    used.
+  - Evidence (E286):
+    - genus ≤ 33: exactly 4 CHAIN failures overall, all at q ≤ 3 and all of height 2. The 1,768,572 semigroups of height
+      ≥ 3 have 0 failures at every q; min ratio 1.3708 at ⟨16, 17, 26, 27, 28, 30⟩, c = 42.
+    - Every interval failure (169 with m ≤ 40) has height 2, and so do all 61 failing one-generator perturbations. Every
+      perturbation that creates a length-3 element has ratio ≥ 1.32.
+    - The annealer failures ⟨36, 82..95⟩ and ⟨36, 82..92, 97⟩, and the m = 61 near-miss (ratio 1.082), all have height 2.
+    - Height-penalized Kunz annealing (chain_kunz4.c, m = 24, 36, any e, q ≥ 4/5): min 1.205 / 1.264, no failure.
+    - Near-T truncations ⟨m, m+β_1..m+β_k⟩ ∪ [K, ∞), k = 1, 2, 3: height-≥3 minima 1.2018 / 1.1199 / 1.0737 for
+      m = 36 / 60 / 100 (k = 1), ≈ 1 + 7.3/m. So CHAIN-H3 is asymptotically tight near T_{m,q} (slack Θ(m²) against need
+      Θ(m³)). A proof must be exact there.
+  - Why height matters (heuristic, not a proof):
+    - All observed failures are height-2 sets with many coincident 2-fold sums (b + b′ = b″ + b‴), so Apéry chains run
+      through many factorizations and B_chain ≪ B_tile.
+    - For a pure level-k generator set, a length-3 Apéry element must sit at level ≥ 3k, which raises M by ≥ m and every
+      chain value with it.
+  - Status: CONJECTURE, the current main target of plan line 1.
 - **Repaired Conjecture CHAIN-WILF(3e<m): B_chain ≥ need whenever c > 3m and 3e < m.** Together with Eliahou's
   theorems for c ≤ 3m and for 3e ≥ m, it would still imply Wilf.
   - Evidence so far:

@@ -2975,3 +2975,22 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - P11 to codex on closing c ≤ 4m. In the residual α ≥ 6, a ≥ 19, 3e < m, CHAIN at q = 4 has slack ≥ 2.5 in
     annealing, so a crude proof may suffice. This depends on the boundary campaign showing no q = 4 failures.
   - Keep e = 5 FULL-INTERIOR as the follow-up.
+
+## 2026-10-19 (night, latest++++++++) — every CHAIN failure has Apéry height 2: Conjecture CHAIN-H3
+
+- After the interval refutation, I measured the least factorization length of every Apéry element. Every CHAIN failure
+  ever found has all Apéry elements in {0} ∪ P ∪ (P+P), the Flat-MaxCL class, already Lean-proved Wilf:
+  - the 4 failures in genus ≤ 33 (all q ≤ 3);
+  - the 169 interval failures with m ≤ 40;
+  - the 61 failing perturbations;
+  - both annealer hits.
+  Among the 1,768,572 semigroups of genus ≤ 33 with an element of length ≥ 3: 0 failures, min 1.371.
+- **CHAIN-H3** (Ap ⊄ {0} ∪ P ∪ 2P ⇒ B_chain ≥ need) + Flat-MaxCL ⇒ Wilf for all S. This is a cleaner dichotomy than
+  "3e < m": the chain relaxation fails exactly where 2-fold sums coincide massively, and that regime is the one the
+  pairwise residue argument of Flat-MaxCL handles.
+- Tightness: near T_{m,q} with one low generator g (so g, 2g, 3g ∈ Ap) the ratio is ≈ 1 + 7.3/m. A proof must be exact
+  near T, as Tile-TOP′′/MaxCL had to be.
+- The sub-lemma route (Σ_{w≠0} con ≤ C2/3 under 3e < m) is still consistent, but its strong form (≤ 0) is false at the
+  m = 61 near-miss. That near-miss is again height 2.
+- Open risk: a mixed S with a height-2 interval core plus a length-3 element that does NOT raise M. With pure level-k
+  generators a length-3 element forces level ≥ 3k > M, so mixed levels are needed; the targeted test is next.

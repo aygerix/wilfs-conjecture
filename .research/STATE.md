@@ -8,7 +8,14 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
-1. **CHAIN-WILF(3e<m)** (lead, now). With Eliahou it would imply Wilf.
+1. **CHAIN-H3** (lead, now; supersedes CHAIN-WILF(3e<m) as the line-1 target, PROOFS). If some Apéry element has least
+   factorization length ≥ 3, then B_chain ≥ need. With Flat-MaxCL (height ≤ 2, LEAN) this implies Wilf for every S,
+   using no depth condition and no Eliahou.
+   - Evidence (E286): every CHAIN failure ever seen has height 2. Genus ≤ 33 height ≥ 3: 1,768,572 semigroups, 0
+     failures. It is tight near T_{m,q} (≈ 1 + 7.3/m).
+   - Next: anneal at m ≥ 48; targeted mixed constructions (an interval core + a height-3 element below M); then a
+     proof mechanism (codex P12 after P11).
+   Earlier formulation, kept for the record: **CHAIN-WILF(3e<m)**. With Eliahou it would imply Wilf.
    - (a) Break it first: Kunz annealing up to m ≈ 150–200 at e ∈ [m/4, m/3), plus level-2 sets B with
      B ∪ (B+B) = ℤ_m \ {0} (the m = 61 near-miss, ratio 1.08).
    - (b) Sub-lemma: Σ_{w≠0} con(w) ≤ C2/3, which suffices by Lemma W0 since con(0) ≤ d(m−1) < (2/3)C2. Template: the

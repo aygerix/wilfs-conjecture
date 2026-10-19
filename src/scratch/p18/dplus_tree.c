@@ -16,6 +16,7 @@ static uint64_t cnt[80], tq[3][64], fD[3][64], fP[3][64], fW[3][64], fA[3][64], 
 static double minP[3][64]; static int minP_set[3][64]; static char exP[3][64][200];
 static double minW[3][64]; static int minW_set[3][64]; static char exW[3][64][200];
 static uint64_t fW1[4][64], tq3[4][64]; static int nsh1;
+static uint64_t chf_h2, chf_h3, h3tot; static double h3min = 1e9; static char h3ex[256];
 static double laymax[4][8]; static char layex[4][8][200]; static int layset[4][8]; static uint64_t laypos[4][8];  /* max layer-sum/C2 over w!=0 by co-level (1..6, 7 = >=7), by q class */  /* PW0': some w != 0 with positive contribution; by q class 0:q<=2 1:q=3 2:q=4 3:q>=5 */
 static inline int gapq(u128 g, int z) { return z < 128 && ((g >> z) & 1); }
 static void visit(u128 gm, int F, int m, int *gens, int e, int g) {
@@ -52,6 +53,16 @@ static void visit(u128 gm, int F, int m, int *gens, int e, int g) {
     (void)ell;
     int q = (int)((c + m - 1) / m), cls = q <= 3 ? 0 : (q == 4 ? 1 : 2);
     tq[cls][e]++;
+    { /* Apery height: max over w of least factorization length */
+      int ord[128]; for (int i = 0; i < m; i++) ord[i] = i;
+      for (int i = 1; i < m; i++) { int v = ord[i], j = i - 1; while (j >= 0 && w[ord[j]] > w[v]) { ord[j + 1] = ord[j]; j--; } ord[j + 1] = v; }
+      int ml[128]; ml[0] = 0; int Hh = 0;
+      for (int t = 1; t < m; t++) { int i = ord[t], best = 1 << 20;
+        for (int a = 0; a < d; a++) { int y = w[i] - n[a]; if (y >= 0 && w[y % m] == y) { int v = 1 + ml[y % m]; if (v < best) best = v; } }
+        ml[i] = best; if (best > Hh) Hh = best; }
+      if (Hh >= 3) { h3tot++; double rr = (double)(d * C2 - D) / (double)((d - 1) * C2); if (rr < h3min) { h3min = rr; int p = snprintf(h3ex, 256, "g=%d m=%d c=%d e=%d H=%d ratio=%.4f gens=", g, m, F + 1, e, Hh, rr); for (int a = 0; a < d && p < 230; a++) p += snprintf(h3ex + p, 256 - p, "%d,", n[a]); } }
+      if (D > C2) { if (Hh >= 3) { chf_h3++; printf("CHAINFAIL_H3 g=%d m=%d c=%d e=%d H=%d gens=", g, m, F + 1, e, Hh); for (int a = 0; a < d; a++) printf("%d,", n[a]); printf("\n"); } else chf_h2++; }
+    }
     if (D > C2) fD[cls][e]++;
     if (PW > C2) { fW[cls][e]++; if (cls > 0 && nshw < 15) { nshw++; printf("PACKWFAIL g=%d m=%d c=%lld q=%d e=%d D=%lld PW=%lld C2=%lld gens=", g, m, (long long)c, q, e, (long long)D, (long long)PW, (long long)C2); for (int a = 0; a < d; a++) printf("%d,", n[a]); printf("\n"); } }
     if (PA > C2) { fA[cls][e]++; if (cls > 0 && nsha < 15) { nsha++; printf("PACKAFAIL g=%d m=%d c=%lld q=%d e=%d D=%lld PA=%lld C2=%lld gens=", g, m, (long long)c, q, e, (long long)D, (long long)PA, (long long)C2); for (int a = 0; a < d; a++) printf("%d,", n[a]); printf("\n"); } }
@@ -90,6 +101,7 @@ int main(int argc, char **argv) {
   visit(0, -1, 1, gens, 1, 0);
   uint64_t tot = 0; for (int g = 0; g <= G; g++) tot += cnt[g];
   printf("genus<=%d semigroups: %llu  identity failures: %llu\n", G, (unsigned long long)tot, (unsigned long long)idfail);
+  printf("CHAIN failures (all q): height<=2: %llu, height>=3: %llu;  height>=3 semigroups: %llu, min ratio %.5f at %s\n", (unsigned long long)chf_h2, (unsigned long long)chf_h3, (unsigned long long)h3tot, h3min, h3ex);
   for (int k = 0; k < 4; k++) for (int L = 1; L < 8; L++) if (layset[k][L]) printf("LAYER class %s lambda=%d%s: max sum/C2 = %.4f  (#S with positive sum: %llu) at %s\n", k == 0 ? "q<=2" : (k == 1 ? "q=3" : (k == 2 ? "q=4" : "q>=5")), L, L == 7 ? "+" : "", laymax[k][L], (unsigned long long)laypos[k][L], layex[k][L]);
   for (int k = 0; k < 4; k++) { printf("PW0' (w!=0) failures, class %s:", k == 0 ? "q<=2" : (k == 1 ? "q=3" : (k == 2 ? "q=4" : "q>=5")));
     for (int e = 3; e < 64; e++) if (tq3[k][e]) printf(" e%d:%llu/%llu", e, (unsigned long long)fW1[k][e], (unsigned long long)tq3[k][e]); printf("\n"); }
