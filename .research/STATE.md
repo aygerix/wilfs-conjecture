@@ -192,6 +192,15 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       α_i). The obstruction is the ±1 carry.
     - Codex P8 REVIEWED and accepted (PROOFS "Codex P8", E274): SR packing lemma; GENERAL-FEW21+240; SHADOW-225; DISJOINT-CUBICS.
     - LEAN: YZ staircase (any m ∈ S) and LK+YZ (prime m) kernel-checked (`ell_ge_staircase`, `ell_ge_lkyz_prime`, `'`).
+    - NEW band lemmas (PROOFS; exhaustive genus ≤ 33):
+      - LK-SUPER (E275): Kneser from every band j; prime m ⇒ Θ_{a+b+1} ≥ Θ_a + Θ_b. It covers deep S with an empty first
+        layer, beyond all first-layer methods. Lean: `shift_mem_band`, `card_bandGaps_step_band`, `band_superadditive`.
+      - LK-SHARP (E276): the wrap only reaches the window [m − β_j, m), so g_H + a_H ≥ g_{H+j} + δ_j. Growth per j bands at
+        a one-time cost β_j.
+    - LEAN: P8's SYMMETRIC-RECTANGLE kernel-checked (lean/Wilf/SymRect.lean).
+    - Strategic note: every band/Kneser result is a LOWER growth bound, at most linear in the depth. The Wilf-tight
+      profiles (free / B_h-like B) grow polynomially and are shallow. The missing ingredient for P18 and for general S is
+      an UPPER growth (carry-corrected Macaulay) principle. That is the P9 target (b).
     - c ≤ 4m frontier + YZ Cor 4.2: the residual (α ≥ 5, 19 ≤ a < 10·C(α+1,2)) also needs (a+1)(a+2) < 2m, so m ≥ 211.
     - Codex P9 launched: Problem 1.8 (generators < 2m). Message $SP/codex/p9_msg.md, log $SP/codex/p9_log.txt.
 (0J) 2026-10-19 latest+.
