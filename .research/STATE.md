@@ -94,7 +94,8 @@
 
 ## Open gaps (exact)
 - G-scan: CLOSED (E140, E141; every m ≤ 280 area-certified). G-review: CLOSED (both reviews in .research/reviews/).
-- G-doc: logs/tf_bounds2.log does not record its m range (manuscript G4); rerun with the range printed.
+- G-doc: CLOSED 2026-10-19. logs/tf_bounds2_5_500.log is a rerun on fejer with the range (m = 5..500), date and
+  script md5 in its header. Its uncovered list is identical to logs/tf_bounds2.log; largest uncovered m = 17 (BGOW).
 - G-Lean: all lattice-free counting is done (CHT, B, T, T′, TF, F, QF, the cone bounds, both thresholds). Next: the
   cylinder lemma (link 4) and Wall/Floor from IsTile, which would give "every 3-D lattice tile with m ≥ 267 has δ ≥ 0" in
   Lean; then the height criterion (link 2).

@@ -1,0 +1,19 @@
+# tf_bounds2.py rerun on fejer 2026-10-19T06:41Z; range m = 5..500 (args: 5 500); md5 8b478537d5a2c8aba4012a33eee91a11
+m 5 uncovered L3 [2, 3]
+m 6 uncovered L3 [2, 3]
+m 7 uncovered L3 [2, 3, 4]
+m 8 uncovered L3 [3, 4]
+m 9 uncovered L3 [3, 5]
+m 10 uncovered L3 [3, 4]
+m 11 uncovered L3 [3, 4, 5]
+m 12 uncovered L3 [4, 5, 6]
+m 13 uncovered L3 [4, 6]
+m 14 uncovered L3 [4, 5, 7]
+m 15 uncovered L3 [4]
+m 16 uncovered L3 [4]
+m 17 uncovered L3 [5]
+largest uncovered m in range: 17
+
+real	0m28.837s
+user	0m28.831s
+sys	0m0.005s

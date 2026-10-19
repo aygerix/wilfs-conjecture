@@ -543,3 +543,7 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
     Delgado–Kumar, arXiv:2512.23891 (algorithms, no counterexample with maximum primitive ≤ 60).
   - GitHub: only kseth/wilf-e4 (known) and our own repo.
 - No source applies Cauchy–Davenport / Kneser growth of the Kunz layers B_j = {r : κ_r ≤ j} ⊂ ℤ/m to Wilf.
+- Follow-up (same day): "Wilf's conjecture "prime multiplicity" numerical semigroup" (extended web search). No result
+  on Wilf for prime multiplicity. Kaplan (counting by genus) uses prime m only inside his small-genus counting
+  argument. Other hits are the known e ≥ m/2 (Sammartano), e ≥ m/3 (Eliahou, EJC 2020), m/4 when m | c
+  (Comm. Algebra 2024), Spirito (large second generator), m − e ≤ 5 (PJM 2018), genus < 2m − √(2m) (arXiv:2501.04417).

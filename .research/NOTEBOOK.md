@@ -2133,3 +2133,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - **Decision.** CP and STAIR are the two localized/intrinsic forms with the best evidence. Neither has a proof idea
   beyond Hall reformulation yet. The concrete theorem lines remain P5c (c ≤ 4m, codex) and P6 (height ≤ 3; brief
   updated with CP as a second route).
+- **Additive route, tested (src/scratch/gw/stab/{cdtest.c, acd.c}).**
+  - Exact layer form of Wilf for the worst conductor given layer counts A_j = #S ∩ [jm,(j+1)m), with K full layers
+    below c. Then partial = A_K − (m − s) for c = Km + s, because [c,(K+1)m) ⊆ S. So Wilf reads:
+    - (d+1)Σ_{j<K}A_j ≥ Km if A_K = m;
+    - otherwise (d+1)(Σ_{j<K}A_j + 1) ≥ (K+1)m − A_K + 1.
+  - Cauchy–Davenport from the generator depths alone: A*_0 = 1, A*_j ≥ A*_{j−1}, A*_j ≥ 1 + #{a : k_a ≤ j},
+    A*_{i+j+1} ≥ A*_i + A*_j − 1. Capped at m − 1 below c.
+    - On all prime-m semigroups with e ≥ 3 and genus ≤ 26 (645,669), e·Σ A*_j ≥ c holds for 97.6% with 2 full layers
+      and 99.0–99.8% with 3–9 full layers. It fails at 1 layer, which is Kaplan's c ≤ 2m regime.
+    - So superadditive growth is strong exactly in the deep regime where every other method is weak.
+  - An abstract model with layer counts only (CD lower bounds + product upper bounds for sums) is FALSE for Wilf
+    (m = 19, 23: min W ≈ −60 … −230). The product bound lets the last layer jump to m without generators. Positions
+    (the carry structure of the Kunz inequalities) are indispensable.
+  - The CD bound is tight for arithmetic progressions (Vosper), i.e. interval-like generator residues, where Wilf is
+    known.
+  - Possible program: Freiman/Vosper stability (near-linear growth ⇒ near-AP residues) + an exact treatment of
+    near-AP Kunz vectors, for prime m. Not started.
