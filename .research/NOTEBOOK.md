@@ -2588,3 +2588,19 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   a_2 > (c+m)/3, e ≥ 10). Not pursued: it needs e ≳ √n_max, so it misses exactly the small-e and c ≈ n_max regimes
   where the open cases live. The crude Cauchy–Davenport layer bound (prime m) fails with ≥ 3 full layers only for
   e ≤ 7 at genus ≤ 26 (cdtest_e.c), because of the +1 index shift that ignores non-carrying sums.
+- **Codex P6c accepted** (d699d04; PROOFS, E258). The key new tool is WINDOW-ID, an exact reduction:
+  HC′ = L_+ + m(O_rest + P_+ + gain − β), where β counts "bad cubics" (b_y = κ_y + [r(y) ∈ W] = −1). So HC′ ≥ L_+ − mβ,
+  and height-3 MaxCL reduces to charging the bad cubics injectively.
+  - Closed: every one-cubic tile whose missing-pair graph covers all units; CUBIC-DEGREE (2 ≤ t ≤ k/2, δ_i ≥ t);
+    the common-factor phase (CONE).
+  - DIGITAL-STAR (mixed-radix products) refutes the face-free packing lane at every height: s = 0, CR < 0, MaxCL true.
+- **Strategic review (late evening).**
+  - Distance: the height-3 frontier is now an exact charging problem (β bad cubics against O_rest, P_+, gain and L_+).
+    The one-cubic case is down to a narrow relay sub-case (ONE-RELAY).
+  - Theory of success: the bad cubics at ρ_0 = 0 are triples of units just above m/2 with sum < 2m. Their faces are
+    carry +1 N2 pairs and their residues are packed into short arcs. Making s small forces other cells into the empty
+    arcs, and mixed cubics (two high units and one low) are GAINS (κ = +1). So the payment should come from the
+    cells that fill the arcs. This is a genuine carry/distinctness coupling, and the lead's BAD-CLUSTER question to
+    codex (P6d) tests it.
+  - Kill: face-free packing (DIGITAL-STAR), CR-alone, and scalar-only payments (F3).
+  - Continue: P6d (ONE-RELAY, then β-charging). P5h stays parked, because P4 needs height-3 MaxCL first.

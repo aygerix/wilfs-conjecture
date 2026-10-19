@@ -117,7 +117,8 @@ int main(int argc, char **argv){
     /* random distinct nonzero unit labels */
     /* INIT=1: postage-stamp start, unit labels in [1,L] with L ~ (m-1)/3 (labels of degree-j cells in [j, jL]) */
     int Lmax = m-1; if(getenv("INIT") && atoi(getenv("INIT"))==1){ Lmax=(m-1)/3 + (int)(rnd()%3); if(Lmax<K) Lmax=K; if(Lmax>m-1) Lmax=m-1; }
-    for(;;){ int ok=1; for(int a=0;a<K;a++){ cur.P[a]=1+rnd()%Lmax; for(int b=0;b<a;b++) if(cur.P[b]==cur.P[a]) ok=0; } if(ok) break; }
+    int clus=(getenv("INIT") && atoi(getenv("INIT"))==2);
+    for(;;){ int ok=1; for(int a=0;a<K;a++){ if(clus && a<(K+1)/2){ int Lc=m/12; if(Lc<(K+1)/2+2) Lc=(K+1)/2+2; cur.P[a]=(m/2+1+rnd()%Lc)%m; if(cur.P[a]==0) cur.P[a]=1; } else cur.P[a]=1+rnd()%Lmax; for(int b=0;b<a;b++) if(cur.P[b]==cur.P[a]) ok=0; } if(ok) break; }
     relabel(&cur); unsigned char full[MAXC]; memset(full,0,sizeof full);
     /* random initial density */
     double dens=urand(); for(int i=0;i<nc;i++) full[i]=(deg[i]<=1)||(urand()<dens);
