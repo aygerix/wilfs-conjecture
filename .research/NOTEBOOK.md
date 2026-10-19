@@ -2732,3 +2732,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     bound the low down-set's shadow from below.
 - **Tile-CL is false already at d = 4** (E266: m = 16, P = (1,6,7,15), a 2-D core plus two spikes). So the PC/Tile-CL
   failures are core-plus-spike constructions with non-maximal wraps. H1′ (the WRAP-MAX case) is unaffected.
+- **Coverage census (src/scratch/coverage/cov.py, hcr_fail.py; fejer ~/wilf/coverage).**
+  - Random S, e = 5–10, m = 25–70, generators < 3m (c/m ≈ 4–21; 5,658 S): the tile MaxCL classes are SMALL.
+    - H2: 0.0%; NOWRAP: 1.7%; ONE-CUBIC: 0.2%; WRAP-MAX (CONJ H1′): 5.8%.
+    - The literature criteria cover 0.7%; our c ≤ 4m / GW-20 classes cover 23%.
+    - HCR (shape-only, implies Wilf) holds on 100% (two models, 5,684 S).
+  - Shallow random S (generators in (m, 1.6m), e = 6–30, m = 30–160; 3,779 S): 0 HCR failures.
+  - Reading:
+    - For "typical" semigroups Wilf follows from shape-only depth (HCR), and the residue-level MaxCL theory is
+      needed only on rare shallow, structured tiles.
+    - The known HCR failures are all such tiles: the m = 13 4-D pair, 3-D two-face books, e = 6–9 two-face tiles
+      (fixed by HCR+), and height-2 near-stars at d ≈ 100 (covered by Flat).
+    - So a hybrid route to General Wilf is: HCR(+) on deep tiles, plus MaxCL classes on shallow ones. Both programs
+      meet the same core obstruction: tiles with Ω > (d+1)m/2 whose non-maximal tops are shallow (H_n < (d−1)m/2).
+      In that regime Ω-crude, CR and HCR all fail at once. That shallow regime is where new structure theory has to
+      be built.
