@@ -1966,3 +1966,28 @@ asserted on every test.
     It needs a K-uniform packing/stability lemma: a deficient small-generator face is B_h-saturated, saturation
     forces missing residues, and missing residues force compensating directions.
   - (iii) the top correction N_top ≤ d + slack, where it is not already implied.
+
+## 2026-10-19 (early morning) — PCI on light columns proved; the half/half split is dead; the hard class
+
+- **Proved (GW-23).** PCI holds for every dominant column with n_b ≤ 2q − 1, at every i.
+  - Proof: c_k ≤ trapezoid φ(a_k); the multiples of q per w-block are ≤ 2; reflect the trapezoid; the "middle region"
+    has length ≤ 2 and contains no doubled block. This is because of the cutoff (2i−2)q − 1.
+  - Corollary: H_i (residue-free P_i for M ≥ (2i−2)q − 1) for every down-set with active weights in (q, 2q).
+- **Refuted.** PCI for heavy columns (w ≥ 2q) at i ≥ 10 (first: i = 10, q = 9, w = 22, three base components 17,
+  J = 5). The GW-22 route cannot give H_i for all weights; the discarded non-dominant slack is needed.
+- **Refuted (E212).** The top-half split. S_i = Σ_{k>i}(|U_k| − d|L_k|) ≤ 0 at i = ⌊(K+2)/2⌋ fails often at m ≤ 40
+  (up to +88). So "bottom half residue-free + top half arithmetic" does not decouple.
+- **Measured (E212).** GW-PF + H_i covers only ≈ 4 points more than GW-20 at m ≤ 40. The residual is semigroups with
+  many PF numbers near the very top. Decision: stop H_i at GW-23 (heavy weights not worth it).
+- **Observation (E212).** The hard class (> e − 1 PF numbers ≥ 3m, the only class not covered by Eliahou + GW-20)
+  carries large Wilf slack: W ≥ 0.11c in all 4.8e5 samples, and ≈ 0.17c under adversarial search.
+- **Reformulation (E213).** Marashdeh's Conj 5.2 (open; checked by him for genus ≤ 35) is equivalent to
+  W(S) ≥ σ_d(S) := Σ_{top e−1 PF f} |S ∩ (f, F]|, i.e. g ≤ Σ_{top e−1 PF f} |S ∩ [0, f]|. Our test: 0 failures up to
+  m = 60.
+  - Down-set form DMC: Σ_x κ(x) ≤ Σ_{k ≤ min(d,t)} Σ_x ⌊(V_k − v(x))/m⌋₊, with V_1 ≥ V_2 ≥ … the values of maximal
+    cells. It interpolates between corner reflection (t ≤ d, proved) and GW.
+- **Next.**
+  - Test DMC on general residue-complete down-sets, together with its prefix version MC_i (PGW with the top-d
+    corners).
+  - If it survives, try to prove MC_2 / MC_3 with the GW-16/19 machinery. Those proofs pay deficits with column slack;
+    with several corners, the top d corners' columns should carry the slack.
