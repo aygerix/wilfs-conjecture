@@ -1,0 +1,6 @@
+base 42 all_coefficients_nonnegative True
+B 42 all_coefficients_nonnegative True
+l 42 all_coefficients_nonnegative True
+matching 42 all_coefficients_nonnegative True
+10 exact constant comparisons passed
+B-heavy 24 all_coefficients_nonnegative True

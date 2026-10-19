@@ -9,7 +9,8 @@
      PACK : MIX-PACK (section 44).
      E    : E-REPAIR (section 50): fix the minimum cover k first, E_k=min(p,l+min(r-r_LL,r-k+1)) in C_H, B_H, H_cold.
      H    : LOCAL-COVER (section 50): r<=ak-C(k,2); j low cover vertices with r_LL<=f(j); E replaced by Ehat_k.
-   usage: lead_t2small amin amax flags   (flags: string containing any of M, L, P, E, H) */
+     G    : early GLOC cap on t per state (necessary condition, P5 section 24; used when Bc>=0 and q>=2alpha).
+   usage: lead_t2small amin amax flags [alphamin alphamax]   (flags: any of M, L, P, E, H, G) */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +32,7 @@ static ll gcover(ll r,ll z,ll d){ if(r==0) return 0; if(z<0) return -1; ll g=(ll
   while(Cn(g+1,2)<=z) g++; while(g>0&&Cn(g,2)>z) g--; if(g>r) g=r;
   ll D0=1+((C2(r)-z)>0? (C2(r)-z+r-1)/r : -((z-C2(r))/r)); if(D0>=3){ ll g2=1+z/(D0-2); if(g2<g) g=g2; } if(g>d) g=d; return g; }
 static ll Gamma_(ll a,ll d0,ll q,ll r){ ll hi=Cn(d0+1,2)-r-1, best=-1; int f=0; for(ll x=q;x<=hi;x++){ ll v=(d0+2)*x-3*mac2(x); if(!f||v<best){best=v;f=1;} } return f? best-2*(a-1)*r : (1LL<<60); }
-static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0;
+static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0,GCAP=0; static ll ngcap=0; static ll ALMIN=3, ALMAX=1000000;
 static ll nmix=0,nlink=0,npack=0;
 static int mixgap_kills(ll a,ll b,ll r,ll q,ll q2,ll u,ll t,ll K,ll B0){
   ll d0=a+b; ll G=Gamma_(a,d0,q,r); if(B0>=G) return 0;
@@ -57,12 +58,12 @@ static int mixpack_kills(ll a,ll b,ll r,ll q,ll q2,ll u,ll t,ll K,ll D3,ll WAbar
       if(lo<=Ug) return 0; } }
   return 1; }
 int main(int argc,char**argv){
-  int amin=atoi(argv[1]), amax=atoi(argv[2]); if(argc>3){ MIX=strchr(argv[3],'M')!=0; LINK=strchr(argv[3],'L')!=0; PACK=strchr(argv[3],'P')!=0; EREP=strchr(argv[3],'E')!=0; LCOV=strchr(argv[3],'H')!=0; if(LCOV) EREP=1; if(EREP) LINK=1; }
+  int amin=atoi(argv[1]), amax=atoi(argv[2]); if(argc>3){ MIX=strchr(argv[3],'M')!=0; LINK=strchr(argv[3],'L')!=0; PACK=strchr(argv[3],'P')!=0; EREP=strchr(argv[3],'E')!=0; LCOV=strchr(argv[3],'H')!=0; GCAP=strchr(argv[3],'G')!=0; if(LCOV) EREP=1; if(EREP) LINK=1; } if(argc>5){ ALMIN=atoll(argv[4]); ALMAX=atoll(argv[5]); }
   ll tot=0;
   for(ll a=amin;a<=amax;a++){
     ll Q=Cn(a+1,2), U=Cn(a+2,3), F=Cn(a+1,3); ll sq=(ll)floor(sqrt((double)(2*F+1))); while((sq+1)*(sq+1)<=2*F+1) sq++; while(sq*sq>2*F+1) sq--;
     ll nbase=0,nu=0,npre=0,nprof=0,nsurv=0; nmix=nlink=npack=0;
-    for(ll al=3;al<=a;al++){ ll p=a-al, Qa=Cn(al+1,2), Ua=Cn(al+2,3);
+    for(ll al=(ALMIN>3?ALMIN:3);al<=a&&al<=ALMAX;al++){ ll p=a-al, Qa=Cn(al+1,2), Ua=Cn(al+2,3);
      for(ll r=0;r<=Q;r++){ ll q=Q-r, tf=U-mac2(q);
       for(ll n0=(Qa-r>0?Qa-r:0);n0<=Qa;n0++){ ll rLL=Qa-n0;
        for(ll l=0;l<=al*p;l++){ ll q2=n0+l; if(q2>q) break;
@@ -72,6 +73,14 @@ int main(int argc,char**argv){
          ll u1max=p*n0; ll t1=(al+1)*l/2; if(t1<u1max) u1max=t1; if(m2q2-u0<u1max) u1max=m2q2-u0;
          for(ll u1=0;u1<=u1max;u1++){ ll K1=(al+2)*u1/3, K=K0+K1, u=u0+u1; ll LCbar=(a+1)*(q2+u)-4*K;
           ll num=F-LCbar+(a-3)*r-1; ll tmax= num>=0? num/4 : -((-num+3)/4); if(U-u0-u1<tmax) tmax=U-u0-u1;
+          /* G: early GLOC cap (P5 section 24).  W<0 forces Phi<=-1.  With c0<=min(U_al,n0^<2>), S>=Smin, quartic
+             allowances K0>=k0, K1>=k1, a nonnegative b coefficient Bc=a-1+q2+u-2al-2n0 and q>=2al (C/E remainder >=0):
+             D3 <= -1-P0, P0=(a-1)-2al-2c0max+(2al+1-a)n0+Smin+(a+1)u0-5K0+(a+3)u1-3K1.  P0 increases with u1
+             (a+3>3*ceil((al+2)/3)), so once the cap is below tf every larger u1 fails as well. */
+          if(GCAP){ ll Bc=a-1+q2+u-2*al-2*n0; if(Bc>=0 && q>=2*al){ ll c0mx=mac2(n0); if(Ua<c0mx) c0mx=Ua;
+              ll P0=(a-1)-2*al-2*c0mx+(2*al+1-a)*n0+Smin+(a+1)*u0-5*K0+(a+3)*u1-3*K1;
+              ll tg=-1-P0+(a+2)*r; tg = tg>=0? tg/3 : -((-tg+2)/3); if(tg<tmax){ tmax=tg; ngcap++; }
+              if(tg<tf) break; } }
           for(ll t=tf;t<=tmax;t++){ hit=1; nu++;
            if(!CEok){ printf("ASSERT CE fails a=%lld al=%lld r=%lld n0=%lld l=%lld\n",a,al,r,n0,l); }
            ll eps=t-tf, D3=3*t-(a+2)*r, WAbar=-F+LCbar-(a-3)*r+4*t;

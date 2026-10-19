@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "coefficient_certificates": 192,
+  "integer_profiles": 16,
+  "predicates_per_integer_profile": 30,
+  "actual_semigroups": 4964,
+  "HPAIR_cases": 4941,
+  "HPAIR_strict_improvements": 4555,
+  "algebra": {
+    "B_bound_constants": true,
+    "large_A_endpoints": 5991,
+    "macaulay_profiles": 4543077,
+    "middle_block_profiles": 3339578,
+    "negative_original_lower": 1853859
+  },
+  "instances": [
+    {
+      "file": "instances61.log",
+      "instances": 2981,
+      "HPAIR": 2968,
+      "strict": 2646
+    },
+    {
+      "file": "instances62.log",
+      "instances": 1983,
+      "HPAIR": 1973,
+      "strict": 1909
+    }
+  ],
+  "scope": "count profiles are not residue-complete or semigroup witnesses"
+}

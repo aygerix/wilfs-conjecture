@@ -2337,3 +2337,33 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - So any height-3 proof must pay part of the top-window cost from the load deficit on non-maximal pairs (each is in
     at most d cubics, against weight d+1), not from ρ_0 alone. The pure-pair form has load d + 2 on pairs and
     uncontrolled K ∈ {−2,…,2}. Still parked for P6.
+
+## 2026-10-19 (midday) — LARGE-A′, the GLOC cap, and per-α closure of the primary regime
+
+- **LARGE-A′ (proved, PROOFS).** α ≥ 4 and a ≥ 10·C(α+1,2) ⇒ W ≥ 0. Codex's §46 had 16·C(α+1,2)².
+  - The R0² came from crude lower-order bounds only. Exact Macaulay in "q ≥ C(R0+1,2)" and exact Δ-block endpoints in
+    "r ≤ R0 − 1" both need only a ≳ 2R0.
+  - The binding step is SP on n ≥ a + 1 − K residues against m ≤ C(a + 2K + 2, 3) + O(a^{5/2}). Its leading order
+    gives θ* ≈ 9.09.
+  - With T2-SMALL18 the open strip is now α ≥ 4, 19 ≤ a < 10R0.
+- **GLOC as an early per-state cap.** W < 0 forces Φ ≤ −1 (§24).
+  - Bound c0 ≤ min(U_α, n0^{⟨2⟩}), S ≥ S_min(l) and the quartic counts by their allowances. Wherever the b
+    coefficient a − 1 + q2 + u − 2α − 2n0 is ≥ 0 and q ≥ 2α, this gives D3 ≤ −1 − P0(n0, l, u0, u1), a cap on t that
+    is set before the t loop.
+  - P0 increases with u1, which justifies a break.
+  - In the certificate it changes NO profile count: a = 15 gives 75,275 and a = 16 gives 259,376 before and after. So
+    GLOC is implied by the later tests. But it removes ~95% of the u states, and the α = 4 slice at a = 19 drops from
+    17 s to 0.08 s.
+- **Per-α closure.** For fixed α the certificate restricted to that α is now cheap: α = 4, a = 99 takes 9 s.
+  - α = 4, a = 19..76 so far: 0 survivors, and every profile dies at the global SP/PSP-versus-cardinality test or at
+    an empty δ range (nonempty-δ = 0 throughout).
+  - So for α = 4 beyond a = 18, only the global cardinality comparison and the DELTA-UP/LOW-FIN δ range are
+    needed: no window, joint, MIX-PACK or LINK test.
+  - Sweep α = 4..8 to a = 10R0 − 1 running (al_sweep_*.log).
+- **Why a coupled LARGE-A should reach a ≈ 3R0.** In the final comparison, r, ε and b share one GLOC budget,
+  Δ(r) + 3ε + b(a − 1 − 2α − R0) < M_A(a) ≈ Ka, with Δ ≈ 2ar for small r. LARGE-A′ spends it three times.
+  - In units of K, put r = ρK, b = βK and 3ε = σKa, so 2ρ + σ + β ≤ 1.
+  - The comparison (θ − ρ)³/2 − σθ²/2 > (θ + β)³/6 then holds at every vertex for θ = 3. It fails at β = 1 for θ = 2.
+  - So an analytic threshold a ≈ 2.5–3R0 is plausible. It is still quadratic in α: below a ≈ R0 the budget Ka is of
+    order a³, and the global count alone cannot win. That strip a ∈ (5α/3, cα²) is where the window, joint and
+    LOW-FIN tests, or the asymptotic analysis of codex P5f, are needed.
