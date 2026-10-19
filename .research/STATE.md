@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, late night; PGW line)
+# STATE.md — handoff (updated 2026-10-19, morning; PGW / primary-regime line)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -133,7 +133,9 @@
        - Semigroup form WW_3 for every S, which contains Eliahou's c ≤ 3m with no Macaulay theorem.
        - Corollary **GW-20: Wilf holds if at most e − 1 PF numbers are ≥ 3m.** It misses 1,794 of the 38.9M S of
          genus ≤ 32 (E204). Those have e ≤ 7, and the ladder with P_4, P_5, P_6 would cover them all.
-     - P_4 (codex P4, RUNNING). Its regime 4m ≤ M < 5m is Wilf for 3m < c ≤ 4m, which is OPEN in the literature.
+     - P_4 (GW-21, GW-24, GW-25). Its regime 4m ≤ M < 5m is Wilf for 3m < c ≤ 4m, which is OPEN in the literature.
+       - Proved: a ≤ 6 (a = 6 with certificates); pure A with 2n_1 ≥ c − m for every a (GW-25, arc lemma); H4 for
+         M ≥ 6m − 3. See Next precise task (c).
        - Proved so far: a transfer lemma, a joint short-residue lemma, and the case a ≤ 3 (a = number of directions
          with n < 2m − ρ). Also the signed B_3 packing m ≥ C(a+3,3) + 2C(a+1,3) and degree-≤ 2 down-sets.
        - Open: a ≥ 4 in the primary regime, and the truncated regime M ≥ 5m (residue-free fails at 6m − 2).
@@ -153,14 +155,21 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Verify the codex P4 report when it lands, step by step, as for P3. If the primary regime is proved for all a, it
-    gives Wilf for c ≤ 4m and the GW-PF corollary "Wilf if ≤ e−1 PF numbers are ≥ 4m".
-(b) The general mechanism.
-    - Where does the residue coverage that rescues deficient faces come from, uniformly in K?
-    - Candidates: a K-uniform transfer lemma (non-A cells never worsen the A-face deficit); a deficit-to-missing-
-      residue inequality for the A-face (EF: deficit C(a+1,3) ≤ ½ · missing ≥ 2C(a+1,3)); the CCP payment rule.
-(c) Lean, queued after P4 (one agent at a time): GW-19 (Theorem H + the band proof), as done for GW-16 in
-    lean/Wilf/Window2.lean.
-(d) Background items:
-    - gfan re-check of E153: m = 37 done, no failures; m = 38–39 running (logs/gfan_hcr_37_39.log).
-    - Codex HT4 subclass claims are still unverified.
+(a) Codex P5 is RUNNING: session 01a1525d-16ff-7fc2-a405-17a585c3ec31, log scratchpad codex/p5_log.txt,
+    brief codex/p5_brief.md.
+    - Target: an analytic certificate for GW-26 (Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m), via exact identity +
+      shadows + short-residue lemma + refined arc + Macaulay on the B face.
+    - Stretch: q₂ > 0.
+    - When it lands, verify it step by step as for P4.
+(b) Lead, meanwhile:
+    - The K-uniform form of the arc. W = Σ_x [Kd − (d+1)j(x)] + ρ for every K; only band-K cells cost (−K each).
+    - Find the arc for general K that bounds h = c − (K−1)m, starting with the pure-A analogue of GW-25 for
+      c ∈ ((K−1)m, Km].
+(c) Status of the primary regime (Wilf for 3m < c ≤ 4m):
+    - proved for a ≤ 6 (GW-21/24);
+    - proved for pure A with 2n_1 ≥ c − m, every a (GW-25);
+    - LP evidence for the whole 2n_1 ≥ c − m class (E217);
+    - open: a ≥ 7 with low units (2n_a < c − m for some generator).
+(d) Lean, queued after P5 (one agent at a time): GW-19 (Theorem H + band proof); GW-25 is short and a good Lean
+    target.
+(e) Background: gfan re-check of E153 (m = 38–39); codex HT4 subclass claims are unverified.

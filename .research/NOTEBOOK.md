@@ -1991,3 +1991,33 @@ asserted on every test.
     corners).
   - If it survives, try to prove MC_2 / MC_3 with the GW-16/19 machinery. Those proofs pay deficits with column slack;
     with several corners, the top d corners' columns should carry the slack.
+
+## 2026-10-19 (morning) — P4 continuation verified; the arc lemma; a uniform result in the primary regime
+
+- **Verified (GW-24).** Codex P4 §§12–19, line by line.
+  - On paper: a = 4, 5, LC, LP/SP/HP, and distinct-weight H4 (M ≥ 6m − 3).
+  - Both a = 6 certificates and the a = 7 coverage were re-implemented independently. All counts match exactly
+    (36,389 vectors; exclusions 3,118/32,639/65/564; 3 survivors).
+  - Semigroup corollary: Wilf for 3m < c ≤ 4m with ≤ 6 generators in (m, c − 2m).
+- **New mechanism: the arc (GW-25a).** Elements of S in [c, (k+1)n_1) sit over residue classes whose Apéry
+  elements have length ≤ k. So the short Apéry elements number at least (k+1)n_1 − c.
+  - In band language this uses where τ = v − deg·m sits *inside* its band. Packing (LP/SP/HP) uses only residues
+    and loses a factor ≈ a. The arc does not.
+- **Proved (GW-25).** Pure A (all generators < c − 2m), 2n_1 ≥ c − m, 3m < c ≤ 4m:
+  W = 3a² + 4a + 1 + (a−2)p − 3u − h exactly. The arc gives h ≤ 2p + 2, so W ≥ a − 1 + 6(C(a+1,2) − p) ≥ e − 2.
+  - This holds for every e and contains the Eliahou–Fromentin c = 4m near-miss family (W₀ = −C(n,3)).
+  - It replaces the a = 7 computer certificate and closes codex's "uniform remaining claim".
+  - Sharp: there are semigroups with h = 2p + 2 (E216).
+- **Refined arc.** With outside directions (still 2n_1 ≥ c − m), the arc Y ⊂ [h, 3h/2) can only hold AA, B/C/E
+  units, and I₄ AB/BB cells. No cubic, AC or BC cell can occupy it.
+  - LP: exact identity + shadows + short-residue lemma + refined arc gives min W = (a−1)(b+1) for c = e = 0,
+    except for b ≫ a.
+  - In that regime the minimiser is a "B-world" (c ≈ 3m behaviour on the B face). Adding Macaulay z ≤ t₃^{⟨2⟩}
+    restores min = (a−1)(b+1) (checked to (100, 1000)).
+  - Conjecture GW-26: Wilf for 3m < c ≤ 4m whenever 2n_1 ≥ c − m.
+  - Sent to codex (P5) for an analytic all-parameter certificate, with the q₂ > 0 extension as a stretch goal.
+- **Strategic note.**
+  - The primary regime (Wilf for c ≤ 4m) now has two uniform pieces (GW-25, and GW-26 pending) plus a ≤ 6.
+  - What is left is low units (q₂ > 0) with many A directions.
+  - The general lesson for all K: W = Σ_x [Kd − (d+1)j(x)] + ρ, where only top-band cells cost. ρ is controlled by
+    arcs, which see positions inside bands. This should be tried as the K-uniform mechanism.
