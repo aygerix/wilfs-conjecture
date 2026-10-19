@@ -2747,3 +2747,59 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
       meet the same core obstruction: tiles with Ω > (d+1)m/2 whose non-maximal tops are shallow (H_n < (d−1)m/2).
       In that regime Ω-crude, CR and HCR all fail at once. That shallow regime is where new structure theory has to
       be built.
+
+## 2026-10-19 (night, later) — all-labelings H1′ done; the 3-D Ω trend
+
+- **H1′ over every labeling (E266, completed):** 0 failures for every m = 6–26 over all units u·r of every E153 4-D
+  certificate, at every phase (m = 26: 2.49M labelled tiles, 53,160 WRAP-MAX, 84,224 phases with F ≠ ∅). Min slack 0
+  at every m.
+- **OMEGA is dead in 3-D (E267).** max Ω/m over all 3-D lattice tiles stays in [2.27, 2.63] for m = 10–41, with a
+  sawtooth whose peaks fall only slowly (2.625, 2.524, 2.462, 2.452, 2.444 at m = 16, 21, 26, 31, 36). Extremal tiles are
+  p = (1, k, k+1), k ≈ √m. So "Ω ≤ (d+1)m/2 for m ≥ M0" (proposed OMEGA-4 analogue) fails in 3-D, and the plan
+  "crude MaxCL + finite check" is dropped for e = 4 and e = 5. Residue arguments are needed on the (1, k, k+1)-type
+  tiles.
+- **H-SF (Tile-CL on spike-free tiles) is FALSE (E268).** It held for all 4-D labelings with m ≤ 18 but fails from m = 19
+  on (always by exactly −m), e.g. P = (7, 2, 10, 12), ρ_0 = 0, where direction 1 is a short spike {e_1, e_1+e_2}; and on the
+  semigroup ⟨39 | 40, 54, 55, 75, 76⟩ at ρ_0 = 9. Dropped. Thin directions act like spikes, so there is no
+  "spike-free Tile-CL" route; WRAP-MAX remains the restriction under which pure counting is conjectured.
+
+## 2026-10-19 (night, latest) — H1′ is FALSE (codex P7, verified by the lead); pure counting is dead in every form
+
+- **H1′ refuted by an infinite height-3 family** (examples/h1prime_sidon_counterexample.md). Sidon offsets A ⊂ [1, L],
+  m = 2q, units q − a_i, all pairs, one cubic per s ∈ 3A ∖ A, spikes elsewhere. At θ = m − 2L the shadow slack is
+  2L + Q − |3A∖A|. With the explicit 127-element Sidon set it is −536. It is realized as a factorization tile of a
+  numerical semigroup at its conductor phase, so restricting to semigroups or to the Wilf phase does not help.
+  The lead's independent sparse evaluation (src/scratch/wrapmax/sidon_lead_check.py) reproduces S and Λ_r exactly.
+- MaxCL and Wilf hold on the family (crude bound: (d+1)C(|N|,2) ≥ (m−1)(2t+2)). So this refutes only the pure-counting
+  strengthening.
+- **Consequence.** Every boundary-only (pure-counting) strengthening of MaxCL is now false:
+  - Tile-CL / PC in general (E47);
+  - Tile-CL for d ≤ 4 (E266);
+  - Tile-CL on spike-free tiles (E268);
+  - Tile-CL on WRAP-MAX tiles (this family).
+  Any proof of MaxCL, even in the WRAP-MAX class, must spend the residue mass Λ_r of non-maximal column tops.
+- Also from P7 (PROVED; agrees with the lead's earlier proof):
+  - BOUNDARY: H1′, in its exit form, holds for θ ≤ the smallest active unit weight.
+  - Injectivity alone is insufficient: m = 7, P = (4, 5), the quadratic simplex.
+  - MISSING: an exact spike-completion reformulation.
+  - ONCE-ID / ONCE-LEVEL: exact identities when non-maximal cells wrap at most once.
+- Lead side results this cycle, both negative and kept for the record:
+  - (i) **Run decomposition** (src/scratch/wrapmax/wm_runs.py). For p = min P ≤ θ ≤ m − p, the labels [0, θ) split into
+    p arithmetic runs. Each run ends in an a-exit, a jump to a wrapped cell with λ ≥ θ, or a jump to an a-floor
+    unwrapped cell f with v(f) ∈ [θ, θ+p). In the last case every lower cover of f is low, so f is paid by |f| shadow
+    cells. With direct column support this leaves only the cells F′ (wrapped, low, all lower covers high).
+    CLAIM-M (|F′| ≤ total run-end weight) is FALSE: 461 of 11,609 instances at m = 12, typically p = 1, a single
+    run. One direction cannot pay.
+  - (ii) **Static per-direction split** (src/scratch/wrapmax/wm_perdir.py). Assign each wrapped cell to one
+    direction of its support, independently of θ (rules maxP, minP, maxcoord, maxP·y). Each rule FAILS for some θ
+    (m = 11, 12).
+  - Both were moot once H1′ fell, but they show the obstruction is cross-directional and θ-dependent.
+- **Discrepancy form of MaxCL (exact, any tile; a reformulation, not a new inequality).** Let w_y = d + |y| and
+  W(<σ) = Σ_{y∈A, h(y)<σ} w_y over label prefixes, with Ω = Σ_A w_y. Then
+  S(σ) = C0 + σΩ − m·W(<σ), where C0 = (d+1)M' − Σ_A w_y h(y), so MaxCL ⟺ max_σ [m·W(<σ) − σΩ] ≤ C0.
+  - NO-WRAP: C0 = Λ_v (the residue mass at σ = 0).
+  - WRAP-MAX: C0 = Λ_v + m·Σ_V(|y|−1).
+  MaxCL is a discrepancy bound for the weighted label distribution of the maximal cells.
+- **Height 3, exact dimension count.** For a complete height-3 tile, d + 1 = m − Q − t, where Q counts all pairs.
+  So at height 3, MaxCL reads 2Σ_cubics r + Σ_{max pairs} r ≤ (m − Q − t)·Σ_N r. The spike bonus is m − Q − t − k − 1.
+

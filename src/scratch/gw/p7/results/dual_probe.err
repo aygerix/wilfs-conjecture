@@ -1,0 +1,2 @@
+/home/jmercedes/wilf/p7/wrapmax/optimize.py:92: OptimizeWarning: Unrecognized options detected: {'threads': 1}. These will be passed to HiGHS verbatim.
+  res=linprog(c,A_ub=vstack([ss['labels'],ss['order']],format='csr'),

@@ -518,6 +518,16 @@ Then r = v + ρ_0 − m·1_U and Σ_D v = M'.
 `lake build` OK on fejer):** `maxCLAt_of_tileCLAt : IsTile D p → TileCLAt D p → MaxCLAt D p`, for any tile. Tile-CL is
 exactly "S ≥ Λ_r" (PC). So H1′ (WRAP-MAX pure counting) is Tile-CL on WRAP-MAX tiles, and a Lean proof of it would give
 MaxCL, then Tile-TOP'', then Wilf (via `wilf_of_tileTOPAt_of_isFactTile` and the weighted tile `factDownSetW`).
+**UPDATE (2026-10-19, latest): H1′ is FALSE** (codex P7, independently re-checked by the lead; examples/
+h1prime_sidon_counterexample.md, E269). Theorem SIDON-OBSTRUCTION: if a Sidon set A ⊂ [1, L] with |A| = k has
+|3A∖A| > 2L + k(k+1)/2, then for every q ≥ 3L + 1 the tile (m = 2q; units q − a_i; all pairs; one cubic per s ∈ 3A∖A;
+spikes on the missing labels) is a complete WRAP-MAX tile of height 3 with (S − Λ_r)/m = 2L + Q − |3A∖A| < 0 at
+ρ = 2L. The explicit witness has k = 127 and slack −536. It is a factorization tile at its conductor phase, and MaxCL
+and Wilf hold on it. PROVED pieces that survive:
+- BOUNDARY: H1′, even in exit form, for θ ≤ min active unit weight (lead and codex, independently).
+- The W-ID / SH-ID / LEVEL-ID / ONCE-ID identities (exact).
+So Tile-CL ⇒ MaxCL (Lean, above) has no known infinite class of application beyond NO-WRAP and Flat. MaxCL on WRAP-MAX
+tiles remains OPEN; in shadow form it is Λ_r/m + partial(U_θ) + Σ_{V_hi}|y| ≥ |V|, where the Λ_r term is necessary.
 
 **FALSE extension (partial tiles), preserved.** MaxCL needs φ to be onto ℤ/m. A down-set with injective labels can
 fail it. Example: D = {0, e_1, 2e_1} ⊂ ℕ¹ with p = 8 in ℤ/10 and σ = 7. Then r = (3, 1, 9), and

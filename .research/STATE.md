@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, late night; codex P6e received (partially reviewed); lead: WRAP-MAX pure-counting H1′ found and tested; codex P7 (prove H1′) RUNNING)
+# STATE.md — handoff (updated 2026-10-19, latest; codex P7 DONE: H1′ is FALSE (Sidon family, lead-verified); every pure-counting form of MaxCL is dead; next: P8 choice below)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,6 +184,22 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0I) NEW 2026-10-19 latest, read first.
+    - **H1′ is FALSE** (codex P7; lead re-check E269; examples/h1prime_sidon_counterexample.md). An infinite height-3
+      WRAP-MAX family built from a Sidon set has (S − Λ_r)/m = −536, at the conductor phase of an actual semigroup.
+      MaxCL and Wilf hold on it. With E47, E266 and E268, every boundary-only (pure-counting) strengthening of MaxCL
+      is false, so any MaxCL proof must spend Λ_r.
+    - Advisor's bar for the next round (2026-10-19): prove H1′ beyond the first threshold (now moot: refuted), extend
+      H-FEW40 to its complementary regime, or close a genuinely new infinite class. Identities and larger censuses do
+      not count.
+    - Side results this cycle, all negative (NOTEBOOK latest):
+      - H-SF (Tile-CL on spike-free tiles) is FALSE (E268).
+      - The 3-D Ω trend does not decay (E267), so the OMEGA route is dropped.
+      - The run and per-direction decompositions of H1′ fail (E270).
+    - **Next:** codex P8 = the height-3 complement of GENERAL-FEW40 (many cubics: k < 40t + 8). Height-3 MaxCL is the
+      hub: it gives Wilf for every height-≤3 Apéry set and reduces P_4 (3m < c ≤ 4m) to the quartic rows. The lead
+      works on the additive-combinatorics structure of the cubic face (3U versus 2U with distinct labels; the
+      dimension count d + 1 = m − Q − t).
 (0H) NEW 2026-10-19 late night, read first.
     - **Codex P6e received** (77e27a7; PROOFS "Codex P6e"; E265). BAD-TWO is lead-checked. ORIGIN-EDGE, GENERAL-FEW40
       and H-FEW40 (all heights: HC_H when k ≥ 40B + 8) are codex-proved and NOT yet re-derived by the lead.

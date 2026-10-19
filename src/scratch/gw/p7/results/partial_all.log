@@ -1,0 +1,9 @@
+{"m_done": 2, "stats": {"downsets": 1, "partial": 0, "complete": 1, "partial_fail": 0, "complete_fail": 0}}
+{"m_done": 3, "stats": {"downsets": 6, "partial": 2, "complete": 4, "partial_fail": 0, "complete_fail": 0}}
+{"m_done": 4, "stats": {"downsets": 20, "partial": 10, "complete": 10, "partial_fail": 0, "complete_fail": 0}}
+{"m_done": 5, "stats": {"downsets": 70, "partial": 42, "complete": 28, "partial_fail": 0, "complete_fail": 0}}
+{"m_done": 6, "stats": {"downsets": 207, "partial": 139, "complete": 68, "partial_fail": 0, "complete_fail": 0}}
+{"m_done": 7, "stats": {"downsets": 743, "partial": 533, "complete": 210, "partial_fail": 1, "complete_fail": 0}}
+{"m_done": 8, "stats": {"downsets": 2408, "partial": 1818, "complete": 590, "partial_fail": 3, "complete_fail": 0}}
+{"m_done": 9, "stats": {"downsets": 9167, "partial": 7189, "complete": 1978, "partial_fail": 13, "complete_fail": 0}}
+{"first_degree_failure": {"D": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [2, 0]], "P": [4, 5], "V": [[0, 2], [1, 1], [2, 0]], "complete": false, "height": 2, "m": 7, "row": {"exit_slack": -1, "exits": 2, "low": 1, "out": 2, "rho": 3, "shadow": -1, "theta": 4, "window": -1, "wrapped_low": 3}, "wrapmax": true}, "first_shadow_failure": {"D": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [2, 0]], "P": [4, 5], "V": [[0, 2], [1, 1], [2, 0]], "complete": false, "height": 2, "m": 7, "row": {"exit_slack": -1, "exits": 2, "low": 1, "out": 2, "rho": 3, "shadow": -1, "theta": 4, "window": -1, "wrapped_low": 3}, "wrapmax": true}, "stats": {"complete": 1978, "complete_fail": 0, "downsets": 9167, "partial": 7189, "partial_fail": 13}}

@@ -1,0 +1,12 @@
+best 0 at trial 0 m 100 k 10 n 66 h 5 theta 100 V 0
+trials 100000 phases 7818369 V 87456 h3 72858 zero_spike 12929 maxheight 64 best 0
+trials 200000 phases 15645911 V 174964 h3 145610 zero_spike 25632 maxheight 64 best 0
+trials 300000 phases 23428272 V 262184 h3 218527 zero_spike 38573 maxheight 64 best 0
+trials 400000 phases 31211748 V 349472 h3 291277 zero_spike 51429 maxheight 64 best 0
+trials 500000 phases 38996931 V 436832 h3 364178 zero_spike 64118 maxheight 64 best 0
+trials 600000 phases 46804803 V 524207 h3 436918 zero_spike 76926 maxheight 64 best 0
+trials 700000 phases 54636422 V 611672 h3 509893 zero_spike 89561 maxheight 64 best 0
+trials 800000 phases 62438026 V 699122 h3 582624 zero_spike 102358 maxheight 64 best 0
+trials 900000 phases 70240043 V 786590 h3 655501 zero_spike 115302 maxheight 64 best 0
+trials 1000000 phases 78035487 V 874028 h3 728120 zero_spike 128154 maxheight 64 best 0
+DONE trials 1000000 phases 78035487 V 874028 h3 728120 zero_spike 128154 maxheight 64 best 0

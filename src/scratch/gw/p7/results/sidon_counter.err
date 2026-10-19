@@ -1,0 +1,2 @@
+/home/jmercedes/wilf/p7/wrapmax/sidon_counter.py:1: SyntaxWarning: invalid escape sequence '\A'
+  """Exact structured adversary: all pairs and one cubic for each distinct 3-sum.
