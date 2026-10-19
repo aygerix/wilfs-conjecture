@@ -1259,6 +1259,54 @@ Full proofs: src/scratch/gw/p4/P4_REPORT.md §§12–19.
   (m, c − 2m). On paper this holds for ≤ 5. (a = #{n_a < 2m − ρ} and 2m − ρ = c − 2m.)
 - **OPEN.** Primary regime a ≥ 7 (the Macaulay profile list grows with a). Secondary window 5m ≤ M ≤ 6m − 4.
 
+**Lemma GW-25a (arc lemma; PROVED 2026-10-19, elementary).** Let S be a numerical semigroup with multiplicity m,
+conductor c and smallest generator n_1 > m. For k ≥ 1 let A_{≤k} = {w ∈ Ap(S,m) : w is 0 or a sum of at most k
+minimal generators}. Then |A_{≤k}| ≥ min(m, (k+1)n_1 − c).
+- Proof: each s ∈ [c, (k+1)n_1) lies in S, so s = w_r + jm with w_r ∈ Ap. Any factorization of w_r into generators
+  ≠ m has length ≤ k, since a length-(k+1) sum is ≥ (k+1)n_1 > s ≥ w_r. An interval of length ≤ m meets distinct
+  residues. □
+- Consequence: if n_1 ≥ (c − m)/2 then c ≤ 3m + 2|A_{≤2}| (combine with k = 2), unless A_{≤2} = Ap.
+
+**Theorem GW-25 (Wilf for the pure-A, upper-pair primary regime, every e; PROVED 2026-10-19 on paper).**
+Hypotheses:
+- 3m < c ≤ 4m;
+- every minimal generator n ≠ m satisfies n < c − 2m (pure A);
+- 2n_1 ≥ c − m.
+Put a = e − 1 and p = #{w ∈ Ap : w is a sum of two minimal generators}. Then
+
+    W(S) = e·ℓ − c ≥ a − 1 + 6(C(a+1,2) − p) ≥ e − 2,   and   h := c − 3m ≤ 2p + 2.
+
+Proof.
+1. Write n_i = m + t_i. Then t_i ∈ [L₀, h) with L₀ = n_1 − m ≥ h/2, and max Ap = c + m − 1 = 4m + h − 1.
+2. Lengths are well defined and ≤ 3:
+   - Every length-j sum is ≥ j(m + h/2), so j ≤ 3.
+   - A pair has τ ∈ [h, 2h−2] and a triple has τ ∈ [3h/2, m+h−1] (value = jm + τ).
+   - No element has factorizations of two lengths.
+   - Let u = #{length 3}. Then m = 1 + a + p + u.
+3. Write ρ = m − h. A residue ≥ h occurs only for pairs with τ < m (p_lo of them) and triples with τ < m (u_lo).
+   Hence ρ = p_lo + u_lo. With g = a + 2p_lo + 3p_hi + 3u_lo + 4u_hi this gives
+   g = c − 3a − p − 4, so ℓ = 3a + p + 4 and W = 3a² + 4a + 1 + (a−2)p − 3u − h (exact).
+4. Arc bound h ≤ 2p + 2. The residues not attained by 0, units (τ ∈ [L₀, h)) or triples
+   (τ ∈ [3L₀, m+h−1]) are:
+   - [1, min(L₀, 3L₀−m)) ∪ [h, m) if 3L₀ ≥ m, of size ≥ 3L₀ − h − 1 or L₀ − 1 + m − h;
+   - [h, 3L₀) otherwise.
+   Either way there are ≥ h/2 − 1 of them, all occupied by pairs.
+5. Cubic shadow (lex factorization tile): 3u ≤ (a+2)p.
+6. Hence W ≥ 3a² + 4a − 1 − 6p = a − 1 + 6(C(a+1,2) − p). □
+- Checked (E216): 35,907 random S in the class (m ≤ 120, a = 3..15). The arc bound, the W bound and the identity
+  had 0 failures, and the W bound is attained (min slack 0).
+- Relation to the literature: the class contains the Eliahou–Fromentin near-miss family (LITERATURE #30: c = 4m,
+  A ⊂ [(3m+1)/2, (5m−1)/3] a B₃-set, W₀ = −C(n,3)). For that family they prove W ≥ 9; GW-25 proves W ≥ e − 2 for
+  the whole class, uniformly in e. In P_4 terms (GW-21/24), GW-25 is the primary regime with b = c = e = 0 and
+  q₂ = 0, for every a, including missing AA pairs. It supersedes the a = 7 computer certificate (GW-24) and codex's
+  "uniform remaining claim" 4[C(a+2,3) − u₄] + ρ ≥ C(a+1,3).
+- Mechanism: packing (LP/SP/HP) uses residues only, and loses a factor ≈ a. The arc uses the integer location of
+  τ = v − deg·m inside its band: a whole residue arc of length ≈ h/2 is reachable only by pairs. This forces
+  ρ = m − h ≥ m − 2p − 2, and ρ enters W with coefficient +1.
+- OPEN extension: the same class with B/C/E directions or with q₂ > 0. A crude count of intruders into the arc fails
+  when a B direction carries many AAB cells. Those configurations are where packing is strong, so an interpolation
+  is needed.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:

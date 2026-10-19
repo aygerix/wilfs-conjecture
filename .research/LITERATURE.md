@@ -484,3 +484,14 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
       - Marashdeh 2608.12531 (item 10).
     - Not found: any proof of Wilf for all S with c ≤ 4m (3m < c ≤ 4m open as far as searched).
     - Absence of hits is not proof of novelty.
+
+## Search 2026-10-19 (scope: GW-25, Wilf for 3m < c ≤ 4m with generators in [(c−m)/2, c−2m))
+- Queries: web (arXiv/preprints) "Wilf conjecture conductor 4m Apéry", "Wilf second generator large Apéry length",
+  2026 items. Found: Spirito 1710.09245 (#24; needs n_1 > (c+m)/3, e ≥ 10, m ≤ (8/25)e² + …); Eliahou–Fromentin
+  1710.03623 (#30; the c = 4m B₃ near-miss family, W ≥ 9 proved for it); Eliahou divsets (#22; m | c, 4e ≥ m);
+  preprints.org 202604.0551 (abstract only: m | c and e(3η+4) ≥ 4m with η = #S∩(m,2m); not read).
+- None states the GW-25 class result. Spirito's hypothesis n_1 > (c+m)/3 implies Ap = A_{≤2} (GW-25a with k = 2).
+  For c ≤ 5m, the GW-25 hypothesis n_1 ≥ (c−m)/2 is the weaker one, but GW-25 also assumes pure A and 3m < c ≤ 4m.
+  GW-25 covers e of every size, whereas Spirito's needs m ≤ (8/25)e² + …, which fails here since m can be ≈ e³/6.
+- The arc lemma GW-25a is elementary and may be folklore. No priority is claimed for it.
+
