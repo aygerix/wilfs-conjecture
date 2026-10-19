@@ -1,0 +1,8 @@
+ONE4_INDEPENDENT {"m": 21, "min_slack": 148, "ordered_injections": 72, "phases": 1512, "witness": {"P": [11, 2, 7, 8], "sigma": 0}}
+ONE4_INDEPENDENT {"m": 22, "min_slack": null, "ordered_injections": 0, "phases": 0, "witness": null}
+ONE4_INDEPENDENT {"m": 23, "min_slack": 173, "ordered_injections": 1056, "phases": 24288, "witness": {"P": [17, 9, 10, 12], "sigma": 9}}
+ONE4_INDEPENDENT {"m": 24, "min_slack": 203, "ordered_injections": 480, "phases": 11520, "witness": {"P": [9, 17, 19, 20], "sigma": 17}}
+ONE4_INDEPENDENT {"m": 25, "min_slack": 148, "ordered_injections": 3600, "phases": 90000, "witness": {"P": [20, 13, 14, 16], "sigma": 13}}
+ONE4_INDEPENDENT {"m": 26, "min_slack": 162, "ordered_injections": 2160, "phases": 56160, "witness": {"P": [21, 14, 15, 17], "sigma": 14}}
+ONE4_INDEPENDENT {"m": 27, "min_slack": 176, "ordered_injections": 10800, "phases": 291600, "witness": {"P": [22, 15, 16, 18], "sigma": 15}}
+ONE4_INDEPENDENT_PASS 18168 475080

@@ -1,0 +1,963 @@
+{
+  "binary4_excluded": [
+    {
+      "instances": 0,
+      "m": 21,
+      "min_slack": null,
+      "pair_bases": 10
+    },
+    {
+      "instances": 0,
+      "m": 22,
+      "min_slack": null,
+      "pair_bases": 0
+    },
+    {
+      "instances": 0,
+      "m": 23,
+      "min_slack": null,
+      "pair_bases": 110
+    },
+    {
+      "instances": 0,
+      "m": 24,
+      "min_slack": null,
+      "pair_bases": 60
+    }
+  ],
+  "core3": {
+    "FAILURES": 0,
+    "injective_vectors": 112,
+    "max_cr_threshold": 25,
+    "min": 39,
+    "nominal_vectors": 6941,
+    "phases": 1700,
+    "realized_rows": 9,
+    "rows": 11,
+    "shapes": 2246
+  },
+  "core3_independent": [
+    {
+      "core": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "d": 6,
+      "m": 14,
+      "min_slack": 39,
+      "name": "PURE",
+      "ordered_injections": 24,
+      "phases": 336,
+      "witness": {
+        "P": [
+          13,
+          3,
+          5
+        ],
+        "sigma": 12
+      }
+    },
+    {
+      "core": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "d": 7,
+      "m": 15,
+      "min_slack": 52,
+      "name": "PURE",
+      "ordered_injections": 168,
+      "phases": 2520,
+      "witness": {
+        "P": [
+          14,
+          3,
+          5
+        ],
+        "sigma": 13
+      }
+    },
+    {
+      "core": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "d": 6,
+      "m": 17,
+      "min_slack": 69,
+      "name": "BINARY",
+      "ordered_injections": 32,
+      "phases": 544,
+      "witness": {
+        "P": [
+          13,
+          14,
+          2
+        ],
+        "sigma": 9
+      }
+    }
+  ],
+  "dense_certificates": {
+    "D9max": {
+      "coeff": [
+        35112,
+        178378,
+        107765,
+        27432,
+        3541,
+        230,
+        6
+      ],
+      "denominator": 216,
+      "poly": [
+        0,
+        18,
+        -63,
+        -176,
+        -99,
+        -22,
+        6
+      ],
+      "shift": 7
+    },
+    "D9zero": {
+      "coeff": [
+        73176,
+        197210,
+        181129,
+        83328,
+        21671,
+        3253,
+        264,
+        9
+      ],
+      "denominator": 216,
+      "poly": [
+        0,
+        18,
+        -87,
+        -208,
+        -189,
+        -59,
+        12,
+        9
+      ],
+      "shift": 4
+    },
+    "G075max": {
+      "coeff": [
+        22919125863744,
+        75808090115760,
+        31471986477760,
+        5721335523480,
+        560191996645,
+        30883189317,
+        905846350,
+        11023125
+      ],
+      "denominator": 5625000000,
+      "poly": [
+        0,
+        2118750000,
+        1699000000,
+        -1994355000,
+        -2849846375,
+        -1003817883,
+        -20096150,
+        11023125
+      ],
+      "shift": 12
+    },
+    "G075zero": {
+      "coeff": [
+        77984419176,
+        328032750270,
+        345367776485,
+        169793836215,
+        45801407105,
+        7012001049,
+        573938450,
+        19571250
+      ],
+      "denominator": 703125000,
+      "poly": [
+        0,
+        264843750,
+        159640625,
+        -391325625,
+        -532985875,
+        -186581751,
+        25943450,
+        19571250
+      ],
+      "shift": 4
+    }
+  },
+  "minimal_scalar_failure": {
+    "C": [
+      [],
+      [
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3
+      ]
+    ],
+    "CR": -2,
+    "FLAT_CR": -33,
+    "P": [
+      1,
+      4,
+      6,
+      9
+    ],
+    "d": 6,
+    "elementary_profiles_below16": 405,
+    "k": 4,
+    "m": 16,
+    "min_slack": 78,
+    "negative_profiles_below16": [],
+    "s": 2,
+    "sigma": 0,
+    "slacks": [
+      78,
+      157,
+      236,
+      315,
+      250,
+      329,
+      280,
+      359,
+      310,
+      261,
+      340,
+      291,
+      258,
+      209,
+      160,
+      127
+    ]
+  },
+  "one_cubic4": [
+    {
+      "FAILURES": 0,
+      "injections": 12,
+      "m": 21,
+      "min": 148,
+      "pair_bases": 10,
+      "phases": 252,
+      "vectors": 4845
+    },
+    {
+      "FAILURES": 0,
+      "injections": 0,
+      "m": 22,
+      "min": 1152921504606846976,
+      "pair_bases": 0,
+      "phases": 0,
+      "vectors": 5985
+    },
+    {
+      "FAILURES": 0,
+      "injections": 176,
+      "m": 23,
+      "min": 173,
+      "pair_bases": 110,
+      "phases": 4048,
+      "vectors": 7315
+    },
+    {
+      "FAILURES": 0,
+      "injections": 80,
+      "m": 24,
+      "min": 203,
+      "pair_bases": 60,
+      "phases": 1920,
+      "vectors": 8855
+    },
+    {
+      "FAILURES": 0,
+      "injections": 600,
+      "m": 25,
+      "min": 148,
+      "pair_bases": 300,
+      "phases": 15000,
+      "vectors": 10626
+    },
+    {
+      "FAILURES": 0,
+      "injections": 360,
+      "m": 26,
+      "min": 162,
+      "pair_bases": 180,
+      "phases": 9360,
+      "vectors": 12650
+    },
+    {
+      "FAILURES": 0,
+      "injections": 1800,
+      "m": 27,
+      "min": 176,
+      "pair_bases": 900,
+      "phases": 48600,
+      "vectors": 14950
+    }
+  ],
+  "one_cubic4_independent": [
+    {
+      "m": 21,
+      "min_slack": 148,
+      "ordered_injections": 72,
+      "phases": 1512,
+      "witness": {
+        "P": [
+          11,
+          2,
+          7,
+          8
+        ],
+        "sigma": 0
+      }
+    },
+    {
+      "m": 22,
+      "min_slack": null,
+      "ordered_injections": 0,
+      "phases": 0,
+      "witness": null
+    },
+    {
+      "m": 23,
+      "min_slack": 173,
+      "ordered_injections": 1056,
+      "phases": 24288,
+      "witness": {
+        "P": [
+          17,
+          9,
+          10,
+          12
+        ],
+        "sigma": 9
+      }
+    },
+    {
+      "m": 24,
+      "min_slack": 203,
+      "ordered_injections": 480,
+      "phases": 11520,
+      "witness": {
+        "P": [
+          9,
+          17,
+          19,
+          20
+        ],
+        "sigma": 17
+      }
+    },
+    {
+      "m": 25,
+      "min_slack": 148,
+      "ordered_injections": 3600,
+      "phases": 90000,
+      "witness": {
+        "P": [
+          20,
+          13,
+          14,
+          16
+        ],
+        "sigma": 13
+      }
+    },
+    {
+      "m": 26,
+      "min_slack": 162,
+      "ordered_injections": 2160,
+      "phases": 56160,
+      "witness": {
+        "P": [
+          21,
+          14,
+          15,
+          17
+        ],
+        "sigma": 14
+      }
+    },
+    {
+      "m": 27,
+      "min_slack": 176,
+      "ordered_injections": 10800,
+      "phases": 291600,
+      "witness": {
+        "P": [
+          22,
+          15,
+          16,
+          18
+        ],
+        "sigma": 15
+      }
+    }
+  ],
+  "packing_stats": {
+    "BOTH_BOUNDS_FAIL": 2,
+    "CR": 1224,
+    "DENSE075": 7,
+    "DENSE9": 10,
+    "FEW_CUBIC": 2,
+    "FLAT_CR": 783,
+    "ONE_CUBIC": 6,
+    "SHADOW_COVER": 613,
+    "SIGNED_PACK": 1117,
+    "SIGNED_PACK_mod3": 374,
+    "height3_tiles": 1207,
+    "large_modulus_minphase": 17,
+    "phase_checks": 119462,
+    "tiles": 1228
+  },
+  "pair6": [
+    {
+      "bases": 0,
+      "m": 43,
+      "nodes": 39934
+    },
+    {
+      "bases": 0,
+      "m": 44,
+      "nodes": 34054
+    },
+    {
+      "bases": 0,
+      "m": 45,
+      "nodes": 58510
+    }
+  ],
+  "python": "3.12.3",
+  "report_sha256": "f72c999840467e1653bf3ec82520bf9dd714782674ed26677ff41830fc0120e6",
+  "shadow_graphs": [
+    {
+      "FAILURES": 0,
+      "graphs": 2,
+      "k": 1,
+      "min": 0
+    },
+    {
+      "FAILURES": 0,
+      "graphs": 8,
+      "k": 2,
+      "min": 0
+    },
+    {
+      "FAILURES": 0,
+      "graphs": 64,
+      "k": 3,
+      "min": 0
+    },
+    {
+      "FAILURES": 0,
+      "graphs": 1024,
+      "k": 4,
+      "min": 0
+    },
+    {
+      "FAILURES": 0,
+      "graphs": 32768,
+      "k": 5,
+      "min": 0
+    },
+    {
+      "FAILURES": 0,
+      "graphs": 2097152,
+      "k": 6,
+      "min": 0
+    }
+  ],
+  "status": "PASS",
+  "two_cubic45": [
+    {
+      "bases": 10,
+      "best": {
+        "P": [
+          2,
+          7,
+          8,
+          11
+        ],
+        "T": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            3,
+            3
+          ]
+        ],
+        "sigma": 0
+      },
+      "injections": 24,
+      "k": 4,
+      "m": 21,
+      "min_slack": 147,
+      "phases": 504
+    },
+    {
+      "bases": 60,
+      "best": {
+        "P": [
+          3,
+          9,
+          11,
+          16,
+          30
+        ],
+        "T": [
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "sigma": 29
+      },
+      "injections": 120,
+      "k": 5,
+      "m": 31,
+      "min_slack": 420,
+      "phases": 3720
+    },
+    {
+      "bases": 0,
+      "best": null,
+      "injections": 0,
+      "k": 5,
+      "m": 32,
+      "min_slack": null,
+      "phases": 0
+    }
+  ],
+  "unpaid_examples": [
+    {
+      "C": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ]
+      ],
+      "CENTERED_PAIR": false,
+      "CR": -5,
+      "FLAT_CR": -84,
+      "P": [
+        2,
+        7,
+        8,
+        11
+      ],
+      "PAIR_ZERO": false,
+      "d": 8,
+      "k": 4,
+      "m": 21,
+      "min_slack": 147,
+      "packing": 21,
+      "r0": 0,
+      "s": 4,
+      "sigma": 0
+    },
+    {
+      "C": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          4
+        ],
+        [
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "CENTERED_PAIR": false,
+      "CR": -12,
+      "FLAT_CR": -83,
+      "P": [
+        1,
+        3,
+        8,
+        12,
+        18
+      ],
+      "PAIR_ZERO": false,
+      "d": 13,
+      "k": 5,
+      "m": 31,
+      "min_slack": 473,
+      "packing": 31,
+      "r0": 1,
+      "s": 8,
+      "sigma": 30
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+CORE3 {'shapes': 2246, 'rows': 11, 'nominal_vectors': 6941, 'injective_vectors': 112, 'phases': 1700, 'realized_rows': 9, 'max_cr_threshold': 25, 'min': 39, 'FAILURES': 0}
+ONE4 3028 79180
+TWO45 [(4, 21, 24, 504), (5, 31, 120, 3720), (5, 32, 0, 0)]
+PACKING_STATS {"BOTH_BOUNDS_FAIL": 2, "CR": 1224, "DENSE075": 7, "DENSE9": 10, "FEW_CUBIC": 2, "FLAT_CR": 783, "ONE_CUBIC": 6, "SHADOW_COVER": 613, "SIGNED_PACK": 1117, "SIGNED_PACK_mod3": 374, "height3_tiles": 1207, "large_modulus_minphase": 17, "phase_checks": 119462, "tiles": 1228}
+P6B_AUDIT_PASS

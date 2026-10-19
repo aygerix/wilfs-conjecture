@@ -522,10 +522,34 @@ m = 1 + d + q + t.
   - Scripts: lcr_export.py 4 | lcr_check 4 (C). E252.
   - Every realizable CR failure is NEAR-FLAT: q = 8–10 of the 10 pairs, p = 1–3, t = 1–4.
   So **height-3 MaxCL holds whenever k ≤ 4 (any d) or d ≤ 5**.
-- **Remaining family:** d ≥ 6 and k ≥ 5, failing CR. The data say these are near-flat cores with few cubics, where
-  the Flat-MaxCL window should pay the maximal pairs; the few cubics and non-maximal pairs remain. Next lemma: MIN-COVER, or
-  the lead's hybrid (maximal pairs by the flat window, cubics by rearrangement or CUBIC-LIFT, near-perfect cores
-  excluded by cyclic packing).
+- **Codex P6b (2026-10-19; src/scratch/gw/p6/P6B_REPORT.md; reviewed by the lead, E256).** Notation: Q_k = C(k+1,2),
+  U_k = C(k+2,3), ε = U_k − t (missing cubics), j = Q_k − p, a = q − p, J = C(1+k+p,2), B = a + 2t.
+  - **CR in m-linear form (PROVED):** S ≥ R(m) = (m−q−t)J − B(m−1) + t(t−1) + at + C(a,2), slope J − B > 0.
+  - **PAIR-PACK (PROVED; lead re-derived):** all pairs on h directions present ⇒ m ≥ h² + h + 1 (off-diagonal
+    differences are distinct). FALSE without the complete face (k = 2, m = 6, P = (1,4), C = {0,x,y,x²,xy,x³}).
+  - **ROW-PACK (PROVED; lead re-derived):** m ≥ h²+h+1 + h·f_0 + (h−1)·f_1, where f_0, f_1 count successor-complete
+    loops / ordinary pairs (z + e_i present for every i). Labels φ(z) − c, c ∈ {0} ∪ units, c ∉ supp z; a collision
+    gives an equality of two PRESENT cells. **ROW-DEF:** m ≥ H(h+1) − 3(h−1)ε_I, H(h+1) = (h³+2h²+3h+2)/2.
+    **RETAINED-PACK:** both apply to any sub-face I with all pairs present, for the original m.
+  - **SHADOW-DEF (PROVED):** k·j ≤ 3ε and k·j − C(j,2) ≤ ε. **SHADOW-COVER (PROVED, algebraic; lead re-derived):** for
+    any family E of quadratic monomials, |upper cubic shadow| ≥ k·τ(E) (τ = vertex-cover number with loops), via τ
+    generic quadrics forming a regular sequence and the absence of linear Koszul syzygies. Sharp (τ loops).
+  - **DENSE9 (PROVED analytically):** all pairs present and ε ≤ ⌊k²/9⌋ ⇒ MaxCL at every σ, any spikes.
+  - **DENSE075 (PROVED analytically):** ε ≤ ⌊3k²/40⌋ ⇒ MaxCL at every σ (no face hypothesis). Shifted-polynomial
+    certificates; the lead re-derived all four from the definitions (src/scratch/h3/p6b_poly_check.py).
+  - **FLAT-CR (PROVED; lead re-derived):** S ≥ s·C(k,2) + (k+s+2)·C(p,2) − 3t(m−1) + t(t−1), from the identity
+    S = U − tρ_0 + (d+2)Σ_{N2} r − 2Σ_T r + m(ρ_0 − b_− + b_+) (flat identity on all pairs; b_− ≤ ρ_0 by the window).
+  - **FEW-CUBICS (PROVED):** all pairs present, k ≥ 19, t ≤ ⌊k²/16⌋ ⇒ MaxCL. **ONE-CUBIC** (all pairs, t = 1, any k)
+    and **THREE-CUBICS** (all pairs, t ≤ 3, any k): analytic for large k plus finite bases (k = 4: m = 21–27;
+    k = 5: m = 31, 32; k = 6: m = 43–45, no full-pair bases). The lead re-ran every base with lcr_check2 and an
+    independent modular-B₂ counter: identical counts (one-cubic k = 4: 18,168 labelings, 475,080 phases, min 148;
+    two-cubic: min 147 (k = 4), 420 (k = 5); none at k = 6).
+  - Preserved: F3, the smallest CR- and FLAT-CR-unpaid core with k ≥ 4, d ≥ 6: k = 4, m = 16, P = (1,4,6,9), all
+    pairs except x₂x₃ and x₄², T = {x₁³} (CR = −2, FLAT-CR = −33, true min S = 78). F4: R(21) = −5 for k = 4,
+    t = p = 2 (an intermediate table claim; the base is now explicit).
+- **Remaining family:** k ≥ 5, d ≥ 6, R(m) < 0 and FLAT-CR < 0, ε > ⌊3k²/40⌋, and (if all pairs are present) t ≥ 4,
+  ε > ⌊k²/9⌋, t > ⌊k²/16⌋ for k ≥ 19. Every retained complete face must satisfy ROW-DEF below the CR threshold.
+  Next lemma (codex): SINGLE-COVER / B-COVER (the weighted pair-container payment for incomplete successor rows).
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
   failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
   flat window for A2.

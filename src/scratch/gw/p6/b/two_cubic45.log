@@ -1,0 +1,4 @@
+TWO45 {"bases": 10, "best": {"P": [2, 7, 8, 11], "T": [[0, 0, 0], [3, 3, 3]], "sigma": 0}, "injections": 24, "k": 4, "m": 21, "min_slack": 147, "phases": 504}
+TWO45 {"bases": 60, "best": {"P": [3, 9, 11, 16, 30], "T": [[3, 3, 3], [4, 4, 4]], "sigma": 29}, "injections": 120, "k": 5, "m": 31, "min_slack": 420, "phases": 3720}
+TWO45 {"bases": 0, "best": null, "injections": 0, "k": 5, "m": 32, "min_slack": null, "phases": 0}
+TWO45_ALL_PASS

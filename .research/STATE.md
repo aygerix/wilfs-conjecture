@@ -193,6 +193,16 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       - Remaining: d ≥ 6, k ≥ 3 (PROOFS "Height-3 MaxCL: partial results").
     - **Codex P6b RUNNING** (log $SP/codex/p6b_log.txt; report src/scratch/gw/p6/P6B_REPORT.md): that remaining
       family.
+    - **Lead (later): H3-CORE3 and H3-CORE4.**
+      - Height-3 MaxCL is proved, computer-assisted, for every tile with ≤ 4 non-maximal units and any number of
+        spikes: CR for all but finitely many (core, s), plus an exhaustive check of those (E250, E252).
+      - Remaining: k ≥ 5 and d ≥ 6.
+    - **Lead: the bound HC′.**
+      - S = HC′ + m·P_A^+, where HC′ is the flat window applied to maximal pairs only.
+      - HC′ ≥ 0 at every phase on every injective labeling of every k = 3 core (s ≤ 14) and k = 4 core (s ≤ 2), and
+        on about 7,000 random tiles (E254, E255). This is a candidate target that removes maximal pairs.
+    - Middle regime: CR needs only m − |C| ≥ (2/9)θ²k² there (t = θ·C(k+2,3)).
+    - Diagnosis: local carry accounting alone cannot work; it must be coupled with distinctness/packing.
     - Lead tools sent to codex:
       - the spike reduction MaxCL ⟺ IMaxCL;
       - the CR rearrangement bound (proves almost every tile; L-CR3 FALSE, because of maximal pairs);

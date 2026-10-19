@@ -1,0 +1,3 @@
+FRONTIER_TWO5 {"bases": 60, "instances": 120, "m": 31, "min_slack": 420, "phases": 3720}
+FRONTIER_TWO5 {"bases": 0, "instances": 0, "m": 32, "min_slack": null, "phases": 0}
+FRONTIER_TWO5_FINISHED

@@ -1,0 +1,2 @@
+PACKING_CHECKS {"seed": 2026101991, "stats": {"BOTH_BOUNDS_FAIL": 2, "CR": 1224, "DENSE075": 7, "DENSE9": 10, "FEW_CUBIC": 2, "FLAT_CR": 783, "ONE_CUBIC": 6, "SHADOW_COVER": 613, "SIGNED_PACK": 1117, "SIGNED_PACK_mod3": 374, "height3_tiles": 1207, "large_modulus_minphase": 17, "phase_checks": 119462, "tiles": 1228}, "trials": 1200, "worst": {"C": [[], [0], [0, 0]], "P": [8], "d": 8, "k": 1, "m": 10, "name": null, "sigma": 8, "slack": 10}}
+PACKING_CHECKS_ALL_PASS

@@ -1,0 +1,10 @@
+REALIZED Q=63 T=960 q=6 t=4 p=3 m=17 s=3 d=6 injective=5 phases=85 min=69 witness=[2,13,14] sigma=9
+REALIZED Q=63 T=549 q=6 t=4 p=3 m=17 s=3 d=6 injective=6 phases=102 min=152 witness=[10,12,16] sigma=9
+REALIZED Q=63 T=512 q=6 t=1 p=1 m=14 s=3 d=6 injective=4 phases=56 min=39 witness=[3,5,13] sigma=12
+REALIZED Q=63 T=512 q=6 t=1 p=1 m=15 s=4 d=7 injective=27 phases=405 min=52 witness=[3,5,14] sigma=13
+REALIZED Q=63 T=75 q=6 t=4 p=3 m=17 s=3 d=6 injective=5 phases=85 min=114 witness=[1,5,8] sigma=0
+REALIZED Q=63 T=64 q=6 t=1 p=1 m=14 s=3 d=6 injective=4 phases=56 min=93 witness=[8,9,12] sigma=8
+REALIZED Q=63 T=64 q=6 t=1 p=1 m=15 s=4 d=7 injective=30 phases=450 min=64 witness=[3,8,14] sigma=14
+REALIZED Q=63 T=1 q=6 t=1 p=1 m=14 s=3 d=6 injective=4 phases=56 min=43 witness=[1,4,6] sigma=0
+REALIZED Q=63 T=1 q=6 t=1 p=1 m=15 s=4 d=7 injective=27 phases=405 min=56 witness=[1,4,6] sigma=0
+CORE3_SUMMARY shapes=2246 rows=11 nominal_vectors=6941 injective_vectors=112 phases=1700 realized_rows=9 max_cr_threshold=25 min=39 FAILURES=0

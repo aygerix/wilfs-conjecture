@@ -1,0 +1,8 @@
+ONE_CUBIC4 m=21 vectors=4845 pair_bases=10 injections=12 phases=252 min=148 FAILURES=0
+ONE_CUBIC4 m=22 vectors=5985 pair_bases=0 injections=0 phases=0 min=1152921504606846976 FAILURES=0
+ONE_CUBIC4 m=23 vectors=7315 pair_bases=110 injections=176 phases=4048 min=173 FAILURES=0
+ONE_CUBIC4 m=24 vectors=8855 pair_bases=60 injections=80 phases=1920 min=203 FAILURES=0
+ONE_CUBIC4 m=25 vectors=10626 pair_bases=300 injections=600 phases=15000 min=148 FAILURES=0
+ONE_CUBIC4 m=26 vectors=12650 pair_bases=180 injections=360 phases=9360 min=162 FAILURES=0
+ONE_CUBIC4 m=27 vectors=14950 pair_bases=900 injections=1800 phases=48600 min=176 FAILURES=0
+ONE_CUBIC4_PASS injections=3028 phases=79180 min=148

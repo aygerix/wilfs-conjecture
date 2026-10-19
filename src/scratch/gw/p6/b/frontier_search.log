@@ -1,0 +1,5 @@
+BINARY4_FRONTIER {"instances": 0, "m": 21, "min_slack": null, "pair_bases": 10}
+BINARY4_FRONTIER {"instances": 0, "m": 22, "min_slack": null, "pair_bases": 0}
+BINARY4_FRONTIER {"instances": 0, "m": 23, "min_slack": null, "pair_bases": 110}
+BINARY4_FRONTIER {"instances": 0, "m": 24, "min_slack": null, "pair_bases": 60}
+FRONTIER_SEARCH_FINISHED

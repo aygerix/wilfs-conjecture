@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "m": 21,
+      "pair_bases": 10,
+      "instances": 0,
+      "min_slack": null
+    },
+    {
+      "m": 22,
+      "pair_bases": 0,
+      "instances": 0,
+      "min_slack": null
+    },
+    {
+      "m": 23,
+      "pair_bases": 110,
+      "instances": 0,
+      "min_slack": null
+    },
+    {
+      "m": 24,
+      "pair_bases": 60,
+      "instances": 0,
+      "min_slack": null
+    }
+  ],
+  "witnesses": []
+}
