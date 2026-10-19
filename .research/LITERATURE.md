@@ -284,6 +284,11 @@ scope and date here.
     - m | c: no result beyond #22 (Eliahou divsets: 4e ≥ m and m | c) was found in this search. So Wilf for all S with
       m | c is treated as open.
 
+17. **Search for e = 5, c ≤ 4m, and new 2026 results (2026-10-19, late).** Scope: two web searches ("Wilf conjecture
+    numerical semigroups 2026 embedding dimension five"; "Wilf's conjecture" with conductor 4m / four times the
+    multiplicity, 2026). Every hit is already listed: 2608.12531 (item 10), 2501.04417 (DKM), Yang–Zhang 202604.0551
+    (#46), DEF g ≤ 100, and Eliahou divsets (m | c and 4e ≥ m). No proof for e = 5 and no theorem for c ≤ 4m was found.
+
 ---------------------------------------------------------------------------------------------------
 
 ## 4. Known-FALSE strengthenings / generalizations (and open stronger conjectures)

@@ -1,0 +1,177 @@
+{
+  "status": "FINITE CHECK: zero failures of asserted inequalities",
+  "remote": "fejer:~/wilf/p9/p18/",
+  "commands": [
+    "nice -n 10 ~/mathenv/bin/python audit.py --maxm 18 --trials 15000 --seed 910",
+    "nice -n 10 ~/mathenv/bin/python hill.py --seed 911 --chains 100 --steps 120",
+    "nice -n 10 ~/mathenv/bin/python algebra.py",
+    "nice -n 10 ~/mathenv/bin/python families.py",
+    "nice -n 10 ~/mathenv/bin/python periodic.py"
+  ],
+  "audit_counts": {
+    "all": 275518,
+    "membership_crosscheck": 261565,
+    "modulus_crosscheck": 30190,
+    "modulus_step_checks": 96554,
+    "modulus_closed_checks": 2306,
+    "higher_step_checks": 125919,
+    "higher_closed_checks": 4756,
+    "q4plus": 53097,
+    "step3_checks": 190964,
+    "quadratic12_checks": 53000,
+    "span12": 5098,
+    "span12_q4": 2749,
+    "outside_list": 5435,
+    "span12_outside": 766,
+    "modulus_quadratic": 1514,
+    "higher_quadratic": 3556,
+    "higher_linear": 2442
+  },
+  "hill_counts": {
+    "all": 10538,
+    "q4plus": 10495,
+    "step3_checks": 51087,
+    "quadratic12_checks": 10495,
+    "outside_list": 7865,
+    "modulus_step_checks": 28305,
+    "modulus_closed_checks": 608,
+    "higher_step_checks": 5966,
+    "higher_closed_checks": 979,
+    "modulus_crosscheck": 10538,
+    "span12": 660,
+    "modulus_quadratic": 173,
+    "higher_quadratic": 347,
+    "higher_linear": 68,
+    "span12_outside": 71,
+    "span12_q4": 205
+  },
+  "family_count": 42,
+  "family_counts": {
+    "all": 42,
+    "q4plus": 42,
+    "step3_checks": 974,
+    "quadratic12_checks": 42,
+    "outside_list": 42,
+    "modulus_step_checks": 937,
+    "modulus_crosscheck": 42,
+    "modulus_closed_checks": 14,
+    "modulus_quadratic": 14,
+    "higher_step_checks": 2673,
+    "higher_closed_checks": 42,
+    "higher_quadratic": 42,
+    "higher_linear": 41,
+    "span12": 13,
+    "span12_outside": 13
+  },
+  "maximum_family_m": 1862501,
+  "all_family_yz_multi": true,
+  "preserved_false_candidates": {
+    "quadratic4_kge2": {
+      "m": 6,
+      "A": [
+        2,
+        3
+      ],
+      "k": 2,
+      "beta": 3,
+      "offset_gcd": 1,
+      "normalized_span": 3,
+      "c": 20,
+      "q": 4,
+      "rho": 4,
+      "ell": 10,
+      "W": 10,
+      "theta": [
+        0,
+        2,
+        4,
+        4,
+        5
+      ],
+      "s2": 5,
+      "s2_integer": 6,
+      "s2_cyclic": 5,
+      "nowrap_possible": false
+    },
+    "unperiodized": {
+      "m": 14,
+      "A": [
+        3,
+        7,
+        10
+      ],
+      "k": 3,
+      "beta": 10,
+      "offset_gcd": 1,
+      "normalized_span": 10,
+      "c": 96,
+      "q": 7,
+      "rho": 2,
+      "ell": 47,
+      "W": 92,
+      "theta": [
+        0,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11,
+        13
+      ],
+      "s2": 6,
+      "s2_integer": 9,
+      "s2_cyclic": 6,
+      "nowrap_possible": false,
+      "H": 2
+    }
+  },
+  "algebra": {
+    "quadratic_cases": 199994,
+    "block_cases": 99099,
+    "polynomials": {
+      "p47": [
+        2232,
+        2257,
+        94,
+        1
+      ],
+      "p17": [
+        16,
+        7377,
+        892,
+        27
+      ],
+      "x31": [
+        64,
+        160,
+        5
+      ]
+    },
+    "short_arc": {
+      "sets": 223,
+      "pairs": 1629593,
+      "proper": 758850
+    }
+  },
+  "sha256": {
+    "P9_REPORT.md": "834fbbde03797eef0a6e43c991c42f1f6e64899fa0d1ea4b6705d6f8cd2a9dc3",
+    "algebra.json": "78e1c24960185abde3f620d5ac1a1e66c5ce36f7378b0c21ff658c5ff93788ef",
+    "algebra.py": "92edd4b91cd6dee87f323b91d758679124e20039c626f629c3822bda498bcff9",
+    "audit.py": "f73128fab23a578893e144594b21a74d08a86210ce2c2c2ba8a2b061ce5f262e",
+    "audit910.json": "8973a0cb1b2e6b8c4015e96c91a9e3ce876096d5cfde2e63021a7a03e4834a68",
+    "checks_manifest.py": "a80e2beb50e185bae868aad5574a4a0baff45bf8c6030b3993cbbf03d3eafc0f",
+    "families.jsonl": "e5309fcdea66c5b566799bb2a89b3843a928a3f9632e2dcaf617f24a6633b1f0",
+    "families.py": "cf5e92626ab5b638b1566de2d6f1dbc884361f9f7b29009b02ebc15694c4311e",
+    "hill.py": "abf5122bcfeb1a163f2165b490e178435931bceeb962dff39091c39061c473a1",
+    "hill911.json": "0f55e3141961f87f1d38e4e8ad9adddd8c48485a1c6b22f449947f394b693879",
+    "modulus.py": "b6f0c27bdb7ae24494d2ca7f45d4a1ad019e6d59f79428cb0dab6f477e093545",
+    "p18.py": "705933f1c9694aced0debbe89663cdbd8e02878ea0ab9162e0c11a8a5b0c8713",
+    "periodic.json": "80700fa0c4793fd57b4405289893c94a5b392cbe6d9e6cf32177eb7c0a6409d2",
+    "periodic.py": "c4cdb9ad7155419633f0c747a5bb0c98dc7b2210f5c92e0bae56e622376d59f2",
+    "probe.py": "0250c369c844185202eb59ac49ce19515962bdd8572db310bf24b44b12ca8d3d",
+    "probe901.json": "76121ca219bbeb599e48d9e601a4d1759bafe33f15077259d6c0ad7ec6905ce1",
+    "sidon_examples.jsonl": "9853457503305b8839eb2bfead4e9b3ac93d4cf756635f0c6b9908d4875f4329",
+    "sidon_examples.py": "fd64eb97ba13a7733ef8cf7803e386e916c7236c114b0a314401714bec449356"
+  }
+}

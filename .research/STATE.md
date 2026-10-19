@@ -184,6 +184,19 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0L) NEW 2026-10-19 latest+++, read first.
+    - **Codex P9 REVIEWED and accepted** (PROOFS "Codex P9", E279: own code, exhaustive m ≤ 15 + 11.7k random + sympy;
+      0 failures). Problem 1.8 criteria:
+      - PAIR-SPAN12: 12a ≤ e|2B∩[0,m)| ⇒ Wilf;
+      - SUMSET-MODULUS: T_j = e(|jB|−1) > 2ja and m ≥ 2jβ(T_j+3a)/(T_j−2ja) ⇒ Wilf. For fixed B this gives all
+        m ≥ C_B·β (linear in the span);
+      - explicit carried Sidon classes ET-31 and ET-2.
+      Open: the large-span, near-free core (β ≈ m, k ≪ √m). Codex's next lemma: the pair gain at modulus m + β without
+      m > 3β.
+    - E278: on e = 5, q ≥ 5 the band criteria cover ≤ 3%, since every band tool is linear growth.
+    - The carry-free upper growth u_{t+1} ≤ u_t + μ_d(u_t) holds for every S but is vacuous alone (NOTEBOOK latest+++++).
+    - NEXT: codex P10 = e = 5 (see $SP/codex/p10_msg.md). The lead works on VOL-MINK: cube volume (Prop VOL) +
+      Minkowski on the inscribed simplex + a corner lemma, aiming at Wilf for c ≥ K_e·(m + Σn_i) for every e.
 (0K) NEW 2026-10-19 latest++, read first.
     - PRIORITY: Yang–Zhang (Preprints.org 202604.0551, Apr 2026) contains LK (a). Their staircase bound is
       ℓ ≥ q + (q−2)η + η_ρ. LK (b), the Kneser growth, remains ours; combined as Theorem LK+YZ (PROOFS, E272).

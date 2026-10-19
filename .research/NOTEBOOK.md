@@ -2890,3 +2890,29 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   coordinate is uniform on its column given the others. Hence E[v] + n_i·E[X_i] ≤ V for each i, and
   (d+1)Σ_D v = dmV − Σ_y T(y)(V − v(y)). This is the continuous scaling bound with exact slack, i.e. the Tile-TOP′′
   identity (NoWrap.lean `sum_tileT_mul_linW`). Wilf ⟺ Σ_y T(y)(V − v(y)) ≥ (d−1)·m(m−1)/2.
+
+## 2026-10-19 (night, latest+++++) — codex P9 reviewed: offset-sumset criteria for Problem 1.8; e = 5 band calibration
+
+- **P9 accepted (PROOFS "Codex P9", E279).** Every proof was re-derived and checked with the lead's own code: 0 failures.
+  - PAIR-SPAN12: 12a ≤ e·|2B ∩ [0,m)| ⇒ Wilf, with W ≥ kq + ρ at q ≥ 4.
+  - SUMSET-MODULUS: for any j ≥ 2, T_j = e(|jB| − 1) > 2ja and m ≥ 2jβ(T_j + 3a)/(T_j − 2ja) ⇒ Wilf.
+    - The new ingredient is the largest generator N = m + β as modulus. The j-fold generator sums then lie in a short
+      arc, so Kneser gives the full gain |jB| − 1 per j bands.
+    - Consequence: for every fixed B, Wilf holds for all m ≥ C_B·β. This is linear in the span; the cited shifted-family
+      threshold was β².
+  - Explicit carried Sidon classes ET-31 and ET-2. For p ≥ 17 and m = 100β + 1, the family is outside NO-WRAP, LK+YZ,
+    e(k+2) ≥ 2m and 3e ≥ m.
+- Lead's assessment of the method's reach. Every hypothesis needs B to be dense in its hull at some scale j with
+  m > (2j−1)β. Generic large-span B (β ≈ m) with few elements is untouched. The fast-growth, near-free regime is the
+  extremal one for Wilf in general (the free profile is exactly Wilf-tight), so the core of Problem 1.8 is still open.
+- **E278 (e = 5 calibration).** On random e = 5 semigroups with q ≥ 5 and m ∈ [40, 250], the proved band criteria
+  cover only 0.8–2.6%, while the actual ratio e·ℓ/c is ≈ 2. Band/Kneser tools give linear growth, but 4-D tiles grow
+  like t⁴, and the typical tile is box-like (avg Kunz/max ≈ 1/2), far from the simplex extreme (4/5).
+- **A carry-free upper-growth principle, and why it is vacuous alone (lead).**
+  - For ANY S: the band filtration A_t = D_{≤t} of a factorization tile satisfies A_{t+1} ⊆ A_t⁺ := A_t ∪ mingens(ℕ^d ∖ A_t),
+    since every non-m generator exceeds m. So u_{t+1} ≤ u_t + μ_d(u_t), where μ_d(u) is the largest number of minimal
+    generators of a colength-u monomial ideal.
+  - This is the replacement for Macaulay that survives carries. Run top-down from u_q = m, however, it gives only
+    ℓ + ρ ≥ mσ/(d+1) with C(σ+d, d) = m. And σ ≤ q always, since band(x) ≥ |x| gives m ≤ C(q+d, d).
+  - So it proves Wilf only for exactly free profiles. Any slack must come from elsewhere (tiling geometry or residues).
+- Decision: P10 (codex) = e = 5. The lead works on a geometric deep-regime theorem in parallel (next entry).

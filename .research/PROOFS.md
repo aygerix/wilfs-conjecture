@@ -2542,3 +2542,52 @@ Hence Wilf holds whenever e times the right-hand side is ≥ c.
   - `ell_ge_lkyz_prime'`: LK+YZ with the Kneser last-band term η + δ⌊(q−2)/2⌋ − ρ, stated as ℓ + ρ ≥ ….
   - Helpers: `genus_le_bands_full` (g ≤ Σ_{H≤q} #G_H) and `card_bandGaps_last`.
 
+
+## Codex P9 (Problem 1.8: offset-sumset criteria) — PROVED 2026-10-19 (codex; every proof re-derived by the lead; E279)
+Source: src/scratch/gw/p9/P9_REPORT.md (code in p9/). Setting P18: S = ⟨m, m+b : b ∈ A*⟩, B = {0} ∪ A* ⊂ [0, m),
+e = |B| = k + 1, β = max B, gcd(m, B) = 1, g = gcd(A*), a = β/g, s_2 = |2B ∩ [0,m)|, s_j* = |jB| (integer sumsets),
+c = qm − ρ.
+- **SPAN-CONDUCTOR (C1).** c ≥ m⌈(m−1)/a⌉ + (g−1)(m−1). Hence m ≤ qa + 1, and m ≤ (q−1)a + 1 when ρ > 0.
+  - Proof: the Apéry element in residue −g has offset sum g·u with u ≡ −1 (mod m), so u ≥ m − 1, and it needs
+    ≥ (m−1)/a generators.
+- **Band inputs.** R_1 = B and R_2 = 2B ∩ [0,m) (band 2 uses exactly two generators). TRANSPORT is our LK-SUPER with
+  j = 2: G_{H+3} − R_2 ⊆ G_H. With the Kneser generating gain this gives Θ_{H+3} ≥ Θ_H + ⌈s_2/2⌉, and hence
+  Θ_t ≥ s_2 − 1 + ⌈s_2/2⌉⌊(t−2)/3⌋ for 2 ≤ t ≤ q − 1 (P4).
+- **PAIR-QUADRATIC.** For q ≥ 4 and k ≥ 2: ℓ ≥ q + s_2 q(q−1)/12 if ρ > 0, and ℓ ≥ q + s_2 q²/12 if ρ = 0.
+  Proof: insert P4 into the YZ exact formula, then do an exact case check over q mod 3.
+- **Theorem PAIR-SPAN12.** If 12a ≤ e·s_2, then Wilf holds. For q ≥ 4 and k ≥ 2, moreover W ≥ kq + ρ.
+  Proof: combine PQ with C1/C3, so that e·s_2 q(q−1)/12 ≥ aq(q−1) ≥ qm − q.
+- **MAXGEN-BLOCK (modulus N = m + β).** Suppose m > (2j−1)β.
+  - The j-fold generator sums give C_j ⊆ R_{j−1}^{(N)} with |C_j| = |jB|.
+  - C_j ∋ 0 generates ℤ/N, and it lies in an arc of width jβ < N/2.
+  - |R_0^{(N)}| = e.
+- **SHORT-ARC.** If C ∋ 0 generates ℤ/n and a translate lies in an interval of width < n/2, then |X − C| ≥ |X| + |C| − 1
+  whenever X ≠ ∅ and X − C ≠ ℤ/n. This is Kneser plus a coset count: each coset of K meets the arc in ≤ ⌈h/2⌉ points,
+  and (r−1)h ≥ r⌈h/2⌉ − 1. Without the width hypothesis it is false (ℤ/6, C = {0,1,3,4}, X = {0,3}).
+- **INTEGRATED-BLOCK.** With D = ⌈c/N⌉ and n = D − j ≡ b (mod j):
+  ℓ ≥ e + n + (|jB| − 1)·{D(D−j) + b(j−b)}/(2j).
+- **Theorem SUMSET-MODULUS.** Let j ≥ 2 and T_j = e(|jB| − 1).
+  - If m > (2j−1)β and T_j{m(m−1) − ja(m+β)} ≥ 2ja(m+β)² (SM-Q), then W ≥ e(e + D − j) ≥ 0.
+  - A conductor-free sufficient condition (SM-L) is T_j > 2ja and m ≥ ⌈2jβ(T_j + 3a)/(T_j − 2ja)⌉.
+  - Pair table (lead-checked, E279):
+    - T_2/a ≥ 8 ⇒ m ≥ 9β suffices;
+    - T_2/a ≥ 6 ⇒ m ≥ 14β;
+    - T_2/a ≥ 5 ⇒ m ≥ 24β;
+    - T_2/a ≥ 128/27 ⇒ m ≥ 31β.
+  - Meaning: for every fixed offset set B with k ≥ 2, jB fills its hull for large j (density → 1 > 2/e), so some j has
+    T_j > 2ja. Hence **Wilf holds for all m ≥ C_B·β**, a threshold LINEAR in the span. The previous general shifted-family
+    threshold is O'Neill–Pelayo's m > β² (arXiv 1708.09527, Cor 4.6), as cited by codex and not re-read by the lead.
+- **Explicit carried Sidon classes.** B_p = {2pi + (i² mod p) : 0 ≤ i < p}, p prime, so β = 2p(p−1) + 1 and all pair
+  sums are distinct. ET-31: Wilf for p ≥ 17 and m ≥ 31β. ET-2 (via PS12): p ≥ 47 and m > 2β.
+  - The subfamily m = 100β + 1 has 100 ≤ q ≤ 161 and carries, and it is outside NO-WRAP, LK+YZ, e(k+2) ≥ 2m, 3e ≥ m
+    and m > β².
+  - Yang–Zhang's higher-layer (Q,t) tests DO recognize every computed member (codex records this).
+- **FALSE, preserved:**
+  - Θ_{H+3} ≥ Θ_H + s_2 − 1 for composite m. Witness ⟨14, 17, 21, 24⟩, where 2B ∩ [0,14) is a union of three cosets of
+    {0,7}.
+  - ℓ ≥ q + s_2 q(q−1)/4. Witnesses ⟨6, 8, 9⟩ and ⟨4, 7⟩.
+- **OPEN (codex's next lemma):** the full pair gain |R_{H+2}^{(N)}| − |R_H^{(N)}| ≥ |2B| − 1 at modulus N = m + β without
+  m > 3β. It passed every test, but the abstract short-arc statement is false, so a proof must use the semigroup.
+- Scope limit (lead): every hypothesis needs |jB| ≳ 2ja/e, i.e. B dense in its hull at some scale j with m > (2j−1)β.
+  Generic P18 sets with large span (β ≈ m) and k ≪ √m are untouched. That fast-growth, near-free core is the
+  extremal regime for Wilf in general.

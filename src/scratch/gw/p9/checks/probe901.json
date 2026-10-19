@@ -1,0 +1,62 @@
+{
+  "total": 29468,
+  "q4plus": 29468,
+  "span12": 2311,
+  "failures": {
+    "quadratic4": {
+      "m": 4,
+      "A": [
+        3
+      ],
+      "k": 1,
+      "beta": 3,
+      "c": 18,
+      "q": 5,
+      "rho": 2,
+      "ell": 9,
+      "W": 0,
+      "theta": [
+        0,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "s2": 2,
+      "s2_integer": 3,
+      "s2_cyclic": 3,
+      "nowrap_possible": false
+    },
+    "unperiodized": {
+      "m": 14,
+      "A": [
+        3,
+        7,
+        10
+      ],
+      "k": 3,
+      "beta": 10,
+      "c": 96,
+      "q": 7,
+      "rho": 2,
+      "ell": 47,
+      "W": 92,
+      "theta": [
+        0,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11,
+        13
+      ],
+      "s2": 6,
+      "s2_integer": 9,
+      "s2_cyclic": 6,
+      "nowrap_possible": false,
+      "t": 2
+    }
+  }
+}
