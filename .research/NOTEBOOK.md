@@ -2186,3 +2186,19 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   The (3n/2) loss comes only from heavy fibers, i.e. about n/3 disjoint triples with a common sum (P4 §17). The HF
   congruence limits the full-support fibers. This is now the precise uniform question for the c ≤ 4m regime. It was
   sent to codex P5d, with JOINT-SP and the 11 profiles.
+- **Fiber accounting (lead, same night).**
+  - In the JOINT-SP budget, s ≈ 3δ/2 and δ ≤ B − D3 with D3 ≥ 3ε. So the arcs pay 13.5 signed values per unit of
+    triple excess.
+  - A fiber of g disjoint triples with one common sum destroys at most 9C(g,2) signed labels (P4 §17's proof). By
+    the Sidon property, each signed-value class inside a fiber has exactly two labels.
+  - Hence fibers with g ≤ 3 cost nothing net (9 ≤ 13.5, 27 ≤ 27); only heavy fibers (g ≥ 4) can break the uniform
+    argument.
+  - In integers, all full-support fibers have the same sum ΣB/(n/3), so there is at most one.
+  - Evidence (E231): annealing never makes H − NS − 13.5·ex positive (n ≤ 20). At s < H(n)/3 the minimal excess
+    found exceeds what any bound needs; the effective defect constant is ≈ 4–8.
+  - Clean conjecture **LSP***: 3s − 2 ≥ H(n) − 13.5·ex for every pair-distinct n-set in s consecutive integers. It
+    equals LSP for n ≤ 10 (λ_10 = 13.5). It is the uniform lemma that the c ≤ 4m program needs, at leading order.
+  - Caution: the per-fiber inequality H − NS ≤ 13.5·ex is FALSE in general. A planted full-support fiber with
+    g ≥ 4 in a sparse set gives H − NS = 9C(g,2) > 13.5(g−1). So LSP* is a genuine packing statement that needs the
+    density s < H/3. For exact B_3 sets, Green's bound (s ≳ n³/3.5) is stronger than SP (s ≳ n³/6). This suggests
+    that a robust (few-collision) Green-type bound would give LSP* with room for large n.
