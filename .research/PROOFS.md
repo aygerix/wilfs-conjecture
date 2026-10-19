@@ -514,6 +514,11 @@ Then r = v + ρ_0 − m·1_U and Σ_D v = M'.
   - columns, simplices and lex boxes;
   - spike lifts with spikes at labels ≥ the core size.
 
+**LEAN (2026-10-19 late night, lean/Wilf/TileCLMax.lean, 0 sorry; axioms propext, Classical.choice, Quot.sound; full
+`lake build` OK on fejer):** `maxCLAt_of_tileCLAt : IsTile D p → TileCLAt D p → MaxCLAt D p`, for any tile. Tile-CL is
+exactly "S ≥ Λ_r" (PC). So H1′ (WRAP-MAX pure counting) is Tile-CL on WRAP-MAX tiles, and a Lean proof of it would give
+MaxCL, then Tile-TOP'', then Wilf (via `wilf_of_tileTOPAt_of_isFactTile` and the weighted tile `factDownSetW`).
+
 **FALSE extension (partial tiles), preserved.** MaxCL needs φ to be onto ℤ/m. A down-set with injective labels can
 fail it. Example: D = {0, e_1, 2e_1} ⊂ ℕ¹ with p = 8 in ℤ/10 and σ = 7. Then r = (3, 1, 9), and
 Σ_A (d+|y|) r = 27 > (d+1) Σ_D r = 26. So there is no induction by deleting cells.
