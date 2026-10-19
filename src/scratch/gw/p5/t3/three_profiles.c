@@ -2,15 +2,17 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
+#include <stdlib.h>
 static long long C2(long long n){return n*(n-1)/2;}
 static long long C3(long long n){return n*(n-1)*(n-2)/6;}
 static long long H(long long n){return n*(C2(n)+1);}
 static long long L2(int n){if(n<=1)return 0;if(n==2)return 2;if(n==3)return 4;if(n==4)return 8;return n%3?3*(n-1):3*n;}
 static uint64_t hh=1469598103934665603ULL;
 static void mix(int v){hh=(hh^(uint64_t)v)*1099511628211ULL;}
-int main(void){
+int main(int argc,char **argv){
+ int amin=argc==2?atoi(argv[1]):14;assert(amin==13||amin==14);
  long long total=0,expanded=0,totalprofiles=0,after16=0;
- for(int a=14;a<=40;a++){
+ for(int a=amin;a<=40;a++){
   long long tested=0,surv=0;
   for(int r=0;r<=2;r++)for(int l=0;l<=4-2*r;l++)for(int n0=6-r;n0<=6;n0++){
    int q2=n0+l,F=C3(a+1),tmin=r==0?0:r==1?a:2*a-1;
@@ -21,7 +23,7 @@ int main(void){
     for(int R=0;R<=a-3;R++){
      int cold=a-27+(a+3)*n0+star-2*n0*R-(a+2)*r;
      int raw=a-39+(a+3)*n0+star-2*n0*R+D3;
-     int bf=a-7-n0+l,bh=a-7-n0-3*l-2*r,e=l+r;
+     int bf=a-7-n0+l,bh=a-7-n0-3*l-2*r,e=l+r;if(a==13&&bf==0)bf=1;
      assert(bf>=1);
      int BB=2*(13+n0+l+e+C3(e+2)+(n0+3*e)*(a-3))-(a-1)-(a+3)*(n0+l);
      for(int b=0;b<=5*a-16;b++){

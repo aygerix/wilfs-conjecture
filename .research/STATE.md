@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, evening; GW-26d two low units; CP and layer-profile conjectures)
+# STATE.md — handoff (updated 2026-10-19, night; three lows under review, JOINT-SP; GW-26d two low units)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -171,12 +171,18 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
-(a) Codex P5c is RUNNING (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31, brief scratchpad codex/p5c_msg.md, log
-    codex/p5c_log.txt). Its two-low theorem T2.2 is verified and recorded as GW-26d. It is now on three low units
-    (§§24–26: T2.3-M, and T2.3 for large a; a scan for 20 ≤ a ≤ 40; survivors at a ≤ 19), which is not yet verified.
-    The α-by-α route shows case growth. When it reports, verify T2.3* with lead_t22_check.c extended to three lows,
-    and ask for a uniform-in-α argument rather than α = 4, 5, ….
-    Next codex task after P5c: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
+(a) Codex P5d is RUNNING (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31; brief scratchpad codex/p5d_msg.md; log
+    codex/p5d_log.txt; report P5_REPORT.md §31 onward).
+    - P5c finished. It claims T2.3-M, T2.3 (α ≤ 3, a ≥ 41, analytic) and T2.3F (α ≤ 3, a ≥ 16, finite certificate),
+      plus the residual family α = 3, 13 ≤ a ≤ 15 (c = e = 0, d ≤ 26, m ≤ 5474, 172 profiles).
+    - Lead review: algebra, finite certificate and LSP are DONE (E228–E230). The instance runs of lead_t23_check.c
+      (53 checks, incl. JOINT-SP) are RUNNING on fejer, ~/wilf/lead23/{r_*,j_*}.log. When they finish clean, record
+      GW-26e = T2.3F in PROOFS, together with JOINT-SP ⇒ a ≥ 14 once codex confirms it.
+    - JOINT-SP (lead, NOTEBOOK 2026-10-19 night) cuts the 172 profiles to 11, all at a = 13.
+    - P5d task: one argument for every α. The heuristic says the arc/arc/packing trichotomy closes for a ≥ 2α + 1
+      when the localized defect is small. The obstruction is a signed-packing lemma with bounded defect constant
+      (heavy fibers). Also: a ≤ 2α + 1, and 7 ≤ a ≤ 12.
+    Next codex task after P5: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
     - Deficient cells (c_x < 0) are almost all top cells with residue ≤ μ, in every degree (E220).

@@ -5,7 +5,9 @@ Not an enumeration of semigroups. All arithmetic is integral.
 """
 from math import comb
 from collections import Counter
-import json
+import json,sys
+amin=int(sys.argv[1]) if len(sys.argv)>1 else 14
+assert amin in (13,14)
 def H(n):return n*(n*(n-1)//2+1)
 def L2(n):
     if n<=1:return 0
@@ -13,7 +15,7 @@ def L2(n):
     return 3*n if n%3==0 else 3*(n-1)
 def ceildiv(n,d):return -((-n)//d)
 rows=[];survivors=[]
-for a in range(14,41):
+for a in range(amin,41):
     num=Counter();ss=[]
     for r in range(3):
         for l in range(5-2*r):
@@ -31,7 +33,8 @@ for a in range(14,41):
                             a-27+(a+3)*n0+stars-2*n0*R-(a+2)*r,
                             a-39+(a+3)*n0+stars-2*n0*R+D3)
                         if fixed>=0:continue
-                        bf=a-7-n0+l;assert bf>0
+                        bf=max(1,a-7-n0+l) if a==13 else a-7-n0+l
+                        assert bf>0
                         e=l+r;p=a-3
                         B=2*(13+n0+l+e+comb(e+2,3)+(n0+3*e)*p)-(a-1)-(a+3)*(n0+l)
                         bh=a-7-n0-3*l-2*r
@@ -51,7 +54,7 @@ for a in range(14,41):
                                 ss.append(z)
     rows.append(dict(a=a,**num))
     survivors.extend(ss)
-with open('three_profiles_survivors.json','w') as f:json.dump(survivors,f)
+with open('three_profiles_survivors_13.json' if amin==13 else 'three_profiles_survivors.json','w') as f:json.dump(survivors,f)
 hh=1469598103934665603;expanded=0
 for z in survivors:
     expanded+=z['delta'][1]-z['delta'][0]+1
@@ -59,6 +62,10 @@ for z in survivors:
         hh=((hh^z[k])*1099511628211)&((1<<64)-1)
     for v in z['delta']:hh=((hh^v)*1099511628211)&((1<<64)-1)
 assert all(not z.get('survive',0) for z in rows if z['a']>=16)
-print(json.dumps(dict(rows=rows,total_profiles=sum(z.get('profiles',0) for z in rows),
+print(json.dumps(dict(amin=amin,rows=rows,total_profiles=sum(z.get('profiles',0) for z in rows),
     profiles_a_ge16=sum(z.get('profiles',0) for z in rows if z['a']>=16),
-    total_survivors=len(survivors),expanded=expanded,hash=hh,first=survivors[:30])),flush=True)
+    total_survivors=len(survivors),expanded=expanded,hash=hh,
+    max_b=max((z['b'] for z in survivors),default=0),
+    max_d=max((z['a']+z['b'] for z in survivors),default=0),
+    max_m_bound=max((comb(z['a']+z['b']+3,3)+comb(z['a']+3,4) for z in survivors),default=0),
+    first=survivors[:30])),flush=True)

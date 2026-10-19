@@ -2150,3 +2150,39 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     known.
   - Possible program: Freiman/Vosper stability (near-linear growth ⇒ near-AP residues) + an exact treatment of
     near-AP Kunz vectors, for prime m. Not started.
+
+## 2026-10-19 (night) — three lows under review; JOINT-SP; the uniform-α obstruction is a packing-with-defect question
+
+- **Codex P5c finished** (P5_REPORT §§24–30).
+  - T2.3-M: α = 3, a ≥ 13, r_A ≥ 3.
+  - T2.3: α ≤ 3 and a ≥ 41, analytic.
+  - T2.3F: α ≤ 3 and a ≥ 16, with a finite certificate.
+  - Residual α = 3 family at 13 ≤ a ≤ 15: c = e = 0, d ≤ 26, m ≤ 5474, 172 count profiles.
+  - Open: α ≥ 4, and α = 3 with 7 ≤ a ≤ 12.
+- **Lead review so far** (E228–E230; the instance runs, E231, are pending):
+  - The algebra is right.
+  - The finite certificate is reproduced by an independent implementation: identical 172 survivors and δ endpoints.
+  - LSP is exhaustively true for n ≤ 8.
+- **JOINT-SP (new, lead).**
+  - All α lows and the R highs with t < θ − 2L lie in one integer interval [L, θ − 2L), with s = ⌈3δ/2⌉ integers.
+  - Apply LSP to the α + R offsets, after deleting one endpoint of each missing pair, with the localized defect
+    ε = t − t_forced:
+    3⌈3δ/2⌉ − 2 ≥ H(α + R − r) − λ ε. Also JOINT-COUNT: C(α+R+2,3) − t ≤ 3⌈3δ/2⌉ − 2.
+  - Proof: LSP's hypotheses (present pairs and triples have distinct ordinary sums) hold for any set of A offsets.
+    LOC-DEF bounds the missing cubics on a set all of whose pairs are present.
+  - Codex's WINDOW-SP used only the R highs, in a window of length δ.
+  - With α = 3 and FIN otherwise unchanged, the survivors drop from 172 to 11. All 11 have a = 13, n0 = 6, R = 10,
+    r ∈ {1,2} and ε ≤ 1; none remain at a = 14, 15. So, once verified, Wilf holds for α = 3 and a ≥ 14.
+- **Scaling heuristic for general α** (a = κα, n0 ≈ α²/2, c0 ≲ α³/6):
+  - fixed arc fails ⇒ R ≳ (a+1)/2 − α/3 + D3/(2n0);
+  - H0 arc fails ⇒ δ ≲ (a − 2α)n0 + 2c0 − D3;
+  - JOINT-SP with ε = 0 then needs (2/3 + κ/2)³/2 ≤ 2.25(κ − 2) + 1.5. This is false for every κ ≥ 2 (minimum margin
+    ≈ 0.8, at κ ≈ 2.13).
+  - So for small defect the arc/arc/packing trichotomy closes uniformly when a ≥ 2α + 1. This matches the α = 3
+    thresholds: 41 ≈ 4.5α² with PSID, and 16 ≈ 5.3α with highs-only SP.
+  - The escape is a localized defect ε between ≈ α² and ≈ α³. There the loss λ_n ε ≈ (3n/2)ε kills LSP, while
+    D3 = 3ε pays only linearly. JOINT-COUNT alone closes only for κ ≳ 7.3.
+- **Missing ingredient.** A signed-packing lemma for pair-distinct sets whose defect constant does not grow with n.
+  The (3n/2) loss comes only from heavy fibers, i.e. about n/3 disjoint triples with a common sum (P4 §17). The HF
+  congruence limits the full-support fibers. This is now the precise uniform question for the c ≤ 4m regime. It was
+  sent to codex P5d, with JOINT-SP and the 11 profiles.

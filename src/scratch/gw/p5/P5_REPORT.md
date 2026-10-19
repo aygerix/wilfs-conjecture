@@ -1863,6 +1863,37 @@ GEN-COUNT into the sufficient I-LOW payment
 `A2+(b+2)q2+k-2J>=0`. Its lower bound is exactly Phi, by
 coefficient comparison. No further bound on the low face is used.
 
+There is also a uniform criterion from H0=h-L. For alpha>=1 put
+
+```
+p=a-alpha, l=sum l_i, E0=min(p,l+r_A),
+C_H=alpha+n0+c0+l+E0+C(E0+2,3)+(n0+alpha*E0)p,
+Psi=delta+(a-1)+(a+3)q2+D3+(a+1)u3-5k-2C_H
+    +b[a-1+q2+u3-2(alpha+E0+q2)]
+    +G+(c+e)(2q2+u3)-2c(alpha+E0).                  (HLOC)
+```
+
+For a>=3, `Psi>=0` also implies W>=0. Here E0 is an exception
+count, not the number e of E units. At most E0 high directions
+lie below H0: each gives a present low--high I2 pair with the
+lowest direction, or one of the r_A missing pairs. An all-high
+intruding cubic is supported on these exceptions; a
+one-low--two-high intruder uses an exception. Thus
+
+```
+J_{H0,A}<=C_H+k,
+J_{H0}-J_{H0,A}<=b(alpha+E0+q2)+c(alpha+E0).
+```
+
+The terms in C_H count low units, low pairs, pure-low cubics,
+low--high I2 pairs, exceptional units, exceptional cubics,
+two-low--one-high candidates and one-low--two-high candidates,
+respectively. All quartics are counted separately by k; there
+is no subtraction of cold I3 cubics. Substitute both bounds
+into `A2+(b+2)q2+k+delta-2J_{H0}`. Its lower bound is exactly
+Psi. This proves HLOC and supplies a second counts-only
+payment criterion for every low population.
+
 For a simpler scalar version, let
 `Q_alpha=C(alpha+1,2)` and `U_alpha=C(alpha+2,3)`. The shadows are
 
@@ -2290,6 +2321,10 @@ and r_A).** Put
 epsilon_M=q^{<2>}-(u3+u4)>=0.
 ```
 
+Equivalently, with `Delta_a(q)=(a+2)q-3q^{<2>}`,
+`D3=Delta_a(q)+3epsilon_M`. Thus the localized defect used in
+packing is also a retained positive payment in the arc identity.
+
 The legal cubics are the formal A cubics all of whose pair
 divisors are present. Together with zero, the A units and the
 present A pairs, they form a down-set, so their number is at
@@ -2443,3 +2478,377 @@ For three lows, the remaining unbounded parameters have now
 been restricted to a<=15; at a=14,15 their count data must lie
 in the explicit 59-profile list in addition to the general
 frontier inequalities below.
+
+There is a further useful finite-family reduction. For alpha=3,
+a>=13, an unproved case must have **c=e=0**. We may assume
+r<=2, since T2.3-M handles r>=3. In the fixed payment,
+`P+D3>=-(5a-15)`, and the b coefficient is nonnegative.
+Also q>=Q-2 and q2>=6-r>=4. If c>=1, the C part of the
+outside remainder is at least
+
+```
+c[q+q2-4]>=Q-2.
+```
+
+If e>=1, its coefficient is even larger. But
+
+```
+Q-2-(5a-15)=(a^2-9a+26)/2>0.
+```
+
+Thus either outside class pays the entire rough loss.
+
+At a=13 the only possible zero value of
+`B_f=a-7-n0+l` is n0=6,l=0. Let beta count the low pairs
+with tau<ceil(h/2), as in OUT2b. The exact b coefficient can
+instead be bounded by
+
+```
+12+q2+u3-6-2beta=12+u3-2beta.
+```
+
+If u3>=1 or beta<=5, this coefficient is at least 1. In
+the remaining case beta=6,u3=0, all low offsets are below h/4,
+so all ten pure-low cubics have tau<h and are absent. Because
+n0=6, every missing pair uses a high direction, and none of
+its forced cubic multiples is pure low. Therefore
+`t>=t_forced+10`, so `D3>=D_r+30`. Using c0=0 instead of the
+upper bound 10 in GEN-COUNT gives P>=-30. Thus P+D3>=D_r>=0,
+which already proves Wilf in this remaining case. Consequently
+every *unclosed* a=13 case has a valid effective b coefficient
+`max(1,B_f)`.
+
+The finite scan can therefore also include a=13, replacing
+B_f by max(1,B_f) there. Both implementations agree on 1,413
+pre-packing profiles and 113 surviving profiles at a=13.
+Together with the 59 at a=14,15, they give the complete saved
+list [three_profiles_survivors_13.json](t3/three_profiles_survivors_13.json):
+172 profiles, 4,863 expanded delta tuples, identical checksum
+`13171536009687149148`. The largest b is 13 and the largest
+d=a+b is 26.
+
+Since c=e=0, the number of cells is bounded by all monomials
+through degree 3 on d directions plus the degree-4 A monomials:
+
+```
+m<=C(d+3,3)+C(a+3,4).
+```
+
+Taking this bound over the 172 profiles gives **m<=5474**.
+All A/B unit weights are less than 3m. Thus the remaining
+alpha=3, 13<=a<=15 semigroup family is genuinely finite:
+c=e=0, embedding dimension at most 27, multiplicity at most
+5,474, and count data in the displayed 172-profile file, in
+addition to END, ASR-ALL, LC-minus, MAC-minus and GLOC. No
+exhaustive search of that finite semigroup family is asserted.
+
+## 28. Preserved failures and explicit boundary witnesses
+
+The smallest relaxed witness to unrestricted OL is retained in
+section 17. Neither OL nor even the stronger fixed-arc assertion
+`P+D3>=0` extends to two lows under residue completeness. A new
+actual-semigroup witness, compressed from the targeted search, is
+
+```
+S=<985,1177,1183,1382,1393,1421,1437,1441> union [3524,infinity),
+m=985, c_S=3524, h=569,
+A offsets=(192,198,397,408,436,452,456),
+a=7, b=c=0, e=865, alpha=2,
+q2=3, q3=25, u3=k=0, u4=84,
+r_A=D3=0, LC=24, W_A=-32,
+J_A=19, P=P+D3=-2, P_H=183,
+embedding dimension=873, ell=56, W=45364.
+```
+
+The tile consists of the full A simplex through degree 3
+(120 cells) and 865 E units, one at each unused residue r,
+with weight `3m+h+((r-h) mod m)`. Every one of its 985 residues
+is distinct. Its 19 pure-A intruders are the four pure-low
+cubics and all 15 two-low--one-high cubics. The wider arc pays
+them. This is a counterexample to the proposed fixed pure-A
+payment, not to Wilf or any verified GW theorem.
+
+The complete tile is [compressed_counter.json](t3/fixtures/compressed_counter.json).
+The independent tuple verifier checks down-closure, residue
+bijection, all classes, the floor definition of W, closure of
+the Apéry array under every generator, and minimality of every
+unit. Thus the displayed S and its embedding dimension are
+verified directly, in addition to the tile calculation.
+The saved witness was reduced to m=985 in this continuation.
+`compress_counter.py` minimized m in one fixed residue-order
+cone and reported m=985; no global minimality assertion is
+made. The smaller relaxed witness of section 17 remains part
+of the record.
+
+A separate incorrect subtraction was caught while deriving
+2L-HCOUNT: an I3 cubic with two low factors and one high factor
+**can** occupy the cold part of the wider H0 arc. The smallest
+multiplicity for this phenomenon is 8. An explicit
+residue-complete down-set has
+
+```
+m=h=8, weights=(9,11,12,39),
+D=(0,x,x^2,y,z,xz,x^2z,E),
+values=(0,9,18,11,12,21,30,39),
+residues=(0,1,2,3,4,5,6,7).
+```
+
+The A offsets are (1,3,4), with two lows. At H0=7 the arc is
+`[1,7)`; `x^2z` has tau=6<h, so it is an I3 cubic and an
+intruder. This is a down-set witness, not an Apéry tile of
+the semigroup generated by the listed unit weights.
+To verify minimality, any such mixed I3 cubic has
+`tau>=2+ceil(h/2)`, whereas the cold arc endpoint is at most
+`2h-1-m`. For h<=m<=7 the former is at least the latter;
+equality at m=h=7 still misses the half-open interval. The
+displayed m=8 example therefore is minimal. Its full data are
+[cold_mixed_minimal.json](t3/fixtures/cold_mixed_minimal.json).
+The corrected high-arc counts in sections 22 and 26 count
+these cubics and all possible quartics; they do not subtract u1.
+
+Finally, [a7_beta3.json](t3/fixtures/a7_beta3.json) deliberately
+exercises the exceptional a=7,b>0 branch, which the random
+semigroup runs reached infrequently. It has
+
+```
+m=16000,h=4000,a=7,b=1,c=0,e=15878,alpha=2,
+q2=3,q3=25,u3=k=0,u4=80,r_A=0,D3=12,
+beta=3,W_A=-16,W=901220.
+```
+
+Its A offsets are (400,600,3601,3604,3616,3664,3856), and its
+B offset is 4000. The B unit, both low AB cells and all three
+low-pair-times-B cubics are present. The independent verifier
+checks this as an actual residue-complete down-set. It is not
+asserted to be a semigroup Apéry tile.
+
+The [C-extension fixture](t3/fixtures/a7_beta3_C.json) adds a
+C unit of weight 36100 and both low AC cells before completion.
+It has c=1,e=15875,J=22 and W=916985. This separately tests
+the two-low AC occupant bound with an actual C direction.
+
+## 29. Computational checks for sections 20–28
+
+Every mathematical run in this continuation was on fejer, in
+`~/wilf/p7/`, at nice level 10, with at most four single-core
+jobs. The laptop was used only to read, edit and copy files.
+No commits were made. The final sources, data hashes and tool
+versions are recorded in [MANIFEST.json](t3/MANIFEST.json) and
+[SHA256SUMS](t3/SHA256SUMS). The environment was Python 3.12.3,
+NumPy 2.5.4, SciPy 1.18.1 and GCC 13.3.0. No sympy dependency
+is used.
+
+The main actual-semigroup runs were:
+
+| seed | attempts | m range | proposed lows | tile | primary instances | a>=7, exactly two lows |
+|---:|---:|---|---:|---|---:|---:|
+|202610202|100000|100–3000|2|lex|99122|72255|
+|202610205|100000|100–3000|3|grlex|98736|3237|
+|202610206|20000|5000–16000|3|grlex|19975|121|
+|202610207|10000|5000–16000|3|lex|9987|50|
+|202610210|10000|5000–16000|4|grlex|9984|13|
+
+These are 237,804 primary semigroup instances across the five
+runs; no assertion of pairwise distinct semigroups is made.
+The proposed A population is 7–20 in the first two runs and
+13–26 in the last three. Conductor recomputation and primitive
+generator extraction occur before the final classification,
+so the actual number of lows can differ from the proposed one.
+Every chosen normal-form tile is checked for down-closure by
+deleting each factor of each represented cell. The semigroup
+membership array, actual conductor, Apéry array and minimal
+generators are computed directly.
+
+`two_low.h` independently recounts all two-low types, the two
+arcs, outside occupants, the rough payment, COLD2, MG2, SIDON2,
+the fixed/high alternatives and the final I-LOW/HIGH payments.
+The first run includes 968 two-low instances with W_A<0, of
+which 361 have a missing A pair. The saved compressed witness
+also checks a negative fixed payment with W_A<0. No inequality
+failure occurred.
+
+`multi_low.h` checks the general GEN-COUNT, GLOC, END, ASR-ALL,
+the three-low refined bounds and the applicable finite
+certificate conclusions. The large grlex run exercised
+T2.3-M on 243 deficient instances; the large lex run exercised
+it on 123. The final four-low run additionally checks the
+uniform legal-cubic localization and WINDOW-SP. A final
+1,000-attempt control run, seed 202610212 in the same large-m
+box, checks the final HLOC identity and occupant bounds;
+its log is [uniform_hloc_check.log](t3/logs/uniform_hloc_check.log).
+The saved boundary fixtures are read again by the final C
+checker and by the independent Python tuple verifier.
+
+The deliberate residue-complete down-set runs were:
+
+- `two_tiles`, seed 202610204: 20,000 proposals, 100<=m<=3500,
+  7<=a<=20, exactly two lows, all A pairs present. There were
+  13,429 successful completions and 3,829 with W_A<0. Of these
+  completions, 35 have negative actual P+D3, so the wider-arc
+  branch is tested on genuine residue-complete objects. No
+  two-low certificate failed.
+- `two_tiles`, seed 202610208: 10,000 proposals, 500<=m<=5000,
+  13<=a<=26, exactly three lows, all A pairs present. There
+  were 5,444 successful completions, 896 with W_A<0, and
+  4,842 instances in the refined three-low branches. The
+  short/wide local SP bounds and the finite-certificate
+  conclusion passed. The saved [three-low fixture](t3/fixtures/three_tile_fixture.json)
+  is independently verified to be a semigroup Apéry tile.
+
+These completions are built by checking residues and every
+divisor before adding a cell, reserving h-1 for the maximum,
+and filling all remaining residues by E axes. In general they
+are residue-complete down-sets; semigroup closure is asserted
+only for individually verified saved files.
+
+The exact algebra audits are separate from actual-instance
+experiments:
+
+```
+identities.py: 21 exact polynomial identities (fractions only);
+three_low_table.py: all 18 infinite-region shifted polynomials;
+MG2 grid: 4,544,456 (a,q) pairs, 7<=a<=300, min slack 0;
+MG6 grid: 4,542,432 pairs, 13<=a<=300, no failure;
+2L-ROUGH: 35,819,980 local-count tuples, 7<=a<=300;
+COLD2: 10,340 tuples, 7<=a<=100;
+ALT2: 998,970 count tuples, 7<=a<=1000.
+```
+
+The finite proof has 47,379 pre-packing profiles at a=16..40,
+all excluded. The default a=14..40 audit has 50,089 profiles;
+the a=13 extension has 51,502. The independent C and Python
+checks agree on every per-a count and on both ordered
+survivor-list checksums. The logs are
+[Python](t3/logs/three_profiles.log),
+[C](t3/logs/three_profiles_c.log),
+[Python including a=13](t3/logs/three_profiles13.log), and
+[C including a=13](t3/logs/three_profiles13_c.log).
+These audits certify the bounded count calculation; they
+are not exhaustive searches of numerical semigroups.
+
+The targeted search on the genuinely remaining low population
+uses [frontier_adversary.c](t3/frontier_adversary.c), seed
+202610209, 5,000 proposals, m=1000..5000, a=13..24, four lows.
+It extends negative-W_A A faces by up to 35 B directions,
+testing 24 proposed additions at each step and selecting for
+residue coverage and Wilf cost. It produced 149 negative-W_A
+faces and completed every optimized object. No LOW+ violation
+was found. Its closest saved completion is
+[frontier_best.json](t3/fixtures/frontier_best.json):
+
+```
+m=2331,h=1109,a=13,b=35,c=0,e=576,alpha=4,
+q2=14,q3=77,u3=k=0,u4=414,r_A=0,D3=123,
+W_A=-4,W=325648,J_A=37,X_SR=28,
+eta_end=-295,Phi=304743,
+old LOW+ deficit=-304839.
+```
+
+It remains far from the remaining frontier. The source checks
+the old transfer bounds throughout optimization and the full
+new certificates on every final optimized completion. The
+independent verifier confirms the saved down-set, cardinality,
+residue bijection and maximum. It is not a semigroup Apéry
+tile. Expanding this same E-heavy search would not establish
+the missing uniform assertion.
+
+Principal reproduction commands, all run on fejer, are:
+
+```sh
+cd ~/wilf/p7
+nice -n 10 gcc -O2 two_semigroups.c -o two_semigroups
+nice -n 10 gcc -O2 two_tiles.c -o two_tiles
+nice -n 10 gcc -O2 frontier_adversary.c -o frontier_adversary
+nice -n 10 gcc -O2 three_profiles.c -o three_profiles
+nice -n 10 gcc -O2 read_sparse.c -o read_sparse
+nice -n 10 ./two_semigroups 202610202 100000 100 3000 2 0
+nice -n 10 ./two_semigroups 202610205 100000 100 3000 3 1
+nice -n 10 ./two_semigroups 202610206 20000 5000 16000 3 1 13
+nice -n 10 ./two_semigroups 202610207 10000 5000 16000 3 0 13
+nice -n 10 ./two_semigroups 202610210 10000 5000 16000 4 1 13
+nice -n 10 ./two_tiles 202610204 20000 100 3500 7
+nice -n 10 ./two_tiles 202610208 10000 500 5000 13 3
+nice -n 10 ./frontier_adversary 202610209 5000 1000 5000 1 4
+nice -n 10 ~/mathenv/bin/python identities.py
+nice -n 10 ~/mathenv/bin/python symbolic_two.py
+nice -n 10 ~/mathenv/bin/python three_low_table.py
+nice -n 10 ~/mathenv/bin/python three_profiles.py
+nice -n 10 ./three_profiles
+nice -n 10 ~/mathenv/bin/python three_profiles.py 13
+nice -n 10 ./three_profiles 13
+nice -n 10 ~/mathenv/bin/python verify_saved.py --fixtures \
+  compressed_counter.json three_tile_fixture.json frontier_best.json
+```
+
+The compression run uses one HiGHS thread and exact integer
+verification of its returned candidate. Its reported optimum
+in a residue-order cone is not a theorem dependency. No
+counterexample to Wilf or to a step of GW-24, GW-26 or GW-26c
+was found.
+
+## 30. Current exact frontier and the next lemma
+
+The full primary regime remains unproved. The new established
+results are T2.2 (all two-low cases, analytic), T2.3 (three
+lows with a>=41, analytic), and T2.3F (three lows with a>=16,
+with an explicit independently audited finite certificate).
+During this continuation the lead independently verified T2.2
+and recorded it as GW-26d in PROOFS.md. The later three-low
+claims and finite-family reduction are supplied here for the
+lead's independent review; no such review is claimed for them.
+The counts-only criteria GLOC and HLOC, END-ETA, ASR-ALL and
+the localized WINDOW-SP bounds hold for every low population.
+
+After combining these with the verified GW-24/26/26c results,
+any remaining counterexample must satisfy a>=7, alpha>=3,
+delta>0, LC-minus, LP-low and MAC-minus. With Astar and Cdef
+as in section 13, it must also satisfy
+
+```
+eta_end > Astar+(b+2)q2+k;
+W_A+T+H3+X_SR <0;
+LC+C(p_hi+2,3)-F+5r_A+D3+T+X_SR <0;
+Phi<0, Psi<0.                                      (NEW-FRONTIER)
+```
+
+All applicable WINDOW-SP and WINDOW-COUNT inequalities must
+hold, with the localized defect
+`epsilon_M=q^{<2>}-(u3+u4)` and
+`D3=Delta_a(q)+3epsilon_M`. In particular:
+
+- if alpha=3 and 7<=a<=12, the remaining family is the small
+  A-dimension family satisfying these necessary conditions;
+- if alpha=3 and 13<=a<=15, it is the explicit finite family
+  with c=e=0, d<=26, m<=5474 and count data in the saved
+  172-profile file;
+- alpha>=4 remains an unbounded family subject to the displayed
+  structural conditions. No uniform theorem for that family is
+  claimed.
+
+The next precise uniform target is the following **unproved
+four-low payment lemma**: for an actual residue-complete primary
+down-set with alpha=4 and a>=7,
+
+```
+max(Phi, Psi, W_A+T+H3+X_SR)>=0.                     (Q4)
+```
+
+Any of its three alternatives proves Wilf. The mechanism to
+test is to convert WINDOW-SP's required epsilon_M into the
+retained payment `3epsilon_M` in D3, while accounting for the
+low-star links and the missing-pair vertex cover. A relaxed
+count counterexample to Q4 would be useful only after checking
+whether its shifted pair/cubic residues can be injected. The
+fixed pure-A payment already fails on an actual semigroup, so
+that stronger assertion will not be reused.
+
+There is a separate finite target: eliminate the 172 small
+three-low profiles with global A/B signed packing, using
+c=e=0, d<=26 and m<=5474. The scalar window counts leave these
+profiles; no actual counterexample near them was found. The
+current adversarial search is dominated by outside E payment,
+so enlarging its same random boxes is discontinued. The next
+search should impose the finite profiles or the four-low
+localized-defect constraints before attempting residue-complete
+realization. This is the strategic gap after this continuation,
+not an assertion that all other proof methods are exhausted.

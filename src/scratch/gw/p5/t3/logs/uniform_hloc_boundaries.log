@@ -1,0 +1,20 @@
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=1 alpha3=1 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-540120
+THREE refined_checks=1 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=1 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-304839
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=1 negative_WA=1 negative_missing_pair=0 full_quadratic=1 sidon_branches=1 a7_negative=1 qgap_checks=0 min_P=-2 min_refined_slack=4 min_high_slack=10
+P7_BRANCHES full_l0=1 full_l1=0 actual_fixed_payment_negative=1 a7_beta3=0 a7_l0_R5=1
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=1 negative_WA=1 negative_missing_pair=0 full_quadratic=1 sidon_branches=1 a7_negative=1 qgap_checks=0 min_P=6 min_refined_slack=24 min_high_slack=18
+P7_BRANCHES full_l0=1 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=1 a7_l0_R5=1
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=0 end_arc_improves=0 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0

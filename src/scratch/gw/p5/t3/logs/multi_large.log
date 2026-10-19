@@ -1,0 +1,7 @@
+best_WA m=15330 h=3274 a=14 b=7 c=0 e=14146 q2=8 q3=96 u3=6 u4=518 k=3 WA=-124 W=3577744 LOWplus=-3545377 alpha=3 hot=384 JA=37 base=15330,16032,16198,16800,17577,17921,17960,17987,17992,18305,18357,18359,18405,18536,18586,19754,24452,27339,29119,29754,32251,33776
+best_WA m=15168 h=8144 a=25 b=1 c=0 e=12330 q2=8 q3=312 u3=2 u4=2463 k=0 WA=-610 W=5062150 LOWplus=-5032920 alpha=3 hot=1897 JA=52 base=15168,17518,18499,18894,20661,20740,20962,20980,21002,21003,21009,21094,21119,21138,21342,21572,21641,21673,21728,22050,22144,22277,22380,22423,22754,23282,33110
+best_WA m=12853 h=7128 a=22 b=1 c=0 e=10754 q2=6 q3=246 u3=0 u4=1800 k=0 WA=-756 W=3543387 LOWplus=-3523862 alpha=3 hot=1494 JA=8 base=12853,15809,16085,16149,17659,17743,17760,17901,18035,18051,18098,18472,18489,18542,18563,18824,18945,18991,19222,19502,19582,19602,19605,28169
+seed=202610206 target_alpha=3 grlex=1 trials=20000 actual=19975 a_ge7=19824 deficient_low=814 frontier=0 frontier_after_new=0 one_low_checks=12 best_WA=-756 best_frontier_W=1000000000
+P7 primary=19975 two_low_a_ge7=121 negative_WA=3 negative_missing_pair=3 full_quadratic=1 sidon_branches=0 a7_negative=0 qgap_checks=120 min_P=24 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=19975 alpha_ge3=19745 alpha3=15801 alpha3_gap_theorem=243 GLOC_nonnegative=19935 ASR_extra_positive=19910 end_arc_improves=19942 old_frontier=0 surviving_frontier=0 closest_old_frontier=-635193

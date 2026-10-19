@@ -1,0 +1,13 @@
+best_WA m=2829 h=1280 a=10 b=8 c=0 e=2272 q2=3 q3=51 u3=1 u4=189 k=0 WA=-8 W=404904 LOWplus=-398728 alpha=2 hot=140 JA=11 base=2829,3253,3304,3773,3798,3833,3910,3939,3961,3991,4032,4153,4495,4851,5019,5252,5563,6173,6541
+best_WA m=2356 h=656 a=11 b=4 c=0 e=1899 q2=4 q3=61 u3=1 u4=251 k=0 WA=-32 W=256546 LOWplus=-251835 alpha=2 hot=191 JA=13 base=2356,2541,2646,2810,2844,2851,2898,2919,2921,2942,2942,2970,2992,4027,4608,5022,5254,5306
+best_WA m=2022 h=1015 a=10 b=0 c=0 e=1742 q2=4 q3=51 u3=4 u4=210 k=0 WA=-53 W=162960 LOWplus=-158972 alpha=2 hot=140 JA=18 base=2022,2304,2350,2722,2788,2821,2823,2859,2874,2994,2994,3003
+best_WA m=2839 h=866 a=11 b=5 c=0 e=2330 q2=3 q3=62 u3=0 u4=256 k=0 WA=-72 W=361443 LOWplus=-355911 alpha=2 hot=193 JA=8 base=2839,3156,3203,3424,3491,3499,3535,3553,3578,3595,3596,3685,4835,5264,5297,5717,6260
+best_WA m=2825 h=1374 a=11 b=0 c=0 e=2470 q2=3 q3=63 u3=0 u4=277 k=0 WA=-148 W=253243 LOWplus=-248784 alpha=2 hot=233 JA=4 base=2825,3389,3461,3768,3809,3856,4001,4033,4094,4104,4160,4195
+negative_fixed_pure_payment m=2593 h=2546 a=8 P=-1 saved=semigroup_alpha2_mode0_min_p.json
+best_WA m=2997 h=1473 a=13 b=3 c=0 e=2436 q2=3 q3=87 u3=0 u4=412 k=0 WA=-160 W=352580 LOWplus=-347010 alpha=2 hot=357 JA=7 base=2997,3493,3726,4000,4077,4197,4227,4249,4290,4290,4360,4363,4384,4411,4438,6230,7078,7448
+negative_fixed_pure_payment m=2436 h=2292 a=8 P=-3 saved=semigroup_alpha2_mode0_min_p.json
+seed=202610202 target_alpha=2 grlex=0 trials=100000 actual=99122 a_ge7=91769 deficient_low=983 frontier=0 frontier_after_new=0 one_low_checks=1880 best_WA=-160 best_frontier_W=1000000000
+P7 primary=99122 two_low_a_ge7=72255 negative_WA=968 negative_missing_pair=361 full_quadratic=6812 sidon_branches=1633 a7_negative=184 qgap_checks=65443 min_P=-3 min_refined_slack=4 min_high_slack=6
+P7_BRANCHES full_l0=1188 full_l1=445 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=162
+MULTI primary=99122 alpha_ge3=17908 alpha3=997 alpha3_gap_theorem=0 GLOC_nonnegative=95405 ASR_extra_positive=98166 end_arc_improves=98319 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0

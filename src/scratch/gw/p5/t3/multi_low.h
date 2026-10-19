@@ -19,7 +19,7 @@ static void multiverify(int m,int d,const int *F,const int *degs,const int *n){
   if(cl[j]==1){lo[j]=2*(n[j]-m)<h;alpha+=lo[j];p+=3*(n[j]-m)>=2*h;if(n[j]-m<L)L=n[j]-m;}
  }
  int q2=0,q3=0,u3=0,u4=0,k=0,s=0,t=0,J=0,JA=0,JE=0,J0=0,JA0=0,extra=0,hot=0,SR=0;
- int n0=0,c0=0,u0=0,u1=0,k0=0,k1=0;
+ int n0=0,c0=0,u0=0,u1=0,k0=0,k1=0,betaLL=0;
  int theta=(3*h+1)/2;
  long long ell=0,g=0;
  unsigned char *bad=calloc(m,1),*seen=calloc(m,1);
@@ -32,7 +32,7 @@ static void multiverify(int m,int d,const int *F,const int *degs,const int *n){
   q2+=dg==2&&A==2&&band==2;q3+=dg==2&&A==2&&band==3;
   u3+=dg==3&&A==3&&band==3;u4+=dg==3&&A==3&&band==4;k+=dg==4;
   s+=dg==2&&A==1&&B==1&&band==3;t+=dg==2&&B==2&&band==3;
-  if(dg==2&&A==2&&band==2){if(LL==2)n0++;else for(int j=0;j<dg;j++)if(lo[F[4*i+j]])links[F[4*i+j]]++;}
+  if(dg==2&&A==2&&band==2){if(LL==2){n0++;betaLL+=tau<theta-h;}else for(int j=0;j<dg;j++)if(lo[F[4*i+j]])links[F[4*i+j]]++;}
   c0+=dg==3&&LL==3;
   if(dg==3&&A==3&&band==3){if(LL==3)u0++;else u1++;}
   if(dg==4){if(LL==4)k0++;else k1++;}
@@ -89,6 +89,15 @@ static void multiverify(int m,int d,const int *F,const int *degs,const int *n){
    p7need(em>=0,"uniform legal-cubic defect",m,d,NULL,n);
    p7need(2LL*(3*w-2)>=2LL*ns*(p7_c2(ns)+1)-p7L2(ns)*em,"uniform short WINDOW-SP",m,d,NULL,n);
    p7need(2LL*(3*delta-2)>=2LL*nw*(p7_c2(nw)+1)-p7L2(nw)*em,"uniform wide WINDOW-SP",m,d,NULL,n);
+   int ex=l+rr;if(ex>pp)ex=pp;
+   long long CH=alpha+n0+c0+l+ex+p7_c3(ex+2)+(n0+1LL*alpha*ex)*pp;
+   long long Psi=delta+a-1+(a+3LL)*q2+D3+(a+1LL)*u3-5*k-2*CH
+      +b*(a-1LL+q2+u3-2*(alpha+ex+q2))+G+(c+e)*(2*q2+u3)-2LL*c*(alpha+ex);
+   long long hp=Astar+(b+2LL)*q2+k+delta-2*J0;
+   p7need(JA0<=CH+k&&J0-JA0<=b*(alpha+ex+q2)+c*(alpha+ex),"uniform HLOC counts",m,d,NULL,n);
+   p7need(hp>=Psi,"uniform HLOC expansion",m,d,NULL,n);
+   long long hLoss=-delta+2*J0-(b+2LL)*q2-k;if(hLoss<0)hLoss=0;
+   p7need(W>=Astar-hLoss,"uniform HLOC I-LOW",m,d,NULL,n);
   }
   if(alpha>=3){
    mg_multi++;
@@ -96,6 +105,11 @@ static void multiverify(int m,int d,const int *F,const int *degs,const int *n){
     mg_triple++;
     if(a>=13){
      long long PP=a-1+LC+2*q2+k-2*JA;int l=0;for(int j=0;j<d;j++)l+=links[j];
+     if(c+e>0&&WA<0)p7need(pay>=0,"three-low C/E payment",m,d,NULL,n);
+     if(a==13&&n0==6&&l==0&&WA<0){
+      if(u3||betaLL<=5)p7need(a-1+q2+u3-6-2*betaLL>=1,"a13 effective b payment",m,d,NULL,n);
+      else {p7need(c0==0&&PP+D3>=0,"a13 saturated beta payment",m,d,NULL,n);}
+     }
      p7need(PP>=15-5*a,"three-low rough all",m,d,NULL,n);
      if(l>=6){p7need(PP>=0,"three-low star payment",m,d,NULL,n);if(WA<0)mg_three_stars++;}
      if(ra<=2&&l>=5-2*ra){

@@ -1,0 +1,3 @@
+/home/jmercedes/wilf/p7/compress_counter.py:52: RuntimeWarning: Unrecognized options detected: {'threads'}. These will be passed to HiGHS verbatim.
+  out=milp(obj,integrality=np.ones(N),bounds=Bounds(np.ones(N),np.full(N,np.inf)),
+{"scope": "one fixed residue-order cone", "status": 0, "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)", "old_m": 3131, "old_h": 2023, "m": 985, "h": 569, "A_offsets": [192, 198, 397, 408, 436, 452, 456], "nodes": 1, "gap": 0.0}

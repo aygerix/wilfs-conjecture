@@ -83,4 +83,8 @@ check('three-low high count expansion',a-1+(a+3)*(6-r+l)-2*hiCount,-oldB)
 for rr in range(3):
     tt=5-2*rr
     check('three-low gap stars r='+str(rr),15-5*a+rr*(4*a-3*rr-1)/2+tt*(a+2-tt),[0,10,9][rr])
+CH=alpha+n+c0+l+j+C3(j+2)+(n+alpha*j)*(a-alpha)
+highcount=CH+k+b*(alpha+j+q2)+c*(alpha+j)
+check('uniform HLOC identity',AA+(b+2)*q2+k+delta-2*highcount,
+    delta+a-1+(a+3)*q2+D3+(a+1)*u-5*k-2*CH+b*(a-1+q2+u-2*(alpha+j+q2))+G+(c+e)*(2*q2+u)-2*c*(alpha+j))
 print(json.dumps(dict(verified=len(checks),identities=checks)),flush=True)

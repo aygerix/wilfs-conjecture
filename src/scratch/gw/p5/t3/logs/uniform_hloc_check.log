@@ -1,0 +1,28 @@
+best_WA m=13903 h=8028 a=12 b=1 c=0 e=13432 q2=10 q3=68 u3=0 u4=347 k=0 WA=-88 W=1859595 LOWplus=-1834222 alpha=4 hot=200 JA=24 base=13903,16893,17241,17252,17468,19564,19665,19981,20698,20708,20724,21522,21664,21664,26478
+best_WA m=7898 h=4108 a=19 b=1 c=0 e=6458 q2=11 q3=176 u3=8 u4=1163 k=0 WA=-172 W=1838150 LOWplus=-1822673 alpha=4 hot=796 JA=76 base=7898,9079,9249,9326,9461,10720,10812,10861,10878,10964,11092,11154,11419,11431,11472,11601,11610,11647,11649,11896,14995
+best_WA m=11678 h=6916 a=19 b=1 c=0 e=10210 q2=10 q3=180 u3=2 u4=1207 k=0 WA=-416 W=2863654 LOWplus=-2841214 alpha=4 hot=839 JA=55 base=11678,13862,14154,14548,15047,16430,16481,16776,16795,16843,16930,16952,17155,17175,17493,17953,18065,18092,18136,18287,22499
+seed=202610212 target_alpha=4 grlex=1 trials=1000 actual=999 a_ge7=993 deficient_low=20 frontier=0 frontier_after_new=0 one_low_checks=0 best_WA=-416 best_frontier_W=1000000000
+P7 primary=999 two_low_a_ge7=1 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=1 min_P=59 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=999 alpha_ge3=996 alpha3=11 alpha3_gap_theorem=0 GLOC_nonnegative=998 ASR_extra_positive=996 end_arc_improves=998 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1731478
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=1 alpha3=1 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-540120
+THREE refined_checks=1 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=1 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-304839
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=1 negative_WA=1 negative_missing_pair=0 full_quadratic=1 sidon_branches=1 a7_negative=1 qgap_checks=0 min_P=-2 min_refined_slack=4 min_high_slack=10
+P7_BRANCHES full_l0=1 full_l1=0 actual_fixed_payment_negative=1 a7_beta3=0 a7_l0_R5=1
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=1 negative_WA=1 negative_missing_pair=0 full_quadratic=1 sidon_branches=1 a7_negative=1 qgap_checks=0 min_P=6 min_refined_slack=24 min_high_slack=18
+P7_BRANCHES full_l0=1 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=1 a7_l0_R5=1
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=1 end_arc_improves=1 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+P7 primary=1 two_low_a_ge7=0 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=0 min_P=1000000000 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=1 ASR_extra_positive=0 end_arc_improves=0 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0

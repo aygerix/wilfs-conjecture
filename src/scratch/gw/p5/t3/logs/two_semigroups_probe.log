@@ -1,0 +1,4 @@
+best_WA m=612 h=325 a=8 b=2 c=0 e=437 q2=3 q3=33 u3=2 u4=108 k=1 WA=-3 W=31439 LOWplus=-30154 alpha=2 hot=71 JA=11 base=612,691,739,868,881,884,895,901,905,1338,1508,1513
+best_WA m=682 h=417 a=8 b=3 c=0 e=483 q2=3 q3=33 u3=0 u4=107 k=0 WA=-5 W=41592 LOWplus=-40183 alpha=2 hot=59 JA=13 base=682,814,837,967,982,984,1027,1038,1078,1186,1374,1702
+seed=202610201 trials=10000 actual=9583 a_ge7=7340 deficient_low=2 frontier=0 frontier_after_new=0 one_low_checks=454 best_WA=-5 best_frontier_W=1000000000
+P7 primary=5592 two_low_a_ge7=5592 negative_WA=2 negative_missing_pair=0 full_quadratic=87 sidon_branches=25 a7_negative=0 qgap_checks=5505 min_P=6 min_refined_slack=31 min_high_slack=16

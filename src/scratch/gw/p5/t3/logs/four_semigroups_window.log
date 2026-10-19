@@ -1,0 +1,9 @@
+best_WA m=9968 h=4692 a=18 b=4 c=0 e=8652 q2=12 q3=157 u3=7 u4=1035 k=0 WA=-246 W=2325004 LOWplus=-2304407 alpha=4 hot=683 JA=73 base=9968,11299,11471,11769,11934,13229,13255,13329,13375,13394,13564,13612,13732,13932,13935,14359,14365,14515,14543,20870,22101,22943,23294
+best_WA m=12568 h=5241 a=16 b=4 c=0 e=11401 q2=11 q3=125 u3=3 u4=787 k=0 WA=-338 W=2664069 LOWplus=-2639159 alpha=4 hot=578 JA=39 base=12568,14153,14542,14608,14975,16203,16321,16455,16958,16989,17084,17174,17249,17606,17707,17760,17764,19249,26276,28137,29253
+best_WA m=13364 h=7370 a=20 b=9 c=0 e=11382 q2=10 q3=198 u3=1 u4=1384 k=0 WA=-513 W=4688518 LOWplus=-4659753 alpha=4 hot=969 JA=42 base=13364,15818,16270,16691,16963,18379,18515,18635,18658,18720,18734,18774,19177,19247,19327,19483,19752,19939,19971,20060,20656,24228,25051,25791,26541,27091,27608,33190,33538,33908
+best_WA m=12124 h=5836 a=20 b=2 c=0 e=10436 q2=10 q3=198 u3=0 u4=1409 k=0 WA=-630 W=3095492 LOWplus=-3073845 alpha=4 hot=1103 JA=33 base=12124,14195,14423,14683,14958,16027,16149,16396,16466,16515,16533,17087,17104,17142,17250,17336,17366,17380,17600,17879,17912,25123,27052
+seed=202610210 target_alpha=4 grlex=1 trials=10000 actual=9984 a_ge7=9908 deficient_low=129 frontier=0 frontier_after_new=0 one_low_checks=5 best_WA=-630 best_frontier_W=1000000000
+P7 primary=9984 two_low_a_ge7=13 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=13 min_P=26 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=9984 alpha_ge3=9935 alpha3=140 alpha3_gap_theorem=1 GLOC_nonnegative=9968 ASR_extra_positive=9963 end_arc_improves=9974 old_frontier=0 surviving_frontier=0 closest_old_frontier=-705990
+THREE refined_checks=2 negative_stars_paid=1 negative_nearfull_paid=0

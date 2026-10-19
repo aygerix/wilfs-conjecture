@@ -1,0 +1,11 @@
+new_negative_WA m=1166 h=637 a=10 e=901 q2=3 u3=0 u4=199 k=0 WA=-48 offsets=208,312,495,625,510,481,590,581,478,586
+new_negative_WA m=3122 h=1246 a=14 e=2499 q2=4 u3=0 u4=503 k=0 WA=-167 offsets=594,605,641,791,758,1126,1047,1087,1232,1022,847,1034,843,1052
+new_negative_WA m=3276 h=1541 a=14 e=2650 q2=3 u3=0 u4=506 k=0 WA=-194 offsets=741,742,1366,824,1310,889,1293,1068,1207,1097,1164,1497,1487,1515
+new_negative_WA m=3458 h=1633 a=13 e=2922 q2=5 u3=0 u4=431 k=0 WA=-198 offsets=718,758,1631,1193,1119,963,871,1537,1566,1559,1582,1563,1435
+new_negative_WA m=3481 h=1482 a=15 e=2736 q2=4 u3=0 u4=609 k=0 WA=-212 offsets=518,628,1343,1033,1090,1452,1229,1408,1431,1459,1253,885,1437,1391,1176
+new_negative_WA m=3446 h=1549 a=14 e=2811 q2=4 u3=0 u4=515 k=0 WA=-215 offsets=594,769,840,1214,1530,1103,1025,1481,1093,1280,1009,1014,1406,1505
+new_negative_WA m=3378 h=1981 a=14 e=2746 q2=3 u3=0 u4=512 k=0 WA=-218 offsets=913,929,1327,1607,1220,1862,1504,1124,1625,1105,1579,1803,1436,1284
+two_tiles seed=202610204 trials=20000 successful=13429 negative_WA=3829 best_WA=-218 closest_fixed_deficit=-1886
+P7 primary=13429 two_low_a_ge7=13429 negative_WA=3829 negative_missing_pair=0 full_quadratic=13429 sidon_branches=11028 a7_negative=502 qgap_checks=0 min_P=-22 min_refined_slack=4 min_high_slack=6
+P7_BRANCHES full_l0=6792 full_l1=4236 actual_fixed_payment_negative=35 a7_beta3=0 a7_l0_R5=521
+MULTI primary=13429 alpha_ge3=0 alpha3=0 alpha3_gap_theorem=0 GLOC_nonnegative=13429 ASR_extra_positive=12355 end_arc_improves=13429 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000

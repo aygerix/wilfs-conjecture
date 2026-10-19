@@ -14,6 +14,13 @@ def make_fixtures():
     D=[()]+[(i,) for i in range(7)]+list(combinations_with_replacement(range(7),2))
     D+=[v for v in combinations_with_replacement(range(7),3) if sum(t[j] for j in v)>=h]
     D += [(7,),(0,7),(1,7),(0,0,7),(0,1,7),(1,1,7)]
+    wc=weights+[36100];dc=D+[(8,),(0,8),(1,8)]
+    uc={sum(wc[j] for j in v)%m for v in dc}
+    assert len(uc)==len(dc) and h-1 not in uc
+    for r in range(m):
+        if r not in uc:
+            j=len(wc);wc.append(3*m+h+(r-h)%m);dc.append((j,))
+    Path('a7_beta3_C.json').write_text(json.dumps(dict(m=m,h=h,weights=wc,D=dc))+'\n')
     used={sum(weights[j] for j in v)%m for v in D}
     assert len(used)==len(D) and h-1 not in used
     for r in range(m):
@@ -123,5 +130,5 @@ def verify(path):
 
 if __name__=='__main__':
     args=sys.argv[1:]
-    if '--fixtures' in args:make_fixtures();args.remove('--fixtures');args+=['cold_mixed_minimal.json','a7_beta3.json']
+    if '--fixtures' in args:make_fixtures();args.remove('--fixtures');args+=['cold_mixed_minimal.json','a7_beta3.json','a7_beta3_C.json']
     for path in args:verify(path)

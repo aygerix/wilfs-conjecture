@@ -1,0 +1,1 @@
+{"a7_exception": {"high_r0": 3, "high_r1": 5, "mac26": 71, "mac26_minus26": 45}, "cold": {"a": [7, 100], "cases": 10340}, "macaulay_gap": {"a": [7, 300], "cases": 4544456, "min_slack": 0}, "rough": {"a": [7, 300], "cases": 35819980, "min_slack": 0}, "sidon_alternative": {"a": [7, 1000], "cases": 998970}}
