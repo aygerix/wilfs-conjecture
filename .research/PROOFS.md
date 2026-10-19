@@ -1139,6 +1139,24 @@ CCP ⇒ GW.
 - Residue-free, CCP fails exactly where GW fails (d = 2, m = 6). It also fails at n = (12,12), m = 9, where GW holds:
   the same instance as for CP.
 
+**Conjecture TR (uniform transfer to the small-generator face).** Multiplicity form at any level K = ⌊M/m⌋, with
+ρ = (K+1)m − 1 − M. Let A = {a : n_a < 2m − ρ} (band-1 directions), F_A = D ∩ ℕ^A and
+W_A := (|A|+1)Σ_{F_A}λ − K|F_A| (no ρ term). Then
+
+    dℓ − g ≥ W_A.
+
+So the cells using any other direction never make things worse than the pure A-face.
+- For K = 4 this is (a version of) the codex P4 transfer lemma, PROVED there with explicit extra nonnegative terms.
+- For A = ∅, W_A = 0 and TR is GW itself for "no generator in (m, 2m − ρ)". So TR at all K contains that case of
+  Wilf.
+- Evidence (E205):
+  - holds for every K on all 5,311,726 semigroups of genus ≤ 28 (intrinsic face Ap ∩ ⟨A⟩);
+  - holds on residue-complete down-sets d = 2, m ≤ 14, k ≤ 6 and d = 3, m ≤ 10, k ≤ 4.
+- Where the face is deficient: W_A < 0 occurs only for K ≥ 5 in the semigroup data (EF-type faces need larger m at
+  K = 4). There −W_A ≤ 2·(m − |F_A|), i.e. the deficit is at most twice the number of residues the face misses.
+- Residue-free, TR failed in these ranges (d = 2, m ≤ 13, k ≤ 6; d = 3, m ≤ 8, k ≤ 4) only with A = ∅, i.e. only
+  where GW itself fails (e.g. {|x| ≤ 2}, n = (9,9)).
+
 **Conjecture LW (local Wilf; intrinsic, stronger than Wilf).** For every numerical semigroup S with multiplicity m and
 Apéry poset (Ap(S, m), ≤_S), put H(w) = max(↑w) − w = max{u ∈ Ap : w + u ∈ Ap}. Then
 
