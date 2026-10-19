@@ -105,8 +105,9 @@
    non-maximal tops, with distinct residues for maximal tops. HCR ≥ 1 implies Wilf for every S with that tile.
    - **Computational theorem (E153):** the complete exact 4-D tile enumeration gives HCR ≥ 1 on every 4-D lattice tile
      with 14 ≤ m ≤ 39 (only failures: two tiles at m = 13; 9,532,388 tiles, exact certificates checked through 39).
-     With BGOW (m ≤ 18), **Wilf holds for every e = 5 S with m ≤ 39.** Trust base: the enumerator and its exact volume and facet certificates, checked by an independent
-     checker pass, but the same codebase.
+     With BGOW (m ≤ 18), **Wilf holds for every e = 5 S with m ≤ 39.** Trust base: the enumerator and its exact volume
+     and facet certificates. Since 2026-10-19 a method-independent enumerator agrees for every m ≤ 39 (E160:
+     4ti2 + gfan, own canonical lattices, exact HCR).
    - 4-D tightness: thin near-simplex tiles (levels ≤ 3, t ≈ m/2, mostly two-face), with H/m ≈ 0.8–1.2 and R carrying
      about 45%. The m = 13 failures are exactly the near-star formula with d = 4, q = 8.
    - Open link: a proof for m ≥ M0. HT4 alone (H ≥ 1.5m) fails up to at least m = 27, because thin tiles persist.
@@ -173,4 +174,5 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       4n_1 > c + m) with window + lower-cover payments.
 (c) Lean, queued after P5b (one agent at a time): GW-19/GW-25 (GW-27 needs no Lean work: its semigroup form is already
     `wilf_of_apery_height_le_two`).
-(d) Background: gfan re-check of E153 (m = 38–39); codex HT4 subclass claims are unverified.
+(d) Background: the gfan re-check of E153 is COMPLETE for m ≤ 39 (E160): an independent second enumeration agrees, so
+    Wilf for e = 5 with m ≤ 39 rests on two independent enumerations. The codex HT4 subclass claims are still unverified.
