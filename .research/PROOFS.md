@@ -2458,6 +2458,31 @@ Checks (E275):
   - `band_superadditive`, which is (c) for prime m: Θ_a + Θ_b ≤ Θ_{a+b+1}.
   The general-m Kneser form is paper only.
 
+## Proposition VOL (cube-volume near-Wilf, universal) — PROVED 2026-10-19 (paper; random check E277)
+Setting: any S with multiplicity m and c > m. Let q = ⌈c/m⌉, ρ = qm − c, d = e − 1, n_1, …, n_d the non-m minimal
+generators, N = Σ n_i, and u_t = #{r : x_r ≤ t}.
+
+**Statement.** u_t ≥ m·((t+1)m/Λ)^d for 0 ≤ t ≤ q − 1, where Λ = c + m − 1 + N. Consequently
+- e·ℓ ≥ qm·(1 + (m − 1 + N)/(qm))^{−(e−1)} − eρ, and hence
+- **W(S) = eℓ − c ≥ −(e − 1)·(m − 1 + ρ + Σ_i n_i).**
+
+**Proof.**
+1. Let D ⊆ ℕ^d be an Apéry factorization tile: a down-set with |D| = m and v(x) = Σ x_i n_i bijective onto Ap(S, m).
+   Put D̃ = ∪_{x∈D} (x + [0,1]^d).
+2. D̃ is a down-set of ℝ^d_{≥0}. If y′ ≤ y ∈ x + [0,1]^d, take x′_i = x_i when y′_i ≥ x_i and x′_i = ⌊y′_i⌋ otherwise.
+   Then x′ ≤ x, so x′ ∈ D, and y′ ∈ x′ + [0,1]^d.
+3. Therefore D̃ is star-shaped from 0. So f(λ) = vol(D̃ ∩ {v < λ}) satisfies f(λ)/λ^d non-increasing (scale by λ/λ′).
+4. The cube at x contributes 0 to f(λ) if v(x) ≥ λ, and at most 1 otherwise. So u_t ≥ f((t+1)m).
+5. Also f(Λ) = m, since max_{D̃} v = max Ap + N = c − 1 + m + N. Hence u_t ≥ m((t+1)m/Λ)^d.
+6. Sum with the YZ exact formula ℓ = Σ_{t<q} u_t − ρ, and use Σ_{s=1}^{q} s^d ≥ q^{d+1}/(d+1) and Λ ≤ qm + m − 1 + N.
+   Bernoulli's inequality gives the linear form. ∎
+- Meaning: Wilf holds up to an additive error (e−1)(Σ n_i + m − 1 + ρ). Relative to c this is O(e²κ/q) when every
+  generator is ≤ κm.
+- This is the continuous scaling argument made rigorous with unit cubes. It is never exact. The whole difficulty of
+  Wilf is the discrete correction of that size.
+- It is much weaker than Wilf. Its value is as a universal structural inequality, which beats D'Anna–Moscariello's
+  c ≤ q·e·ℓ when q is large and the generators are small. It is nearly tight for e = 2 (E277: ratio 1.0105 at ⟨117, 599⟩).
+
 ## Lemma LK-SHARP (no lost band: the wrap goes to a short top window) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 33, E276)
 Setting as in LK-SUPER, m the multiplicity. Let β_j = max R_j, W_j = [m − β_j, m), and
 a_H(j) = #{r ∈ W_j : x_r = H} (the residues of the window whose Kunz coordinate is exactly H).
