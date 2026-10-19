@@ -2682,7 +2682,8 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
       through many factorizations and B_chain ≪ B_tile.
     - For a pure level-k generator set, a length-3 Apéry element must sit at level ≥ 3k, which raises M by ≥ m and every
       chain value with it.
-  - Status: CONJECTURE. Superseded as the line-1 target by REST-M3 below, which implies it on a larger class.
+  - Status: **FALSE** (2026-10-19 latest: ⟨53, 85..95⟩, height 3, ratio 0.99956; see "CHAIN-H3, CHAIN-M3 and
+    CHAIN-WILF(3e<m) are FALSE" below). The genus ≤ 33 evidence above stands; the counterexamples have c ≥ 223.
 - **The n_1 dichotomy (PROVED, 2026-10-19).** Let n_1 be the least minimal generator > m.
   - If M < 3n_1, every Apéry element has a factorization of length ≤ 2, hence Wilf by Flat-MaxCL (LEAN
     `wilf_of_apery_height_le_two`).
@@ -2721,7 +2722,35 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
     - Per element (PW0′, ⟨5,9,12⟩).
     - Per direction: codex P11, m = 4k+1, ⟨m, m+1..m+k⟩, direction m+k gives +6k² (in A, with REST < 0).
     - SC (y ↦ m on chains ending below c): 2 failures in A.
-  - Status: CONJECTURE. Lead and codex P12 (launched 2026-10-19) are working on it.
+  - **UPDATE (2026-10-19, latest): REST-M3 is FALSE** (lead, E289). Level-1 intervals S = ⟨m, m+a, …, m+a+L−1⟩:
+    - ⟨28, 45..50⟩: e = 7, 3e < m, M = 145 ≥ 3n_1 = 135, q = 5, REST = +85 = +0.2249·C2.
+    - Also ⟨32, 39..45⟩ (q = 4, +0.095·C2), ⟨33, 53..59⟩ (+0.409), ⟨38, 61..68⟩ (+0.643).
+    - Computed twice: chain walks (rest_int.c) and the count form (rest_check.py, Dijkstra from the generators).
+    - These lie beyond the genus ≤ 33 tree (c ≥ 103).
+  - Status: FALSE. The failure is not repairable on the class A: CHAIN itself fails there (next item).
+- **CHAIN-H3, CHAIN-M3 and CHAIN-WILF(3e<m) are FALSE (2026-10-19, lead, E289).**
+  - Smallest counterexample found: S = ⟨53, 85, 86, …, 95⟩.
+    - e = 12, so 3e = 36 < 53; Apéry height 3; M = 275 ≥ 3n_1 = 255; c = 223, q = 5.
+    - B_chain = 13,774 < need = 13,780.
+    - Wilf is not threatened: W = 485.
+    - Recomputed independently by Dijkstra (chain_interval.py) and by the DP height (m3_pert.stats).
+  - The family a ≈ 0.6m, L ≈ 0.21m keeps failing and gets worse with m:
+    - ratio 0.9777 (m = 58), 0.9593 (m = 89, ⟨89, 141..159⟩, e = 20), 0.8792 (m = 128);
+    - e/m stays ≈ 0.21–0.23, so 3e < m throughout, and every member has height 3 and M ≥ 3n_1.
+  - Depth profile, level-1 intervals with m = 60–140 (chain_intq.c):
+    - CHAIN fails at q = 3 (33,599 cases), q = 4 (185; min 0.9529, e/m = 0.214) and q = 5 (425; min 0.8738);
+    - 0 failures for q = 6..31, with min ratio 1.49 (q = 7), rising with q.
+  - MaxCL (grlex tile) holds with a large margin on the same family (maxcl_int.py). The min slack over σ is
+    0.85·m² (m = 28), 1.70·m² (m = 53), 3.44·m² (m = 89).
+    So the loss is specific to Apéry chains switching factorizations. Tile columns (B_col = B exactly) do not lose it.
+  - Consequence: every "B_chain ≥ need" criterion is dead on height ≥ 3, on 3e < m and on M ≥ 3n_1. Plan line 1 pivots
+    (STATE).
+- **The n_1 dichotomy, general height (PROVED).** If M < (h+1)·n_1, then every Apéry element has a factorization of
+  length ≤ h, so the grlex factorization tile has height ≤ h.
+  - Hence MaxCL for tiles of height ≤ h ⇒ Wilf for every S with (h+1)·n_1 > c + m − 1.
+  - h = 2 is PROVED (Flat-MaxCL, LEAN). It gives Wilf whenever 3n_1 > c + m − 1, i.e. n_1 > (c+m−1)/3, with no
+    further condition. Spirito's #24 needs n_1 > (c+m)/3 together with e ≥ 10 and m ≤ (8/25)e² + ….
+  - h = 3 would give n_1 > (c+m−1)/4; MaxCL at height 3 is partly proved (codex P6 residual, above).
 - **Repaired Conjecture CHAIN-WILF(3e<m): B_chain ≥ need whenever c > 3m and 3e < m.** Together with Eliahou's
   theorems for c ≤ 3m and for 3e ≥ m, it would still imply Wilf.
   - Evidence so far:
@@ -2729,7 +2758,8 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
     - interval semigroups restricted to 3e < m: min ratio 1.49, 1.40, 1.35, 1.34 for m = 60, 80, 100, 130;
     - all Kunz-annealing failures have 3e ≥ m (e = 13, 15 at m = 36).
   - The 3e < m boundary campaign is E284.
-  - Status: weakly supported. The 3e = m boundary of the interval family looks structural: q = 5 for an interval needs
+  - Status: **FALSE** (2026-10-19 latest: ⟨53, 85..95⟩ has 3e = 36 < 53, q = 5, ratio 0.99956). Earlier note, kept:
+    weakly supported. The 3e = m boundary of the interval family looks structural: q = 5 for an interval needs
     1- and 2-fold sums to cover almost all residues, which forces 3w ≈ m. That boundary need not hold for other
     families.
   - Evidence (E280): exhaustive over all S of genus ≤ 30 (src/scratch/p18/rc_tree.c).

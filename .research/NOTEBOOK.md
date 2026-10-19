@@ -3024,3 +3024,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Launched codex P12 on REST-M3. Lead: e = 3 proof first.
 - Process: a 6-example REST arithmetic check (rest_check.py) was run on the laptop by mistake. All other computation
   was on fejer.
+
+## 2026-10-19 (latest++++++++++) — REST-M3 and CHAIN-H3 refuted by level-1 intervals; pivot to height-3 MaxCL
+- Near-perfect level-1 bases are not the danger: max REST/C2 −0.03 over 2.8M exhaustive ⟨m, m+b_1..m+b_k⟩, k ≤ 5.
+  Wide level-1 intervals with a ≈ 0.6m, L ≈ 0.21m are.
+- REST > 0 in A from ⟨28, 45..50⟩ on. CHAIN < need from ⟨53, 85..95⟩ on, at height 3 and 3e < m; it reaches 0.879 by
+  m = 128.
+- Mechanism of the loss: interval Apéry chains pass through many factorizations, so O = B − B_chain ≫ mW − (slack),
+  while W itself is large (W = 485 at m = 53). The grlex tile does not lose this: MaxCL slack ≈ 1.7–3.4·m².
+- Depth profile:
+  - level-1 intervals fail CHAIN only at q ≤ 5;
+  - level-k intervals fail at q = 2k+1 with height 2;
+  - in class A no failure at q ≥ 6 in the range scanned.
+  - Not pursued: a CHAIN(q ≥ 6) route still needs Wilf for c ≤ 5m, which is open; P11 is partial at c ≤ 4m.
+- Kept and generalized: M < (h+1)n_1 ⇒ grlex tile height ≤ h. Height-h MaxCL ⇒ Wilf on (h+1)n_1 > c+m−1.
+  h = 2 is done (LEAN). h = 3 is the new line-1 target.

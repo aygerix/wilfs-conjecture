@@ -8,7 +8,22 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
-1. **REST-M3** (lead + codex P12, from 2026-10-19 late; PROOFS "The n_1 dichotomy" and "Conjecture REST-M3").
+1. **PIVOT (2026-10-19, latest): the Apéry-chain line is dead.** Level-1 intervals refute REST-M3, CHAIN-H3, CHAIN-M3
+   and CHAIN-WILF(3e<m) (E289). The smallest is ⟨53, 85..95⟩: height 3, 3e < m, M ≥ 3n_1, ratio 0.99956.
+   - MaxCL holds there with slack ≥ 0.85·m². What survives:
+     - the n_1 dichotomy (PROVED): M < (h+1)n_1 ⇒ tile height ≤ h;
+     - Flat-MaxCL (LEAN), which gives Wilf whenever 3n_1 > c + m − 1.
+   - New line-1 target: **MaxCL at height 3**, i.e. close the codex P6 residual. With the dichotomy this gives Wilf
+     whenever 4n_1 > c + m − 1, extending Spirito's n_1 > (c+m)/3 (which needs e ≥ 10 and m ≤ (8/25)e² + …) to
+     (c+m−1)/4 unconditionally.
+     - It is a genuine new infinite class, and the next step on a ladder (height h ⇔ (h+1)n_1 > c+m−1).
+     - Next: re-read the P6/P6e residual (k ≥ 5, t ≥ 2, k < min(40t+8, 21t+240), p < 3t), and test MaxCL at
+       height 3 on level-1 intervals and B_3-like bases.
+     - codex P13 = this residual, once P12 returns.
+   - codex P12 is working on REST-M3, which is now known FALSE. Rule: no mid-turn messages. On return, record its
+     findings and redirect.
+   Superseded entry, kept: **REST-M3** (lead + codex P12, from 2026-10-19 late; PROOFS "The n_1 dichotomy" and
+   "Conjecture REST-M3").
    - The dichotomy: if M < 3n_1, the Apéry height is ≤ 2, so Wilf holds (Flat-MaxCL, LEAN).
    - If M ≥ 3n_1, REST := Σ_{w≠0} con(w) ≤ 0 would give Δ ≤ con(0) ≤ d(m−1) ≤ C2 when d ≤ m/2. Sammartano covers
      d > m/2.
