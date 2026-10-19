@@ -547,3 +547,18 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   on Wilf for prime multiplicity. Kaplan (counting by genus) uses prime m only inside his small-genus counting
   argument. Other hits are the known e ≥ m/2 (Sammartano), e ≥ m/3 (Eliahou, EJC 2020), m/4 when m | c
   (Comm. Algebra 2024), Spirito (large second generator), m − e ≤ 5 (PJM 2018), genus < 2m − √(2m) (arXiv:2501.04417).
+
+### Search 2026-10-19 (night): packing of pair-distinct sets with few triple-sum coincidences (for JOINT-SP / P5d)
+Question: if n integers in an interval of s integers have distinct pair sums (loops included) and triple-collision
+excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_n ε, with λ_n ≈ 3n/2. Searched the web
+(B_3 sets, B_h[g] sets, signed sums a+b−c, Sidon sets with few 3-fold coincidences, additive energy T_3).
+- B_3 sets (no coincidences): f(N) ≤ ((7/2)^{1/3} + o(1)) N^{1/3}, Green, Acta Arith. 100 (2001) 365–390, as cited
+  on erdosproblems.com thread 241; Bose–Chowla gives a matching N^{1/3} order. Our SP is the classical signed-sum
+  bound n³ ≲ 6s, weaker than Green's constant.
+- B_3[g] sets (≤ g representations): |A| ≤ (14.3 g N)^{1/3} (Timmons 2016), improving (16 g N)^{1/3} (Cilleruelo,
+  Ruzsa, Trujillo). General B_h[g] bounds: Johnston, Tait, Timmons.
+- Erazo, López, Trujillo, Rev. Colombiana Mat. 2019: counts triples with a+b−c out of range (related to signed sums).
+- NOT FOUND: a bound for Sidon sets in terms of the TOTAL excess ε with a defect cost independent of n, or a
+  bound on heavy triple fibers (many disjoint triples with one common sum) in Sidon sets. Per-sum bounds (B_3[g]) do
+  not give it, since they degrade as g^{1/3} instead of linearly in ε. Searching found no such result, which does
+  not show that none exists.

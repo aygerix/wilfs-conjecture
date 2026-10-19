@@ -1457,6 +1457,38 @@ n ≤ 8 (E229); every inequality used, on 471,750 actual three-low semigroups (E
 - Open in this regime: α = 3 with 7 ≤ a ≤ 12, and α ≥ 4. The reduction of all α to the bounded-defect packing
   lemma LSP* is heuristic (NOTEBOOK 2026-10-19 night).
 
+**Theorem GW-26f (a ≤ 13, every low population; PROVED 2026-10-19, computer-assisted).** Sources: codex P5d,
+src/scratch/gw/p5/P5_REPORT.md §39 (T2-SMALL), with the lemmas of §§24–38. Verification by the lead: an independent
+re-implementation of the certificate (E235), instance checks of every lemma it uses for α ∈ [3, 8] (E234), and a paper
+check of U-SMALL/U-B0 (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 13 then W ≥ 0, for every α, b, c, e.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most 13 minimal generators lie in (m, c − 2m). Since
+  a ≤ d = e − 1, **Wilf holds for every S with e ≤ 14 and c ≤ 4m** (with GW-19, or Eliahou, for c ≤ 3m).
+- Cases: a ≤ 6 is GW-24; α ≤ 2 is GW-26/26c/26d; 7 ≤ a ≤ 13 with α ≥ 3 is a finite count certificate over
+  (a, α, r, n0, l; t, u0, u1; c0; β ∈ {0, β_max}; R, b; δ), cut by:
+  - W̄_A + Ĥ ≤ −1 (HOT-ALL; Ĥ = H_cold of COLD-HIGH if β ≥ 1, else 0), with quartic allowances
+    K0 = min(u0^{⟨3⟩}, ⌊(α+3)u0/4⌋), K1 = ⌊(α+2)u1/3⌋;
+  - f_R + b·B_f ≤ −1 (fixed arc: R-EXACT with S_min; β maximal under COLD-MAC dominates every β ≥ 1);
+  - δ ≤ B − D3 − b·B_H − 1 (DELTA-UP) and LOW-FIN (I-LOW with η ≤ 3δ);
+  - B-CUT and B-NEIGH on b; m_low ≤ m_up (global SP after endpoint deletion and PSP, against the cardinality bound with
+    C/E counts limited by the retained transfer costs c(c+1+q+q2+u) + e(3a+2b+c+q+q2+u)); δ ≤ m_up − 2;
+  - WINDOW-SP/COUNT, PSID, JOINT-SP/COUNT, joint PSP;
+  - MIX-GAP completion (§38): if B0 < Γ(a+b, q, r) every AB/BB pair is in I3, and then the complete d0-direction face
+    must pass SP/PSP against C(d0+3,3) − r(1+b) − t + K + c(d0+1) + e.
+- What actually kills the profiles (E235): for a ≤ 12 the cardinality test or an empty δ range alone; at a = 13, 126
+  profiles (α = 4, r = 0, n0 = 10, u = 0, β = 10, R = 9) need MIX-GAP. No window/joint packing test is needed for a ≤ 13.
+- The C/E remainders in both arc payments are nonnegative on every base state, since q + q2 + 2 ≥ 2(α+E) there. Proof
+  (lead): W_A < 0, LC ≥ 0 and a ≥ 4 give (a+17)r/3 < F, hence r < Q − 2a, so q > 2a ≥ 2(α+E). The inequality is FALSE
+  without W_A < 0 (E234: m = 1217, a = 7, α = 3, r = 19, W_A = 208). The certificate code asserts it on every state.
+- Also verified (paper, lead; algebra E230):
+  - U-SMALL: α ≥ 4, r = l = 0, ε ≤ Q_α/4 ⇒ W ≥ 0 (every a). Gap noted and closed: A-LOW (a(a−1) > 3α(α+1)) is derived
+    from LC ≥ (a+1)Q_α, which needs a ≥ α + 2; for a ∈ {α, α+1}, (a+1)u0 − 4k0 ≥ (a−α−2)u0 ≥ −2U_α gives W_A ≥ 0 directly,
+    so A-LOW holds whenever W_A < 0.
+  - U-B0: α ≥ 4, r = l = b = 0 and a ≤ 2α + 2 ⇒ W ≥ 0; otherwise MID-B0: Q_α/4 < ε ≤ [(a−2α−1)Q_α − 2a + 3α]/6.
+  - The conditions r = l = 0 are tile conditions; no tile-free translation is asserted.
+- Caveats: the certificate is over relaxed count profiles (necessary conditions), re-implemented independently. The
+  MIX-GAP budget containment and completion accounting are paper lemmas of codex, checked on actual semigroups (E234),
+  not re-derived line by line by the lead.
+
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
 CORRECTION (2026-10-19, same day): this is NOT a new result of this project. It is the corollary of Flat-MaxCL
@@ -1794,8 +1826,10 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - with at most one low unit (GW-26c; semigroups: 2n_2 ≥ c − m);
   - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
   - with exactly three low units and a ≥ 13 (GW-26e);
+  - whenever a ≤ 13, for every low population (GW-26f; semigroups: at most 13 minimal generators in (m, c − 2m));
   - whenever LOW+ holds (GW-26b).
-  - Semigroup corollary of the a ≤ 6 case: since a ≤ d = e − 1, **Wilf holds for every S with e ≤ 7 and c ≤ 4m**
+  - Semigroup corollary of GW-26f (superseding the a ≤ 6 corollary for e ≤ 7): **Wilf holds for every S with e ≤ 14 and
+    c ≤ 4m**. Earlier: the a ≤ 6 case gave Wilf for every S with e ≤ 7 and c ≤ 4m
     (with Eliahou, or our GW-19, for c ≤ 3m). More generally, it holds when 3m < c ≤ 4m and at most six minimal
     generators lie in (m, c − 2m).
   Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete

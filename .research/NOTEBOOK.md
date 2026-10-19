@@ -2230,3 +2230,41 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     for K ≥ 5. Decision: finish c ≤ 4m first (codex P5d), then P6 (height ≤ 3), then reassess TR at K = 5.
   - **Killed or parked this cycle:** the per-fiber cardinality bound H − NS ≤ c·ex (false for planted fibers;
     codex's fiber_family.py builds the same family); count-only packing (too weak for κ < 7.3).
+
+## 2026-10-19 (morning) — a ≤ 13 closed for every α (e ≤ 14 and c ≤ 4m); the true packing constant
+
+- **GW-26f (T2-SMALL) verified** (E235). The lead re-implemented the a ≤ 13 certificate from the report text. Every
+  count (base states, u-states, profiles reaching the cardinality test) is identical to codex's for a = 7..13, with
+  0 survivors.
+  - **Semigroup corollary: Wilf for every S with e ≤ 14 and c ≤ 4m.**
+  - Mechanism. For a ≤ 12 every profile dies at the global cardinality comparison (SP/PSP lower bound on m against
+    C(a+b+3,3) − r(1+b) − t + K + C/E) or at an empty δ range (DELTA-UP against LOW-FIN). No window or joint packing
+    is needed.
+  - At a = 13 exactly 126 profiles survive these tests (α = 4, r = 0, n0 = 10, u = 0, β = 10, R = 9, b ∈ [14, 22]).
+    All are killed by MIX-GAP completion. When the transfer budget B0 is below Γ(a+b, q, r), every AB/BB pair is
+    forced into I3, and then SP on the complete (a+b)-direction face needs m ≈ (a+b)³/2, against
+    m ≤ C(a+b+3,3) ≈ (a+b)³/6.
+  - So the decisive mechanism at small a is a **global** face-completeness contradiction, not the joint window.
+- **Lemma checks for general α** (E234): 225,009 actual semigroups with α ∈ [3,8], a up to 16. All 45 lemma checks
+  pass, including the mixed-budget containment and the completion accounting on 406 complete mixed faces.
+  - One sufficient condition, q + q2 + 2 ≥ 2(α+E) (C/E remainders nonnegative), is FALSE off the base-state domain:
+    3 instances, all with W_A > 0 and r ≥ 19.
+  - On the domain it holds by a short proof: W_A < 0 and LC ≥ 0 give (a+17)r/3 < F, hence r < Q − 2a for a ≥ 4,
+    hence q > 2a ≥ 2(α+E).
+- **U-SMALL and U-B0 checked on paper** (all steps). One gap and its repair: A-LOW uses LC ≥ (a+1)Q_α, which needs
+  a ≥ α+2. For a ∈ {α, α+1}, W_A ≥ 0 directly, since (a+1)u0 − 4k0 ≥ (a−α−2)u0 ≥ −2U_α.
+- **True packing constant** (E236). C*(n) = max (H(n) − (3s−2))/ex over pair-distinct n-sets is 2, 3, 4, 4.6, 5,
+  5.36 for n = 3..8.
+  - The extremal sets are short near-B_3 sets: n = 8, {0,1,12,28,37,45,50,52}, s = 53, ex = 14.
+  - SP12 therefore has a factor > 2 of room at n ≤ 8. The growth is slow (increments 1, 1, .6, .4, .36).
+  - Heuristic large-n picture. With s = κn³:
+    - for κ ≥ 1/6, SP_C is trivial;
+    - for small κ, the 3B count alone gives ratio ≈ 3;
+    - in between, a robust B_3 (Green-type) bound is what is needed. For random-like profiles the required collision
+      mass is ≈ 1/3 of what the Irwin–Hall shape forces at κ = 1/8.
+  - So SP12 looks true with room. A proof needs either a robust B_3 inequality with explicit constants, or a
+    frontier-specific argument.
+- **Height 3, MaxCL (parked again).** The cubic relation 2ρ(y) ≡ Σ_a y_a ρ(y − e_a) − ρ_0 (mod m) puts load
+  ψ(x) ≤ d + 2 on pairs and none on units. But its carry κ(y) ∈ {−2,…,2} is not controlled separately: doubling loses
+  the half-residue information. 1,428 random height-3 tiles: MaxCL 0 failures, normalized slack ≥ 0.25 (E-run on
+  fejer ~/wilf/h3). This adds nothing beyond E71; kept as P6 material.
