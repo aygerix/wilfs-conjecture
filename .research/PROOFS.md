@@ -1076,6 +1076,19 @@ then S satisfies Wilf's conjecture.
   involves the smallest t + 1 − e PF numbers and is a different mechanism. No statement of GW-18 was found. Novelty
   is UNVERIFIED beyond this search.
 
+**Conjecture LW (local Wilf; intrinsic, stronger than Wilf).** For every numerical semigroup S with multiplicity m and
+Apéry poset (Ap(S, m), ≤_S), put H(w) = max(↑w) − w = max{u ∈ Ap : w + u ∈ Ap}. Then
+
+    g(S) ≤ (e − 1) · Σ_{w ∈ Ap(S,m)} ⌊H(w)/m⌋,
+
+and more generally Σ_w min(i, ⌊w/m⌋) ≤ (e − 1)Σ_w min(i, ⌊H(w)/m⌋) for every i (local window family).
+- It is stronger than Wilf because ⌊H(w)/m⌋ ≤ λ(w) = ⌊(max Ap − w)/m⌋. It replaces the global top by the top of the
+  up-set of w.
+- It is the semigroup form of local GW (LP_∞) on the minimal tile, with intrinsic heights (sums inside Ap).
+- Its depth-1 and depth-2 cases are proved: GW-14 and GW-16 use only upward paths.
+- Evidence: 0 failures on all 1,950,429 semigroups of genus ≤ 26, also for the local window family; tight in 127 of
+  them (E198).
+
 **Local form and trapped cells (CONJECTURES, with the reduction PROVED).** Multiplicity form throughout.
 - Local heights: h(w) = max{v(u) : w + u ∈ D} and λ_h(w) = ⌊h(w)/m⌋ ≤ λ(w).
 - LP_i: Σ_x min(i, κ(x)) ≤ d·Σ_w min(i, λ_h(w)). LP_i implies P_i.

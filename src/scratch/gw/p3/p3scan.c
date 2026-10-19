@@ -8,12 +8,14 @@
 #include <stdint.h>
 #include <string.h>
 #include <limits.h>
+#include <assert.h>
 #define DD 5
 #define NN 64
 typedef struct {uint64_t z; unsigned char x[DD];} Cell;
 static Cell X[NN];
 static int d,m,sz,mode,n[DD],s[DD],perm[DD],used[DD],canonical,aut;
 static uint64_t shapes,weightedshapes,instances,complete,fail,highfail,lpbad,tcibad,weight;
+static uint64_t lowchecks;
 static int64_t minhigh;
 static int above[NN][NN],lower[NN][DD],nonmax[NN];
 static uint64_t unit(int a){return UINT64_C(1)<<(6*a);}
@@ -35,6 +37,25 @@ static void check(void){
  for(int i=0;i<m;i++){V[i]=0;for(int a=0;a<d;a++)V[i]+=X[i].x[a]*n[a];if(V[i]>M)M=V[i];int r=V[i]%m;if(seen[r])resok=0;seen[r]=1;}
  if(mode&&!resok)return;
  instances+=weight;if(resok)complete+=weight;
+ if(M/m==3){
+  int rho=4*m-1-M,a=0,b=0,q=0,r=0,ss=0,t=0,u=0,L=0,g=0;
+  int cls[DD]={0};
+  for(int j=0;j<d;j++){cls[j]=n[j]<2*m-rho?1:n[j]<3*m-rho?2:3;a+=cls[j]==1;b+=cls[j]==2;}
+  for(int i=0;i<m;i++){
+   int deg=0,aa=0,bb=0,cc=0;for(int j=0;j<d;j++){deg+=X[i].x[j];aa+=X[i].x[j]*(cls[j]==1);bb+=X[i].x[j]*(cls[j]==2);cc+=X[i].x[j]*(cls[j]==3);}
+   assert(deg<=3);L+=(M-V[i])/m;g+=V[i]/m;
+   if(deg==2){assert(cc==0);if(V[i]<3*m-rho){assert(aa==2);q++;}else if(aa==2)r++;else if(aa==1)ss++;else {assert(bb==2);t++;}}
+   if(deg==3){assert(aa==3);u++;for(int j=0;j<d;j++)if(X[i].x[j])assert(V[lower[i][j]]<3*m-rho);}
+  }
+  assert(q+r<=a*(a+1)/2);assert(ss<=a*b);assert(t<=b*(b+1)/2);assert(3*u<=(a+2)*q);
+  assert(L==3+2*a+b+q);
+  int W=(d+1)*L-3*m+rho;
+  int base=2*a*(a+1)+(a-2)*q-3*(r+u);
+  assert(base>=0);
+  assert(W==base+b*(3*a+b+1+q)-3*(ss+t)+(d-a-b)*(2*a+b+q)+rho);
+  if(resok){assert(t<=rho);assert(g+L==3*m-rho);assert(W>=b*q+(d-a-b)*(2*a+b+q));}
+  lowchecks+=weight;
+ }
  for(int i=0;i<m;i++){H[i]=0;for(int j=0;j<m;j++)if(above[i][j]&&V[j]-V[i]>H[i])H[i]=V[j]-V[i];}
  for(int i=0;i<m;i++){
   int k=V[i]/m,l=(M-V[i])/m,h=H[i]/m;A+=small(k);B+=small(l);C+=small(h);
@@ -84,9 +105,9 @@ static void generate(void){
 }
 int main(int argc,char**argv){
  if(argc!=5)return 1;d=atoi(argv[1]);int first=atoi(argv[2]),last=atoi(argv[3]);mode=atoi(argv[4]);if(d<1||d>DD||last>=NN)return 1;
- puts("d,m,mode,canonical_shapes,labeled_shapes,instances,residue_complete,P3fail,Kge4fail,minKge4slack,LP3fail,TCI3fail");fflush(stdout);
+ puts("d,m,mode,canonical_shapes,labeled_shapes,instances,residue_complete,P3fail,Kge4fail,minKge4slack,LP3fail,TCI3fail,K3_lemma_checks");fflush(stdout);
  for(m=first;m<=last;m++){
-  shapes=weightedshapes=instances=complete=fail=highfail=lpbad=tcibad=0;minhigh=LLONG_MAX;sz=1;memset(X,0,sizeof(X));generate();
-  printf("%d,%d,%d,%llu,%llu,%llu,%llu,%llu,%llu,%lld,%llu,%llu\n",d,m,mode,(unsigned long long)shapes,(unsigned long long)weightedshapes,(unsigned long long)instances,(unsigned long long)complete,(unsigned long long)fail,(unsigned long long)highfail,(long long)minhigh,(unsigned long long)lpbad,(unsigned long long)tcibad);fflush(stdout);
+  shapes=weightedshapes=instances=complete=fail=highfail=lpbad=tcibad=lowchecks=0;minhigh=LLONG_MAX;sz=1;memset(X,0,sizeof(X));generate();
+  printf("%d,%d,%d,%llu,%llu,%llu,%llu,%llu,%llu,%lld,%llu,%llu,%llu\n",d,m,mode,(unsigned long long)shapes,(unsigned long long)weightedshapes,(unsigned long long)instances,(unsigned long long)complete,(unsigned long long)fail,(unsigned long long)highfail,(long long)minhigh,(unsigned long long)lpbad,(unsigned long long)tcibad,(unsigned long long)lowchecks);fflush(stdout);
  }
 }
