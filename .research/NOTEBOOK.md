@@ -2876,3 +2876,17 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Covered: q ≤ 3, e ≤ 4, (k+1)(k+2) ≥ 2m, LK+YZ (deep), NO-WRAP, and c ≤ 4m with ≤ 18 low generators.
   - Open: 4 ≤ q ≲ 4m/k², k < √(2m), with carries.
   - First target: q = 4, where only 19 ≤ k < √(2m) − 1.5 with m ≥ 211 remains.
+
+## 2026-10-19 (night, latest++++) — LK-SUPER: Kneser growth from any band
+
+- The LK shift inclusion holds with any band in place of the first layer: G_{H+j+1} − R_j ⊆ G_H. For prime m the band
+  populations are therefore shifted-superadditive: Θ_{a+b+1} ≥ Θ_a + Θ_b.
+  - This extends "deep ⇒ Wilf" to semigroups with an empty first layer, where YZ, DKM and LK are silent.
+  - Exhaustive genus ≤ 33: 0 failures. 421 of 1161 structured deep empty-first-layer S are covered only by it.
+- Limits: the +1 shift (a carry) loses the factor (j+1)/j in the growth rate. On ⟨m, n⟩ the true rate is 1 band per j,
+  but the bound gives 1 per j + 1. So LK-SUPER cannot reach Wilf-tight families. Like LK, it is a lower-growth bound and
+  says nothing about late explosions.
+- Reformulation (for the record; equivalent to known identities). For the uniform cell X of a down-set tile, each
+  coordinate is uniform on its column given the others. Hence E[v] + n_i·E[X_i] ≤ V for each i, and
+  (d+1)Σ_D v = dmV − Σ_y T(y)(V − v(y)). This is the continuous scaling bound with exact slack, i.e. the Tile-TOP′′
+  identity (NoWrap.lean `sum_tileT_mul_linW`). Wilf ⟺ Σ_y T(y)(V − v(y)) ≥ (d−1)·m(m−1)/2.

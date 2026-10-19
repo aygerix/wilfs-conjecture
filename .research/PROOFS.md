@@ -2410,6 +2410,47 @@ which is all step 5 uses. With q = D − 1 ≥ 1, q·m < c ≤ (q+1)·m, k = #lo
   "proved on paper; Kneser cited".
 
 
+## Theorem LK-SUPER (band superadditivity, every band) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 33, E275)
+Setting: S any numerical semigroup, m ∈ S with m > 0 (e.g. the multiplicity), c > m, q = ⌈c/m⌉, ρ = qm − c.
+R_j = {r < m : jm + r ∈ S}, u_j = |R_j|, G_j = [0, m) ∖ R_j, g_j = |G_j|, Θ_j = u_j − 1.
+
+**Statement.**
+- (a) (Shift inclusion, every band.) For all H, j ≥ 0: G_{H+j+1} − R_j ⊆ G_H in ℤ/m.
+- (b) (Step.) If u_j ≥ 2, gcd(m, R_j) = 1 and G_{H+j+1} ≠ ∅, then g_H ≥ g_{H+j+1} + δ_j, where δ_j = u_j − 1 for
+  m prime and ⌈u_j/2⌉ in general.
+- (c) (Superadditivity, m prime.) Θ_{a+b+1} ≥ Θ_a + Θ_b whenever a + b + 1 ≤ q − 1. Hence Θ_t ≥ ⌊(t+1)/(j+1)⌋·Θ_j for
+  every j and every t ≤ q − 1. For general m, with gcd(m, R_j) = 1, the same holds with the first copy Θ_j and later
+  copies δ_j.
+- (d) (Wilf criterion.) With the exact formula ℓ = q + Σ_{t=1}^{q−2} Θ_t + Θ_{q−1} − ρ (YZ): Wilf holds whenever
+  e·[q + Σ_{t=1}^{q−2} θ_t + max(0, θ_{q−1} − ρ)] ≥ c, for any lower bounds θ_t ≤ Θ_t from (c).
+  In particular with j_0 = the first band containing a nonzero residue, θ_t = Θ_{j_0} + (⌊(t+1)/(j_0+1)⌋ − 1)δ_{j_0}
+  for t ≥ j_0.
+
+**Proof.**
+- (a) Let r ∈ G_{H+j+1} and b ∈ R_j. If r ≥ b and Hm + (r − b) ∈ S, then adding jm + b ∈ S gives (H+j)m + r ∈ S, and so
+  (H+j+1)m + r ∈ S. If r < b and Hm + (m + r − b) ∈ S, then adding jm + b gives (H+j+1)m + r ∈ S. Both contradict
+  r ∈ G_{H+j+1}.
+- (b) Kneser/Cauchy–Davenport exactly as in LK step 3, with X = G_{H+j+1}, Y = −R_j and X + Y ⊆ G_H ≠ ℤ/m (0 ∉ G_H).
+  In the periodic case Y ⊄ K, because R_j generates ℤ/m and K is proper.
+- (c) For m prime, (b) with H = a, j = b reads Θ_{a+b+1} ≥ Θ_a + Θ_b. Induct on t.
+- (d) is (c) inserted in the exact formula. ∎
+- LK is the case j = 1. LK-SUPER also covers semigroups with S ∩ (m, 2m) = ∅, where the first-layer methods (YZ, DKM,
+  LK) give nothing.
+
+Checks (E275):
+- Exhaustive: (b), for every j and every S of genus ≤ 33 (src/scratch/p18/super_check.c): 65,568,154 step checks,
+  0 failures, in both the prime and the general Kneser form. The (d) bound never exceeds ℓ.
+- Coverage: on 1161 deep (q ≥ 4) semigroups with empty first layer, S = ⟨m, jm + A*, …⟩ with j ∈ {2,3}, A* a non-AP
+  subset of a short interval, sometimes with higher generators (super_novel.py):
+  - (d) with j_0 alone covers 701;
+  - 421 are covered by (d) and by none of YZ, Eliahou/LIT (c ≤ 3m, 3e ≥ m, m ≤ 18), Kaplan 2g < 3m, type ≤ e − 1, or
+    symmetric.
+  - Example: ⟨137, 275, 276, 278, 280, 281, 282⟩, c = 4658 (q = 34), e = 7, ℓ = 2206, bound 1156.
+- Literature: first-layer methods (DKM, YZ) need S ∩ (m,2m) ≠ ∅. We found no Kneser/Cauchy–Davenport band argument
+  (searches of 2026-10-19, LITERATURE).
+- Lean: not yet. The j = 1 prime case is LayerKneser.lean. The general j needs only `shift_mem` with R_j in place of
+  lowRes.
+
 ## Theorem LK+YZ (Kneser growth combined with the Yang–Zhang staircase) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 34, E272)
 Setting as in LK, with q = D = ⌈c/m⌉ ≥ 3, ρ = qm − c, η = k = |S∩(m,2m)|, η_ρ = |S ∩ (m, 2m−ρ)|,
 Θ_t = #{1 ≤ i < m : tm + i ∈ S} = m − 1 − g_t, and Θ_{t,ρ} the same count restricted to i ≤ m − ρ − 1.
