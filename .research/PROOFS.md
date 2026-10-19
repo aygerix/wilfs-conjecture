@@ -494,6 +494,15 @@ Then r = v + ρ_0 − m·1_U and Σ_D v = M'.
   tileTOPAt_of_maxCLAt.
   - Example: ⟨7, 8, 13⟩ is NOT in the class: w_5 = 26 = 2·13 is its only factorization, with residue sum 12.
   - Novelty vs the literature is UNVERIFIED (search 2026-10-19 night found nothing).
+- **LEAN (2026-10-19 night, lean/Wilf/NoWrap.lean, 0 sorry; axioms propext, Classical.choice, Quot.sound; full
+  `lake build` OK on fejer; written and checked by the lead):**
+  - `maxCLAt_of_noWrap : IsTile D p → ∀ P : Fin d → ℕ, (∀ a, (P a : ZMod m) = p a) → (∀ x ∈ D, Σ_a x_a·P_a < m) →
+    MaxCLAt D p`. Every phase, and ANY nonnegative lift, not only the canonical one.
+  - `wilf_of_isFactTile_noWrap : IsFactTile S D → (∀ x ∈ D, Σ_a x_a·(n_a mod m) < m) → c ≤ e·ℓ`.
+  - Formalized steps: Gauss (`sum_tileT_mul_linW`), Σ_D T = d·m, the up-set count (`card_filter_le_tops`), the window
+    count (`card_window_le`, needing only injectivity of v), and a linear_combination certificate.
+  - Not yet in Lean: the intrinsic form (every w_i has a factorization with residue sum i), which needs the weighted
+    monomial-order factorization tile.
 - This strengthens "Γ = 0 ⇒ MaxCL" above, which needs ρ_0 + x·P < m and so depends on the phase.
 - It covers:
   - postage-stamp tiles (grlex-min representations of 0..m−1 over a coin set containing 1);
