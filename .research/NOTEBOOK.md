@@ -2081,3 +2081,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   set, including 4n_1 > c + m.
   - Heuristic: covering m ≤ C(d+3,3) residues at height 3 forces spread-out residues. That forces missing extensions
     (large φ) or bonuses below every deficient cubic.
+- **Height 3, residual after the shift (E223).** Pay each crown deficit 1 from its window partner (when that partner
+  has c ≥ 1); call what is left the residual.
+  - Residual ≤ spare pair surplus in every instance (genus ≤ 27; 107k random height-3; min margin 2).
+  - Units alone fail 0.5% of the time (e = 4, su = 0).
+  - Routing the residual only to lower pairs fails about 270 times per 400k on near-arithmetic generator sets, e.g.
+    ⟨10, 17, 18, 19⟩. There 3e_1 needs the unit e_1, since its only lower pair 2e_1 has c = 1. Routing to all lower
+    cells always succeeds.
+  - Conjectures for height ≤ 3 (each implies Wilf there):
+    - **OI3**: Σ_L c ≥ 0 for every order ideal L.
+    - **SB3**: shift (one unit per crown deficit) plus downward payment.
+  - Residual sources:
+    - def-2 crown cubics. Their three lower covers are carry pairs with residue > μ, so c ≥ 1 + λφ.
+    - Crown cells whose partner is a zero window cubic (three low units, no carry).
+    - Case-B crown cells with s < 2μ + 2 − m.
+    - Far cubics, s > (m+3μ)/2. Their lower covers are again carry pairs above μ.
+- **H_E refuted:** E < 0 does not force 3e ≥ m (⟨37,47,48⟩ ∪ [252,∞)). PREFIX (value-ordered payment) is false at
+  height ≥ 5.

@@ -279,6 +279,11 @@ v ∈ [c, c+n_a) gives Σ_a Σ_v x(v)_a.)  Tile-CL at all s ⇔ the same with c 
   (e = 4, needs 4 translates, W = 2); 22 failures among t > e−1 cases with genus ≤ 16.
 - S1 (Σ_a (C − Def_a)^+ ≤ C + E, C = m(m−1)/2): FALSE, ⟨7,11,12,20⟩ (W = 2).
 - TOP_0 (Lemma A's predecessor without E): FALSE, e.g. ⟨9,13,14,15,16⟩.
+- H_E (2026-10-19: every Eliahou semigroup, E < 0, has 3e ≥ m, which with Eliahou's 3e ≥ m theorem would give Wilf):
+  FALSE. ⟨37, 47, 48⟩ ∪ [252, ∞) has m = 37, e = 12 (3 left, 9 right generators), E = −3, W = 492. The search was
+  exhaustive over truncations ⟨m, a, b⟩ ∪ [C, ∞), m ≤ 40, a < b < 3m, C ≤ 8m: 1,001 Eliahou semigroups, 5 with
+  3e < m, all of this one semigroup. Note the exact identity W = E + r(|L| − q), r = #right generators; Eliahou
+  semigroups sampled so far have W/c ≥ 0.625.
 - WQ (2026-10-19: for e ≥ 4, the unit cells plus the non-unit cells with residue in (μ, min(2μ, m−1)] pay every
   deficit of the G-ID cell decomposition). True on all 14.4M semigroups with e ≥ 4 of genus ≤ 30 (lex and grlex tiles).
   FALSE in general (E220). Cubic failure: ⟨15, 22, 24, 25⟩, μ = 13, five deficient crown cubics against window credit

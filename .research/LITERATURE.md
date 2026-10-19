@@ -522,3 +522,10 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
 - No statement of Wilf for every S with quadratic Apéry set, or for n_1 > (c+m)/3 without Spirito's conditions.
   GW-27 is therefore beyond what we found, with the usual caveat that a missing hit is not proof of absence.
 
+
+## Search 2026-10-19 (scope: Wilf for height-3 Apéry sets, Ap ⊆ {0} ∪ P ∪ 2P ∪ 3P, e.g. 4n_1 > c + m)
+- Web (extended): Wilf + Apéry elements as sums of at most three generators; Wilf + second generator > (c+m)/4.
+- Our own record: GW-25 and GW-26 are height-3 statements, but only for 3m < c ≤ 4m. Flat-MaxCL covers height ≤ 2.
+  The NOTEBOOK "Height-3 natural scheme" of 2026-10-17 has no proof.
+- Hits: only Spirito 1710.09245 (n_1 > (c+m)/3), Eliahou 3e ≥ m, Sammartano 2e ≥ m, and the c ≤ 3m results.
+- No statement for height 3 at every depth was found.
