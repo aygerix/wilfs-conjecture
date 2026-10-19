@@ -279,6 +279,13 @@ v ∈ [c, c+n_a) gives Σ_a Σ_v x(v)_a.)  Tile-CL at all s ⇔ the same with c 
   (e = 4, needs 4 translates, W = 2); 22 failures among t > e−1 cases with genus ≤ 16.
 - S1 (Σ_a (C − Def_a)^+ ≤ C + E, C = m(m−1)/2): FALSE, ⟨7,11,12,20⟩ (W = 2).
 - TOP_0 (Lemma A's predecessor without E): FALSE, e.g. ⟨9,13,14,15,16⟩.
+- Downward / window payment schemes for the G-ID cells (2026-10-19), all FALSE in general (E222–E224):
+  - OI: every order ideal L has Σ_L c ≥ 0. Fails from height 4.
+  - Shift plus downward. Fails from height 6.
+  - PREFIX: value-prefix sums ≥ 0. Fails from height 5.
+  - Free choice of term order does not save them: for ⟨114, 305, 307, 310⟩ none of 200 weight orders admits OI or
+    shift plus downward (W = 2161). The large-depth slack is not located below the deficient cells.
+  - Still open: OI3 and SB3 at height ≤ 3.
 - H_E (2026-10-19: every Eliahou semigroup, E < 0, has 3e ≥ m, which with Eliahou's 3e ≥ m theorem would give Wilf):
   FALSE. ⟨37, 47, 48⟩ ∪ [252, ∞) has m = 37, e = 12 (3 left, 9 right generators), E = −3, W = 492. The search was
   exhaustive over truncations ⟨m, a, b⟩ ∪ [C, ∞), m ≤ 40, a < b < 3m, C ≤ 8m: 1,001 Eliahou semigroups, 5 with
