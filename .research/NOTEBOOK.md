@@ -2054,3 +2054,30 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - A window cell can have c_x = 0, e.g. three units with r = 6 when μ = 10 and s = 18.
 - **Open question.** Is there a multi-window version of the occupancy count, (μ, 2μ], (2μ, 3μ], …, that pays the
   cubic deficits?
+
+## 2026-10-19 (afternoon) — payment structure of the G-ID cells: order ideals, shift, and their limits
+
+- **λ-form of G-ID (exact).** For x ≠ 0:
+
+      c(x) = Σ_a x_a λ(x − e_a) + (φ(x) − |x|)λ(x) − κ(x).
+
+  - For a top cell (λ = 0) this is c(x) = Σ_a x_a λ(x − e_a) − K + [s(x) > μ].
+  - Hence def(x) ≤ min(K − |x|, |x| − 1) for a top cell.
+  - Summing the λ-form gives back W = (d+1)ℓ − c.
+- **GW-27 as a shift injection.** Let τ = min(μ, m − 1 − μ). The deficient crown cell at residue s is paid by the cell
+  at residue s + τ, and every cell at a residue in (μ, μ + τ] has c ≥ 1. One payment per crown residue suffices at
+  height 2.
+- **Flow tests (max-flow per semigroup; E222).** Payments are routed from cells with c > 0 to deficient cells.
+  - Downward routing (y < x, i.e. y below x in D) is equivalent to OI: Σ_{x∈L} c_x ≥ 0 for every order ideal L ⊆ D.
+    OI holds for all e ≥ 4 at genus ≤ 27, both orders, and on 138k targeted near-full cubic semigroups.
+    **OI is FALSE at height ≥ 4**, e.g. ⟨80, 291, 292, 293⟩ at height 13 and about 2,000 cases at height 5.
+  - Shift plus downward holds through height 5 in these samples. It is FALSE at height ≥ 6: 72 cases, all with e = 4
+    or 5 and large depth, e.g. ⟨62, 87, 88, 89⟩. There W is large, but its slack sits in cells incomparable to the
+    deficient ones.
+  - Immediate lower covers only: fails 2 cubic cases at genus ≤ 27; with the shift, 1.
+- **Conclusion.** Neither downward nor window payment is universal. A general mechanism must move slack sideways,
+  between incomparable cells.
+- **Height ≤ 3: Conjecture OI3** (OI for Apéry down-sets of height ≤ 3). It would give Wilf for every height-3 Apéry
+  set, including 4n_1 > c + m.
+  - Heuristic: covering m ≤ C(d+3,3) residues at height 3 forces spread-out residues. That forces missing extensions
+    (large φ) or bonuses below every deficient cubic.
