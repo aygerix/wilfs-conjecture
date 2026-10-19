@@ -1140,6 +1140,39 @@ D ⊂ ℕ^d, and n_a > q on active directions: if M ≥ (2i−2)q − 1, then
   (2i−2)q − 1 is exactly what makes the early-ending column have δ = M − v(top) ≥ q. For i ≥ 6 deficits can be ≥ 2,
   and a general-i payment table is needed.
 
+**Reduction GW-22 (H_i ⟸ a one-dimensional per-column inequality; PROVED 2026-10-19).**
+Setting:
+- Scale q, truncation F(t) = min(i, ⌊t/q⌋), down-set D, n_a > q on active directions.
+- For x ≠ 0 let b(x) be its largest-weight support direction (ties by index).
+- x lies in exactly one *dominant column* C = (b, z) at index x_b ≥ 1. Here z is x with the b-coordinate zeroed,
+  and every direction of supp(z) has weight ≤ n_b.
+
+Write w = n_b, u = v(z), β = Σ_a F(z_a n_a), J = top index of C, δ = M − u − Jw ≥ 0. The *per-column inequality* is
+
+    (PCI)   Σ_{j=1}^{J} F(u + jw) ≤ Jβ + Σ_{j=0}^{J} F(M − u − jw)
+            ⟺ Σ_{j=1}^{J} [F(u + jw) − F(δ + jw)] ≤ Jβ + F(δ)
+            ⟺ Σ_{k=1}^{i} #{1 ≤ j ≤ J : jw ∈ [kq − u, kq − δ)} ≤ Jβ + F(δ).
+
+If PCI holds for every dominant column, then P_i holds at scale q.
+- Proof:
+  - By (H1), P_i ⟺ Σ_x [F(v(x)) − B(x)] ≤ Σ_{all columns} s(C).
+  - Group the left side by dominant columns; B(z + j e_b) = B(z) + F(jw).
+  - Drop the slack of non-dominant columns, which is ≥ 0 by reflection.
+  - The F(jw) terms cancel and leave PCI. □
+
+PCI for long columns, J ≥ i (PROVED, no cutoff needed):
+- If β ≥ i, the left side is ≤ Ji ≤ Jβ.
+- Otherwise every z_a < i, so β ≥ |z| =: s, and dominance gives u ≤ s·w.
+- Each window [kq − u, kq − δ) then contains at most ⌈(u − δ)/w⌉ ≤ s multiples of w.
+- So the left side is ≤ i·s ≤ Jβ. □
+
+Status:
+- H_i ⟸ PCI for short dominant columns (1 ≤ J ≤ i − 1) under M ≥ (2i−2)q − 1.
+- Checked exhaustively (E209): q ≤ 14, n_b ∈ (q, 3q], bases with ≤ 3 components, i = 3, 4, 5, 6 at the cutoff
+  (2i−2)q − 1. That is 1.0e8 cases, 0 failures.
+- Dominance is NECESSARY: without it PCI fails, e.g. i = 3, q = 6, n_b = 8 with base component 11.
+- Tight cases have one component equal to w, with J = i − 1 or i (e.g. i = 5, q = 4, w = 7, u = 7, J = 4).
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
