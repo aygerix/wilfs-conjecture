@@ -679,6 +679,24 @@ m = 1 + d + q + t.
 - **Remaining family after P6d.** k ≥ 5, d ≥ 6 and t ≥ 2, failing all old and new payment criteria. A violating phase
   needs β > O_rest + P_+ + gain + ⌊M_shape/m⌋; for β = 1 it also needs Ξ < 0. Next lemma (open), HIGH-ORIGIN:
   at ρ = 0 with every core unit > m/2, L_+/m + p + t ≥ 2β. BAD-NARROW is its case with all units below 2m/3.
+- **Codex P6e (2026-10-19; src/scratch/gw/p6/P6E_REPORT.md, code in p6/e/; PARTIALLY reviewed by the lead).**
+  Review status: BAD-TWO re-derived in full by the lead (all five K-cases). DEFECT-CUBIC and the GENERAL-FEW80
+  skeleton checked. The other proofs (HALF-ID, ORIGIN-ONE-LOW, SMALL-LOW-BAND, LINKED-CUBIC, FEW40, ZERO-EXTENSION)
+  are codex-proved and NOT yet re-derived by the lead. Treat them as unverified inputs until reviewed.
+  - **BAD-TWO (PROVED, lead-checked).** At any phase a cubic is bad (b_y = −1) iff it has one of two types:
+    - A: K = +1, outside the window, all three face carries +1, all factor residues > ρ;
+    - D: K = −1, inside the window, all face carries 0, all factor residues < ρ.
+    Corollaries: BAD-ARCS (β_A ≤ ⌊ν/2⌋, β_D ≤ ⌊ρ/2⌋) and DEEP-HOLES (ρ ≥ 3r + 2 for a deep cubic's least face residue r).
+  - **ORIGIN-EDGE (codex).** MaxCL at ρ = 0 for every t when at most one core unit is ≤ m/2. HC′ at ρ = 0 when at most
+    one core unit is > m/2 (ORIGIN-ONE-HIGH). HC′ when β ≤ 5 at the origin (ORIGIN-THREE, HIGH-FIVE). HIGH-FEW: HC′
+    when k ≥ 2t at an all-high origin.
+  - **GENERAL-FEW40 (codex).** HC′ at every phase for every height-3 tile with t ≥ 2 and k ≥ 40t + 8. It uses
+    LINKED-CUBIC, a height-independent bound A ≥ (4v⁴ − 16v² − 12v − 1)/(8(5v+4)) on the missing-pair mass.
+    - **H-FEW40 (codex, every height):** HC_H at every phase when k ≥ 40B + 8, where B = Σ_{j≥3}(j−2)|C_j| ≥ 2.
+  - Zero-unit relays: ZERO-EXTENSION and the weighted criterion (ZW).
+  - Preserved false claims F1–F6. F1 is β ≤ P_+ at the origin (m = 14, U = (8,9), the binary quartet; S = 90).
+  - Residual height-3 family: k ≥ 5, d ≥ 6, t ≥ 2, k < 40t + 8, failing all criteria. At the origin it has at least
+    two high and two low core units and β ≥ 4. Codex's next lemma: ABSENT-ZERO (Λ_F + m·O_rest ≥ Σ_F (m − r(z))).
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
   failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
   flat window for A2.

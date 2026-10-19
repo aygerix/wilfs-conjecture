@@ -1,0 +1,779 @@
+{
+  "algebra": {
+    "few_table": [
+      {
+        "t": 2,
+        "all_k_at_least": 154,
+        "checked_through": 160
+      },
+      {
+        "t": 3,
+        "all_k_at_least": 226,
+        "checked_through": 240
+      },
+      {
+        "t": 4,
+        "all_k_at_least": 298,
+        "checked_through": 320
+      },
+      {
+        "t": 5,
+        "all_k_at_least": 370,
+        "checked_through": 400
+      },
+      {
+        "t": 6,
+        "all_k_at_least": 442,
+        "checked_through": 480
+      },
+      {
+        "t": 7,
+        "all_k_at_least": 514,
+        "checked_through": 560
+      },
+      {
+        "t": 8,
+        "all_k_at_least": 586,
+        "checked_through": 640
+      },
+      {
+        "t": 9,
+        "all_k_at_least": 658,
+        "checked_through": 720
+      },
+      {
+        "t": 10,
+        "all_k_at_least": 730,
+        "checked_through": 800
+      },
+      {
+        "t": 11,
+        "all_k_at_least": 802,
+        "checked_through": 880
+      },
+      {
+        "t": 12,
+        "all_k_at_least": 874,
+        "checked_through": 960
+      },
+      {
+        "t": 13,
+        "all_k_at_least": 946,
+        "checked_through": 1040
+      },
+      {
+        "t": 14,
+        "all_k_at_least": 1018,
+        "checked_through": 1120
+      },
+      {
+        "t": 15,
+        "all_k_at_least": 1090,
+        "checked_through": 1200
+      },
+      {
+        "t": 16,
+        "all_k_at_least": 1162,
+        "checked_through": 1280
+      },
+      {
+        "t": 17,
+        "all_k_at_least": 1234,
+        "checked_through": 1360
+      },
+      {
+        "t": 18,
+        "all_k_at_least": 1306,
+        "checked_through": 1440
+      },
+      {
+        "t": 19,
+        "all_k_at_least": 1378,
+        "checked_through": 1520
+      },
+      {
+        "t": 20,
+        "all_k_at_least": 1450,
+        "checked_through": 1600
+      }
+    ],
+    "linked_few_table": [
+      {
+        "t": 2,
+        "all_k_at_least": 88,
+        "checked_through": 88
+      },
+      {
+        "t": 3,
+        "all_k_at_least": 128,
+        "checked_through": 128
+      },
+      {
+        "t": 4,
+        "all_k_at_least": 168,
+        "checked_through": 168
+      },
+      {
+        "t": 5,
+        "all_k_at_least": 208,
+        "checked_through": 208
+      },
+      {
+        "t": 6,
+        "all_k_at_least": 248,
+        "checked_through": 248
+      },
+      {
+        "t": 7,
+        "all_k_at_least": 288,
+        "checked_through": 288
+      },
+      {
+        "t": 8,
+        "all_k_at_least": 328,
+        "checked_through": 328
+      },
+      {
+        "t": 9,
+        "all_k_at_least": 368,
+        "checked_through": 368
+      },
+      {
+        "t": 10,
+        "all_k_at_least": 408,
+        "checked_through": 408
+      },
+      {
+        "t": 11,
+        "all_k_at_least": 448,
+        "checked_through": 448
+      },
+      {
+        "t": 12,
+        "all_k_at_least": 488,
+        "checked_through": 488
+      },
+      {
+        "t": 13,
+        "all_k_at_least": 528,
+        "checked_through": 528
+      },
+      {
+        "t": 14,
+        "all_k_at_least": 568,
+        "checked_through": 568
+      },
+      {
+        "t": 15,
+        "all_k_at_least": 608,
+        "checked_through": 608
+      },
+      {
+        "t": 16,
+        "all_k_at_least": 648,
+        "checked_through": 648
+      },
+      {
+        "t": 17,
+        "all_k_at_least": 688,
+        "checked_through": 688
+      },
+      {
+        "t": 18,
+        "all_k_at_least": 728,
+        "checked_through": 728
+      },
+      {
+        "t": 19,
+        "all_k_at_least": 768,
+        "checked_through": 768
+      },
+      {
+        "t": 20,
+        "all_k_at_least": 808,
+        "checked_through": 808
+      }
+    ],
+    "small_lows": [
+      {
+        "l": 1,
+        "real_bound": "17/8",
+        "H": 3,
+        "integer_j_bound": "2",
+        "j": 0
+      },
+      {
+        "l": 2,
+        "real_bound": "601/96",
+        "H": 7,
+        "integer_j_bound": "25/4",
+        "j": 2
+      },
+      {
+        "l": 3,
+        "real_bound": "547/40",
+        "H": 14,
+        "integer_j_bound": "68/5",
+        "j": 4
+      },
+      {
+        "l": 4,
+        "real_bound": "1219/48",
+        "H": 26,
+        "integer_j_bound": "76/3",
+        "j": 7
+      },
+      {
+        "l": 5,
+        "real_bound": "7129/168",
+        "H": 43,
+        "integer_j_bound": "297/7",
+        "j": 11
+      },
+      {
+        "l": 6,
+        "real_bound": "4211/64",
+        "H": 66,
+        "integer_j_bound": "263/4",
+        "j": 15
+      },
+      {
+        "l": 7,
+        "real_bound": "6947/72",
+        "H": 97,
+        "integer_j_bound": "868/9",
+        "j": 20
+      },
+      {
+        "l": 8,
+        "real_bound": "32521/240",
+        "H": 136,
+        "integer_j_bound": "271/2",
+        "j": 26
+      },
+      {
+        "l": 9,
+        "real_bound": "16179/88",
+        "H": 184,
+        "integer_j_bound": "2022/11",
+        "j": 32
+      },
+      {
+        "l": 10,
+        "real_bound": "7761/32",
+        "H": 243,
+        "integer_j_bound": "485/2",
+        "j": 39
+      },
+      {
+        "l": 11,
+        "real_bound": "7501/24",
+        "H": 313,
+        "integer_j_bound": "4063/13",
+        "j": 47
+      },
+      {
+        "l": 12,
+        "real_bound": "44227/112",
+        "H": 395,
+        "integer_j_bound": "2764/7",
+        "j": 55
+      }
+    ]
+  },
+  "local": {
+    "cases": 2385278,
+    "bad": {
+      "(1, 0, (1, 1, 1))": 61971,
+      "(-1, 1, (0, 0, 0))": 54390
+    }
+  },
+  "failures": {
+    "deep_unit_one": {
+      "m": 4,
+      "rho": 2,
+      "U": [
+        1
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "all_zero_extensions_gain": {
+      "m": 7,
+      "rho": 2,
+      "U": [
+        0,
+        5
+      ],
+      "Q": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "T": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    "delete_low_injective": {
+      "m": 12,
+      "U": [
+        8,
+        5,
+        6
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ]
+      ]
+    },
+    "beta_le_pplus": {
+      "m": 14,
+      "U": [
+        8,
+        9
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "beta": 4,
+      "Pplus": 3
+    },
+    "low_link_pseudoforest": {
+      "m": 14,
+      "U": [
+        8,
+        10,
+        7
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ]
+      ]
+    },
+    "low_link_strict": {
+      "m": 16,
+      "U": [
+        10,
+        12,
+        7
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ]
+      ]
+    },
+    "six_forces_binary_quartet": {
+      "m": 23,
+      "U": [
+        14,
+        13,
+        15
+      ],
+      "Q": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "T": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ]
+    }
+  },
+  "failure_evaluations": {
+    "deep_unit_one": {
+      "k": 1,
+      "s": 0,
+      "d": 1,
+      "q": 1,
+      "p": 1,
+      "t": 1,
+      "rho": 2,
+      "Lplus": 0,
+      "A": 0,
+      "HC": 0,
+      "S": 0,
+      "OW": 2,
+      "B": -2,
+      "PAplus": 0,
+      "beta": 1,
+      "gain": 0,
+      "Pplus": 0,
+      "Orest": 1,
+      "delta": [
+        0
+      ],
+      "g": 1,
+      "v": 0,
+      "e": 0,
+      "qD": 0
+    },
+    "all_zero_extensions_gain": {
+      "k": 2,
+      "s": 0,
+      "d": 2,
+      "q": 2,
+      "p": 2,
+      "t": 2,
+      "rho": 2,
+      "Lplus": 6,
+      "A": 0,
+      "HC": 13,
+      "S": 13,
+      "OW": 2,
+      "B": -1,
+      "PAplus": 0,
+      "beta": 1,
+      "gain": 0,
+      "Pplus": 1,
+      "Orest": 1,
+      "delta": [
+        2,
+        0
+      ],
+      "g": 1,
+      "v": 1,
+      "e": 1,
+      "qD": 0
+    },
+    "delete_low_injective": {
+      "k": 3,
+      "s": 3,
+      "d": 6,
+      "q": 3,
+      "p": 3,
+      "t": 2,
+      "rho": 0,
+      "Lplus": 132,
+      "A": 33,
+      "HC": 144,
+      "S": 144,
+      "OW": 0,
+      "B": 1,
+      "PAplus": 0,
+      "beta": 2,
+      "gain": 0,
+      "Pplus": 3,
+      "Orest": 0,
+      "delta": [
+        0,
+        3,
+        3
+      ],
+      "g": 1,
+      "v": 2,
+      "e": 3,
+      "qD": 0
+    },
+    "beta_le_pplus": {
+      "k": 2,
+      "s": 4,
+      "d": 6,
+      "q": 3,
+      "p": 3,
+      "t": 4,
+      "rho": 0,
+      "Lplus": 104,
+      "A": 0,
+      "HC": 90,
+      "S": 90,
+      "OW": 0,
+      "B": -1,
+      "PAplus": 0,
+      "beta": 4,
+      "gain": 0,
+      "Pplus": 3,
+      "Orest": 0,
+      "delta": [
+        0,
+        0
+      ],
+      "g": 2,
+      "v": 0,
+      "e": 0,
+      "qD": 0
+    },
+    "low_link_pseudoforest": {
+      "k": 3,
+      "s": 2,
+      "d": 5,
+      "q": 5,
+      "p": 5,
+      "t": 3,
+      "rho": 0,
+      "Lplus": 152,
+      "A": 14,
+      "HC": 180,
+      "S": 180,
+      "OW": 0,
+      "B": 2,
+      "PAplus": 0,
+      "beta": 3,
+      "gain": 0,
+      "Pplus": 5,
+      "Orest": 0,
+      "delta": [
+        0,
+        0,
+        2
+      ],
+      "g": 2,
+      "v": 1,
+      "e": 1,
+      "qD": 0
+    },
+    "low_link_strict": {
+      "k": 3,
+      "s": 4,
+      "d": 7,
+      "q": 5,
+      "p": 5,
+      "t": 3,
+      "rho": 0,
+      "Lplus": 298,
+      "A": 14,
+      "HC": 330,
+      "S": 330,
+      "OW": 0,
+      "B": 2,
+      "PAplus": 0,
+      "beta": 3,
+      "gain": 0,
+      "Pplus": 5,
+      "Orest": 0,
+      "delta": [
+        0,
+        0,
+        2
+      ],
+      "g": 2,
+      "v": 1,
+      "e": 1,
+      "qD": 0
+    },
+    "six_forces_binary_quartet": {
+      "k": 3,
+      "s": 8,
+      "d": 11,
+      "q": 5,
+      "p": 5,
+      "t": 6,
+      "rho": 0,
+      "Lplus": 599,
+      "A": 28,
+      "HC": 576,
+      "S": 576,
+      "OW": 0,
+      "B": -1,
+      "PAplus": 0,
+      "beta": 6,
+      "gain": 0,
+      "Pplus": 5,
+      "Orest": 0,
+      "delta": [
+        0,
+        1,
+        1
+      ],
+      "g": 1,
+      "v": 2,
+      "e": 1,
+      "qD": 2
+    }
+  }
+}

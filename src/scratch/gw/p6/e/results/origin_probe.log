@@ -1,0 +1,7 @@
+progress 0 {'cores': 1, 't_ge_2': 1, 'bad_cores': 1, 'bad_cubes': 117, 'high': 1, 'one_low_bad': 0}
+progress 2000 {'cores': 1932, 't_ge_2': 1915, 'bad_cores': 1816, 'bad_cubes': 61808, 'high': 1011, 'one_low_bad': 11205}
+progress 4000 {'cores': 3884, 't_ge_2': 3845, 'bad_cores': 3658, 'bad_cubes': 122263, 'high': 2029, 'one_low_bad': 22248}
+progress 6000 {'cores': 5814, 't_ge_2': 5755, 'bad_cores': 5466, 'bad_cubes': 182759, 'high': 3052, 'one_low_bad': 33212}
+progress 8000 {'cores': 7754, 't_ge_2': 7678, 'bad_cores': 7294, 'bad_cubes': 244405, 'high': 4068, 'one_low_bad': 44567}
+progress 10000 {'cores': 9680, 't_ge_2': 9587, 'bad_cores': 9112, 'bad_cubes': 305983, 'high': 5078, 'one_low_bad': 56346}
+DONE {"seed": 2026101972, "trials": 12000, "stats": {"cores": 11629, "t_ge_2": 11517, "bad_cores": 10937, "bad_cubes": 365714, "high": 6099, "one_low_bad": 67351}, "minima": {"HC": 87, "high_count_payment": 6, "ignore_gain": 87, "twice_ignore_gain": 34}, "failures": {}}

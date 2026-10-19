@@ -2682,3 +2682,31 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Proposed next e = 5 lemma (OMEGA-4): every 4-D lattice tile with m ≥ M0 has Ω ≤ 2.5m, or it is covered by an
     explicit criterion. Test the trend of max Ω/m beyond m = 39 before investing (needs an enumeration or annealing
     in 4-D).
+
+## 2026-10-19 (night, late) — WRAP-MAX: the pure-counting form H1′ (survives); general pure counting PC (false)
+
+- **Correction to the night entry "H1 is FALSE".** That test compared |F| with β alone. The exact budget is
+  S/m = Λ_r/m + β_N + Σ_A τ(y), with τ(y) = (|y|−1)K(y) + c_y − nb(y) ≥ 0 off F (src/scratch/wrapmax/wm_pay.py,
+  identity asserted). The surplus τ of the other maximal cells (including the maximal window cells) pays F on the
+  m = 17 example: at ρ_0 = 10, |F| = 5 ≤ β_N + τ_+ = 4 + 3. So the old counterexample does NOT need Λ_r.
+- **H1′ (CONJ): on every WRAP-MAX tile, S(σ) ≥ Λ_r(σ) at every phase**, i.e. β_N + Σ_A τ ≥ 0. Equivalent forms, all
+  exact (V = {y ∈ A : v(y) ≥ m}, λ(y) = v(y) − m its label; D° = D ∖ V; v < m on D°):
+  - window form: d·|W| ≤ T(W) + Σ_V (|y|−1) for every label window W = φ̄⁻¹[m−ρ, m); the RHS is phase-free;
+  - up-set form: Σ_b |B_b(U_θ)| ≥ |V_θ| − Σ_{y∈V, λ(y)≥θ} (|y|−1), where U_θ = {x ∈ D° : v ≥ θ} ∪ V and
+    V_θ = {y ∈ V : λ(y) < θ};
+  - degree form (exit version, slightly stronger): Σ_{x∈D°, v(x)≥θ} (up(x) − supp(x)) ≤ Σ_V (|supp y| − 1)
+    + Σ_{y∈V, λ(y)≥θ} |y| for every θ.
+  - NO-WRAP is the case V = ∅, where it is the up-set count T(U) ≥ d|U|.
+- Evidence: 0 failures on all 4-D tiles of the E153 certificates for m ≤ 26 at every phase (all residue vectors,
+  including degenerate ones); 64,208 random (tile, phase) instances with F ≠ ∅, d = 3–9, m ≤ 60. Tight cases exist
+  (slack 0), e.g. m = 11, P = (3, 6, 9, 10), θ = 9 (all exits matched one-to-one with V_θ).
+- The naive sufficient forms are FALSE: Ex(D'_θ) ≥ |V_θ| and Out ≥ |V_θ| fail on ⟨17,24,26,29,30,32⟩ at θ = 7 = min P
+  (all labels 1..6 are wrapped cells, and the origin has only d = 5 exits). The term Σ_{λ≥θ}(|y|−1) is needed.
+  Boundary consequence of H1′ at θ = min P: Σ_{y∈V, λ(y) ≥ min P} (|y|−1) ≥ min P − 1 − #{b : e_b ∈ D}.
+- **PC (pure counting for all tiles, S ≥ Λ_r) is FALSE:** E47 tile ⟨14,22,23,57,61,62,63⟩ at ρ_0 = 0 has S = 90 < Λ_r =
+  104. It holds on all 4-D tiles with m ≤ 14. So the residue mass Λ_r is needed once non-maximal cells wrap. Within
+  WRAP-MAX it is not needed.
+- Consequence if H1′ is proved: MaxCL at every phase for every WRAP-MAX tile (S ≥ Λ_r ≥ 0), which contains both
+  Flat-MaxCL (height ≤ 2) and NO-WRAP. Wilf corollary: every S with a factorization tile in which every non-maximal
+  cell x has Σ x_a⟨n_a⟩ < m.
+
