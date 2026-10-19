@@ -279,6 +279,11 @@ v ∈ [c, c+n_a) gives Σ_a Σ_v x(v)_a.)  Tile-CL at all s ⇔ the same with c 
   (e = 4, needs 4 translates, W = 2); 22 failures among t > e−1 cases with genus ≤ 16.
 - S1 (Σ_a (C − Def_a)^+ ≤ C + E, C = m(m−1)/2): FALSE, ⟨7,11,12,20⟩ (W = 2).
 - TOP_0 (Lemma A's predecessor without E): FALSE, e.g. ⟨9,13,14,15,16⟩.
+- WQ (2026-10-19: for e ≥ 4, the unit cells plus the non-unit cells with residue in (μ, min(2μ, m−1)] pay every
+  deficit of the G-ID cell decomposition). True on all 14.4M semigroups with e ≥ 4 of genus ≤ 30 (lex and grlex tiles).
+  FALSE in general (E220). Cubic failure: ⟨15, 22, 24, 25⟩, μ = 13, five deficient crown cubics against window credit
+  3. Higher degree: ⟨100, 125, 236, 287⟩ (μ = 1, degree 12, deficit 27 vs credit 9). Failures cluster at μ ≈ m − 1 or
+  μ ≈ 1, where pairs with λ ≥ 1 below the deficient cells pay instead.
 
 ---------------------------------------------------------------------------------------------------
 ## Tile-CL / Base-CL special cases — PROVED 2026-10-17 (true theorems; reach only e = 3 resp. symmetric S)

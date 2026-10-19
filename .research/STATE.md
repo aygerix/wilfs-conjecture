@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, morning; PGW / primary-regime line)
+# STATE.md — handoff (updated 2026-10-19, afternoon; GW-27 quadratic Apéry sets, G-ID line)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -75,6 +75,13 @@
   Floor, LCL, PW (PROOFS.md).
 - DS structure (NOTEBOOK night 17 late): DS cells sit over the floor; outside the quadrant corner there are ≤ 8 per direction.
 - FW, FWx, FWy are proved as inequalities, for any e (parked).
+
+- **GW-27 (2026-10-19): Wilf for every S whose Apéry set is quadratic (each element 0, a generator or a sum of two
+  generators), at every depth.** Hence Wilf whenever 3n_1 > c + m, without Spirito's conditions. Also holds in down-set
+  form (residue-complete, degree ≤ 2) and with Ap(S, n) for any minimal generator n. Paper proof in PROOFS; every step
+  checked on 62M semigroups (E219). Lean: queued.
+- GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. P5b reports a one-low-unit extension
+  (2n_2 ≥ c − m); not yet verified by the lead.
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -155,21 +162,13 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Codex P5 is RUNNING: session 01a1525d-16ff-7fc2-a405-17a585c3ec31, log scratchpad codex/p5_log.txt,
-    brief codex/p5_brief.md.
-    - Target: an analytic certificate for GW-26 (Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m), via exact identity +
-      shadows + short-residue lemma + refined arc + Macaulay on the B face.
-    - Stretch: q₂ > 0.
-    - When it lands, verify it step by step as for P4.
-(b) Lead, meanwhile:
-    - The K-uniform form of the arc. W = Σ_x [Kd − (d+1)j(x)] + ρ for every K; only band-K cells cost (−K each).
-    - Find the arc for general K that bounds h = c − (K−1)m, starting with the pure-A analogue of GW-25 for
-      c ∈ ((K−1)m, Km].
-(c) Status of the primary regime (Wilf for 3m < c ≤ 4m):
-    - proved for a ≤ 6 (GW-21/24);
-    - proved for pure A with 2n_1 ≥ c − m, every a (GW-25);
-    - LP evidence for the whole 2n_1 ≥ c − m class (E217);
-    - open: a ≥ 7 with low units (2n_a < c − m for some generator).
-(d) Lean, queued after P5 (one agent at a time): GW-19 (Theorem H + band proof); GW-25 is short and a good Lean
-    target.
-(e) Background: gfan re-check of E153 (m = 38–39); codex HT4 subclass claims are unverified.
+(a) Codex P5b is RUNNING (session 01a1525d-16ff-7fc2-a405-17a585c3ec31, log scratchpad codex/p5b_log.txt). Target: Wilf for
+    all 3m < c ≤ 4m (low units). It reports a proof for one low unit (2n_2 ≥ c − m). Verify step by step when it lands.
+(b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
+    - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
+    - Deficient cells (c_x < 0) are almost all top cells with residue ≤ μ, in every degree (E220).
+    - WQ (units + window (μ, 2μ] pay all deficits) holds for all e ≥ 4, genus ≤ 30, but is FALSE in general. It fails
+      for cubic and higher D at μ ≈ m − 1 or μ ≈ 1, where pairs with λ ≥ 1 pay. Next: the cubic case (Wilf for
+      4n_1 > c + m) with window + lower-cover payments.
+(c) Lean, queued after P5b (one agent at a time): GW-27 first (elementary, self-contained, down-set form), then GW-19/GW-25.
+(d) Background: gfan re-check of E153 (m = 38–39); codex HT4 subclass claims are unverified.
