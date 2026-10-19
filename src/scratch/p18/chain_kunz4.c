@@ -75,9 +75,15 @@ int main(int argc, char **argv){
   for (int ch = 0; ch < chains; ch++) {
     int qs = QMIN + (int)(rnd() % 3);
     w[0] = 0;
-    for (int i = 1; i < m; i++) w[i] = (int64_t)qs * m + i;      /* T_{m,qs} */
+    if (start != 3) for (int i = 1; i < m; i++) w[i] = (int64_t)qs * m + i;      /* T_{m,qs} */
+    if (start == 3) {   /* seed from Apery set in env W0 (comma list), then short random descent-free walk */
+      char *ws = getenv("W0"); int k = 0; char *p = ws;
+      while (p && *p && k < m) { w[k++] = atoll(p); while (*p && *p != ',') p++; if (*p == ',') p++; }
+      Res cur0; if (!eval(&cur0)) { fprintf(stderr, "bad seed\n"); return 1; }
+    }
     int len = (start == 0) ? 2 * m : (start == 1 ? 20 * m : (int)(rnd() % (20 * m)) + m);
     Res cur; int okst = 0;
+    if (start == 3) { okst = eval(&cur); }
     for (int it = 0; it < 200 * m && !okst; it++) {            /* random descent from T until e <= EMAX */
       int i = 1 + rnd() % (m - 1); int64_t old = w[i];
       w[i] -= m; if (w[i] < m + i || !kunz_ok_at(i)) { w[i] = old; continue; }
