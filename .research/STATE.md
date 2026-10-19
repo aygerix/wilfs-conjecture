@@ -185,6 +185,9 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
 
 ## Next precise task
 (0) NEW 2026-10-19 late afternoon, read first.
+    - **Convergence (proved reduction).** In the primary regime every height-4 cell is an A-quartic. So quartic-free
+      primary tiles have Apéry height ≤ 3, and height-3 MaxCL (codex P6, RUNNING) would close every quartic-free
+      profile: BASE and all α = 6/8 residual rows (u0 = u1 = 0). The P4 remainder after P6 would be k ≥ 1 only.
     - Per-α closure with the fixed and fast certificate (E242):
       - α = 5 is clean so far (to a = 149; finish, then record "primary regime for α ≤ 5").
       - **α = 6, a = 20: 3 B-loop survivors.**

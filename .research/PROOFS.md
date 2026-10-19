@@ -1609,6 +1609,45 @@ lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 18 then 
   DELTA-UP/LOW-FIN δ range. No window, joint, LINK or MIX-PACK test is needed there.
 - The early GLOC cap (flag G) used to make this fast is a necessary condition (§24). It leaves every profile count
   unchanged where both versions were run (a = 15, 16).
+- Audit (2026-10-19, later): the k-cover arrays kE/klist[64] could silently truncate. Rerun with the fixed build
+  (KCAP 4096 plus a counter): identical result, krange>64 = 0 for every a (E241).
+- §39 domain audit for large a: every lemma used carries only LOWER bounds on a (a ≥ 3, 7, 13) or α ≥ 3/4, so the
+  certificate is valid for all a ≥ 19. The bound "q > 2a ≥ 2(α+E) for a ≥ 7" uses E ≤ p = a − α.
+- **Extension attempts (E242).** α = 5: 0 survivors for a = 19..104 so far; the sweep runs to 149, and with LARGE-A′
+  (a ≥ 150) that would close α = 5. α ≥ 6 does NOT close with the current tests:
+  - α = 6, a = 20, 21 leave 3 and 136 B-loop-like rows;
+  - α = 8, a = 19, 20 leave 61 and 781 matching rows.
+  These are finite relaxed-profile families, not semigroups.
+
+**P5g packing results (codex, P5_REPORT §§60–67, 2026-10-19; counting lemmas reviewed by the lead).**
+- PROVED:
+  - DIFF2/REPEAT2: repeated cubics cost O(n²).
+  - The CP signed-collision bound and SC.
+  - SF0: 3s−2 ≥ H(n) − 9n² + 3n for pair-distinct sets with all squarefree triple sums distinct.
+  - SG: P(45) with error 63n² when every squarefree fibre has ≤ 10 triples.
+  - SM: P(45) with error (63 + M/2)n² when there are M heavy squarefree fibres.
+  - RET-G: retained pairs with explicit degree/absent-sum costs; MATCH-P holds on the light class.
+  - B0-CUT and B10-CUT (b < max(4a, 128), etc.) and B-RARE: the entire §57 B-loop template is excluded unconditionally.
+  - BFREE-LIGHT (r = l = b = 0, α ≥ 1910, all undeleted joint squarefree fibres ≤ 10 ⇒ W ≥ 0) and BFREE-RARE
+    (α ≥ 3618 and W < 0 ⇒ more than α/32 heavy joint fibres).
+  - Lead check of §65 (2026-10-19): every rational constant and polynomial was recomputed exactly (sympy,
+    fejer ~/wilf/lead23/p65_check.py). The checks were:
+    - H(b−2) − 11(b−2)² = b³/2 − 29b²/2 + 53b − 52 > 3b³/8 for b ≥ 128;
+    - (163/128)³/6 < 7/20, and the B0 upper sum 0.35004 < 3/8;
+    - the B10 lower coefficient = 2959/12288 > 9/40, against an upper sum of 0.2105;
+    - B-RARE: 2791/12288 > 9/40;
+    - both BASE/SM polynomials are positive for N ≥ 480, and the MATCH margin is 877/800;
+    - the g(w) square-completion identity;
+    - the shifted cubics at A = 1910 + z and 3618 + z (real roots 1909.17 and 3617.38).
+    The structural steps were also checked: the pigeonhole C(a,3) > C(a+1,3)/3 for a ≥ 4, and the 3s − 2 ≤ m − 2h
+    interval capacity.
+- Preserved false strengthening: ANTIPODAL, X = {±10^i}, refutes the SUPPORT form of MATCH-P even with quadratic error.
+- Open:
+  - ambient P(C) with linearly many heavy squarefree fibres;
+  - ambient MATCH-P (needs the ambient diameter or primary geometry for concentrated absent-pair sums);
+  - the finite small-a residual families above.
+- These results are for integer/interval sets. A mod-m use needs DIFF2 re-proved mod m: three points pairwise ±d apart
+  exist when 3d ≡ 0.
 
 **Theorem LARGE-A′ (sharpened LARGE-A; PROVED 2026-10-19 by the lead, paper plus a small exact check).** Under the
 primary hypotheses, if α ≥ 4 and a ≥ 10·C(α+1,2), then W ≥ 0, for arbitrary b, c, e, r, l, ε and high exceptions.

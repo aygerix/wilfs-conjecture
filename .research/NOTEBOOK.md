@@ -2440,3 +2440,14 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     column-plus-spikes tight cases).
   - Lesson: before trusting a "clean" carry inequality, compare it with the Tile-CL equivalent forms (Diff, Wall,
     Win, Walk) and run the E47/E51 core+spike tiles.
+- **P6 ⇒ the quartic-free part of P4 (PROVED reduction).**
+  - The bound. In the primary setting (4m ≤ M < 5m, A offsets τ ∈ [1,h), B ∈ [h, h+m), C, E higher), a cell of
+    height ≥ 4 has value ≥ 4m + Σ τ. If it contains a B, C or E unit, its value is ≥ 4m + h = 5m − ρ > M.
+  - Consequence. **Every height-4 cell of a primary tile is an A-quartic, and there are no cells of height ≥ 5.** So a
+    primary tile with k = 0 (no A-quartics present) has Apéry height ≤ 3.
+  - What it closes. MaxCL for height-≤3 tiles (P6), with MaxCL ⇒ Tile-TOP'' ⇒ Wilf (LEAN), would exclude every
+    quartic-free primary profile for every α and a. That includes:
+    - P5f's BASE leading profile (u3 = k = 0) and its perturbations;
+    - all lead residual rows at α = 6 (a = 20, 21) and α = 8 (a = 19, 20), all with u0 = u1 = 0, so K = 0 and k = 0.
+  - So the two lines converge. The P4 remainder after P6 would be exactly the profiles with A-quartics (k ≥ 1).
+  - To tell codex at the end of P6.
