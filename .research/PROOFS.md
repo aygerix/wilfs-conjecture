@@ -2932,3 +2932,17 @@ Source: src/scratch/gw/p11/P11_REPORT.md (code, results and checksums in p11/). 
 - NOT yet re-derived: the I-LOW substitutions (12)–(13), the localized bound C_H, and the GW-26 transfer W ≥ W_A.
   Status: RECEIVED; not to be cited as verified.
 - Residual unchanged in shape: α ≥ 6, 19 ≤ a < 10·C(α+1,2), 3e < m, m ≥ 211, failing A, B and C.
+
+## Codex P12 (REST-M3): REFUTED — received 2026-10-19, lead-checked numerically
+- REST-M3 counterexample (agrees with the lead): ⟨32,39..45⟩, REST = 6095 − 32·7·27 = 47.
+- Infinite family S_k = ⟨5k+2, 6k+3..7k+3⟩ (depth 4, height 3, 3e < m, M ≥ 3n_1). Codex proves:
+  - REST > 0 for k ≥ 6;
+  - Δ > C2 (CHAIN fails) for k ≥ 17;
+  - W = 4k² − k + 7.
+  Lead re-check, k = 4..21, via linkpay.py and chain_interval.py:
+  - Δ − C2 = 178 at k = 17, and ≤ −62 for k ≤ 16;
+  - the W formula holds at every k;
+  - CHAIN-U ratio ≈ 2.0–2.1 throughout.
+  Codex's symbolic certificate (gw/p12/certificate.py) has not been re-derived by the lead.
+- Codex also proves: adding r generators just above m gives counterexamples with M ≥ 4n_1 for k ≥ 100(r+1). So no
+  threshold M ≥ κ·n_1 rescues REST.

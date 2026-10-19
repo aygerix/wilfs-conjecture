@@ -8,6 +8,17 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0. **UPDATE (2026-10-19, latest): overlap-credited chains (E290); codex P13 launched.**
+   - Exact: E = B − B_chain = Σ_v (n·∨Z(v) − v), the factorization join excess.
+   - Local balance: P(v) − E(v) = v − m·L1(v).
+   - CHAIN-U (B_chain + Σ(Σ_{v−n_a∈S} n_a − v)⁺ ≥ need), CHAIN-POOR and WILF+ have 0 failures on genus ≤ 33 (63.75M S),
+     on intervals to m = 150, on P12's S_k and in annealing. Each implies Wilf.
+   - On multiplicity-free Apéry sets they equal Wilf, so they localize the difficulty in the tile core.
+   - At depth four, CHAIN fails (185 interval cases) but CHAIN-U does not.
+   - codex P13: prove an overlap-credited chain inequality for 3m < c ≤ 4m. That would be Wilf for c ≤ 4m, a frontier
+     theorem.
+   - Lead: (a) look for a provable local payment for poor elements at depth 4; (b) P11 full review; (c) height-3 MaxCL
+     residual next for codex after P13.
 1. **PIVOT (2026-10-19, latest): the Apéry-chain line is dead.** Level-1 intervals refute REST-M3, CHAIN-H3, CHAIN-M3
    and CHAIN-WILF(3e<m) (E289). The smallest is ⟨53, 85..95⟩: height 3, 3e < m, M ≥ 3n_1, ratio 0.99956.
    - MaxCL holds there with slack ≥ 0.85·m². What survives:
