@@ -1173,6 +1173,50 @@ Status:
 - Dominance is NECESSARY: without it PCI fails, e.g. i = 3, q = 6, n_b = 8 with base component 11.
 - Tight cases have one component equal to w, with J = i − 1 or i (e.g. i = 5, q = 4, w = 7, u = 7, J = 4).
 
+**Theorem GW-23 (PCI for light columns, w ≤ 2q − 1; PROVED 2026-10-19).**
+Hypotheses:
+- Integers q ≥ 1, i ≥ 1, q < w ≤ 2q − 1, β ≥ 1, J ≥ 1, 0 ≤ u ≤ βw, δ ≥ 0, M = u + Jw + δ ≥ (2i−2)q − 1.
+- F(t) = min(i, ⌊t/q⌋).
+
+Then
+
+    Σ_{j=1}^{J} [F(u + jw) − F(δ + jw)] ≤ Jβ        (no F(δ) term needed).
+
+In particular PCI (GW-22) holds for every dominant column with n_b ≤ 2q − 1.
+- Indeed u = v(z) = Σ z_a n_a ≤ (Σ z_a)·w ≤ βw by dominance, when β < i (else PCI is trivial).
+
+Proof:
+1. LHS = Σ_{k=1}^{i} c_k with c_k = #{j ∈ [1,J] : kq − u ≤ jw < kq − δ}.
+   - Put a_k = ⌈(kq − δ)/w⌉. From u ≤ βw, every such j lies in [a_k − β, a_k − 1].
+   - So c_k ≤ φ(a_k), where φ(a) = |[a − β, a − 1] ∩ [1, J]|.
+   - φ is a trapezoid supported on [2, J + β], symmetric under a ↦ a* = J + β + 2 − a, with Σ_a φ(a) = Jβ.
+2. Put m_a = #{k ≤ i : a_k = a}, the multiples of q in ((a−1)w + δ, aw + δ].
+   - Since w < 2q, m_a ≤ 2. And m_a = 0 for a > A := a_i.
+   - LHS ≤ Σ_a m_a φ(a). With R = J + β + 1 − A, the reflection maps [1, R] onto [A + 1, J + β + 1].
+   - So Σ_{a>A} φ = Σ_{a≤R} φ, and LHS − Jβ ≤ Σ_{a ∈ (R, A]} (m_a − 1) φ(a).
+   - This sum runs over the "middle region" (R, A], which is symmetric about a = (J + β + 2)/2, so φ is constant on it.
+3. The middle region has length Λ = 2A − J − β − 1 < (2q + 1 − δ)/w + 1 < 3.
+   - This uses A < (iq − δ)/w + 1 and (J + β)w ≥ T − δ.
+   - Let X = ⌊(Rw + δ)/q⌋. The region holds i − X of the k's.
+   - Λ = 1: i ≥ X + 2 together with 2Rw ≥ (2i−2)q − 1 − δ forces Rw + δ ≡ ρ (mod q) with 2ρ ≥ 2q − 1 + δ, impossible.
+   - Λ = 2: (2R+1)w ≥ (2i−2)q − 1 − δ gives 2i − 2 ≤ 2X + (2ρ + w − δ + 1)/q < 2X + 4, so i ≤ X + 2.
+   - Either way Σ_{mid}(m_a − 1)φ ≤ 0. □
+
+Corollary GW-23c:
+- P_i holds at scale q for every down-set (no residue hypothesis) all of whose active weights lie in (q, 2q), whenever
+  M ≥ (2i−2)q − 1.
+- Via GW-22 + GW-23. For example, on every A-face of the P_4 analysis (n_a < 2m − ρ) at every i.
+
+**PCI fails for heavy columns (w ≥ 2q) when i ≥ 10 (E211).**
+- Smallest found: i = 10, q = 9, w = 22, three base components of weight 17 = 2q − 1 (β = 3, u = 51), J = 5, M = 161 = T.
+  Here LHS = 16 > Jβ + F(δ) = 15.
+- Realizable as a dominant column. P_i itself holds on these instances, e.g. the box [0,1]³×[0,7] with weights
+  (39,39,39,46), q = 20, i = 12 gives 562 ≤ 2248.
+- So H_i for heavy weights needs the non-dominant column slack that GW-22 discards.
+- For i ≤ 9, PCI holds for all w in the scanned range (E211).
+- The row-pairing bound term_j + term_{J+1−j} ≤ 2β (w ≥ 2q) holds for i ≤ 8, q ≤ 12. It FAILS at i = 12: q = 20, w = 46,
+  β = 3, u = 117, J = 7, j = 3 gives S = 7.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
