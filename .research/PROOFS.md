@@ -2820,6 +2820,19 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
   - With c = qm − ρ and λ(0) = q: mW = (d+1)ρ + m·Σ_{v∈{0}∪P} Σ_b λ(top_b(v)) + Σ_{v∈D_A}(mΘ(v) − c), where D_A is the
     set of decomposable Apéry elements. This is an exact Eliahou-type split. Comparing it with W_0 = |P∩L||L| − q|D_q| + ρ
     is open.
+- **Theorem (large second generator, unconditional) — LEAN-CHECKED 2026-10-19 (lean/Wilf/LargeSecondGen.lean).**
+  If 3n_1 ≥ c + m (n_1 the least minimal generator > m), then e·ℓ ≥ c.
+  - Lean statements:
+    - `wilf_of_aperyMax_lt_three_mul`: ∀ p ∈ P′, aperyMax < 3p ⇒ c ≤ e·ℓ;
+    - `wilf_of_conductor_add_mult_le_three_mul`: ∀ p ∈ P′, c + m − 1 < 3p ⇒ c ≤ e·ℓ.
+  - Proof: a factorization of an Apéry element of length ≥ 3 has value ≥ 3n_1 > max Ap, so every Apéry element has a
+    factorization of length ≤ 2. Then apply `wilf_of_apery_height_le_two` (Flat-MaxCL).
+  - Kernel check: axioms [propext, Classical.choice, Quot.sound], 0 sorry, full `lake build` OK on fejer.
+  - Comparison: Spirito (arXiv 1710.09245; abstract checked 2026-10-19) assumes the strict a_2 > (c+m)/3 and obtains
+    Wilf only when the multiplicity is bounded by a quadratic function of the embedding dimension. Delgado's survey,
+    Prop 3.25, gives this as e ≥ 10 and m ≤ (8/25)e² + e/5 − 5/4.
+    - Ours has no condition on m or e, and it includes the boundary 3n_1 = c + m.
+    - Novelty: no such statement found in the dated searches (LITERATURE 2026-10-19). Not externally reviewed.
 - **The n_1 dichotomy, general height (PROVED).** If M < (h+1)·n_1, then every Apéry element has a factorization of
   length ≤ h, so the grlex factorization tile has height ≤ h.
   - Hence MaxCL for tiles of height ≤ h ⇒ Wilf for every S with (h+1)·n_1 > c + m − 1.

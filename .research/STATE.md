@@ -8,6 +8,8 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0a. **NEW THEOREM, LEAN-CHECKED (2026-10-19):** Wilf for every S with 3n_1 ≥ c + m (lean/Wilf/LargeSecondGen.lean).
+    It is unconditional, whereas Spirito 1710.09245 needs m ≤ quadratic(e).
 0. **UPDATE (2026-10-19, latest): overlap-credited chains (E290); codex P13 launched.**
    - Exact: E = B − B_chain = Σ_v (n·∨Z(v) − v), the factorization join excess.
    - Local balance: P(v) − E(v) = v − m·L1(v).

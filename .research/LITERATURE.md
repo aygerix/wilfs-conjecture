@@ -651,3 +651,6 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   - NEW: Marashdeh, arXiv 2608.12531 (Aug 2026). Type bound t ≤ e − 1 + Ξ(S), and the reduction
     g ≤ e − 1 + t(n − 1) of Wilf (abstract only). Not about Apéry height.
 - No statement found of Wilf for Apéry height ≤ 3, or for n_1 > (c+m)/4. Absence of a hit is not proof of novelty.
+- Addendum (same date): Spirito's arXiv abstract was checked directly. The hypothesis is the strict
+  a_2 > (c(S)+μ(S))/3, and Wilf is concluded "when the multiplicity is bounded by a quadratic function of the embedding
+  dimension". Our Lean theorem `wilf_of_conductor_add_mult_le_three_mul` (3n_1 ≥ c + m ⇒ Wilf) removes that bound.
