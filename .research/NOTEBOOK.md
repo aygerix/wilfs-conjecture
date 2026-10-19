@@ -2661,3 +2661,11 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - MaxCL at every phase for every tile with a non-wrapping lift.
   - Wilf for every S in which each Apéry element has a factorization with generator-residue sum < m. This is the
     first Lean-checked Wilf class at ALL Apéry heights; the previous ones were bounded height (≤ 2) or e ≤ 3.
+- **e = 5 profile (E262).** Over all 4-D tiles with m ≤ 36, MaxCL holds with normalized margin ≥ 0.25 at every
+  height, and the margin does not decay with m. Height ≤ 3 is proved (H3-D5).
+  - The obstruction to an easy proof for height ≥ 4: near-simplex tiles (maximal cells at levels h, h+1), where
+    Ω/m ≈ 2.5–3.2 and CR ≈ 1.
+  - So the e = 5 question is "MaxCL for near-simplex 4-D tiles of every level, with wraps". The robust margin
+    (≈ 0.3) suggests a lossy argument could suffice there, unlike the general all-d problem.
+  - Candidate next lemma (NEAR-SIMPLEX-4): if Ω > (d+1)m/2 with d = 4, then the maximal labels are spread enough
+    that max_σ discrepancy ≤ Ctot(m−1)/(2m). This is unproved.
