@@ -2745,6 +2745,52 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
     So the loss is specific to Apéry chains switching factorizations. Tile columns (B_col = B exactly) do not lose it.
   - Consequence: every "B_chain ≥ need" criterion is dead on height ≥ 3, on 3e < m and on M ≥ 3n_1. Plan line 1 pivots
     (STATE).
+- **Chain deficit vs factorization overlap (2026-10-19, lead; answers "can multiplicity quantify the compensation E?").**
+  Notation: Z(v) = factorizations of v ∈ Ap by n_1..n_d (no m); ∨Z(v) their componentwise max (join);
+  depth_a(v) = max{j : v − j n_a ∈ S}; E := B − B_chain (B = mW + need, CH′).
+  - **JOIN IDENTITY (PROVED).** depth_a(v) = max_{x∈Z(v)} x_a, and
+        E = Σ_{v∈Ap} (n·∨Z(v) − v) = Σ_v n·(∨Z(v) − x_v)   for any choice x_v ∈ Z(v).
+    Each term is ≥ 0, and it is > 0 iff |Z(v)| ≥ 2 (distinct factorizations of one value are incomparable).
+    So Wilf ⟺ B_chain + Σ_v (n·∨Z(v) − v) ≥ need.
+    Proof: Ap is closed under ≤_S-predecessors, so v − j n_a ∈ S gives an m-free factorization y and y + j e_a ∈ Z(v).
+    B − B_chain = Σ_a n_a Σ_v depth_a(v) − Σ_v v. ∎
+    Checked: E == B − B_chain on all 63,754,318 S of genus ≤ 33 with e ≥ 3, and on every interval scanned (E290).
+  - **TRADE BOUND (PROVED).** Let T_min be the ≤_S-minimal Apéry elements with ≥ 2 factorizations.
+    - For b ∈ T_min, distinct factorizations have disjoint supports.
+    - Every v ∈ Ap with b ≤_S v has n·∨Z(v) − v ≥ b. Hence E ≥ E_β := Σ_v max{b ∈ T_min : b ≤_S v}.
+    - **Insufficient:** B_chain + E_β < need for intervals from m = 41 (q = 3, a ≈ L ≈ 0.38m).
+      - Up to 810 such S at m = 150, min ratio 0.739.
+      - E_β captures only ≈ 25% of E there.
+  - **LOWER-COVER BOUND (PROVED).** Let U(v) = {a : v − n_a ∈ S}. Then E(v) ≥ E_U(v) := (Σ_{a∈U(v)} n_a − v)⁺, since
+    depth_a ≥ 1 on U(v).
+    - On the CHAIN-failing intervals, E_U ≈ 0.95–0.98·E, and E_U ≥ 3.04·(need − B_chain) for every CHAIN failure with
+      m ≤ 150.
+    - On the genus ≤ 33 CHAIN failures, even E_β ≥ 6.8·deficit.
+  - **LINK DECOMPOSITION (PROVED, exact; checked).**
+    - Definitions: ρ_a(v) = s_{v−n_a} − s_v ∈ {b_a, b_a − m} (b_a = n_a mod m) for each link v − n_a → v in Ap;
+      P(v) = Σ_a depth_a(v) ρ_a(v), the chain mass landing at v; Λ_top = Σ_{w,a} λ(top_a(w)).
+    - Then Δ = Σ_v P(v) − m·Λ_top.
+    - **LOCAL BALANCE:** P(v) − E(v) = v − m·L1(v), with L1(v) := Σ_a depth_a(v)(λ(v − n_a) − λ(v)).
+      Proof: M − (v − n_a) = (M − v) + n_a, so s_{v−n_a} − s_v − n_a = −m(λ(v−n_a) − λ(v)). ∎
+    - Since every layer drop is ≥ 1: E(v) − P(v) ≥ m·|∨Z(v)| − v, where |∨Z(v)| = Σ_a depth_a(v).
+      - For a unique factorization x, |∨Z| = |x| < v/m.
+      - Overlap makes |∨Z(v)| exceed v/m, and then v pays for all chain mass landing on it.
+    - Every interval CHAIN failure examined has its positive P concentrated on such overlap-rich landing points:
+      ⟨45, 62..78⟩: layer 1 con = +5265 and layer 0 E = 15514; 43 of 45 elements are rich.
+  - **Criteria, each ⇒ Wilf.** Status: CONJECTURE, 0 failures so far (E290).
+    - CHAIN-U: B_chain + E_U ≥ need.
+    - CHAIN-POOR: Σ_{v : m L1(v) < v} P(v) − mΛ_top ≤ C2.
+    - WILF+: Σ_v (v − m L1(v))⁺ − mΛ_top ≤ C2. Wilf is the same sum without the positive part.
+    - Equality in all three at ⟨m, m+1..2m−1⟩.
+    - Evidence: intervals k ≤ 3, m ≤ 41 (31,950 S, 715 CHAIN failures); intervals k ≤ 2, m ≤ 150 (CHAIN-U);
+      genus ≤ 24 (all three); genus ≤ 33 (CHAIN-U); Kunz annealing that minimizes CHAIN-U (min 1.26).
+  - **Structural conclusion.**
+    - The chain obstruction (CHAIN-H3/REST-M3 counterexamples) is entirely a multiplicity effect, and overlap pays for
+      it locally.
+    - On multiplicity-free (UF) Apéry sets, E = 0 and every criterion above coincides with the tile-column inequality,
+      i.e. with Wilf itself.
+    - So the chain + overlap route reduces exactly to the multiplicity-free core. That core is the tile (MaxCL /
+      Tile-TOP'') problem. It gives no route around it, but it says where the difficulty lives.
 - **The n_1 dichotomy, general height (PROVED).** If M < (h+1)·n_1, then every Apéry element has a factorization of
   length ≤ h, so the grlex factorization tile has height ≤ h.
   - Hence MaxCL for tiles of height ≤ h ⇒ Wilf for every S with (h+1)·n_1 > c + m − 1.

@@ -3039,3 +3039,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Not pursued: a CHAIN(q ≥ 6) route still needs Wilf for c ≤ 5m, which is open; P11 is partial at c ≤ 4m.
 - Kept and generalized: M < (h+1)n_1 ⇒ grlex tile height ≤ h. Height-h MaxCL ⇒ Wilf on (h+1)n_1 > c+m−1.
   h = 2 is done (LEAN). h = 3 is the new line-1 target.
+
+## 2026-10-19 (latest+++++++++++) — the compensation E is factorization overlap, paid locally
+- Question (user/advisor): can factorization multiplicity quantify E = B − B_chain where chain deficits are
+  insufficient?
+- Answer:
+  - Exactly: E = Σ_{v∈Ap}(n·∨Z(v) − v), the join excess of the factorization sets.
+  - Locally: P(v) − E(v) = v − m·L1(v), so chain mass P landing at v is paid by v's own overlap as soon as
+    |∨Z(v)| ≥ v/m.
+- The one-trade bound is too weak on intervals (≈ 25% of E). The lower-cover bound E_U(v) = (Σ_{v−n_a∈S} n_a − v)⁺ is
+  ≈ 95–98% of E and covers every chain deficit seen ≥ 3×.
+- New criteria CHAIN-U, CHAIN-POOR and WILF+ survive everything tested, including all CHAIN-H3/REST-M3
+  counterexamples.
+- Strategic consequence: on multiplicity-free Apéry sets these criteria are Wilf itself (E = 0, chains = tile
+  columns). So "chains + overlap" reduces to the tile-column core and does not bypass it. The current core targets
+  are height-3 MaxCL (codex P6–P8 residual) and the tile programme.
