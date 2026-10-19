@@ -635,3 +635,19 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   abstract (Regensburg repository), it constructs one class of embedding dimension FIVE with arbitrarily high type
   satisfying Wilf. The full text was not available. This is a constructed family, not a hypothesis class like B2/B4.
 - No result of the form "Σ of three (or four) generators ≥ c + m ⇒ Wilf" was found.
+
+### Search 2026-10-19 (latest): Apéry height ≤ 3 / large second generator (before height-3 MaxCL becomes line 1)
+- Queries: web (Wilf + Apéry set + sums of at most three generators / reduction number / depth / height; second
+  generator > (c+m)/4 or (c+m)/3).
+- Hits, all known except two:
+  - Spirito 1710.09245 (#24): n_1 > (c+m)/3 with extra conditions.
+  - Eliahou EJC 2020 (3e ≥ m); Eliahou IMNS 2024 slides (m | c, 4e ≥ m); Dhayni 1610.08726; Sammartano 1111.1863.
+  - NEW: Llena–Rosales, "Second-level numerical semigroups", Mathematics 13(4) (2025) 593 (abstract only).
+    - S is second-level if x + y + z − m ∈ S for all nonzero x, y, z ∈ S. This is equivalent to every Apéry element
+      having ALL its factorizations of length ≤ 2 (max order ≤ 2).
+    - The abstract claims Wilf for the minimal second-level semigroups they construct; whether it claims all
+      second-level S was not verified (abstract only).
+    - Our Flat-MaxCL corollary (SOME factorization of length ≤ 2) contains every second-level S.
+  - NEW: Marashdeh, arXiv 2608.12531 (Aug 2026). Type bound t ≤ e − 1 + Ξ(S), and the reduction
+    g ≤ e − 1 + t(n − 1) of Wilf (abstract only). Not about Apéry height.
+- No statement found of Wilf for Apéry height ≤ 3, or for n_1 > (c+m)/4. Absence of a hit is not proof of novelty.
