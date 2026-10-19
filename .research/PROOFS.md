@@ -501,8 +501,12 @@ Then r = v + ρ_0 − m·1_U and Σ_D v = M'.
   - `wilf_of_isFactTile_noWrap : IsFactTile S D → (∀ x ∈ D, Σ_a x_a·(n_a mod m) < m) → c ≤ e·ℓ`.
   - Formalized steps: Gauss (`sum_tileT_mul_linW`), Σ_D T = d·m, the up-set count (`card_filter_le_tops`), the window
     count (`card_window_le`, needing only injectivity of v), and a linear_combination certificate.
-  - Not yet in Lean: the intrinsic form (every w_i has a factorization with residue sum i), which needs the weighted
-    monomial-order factorization tile.
+  - **Intrinsic form, also LEAN-checked:** `wilf_of_apery_noWrap : (∀ w ∈ Ap(S,m), ∃ x, wt x = w ∧
+    Σ_a x_a·(n_a mod m) < m) → c ≤ e·ℓ`. In words: if every Apéry element has a factorization whose generator
+    residues add up to exactly w mod m (no reduction), then Wilf holds.
+    - It uses the weighted factorization tile `factDownSetW` (least factorizations for the monomial order
+      "x·P, then grlex"; `isFactTile_factDownSetW`).
+    - Same axioms, 0 sorry, full build OK.
 - This strengthens "Γ = 0 ⇒ MaxCL" above, which needs ρ_0 + x·P < m and so depends on the phase.
 - It covers:
   - postage-stamp tiles (grlex-min representations of 0..m−1 over a coin set containing 1);

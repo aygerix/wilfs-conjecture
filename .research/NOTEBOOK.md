@@ -2657,3 +2657,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Remaining at height 3: t ≥ 2 bad cubics; the next lemma is HIGH-ORIGIN.
   - Measured on random tiles at heights ≥ 5: the negative WINDOW-H mass sometimes exceeds the global budget. So
     an all-height proof must use the positive b_y, not only L_H, O_H and the pair carries.
+- **LEAN: NO-WRAP is kernel-checked** (lean/Wilf/NoWrap.lean; standard axioms; 0 sorry).
+  - MaxCL at every phase for every tile with a non-wrapping lift.
+  - Wilf for every S in which each Apéry element has a factorization with generator-residue sum < m. This is the
+    first Lean-checked Wilf class at ALL Apéry heights; the previous ones were bounded height (≤ 2) or e ≤ 3.

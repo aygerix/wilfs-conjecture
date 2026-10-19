@@ -259,4 +259,136 @@ theorem wilf_of_isFactTile_noWrap {S : NumericalSemigroup}
     refine maxCLAt_of_noWrap hD.isTile (fun a => S.gen a % S.multiplicity) (fun a => ?_) hw
     rw [genMod, ZMod.natCast_mod]
 
+/-! ### The weighted (P-min) factorization tile and the intrinsic NO-WRAP corollary -/
+
+section WKey
+
+variable {d : ℕ}
+
+theorem linW_add (P : Fin d → ℕ) (x u : Fin d → ℕ) : linW P (x + u) = linW P x + linW P u := by
+  simp only [linW, Pi.add_apply, add_mul, Finset.sum_add_distrib]
+
+/-- Weighted key: the weight `v(x) = Σ_a x_a·P_a` first, then graded-lex. -/
+def wKey (P : Fin d → ℕ) (x : Fin d → ℕ) : ℕ ×ₗ (ℕ ×ₗ Lex (Fin d → ℕ)) := toLex (linW P x, grKey x)
+
+theorem wKey_injective (P : Fin d → ℕ) : Function.Injective (wKey P) := by
+  intro x y h
+  have := congrArg (fun k => (ofLex k).2) h
+  exact grKey_injective (by simpa [wKey] using this)
+
+theorem wKey_le_iff (P : Fin d → ℕ) {x y : Fin d → ℕ} :
+    wKey P x ≤ wKey P y ↔ linW P x < linW P y ∨ (linW P x = linW P y ∧ grKey x ≤ grKey y) :=
+  Prod.Lex.toLex_le_toLex
+
+theorem linW_le_of_wKey_le (P : Fin d → ℕ) {x y : Fin d → ℕ} (h : wKey P x ≤ wKey P y) :
+    linW P x ≤ linW P y := by
+  rcases (wKey_le_iff P).1 h with h | ⟨h, -⟩ <;> omega
+
+/-- The weighted order is a monomial order. -/
+theorem wKey_add_le (P : Fin d → ℕ) {x y : Fin d → ℕ} (u : Fin d → ℕ)
+    (h : wKey P x ≤ wKey P y) : wKey P (x + u) ≤ wKey P (y + u) := by
+  rw [wKey_le_iff] at h ⊢
+  rw [linW_add, linW_add]
+  rcases h with h | ⟨h1, h2⟩
+  · left; omega
+  · right
+    exact ⟨by omega, grKey_add_le u h2⟩
+
+end WKey
+
+variable (S : NumericalSemigroup)
+
+/-- `n_P(w)`: the least factorization of `w` for the weighted key (junk `0` if there is none). -/
+noncomputable def nfW (P : Fin S.primitives'.card → ℕ) (w : ℕ) : Fin S.primitives'.card → ℕ :=
+  if h : (S.factSet w).Nonempty then Classical.choose ((S.factSet w).exists_min_image (wKey P) h)
+  else 0
+
+/-- The weighted factorization down-set `D_P = {n_P(w) | w ∈ Ap(S,m)}`. -/
+noncomputable def factDownSetW (P : Fin S.primitives'.card → ℕ) :
+    Finset (Fin S.primitives'.card → ℕ) :=
+  (S.aperySet S.multiplicity).image (S.nfW P)
+
+variable {S}
+
+theorem nfW_spec (P : Fin S.primitives'.card → ℕ) {w : ℕ} (hw : S.IsApery S.multiplicity w) :
+    S.wt (S.nfW P w) = w ∧ ∀ x, S.wt x = w → wKey P (S.nfW P w) ≤ wKey P x := by
+  have hne : (S.factSet w).Nonempty := by
+    obtain ⟨x, hx⟩ := exists_wt_eq hw
+    exact ⟨x, mem_factSet.2 hx⟩
+  unfold nfW
+  rw [dif_pos hne]
+  obtain ⟨hmem, hmin⟩ := Classical.choose_spec ((S.factSet w).exists_min_image (wKey P) hne)
+  exact ⟨mem_factSet.1 hmem, fun x hx => hmin x (mem_factSet.2 hx)⟩
+
+theorem wt_nfW (P : Fin S.primitives'.card → ℕ) {w : ℕ} (hw : S.IsApery S.multiplicity w) :
+    S.wt (S.nfW P w) = w := (nfW_spec P hw).1
+
+/-- Down-set property of weighted-least factorizations. -/
+theorem nfW_downward (P : Fin S.primitives'.card → ℕ) {w : ℕ} (hw : S.IsApery S.multiplicity w)
+    {y : Fin S.primitives'.card → ℕ} (hy : y ≤ S.nfW P w) :
+    S.IsApery S.multiplicity (S.wt y) ∧ S.nfW P (S.wt y) = y := by
+  have hxyu : y + (S.nfW P w - y) = S.nfW P w := by
+    funext b
+    have hb : y b ≤ S.nfW P w b := hy b
+    simp only [Pi.add_apply, Pi.sub_apply]
+    omega
+  generalize S.nfW P w - y = u at hxyu
+  have hwx : S.wt (S.nfW P w) = w := wt_nfW P hw
+  generalize hx : S.nfW P w = x at hxyu hwx
+  have hAp : S.IsApery S.multiplicity (S.wt y) :=
+    hw.of_add (wt_mem y) (wt_mem u) (by rw [← wt_add, hxyu, hwx])
+  refine ⟨hAp, ?_⟩
+  set z := S.nfW P (S.wt y) with hz
+  obtain ⟨hzw, hzmin⟩ := nfW_spec P hAp
+  have h1 : wKey P z ≤ wKey P y := hzmin y rfl
+  have h2 : wKey P x ≤ wKey P (z + u) := by
+    rw [← hx]; exact (nfW_spec P hw).2 (z + u) (by rw [wt_add, hzw, ← wt_add, hxyu, hwx])
+  have h3 : wKey P (z + u) ≤ wKey P (y + u) := wKey_add_le P u h1
+  rw [hxyu] at h3
+  have h5 : z + u = y + u := by rw [hxyu]; exact wKey_injective P (le_antisymm h3 h2)
+  exact add_right_cancel h5
+
+theorem mem_factDownSetW (P : Fin S.primitives'.card → ℕ) {x : Fin S.primitives'.card → ℕ} :
+    x ∈ S.factDownSetW P ↔ ∃ w, S.IsApery S.multiplicity w ∧ S.nfW P w = x := by
+  rw [factDownSetW, Finset.mem_image]
+  constructor
+  · rintro ⟨w, hw, rfl⟩
+    exact ⟨w, (mem_aperySet S.multiplicity_mem S.multiplicity_pos).1 hw, rfl⟩
+  · rintro ⟨w, hw, rfl⟩
+    exact ⟨w, (mem_aperySet S.multiplicity_mem S.multiplicity_pos).2 hw, rfl⟩
+
+/-- The weighted factorization down-set is a factorization tile. -/
+theorem isFactTile_factDownSetW (P : Fin S.primitives'.card → ℕ) :
+    IsFactTile S (S.factDownSetW P) := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro x hx y hy
+    obtain ⟨w, hw, rfl⟩ := (mem_factDownSetW P).1 hx
+    obtain ⟨hAp, hnf⟩ := nfW_downward P hw hy
+    exact (mem_factDownSetW P).2 ⟨_, hAp, hnf⟩
+  · intro x hx
+    obtain ⟨w, hw, rfl⟩ := (mem_factDownSetW P).1 (Finset.mem_coe.1 hx)
+    rw [wt_nfW P hw]
+    exact (mem_aperySet S.multiplicity_mem S.multiplicity_pos).2 hw
+  · intro x hx y hy h
+    obtain ⟨w1, hw1, rfl⟩ := (mem_factDownSetW P).1 (Finset.mem_coe.1 hx)
+    obtain ⟨w2, hw2, rfl⟩ := (mem_factDownSetW P).1 (Finset.mem_coe.1 hy)
+    rw [wt_nfW P hw1, wt_nfW P hw2] at h
+    rw [h]
+  · intro w hw
+    have hw' := (mem_aperySet S.multiplicity_mem S.multiplicity_pos).1 (Finset.mem_coe.1 hw)
+    exact ⟨S.nfW P w, Finset.mem_coe.2 ((mem_factDownSetW P).2 ⟨w, hw', rfl⟩), wt_nfW P hw'⟩
+
+/-- **Intrinsic NO-WRAP Wilf.** If every Apéry element `w ∈ Ap(S,m)` has a factorization `x` over the
+minimal generators `n_a ≠ m` with `Σ_a x_a·(n_a mod m) < m` (equivalently, its generator residues
+add up to exactly `w mod m`, with no reduction), then `c(S) ≤ e(S)·ℓ(S)`. -/
+theorem wilf_of_apery_noWrap (S : NumericalSemigroup)
+    (h : ∀ w ∈ S.aperySet S.multiplicity, ∃ x : Fin S.primitives'.card → ℕ,
+      S.wt x = w ∧ ∑ a, x a * (S.gen a % S.multiplicity) < S.multiplicity) :
+    S.conductor ≤ S.embDim * S.ell := by
+  set P : Fin S.primitives'.card → ℕ := fun a => S.gen a % S.multiplicity with hP
+  refine wilf_of_isFactTile_noWrap (isFactTile_factDownSetW P) fun x hx => ?_
+  obtain ⟨w, hw, rfl⟩ := (mem_factDownSetW P).1 hx
+  obtain ⟨x', hx'w, hx'lt⟩ := h w ((mem_aperySet S.multiplicity_mem S.multiplicity_pos).2 hw)
+  exact lt_of_le_of_lt (linW_le_of_wKey_le P ((nfW_spec P hw).2 x' hx'w)) hx'lt
+
 end NumericalSemigroup
