@@ -2914,3 +2914,21 @@ maximal-cell weights 4 + |y|.
   - support-two with 40 ≤ m ≤ 59 (828 relaxed profiles at m = 59).
   The next lemma, FULL-INTERIOR H(D) + 7|max D| ≥ 2|D| for lattice tiles, is OPEN. Its finite census is slack-positive
   (min 16, m ≤ 39) and it would imply Wilf for m ≥ 409,771 via TYPE4.
+
+## Codex P11 (3m < c ≤ 4m, primary regime): Theorems A, A1, B, C — RECEIVED 2026-10-19, PARTIALLY reviewed
+Source: src/scratch/gw/p11/P11_REPORT.md (code, results and checksums in p11/). Notation as in GW-21/24/26:
+- α = number of low A directions, a = number of A directions, b = number of B directions;
+- κ = size of a vertex cover of the absent A pairs, r_LL = missing low–low pairs, j_L, l as in the report;
+- d_0 = max{l + j_L, b, ⌈(κ + r_LL + b)/2⌉};
+- G = a bound on the number of squarefree triple-sum fibres of size ≥ 11 on the repaired offset set.
+- Theorem A: α ≥ 6, n_0 ≥ C(α+1,2)/2 and a ≥ 13(α + d_0 + G + 22) ⇒ W ≥ 0.
+- Corollary A1: with a ≥ 20 r_LL added, the condition on n_0 can be dropped (via LARGE-A′).
+- Theorem B: α ≥ 1280(d_0 + G + 1) and a ≥ 3α ⇒ W ≥ 0.
+- Theorem C: r_A = l = b = 0 and α ≥ 1140 + 9G ⇒ W ≥ 0. This improves BFREE-LIGHT from 1910 to 1140.
+- Correction accepted: the co-Kunz RC term is n·Σ_s ⌈(λ(s)b − s)/n⌉ − bℓ. The indicator form is only a bound.
+  Witness: ⟨5,9,12⟩, n = 9.
+- Lead review so far: the margin polynomial in (18), (13(A−3)² + 51(A−3) + 20)/6; the completed square in (23); and
+  the cubic certificate in (24) were re-derived by hand. The (19) packing argument was read and is plausible.
+- NOT yet re-derived: the I-LOW substitutions (12)–(13), the localized bound C_H, and the GW-26 transfer W ≥ W_A.
+  Status: RECEIVED; not to be cited as verified.
+- Residual unchanged in shape: α ≥ 6, 19 ≤ a < 10·C(α+1,2), 3e < m, m ≥ 211, failing A, B and C.
