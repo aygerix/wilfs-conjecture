@@ -184,7 +184,14 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
-(0J) NEW 2026-10-19 latest+, read first.
+(0K) NEW 2026-10-19 latest++, read first.
+    - PRIORITY: Yang–Zhang (Preprints.org 202604.0551, Apr 2026) contains LK (a). Their staircase bound is
+      ℓ ≥ q + (q−2)η + η_ρ. LK (b), the Kneser growth, remains ours; combined as Theorem LK+YZ (PROOFS, E272).
+      Literature checks must now include Preprints.org.
+    - Macaulay on bands is FALSE with carries (E273). In P18, W = W_0, and Wilf ⟺ (k+1)Σ_{i<q}(q−i)α_i ≥ qm − ρ (Eliahou's
+      α_i). The obstruction is the ±1 carry.
+    - Codex P8 finished; review pending.
+(0J) 2026-10-19 latest+.
     - **Theorem LAYER-KNESER (PROVED, PROOFS).** For every S: ℓ ≥ D + (D−2)k, where k = |S∩(m,2m)| and D = ⌈c/m⌉.
       If moreover gcd(m, B) = 1, then ℓ ≥ D + (D−2)k + δ⌊(D−3)²/4⌋, with δ = ⌈(k+1)/2⌉ (k for m prime).
       - Method: Kneser on the band gap sets, G_{H+2} − B ⊆ G_H.

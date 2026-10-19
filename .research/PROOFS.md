@@ -2345,7 +2345,12 @@ elements of S in (m, 2m). These are all primitive, so e ≥ k + 1. For H ≥ 0 l
 5. Then ℓ = c − Σ_{H=0}^{D−1} g_H ≥ (D−1)m + c′ − (m−1) − Σ_{H=1}^{D−2}(m − 1 − k − ⌊(H−1)/2⌋δ) − (c′ − 1)
    = D + (D−2)k + δ·Σ_{j=0}^{D−3}⌊j/2⌋ = D + (D−2)k + δ⌊(D−3)²/4⌋. ∎
 
-**Relation to the literature** (search 2026-10-19, LITERATURE.md).
+**Priority correction (2026-10-19, latest++; LITERATURE item 46).** Part (a) is contained in Yang–Zhang, Preprints.org
+202604.0551 (8 Apr 2026), Prop 3.1: ℓ ≥ q + (q−2)η + η_ρ, which is stronger by η_ρ = |S ∩ (m, 2m−ρ)|. Their Prop 2.4/5.2
+is the exact band formula used in step 5. So (a) is NOT new. The growth step 3 and part (b) are not in their paper,
+and neither is the combination LK+YZ below. The original text follows, unchanged.
+
+**Relation to the literature** (search 2026-10-19, LITERATURE.md; part (a) SUPERSEDED by the correction above).
 - Delgado–Kumar–Marion (arXiv 2501.04417v3, Thm 1.5) prove ℓ ≥ (d−2)k and conclude Wilf when k ≥ √(dm/(d−2)).
   (a) contains that count, so LK strictly contains their Theorem 1.5. The Kneser term is new as far as we can find:
   no Cauchy–Davenport or Kneser argument for Wilf turned up.
@@ -2371,4 +2376,28 @@ which is all step 5 uses. With q = D − 1 ≥ 1, q·m < c ≤ (q+1)·m, k = #lo
 - Ingredients: `shift_mem` (step 2) and `card_bandGaps_step` (step 3, via Mathlib `ZMod.cauchy_davenport`).
 - The general-m Kneser case (δ = ⌈(k+1)/2⌉) is NOT formalized, because Kneser's theorem is not in Mathlib. It stays at
   "proved on paper; Kneser cited".
+
+
+## Theorem LK+YZ (Kneser growth combined with the Yang–Zhang staircase) — PROVED 2026-10-19 (paper; exhaustive genus ≤ 34, E272)
+Setting as in LK, with q = D = ⌈c/m⌉ ≥ 3, ρ = qm − c, η = k = |S∩(m,2m)|, η_ρ = |S ∩ (m, 2m−ρ)|,
+Θ_t = #{1 ≤ i < m : tm + i ∈ S} = m − 1 − g_t, and Θ_{t,ρ} the same count restricted to i ≤ m − ρ − 1.
+
+**Statement.** If η ≥ 1 and gcd(m, B) = 1, with δ as in LK (δ = η for m prime, ⌈(η+1)/2⌉ in general):
+
+    ℓ ≥ q + (q−2)η + δ·⌊(q−3)²/4⌋ + max(η_ρ, η + δ·⌊(q−2)/2⌋ − ρ).
+
+Hence Wilf holds whenever e times the right-hand side is ≥ c.
+
+**Proof.**
+1. (Exact formula; Yang–Zhang Prop 2.4/5.2, re-derived.) ℓ = q + Σ_{t=1}^{q−2} Θ_t + Θ_{q−1,ρ}. Residue class i ≥ 1 has
+   max(0, q − x_i) left elements if i ≤ m−ρ−1, and max(0, q − 1 − x_i) otherwise. Write each as a sum of indicators [x_i ≤ t].
+2. (LK step 4.) Θ_t = m − 1 − g_t ≥ η + δ⌊(t−1)/2⌋ for 1 ≤ t ≤ q − 1. Hence Σ_{t=1}^{q−2} Θ_t ≥ (q−2)η + δ⌊(q−3)²/4⌋.
+3. (Last band.) Θ_{q−1,ρ} ≥ Θ_{1,ρ} = η_ρ by monotonicity. Also every residue i ≥ m − ρ is present in band q − 1, since
+   (q−1)m + i ≥ c. So Θ_{q−1,ρ} = Θ_{q−1} − ρ ≥ η + δ⌊(q−2)/2⌋ − ρ. ∎
+- It contains Yang–Zhang Prop 3.1 (δ = 0) and LK (b), which drops the last-band term.
+- Checks (E272): exhaustive over all S of genus ≤ 34 (src/scratch/p18/yz_check.c). The exact formula, YZ Prop 3.1,
+  the identity Θ_{q−1,ρ} = Θ_{q−1} − ρ and the LK+YZ bound have 0 failures; min(ℓ − bound) = 0.
+- Coverage: on 996 structured S (yz_novel.py), 129 are covered by LK+YZ and by none of YZ Cor 3.3/4.2/4.5, DKM 1.5,
+  Cor 1.6, LIT, Kaplan, type ≤ e − 1, symmetric.
+- Lean: not yet. `ell_ge_layer_prime` gives the bound without the last-band term.
 

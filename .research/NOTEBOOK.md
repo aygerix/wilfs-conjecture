@@ -2829,3 +2829,35 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   LK-type growth persists; if they shrink fast early, the early bands are already large. The difficulty is a fast
   shrink concentrated in the last bands.
 
+
+## 2026-10-19 (night, latest++) — Lean for LK; Macaulay on bands fails with carries; Yang–Zhang priority on LK (a)
+
+- **LEAN.** LK part (a) and the prime-modulus Cauchy–Davenport case are kernel-checked (lean/Wilf/LayerKneser.lean; standard
+  axioms only). The Lean statements hold for any m ∈ S, not only the multiplicity. The general-m Kneser case is paper only.
+- **Macaulay route, NO-WRAP P18.** If every Apéry element has a factorization of length ⌊w/m⌋ (NO-WRAP in P18), then
+  R_H = HB ∩ [0, m). So u_H is the Hilbert function of k[Σ]/(σ ≥ m), a standard graded algebra in k + 1 variables, and
+  Macaulay gives u_H / C(H+k, k) non-increasing. Then (k+1)ℓ − c ≥ −k(m−1−r*) and ≥ k(r*+1) − T(x*+k), where r* is the
+  Frobenius residue and T the number of top-level residues. So Wilf holds there when r* = m − 1.
+  - Not new as a theorem: this class is covered by the kernel-checked `wilf_of_apery_noWrap`.
+  - In the extremal "free" profile u_H = C(H+k, k), Macaulay alone is exactly tight. So any proof by Macaulay alone must
+    use the boundary.
+- **FAILED (E273): Macaulay ratio on bands with carries.** Neither the zero-aligned u_H / C(H+k, k) nor the
+  conductor-aligned v_j / C(j+k, k) is non-increasing in P18: 385 and 1301 failures out of 4120 random S (e.g. m = 40,
+  B* = {22, 25}: u = 1, 3, 3, 6, …). Carries break the grading.
+  - Eliahou's reformulation makes this precise. In P18, W = W_0 exactly. Wilf ⟺ (k+1)·Σ_{i<q}(q−i)α_i ≥ qm − ρ, where α_i
+    counts the Apéry elements in the conductor-aligned level i and Σα_i = m.
+  - Under a true grading, Macaulay closes this (the Chebyshev step gives the ratio q/(k+1)); this is Eliahou Thm 7.1.
+    The obstruction is exactly the ±1 carry of the weak grading (Eliahou Prop 3.5).
+- **Band profiles of the P18 extremal examples (band_profile.py).**
+  - ⟨27, 28, 32, 35⟩ (eℓ/c = 1.26) is NO-WRAP with c = 4m.
+  - ⟨91, 93, 169, 173⟩ (1.31) grows quadratically, with second differences ≈ 1. B = {0, 2, −13, −9} is 2-dimensional
+    ({0,2} + {0,−13} plus one point), i.e. a projected 3-D cone, which leaves room in Wilf.
+- **Yang–Zhang (Preprints.org 202604.0551, Apr 2026; link from the user).**
+  - Their staircase bound ℓ ≥ q + (q−2)η + η_ρ contains our LK (a), and their exact cumulative-layer formula is our band
+    formula. Priority theirs; recorded in LITERATURE item 46 and PROOFS.
+  - Their method uses only the monotonicity of Θ_t. Our Kneser growth Θ_{t+2} ≥ Θ_t + δ is not there. Combined:
+    Theorem LK+YZ (PROOFS), exhaustive genus ≤ 34, sharp.
+  - On 996 structured S it adds 129 S that none of their first-layer criteria (nor DKM, LIT, Kaplan, type, symmetric)
+    reach.
+  - Lesson: the search before LK covered arXiv and GitHub but not Preprints.org/MDPI. Add Preprints.org (and Google
+    Scholar) to the standard literature check.

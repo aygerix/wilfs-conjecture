@@ -70,6 +70,7 @@ Verification-status legend used below:
 | 43 | Asymptotic: proportion of S of genus g that are Wilf → 1 | counting by genus | Zhai, Semigroup Forum 86 (2013) (prop. with c ≤ 3m → 1) + #13; alternatively Kaplan–Singhal, Enum. Comb. Appl. 3 (2023) Cor 7 (prop. with e ≥ m/2 → 1) + #19 | — | SECONDARY (DKM Prop 2.11, 2.12, Cor 2.16) |
 | 44 | Asymptotic: proportion of S with Frobenius number F that are Wilf → 1 | counting by F | Backelin, Math. Scand. 66 (1990) Prop 2 (m ≈ F/2) + #13 | DKM Cor 2.17 | READ (in DKM) |
 | 45 | Asymptotic: proportion of S with max primitive N that are Wilf → 1 | counting by max primitive | Delgado–Kumar–Marion | Thm 1.7 | READ |
+| 46 | (a) Exact identity ℓ = q + Σ_{t=1}^{q−2} Θ_t + Θ_{q−1,ρ}, Θ_t = #{1≤i<m : x_i ≤ t}, Θ_{t,ρ} = same with i ≤ m−ρ−1; (b) staircase bound ℓ ≥ q + (q−2)η + η_ρ, η = |S∩(m,2m)|, η_ρ = |S∩(m,2m−ρ)|; (c) e(η+2) ≥ 2m ⇒ Wilf, so (η+1)(η+2) ≥ 2m ⇒ Wilf; (d) m | c and e(3η+4) ≥ 4m ⇒ Wilf; (e) (Q,t)-criteria from monotonicity Θ_s ≥ Θ_t only; (f) interval family ⟨m, m+1, …, m+⌈√m⌉−1⟩ | all S ((c), (d) use Eliahou for q ≤ 3) | Yang–Zhang, "Wilf's Conjecture from the First Kunz Layer", Preprints.org 202604.0551 v1 (posted 8 Apr 2026, not peer-reviewed), doi 10.20944/preprints202604.0551.v1 | Prop 2.4/5.2, Prop 3.1, Cor 4.2/4.3, Cor 4.5, Thm 5.6/5.8, Thm 6.4 | READ 2026-10-19 (user-supplied link); proofs re-derived by the lead; (a), (b) checked exhaustively genus ≤ 34 (E272) |
 
 Note A (Kaplan numbering): Delgado's survey says Kaplan Th. 24 = "c ≤ 2m ⇒ Wilf" and Prop. 26 = equality
 case for m ≥ c/2; Delgado–Kumar–Marion say Th. 24 = "2g < 3m ⇒ Wilf" and Prop. 26 = depth ≤ 2;
@@ -604,6 +605,18 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
   - Spirito (arXiv 1710.09245): large second generator.
   - Stamate–Strazzanti (arXiv 2601.19629, 2026): PF sets of shifted families ⟨n, n+r_1, …⟩; not Wilf.
   - BGOW (arXiv 1903.04342): m ≤ 18.
-- Conclusion: LAYER-KNESER (PROOFS) appears new. It strictly contains DKM Thm 1.5. It was checked against the exact
+- [SUPERSEDED IN PART 2026-10-19, see the correction below] Conclusion: LAYER-KNESER (PROOFS) appears new. It strictly contains DKM Thm 1.5. It was checked against the exact
   hypotheses above, but not against every paper in the field. Before any public claim, ask Delgado or Eliahou.
 
+
+### Correction 2026-10-19 (latest++): Yang–Zhang, Preprints.org 202604.0551 (item 46; link supplied by the user)
+- This search missed it: it is on Preprints.org (MDPI), not arXiv. Posted 8 April 2026, before our LAYER-KNESER work.
+- Yang–Zhang Prop 3.1 (ℓ ≥ q + (q−2)η + η_ρ) CONTAINS LK part (a) (ℓ ≥ D + (D−2)k, D = q, k = η) and is stronger by η_ρ.
+  Their Prop 2.4/5.2 is the exact band formula we use (Θ_t = m − 1 − g_t). So **LK (a) is NOT new**, and the
+  claim "LK strictly contains DKM Thm 1.5" belongs to Yang–Zhang, not to us.
+- Yang–Zhang use only the monotonicity Θ_{t+1} ≥ Θ_t. They have no growth estimate for Θ_t, no Kneser or Cauchy–Davenport.
+  **LK (b), the growth Θ_{t+2} ≥ Θ_t + δ, is still not in the literature found so far**, nor is its combination with
+  their staircase (PROOFS "LK+YZ"). Their concluding remark asks for a finer analysis of the layer interactions.
+- Verification (ours): every proof in §§2–5 re-derived by hand; (a), (b) exhaustively over genus ≤ 34 (E272).
+- Coverage (E272, 996 structured S with q ≥ 3): LK+YZ covers 545 and YZ's first-layer criteria (Cor 3.3/4.2/4.5) about 285.
+  129 S are covered by LK+YZ and by none of: YZ 3.3/4.2/4.5, DKM 1.5, Cor 1.6, LIT, Kaplan, type ≤ e−1, symmetric.
