@@ -2719,3 +2719,16 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   Hence at least p − 1 − (d − 1) of the labels in [p+1, 2p) are wrapped cells with λ ≥ p, each with |y| − 1 ≥ 1. So
   Σ_{λ ≥ p}(|y|−1) ≥ p − d ≥ p − 1 − d, which is H1′ at θ = p with one unit to spare. Mechanism: translation by the
   smallest step sends low wrapped labels to wrapped cells with higher labels.
+- **H1′ over all labelings, and its exit-edge version.**
+  - The E153 certificates are canonical up to units (E266), so H1′ was rerun over every labeling u·r
+    (src/scratch/wrapmax/wm_cert_u.py). So far 0 failures for m = 6–19 and m = 22, every phase.
+  - The exit-edge version Ex(D'_θ) + Σ_{λ≥θ}(|y|−1) ≥ |V_θ| is FALSE. It fails twice at m = 13, e.g. P = (10, 4, 11, 6),
+    θ = 10, where the shadow (Out) version has slack 0 (src/scratch/wrapmax/wm_exitform.py). So a proof must count
+    shadow cells: an exit column contributes its whole low part (u_b + 1 cells), not 1.
+  - Orbit picture (direction a, step P_a): the low labels [0, θ) split into min(θ, P_a) runs. Each run ends in one
+    low→high step: an internal exit (weight u_a + 1), a jump to a high wrapped cell, or a jump to an a-floor cell of
+    Hi (which is then a minimal Hi cell, since P_a ≤ P_b fails in general; this needs P_a = min P). Every wrapped y with
+    a ∈ supp(y) starts a run. Summed over directions, this counting alone is an identity. The geometric input must
+    bound the low down-set's shadow from below.
+- **Tile-CL is false already at d = 4** (E266: m = 16, P = (1,6,7,15), a 2-D core plus two spikes). So the PC/Tile-CL
+  failures are core-plus-spike constructions with non-maximal wraps. H1′ (the WRAP-MAX case) is unaffected.
