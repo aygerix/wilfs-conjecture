@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, late morning; GW-26g a ≤ 17 verified ⇒ Wilf for e ≤ 18 and c ≤ 4m; codex P5f next)
+# STATE.md — handoff (updated 2026-10-19, midday; GW-26g a ≤ 18 verified ⇒ Wilf for e ≤ 19 and c ≤ 4m; LARGE-A′ a ≥ 10Q_α; codex P5f running)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -83,10 +83,11 @@
   the same when 2n_2 ≥ c − m (at most one low unit). GW-26d (codex P5c, verified by the lead, E227): the same when
   2n_3 ≥ c − m (at most two low units). GW-26e (codex P5c + lead refinements, E228–E232): exactly three low units
   and a ≥ 13. GW-26f (codex P5d T2-SMALL, verified by the lead E234–E235): a ≤ 13 for every α. GW-26g (codex P5e
-  T2-SMALL16/17, verified by the lead E237): a ≤ 17 for every α, hence **Wilf for every S with e ≤ 18 and c ≤ 4m**, and
-  (with Eliahou's 3e ≥ m) for c ≤ 4m and m ≤ 57. Also U-SMALL, U-B0, LARGE-A (a ≥ 16Q_α² ⇒ W ≥ 0), and the B-free
-  strip for α ≤ 14 (paper/certificate-checked). T2-SMALL18 is claimed by codex; the lead's a = 18 run is pending.
-  Remaining in 3m < c ≤ 4m: α ≥ 4, 18 ≤ a < 16Q_α² (finite for each α; α unbounded).
+  T2-SMALL16/17/18, verified by the lead E237): a ≤ 18 for every α, hence **Wilf for every S with e ≤ 19 and c ≤ 4m**,
+  and (with Eliahou's 3e ≥ m) for c ≤ 4m and m ≤ 60. Also U-SMALL, U-B0, the B-free strip for α ≤ 14, and
+  **LARGE-A′ (lead, 2026-10-19): a ≥ 10·C(α+1,2) ⇒ W ≥ 0** (codex had 16·C(α+1,2)²).
+  Remaining in 3m < c ≤ 4m: α ≥ 4, 19 ≤ a < 10·C(α+1,2). It is finite for each α (19 ≤ a ≤ 99 at α = 4), but α is
+  unbounded.
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -183,8 +184,9 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
     obstruction. Codex is NOT to keep raising a by one.
     - P5e review DONE: T2-SMALL16/17 reproduced (E237); E-REPAIR, LOCAL-COVER, PAIR-COVER, LINKED-DEF and MIX-PACK
       checked on paper; LARGE-A, P47-B0 and the B-free strip checked (E238). Recorded as GW-26g.
-    - Pending lead run: fejer ~/wilf/lead23/t2h_18.log (a = 18, flags MLPEH, full domain), to confirm T2-SMALL18. If it
-      gives 0, upgrade GW-26g to a ≤ 18 (e ≤ 19, m ≤ 60).
+    - T2-SMALL18 is confirmed by the lead (E237, 0 survivors), and GW-26g is upgraded to a ≤ 18.
+    - Lead runs a = 19, 20 (MLPEH) are going: fejer ~/wilf/lead23/t2h_19.log and t2h_20.log.
+    - LARGE-A′ (E240) is to be sent to codex when its turn ends. The open strip is now a < 10Q_α, i.e. a/α < 5α.
     - P(C) evidence (E239): the annealing maximum of (H−(3s−2))/ex is ≈ 5.2 for n ≤ 36, so P(47) has a huge margin.
       A proof (robust B_3/Green-type hole bound plus heavy-fibre control) is a lead-side target.
     Next codex task after P5: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).

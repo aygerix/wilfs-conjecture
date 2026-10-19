@@ -1491,14 +1491,14 @@ check of U-SMALL/U-B0 (below). Statement: in the primary regime 4m ≤ M < 5m, i
   MIX-GAP budget containment and completion accounting are paper lemmas of codex, checked on actual semigroups (E234),
   not re-derived line by line by the lead.
 
-**Theorem GW-26g (a ≤ 17, every low population; PROVED 2026-10-19, computer-assisted).** Sources: codex P5e,
-src/scratch/gw/p5/P5_REPORT.md §§42–50 (T2-SMALL16, T2-SMALL17), on top of GW-26f. Verification by the lead: an
+**Theorem GW-26g (a ≤ 18, every low population; PROVED 2026-10-19, computer-assisted).** Sources: codex P5e,
+src/scratch/gw/p5/P5_REPORT.md §§42–50 (T2-SMALL16, T2-SMALL17, T2-SMALL18), on top of GW-26f. Verification by the lead: an
 independent C re-implementation of the whole certificate from the report text (E237), and a paper check of every new
-lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 17 then W ≥ 0, for every α, b, c, e.
-- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most 17 minimal generators lie in (m, c − 2m). Hence **Wilf
-  holds for every S with e ≤ 18 and c ≤ 4m**.
-- Corollary (with an external input): **Wilf holds for every S with c ≤ 4m and m ≤ 57.** If e ≤ 18 this is the above;
-  if e ≥ 19 then 3e ≥ 57 ≥ m, and Eliahou's 3e ≥ m theorem applies (LITERATURE; CITED, not re-proved).
+lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 18 then W ≥ 0, for every α, b, c, e.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most 18 minimal generators lie in (m, c − 2m). Hence **Wilf
+  holds for every S with e ≤ 19 and c ≤ 4m**.
+- Corollary (with an external input): **Wilf holds for every S with c ≤ 4m and m ≤ 60.** If e ≤ 19 this is the above;
+  if e ≥ 20 then 3e ≥ 60 ≥ m, and Eliahou's 3e ≥ m theorem applies (LITERATURE; CITED, not re-proved).
 - New lemmas used, each checked on paper by the lead:
   - PAIR-COVER (§43). For r distinct quadratic monomials G on d variables (loops allowed), F_G = dr − C(r,2) + D_G + T_G,
     and D_G + T_G ≥ C(τ(G),2).
@@ -1531,15 +1531,59 @@ lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 17 then 
   - P47-B0 (§45, CONDITIONAL on the ambient packing P(C†), C† ≈ 47.2296): the whole branch r = l = b = 0. The identity
     and certificates were checked symbolically (E238).
   - B-free strip (§47, finite): r = l = b = 0 with 4 ≤ α ≤ 14 is closed for every a (independent check, E238).
-  - T2-SMALL18 (§50, codex: C enumeration plus a replay of 90 profile hulls with LOCAL-COVER/Ehat_k). LOCAL-COVER was
-    checked on paper by the lead. The lead's independent full-domain a = 18 run is pending (E237); until then a = 18 is
-    NOT counted here.
-- Remaining in the primary regime (codex §51): α ≥ 4 and 18 ≤ a < 16·C(α+1,2)² (19 ≤ a once T2-SMALL18 is
-  confirmed), with all FRONTIER-41 and linked-cover conditions. For each fixed α this is a finite search, but α is
-  unbounded.
+  - T2-SMALL18 (§50; codex: C enumeration plus a replay of 90 profile hulls with LOCAL-COVER/Ehat_k). LOCAL-COVER was
+    checked on paper by the lead.
+    - Lead's independent full-domain run (E237): 0 survivors at a = 18, with base/u counts identical to codex
+      (26,725 / 71,891,624).
+    - This holds with E-REPAIR alone (E_k = min(p, l + min(r − r_LL, r − k + 1)), flags MLPE) and with LOCAL-COVER
+      added (MLPEH).
+    - Codex's degree-only E = min(p, l + r − k + 1) left 90 hulls. The r − r_LL term already removes them.
+    So a = 18 IS counted.
+- Remaining in the primary regime: α ≥ 4 and 19 ≤ a < 10·C(α+1,2) (LARGE-A′, below), with all FRONTIER-41 and
+  linked-cover conditions. For each fixed α this is a finite search, but α is unbounded.
 - Caveats: as for GW-26f, these are finite certificates over relaxed count profiles (necessary conditions). The lead's
   re-implementation is independent code written from the report text, and it agrees with codex on every count column
   at a = 14..17.
+
+**Theorem LARGE-A′ (sharpened LARGE-A; PROVED 2026-10-19 by the lead, paper plus a small exact check).** Under the
+primary hypotheses, if α ≥ 4 and a ≥ 10·C(α+1,2), then W ≥ 0, for arbitrary b, c, e, r, l, ε and high exceptions.
+Codex's LARGE-A (P5_REPORT §46) needs a ≥ 16·C(α+1,2)². The new threshold is linear in R0 := C(α+1,2) ≈ α²/2.
+- Proof. It follows the chain of §46, with K = R0 − 1, U0 = C(α+2,3), F = C(a+1,3). Assume W < 0. Two steps change,
+  and the final comparison is made exact.
+  1. **q ≥ C(R0+1,2).** Write q = C(j+1,2) + z with 0 ≤ z ≤ j < R0. By exact Macaulay, u3 + u4 ≤ q^{⟨2⟩} =
+     C(j+2,3) + C(z+1,2). Then (a−3)q − 4q^{⟨2⟩} = C(j+1,2)[(a−3) − 4(j+2)/3] + [(a−3)z − 2z(z+1)], which is ≥ 0 when
+     3(a−3) ≥ 4(R0+1) and a ≥ 2R0 + 3. So W_A ≥ 3a(a+1) > 0, contradicting W_A < 0 (transfer: W ≥ W_A).
+  2. **LA-BUDGET (unchanged).** GLOC gives D3 < Ka and b < 2K. This needs a ≥ 2(1 + 2α + R0), a ≥ 2α + 1 and
+     a + 1 ≥ 5(α+3)/4.
+  3. **r ≤ K, already for a ≥ 2R0.** Let Δ = (a−j)C(j+1,2) + (a+2)z − 3C(z+1,2) ≤ D3 < Ka.
+     - In the blocks R0 ≤ j ≤ a−2, Δ is concave in z and is a negative-leading cubic in j at both z-endpoints. Its
+       minima are at j ∈ {R0, a−2}, and all four endpoint values are ≥ Ka for a ≥ 2R0.
+     - In the block j = a−1, Δ = r(4a−3r−1)/2. At r = R0 it is ≥ Ka iff a ≥ R0(3R0+1)/(2R0+2); at r = a iff
+       a ≥ 2R0 − 1.
+     Hence ε_M = (D3 − Δ)/3 < Ka/3.
+  4. **Exact comparison.**
+     - Lower bound. Cyclic SP on n = a+1−r ≥ n0 := a+1−K pair-injective residues gives
+       2m > n0³ − n0² + 2n0 − n0·Ka. The right side increases in n for n ≥ n0.
+     - Upper bound. m ≤ C(d0+3,3) + k + c(d0+1) + e, where:
+       - d0 = a+b ≤ a+2K−1;
+       - k0 ≤ (α+3)U0/4;
+       - k1 ≤ (α+2)u1/3 ≤ (α+2)R0·a/3, since u1 ≤ n0·p;
+       - c(c+1) ≤ F − 1 and e ≤ (F−1)/(3a), by transfer.
+     - Both bounds are monotone in K in the adverse direction. So for a ≥ 300 the worst case is K = a/10 − 1, and
+       then 2m_lower − 2m_upper ≥ 0.639a³ − [0.576a³ + 1.023a^{5/2} + 0.125a²] > 0. Ingredients:
+       - n0 ≥ 0.9a + 2 and n0² − n0 + 2 − Ka > 0.71a²;
+       - C(1.2a,3) ≤ 0.288a³;
+       - α ≤ √(a/5), so k0 ≤ 0.0062a², k1 ≤ 0.0188a^{5/2}, c(d0+1) ≤ 0.4925a^{5/2} and e ≤ 0.0562a².
+       The bracket 0.063a − 1.023√a − 0.125 is positive for a > 268.
+     - For a < 300 with a ≥ 10R0, only α ≤ 7 occurs. There the inequality and all side conditions were checked
+       exactly for every a ∈ [10R0, 300] (E240).
+  □
+- Exact thresholds: the least a0(α) at which the whole chain closes, with every larger a then also checked, is
+  97, 146, 203, 270, 346, 431, 525 for α = 4..10. The ratio a0/R0 decreases from 9.73 (α = 5) to 9.10 (α = 200);
+  the leading-order limit is θ* ≈ 9.09, the root of (1 − 1/θ)[(1 − 1/θ)² − 1/θ] = (1 + 2/θ)³/3.
+- Consequence. With T2-SMALL18 (GW-26g), a counterexample in the primary regime has α ≥ 4 and
+  19 ≤ a < 10·C(α+1,2) (about 5α²). For α = 4 this is 19 ≤ a ≤ 99, against a < 1,600 before. The low population is still
+  unbounded.
 
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
@@ -1879,10 +1923,11 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
   - with exactly three low units and a ≥ 13 (GW-26e);
   - whenever a ≤ 13, for every low population (GW-26f; semigroups: at most 13 minimal generators in (m, c − 2m));
-  - whenever a ≤ 17, for every low population (GW-26g; semigroups: at most 17 minimal generators in (m, c − 2m));
+  - whenever a ≤ 18, for every low population (GW-26g; semigroups: at most 18 minimal generators in (m, c − 2m));
+  - whenever α ≥ 4 and a ≥ 10·C(α+1,2) (LARGE-A′);
   - whenever LOW+ holds (GW-26b).
-  - Semigroup corollary of GW-26g (superseding GW-26f's e ≤ 14): **Wilf holds for every S with e ≤ 18 and c ≤ 4m**,
-    and, with Eliahou's 3e ≥ m theorem, for every S with c ≤ 4m and m ≤ 57.
+  - Semigroup corollary of GW-26g (superseding GW-26f's e ≤ 14): **Wilf holds for every S with e ≤ 19 and c ≤ 4m**,
+    and, with Eliahou's 3e ≥ m theorem, for every S with c ≤ 4m and m ≤ 60.
   - Semigroup corollary of GW-26f (superseding the a ≤ 6 corollary for e ≤ 7): **Wilf holds for every S with e ≤ 14 and
     c ≤ 4m**. Earlier: the a ≤ 6 case gave Wilf for every S with e ≤ 7 and c ≤ 4m
     (with Eliahou, or our GW-19, for c ≤ 3m). More generally, it holds when 3m < c ≤ 4m and at most six minimal

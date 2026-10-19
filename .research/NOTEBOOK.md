@@ -2293,3 +2293,47 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     set: about (g−1)(4.5g − 47) of them per fiber.
   - So P(47) is a statement about very heavy triple fibers in Sidon sets. Codex's P47-B0 makes exactly this the open
     part of the B-free full-pair branch for α ≥ 15.
+
+## 2026-10-19 (late morning) — GW-26g; the shape of the P(C) extremisers
+
+- **GW-26g (verified).** T2-SMALL16 and T2-SMALL17 were reproduced by an independent certificate (E237), so W ≥ 0 in the
+  primary regime for a ≤ 17. Hence Wilf for e ≤ 18 with c ≤ 4m, and (with Eliahou's 3e ≥ m) for c ≤ 4m with m ≤ 57.
+  - Mechanism at a = 14–16: MIX-PACK. The partial mixed face on d0 + 1 = a + b + 1 residues forces m far above the
+    cardinality cap. Example: a = 14, b = 15, where the q_g window {434, 435} gives m ≥ 11,100 > 4,940.
+  - Mechanism at a = 17: E-REPAIR. The four matching rows have E_k = 1, so C_H drops from E = r to E = 1 and δ ≤ 205,
+    while LOW-FIN needs δ ≥ 246.
+  - The coupling "the same minimum cover k in LINKED-DEF, E-REPAIR and every packing test" is what makes the k-loop
+    effective. Using the largest k for one test and the full ε for another loses it.
+- **The P(C) extremisers are end-loaded, not heavy-fibred (E239).** Simulated annealing of (H − (3s−2))/ex over
+  pair-distinct sets gives a maximum ≈ 5.2 for n ≤ 36, with no heavy fibres.
+  - Near-extremal sets are symmetric and end-loaded. For n = 36 (s = 4057, s/n³ = 0.087) the counting functions of B
+    from the bottom and of s − 1 − B from the top are equal (18 + 18), with K(t)/t^{1/3} ≈ 1.29, 1.29, 1.34, 1.30 at
+    t = 30, 100, 300, 1000.
+  - Continuum explanation. Labels near the bottom end of [−(s−1), 2(s−1)] are u + v + γ, with u, v from the bottom
+    cluster and γ from the top cluster.
+    - If K(t) ≈ a·t^{1/3} at both ends, the labels near the ends have density (a³/54)Γ(1/3)³ and the end triple
+      sums have one third of that.
+    - So the end windows are exactly filled with only light triple collisions iff a³ = 54/Γ(1/3)³ ≈ 2.809
+      (a ≈ 1.41).
+    - Extending t^{1/3} growth to the middle gives n = 2a(s/2)^{1/3}, i.e. s ≈ n³/(4a³) ≈ 0.089n³, as observed.
+  - Profile of the n = 36 extremiser {s = 4057}:
+    - H = 22,716 labels, 10,255 distinct, so loss = 12,461. HOLES = 1,914, i.e. 15.7% of the 3s − 2 = 12,169 slots.
+    - Holes by sixth of the interval: 610, 306, 52, 40, 310, 596, so they sit at the ends.
+    - ex = 2,116, loss/ex = 5.89. Fibre sizes are g ≤ 5 (1,363 of size 2, 280 of size 3, 55 of size 4, 7 of size 5).
+    - Label multiplicities go up to 7 in the middle. So the loss is many overlapping light coincidences, far below
+      the pair-count bound 4.5g per excess.
+  - Consequence for a proof of P(C†): the binding sets are ones whose signed set fills the end windows. The pair-fibre
+    bound (4.5 per excess for g = 2) is far from tight there, and heavy fibres play no role. A heavy fibre (g ≥ 11)
+    would also need an essentially hole-free signed set elsewhere, which the end-loaded structure attains only with
+    many light collisions.
+  - Open (exact): show HOLES ≥ Σ_{g_f ≥ 11}(g_f − 1)(4.5g_f − 47). L²/energy methods (Green, Cilleruelo) penalise a
+    g-fibre by 36g(g−1), i.e. quadratically. So they cannot give a C independent of g: one needs a support-size
+    (L⁰) argument.
+- **Height-3 MaxCL, obstruction made exact.** Charge each cubic via one pair-plus-unit decomposition
+  ρ_abc = ρ_ab + ρ_c − ρ_0 − mK, with K = −1 only in the top window, which has exactly ρ_0 cells.
+  - A top-window cubic then costs exactly 2m (its weight is |y| − 1 = 2).
+  - The available ρ_0 budget is (2|C| + |E_max|) + (d+1). Since m = 1 + d + |E| + |C|, this is short by
+    (1 + d + |E| + |E_N|)ρ_0.
+  - So any height-3 proof must pay part of the top-window cost from the load deficit on non-maximal pairs (each is in
+    at most d cubics, against weight d+1), not from ρ_0 alone. The pure-pair form has load d + 2 on pairs and
+    uncontrolled K ∈ {−2,…,2}. Still parked for P6.
