@@ -2517,3 +2517,25 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     negative at only 12 / 3,400 and 4 / 524,072 phases.
   - Remaining negative terms: cubics of carry −1 outside the window (cost 2m), or inside it (net m); and N2 pairs of
     carry +1 (cost (ψ−1)m, but then ρ_a + ρ_b ≥ m + ρ_0, so their units are heavy).
+- **CR is not an e = 5 route by itself.**
+  - The per-m minimum CR ratio over all 4-D tiles fluctuates around 1 with no upward trend:
+    0.878 / 0.923 / 0.965 / 1.005 / 0.969 / 1.038 / 0.970 / 0.998 / 1.036 / 0.907 / 1.081 / 1.008 / 1.004 / 1.064 /
+    1.049 for m = 25..39.
+  - The minimizers are thin near-simplices of height 4–6. Like MaxCL at height 3, e = 5 needs CR refined by window and
+    packing information.
+- **Diagnosis for any height-3 proof (lead).**
+  - Local carry accounting cannot prove HC′ ≥ 0 (or MaxCL) alone. At ρ_0 = 0 on a near-full core, L_+ ≈ 0. A
+    configuration with every unit residue ≈ m/2 would make the bracket ≈ (p − t)m < 0.
+  - It is excluded only by residue distinctness: pairs in a 2E-interval and cubics in a 3E-interval force
+    E ≳ k³/18 ≈ m/3. The units then spread over ≈ m/3, about half the cubics get carry 2, and the bracket becomes
+    ≈ +pm.
+  - So the proof must couple carry accounting with a packing / distinctness count (as in Flat-MaxCL's window, but
+    quantitative).
+- **What CR needs in the middle regime (exact formula, evaluated).**
+  - For a height-3 core with every pair non-maximal and t = θ·C(k+2,3) cubics, the CR threshold is
+    s* ≈ (2/9)θ²k² (k = 10..80; e.g. θ = 1, k = 80: s* = 1,496 ≈ 0.234k²; θ = 0.5: ≈ 0.05k²).
+  - CR holds for every s when t ≲ 0.35k^{5/2} (θ ≲ 2.1/√k; e.g. θ ≤ 0.25 at k ≤ 40).
+  - So between few cubics (flat window) and few missing cubics (dense packing), CR needs only an O(k²) packing
+    slack m − |C| ≥ (2/9)θ²k², not the k³/3 of the full a+b−c count. Candidate sources are signed labels
+    φ(z) − p_c over "complete" pairs z (every cubic above z present). These are distinct, and they miss every cell
+    label φ(x) with x + e_c ∈ C.
