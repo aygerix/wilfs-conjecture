@@ -1536,8 +1536,8 @@ Both sequences are non-increasing (x ∉ S ⇒ x − m ∉ S; x ∈ S ⇒ x + m 
   - Corner reflection (FGH) gives MAJ with t (type) in place of d.
 - **STAIR-p (conjecture; the sharpest form).** The gap-pair profile is (d−1)-dominated: for every non-increasing z,
   Σ_j min(p_j, z_j) ≤ (d − 1)·Σ_j min(b_j, z_j). Since min(b+p, z) ≤ min(b, z) + min(p, z), STAIR-p ⇒ STAIR.
-  - In words: map the integers x below the first m-multiples-layer structure with x and F − x both gaps into S near
-    the conductor, (e−2)-to-1, without increasing the layer index or the rank.
+  - In words: the integers x with x and F − x both gaps, arranged by layer and rank, map (e−2)-to-1 into the elements
+    of S below c, arranged by layer from the top, without increasing the layer index or the rank.
   - The FGH maps x ↦ f − x (f ∈ PF ∖ {F}) send bottom layer j to top layer ≥ j, the wrong direction. So a proof needs
     descent along generators as well as reflection.
 - For e = 3 even per-depth holds: the tile's corner reflection (GW-8) is depth-preserving and t(D) ≤ 2 in dimension
