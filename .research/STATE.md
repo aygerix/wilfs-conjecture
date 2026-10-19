@@ -191,6 +191,8 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
     - Macaulay on bands is FALSE with carries (E273). In P18, W = W_0, and Wilf ⟺ (k+1)Σ_{i<q}(q−i)α_i ≥ qm − ρ (Eliahou's
       α_i). The obstruction is the ±1 carry.
     - Codex P8 REVIEWED and accepted (PROOFS "Codex P8", E274): SR packing lemma; GENERAL-FEW21+240; SHADOW-225; DISJOINT-CUBICS.
+    - LEAN: YZ staircase (any m ∈ S) and LK+YZ (prime m) kernel-checked (`ell_ge_staircase`, `ell_ge_lkyz_prime`, `'`).
+    - c ≤ 4m frontier + YZ Cor 4.2: the residual (α ≥ 5, 19 ≤ a < 10·C(α+1,2)) also needs (a+1)(a+2) < 2m, so m ≥ 211.
     - Codex P9 launched: Problem 1.8 (generators < 2m). Message $SP/codex/p9_msg.md, log $SP/codex/p9_log.txt.
 (0J) 2026-10-19 latest+.
     - **Theorem LAYER-KNESER (PROVED, PROOFS).** For every S: ℓ ≥ D + (D−2)k, where k = |S∩(m,2m)| and D = ⌈c/m⌉.

@@ -16,6 +16,9 @@ residues `r < m` with `H m + r ∉ S`, and `k = #lowRes m` is the number of elem
   `ℓ ≥ q + 1 + (q-1) k + k · ∑_{j < q-1} ⌊j/2⌋`.
   (`∑_{j<n} ⌊j/2⌋ = ⌊(n-1)²/4⌋`, giving `ℓ ≥ D + (D-2)k + k⌊(D-3)²/4⌋`.)
 * Consequently Wilf holds whenever `c ≤ e · (that bound)`.
+* Last band (Yang–Zhang staircase, Preprints.org 202604.0551, Prop 3.1), for any `m ∈ S`:
+  `ℓ ≥ D + (D-2) k + η_ρ` with `η_ρ = #{r ∈ lowRes : r < c - q m}` (`ell_ge_staircase`); combined with the
+  Cauchy–Davenport growth for prime `m` (`ell_ge_lkyz_prime`, `ell_ge_lkyz_prime'`).
 
 The general-modulus version with `⌈(k+1)/2⌉` uses Kneser's theorem, which is not in Mathlib;
 it is proved on paper (PROOFS "Theorem LAYER-KNESER").
@@ -293,6 +296,124 @@ theorem wilf_of_layer_prime (hp : m.Prime) (hmS : m ∈ S) {q : ℕ} (hq : 1 ≤
       #(S.lowRes m) * ∑ j ∈ range (q - 1), j / 2)) :
     S.conductor ≤ S.embDim * S.ell :=
   hW.trans (Nat.mul_le_mul_left _ (ell_ge_layer_prime hp hmS hq hqc hcq))
+
+/-! ### The last band (Yang–Zhang staircase) and the combined LK+YZ bound
+
+With `c ≤ (q+1) m`, every gap lies in a band `H ≤ q`, so `g = ∑_{H ≤ q} #G_H`. In band `q` the gaps are residues
+`1 ≤ r < c - q m` that are not in `lowRes` (a residue in `lowRes` is present in every band `≥ 1`). This gives the
+staircase term `η_ρ = #{r ∈ lowRes : r < c - q m}` of Yang–Zhang (Preprints.org 202604.0551, Prop 3.1), for any `m ∈ S`.
+-/
+
+/-- Every gap lies in the bands `0, …, q` when `c ≤ (q+1) m`. -/
+theorem genus_le_bands_full (hm : 0 < m) {q : ℕ} (hcq : S.conductor ≤ (q + 1) * m) :
+    S.genus ≤ ∑ H ∈ range (q + 1), #(S.bandGaps m H) := by
+  have hcov : S.gaps ⊆ (range (q + 1)).biUnion fun H => (S.bandGaps m H).image (fun r => H * m + r) := by
+    intro n hn
+    rw [mem_gaps] at hn
+    have hnc := S.lt_conductor_of_not_mem hn
+    rw [mem_biUnion]
+    have hq : n / m < q + 1 := by
+      rw [Nat.div_lt_iff_lt_mul hm]; omega
+    refine ⟨n / m, mem_range.2 hq, mem_image.2 ⟨n % m, ?_, ?_⟩⟩
+    · simp only [bandGaps, mem_filter, mem_range]
+      refine ⟨Nat.mod_lt _ hm, ?_⟩
+      rw [mul_comm, Nat.div_add_mod]; exact hn
+    · rw [mul_comm, Nat.div_add_mod]
+  calc S.genus = #S.gaps := rfl
+    _ ≤ #((range (q + 1)).biUnion fun H => (S.bandGaps m H).image (fun r => H * m + r)) := card_le_card hcov
+    _ ≤ ∑ H ∈ range (q + 1), #(S.bandGaps m H) :=
+        card_biUnion_le.trans (sum_le_sum fun H _ => card_image_le)
+
+/-- Gaps of the last band avoid `0`, the residues `≥ c - q m`, and `lowRes`. -/
+theorem card_bandGaps_last (hmS : m ∈ S) {q : ℕ} (hq : 1 ≤ q) (hqc : q * m < S.conductor) :
+    #(S.bandGaps m q) + #((S.lowRes m).filter (· < S.conductor - q * m)) ≤ S.conductor - q * m - 1 := by
+  have hsub : S.bandGaps m q ∪ (S.lowRes m).filter (· < S.conductor - q * m) ⊆
+      Ico 1 (S.conductor - q * m) := by
+    intro r hr
+    rw [mem_union] at hr
+    rw [mem_Ico]
+    rcases hr with hr | hr
+    · refine ⟨Nat.pos_of_ne_zero fun h => zero_not_mem_bandGaps hmS q (h ▸ hr), ?_⟩
+      have h := (mem_filter.1 hr).2
+      have := S.lt_conductor_of_not_mem h
+      omega
+    · obtain ⟨h1, h2⟩ := mem_filter.1 hr
+      exact ⟨(mem_filter.1 h1).2.1, h2⟩
+  have hdisj : Disjoint (S.bandGaps m q) ((S.lowRes m).filter (· < S.conductor - q * m)) := by
+    rw [disjoint_left]
+    intro r hr hr'
+    have hlow := (mem_filter.1 (mem_filter.1 hr').1).2.2
+    apply (mem_filter.1 hr).2
+    have h := add_mem hlow (mul_mem_of_mem hmS (q - 1))
+    have e : q * m + r = m + r + (q - 1) * m := by
+      obtain ⟨q', rfl⟩ : ∃ q', q = q' + 1 := ⟨q - 1, by omega⟩
+      simp only [Nat.add_sub_cancel]; ring
+    rw [e]; exact h
+  have := card_le_card hsub
+  rw [card_union_of_disjoint hdisj, Nat.card_Ico] at this
+  omega
+
+/-- **Abstract counting with the last band.** If the bands `1 ≤ H ≤ q-1` satisfy
+`#G_H + k + δ·⌊(H-1)/2⌋ ≤ m - 1`, then `ℓ + #G_q ≥ (q + 1) + (q-1) k + δ ∑_{j<q-1} ⌊j/2⌋ + (c - q m - 1)`. -/
+theorem ell_add_last_ge (hmS : m ∈ S) (hm : 0 < m) {q k δ : ℕ} (hq : 1 ≤ q)
+    (hqc : q * m < S.conductor) (hcq : S.conductor ≤ (q + 1) * m)
+    (hb : ∀ H, 1 ≤ H → H ≤ q - 1 → #(S.bandGaps m H) + k + δ * ((H - 1) / 2) ≤ m - 1) :
+    q + 1 + (q - 1) * k + δ * ∑ j ∈ range (q - 1), j / 2 + (S.conductor - q * m - 1) ≤
+      S.ell + #(S.bandGaps m q) := by
+  have hg := genus_le_bands_full (S := S) hm hcq
+  have hell := S.ell_add_genus
+  have h0 := card_bandGaps_le (S := S) hmS hm 0
+  obtain ⟨q', rfl⟩ : ∃ q', q = q' + 1 := ⟨q - 1, by omega⟩
+  simp only [Nat.add_sub_cancel] at hb ⊢
+  rw [sum_range_succ, sum_range_succ'] at hg
+  have hsum : (∑ i ∈ range q', #(S.bandGaps m (i + 1))) + q' * k +
+      δ * ∑ j ∈ range q', j / 2 ≤ q' * (m - 1) := by
+    have := sum_le_sum (s := range q') (fun i hi =>
+      hb (i + 1) (by omega) (by have := mem_range.1 hi; omega))
+    simp only [Nat.add_sub_cancel, sum_add_distrib, sum_const, card_range, smul_eq_mul,
+      ← mul_sum] at this
+    linarith
+  have hmm : (q' + 1) * m = q' * (m - 1) + (m - 1) + q' + 1 := by
+    obtain ⟨m', rfl⟩ : ∃ m', m = m' + 1 := ⟨m - 1, by omega⟩
+    simp only [Nat.add_sub_cancel]; ring
+  omega
+
+/-- **Yang–Zhang staircase** (Preprints.org 202604.0551, Prop 3.1), for any `m ∈ S`: with `D = q + 1`,
+`ℓ ≥ D + (D-2) k + η_ρ`, where `η_ρ = #{r ∈ lowRes : r < c - q m}`. -/
+theorem ell_ge_staircase (hmS : m ∈ S) (hm : 0 < m) {q : ℕ} (hq : 1 ≤ q)
+    (hqc : q * m < S.conductor) (hcq : S.conductor ≤ (q + 1) * m) :
+    q + 1 + (q - 1) * #(S.lowRes m) + #((S.lowRes m).filter (· < S.conductor - q * m)) ≤ S.ell := by
+  have h := ell_add_last_ge (δ := 0) (k := #(S.lowRes m)) hmS hm hq hqc hcq
+    (fun H h1 _ => by
+      have h := card_le_card (bandGaps_antitone (S := S) hmS h1)
+      have h' := card_bandGaps_one hmS hm
+      simp only [zero_mul, add_zero]
+      omega)
+  have hl := card_bandGaps_last (S := S) hmS hq hqc
+  simp only [zero_mul, add_zero] at h
+  omega
+
+/-- **LK+YZ, prime modulus, staircase form**: `ℓ ≥ D + (D-2) k + k ∑_{j<D-2} ⌊j/2⌋ + η_ρ`. -/
+theorem ell_ge_lkyz_prime (hp : m.Prime) (hmS : m ∈ S) {q : ℕ} (hq : 1 ≤ q)
+    (hqc : q * m < S.conductor) (hcq : S.conductor ≤ (q + 1) * m) :
+    q + 1 + (q - 1) * #(S.lowRes m) + #(S.lowRes m) * ∑ j ∈ range (q - 1), j / 2 +
+      #((S.lowRes m).filter (· < S.conductor - q * m)) ≤ S.ell := by
+  have h := ell_add_last_ge hmS hp.pos hq hqc hcq
+    (fun H h1 h2 => band_bound_prime hp hmS hqc hcq H h1 (by omega))
+  have hl := card_bandGaps_last (S := S) hmS hq hqc
+  omega
+
+/-- **LK+YZ, prime modulus, Kneser form of the last band**: with `ρ = (q+1) m - c`,
+`ℓ + ρ ≥ D + (D-2) k + k ∑_{j<D-2} ⌊j/2⌋ + k + k ⌊(D-2)/2⌋`. -/
+theorem ell_ge_lkyz_prime' (hp : m.Prime) (hmS : m ∈ S) {q : ℕ} (hq : 1 ≤ q)
+    (hqc : q * m < S.conductor) (hcq : S.conductor ≤ (q + 1) * m) :
+    q + 1 + (q - 1) * #(S.lowRes m) + #(S.lowRes m) * ∑ j ∈ range (q - 1), j / 2 +
+      (#(S.lowRes m) + #(S.lowRes m) * ((q - 1) / 2)) ≤ S.ell + ((q + 1) * m - S.conductor) := by
+  have h := ell_add_last_ge hmS hp.pos hq hqc hcq
+    (fun H h1 h2 => band_bound_prime hp hmS hqc hcq H h1 (by omega))
+  have hlast := band_bound_prime hp hmS hqc hcq q hq le_rfl
+  have e : (q + 1) * m = q * m + m := by ring
+  omega
 
 /-- The multiplicity case of LAYER-KNESER (prime multiplicity). -/
 theorem ell_ge_layer_multiplicity (hp : S.multiplicity.Prime) {q : ℕ} (hq : 1 ≤ q)

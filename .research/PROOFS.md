@@ -2431,5 +2431,10 @@ Hence Wilf holds whenever e times the right-hand side is ≥ c.
   the identity Θ_{q−1,ρ} = Θ_{q−1} − ρ and the LK+YZ bound have 0 failures; min(ℓ − bound) = 0.
 - Coverage: on 996 structured S (yz_novel.py), 129 are covered by LK+YZ and by none of YZ Cor 3.3/4.2/4.5, DKM 1.5,
   Cor 1.6, LIT, Kaplan, type ≤ e − 1, symmetric.
-- Lean: not yet. `ell_ge_layer_prime` gives the bound without the last-band term.
+- **LEAN (kernel-checked 2026-10-19, lean/Wilf/LayerKneser.lean; standard axioms only).** Valid for any m ∈ S (prime
+  where stated), with q_Lean = q − 1, so that q_Lean·m < c ≤ (q_Lean + 1)·m:
+  - `ell_ge_staircase`: YZ Prop 3.1, for any m ∈ S.
+  - `ell_ge_lkyz_prime`: LK+YZ with the η_ρ last-band term.
+  - `ell_ge_lkyz_prime'`: LK+YZ with the Kneser last-band term η + δ⌊(q−2)/2⌋ − ρ, stated as ℓ + ρ ≥ ….
+  - Helpers: `genus_le_bands_full` (g ≤ Σ_{H≤q} #G_H) and `card_bandGaps_last`.
 
