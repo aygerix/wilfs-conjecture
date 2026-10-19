@@ -2591,3 +2591,80 @@ c = qm − ρ.
 - Scope limit (lead): every hypothesis needs |jB| ≳ 2ja/e, i.e. B dense in its hull at some scale j with m > (2j−1)β.
   Generic P18 sets with large span (β ≈ m) and k ≪ √m are untouched. That fast-growth, near-free core is the
   extremal regime for Wilf in general.
+
+## Theorem VOL-CORNER and Corollary VOL-MINK (deep regime, every e) — PROVED 2026-10-19 (paper; checks E281)
+Setting: S ≠ ℕ with multiplicity m, minimal generators m < n_1 < … < n_d (e = d + 1 ≥ 3), N = Σ n_i, M = max Ap = c + m − 1,
+Λ := M + N, T_λ := {y ∈ ℝ^d_{≥0} : y·n ≤ λ}, V := vol T_Λ = Λ^d/(d!·Πn_i), μ := m/V, σ := (1 − μ)^{1/d}, and
+g(σ) := 1/(σ^{−1} + σ^{−2} + … + σ^{−d}) (increasing on (0,1)).
+
+**Theorem VOL-CORNER.** If g(σ)·Λ ≥ (d−1)(N + m − 1)/2, then W(S) ≥ 0.
+
+**Corollary VOL-MINK.**
+- Always σ ≥ σ*_d, the least root in (0,1) of σ + (β_d(1−σ^d))^{1/d} = 1, where β_d = 2^d/C(2d,d).
+- Hence Wilf holds whenever c + m − 1 + N ≥ K_d·(N + m − 1), with K_d = (d−1)/(2g(σ*_d)).
+- K_d = 15.0, 69.6, 232.8, 675, 1807, 4599 for e = 3, …, 8. Asymptotically K_d ≈ (d−1)2^d·O(d^{0.3}) (table: src/scratch/p18/volmink_const.py).
+
+**Proof.**
+1. (Cubes.) Let D be a factorization tile and K = ∪_{x∈D}(x + [0,1]^d).
+   - K is a down-set of ℝ^d_{≥0} (Prop VOL), vol K = m, and K ⊆ T_Λ.
+   - ∫_K v = Σ_{Ap} w + mN/2.
+2. (Wilf in moment form.) Selmer and c = M − m + 1 give Wilf ⟺ (d+1)Σ_{Ap} w ≤ dmM − (d−1)m(m−1)/2.
+   By step 1 this is ⟺ (d+1)∫_K v ≤ dmΛ − (d−1)m(N + m − 1)/2.
+3. (Corner lemma.) Let U ⊆ T_Λ be an up-set relative to T_Λ (y ∈ U, y ≤ y′ ∈ T_Λ ⇒ y′ ∈ U) with vol U = s^d·V. Then
+   ∫_U v ≥ ∫_C v = s^d·V·Λ(1 − s/(d+1)), where C is a corner simplex y_0 + T_{sΛ} with v(y_0) = (1−s)Λ.
+   - Proof: slice by H_t = {v = t}. Since U_t + (t′−t)Δ_1 ⊆ U_{t′}, Brunn–Minkowski in dimension d − 1 shows that
+     a(t) = (|U_t|/|Δ_1|)^{1/(d−1)} has a(t) − t non-decreasing once U_t ≠ ∅.
+   - Against the corner profile a_C(t) = (t − (1−s)Λ)_+, equal volumes force the start t_0 ≥ (1−s)Λ and a single
+     crossing: a ≤ a_C before the crossing and a ≥ a_C after it. So U's mass sits at larger t than C's.
+4. Apply step 3 to U = T_Λ ∖ K (an up-set of T_Λ, of volume (1−μ)V = σ^dV):
+   ∫_K v ≤ dΛV/(d+1) − σ^dVΛ(1 − σ/(d+1)), i.e. (d+1)∫_K v ≤ mΛ(d − g(σ)).
+   Inserted in step 2, this proves the Theorem.
+5. (Minkowski, for the Corollary.)
+   - Let λ_0 = min{x·n : x ∈ ℕ^d ∖ D}. Every x ∈ ℕ^d with x·n < λ_0 lies in D.
+   - So the open convex symmetric body Q = {z : z⁺·n < λ_0, z⁻·n < λ_0} meets L = {z ∈ ℤ^d : z·n ≡ 0 (mod m)} only
+     in 0: if z ∈ Q ∩ L, then z⁺ and z⁻ are elements of D with equal residues, so z = 0.
+   - L has index m and vol Q = C(2d,d)·vol T_{λ_0}. Minkowski's first theorem gives vol T_{λ_0} ≤ β_d·m.
+   - K misses the open orthant x* + (0,∞)^d at a minimizer x*, since every x ∈ D has some x_i < x*_i. Hence
+     σ^d = vol(U)/V ≥ (1 − λ_0/Λ)^d and (λ_0/Λ)^d ≤ β_dμ = β_d(1 − σ^d), i.e. σ + (β_d(1−σ^d))^{1/d} ≥ 1, so σ ≥ σ*_d. ∎
+- Checks (E281):
+  - 4,069 random S, e = 3–6: step 4 (as B_disc ≥ mΛg − (d−1)mN/2) and the Minkowski bound hold everywhere. The worst
+    margin is 0.006·mΛ, so the corner bound is nearly tight; the worst Minkowski ratio is 0.96.
+- Reach (honest):
+  - The data-dependent Theorem covers every random e = 3 and 70–78% of random e = 4 sampled with q ≥ 5.
+  - It covers NO random e ≥ 5: there Λ/(N+m) ≈ 2.8, while g ≤ 1/d forces Λ ≥ d(d−1)(N+m)/2.
+  - The uniform corollary is a very-deep-regime theorem (c ≳ 233(N + m) for e = 5). The binding loss is the cube
+    discretization (d−1)(N+m−1)/2, not the geometry.
+
+## Criterion RC, Lemma CHAIN-RES, and Conjecture CHAIN-WILF (Apéry-only, tile-free) — 2026-10-19 (lead)
+Setting: S, m, n_1..n_d, d = e − 1, M = max Ap = F + m. For w ∈ Ap and each a, the a-chain of w is the maximal
+progression in Ap with difference n_a through w; top_a(w) is its largest element. Write need := (d−1)m(m−1)/2.
+- **Identity (CH′, tile-free; PROVED).** B := dmM − (d+1)Σ_{Ap} w = mW + need. Equivalently B = Σ_{(x,a)}(M − v(top_a x))
+  over tile columns. Asserted on all S of genus ≤ 30.
+- **Lemma CHAIN-RES (PROVED).** For each a, distinct a-chains have distinct residues of M − w modulo n_a. Proof: if
+  w < w′ in Ap with w′ − w = j·n_a, then every w + i·n_a (0 ≤ i ≤ j) is in Ap, since w + in_a − m ∈ S would give
+  w′ − m ∈ S. So w and w′ lie in one chain.
+- **Chain bound (PROVED).** Tile columns are sub-progressions of Apéry chains, so
+  B ≥ B_chain := Σ_a Σ_{w∈Ap}(M − top_a(w)) ≥ R := Σ_a Σ_{w∈Ap}((M − w) mod n_a).
+  The second step holds because the residue mod n_a is constant along a chain and M − top ≥ 0.
+- **Criterion RC (PROVED): R ≥ need ⇒ W ≥ 0.** **Criterion CH-CHAIN (PROVED): B_chain ≥ need ⇒ W ≥ 0.**
+  - Both are exact (equality) on the two Wilf-equality families: e = 2, and T_{m,q} = ⟨m, qm+1, …, qm+m−1⟩, where
+    R = B_chain = need = m(m−1)(m−2)/2.
+  - Algebraic form: B_chain ≥ need ⟺ d·m·ℓ + m(m−1)/2 ≥ Σ_a n_a·P_a, where
+    P_a = #{(w, w′) ∈ Ap² : w′ − w ∈ n_a·ℤ_{>0}}. Wilf itself is the same inequality with tile columns in place of
+    chains: Σ_a n_a P_a^{tile} = Σ_{Ap} w.
+  - Equivalently Σ_{t∈Ap} τ(t)(M − t) ≥ need, with τ(t) = Σ_{a: t+n_a ∉ Ap} (length of the a-chain ending at t). This is
+    Tile-TOP′′ with Apéry chains in place of tile columns, hence stronger than Tile-TOP′′ for every tile.
+- **Conjecture CHAIN-WILF: B_chain ≥ need for every S with c > 3m.** With Eliahou (c ≤ 3m), it would imply Wilf.
+  - Evidence (E280): exhaustive over all S of genus ≤ 30 (src/scratch/p18/rc_tree.c).
+    - Exactly ONE failure overall: ⟨15, 21, 22, 23, 24, 25, 26⟩, c = 36 = q·m − 9 with q = 3, ratio 0.962, W = 27.
+    - 0 failures at q = 4 and at q ≥ 5, for every e.
+  - Annealing at q ≥ 4 (m = 25–150, e = 3, 4, 5, 7): min 2B_chain/need = 3.70, 3.07, 2.54, 2.00. No failure.
+  - Random q ≥ 5, e = 4–6, spread or clustered offsets: 100% covered, min ratio 1.92.
+- RC alone (E280):
+  - genus ≤ 30, q ≥ 5: 14 failures, all with e ≤ 5 and m ≤ 11 (arithmetic-like generators); 0 for e ≥ 6. At q = 4
+    there are failures only for e ≤ 7.
+  - Random e ≥ 5 with spread generators: 100% covered (worst R/need 1.19).
+  - Clustered generators (small offset span: slow growth, effective dimension ≈ 1): RC FAILS robustly, ratio down to
+    0.35 (e.g. ⟨104, 111, 114, 115, 116⟩, q = 11, W = 1238). There the quotient part n_a⌊(M − top)/n_a⌋ carries the
+    margin.
+  - So RC is the residue analogue of the fast-growth regime, complementary to the band/Kneser tools (slow growth).

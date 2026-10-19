@@ -2916,3 +2916,34 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     ℓ + ρ ≥ mσ/(d+1) with C(σ+d, d) = m. And σ ≤ q always, since band(x) ≥ |x| gives m ≤ C(q+d, d).
   - So it proves Wilf only for exactly free profiles. Any slack must come from elsewhere (tiling geometry or residues).
 - Decision: P10 (codex) = e = 5. The lead works on a geometric deep-regime theorem in parallel (next entry).
+
+## 2026-10-19 (night, latest++++++) — geometry and residues for the fast-growth regime: VOL-CORNER, RC, CHAIN-WILF
+
+- Motivation (E278): the band tools are blind to the near-free / box-like regime, where 4-D tiles grow like t⁴.
+  Two new handles on that regime, both rigorous as sufficient criteria.
+- **VOL-CORNER / VOL-MINK (PROVED; PROOFS).** Ingredients:
+  - the cube body K ⊆ T_{M+N};
+  - a Brunn–Minkowski corner lemma: among up-sets of a simplex with given volume, a corner simplex has the least
+    mean v;
+  - Minkowski on the inscribed simplex T_{λ0} ⊆ D: vol T_{λ0} ≤ 2^d m/C(2d,d).
+  Result: Wilf whenever c + m − 1 + N ≥ K_e(N + m − 1), with K_5 ≈ 233, for every e. It is a genuine (very deep)
+  infinite class. Its binding loss is the cube discretization (d−1)(N+m−1)/2, not the geometry: the corner bound
+  itself is nearly tight (E281).
+- **RC (PROVED criterion).** Each column top satisfies M − v(top) ≥ (M − v(x)) mod n_a, so
+  R = Σ_{w,a}((M−w) mod n_a) ≥ (d−1)m(m−1)/2 ⇒ Wilf.
+  - Tile-free and exact on both equality families.
+  - It covers 100% of random e ≥ 5 with spread generators, but fails for clustered offsets (slow growth).
+  - So it complements the band tools.
+- **CHAIN-RES (PROVED).** The n_a-chains of Ap carry distinct residues mod n_a. Hence B ≥ B_chain ≥ R.
+- **CHAIN-WILF (CONJ).** B_chain ≥ (d−1)m(m−1)/2 whenever c > 3m. This is "Tile-TOP′′ over Apéry chains",
+  equivalently d·m·ℓ + m(m−1)/2 ≥ Σ_a n_a·#{(w,w′) ∈ Ap² : w′ − w ∈ n_aℤ_{>0}}.
+  - Genus ≤ 30 (exhaustive): exactly one failure, at q = 3 (⟨15, 21..26⟩). None at q ≥ 4.
+  - Annealing at q ≥ 4: min ratio ≥ 2.
+  - Being tile-free, it is a cleaner universal target than MaxCL/Tile-TOP′′. On each Kunz face it is linear, since
+    chains are runs of tight Kunz inequalities, so it is no harder to test face by face.
+- **RC at depth 4 (identity, lead).** For n_a = m + b_a with b_a < m/3:
+  R_a = m(m−1)/2 − b_a·ℓ + n_a·X_a, with X_a = #(M − Ap) ∩ ∪_λ [λm, λn_a).
+  So RC at q = 4 is a statement about Apéry elements in explicit windows below F.
+  - Since e ≤ 19 is already closed at c ≤ 4m (GW-26g), "RC for c ≤ 4m and e ≥ 20" would finish c ≤ 4m.
+  - Genus ≤ 30 shows RC failures at q = 4 only for e ≤ 7.
+  - Random e ≥ 20 at q = 4: 100% covered, min 1.40. An annealer inside the exact residual (α ≥ 6, a ≥ 19) is running.
