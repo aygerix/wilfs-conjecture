@@ -1,0 +1,10 @@
+seed=2026101974 target_alpha=7 grlex=1 trials=1000 actual=987 a_ge7=966 deficient_low=0 frontier=0 frontier_after_new=0 one_low_checks=3 best_WA=200 best_frontier_W=1000000000
+P7 primary=987 two_low_a_ge7=2 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=2 min_P=26 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=987 alpha_ge3=966 alpha3=6 alpha3_gap_theorem=0 GLOC_nonnegative=979 ASR_extra_positive=986 end_arc_improves=979 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+NEW joint=979 cold_fix=912 missing_pair_packing=979
+P5E mixpack=979 improved_joint=979 better_cover=119
+P5f instances=987 HPAIR=981 strict_improvements=935 WAneg_a24=0 large_hyp=0
+P5g_core=A cores=981 positive_legal_defect=974 missing_offpairs=975 sf_max=36 all_offpairs=6 all_SF_present=3 FAILURES=0
+P5g_core=B cores=828 positive_legal_defect=270 missing_offpairs=806 sf_max=34 all_offpairs=22 all_SF_present=79 FAILURES=0

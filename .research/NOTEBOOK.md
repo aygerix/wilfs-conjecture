@@ -2420,3 +2420,23 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     defect ≤ 2, but every SP test uses the global ε (17–29). Even P(5.83) on the deleted 15-set is needed for the
     worst row. So the next lemma must use LOCALIZED defects, or retained pairs (MATCH-P), not a sharper global
     constant.
+- **H3-BR and G-BR are Tile-CL in disguise: FALSE (preserved failure).**
+  - Statement tried. With the unit form S = L_+ + m(ρ_0 + Br_0), I conjectured H3-BR: Br_0 ≥ −ρ_0, which drops
+    L_+. Its all-height version is G-BR: Σ_{|y|≥2} Δ(y) ≥ −r(0), where mΔ(y) = Σ_c y_c r(y−e_c) − (|y|−1)r(y) − r(0).
+  - Supporting data, which turned out misleading:
+    - 0 failures on 9,339 height-3 (tile, σ) pairs, plus 2 larger runs;
+    - 459 random Apéry tiles of heights ≤ 30;
+    - 2,273 random down-set tiles;
+    - tight at many heights;
+    - at height 2 it is exactly Flat-MaxCL's B ≤ ρ_0.
+  - Why it is Tile-CL. The column (Abel) form of G-BR is
+    Σ_b Σ_{all b-columns} [|C|·r(top) − Σ_C r] ≤ Σ_D r. That is Tile-CL ("Diff"/"Wall" forms, PROOFS "Tile-CL").
+  - **Refuted by the E47 tile ⟨14,22,23,57,61,62,63⟩** (Δ_3 core plus 4 spikes, d = 6, height 3): the minimum of
+    Σ Δ + r(0) is −1 at σ = 0 (gbr_test.check). Random sampling misses this "core + spikes" shape.
+  - It is also false for injective, non-onto labelings, even in d = 2: the full height-3 simplex with m = 100,
+    p̃ = (55, 60), σ = 0 has ΣΔ = −1.
+  - Consequence for height-3 MaxCL: the linear slack L_+ = Σ(d+1−deg a)ρ_a + Σ_{N2}(d+2−ψ)ρ_z is ESSENTIAL. It is
+    exactly the slack of MaxCL over Tile-CL coming from missing upper covers (spike relays, as in E66's
+    column-plus-spikes tight cases).
+  - Lesson: before trusting a "clean" carry inequality, compare it with the Tile-CL equivalent forms (Diff, Wall,
+    Win, Walk) and run the E47/E51 core+spike tiles.

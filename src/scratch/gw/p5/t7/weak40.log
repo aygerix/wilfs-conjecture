@@ -1,0 +1,9 @@
+n=1 weak=1 strict=1 sf_unique=1
+n=2 weak=39 strict=39 sf_unique=39
+n=3 weak=741 strict=722 sf_unique=741
+n=4 weak=8778 strict=7758 sf_unique=8778
+n=5 weak=65724 strict=45694 sf_unique=65724
+n=6 weak=270180 strict=111202 sf_unique=232610
+n=7 weak=418384 strict=55550 sf_unique=100904
+n=8 weak=106904 strict=710 sf_unique=4
+nonzero_repeat_pairs=850515 nonzero_sf_repeat=825757 min_diff_slack=0 min_repeat_slack=0 min_label_slack=0 FAILURES=0

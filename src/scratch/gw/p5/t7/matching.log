@@ -1,0 +1,8 @@
+n 2 sets 14 retained_graph_states 28
+n 3 sets 91 retained_graph_states 364
+n 4 sets 364 retained_graph_states 3346
+n 5 sets 998 retained_graph_states 15426
+n 6 sets 1683 retained_graph_states 18820
+n 7 sets 328 retained_graph_states 790
+nonweak_states 17722 nonzero_v 4968 nonzero_illegal 37807
+ALL_MATCHING_CHECKS_PASSED {2: (14, 28), 3: (91, 364), 4: (364, 3346), 5: (998, 15426), 6: (1683, 18820), 7: (328, 790)}

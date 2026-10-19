@@ -5992,3 +5992,933 @@ These implications concern the exhibited structured families,
 not all absent-pair graphs. A proof of MATCH-P would still
 need a reduction for general localized graphs before it could
 be promoted to a proof of the full primary regime.
+
+## 60. P5g: scope, review corrections, and exact packing targets
+
+This continuation is dated 2026-10-19. Its unconditional new
+results are the packing lemmas of sections 61--63 and the
+primary B-face bounds of section 65. The full ambient P(C),
+its zero-error version at n>=33, and unrestricted MATCH-P
+remain open. In particular this continuation does not prove
+Wilf throughout 3m<c<=4m.
+
+Use the lead's current results: GW-26g includes a<=18;
+GW-26h includes every a when alpha<=4; and LARGE-A-prime
+uses a>=10Q_alpha. The older 16Q_alpha threshold in section
+59 is superseded. No a=19 or per-alpha finite certificate
+is attempted here.
+
+The lead's correction to the scope of P(C) is accepted.
+On the UNDELETED joint set, P(47) excludes BASE and its B
+and l perturbations in section 56 at leading order. Endpoint
+deletion was the reason LSP did not do so. The matching
+perturbation and the B-loop template need retained-pair
+information. Section 65 below gives explicit consequences
+of the packing statements actually proved here.
+
+Here is notation used only in this continuation. For an
+n-element integer set X in s consecutive integers, set
+
+```
+H(n)=n(C(n,2)+1), U(n)=C(n+2,3),
+ex=U(n)-|3X|.
+```
+
+For each integer z let f_z count the squarefree unordered
+triples of X of sum z, and r_z count the other unordered
+triples. Thus sum r_z=n^2, and
+
+```
+epsilon_sf=sum_z max(0,f_z-1) <= ex.
+```
+
+"Squarefree fibre" always counts ALL the indicated formal
+triples, including ones absent from a tile. It never means
+only the present triples, whose residues are injective by
+hypothesis. A pair-distinct set has distinct sums of ALL
+unordered pairs, including loops. A weak Sidon set need only
+have distinct OFF-DIAGONAL pair sums.
+
+Let N(X) be the union of X and all normal signed-label values
+`x+y-z`, where x<=y and z is neither x nor y. There are
+H(n) formal labels, including the n units. They lie in an
+interval of 3s-2 integers. The desired ambient statement is
+
+```
+3s-2 >= H(n)-C ex-K n^2.                         (P(C,K))
+```
+
+It is stronger to replace 3s-2 by |N(X)|. This distinction
+remains essential, particularly for matching defects; see
+section 64.
+
+For context only, Green's B3 theorem gives a much stronger
+asymptotic diameter bound when ex=0, but it does not bound
+unbounded fibres in terms of their total excess. The exact
+source is [Green, The number of squares and B_h[g] sets,
+Acta Arith. 100 (2001)](https://www.impan.pl/shop/publication/transaction/download/product/82571).
+The distinction between B3, B3-plus and uniqueness only for
+squarefree triples is also explicit in [Timmons, Upper and
+lower bounds on B_k-plus sets, Integers 14 (2014)](https://math.colgate.edu/~integers/o1/o1.pdf).
+Neither source is used as an unproved robust packing input.
+The elementary proofs below do not invoke either theorem.
+
+## 61. Repeated cubics have only quadratic collision cost
+
+**Lemma DIFF2 (proved).** In a weak Sidon n-set, any nonzero
+integer has at most two ordered representations as x-y.
+In a pair-distinct set there is at most one.
+
+Proof. Fix d>0 and write the representations as x_i=y_i+d.
+Two distinct representations imply
+`x_i+y_j=x_j+y_i`. If both displayed pairs are off-diagonal,
+weak pair injectivity would force them to be the same formal
+pair, which is impossible for distinct representations.
+Consequently |y_i-y_j|=d. Three distinct integers cannot
+have every mutual distance equal to d. This proves the first
+assertion. With injectivity also for loops the two-representation
+case is impossible. The case d<0 follows by reversal. QED.
+
+**Lemma REPEAT2 (proved).** With r_z as in section 60,
+
+```
+sum_z C(r_z,2) <= 2C(n,2)             (weak Sidon),
+sum_z C(r_z,2) <= C(n,2)              (pair-distinct).       (RC)
+```
+
+Proof. Every repeated cubic has a unique expression 2x+y,
+including 3x with y=x. Two distinct repeated cubics in a common
+fibre have distinct repeated centres x,x'. For a fixed unordered
+pair of centres, their equality requires
+`y-y'=2(x'-x)`. DIFF2 gives at most two choices of the ordered
+partners, or one in the pair-distinct case. Sum over the
+C(n,2) pairs of centres. QED.
+
+Now use only the proper signed labels `(x,y;z)` with x<y
+and z different from both. There are 3C(n,3) such labels.
+If two distinct proper labels have the same value, then
+
+```
+x+y-z=x'+y'-z'
+   => {x,y,z'} and {x',y',z} have the same ordinary sum.
+```
+
+The two formal triples are distinct. Indeed equality as
+multisets, with z absent from {x,y}, first forces z'=z,
+and then the two positive pairs are equal. Conversely, a
+fixed unordered pair of distinct equal-sum cubics can induce
+at most the product of their support sizes in unordered
+proper-label collision pairs: choose z' from the first
+support and z from the second. Those choices determine both
+complementary positive pairs. It follows that the number CP
+of proper-label collision pairs satisfies
+
+```
+CP <= 9 sum C(f_z,2) + 6 sum f_z r_z + 4 sum C(r_z,2).     (CP)
+```
+
+This counting does not require the two cubic supports to
+be disjoint. It therefore applies to weak Sidon sets too.
+
+A proper-label value can equal a unit w only if
+`x+y=z+w`. Off-diagonal injectivity forces w=z; then the
+equality is x+y=2z. For each z there is at most one such
+proper label. Thus the total number of proper-label/unit
+collision pairs is <=n, and it is zero for pair-distinct X.
+Discarding all positive-pair-loop normal labels loses
+exactly n(n-1) formal labels. Finally a fibre of q equal
+proper labels loses q-1<=C(q,2) values. These facts prove
+
+```
+H(n)-|N(X)| <= n(n-1)+CP+n      (weak Sidon),
+H(n)-|N(X)| <= n(n-1)+CP        (pair-distinct).            (SC)
+```
+
+**Theorem SF0 (proved).** If X is weak Sidon and all its
+squarefree triple sums are distinct, then
+
+```
+3s-2 >= |N(X)| >= H(n)-11n^2+4n.                         (SF0)
+```
+
+If X is pair-distinct, replace 11n^2-4n by 9n^2-3n.
+
+Proof. Here f_z<=1, so CP is at most
+`6n^2+8C(n,2)` in the weak case, by RC. Substitute in SC.
+The strong case uses `6n^2+4C(n,2)` and no unit overlap.
+All assertions, including n=1, follow. QED.
+
+This is the ingredient needed for the B-loop template:
+loops may all be missing; no assumption on repeated-cubic
+fibre sizes is made.
+
+## 62. P(45) with a quadratic error for light squarefree fibres
+
+**Theorem SF-G (proved).** Suppose every squarefree fibre
+of the weak Sidon n-set X has size at most G, where G>=1.
+Then
+
+```
+3s-2 >= H(n)-(9G/2)epsilon_sf-(6G+5)n^2+4n.               (SGw)
+```
+
+For a pair-distinct set the sharper bound is
+
+```
+3s-2 >= H(n)-(9G/2)epsilon_sf-(6G+3)n^2+3n.               (SG)
+```
+
+Both inequalities hold with |N(X)| in place of 3s-2.
+
+Proof. For each f>=1,
+`C(f,2)<=G(f-1)/2`. Also `sum f_z r_z<=G n^2`.
+Apply CP, RC, and SC. This gives the displayed coefficients
+exactly, without dropping a term of order n^2 or n. QED.
+
+In particular, if G<=10, this proves the requested numerical
+constants on this specified class:
+
+```
+pair-distinct: C=45, K=63, with the extra +3n;
+weak Sidon:   C=45, K=65, with the extra +4n.              (P45-LIGHT)
+```
+
+Replacing epsilon_sf by ex weakens these valid inequalities.
+Repeated-cubic fibres can have arbitrary size. Thus the gap
+for the full ambient P(C,K) is narrowed to HEAVY SQUAREFREE
+fibres; a heavy repeated fibre is not an obstruction to
+these estimates.
+
+The following extension permits arbitrarily large squarefree
+fibres, provided their number is controlled.
+
+**Theorem SF-M (proved).** Let M be the number of ordinary
+squarefree fibres with f_z>=11. Then
+
+```
+pair-distinct:
+3s-2 >= |N(X)| >= H(n)-45epsilon_sf-(63+M/2)n^2+3n;
+weak Sidon:
+3s-2 >= |N(X)| >= H(n)-45epsilon_sf-(65+7M/2)n^2+4n.       (SM)
+```
+
+In particular a fixed number M of heavy squarefree fibres
+still gives P(45,K) with an explicit absolute K, even when
+their sizes grow with n.
+
+Proof. Separate fibres with f_z<=10 from the M others.
+The light squarefree/squarefree and squarefree/repeated
+contributions are <=45epsilon_sf and <=60n^2. Keep the
+global repeat/repeat bound RC. In a pair-distinct set all
+distinct cubic supports in one ordinary fibre are disjoint,
+by pair cancellation. If their support sizes are t_i,
+then sum t_i<=n, so their WHOLE signed collision potential
+`sum_{i<j}t_i*t_j` is <=n^2/2. Charging this once for each
+heavy squarefree fibre overcounts its repeat/repeat part
+but is valid. Together with SC this proves the first bound.
+For a weak Sidon set, squarefree supports in one fibre
+are mutually disjoint, so f_z<=n/3. RC gives r_z<=3n/2:
+the positive root of r(r-1)<=2n(n-1) is at most 3n/2.
+Thus in a heavy fibre the squarefree/squarefree and
+squarefree/repeated parts of CP are at most
+`9f_z^2/2+6f_z*r_z<=n^2/2+3n^2`. Combine with RC and SC
+to obtain the second bound. Both are bounds on support
+before using the ambient interval. QED.
+
+There is also a zero-error consequence in part of this
+class. If G<=10 and X is pair-distinct and
+
+```
+2ex >= 63n^2-3n,
+```
+
+then P(47,0) follows. More generally P(C,0) follows whenever
+`(C-45)ex>=63n^2-3n`, for C>45. This does not establish the
+requested zero-error P(C-dagger) for every n>=33: small
+excess is not covered by that sufficient condition.
+
+The attempts at a general proof have not justified either
+of the extra assertions `f_z<=10` or `sum C(f_z,2)=O(ex+n^2)`.
+In fact the latter estimate can be very wasteful for a
+dense Sidon cluster: many signed-label collision pairs
+belong to the same signed fibre. Merely bounding their
+second moment discards the support information again.
+No universal bound of that kind is assumed here.
+
+## 63. A retained-pair bound, with explicit localized-graph costs
+
+The following theorem permits arbitrary absent loops. Work
+with a graph G0 of absent OFF-DIAGONAL pairs of X; let r be
+its size and D its maximum degree. All retained off-diagonal
+pair sums are assumed distinct. A squarefree cubic is legal
+if all its three pair divisors are retained. Some legal
+cubics are present, with distinct ordinary sums (injective
+residues imply this); let v be the number of absent legal
+squarefree cubics. For each z, let ell_z count ALL legal
+squarefree triples of sum z, present or absent. Finally let
+
+```
+eta_P=sum_p C(k_p,2),
+k_p=#{absent off-diagonal pairs of ordinary sum p}.
+```
+
+**Lemma DIFF-G (proved).** Every nonzero difference has at
+most Ddiff=2D+2 ordered representations x-y.
+
+Proof. Take the representation with smallest y=y_1. For
+every other representation x_j-y_j=d>0, the equality
+`x_1+y_j=x_j+y_1` either has an absent displayed pair, or
+has a loop. There are at most D choices using an absent
+pair at x_1, and D using one at y_1. The loop x_j=y_1 is
+impossible by minimality; x_1=y_j occurs at most once.
+Both retained off-diagonal pairs cannot occur. Therefore
+there are at most 2D+1 other representations. QED.
+
+Assume ell_z<=G for all z, G>=1. This caps only LEGAL
+squarefree fibres; illegal fibres can be unbounded.
+
+**Theorem RET-G (proved).** With the above definitions,
+
+```
+3s-2 >= H(n)-(9G/2)v-(6G+4D+5)n^2
+          -(9G+6Ddiff+7)nr-9Ddiff*C(r,2)-9n eta_P
+          +(3D+4)n+2r.                                  (RG)
+```
+
+The stronger statement with |N(X)| on the left also holds.
+
+Proof. Keep only proper labels whose positive pair is retained.
+This discards r(n-2) further labels. A kept label equal to a
+unit w has `x+y=z+w`. The right pair must be absent or a
+loop, unless it is the same formal pair, which is excluded
+by normality. For fixed z there are at most D+1 choices of
+w of these kinds, and each sum has at most one retained
+positive pair. Hence unit overlap is <=(D+1)n.
+
+Every illegal squarefree triple contains an absent pair.
+Overcount it by all expressions `p_e+x`, with e an absent
+pair and x any unit. Let i_z be this overcount, so
+`sum i_z=rn`. Distinct expressions with a fixed centre p_e
+have distinct sums. For two different centres DIFF-G bounds
+the number of coincidences by Ddiff. Equal centres give n
+coincidences. Consequently
+
+```
+sum C(i_z,2) <= Ddiff*C(r,2)+n eta_P.
+```
+
+For repeated cubics use their n centres 2x. Distinct centres
+give at most Ddiff coincidences with p_e+X. A centre p_e can
+equal at most one 2x, which gives n coincidences. Thus
+
+```
+sum i_z r_z <= (Ddiff+1)nr,
+sum C(r_z,2) <= Ddiff*C(n,2).
+```
+
+Since present legal cubics have injective sums,
+`sum max(ell_z-1,0)<=v`. The legal/legal contribution to
+CP is therefore at most (9G/2)v, the legal/illegal one
+at most 9Gnr, and the legal/repeated one at most 6Gn^2.
+The illegal/illegal, illegal/repeated and repeated/repeated
+parts are bounded by 9, 6 and 4 times the preceding three
+estimates. The use of i_z only overcounts illegal triples;
+it remains a valid upper bound when two absent divisors
+occur in a single cubic. Add the discarded labels
+`n(n-1)+r(n-2)` and the <=(D+1)n unit overlaps. Gathering
+coefficients gives precisely RG. QED.
+
+For a matching D<=1 and r<=n/2. With G<=10 this yields
+
+```
+3s-2 >= H(n)-45v-69n^2-130nr-9n eta_P+7n+2r.             (MATCH-LIGHT)
+```
+
+If no absent-pair sum has more than P representations,
+`eta_P<=(P-1)r/2`. Thus MATCH-P is proved on this class,
+with the explicit coefficients
+
+```
+45v+69n^2+[130+9(P-1)/2]nr
+```
+
+in place of `47v+K(nr+n^2)`. For fixed P one may take
+`K=max(69,130+9(P-1)/2)`. Loops cause no additional term;
+if the r in MATCH-P counts loops too, increasing r only
+weakens the bound.
+
+There is another version, useful when ALL squarefree fibres
+are light and no bound on eta_P is available. If f_z<=G
+instead of ell_z<=G, then
+
+```
+3s-2 >= H(n)-(9G/2)v-(1+9G/2)r(n-2)
+                   -(6G+4D+5)n^2+(3D+4)n.                (RG-all)
+```
+
+Indeed epsilon_sf<=v+r(n-2), CP is bounded directly by
+`(9G/2)epsilon_sf+6Gn^2+4Ddiff*C(n,2)`, and the same
+discard and overlap counts apply. For a matching and G<=10,
+this is MATCH-P with C=45 and, for example, K=69.
+
+These are unconditional inequalities with explicit extra
+structural hypotheses. They are not the unrestricted
+MATCH-P conjecture. They give an exact reduction for
+bounded-degree localized graphs: besides their degree
+and r, the unaccounted parameters are heavy legal
+squarefree fibres and concentration of absent-pair sums.
+The next section shows why the latter cannot simply be
+omitted from this SUPPORT argument.
+
+## 64. An antipodal obstruction to the support version of MATCH-P
+
+**Proposition ANTIPODAL (proved; preserved false strengthening).**
+There is no absolute K such that the SUPPORT inequality
+
+```
+|N(X)| >= H(n)-47v-K(nr+n^2)
+```
+
+holds for every set with matching absent pairs and injective
+retained quadratic and legal cubic sums, even when v=0 and
+the retained loops also have injective sums.
+
+For every k>=2 take
+
+```
+X_k={-10^i,10^i:0<=i<k}, n=2k,
+absent pairs={(-10^i,10^i):0<=i<k}, r=k.
+```
+
+These are the only colliding ordinary pair sums; they all
+equal zero. Every retained pair sum is distinct. Every
+legal cubic has a unique sum, so v=0. The interval length
+and cubic excess are
+
+```
+s=2*10^(k-1)+1, ex=2k(k-1).
+```
+
+Here is a complete verification. A difference of two cubic
+sums has base-ten coefficients of absolute value <=6.
+The highest nonzero digit dominates all smaller digits,
+so equality of integer sums is equality of coefficient
+vectors in the independent formal directions e_i. The
+only pair equalities are e_i+(-e_i)=0. A legal cubic has
+no opposite pair and has coefficient-vector l1 norm three;
+this vector uniquely determines its three signed entries.
+Every illegal cubic has exactly one opposite pair. For
+each of the 2k unit vectors it has k representations,
+one for each opposite pair. There are no other cubic
+collisions, proving the displayed ex.
+
+As X_k=-X_k, every normal signed value lies in 3X_k. Conversely
+a legal cubic sum is a normal signed value by negating its
+third entry, and an illegal cubic sum is a unit. Hence
+
+```
+|N(X_k)|=|3X_k|=C(2k+2,3)-2k(k-1)
+                =(4k^3+8k)/3,
+H(2k)-|N(X_k)|=2k(k-1)(4k+1)/3,
+(H-|N|)/(nr+n^2)=4k/9-1/3-1/(9k) -> infinity.            (ANTI)
+```
+
+For the false choice K=47, k=107 is the smallest member
+of THIS family that fails: the support loss is 3,243,812,
+whereas 47(nr+n^2)=3,228,618. No claim of a globally smallest
+counterexample is made. All data for every k are given by
+the formulas above, and the actual integer sums were
+enumerated independently for k=2..18.
+
+This does NOT refute ambient MATCH-P. Its ambient capacity
+is `3s-2=6*10^(k-1)+1`, which exceeds H(2k). Nor is X_k
+pair-distinct, so it is not a counterexample to P(C,K).
+It refutes a natural intermediate assertion that one
+might otherwise use to prove MATCH-P. Here ell_z<=1 but
+`eta_P=C(k,2)`: exactly the concentrated-pair term retained
+in RG. Such a term can be cubic after multiplying by n.
+
+The strategic conclusion is to stop trying to prove the
+general matching assertion using only a universal signed-
+support loss bound. Unlike the full-pair problem, even a
+quadratic error does not rescue that argument. The ambient
+diameter, or a primary-specific exclusion of concentrated
+absent-pair sums, must be used in this branch.
+
+## 65. Exact primary-regime consequences
+
+The following statements hold for the full P4 primary tile,
+with arbitrary C/E directions. They do not use P(C) as a
+hypothesis. Under a hypothetical W<0 and a>=24 we use the
+proved section 53 bounds
+
+```
+k<a^3/8, c+e<4a/3,
+m<=C(a+b+3,3)+k+c(a+b+1)+e,
+epsilon_g<F/3, F=C(a+1,3).                               (PB)
+```
+
+The slight weakening k<a^3/8 follows from LC-SCALE: its
+cube-root term plus 3 is <a for a>=24.
+
+**Theorem B-SF0 (proved).** Suppose a>=24, every off-diagonal
+BB pair is present in I3, and every squarefree BBB cubic is
+present. If W<0, then
+
+```
+b < max(4a,128).                                         (B0-CUT)
+```
+
+Proof. Suppose b>=max(4a,128). The three largest B offsets
+have a present cubic of tau<=m+h-1. Delete the two largest
+offsets. The remaining n=b-2 offsets lie in
+`[h,floor((m+h-1)/3)]`, an interval of length s with
+`3s-2<=m-2h`. Retained off-diagonal pairs make this set
+weak Sidon; its squarefree triples all have distinct sums.
+SF0, even without its positive 4n term, gives
+
+```
+m >= H(b-2)-11(b-2)^2
+   = b^3/2-29b^2/2+53b-52 > 3b^3/8.
+```
+
+The last inequality uses b>=128. On the other hand (PB)
+and a<=b/4 give the following strict upper bounds, all
+with rational constants:
+
+```
+C(a+b+3,3) <= (163/128)^3 b^3/6 < 7b^3/20,
+k < b^3/512,
+c(a+b+1)+e < b(5b/4+1)/3 < b^3/256.
+```
+
+Their sum is <3b^3/8, a contradiction. QED.
+
+**Corollary (proved).** No member of the B-loop count
+family in section 57 can be realized by a residue-complete
+primary tile with negative W. Indeed there a=3N,
+N=14400j^2, b=N^(3/2)/8, and b/a=5j>=5. All off-diagonal
+BB pairs and all squarefree BBB cubics are present in that
+template. B0-CUT contradicts its b for EVERY j>=1. Thus the
+whole exhibited B-loop obstruction is now excluded, not
+just its limiting profile. This does not assume a result
+for arbitrary diagonal-defect faces with missing squarefree
+cubics.
+
+**Theorem B-SF10 (proved).** Suppose a>=24, every off-diagonal
+BB pair is present in I3, and every ordinary squarefree
+triple fibre of the full B-offset set has size <=10. If
+W<0, then
+
+```
+b<16a.                                                  (B10-CUT)
+```
+
+Proof. All squarefree BBB monomials are legal in the mixed
+face of section 44. Its total number of absent legal
+cubics is <=epsilon_g, so their absent squarefree subfamily
+has size v_B<F/3. For a>=4,
+`C(a,3)>C(a+1,3)/3`. If b>=16a, therefore the top a B
+directions contain a present squarefree cubic. Its least
+offset is at least the (b-a+1)-st offset, so all the bottom
+n=b-a offsets are <=(m+h-1)/3. They again lie in an interval
+with `3s-2<=m-2h` and form a weak Sidon set. Their squarefree
+excess is at most v_B. SGw gives
+
+```
+m >= H(n)-45v_B-65n^2+4n
+  > b^3[(1/2)(15/16)^3-131/(2b)-5/(2*16^3)]
+  >= (2959/12288)b^3 > (9/40)b^3,
+```
+
+where b>=16a>=384. The discarded linear 5n is positive.
+The cardinality upper bound in PB gives instead
+
+```
+C(a+b+3,3) < (21/100)b^3,
+k < b^3/(8*16^3),
+c(a+b+1)+e < b^3/2048.
+```
+
+The sum of these three coefficients is <9/40. This is a
+contradiction. QED.
+
+Thus a remaining counterexample with a>=24 and b>=16a
+must have an absent off-diagonal I3 BB pair or an ordinary
+squarefree B fibre of size >=11. This improves the earlier
+O(a^(3/2)) B cutoff to a linear one on the stated geometric
+class. It is not a linear B cutoff for every tile.
+
+**Corollary B-RARE (proved).** In B-SF10 one may replace
+the fibre-size hypothesis by the weaker condition that
+the number M_B of squarefree B fibres of size >=11 is
+at most b/256. The same conclusion b<16a follows.
+
+Proof. In the proof of B-SF10, the trimmed B set has at
+most M_B such fibres. Use weak SM instead of SGw. Its
+extra cost is <=(7/2)M_B*n^2<=7b^3/512. The displayed
+lower coefficient is now at least
+`2959/12288-7/512=2791/12288>9/40`, so the identical
+cardinality contradiction applies. QED.
+
+Consequently if a>=24, b>=16a and all off-diagonal BB
+pairs are in I3, then any W<0 tile has M_B>b/256. This
+necessary conclusion is unconditional: it does not cap
+individual fibre sizes.
+
+There are also precise consequences for the section 56
+profiles. These are exclusions under stated structural
+conditions, not proof that those conditions always hold.
+
+1. On BASE and its B and l perturbations, the undeleted
+   joint set has n=49N/20 and interval capacity
+   `3s-2<=513N^3/200-2`. Pair sums are injective and its
+   squarefree excess is <=N^3/24. If its squarefree fibres
+   have size <=10, SG supplies a lower bound exceeding
+   that capacity by at least
+
+   ```
+   (46609/16000)N^3-(304927/800)N^2+(49/5)N+2 >0
+   ```
+
+   for every N>=480. The positive cubic coefficient is
+   the exact leading-order margin, 2.9130625. In particular
+   every hypothetical realization of one of these three
+   templates has a squarefree joint fibre of size >=11.
+   In fact SM is stronger: if the number M of such fibres
+   were <=N/2, its lower bound would exceed capacity by
+   at least
+
+   ```
+   (22599/16000)N^3-(304927/800)N^2+(49/5)N+2 >0
+   ```
+
+   for every N>=480. Thus EVERY hypothetical realization
+   of BASE or either of these perturbations has M>N/2,
+   without an assumption on the maximum fibre size.
+   This uses the undeleted set, as requested by the lead.
+
+2. For the matching perturbation, there are at most r=N
+   absent off-diagonal pairs on the same undeleted joint
+   set. Its actual legal cubic omissions are
+   `N^3/24-C(N,2)`, so using v<=N^3/24 is safe. If all
+   LEGAL squarefree fibres have size <=10 and every absent
+   pair sum has multiplicity <=61, MATCH-LIGHT gives the
+   same cubic gain. Its quadratic coefficient is at worst
+   `-1117739/800`. Since
+   `(46609/16000)*480-1117739/800>0`, it excludes every
+   N>=480. More generally any FIXED absent-pair multiplicity
+   P is excluded for all sufficiently large N, with the
+   explicit sufficient condition
+
+   ```
+   (46609/16000)N > (139/2)(49/20)^2
+                          +[130+9(P-1)/2](49/20).
+   ```
+
+   Without either fibre bound this is not MATCH-P.
+
+Here is one uniform application with alpha unbounded.
+
+**Theorem BFREE-LIGHT (proved).** In the branch r=l=b=0,
+alpha>=1910, a primary tile whose UNDELETED joint set has
+all squarefree fibre sizes <=10 satisfies W>=0. C/E are
+arbitrary. The joint set is the one in JOINT-SP, before
+endpoint deletion (none is needed since r=0). Here r is
+the original A-pair defect, including absent loops.
+
+Proof. Assume W<0. U-B0 and U-SMALL reduce to a>=2alpha+3
+and the MID-B0 bounds. Use the notation A=alpha, Q0=Q_A,
+epsilon=t, B0 and nu of section 45. Its already proved
+arc and defect inequalities give
+
+```
+n>nu=a/2+2A/3+5/6+3epsilon/(2Q0),
+delta<=B0-3epsilon-1,
+2(3ceil(3delta/2)-2)<=9delta-1.
+```
+
+SG with G=10, weakened by omitting its positive extra 6n
+after doubling, gives a contradiction unless
+
+```
+F47(nu)+4epsilon-126nu^2 < 0,                            (BF-NEC)
+F47(nu)=nu^3-nu^2+2nu-9B0-67epsilon+10.
+```
+
+Here `x^3-127x^2+2x` increases for x>=85, so substitution
+of n>nu is valid. With the w=T+V>=0 of section 45 its exact
+polynomial certificate gives
+
+```
+F47(nu) >= A^2(A-4)g(w),
+nu=A(w+5/3)+4/3,
+g(w)=w^3+5w^2-46w/9+44/27.
+```
+
+Indeed the other terms are positive and 4g+j>0 there.
+The following exact identity is convenient:
+
+```
+g(w)-(1+w^2)/4
+ = w^3+(19/4)(w-92/171)^2+29/6156 >0.
+```
+
+Cauchy applied to `Aw+(5A+4)/3` gives
+`nu^2 <= [A^2+(5A+4)^2/9](1+w^2)`. Therefore
+`F47(nu)-126nu^2>0` whenever
+
+```
+A^3-1908A^2-2240A-896>0.
+```
+
+For A=1910+z this polynomial is exactly
+
+```
+3016904+3653500z+3822z^2+z^3 >0.
+```
+
+This contradicts BF-NEC for every A>=1910 and proves the
+theorem. It is an application of a PROVED packing bound
+under its stated light-fibre hypothesis, not of P(C).
+The integer 1910 is a sufficient threshold for this
+certificate; no optimality claim is made. QED.
+
+**Corollary BFREE-RARE (proved).** Suppose r=l=b=0 and
+alpha>=3618. If W<0, the undeleted joint set has MORE
+than alpha/32 squarefree fibres of size at least 11.
+
+Proof. If their number M were <=A/32, use strict SM in
+the preceding proof. The necessary inequality BF-NEC
+would now have `(126+A/32)nu^2` in place of `126nu^2`.
+The weakened cubic `x^3-(127+A/32)x^2+2x` increases on
+x>=nu>A: here `127+A/32<A/8`. The same square completion
+and Cauchy bound make the required positivity equivalent
+to the sufficient polynomial inequality
+
+```
+19A^3-68708A^2-80648A-32256>0.
+```
+
+At A=3618+z its exact expansion is
+
+```
+153240696+248873932z+137518z^2+19z^3>0.
+```
+
+This contradicts the necessary inequality and proves the
+corollary. It does not bound individual heavy-fibre sizes.
+QED.
+
+## 66. Counterexample searches and independent checks
+
+All calculations were on fejer in `~/wilf/p11`, nice 10,
+at most two owned single-core calculations at a time.
+No other process was touched and no commits were made.
+The laptop was used only to read, edit and copy files.
+
+The first attempt was adversarial, before using P(C) as
+a working expectation. `planted_search.c` keeps g disjoint
+equal-sum triples, preserves ALL pair-sum injectivity,
+and anneals the exact integer slack `3s-2-H+47ex`. Floating
+point is used only for move selection, never for the final
+counts or acceptance of a mathematical assertion. Each
+run has two 200,000-step restarts and no free extra units.
+
+| Seed | Planted g | n | Actual s | H | ex | Max ordinary fibre | Signed support | Holes | P47 slack |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2026101971 | 11 | 33 | 3968 | 17457 | 1451 | 11 | 8674 | 3228 | 62642 |
+| 2026101972 | 16 | 48 | 12835 | 54192 | 4259 | 16 | 27337 | 11166 | 184484 |
+
+The translated common triple sums are 7393 and 19622.
+The maximum squarefree fibres are 11 and 16; squarefree
+excesses are 1047 and 3503. Each has exactly one squarefree
+fibre of size >=11. Their ratios `(H-(3s-2))/ex`
+are exactly 5555/1451 and 15689/4259. Complete integer
+sets are retained in the two logs and `planted_verified.json`.
+An independent Python combinations-based checker re-counts
+every pair, cubic and signed value and verifies each planted
+triple. These two searches found no P47 counterexample;
+they do not prove anything about unsearched sets.
+
+SM was also checked explicitly on these two heavy-fibre
+sets, including its support-partition bound <=n^2/2 in
+each heavy ordinary fibre. To test its weak-Sidon version
+with M>0 and a genuine loop collision, the checker takes
+HF-FAMILY at g=11 and adjoins the three offsets
+`V,V+E,V+2E`, with `V=10^88,E=10^90`. Independent base-ten
+coordinates keep all off-diagonal pairs distinct. This
+36-set has ex=46, epsilon_sf=10, M=1, largest squarefree
+fibre 11, and |N|=22117. Its complete integer data and
+exact counts are in `weak_heavy_verified.json`. All SM
+inequalities pass; its enormous ambient span is not a
+search for a tight packing example.
+
+The second attempt was the repeat-centre proof in section
+61. Its intermediate inequalities were exhaustively tested
+by `weak_check.c`. It visits every weak Sidon set containing
+zero in {0,...,39}, of size at most eight, exactly once.
+The columns below count sets, not intervals or equivalent
+reflections. "SF unique" means every squarefree triple
+sum is distinct; pairs may still have loop collisions.
+
+| n | Weak Sidon | Pair-distinct | SF unique |
+|---:|---:|---:|---:|
+| 1 | 1 | 1 | 1 |
+| 2 | 39 | 39 | 39 |
+| 3 | 741 | 722 | 741 |
+| 4 | 8778 | 7758 | 8778 |
+| 5 | 65724 | 45694 | 65724 |
+| 6 | 270180 | 111202 | 232610 |
+| 7 | 418384 | 55550 | 100904 |
+| 8 | 106904 | 710 | 4 |
+
+Checks include DIFF2, both RC versions, CP, unit overlap,
+the SC loss bound, SF0 and SG with actual G, and P45-LIGHT
+where applicable. Repeat/repeat collisions occur on 850,515
+sets and squarefree/repeat coincidences on 825,757. The
+minimum slack of the difference, repeat and CP intermediate
+inequalities is zero. There are no failures. These small
+sets test the combinatorial counts nonvacuously; the final
+quadratic-error lower bound itself is often negative there.
+
+`matching_check.py` independently enumerates every normalized
+integer subset of {0,...,14}, size 2..7, and every matching
+of absent off-diagonal pairs that leaves retained pairs
+injective. It checks DIFF-G, all collision counts, RG-all,
+and RG with the actual legal-fibre cap and actual eta_P.
+
+| n | Integer sets admitting a state | Retained matching states |
+|---:|---:|---:|
+| 2 | 14 | 28 |
+| 3 | 91 | 364 |
+| 4 | 364 | 3346 |
+| 5 | 998 | 15426 |
+| 6 | 1683 | 18820 |
+| 7 | 328 | 790 |
+
+There are 17,722 states that are not weak Sidon before
+repair, 4,968 with positive legal defect, and 37,807 with
+an absent off-diagonal pair. There are no failures. The
+first execution had a Python bookkeeping error comparing
+a list to an integer in a summary counter. It stopped
+before testing a mathematical claim; the fixed full run
+is the one reported here.
+
+The ANTIPODAL proof was checked using actual integer sums
+for k=2..18, and its first K=47 family failure was verified
+from the exact formulas at k=107. `independent_checks.py`
+uses exact Fractions to verify every rational constant in
+B0-CUT and B10-CUT, the two profile slack polynomials, and
+the BFREE-LIGHT square completion and shifted cubic.
+
+Finally `ambient_semigroups.c` extends the section 58 actual
+semigroup scanner with `p5g_checks.h`. It checks the A and
+B cores separately, taking I3 pairs for the B core. It
+counts the actual absent graph, its maximum degree, ordinary
+legal fibres, actual legal omissions, eta_P, all ordinary
+repeated fibres, proper-label coincidences and unit overlap.
+It verifies DIFF-G, RC with Ddiff, CP, SC with discarded
+pairs, and the FULL RG including its n and r terms. Its
+actual legal-fibre maximum G is used, so this also tests
+the theorem beyond G=10. The old instance checks remain.
+
+| Seed / order | Attempts | Actual primary | A cores | B cores |
+|---|---:|---:|---:|---:|
+| 2026101973 / lex | 1500 | 1484 | 1477 | 1272 |
+| 2026101974 / grlex | 1000 | 987 | 981 | 828 |
+
+The 2,458 A cores include 2,412 with positive legal defect,
+2,402 with absent off-diagonal pairs, and 56 with all
+off-diagonal pairs present. The 2,100 B cores include 681
+with positive legal defect, 2,039 with absent pairs, and
+61 with all off-diagonal pairs present. The largest ordinary
+squarefree fibres seen are 36 (A) and 34 (B). There are
+zero failures on these 2,471 actual tiles. No instance
+satisfies W_A<0 with a>=24, and no claim is made that these
+runs test the large-parameter B0-CUT or B10-CUT hypotheses
+nonvacuously. Those theorems have the paper/rational
+certificates in section 65.
+
+Reproduction, after copying t7 sources to fejer. The three
+unchanged P5f headers from ../p10 are snapshotted in deps/:
+
+```sh
+cd ~/wilf/p11
+nice -n 10 gcc -O2 planted_search.c -lm -o planted_search
+nice -n 10 ./planted_search 2026101971 11 0 4000 200000 2 47 > planted11.log
+nice -n 10 ./planted_search 2026101972 16 0 13000 200000 2 47 > planted16.log
+nice -n 10 gcc -O2 weak_check.c -o weak_check
+nice -n 10 ./weak_check 40 8 > weak40.log
+nice -n 10 ~/mathenv/bin/python matching_check.py > matching.log
+nice -n 10 ~/mathenv/bin/python antipodal.py > antipodal.log
+nice -n 10 ~/mathenv/bin/python independent_checks.py > independent.log
+nice -n 10 gcc -O2 -Ideps ambient_semigroups.c -o ambient_semigroups
+nice -n 10 ./ambient_semigroups 2026101973 1500 300 4000 5 0 12 > instances_lex.log
+nice -n 10 ./ambient_semigroups 2026101974 1000 600 5000 7 1 19 > instances_grlex.log
+```
+
+The logs, sources, integer witnesses and final audit are
+in `t7/`. The lead's ongoing packing and per-alpha searches
+were not rerun. No counterexample to Wilf or an accepted
+project theorem was found.
+
+## 67. P5g status: proved statements and exact remaining gap
+
+PROVED here: SF0, SG, SM, the retained graph bound RG and its
+matching specializations; the antipodal counterfamily to
+the SUPPORT version of MATCH-P; B0-CUT, B10-CUT and
+B-RARE; the stated profile exclusions and M>N/2 requirement;
+and BFREE-LIGHT/BFREE-RARE. In particular
+the entire section 57 B-loop template is excluded
+unconditionally. Repeated-cubic heavy fibres have only
+quadratic cost on a weak Sidon set.
+
+NOT PROVED here: P(C,K) for all pair-distinct sets with any
+of the requested absolute C<=47; zero-error P(C-dagger)
+for all n>=33; unrestricted ambient MATCH-P; or the full
+primary regime. No such statement is used as a hypothesis
+in an unconditional result above. The SF/graph theorems
+have explicit structural hypotheses and may not be silently
+applied to present fibres alone.
+
+With the lead's current accepted results the remaining
+primary family is
+
+```
+alpha>=5, 19<=a<10Q_alpha,
+all FRONTIER-51, HPAIR and P5f necessary conditions;
+for a>=24, retain LC-SCALE and a+b<4a^(3/2);
+exclude the SPARSE-COVER branch of section 53;
+add B0-CUT when all off-diagonal BB pairs and SF BBB are present;
+add B10-CUT when all off-diagonal BB pairs are in I3 and f_B<=10;
+if a>=24, b>=16a and all off-diagonal BB pairs are in I3,
+  require more than b/256 squarefree B fibres of size >=11;
+if r=l=b=0 and alpha>=1910, require a squarefree joint fibre >=11;
+if r=l=b=0 and alpha>=3618, require more than alpha/32 such fibres;
+apply the full explicit RG on any selected localized core.
+```
+
+The previously proved B-free restrictions also remain in
+force. This is still an unbounded family; no single finite
+certificate for it is obtained. The new tests do not
+assert that general localized graphs have bounded degree
+or bounded pair-centre multiplicity.
+
+The next precise packing gap for the full-pair branch is
+an AMBIENT inequality paying for squarefree fibres f>=11,
+with total-excess coefficient <=47 and a quadratic error.
+Only these fibres remain beyond SG, and SM already pays
+for any bounded number of them with a quadratic error.
+The BASE templates and the two uniform rare-fibre
+corollaries now require linearly many heavy squarefree
+fibres. Repeated fibres need no further heavy-fibre
+hypothesis. For the matching
+branch, RG reduces the problem further to heavy LEGAL
+squarefree fibres or unbounded concentration k_p of
+absent-pair sums. ANTIPODAL shows that the latter requires
+the ambient diameter or additional primary geometry:
+signed-support cardinality alone cannot provide MATCH-P,
+even with the allowed quadratic error. These are the next
+two discriminating lemmas, rather than another increase
+of the finite a cutoff.

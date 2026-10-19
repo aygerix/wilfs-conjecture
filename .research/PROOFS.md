@@ -466,6 +466,10 @@ the bracket's negative terms must be paid by the nonnegative linear terms. The n
 - cubics with Σ y_a ρ_a < 2ρ_0, which lie in the window [m − 2ρ_0, m);
 - non-maximal pairs with ρ_a + ρ_b ≥ m + ρ_0, which cost ψ − 1 each.
 Status: the reduction is PROVED; the carry inequality is OPEN.
+FALSE strengthening, preserved: dropping L_+ and asking Br_0 ≥ −ρ_0 (H3-BR; all-height version G-BR,
+Σ_{|y|≥2} Δ(y) ≥ −r(0)) is EQUIVALENT to Tile-CL (Abel/column form; PROPS "Tile-CL" forms Diff and Wall). It is FALSE on
+the E47 tile ⟨14,22,23,57,61,62,63⟩ (height 3, d = 6): min ΣΔ + r(0) = −1. So any height-3 proof must spend L_+,
+which is exactly the slack of MaxCL over Tile-CL coming from missing upper covers.
 
 ### Two-face tiles: 2-D picture, reduction to 2-D Tile-CL, and the box theorem — PROVED 2026-10-17 (paper; finite part
 ### by exact computation, src/scratch/twoface_box.py; identities asserted in scratchpad box_ident.py, b ≤ a ≤ 10)

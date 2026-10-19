@@ -51,6 +51,9 @@ static ll Gamma_(ll a,ll d0,ll q,ll r){ if(!GK){ GK=malloc(sizeof(ll)*GH*4); GV=
 static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0,GCAP=0; static ll ngcap=0; static ll ALMIN=3, ALMAX=1000000;
 static ll nmix=0,nlink=0,npack=0; static ll nbig64=0; /* k-cover ranges longer than 64 (diagnostic) */
 #define KCAP 4096
+#ifndef SURVMAX
+#define SURVMAX 10
+#endif
 static int mixgap_kills(ll a,ll b,ll r,ll q,ll q2,ll u,ll t,ll K,ll B0){
   ll d0=a+b; ll G=Gamma_(a,d0,q,r); if(B0>=G) return 0;
   ll rem=B0-b*u-2*b*r; if(rem<0) return 1;
@@ -151,7 +154,7 @@ int main(int argc,char**argv){ mac2_init();
                      if(packlow(nj2,ek)>3*sj-2) continue; if(packlow(nw2,ek)>3*dl-2) continue; if(packlow(ns2,ek)>3*w-2) continue; okk=1; }
                    if(!okk) continue; }
                  any=1; }
-               if(any){ nsurv++; if(nsurv<=10) printf("  SURV a=%lld al=%lld r=%lld n0=%lld l=%lld t=%lld u0=%lld u1=%lld c0=%lld beta=%lld R=%lld b=%lld WAbar=%lld Hh=%lld mup=%lld mlow=%lld k=%lld E=%lld\n",a,al,r,n0,l,t,u0,u1,c0,beta,R,b,WAbar,Hh,mup,mlow,kf,Ek); }
+               if(any){ nsurv++; if(nsurv<=SURVMAX) printf("  SURV a=%lld al=%lld r=%lld n0=%lld l=%lld t=%lld eps=%lld u0=%lld u1=%lld c0=%lld beta=%lld R=%lld b=%lld WAbar=%lld Hh=%lld mup=%lld mlow=%lld k=%lld E=%lld dmin=%lld dmax=%lld D3=%lld\n",a,al,r,n0,l,t,eps,u0,u1,c0,beta,R,b,WAbar,Hh,mup,mlow,kf,Ek,dmin,dmax,D3); }
               } } } } } } } }
         if(hit) nbase++; } } } }
     printf("a=%lld base=%lld u=%lld profiles(card test)=%lld nonempty-delta=%lld killed: MIX=%lld LINK=%lld PACK=%lld survivors=%lld krange>64=%lld\n",a,nbase,nu,npre,nprof,nmix,nlink,npack,nsurv,nbig64); fflush(stdout); tot+=nsurv; }

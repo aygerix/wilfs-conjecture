@@ -1,0 +1,19 @@
+k 2 n 4 r 2 v 0 s 21 H 28 ex 4 signed 16 loss 12
+k 3 n 6 r 3 v 0 s 201 H 96 ex 12 signed 44 loss 52
+k 4 n 8 r 4 v 0 s 2001 H 232 ex 24 signed 96 loss 136
+k 5 n 10 r 5 v 0 s 20001 H 460 ex 40 signed 180 loss 280
+k 6 n 12 r 6 v 0 s 200001 H 804 ex 60 signed 304 loss 500
+k 7 n 14 r 7 v 0 s 2000001 H 1288 ex 84 signed 476 loss 812
+k 8 n 16 r 8 v 0 s 20000001 H 1936 ex 112 signed 704 loss 1232
+k 9 n 18 r 9 v 0 s 200000001 H 2772 ex 144 signed 996 loss 1776
+k 10 n 20 r 10 v 0 s 2000000001 H 3820 ex 180 signed 1360 loss 2460
+k 11 n 22 r 11 v 0 s 20000000001 H 5104 ex 220 signed 1804 loss 3300
+k 12 n 24 r 12 v 0 s 200000000001 H 6648 ex 264 signed 2336 loss 4312
+k 13 n 26 r 13 v 0 s 2000000000001 H 8476 ex 312 signed 2964 loss 5512
+k 14 n 28 r 14 v 0 s 20000000000001 H 10612 ex 364 signed 3696 loss 6916
+k 15 n 30 r 15 v 0 s 200000000000001 H 13080 ex 420 signed 4540 loss 8540
+k 16 n 32 r 16 v 0 s 2000000000000001 H 15904 ex 480 signed 5504 loss 10400
+k 17 n 34 r 17 v 0 s 20000000000000001 H 19108 ex 544 signed 6596 loss 12512
+k 18 n 36 r 18 v 0 s 200000000000000001 H 22716 ex 612 signed 7824 loss 14892
+FIRST_K47_SUPPORT_FAILURE 107 loss 3243812 Kbudget 3228618
+ANTIPODAL_EXACT_CHECKS_PASSED

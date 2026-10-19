@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, afternoon; GW-26g a ≤ 18, GW-26h α ≤ 4, LARGE-A′ a ≥ 10Q_α; codex P5g (ambient packing) running)
+# STATE.md — handoff (updated 2026-10-19, late afternoon; GW-26g a ≤ 18, GW-26h α ≤ 4 (α = 5 sweep nearly done), LARGE-A′ a ≥ 10Q_α; per-α certificate FAILS at α = 6, 8; codex P5g running)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,6 +184,26 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0) NEW 2026-10-19 late afternoon, read first.
+    - Per-α closure with the fixed and fast certificate (E242):
+      - α = 5 is clean so far (to a = 149; finish, then record "primary regime for α ≤ 5").
+      - **α = 6, a = 20: 3 B-loop survivors.**
+      - **α = 8, a = 19: 61 and a = 20: 781 matching-type survivors.**
+      - So the current relaxation cannot close α ≥ 6. Survivor dumps: fejer ~/wilf/lead23/surv_a19_al8.log and
+        surv_a20_al6.log (all fields, δ ranges). Sweeps of α = 6, 7, 8 continue (al_sweep_{6,7,8}f.log).
+    - P5h draft: $SP/codex/p5h_draft.md. Send after reviewing P5g §60+. Task: close these finite residual families
+      using localized defects or retained pairs, or realize one as a residue-complete down-set.
+    - Bug fixed: the kE/klist[64] truncation. Never fired (krange>64 = 0 everywhere), so GW-26g and GW-26h stand.
+      The fast build is 18× faster with identical output (E242).
+    - Height-3 MaxCL (own line), all in PROOFS "Column-top lemma and the carry form of MaxCL":
+      - column-top lemma, Lean-checked (lean/Wilf/ColumnTop.lean);
+      - carry form at any height, and unit form at height 3;
+      - margin data: lin/(−m·Br) ≥ 1.457, worst at ρ_0 ≈ m;
+      - postage-stamp bases are the no-wrap tight family.
+      Next: an adaptively-based charging proof of the height-3 carry inequality (or hand it to P6).
+    - Laptop disk was briefly full (ENOSPC around 08:05 local). Codex's rollout writes failed and were then retried.
+      About 9.7 GB is now free. ~/.codex is 19 GB, repo .claude 7.5 GB, local lean/.lake 7.5 GB (unused: Lean runs on
+      fejer). Ask the user before deleting anything.
 (a) Codex P5g is RUNNING (session 01a1525d-16ff-7fc2-a405-17a585c3ec31; message scratchpad codex/p5g_msg.md; log
     codex/p5g_log.txt; report P5_REPORT §60 onward). Task: ambient packing. In order:
     - P(C) with O(n²) error (any explicit C < 130 kills BASE), then the zero-error P(C†) for n ≥ 33;
