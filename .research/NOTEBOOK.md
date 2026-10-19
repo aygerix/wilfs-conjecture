@@ -1826,3 +1826,38 @@ asserted on every test.
     ≥ (d+2)qK + (d+2)Σε. This proves GW for near-stars whenever the maximum has residue ρ* = m − 1.
   - The general case needs the residue slack d(m−1−ρ*). The units with residue above ρ* and high degree are the
     obstacle. NEXT: finish this case, since near-stars are exactly the thin regime that defeats HCR.
+
+## 2026-10-19 (early) — the prefix (window) family PGW; the GW scan; mechanisms that fail for t > d
+
+- **GW scan (codex, E186).**
+  - Independent C enumerator: 0 failures in 138,091,734,792 instances (d = 3, m ≤ 30; d = 4, m ≤ 22; d = 5, m ≤ 19).
+  - Adversarial search: 92.8M candidates to m = 100, 0 failures.
+  - Smallest E/c with t > d and c ≥ m: 1/9, at d = 3, m = 7, n = (12,11,20).
+- **Mechanisms that fail for t > d.**
+  - Per-depth |U_i| ≤ d|L_i| is false (E183). So is the suffix family (E187).
+  - Column reflections do not cover every gap. Column + corner edges still need capacity 4 in 3-D (E184).
+  - Allowing depth-lowering edges (gap at depth i → element at depth h ≤ i) changes the picture:
+    - corner edges alone still fail;
+    - corner + column edges give b* ≤ d on every d = 3, m ≤ 8 instance (E185).
+- **New conjecture PGW (PROOFS, "Prefix (window) Wilf").**
+  - If depth-lowering is allowed, Hall's condition is exactly the prefix family
+    P_i: Σ_{j≤i}|U_j| ≤ dΣ_{j≤i}|L_j|.
+  - For semigroups P_i reads WW_i: #(gaps below im) ≤ (e−1)·#(S ∩ [c − im, c)). It is Wilf for im ≥ c.
+  - Evidence: 0 failures on 5.86·10⁹ down-set instances (E188) and on all 2.8·10⁸ semigroups of genus ≤ 36 (E189).
+  - It is false for windows that are not multiples of m.
+  - The increments are not single-crossing (E190), so PGW does not follow from GW that way.
+- **Proved.**
+  - GW-12: PGW when t ≤ d.
+  - GW-13: per-depth |U_j| ≤ d|L_j| whenever every n_a ≥ jm. Proof: the descent map x ↦ x − e_a, at most d to one,
+    lands in L_j because x − e_a is non-maximal.
+  - GW-14: g ≤ dΣ_{j≤k_min}|L_j| + Σ_{j>k_min} t_j|L_j|. So only corners deeper than k_min = min⌊n_a/m⌋ can break GW.
+  - GW-15: WW_1 for every semigroup, (e−1)|Ap ∩ [0, c)| ≥ m − 1, and the corner bound d·t(D) ≤ (d−1)|D| + 1.
+    Elementary.
+- **Reading.**
+  - The descent map handles the shallow depths; corner reflection handles the case of few corners.
+  - The two failure modes are disjoint in kind. Descent fails at depth j only through directions with n_a < jm.
+    Reflection fails only through corners: more than d corners at depth j.
+  - A proof of PGW has to trade between them across depths. The tight cases (e = 2 and maximal embedding dimension)
+    are the extreme of each mechanism.
+- NEXT: P_2 in the multiplicity form with k_min = 1. The obstruction there is a cell x with κ(x) ≥ 2 all of whose lower
+  covers x − e_a use directions with n_a < 2m.

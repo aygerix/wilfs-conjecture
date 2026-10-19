@@ -1,0 +1,7 @@
+d,m,canonical_downsets,labeled_downsets,residue_pairs,instances,hard_instances,failures,min_E,min_E_more_than_d_corners,minimal,nonminimal,equality_nonminimal,wall_seconds,cpu_seconds
+5,6,1,1,120,29160,0,0,0,NA,NA,NA,0,0.007382,0.007364
+5,7,2,15,2160,524880,0,0,0,NA,NA,NA,0,0.015367,0.015356
+5,8,6,110,15480,3761640,0,0,0,NA,NA,NA,0,0.045568,0.040107
+5,9,18,550,78240,19012320,524880,0,0,0,NA,NA,0,0.141754,0.141185
+5,10,51,2195,249120,60536160,3965760,0,0,0,NA,NA,0,0.383103,0.343515
+5,11,135,7603,911280,221441040,47822400,0,0,0,NA,NA,0,1.224160,1.044028

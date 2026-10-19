@@ -1,0 +1,146 @@
+seed=816341962711 scale=16
+progress seeds=8 tests=68779200 flips=26628 wall=25.885
+progress seeds=16 tests=68927360 flips=43753 wall=26.181
+progress seeds=24 tests=69179200 flips=62966 wall=26.548
+progress seeds=32 tests=69446400 flips=92075 wall=27.030
+progress seeds=40 tests=69600320 flips=108248 wall=27.378
+progress seeds=48 tests=69821440 flips=132138 wall=27.756
+progress seeds=56 tests=70011840 flips=155965 wall=28.202
+progress seeds=64 tests=70265600 flips=175174 wall=28.608
+progress seeds=72 tests=70423360 flips=200420 wall=28.890
+progress seeds=80 tests=70682880 flips=219076 wall=29.185
+progress seeds=88 tests=70909760 flips=245254 wall=29.588
+progress seeds=96 tests=71044480 flips=269483 wall=29.903
+progress seeds=104 tests=71302080 flips=288854 wall=30.254
+progress seeds=112 tests=71452160 flips=299626 wall=30.495
+progress seeds=120 tests=71671360 flips=326175 wall=30.900
+progress seeds=128 tests=71840640 flips=358764 wall=31.278
+progress seeds=136 tests=72023360 flips=378694 wall=31.569
+progress seeds=144 tests=72280960 flips=402622 wall=31.977
+progress seeds=152 tests=72440640 flips=416659 wall=32.215
+progress seeds=160 tests=72544640 flips=433011 wall=32.462
+progress seeds=168 tests=72746560 flips=453167 wall=32.822
+progress seeds=176 tests=72967680 flips=470476 wall=33.095
+progress seeds=184 tests=73136960 flips=497616 wall=33.380
+progress seeds=192 tests=73315840 flips=514843 wall=33.605
+progress seeds=200 tests=73536960 flips=540192 wall=34.028
+progress seeds=208 tests=73660160 flips=547978 wall=34.238
+progress seeds=216 tests=73773760 flips=558155 wall=34.426
+progress seeds=224 tests=74000640 flips=577520 wall=34.802
+progress seeds=232 tests=74123840 flips=581294 wall=34.979
+progress seeds=240 tests=74275840 flips=603282 wall=35.249
+progress seeds=248 tests=74445120 flips=619730 wall=35.574
+progress seeds=256 tests=74597120 flips=630316 wall=35.844
+progress seeds=264 tests=74802880 flips=648785 wall=36.126
+progress seeds=272 tests=74983680 flips=667457 wall=36.434
+progress seeds=280 tests=75185600 flips=675278 wall=36.624
+progress seeds=288 tests=75447040 flips=693609 wall=36.898
+progress seeds=296 tests=75587520 flips=713272 wall=37.179
+progress seeds=304 tests=75768320 flips=731960 wall=37.399
+progress seeds=312 tests=75874240 flips=748353 wall=37.657
+progress seeds=320 tests=76037760 flips=769431 wall=37.988
+progress seeds=328 tests=76210880 flips=778994 wall=38.204
+progress seeds=336 tests=76360960 flips=800644 wall=38.520
+progress seeds=344 tests=76608960 flips=818223 wall=38.973
+progress seeds=352 tests=76830080 flips=840117 wall=39.295
+progress seeds=360 tests=76972480 flips=858019 wall=39.559
+progress seeds=368 tests=77162880 flips=885029 wall=39.944
+progress seeds=376 tests=77412800 flips=913826 wall=40.371
+progress seeds=384 tests=77641600 flips=935733 wall=40.780
+progress seeds=392 tests=77830080 flips=955755 wall=41.131
+progress seeds=400 tests=77972480 flips=966429 wall=41.372
+progress seeds=408 tests=78199360 flips=993389 wall=41.767
+progress seeds=416 tests=78337920 flips=1005654 wall=42.037
+progress seeds=424 tests=78580160 flips=1021748 wall=42.418
+progress seeds=432 tests=78793600 flips=1041504 wall=42.742
+progress seeds=440 tests=78941760 flips=1054492 wall=42.952
+progress seeds=448 tests=79132160 flips=1074214 wall=43.261
+progress seeds=456 tests=79291840 flips=1097469 wall=43.567
+progress seeds=464 tests=79440000 flips=1120527 wall=43.890
+progress seeds=472 tests=79630400 flips=1135269 wall=44.221
+progress seeds=480 tests=79728640 flips=1146672 wall=44.410
+progress seeds=488 tests=79846080 flips=1162460 wall=44.696
+progress seeds=496 tests=80113280 flips=1188389 wall=45.087
+progress seeds=504 tests=80334400 flips=1206699 wall=45.363
+progress seeds=512 tests=80482560 flips=1229062 wall=45.644
+progress seeds=520 tests=80694080 flips=1250906 wall=46.000
+progress seeds=528 tests=80824960 flips=1260635 wall=46.237
+progress seeds=536 tests=81017280 flips=1283537 wall=46.659
+progress seeds=544 tests=81167360 flips=1310313 wall=46.990
+progress seeds=552 tests=81263680 flips=1324180 wall=47.219
+progress seeds=560 tests=81432960 flips=1333510 wall=47.436
+progress seeds=568 tests=81546560 flips=1351040 wall=47.686
+progress seeds=576 tests=81750400 flips=1371150 wall=47.999
+progress seeds=584 tests=81890880 flips=1383057 wall=48.205
+progress seeds=592 tests=82073600 flips=1404162 wall=48.558
+progress seeds=600 tests=82242880 flips=1432019 wall=48.854
+progress seeds=608 tests=82464000 flips=1453515 wall=49.204
+progress seeds=616 tests=82594880 flips=1475417 wall=49.520
+progress seeds=624 tests=82783360 flips=1501177 wall=49.926
+progress seeds=632 tests=83021760 flips=1531906 wall=50.379
+progress seeds=640 tests=83183360 flips=1553281 wall=50.664
+progress seeds=648 tests=83396800 flips=1572082 wall=51.001
+progress seeds=656 tests=83537280 flips=1589574 wall=51.265
+progress seeds=664 tests=83631680 flips=1607771 wall=51.498
+progress seeds=672 tests=83820160 flips=1633056 wall=51.807
+progress seeds=680 tests=84056640 flips=1662276 wall=52.262
+progress seeds=688 tests=84302720 flips=1687567 wall=52.736
+progress seeds=696 tests=84408640 flips=1702319 wall=53.019
+progress seeds=704 tests=84558720 flips=1725339 wall=53.307
+progress seeds=712 tests=84706880 flips=1742325 wall=53.593
+progress seeds=720 tests=84916480 flips=1760887 wall=53.840
+progress seeds=728 tests=85091520 flips=1775834 wall=54.186
+progress seeds=736 tests=85274240 flips=1798449 wall=54.577
+progress seeds=744 tests=85493440 flips=1821136 wall=54.928
+progress seeds=752 tests=85741440 flips=1843983 wall=55.277
+progress seeds=760 tests=85964480 flips=1864889 wall=55.629
+progress seeds=768 tests=86202880 flips=1896538 wall=56.108
+progress seeds=776 tests=86422080 flips=1915331 wall=56.501
+progress seeds=784 tests=86560640 flips=1936540 wall=56.795
+progress seeds=792 tests=86741440 flips=1954038 wall=57.119
+progress seeds=800 tests=86964480 flips=1982526 wall=57.483
+progress seeds=808 tests=87143360 flips=1994243 wall=57.764
+progress seeds=816 tests=87374080 flips=2023455 wall=58.258
+progress seeds=824 tests=87554880 flips=2046223 wall=58.553
+progress seeds=832 tests=87814400 flips=2075925 wall=58.981
+progress seeds=840 tests=88066240 flips=2107301 wall=59.357
+progress seeds=848 tests=88199040 flips=2122574 wall=59.621
+progress seeds=856 tests=88341440 flips=2137216 wall=59.905
+progress seeds=864 tests=88547200 flips=2155102 wall=60.269
+progress seeds=872 tests=88799040 flips=2179253 wall=60.623
+progress seeds=880 tests=89037440 flips=2204834 wall=61.052
+progress seeds=888 tests=89291200 flips=2225122 wall=61.429
+progress seeds=896 tests=89472000 flips=2245737 wall=61.754
+progress seeds=904 tests=89741120 flips=2277055 wall=62.153
+progress seeds=912 tests=90102400 flips=2309338 wall=62.689
+progress seeds=920 tests=90329280 flips=2334820 wall=63.086
+progress seeds=928 tests=90494720 flips=2346296 wall=63.332
+progress seeds=936 tests=90706240 flips=2369704 wall=63.723
+progress seeds=944 tests=90888960 flips=2385335 wall=64.123
+progress seeds=952 tests=91146560 flips=2409314 wall=64.459
+progress seeds=960 tests=91336960 flips=2430970 wall=64.729
+progress seeds=968 tests=91556160 flips=2456019 wall=65.045
+progress seeds=976 tests=91744640 flips=2478534 wall=65.359
+progress seeds=984 tests=91950400 flips=2510315 wall=65.805
+progress seeds=992 tests=92090880 flips=2526920 wall=66.048
+progress seeds=1000 tests=92304320 flips=2550668 wall=66.331
+progress seeds=1008 tests=92483200 flips=2565794 wall=66.609
+progress seeds=1016 tests=92662080 flips=2585067 wall=66.905
+progress seeds=1024 tests=92810240 flips=2608114 wall=67.212
+family,shape_attempts,residue_pairs,node_visits
+nearstar,192000,73496,0
+arms,3200,2648,253349
+boxes,189,1472,56458
+box_one_flip,673,666,1408284
+product,2326,18560,1448614
+family,tests,eligible,d_min,d_max,m_min,m_max,best_E,best_c
+nearstar,62045824,24273288,3,12,5,49,2,18
+arms,1252352,51200,3,5,17,100,159,116
+boxes,320000,0,3,5,8,100,0,0
+box_one_flip,142464,142303,3,5,8,100,4,16
+product,4751360,773921,4,4,14,100,14,36
+walk_seed,1508224,1477725,3,6,20,100,10,30
+random_flip,3072000,2663709,3,6,20,100,124,304
+local_search,6144000,5352519,3,6,20,100,328,924
+walk_lifts,13574016,13275478,3,6,20,100,10,30
+tests=92810240 eligible=48010143 failures=0 seeds=1024 steps=9216000 accepted=5030906 flips=2608114 initial_no_flip=353 wall=67.211780 cpu=57.924354

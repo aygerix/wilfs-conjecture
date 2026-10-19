@@ -113,14 +113,24 @@
      - GW ⟹ Wilf (Apéry tile).
      - GW on largest-generator tiles is Wilf itself (Lemma GW-1).
    - Evidence:
-     - Exhaustive over ALL down-sets: d = 2 (m ≤ 26), d = 3 (m ≤ 14), d = 4 (m ≤ 10), with k-lifts and signed n.
-       0 failures. Equality only on minimal domains.
+     - Exhaustive over ALL down-sets (codex C scanner, E186): 0 failures in 1.38·10¹¹ instances (d = 3, m ≤ 30;
+       d = 4, m ≤ 22; d = 5, m ≤ 19; k ∈ {0,1,2}^d). Also d = 2 (m ≤ 26) and signed n. Adversary to m = 100: none.
      - Non-minimal domains can beat the Apéry tile (d = 3), so GW is strictly stronger than Wilf.
      - Residue completeness is essential: the injective-only version is false (GW-6).
-   - Proved: the reformulations, the column form, and boxes (B = (d−1)mM/2).
-   - Plan: a local-minimum analysis under the moves allowed by non-minimality (flips, lifts n ± m e_a, units). Show
-     that every move-stable (D, n) has E ≥ 0. Candidates for the stable set: carry-free domains, boxes, MED stars.
-   - Running: adversarial annealing over the same moves (E169).
+   - Proved:
+     - the reformulations, the column form, and boxes (B = (d−1)mM/2);
+     - corner reflection g ≤ tℓ, so GW when t ≤ d (GW-8/9);
+     - GW for d ≤ 2 (GW-10/11);
+     - the descent lemma GW-13/14: only corners deeper than k_min = min⌊n_a/m⌋ can break GW.
+   - **Stronger conjecture PGW (prefix/window family, PROOFS).**
+     - Statement: Σ_{j≤i}|U_j| ≤ dΣ_{j≤i}|L_j| for every i. For semigroups: #(gaps < im) ≤ (e−1)·#(S ∩ [c−im, c)).
+     - Evidence: 0 failures on 5.9·10⁹ down-set instances and on all semigroups of genus ≤ 36 (E188, E189).
+     - Proved: P_1 (multiplicity form), all P_i when t ≤ d, and P_i for i ≤ k_min.
+     - Use: it is the Hall condition for matching gaps to elements with depth-lowering allowed. A proof must trade the
+       descent map (fails only through directions with n_a < jm) against corner reflection (fails only through more
+       than d corners at depth j).
+   - Killed (E183–E185, E187, E190): per-depth, suffix family, column reflections, depth-lowering without columns,
+     single crossing.
    - The level/carry split (W = Lev + Car) and the exchange-inequality picture are kept as tools. RW = GW with k = 0.
 3. **e = 4 formal verification (background; G-Lean).** Next Lean items: the cylinder lemma and Wall/Floor from IsTile.
 Killed this cycle: TL (false at e = 5); the unsorted S1 ≤ 2m (false at m = 25); ATOP_γ as a universal criterion (6
@@ -128,12 +138,13 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) GW local-minimum analysis:
-    - classify the (D, n) that no flip, lift or unit move improves (start with d = 2, 3 exhaustively);
-    - try to prove E ≥ 0 on that class;
-    - read the gw_anneal logs (E169) for counterexamples or near-misses.
-(b) Codex HT4 pipeline (PID 539098 on fejer) continues. Verify the subclass proofs in src/scratch/tile4/HT4_REPORT.md
-    (products, two-face) before recording them as proved.
-(c) The gfan re-check of E153 (fejer logs/gfan_hcr_5_36.log) is at m = 31 with 0 failures. It must reach 39 before
-    "Wilf for e = 5, m ≤ 39" is called method-independent.
+(a) PGW, first open case: P_2 in the multiplicity form with k_min = 1 and t > d.
+    - Find the charging that moves depth-2 gaps of cells whose lower covers all use directions n_a < 2m onto the spare
+      capacity left by the descent map at depth 1.
+    - Test candidate rules exhaustively (d = 3, 4) before proving.
+    - Near-stars first: there the exact identity of the near-star bullet in NOTEBOOK applies.
+(b) Codex HT4 pipeline: verify the subclass proofs in src/scratch/tile4/HT4_REPORT.md (products, two-face) before
+    recording them as proved.
+(c) The gfan re-check of E153 (fejer logs/gfan_hcr_5_36.log) must reach 39 before "Wilf for e = 5, m ≤ 39" is called
+    method-independent.
 (d) The e = 5 large-m counting lemmas (facet type bound, corner–volume, discrete Minkowski).

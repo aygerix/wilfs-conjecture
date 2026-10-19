@@ -19,6 +19,9 @@ typedef struct {Tile T;Metric q;char family[32];} Record;
 static uint64_t rng=UINT64_C(916734891233);
 static Record best[10],best_nonminimal[10];static int nb,nn;
 static uint64_t tests,eligible,failures,shapes[5],valid[5],nodes[5],flips,accepted,walksteps,walkseeds,stuck;
+typedef struct {uint64_t tests,hard;int mind,maxd,minm,maxm;int64_t E,c;} Stats;
+static Stats stats[9];
+static const char*names[]={"nearstar","arms","boxes","box_one_flip","product","walk_seed","random_flip","local_search","walk_lifts"};
 static int htab[H],residx[N];static int64_t axsum[A];static int corner[N],nt;
 static double started;
 static double tm(clockid_t c){struct timespec t;clock_gettime(c,&t);return t.tv_sec+t.tv_nsec*1e-9;}
@@ -63,24 +66,30 @@ static void dump(FILE*f,const Record*r){
 }
 static int same(const Record*r,const Tile*T){
  if(r->T.d!=T->d||r->T.m!=T->m)return 0;
- for(int a=0;a<T->d;a++)if(r->T.s[a]+T->m*r->T.k[a]!=T->s[a]+T->m*T->k[a])return 0;
- for(int i=0;i<T->m;i++){int found=0;for(int j=0;j<T->m;j++)if(T->p[i]==r->T.p[j]){found=1;break;}if(!found)return 0;}return 1;
+ int map[A];for(int a=0;a<T->d;a++){map[a]=-1;for(int b=0;b<T->d;b++)if(r->T.s[b]+T->m*r->T.k[b]==T->s[a]+T->m*T->k[a])map[a]=b;if(map[a]<0)return 0;}
+ for(int i=0;i<T->m;i++){Pt p=0;for(int a=0;a<T->d;a++)p+=(Pt)co(T->p[i],a)<<(7*map[a]);int found=0;for(int j=0;j<T->m;j++)if(p==r->T.p[j]){found=1;break;}if(!found)return 0;}return 1;
 }
 static void insert(Record*b,int*sz,const Tile*T,Metric q,const char*f){
  int pos=0;while(pos<*sz&&b[pos].q.E*q.c<=q.E*b[pos].q.c)pos++;if(pos>=10)return;
  for(int j=0;j<*sz;j++)if(same(&b[j],T))return;
- if(*sz<10)(*sz)++;for(int j=*sz-1;j>pos;j--)b[j]=b[j-1];b[pos].T=*T;b[pos].q=q;snprintf(b[pos].family,32,"%s",f);
+ if(*sz<10)(*sz)++;
+ for(int j=*sz-1;j>pos;j--)b[j]=b[j-1];
+ b[pos].T=*T;b[pos].q=q;snprintf(b[pos].family,32,"%s",f);
 }
 static void consider(const Tile*T,Metric q,const char*f){
+ int cat=0;while(cat<9&&strcmp(names[cat],f))cat++;if(cat==9)abort();Stats*st=&stats[cat];
+ if(!st->tests){st->mind=st->maxd=T->d;st->minm=st->maxm=T->m;}
+ st->tests++;if(T->d<st->mind)st->mind=T->d;if(T->d>st->maxd)st->maxd=T->d;if(T->m<st->minm)st->minm=T->m;if(T->m>st->maxm)st->maxm=T->m;
  tests++;if(q.E<0){Record r={.T=*T,.q=q};snprintf(r.family,32,"%s",f);FILE*out=fopen("FAILURE.jsonl","w");dump(out,&r);fclose(out);failures++;exit(2);}
- if(q.c<T->m||q.t<=T->d)return;eligible++;
+ if(q.c<T->m||q.t<=T->d)return;
+ eligible++;if(!st->hard||q.E*st->c<st->E*q.c){st->E=q.E;st->c=q.c;}st->hard++;
  insert(best,&nb,T,q,f);
  if((nn<10||q.E*best_nonminimal[nn-1].q.c<best_nonminimal[nn-1].q.E*q.c)&&!minimal(T))insert(best_nonminimal,&nn,T,q,f);
 }
 static void all_lifts(Tile*T,const char*f){
  setup(T);uint64_t count=1;for(int a=0;a<T->d;a++)count*=4;
  int full=T->d<=6;if(!full)count=512;
- for(uint64_t j=0;j<count;j++){uint64_t z=j;for(int a=0;a<T->d;a++){T->k[a]=full?(z&3):ri(4);z>>=2;}consider(T,metric(T),f);}
+ for(uint64_t j=0;j<count;j++){uint64_t z=j;for(int a=0;a<T->d;a++){T->k[a]=full?(int)(z&3):ri(4);z>>=2;}consider(T,metric(T),f);}
 }
 /* All possible same-residue single-cell exchanges from the present tile. */
 static int moves(const Tile*T,Pt*out,int*rem){
@@ -90,7 +99,8 @@ static int moves(const Tile*T,Pt*out,int*rem){
   int y=residx[residue(T,z)];if(!ismax[y])continue;
   int unit=0;for(int b=0;b<T->d;b++)if(T->p[y]==un(b))unit=1;if(unit)continue;
   int ok=1;for(int b=0;b<T->d;b++)if(co(z,b)){int p=lookup(T,z-un(b));if(p<0||p==y){ok=0;break;}}
-  if(!ok)continue;int dup=0;for(int j=0;j<count;j++)if(out[j]==z){dup=1;break;}if(dup)continue;
+  if(!ok)continue;
+  int dup=0;for(int j=0;j<count;j++)if(out[j]==z){dup=1;break;}if(dup)continue;
   out[count]=z;rem[count++]=y;
  }
  return count;
@@ -101,14 +111,16 @@ static int seed_tile(Tile*T){
   int r=-1;for(int i=0;i<T->m;i++)if(!done[i]&&(r<0||ds[i]<ds[r]))r=i;if(ds[r]>=INT64_MAX/8)return 0;done[r]=1;
   for(int a=0;a<T->d;a++){int z=(r+T->s[a])%T->m;int64_t v=ds[r]+T->m+T->s[a];Pt q=p[r]+un(a);if(v<ds[z]||(v==ds[z]&&q<p[z])){ds[z]=v;p[z]=q;}}
  }
- for(int i=0;i<T->m;i++)T->p[i]=p[i];return valid_tile(T);
+ for(int i=0;i<T->m;i++)T->p[i]=p[i];
+ return valid_tile(T);
 }
 static void random_s(Tile*T){for(int a=0;a<T->d;a++){int ok;do{ok=1;T->s[a]=1+ri(T->m-1);for(int b=0;b<a;b++)if(T->s[b]==T->s[a])ok=0;}while(!ok);T->k[a]=ri(4);}}
 static const char*fnames[]={"nearstar","arms","boxes","box_one_flip","product"};
 static int category,limit,found;static uint64_t budget;static int groups[A][N],ng[A];
 static void structured_residues(Tile*T,int a,unsigned char*mask){
- if(!budget||found>=limit)return;budget--;nodes[category]++;
- if(a==T->d){valid[category]++;found++;all_lifts(T,fnames[category]);return;}
+ if(!budget||found>=limit)return;
+ budget--;nodes[category]++;
+ if(a==T->d){if(!valid_tile(T))abort();valid[category]++;found++;all_lifts(T,fnames[category]);return;}
  int offset=ri(T->m-1);
  for(int j=0;j<T->m-1&&budget&&found<limit;j++){
   int t=1+(offset+j)%(T->m-1),duplicate=0;for(int b=0;b<a;b++)if(T->s[b]==t)duplicate=1;if(duplicate)continue;T->s[a]=t;
@@ -159,9 +171,8 @@ static void products(int trials){
  for(int run=0;run<trials;run++){
   Tile B={.d=3,.m=7+ri(19)};random_s(&B);if(!seed_tile(&B))continue;int L=2+ri(3);if(B.m*L>100)continue;
   Tile T={.d=4,.m=B.m*L};for(int i=0;i<B.m;i++)for(int j=0;j<L;j++)T.p[i*L+j]=B.p[i]+j*un(3);
-  for(int a=0;a<3;a++)T.s[a]=B.s[a];T.s[3]=B.m;
-  /* This mixed-radix map is valid because the base weights are lifted
-   * to their actual distinct residue values before taking the product. */
+  for(int a=0;a<3;a++)T.s[a]=B.s[a];
+  T.s[3]=B.m;
   search_shape(&T,4,8,16000);
  }
 }
@@ -171,13 +182,16 @@ static void walk(int count,int steps){
   all_lifts(&T,"walk_seed");for(int a=0;a<T.d;a++)T.k[a]=ri(4);setup(&T);Metric q=metric(&T);
   Pt move[N*A];int rem[N*A];int options=moves(&T,move,rem);if(!options)stuck++;
   for(int step=0;step<steps;step++){
-   Tile U=T;int flip=options&&(step<steps/3||ri(10)<7);if(flip){int j=ri(options);U.p[rem[j]]=move[j];}else U.k[ri(U.d)]=ri(4);
+   Tile U=T;int unitmove=step>=steps/3&&ri(10)==0;
+   int flip=!unitmove&&options&&(step<steps/3||ri(10)<7);
+   if(unitmove){int u,g;do{u=1+ri(U.m-1);int a=u,b=U.m;while(b){int t=a%b;a=b;b=t;}g=a;}while(g!=1);for(int a=0;a<U.d;a++)U.s[a]=u*U.s[a]%U.m;}
+   else if(flip){int j=ri(options);U.p[rem[j]]=move[j];}else U.k[ri(U.d)]=ri(4);
    setup(&U);Metric p=metric(&U);consider(&U,p,step<steps/3?"random_flip":"local_search");walksteps++;
    double old=q.c>=T.m&&q.t>T.d?(double)q.E/q.c:10.0;
    double neu=p.c>=U.m&&p.t>U.d?(double)p.E/p.c:10.0;
    double temperature=0.03*(1.0-(double)step/steps)+0.001;
    int accept=step<steps/3||neu<=old||(double)(rnd()>>11)*0x1.0p-53<exp((old-neu)/temperature);
-   if(accept){T=U;q=p;accepted++;if(flip){flips++;options=moves(&T,move,rem);}}
+   if(accept){T=U;q=p;accepted++;if(flip)flips++;if(flip||unitmove)options=moves(&T,move,rem);}
    if(step%1000==999){int saved[A];memcpy(saved,T.k,sizeof(saved));all_lifts(&T,"walk_lifts");memcpy(T.k,saved,sizeof(saved));setup(&T);q=metric(&T);}
   }
   if(run%8==7){printf("progress seeds=%llu tests=%llu flips=%llu wall=%.3f\n",(unsigned long long)walkseeds,(unsigned long long)tests,(unsigned long long)flips,tm(CLOCK_MONOTONIC)-started);fflush(stdout);}
@@ -190,5 +204,6 @@ int main(int argc,char**argv){
  FILE*f=fopen("top10.jsonl","w");for(int i=0;i<nb;i++)dump(f,&best[i]);fclose(f);
  f=fopen("top10_nonminimal.jsonl","w");for(int i=0;i<nn;i++)dump(f,&best_nonminimal[i]);fclose(f);
  printf("family,shape_attempts,residue_pairs,node_visits\n");for(int i=0;i<5;i++)printf("%s,%llu,%llu,%llu\n",fnames[i],(unsigned long long)shapes[i],(unsigned long long)valid[i],(unsigned long long)nodes[i]);
+ printf("family,tests,eligible,d_min,d_max,m_min,m_max,best_E,best_c\n");for(int i=0;i<9;i++)printf("%s,%llu,%llu,%d,%d,%d,%d,%lld,%lld\n",names[i],(unsigned long long)stats[i].tests,(unsigned long long)stats[i].hard,stats[i].mind,stats[i].maxd,stats[i].minm,stats[i].maxm,(long long)stats[i].E,(long long)stats[i].c);
  printf("tests=%llu eligible=%llu failures=%llu seeds=%llu steps=%llu accepted=%llu flips=%llu initial_no_flip=%llu wall=%.6f cpu=%.6f\n",(unsigned long long)tests,(unsigned long long)eligible,(unsigned long long)failures,(unsigned long long)walkseeds,(unsigned long long)walksteps,(unsigned long long)accepted,(unsigned long long)flips,(unsigned long long)stuck,tm(CLOCK_MONOTONIC)-started,tm(CLOCK_PROCESS_CPUTIME_ID)-cpu);fflush(stdout);return 0;
 }

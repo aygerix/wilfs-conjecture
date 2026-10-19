@@ -925,3 +925,71 @@ that x ↦ x·s mod m is bijective on D. Then D has at most two maximal elements
 - The reflection graph alone needs capacity > d at δ = 0 whenever more than d corners have κ ≥ 1. Every corner's own
   gap v(y) − m reflects only to 0.
 - GW-9 covers about half of the t > d instances for d = 3.
+
+### Prefix (window) Wilf — PGW: CONJECTURE; the case t ≤ d, the low depths and P_1 are PROVED
+
+Notation as in GW-8. For i ≥ 1 put
+
+    (P_i)   Σ_{j=1}^{i} |U_j|  ≤  d · Σ_{j=1}^{i} |L_j|,   equivalently   Σ_{x∈D} min(i, κ(x)) ≤ d · Σ_{x∈D} min(i, λ(x)).
+
+- For i ≥ max_x max(κ(x), λ(x)) this is g ≤ dℓ, i.e. GW. So the family runs from P_1 to GW.
+- **Semigroup form.** On the minimal tile of S (multiplicity m, d = e − 1), with c the conductor:
+  - Σ_x min(i, κ(x)) = #(gaps of S below im). The gaps of class r are r, r + m, …, w_r − m, and min(i, κ) of them lie
+    below im.
+  - Σ_x min(i, λ(x)) = #(S ∩ [c − im, c)) = |Ap(S, im) ∩ [0, c)|. The elements of class r below c are
+    w_r, …, w_r + (λ−1)m, the last one in [c − m, c), so the top min(i, λ) of them lie in [c − im, c).
+  - So P_i reads
+
+        (WW_i)   #((ℕ∖S) ∩ [0, im))  ≤  (e − 1) · #(S ∩ [c − im, c)).
+
+  - WW_i is FALSE for windows N that are not multiples of m: ⟨3,7,8⟩ has c = 6, gaps 1, 2, 4, 5; for N = 5 the left side
+    is 3 and the right side is 2·#{3} = 2 (E189).
+- **Matching form.** P_i holds for every i ⟺ the gaps (x, j), 1 ≤ j ≤ κ(x), can be assigned to the elements (w, h),
+  1 ≤ h ≤ λ(w), with h ≤ j and every element used at most d times. (The neighbourhoods are nested in j, so Hall's
+  condition reduces to the prefix inequalities.)
+- **What P_i is not.**
+  - The per-depth inequalities |U_j| ≤ d|L_j| are false (E183), and so is the suffix family (E187).
+  - The increments |U_j| − d|L_j| are not single-crossing (E190), so P_i is not a formal consequence of GW by that route.
+- **Evidence.**
+  - Down-sets: 0 failures in 5,860,736,208 instances (d = 3, m ≤ 30; d = 4, m ≤ 20; d = 5, m ≤ 14; k ∈ {0,1,2}^d; E188).
+  - Semigroups: WW_i for every i on all 280,235,190 semigroups of genus ≤ 36 (E189).
+  - Tight cases: e = 2 (every i, by the symmetry z ↔ F − z) and maximal embedding dimension (e.g. ⟨3,8,10⟩ at i = 2).
+
+**Theorem GW-12.** If t(D) ≤ d then P_i holds for every i. More precisely Σ_{j≤i}|U_j| ≤ Σ_{j≤i} t_j|L_j|.
+- Proof: GW-8 is depth-preserving (|U_j| ≤ t_j|L_j| for each j). Sum over j ≤ i. □
+
+**Lemma GW-13 (descent map).** Let j ≥ 1 and suppose n_a ≥ jm for every a. Then |U_j| ≤ d·|L_j|.
+- Proof:
+  - Let x ∈ U_j. Then x ≠ 0, because v(0) = 0 < jm. Choose a with x_a > 0 (say the least) and put φ(x) = x − e_a ∈ D.
+  - φ(x) + e_a = x ∈ D, so v(φ(x)) = v(x) − n_a ≤ M − n_a ≤ M − jm. Hence φ(x) ∈ L_j.
+  - Each w ∈ D has at most d preimages w + e_a. □
+- No positivity of n is needed beyond n_a ≥ jm.
+
+**Corollary GW-14.** Put k_min = min_a ⌊n_a/m⌋. Then
+
+    g ≤ d · Σ_{j ≤ k_min} |L_j| + Σ_{j > k_min} t_j |L_j|.
+
+- So GW holds whenever at most d maximal cells have κ > k_min. This strengthens GW-9, which needs t_j ≤ d at every
+  depth j.
+- P_i holds for every i ≤ k_min. In the multiplicity form (every k_a ≥ 1), P_1 holds.
+
+**Corollary GW-15 (semigroups; elementary, probably known in some form — not claimed new).** Let S ≠ ℕ have
+multiplicity m, embedding dimension e and type t. Then:
+1. (e − 1)·|Ap(S, m) ∩ [0, c)| ≥ m − 1. This is WW_1.
+   - Equivalently (e − 1)·#((ℕ∖S) ∩ [c − m, c)) ≤ (e − 2)m + 1. Every gap in [c − m, c) is pseudo-Frobenius.
+2. (e − 1)·t ≤ (e − 2)m + 1, i.e. t ≤ m − (m − 1)/(e − 1). This is equality for maximal embedding dimension.
+- Direct proof of 1:
+  - Every nonzero w ∈ Ap(S, m) is w' + n with n a minimal generator other than m, and w' ∈ S. (m is not used, because
+    w − m ∉ S.)
+  - w' ∈ Ap(S, m): if w' − m ∈ S then w − m = (w' − m) + n ∈ S.
+  - w' < c: w' + n = w ≤ F + m and n > m give w' < F.
+  - Each w' arises from at most e − 1 values of n.
+- Proof of 2, the corner bound:
+  - For every finite nonempty down-set D ⊂ ℕ^d, the map φ of GW-13 sends D∖{0} into the non-maximal cells, at most d to
+    one. So |D| − 1 ≤ d(|D| − t(D)), i.e. d·t(D) ≤ (d − 1)|D| + 1.
+  - For the minimal tile, Max_{≤S} Ap(S, m) ⊂ v(Max D), since x + e_a ∈ D gives v(x) + n_a ∈ Ap. So t ≤ t(D).
+
+**Status.** PGW (all P_i on every residue-complete down-set, n > 0) is a CONJECTURE that strengthens GW. Proved:
+t ≤ d (GW-12), depths j ≤ k_min (GW-13/14), and hence P_1 in the multiplicity form.
+- Open first case: P_2 with t > d and k_min = 1, e.g. the near-stars with some n_a ∈ (m, 2m).
+- A proof by induction on i must move mass across depths, because the per-depth inequalities are false.
