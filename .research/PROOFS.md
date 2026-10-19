@@ -1071,10 +1071,34 @@ then S satisfies Wilf's conjecture.
   - classical t ≤ e − 1: 95.16%;
   - #PF ≥ m ≤ e − 1: 97.16%;
   - **GW-18: 99.86%**;
-  - with P_3 (conjectural): all but 32 of 712,373.
+  - with P_3 (now GW-20): all but 32 of 712,373.
 - Literature (2026-10-19): the known statement is e > t ⇒ Wilf (FGH). Marashdeh's reduction (2608.12531, Prop 5.1)
   involves the smallest t + 1 − e PF numbers and is a different mechanism. No statement of GW-18 was found. Novelty
   is UNVERIFIED beyond this search.
+
+**Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
+S satisfies Wilf's conjecture.
+- Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
+  g = Σ_j|U_j| ≤ (e−1)Σ_{j≤3}|L_j| + Σ_{j≥4} #{f ≥ (j−1)m}·|L_j| ≤ (e−1)ℓ. □
+- Coverage: all but 32 of the 712,373 semigroups of genus ≤ 24; all but 1,794 of the 38,858,196 of genus ≤ 32
+  (E198 run). Every remaining S has at least e PF numbers ≥ 3m.
+- For e = 5 it reads: Wilf holds if at most 4 PF numbers are ≥ 3m.
+
+**Conjecture CP (cover payment; local, uses residues essentially).** Multiplicity form, residue-complete D. Put
+Δ(x) = Σ_b λ(R_b x) − κ(x), with R_b the reflection inside the b-column of x; Σ_x Δ(x) = dℓ − g. Then the deficits
+can be routed along lower covers: there is a flow, with
+- source x carrying capacity max(Δ(x), 0),
+- sink y carrying demand max(−Δ(y), 0),
+- edges x → y only for x = y − e_b,
+that meets every demand. CP ⇒ GW.
+- Evidence (E202): flow feasible on every residue-complete instance in d = 2, m ≤ 10, K ≤ 4; d = 3, m ≤ 10, K ≤ 3;
+  d = 4, m ≤ 8, K ≤ 2; and on every semigroup of genus ≤ 17 (lex-min factorization tile).
+- No-sharing form: deficit(y) ≤ Σ_b Δ⁺(y − e_b) holds on all data.
+- FALSE refinements:
+  - equal split among lower covers: ⟨5,8,9⟩; d = 3, m = 7, n = (8,11,12);
+  - pay from y − e_b with b = argmax n_b (⟨5,8,9⟩) or b = argmin n_b (⟨8,9,13,14⟩).
+- Residue-free, CP fails even where GW holds (d = 2, m = 9, n = (12,12), GW slack 2). So CP needs residues more than
+  GW does.
 
 **Conjecture LW (local Wilf; intrinsic, stronger than Wilf).** For every numerical semigroup S with multiplicity m and
 Apéry poset (Ap(S, m), ≤_S), put H(w) = max(↑w) − w = max{u ∈ Ap : w + u ∈ Ap}. Then
