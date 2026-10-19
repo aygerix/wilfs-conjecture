@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-18, night 17 late)
+# STATE.md — handoff (updated 2026-10-19, late night; PGW line)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -127,7 +127,20 @@
      - Evidence: 0 failures on 5.9·10⁹ down-set instances and on all semigroups of genus ≤ 36 (E188, E189).
      - Proved: P_1 and **P_2 (GW-16; multiplicity form, no residues needed)**, all P_i when t ≤ d, P_i for i ≤ k_min.
        Semigroup corollary GW-17: #(gaps < 2m) ≤ (e−1)·#(S ∩ [c−2m, c)), which contains Kaplan's c ≤ 2m.
-     - P_3 contains Eliahou's c ≤ 3m and needs residues (no-residue counterexample, E191).
+     - **P_3 PROVED (GW-19, paper; codex P3, re-checked by the lead).**
+       - Band count for 3m ≤ M < 4m: residues give t ≤ ρ and g + ℓ = M − m + 1.
+       - Residue-free Theorem H for M ≥ 4m − 1: column reflection plus payments.
+       - Semigroup form WW_3 for every S, which contains Eliahou's c ≤ 3m with no Macaulay theorem.
+       - Corollary **GW-20: Wilf holds if at most e − 1 PF numbers are ≥ 3m.** It misses 1,794 of the 38.9M S of
+         genus ≤ 32 (E204). Those have e ≤ 7, and the ladder with P_4, P_5, P_6 would cover them all.
+     - P_4 (codex P4, RUNNING). Its regime 4m ≤ M < 5m is Wilf for 3m < c ≤ 4m, which is OPEN in the literature.
+       - Proved so far: a transfer lemma, a joint short-residue lemma, and the case a ≤ 3 (a = number of directions
+         with n < 2m − ρ). Also the signed B_3 packing m ≥ C(a+3,3) + 2C(a+1,3) and degree-≤ 2 down-sets.
+       - Open: a ≥ 4 in the primary regime, and the truncated regime M ≥ 5m (residue-free fails at 6m − 2).
+     - New tools and conjectures (PROOFS):
+       - identity GW-CR (exact): dℓ − g = Σ r(x)/m + Σ column terms Ψ;
+       - CP (deficits routed to lower covers) and CCP (carries routed to columns through x or its lower covers).
+         Both hold on all residue-complete data and both need residues (E202, E203).
      - Use: it is the Hall condition for matching gaps to elements with depth-lowering allowed. A proof must trade the
        descent map (fails only through directions with n_a < jm) against corner reflection (fails only through more
        than d corners at depth j).
@@ -140,13 +153,14 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) PGW at depth 3 (contains Eliahou's c ≤ 3m).
-    - Write P_3 in the multiplicity form as shape + carry graph ε_ab = [s_a + s_b ≥ m].
-    - Find which residue-completeness consequence excludes the no-residue counterexample (2-D level-2 simplex, all
-      ε = 1).
-    - Test "shape + that constraint" exhaustively before trying to prove it.
-(b) Codex HT4 pipeline: verify the subclass proofs in src/scratch/tile4/HT4_REPORT.md (products, two-face) before
-    recording them as proved.
-(c) The gfan re-check of E153 (fejer logs/gfan_hcr_5_36.log) must reach 39 before "Wilf for e = 5, m ≤ 39" is called
-    method-independent.
-(d) The e = 5 large-m counting lemmas (facet type bound, corner–volume, discrete Minkowski).
+(a) Verify the codex P4 report when it lands, step by step, as for P3. If the primary regime is proved for all a, it
+    gives Wilf for c ≤ 4m and the GW-PF corollary "Wilf if ≤ e−1 PF numbers are ≥ 4m".
+(b) The general mechanism.
+    - Where does the residue coverage that rescues deficient faces come from, uniformly in K?
+    - Candidates: a K-uniform transfer lemma (non-A cells never worsen the A-face deficit); a deficit-to-missing-
+      residue inequality for the A-face (EF: deficit C(a+1,3) ≤ ½ · missing ≥ 2C(a+1,3)); the CCP payment rule.
+(c) Lean, queued after P4 (one agent at a time): GW-19 (Theorem H + the band proof), as done for GW-16 in
+    lean/Wilf/Window2.lean.
+(d) Background items:
+    - gfan re-check of E153: m = 37 done, no failures; m = 38–39 running (logs/gfan_hcr_37_39.log).
+    - Codex HT4 subclass claims are still unverified.
