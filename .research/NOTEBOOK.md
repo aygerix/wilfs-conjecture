@@ -1941,3 +1941,28 @@ asserted on every test.
   - (1) Delegate P_4 / K = 4 to codex, with the column-carry framework.
   - (2) Lead: a general carry-to-column charging, i.e. a Theorem H for i ≥ 4 using residues. Find which columns pay
     each carry, and why residue completeness guarantees enough slack.
+
+## 2026-10-19 (small hours) — P_4 partly proved; Wilf for 3m < c ≤ 4m reduced to RC4; uniform conjectures TR and H_i
+
+- **GW-21 (codex P4, re-checked by the lead; identities verified by exact polynomial arithmetic).**
+  - H4: residue-free P_4 for M ≥ 6q − 1. The cutoff is sharp (degree-4 simplex in ℕ³, n = (52,52,52), q = 35).
+  - Primary regime (Wilf for 3m < c ≤ 4m) proved when a ≤ 3 small generators lie in (m, c − 2m). This covers
+    99.8% of such S at genus ≤ 28.
+  - The mechanism is the one I guessed and codex quantified: the exact identity W = W_A + T + R (outside cells
+    never hurt), plus the signed-B_3 packing m ≥ C(a+3,3) + 2C(a+1,3). The packing turns a deficient
+    (B_3-saturated) A-face into missing residues, hence outside directions, hence compensation.
+  - Open: RC4 for a ≥ 4, and the window 5m ≤ M ≤ 6m − 2. The codex session was resumed on these.
+- **TR (uniform transfer, E205).** W ≥ W_A at every K, on all semigroups of genus ≤ 28 and all small residue-complete
+  down-sets. Residue-free it fails only when A = ∅, which is plain GW failure. So "outside cells never hurt" looks
+  uniform in K.
+- **H_i (uniform residue-free window, E208).** The residue-free cutoffs are 4q (i = 3) and 6q (i = 4), and simplices
+  give exactly 2i − 2 for i ≤ 6.
+  - If H_i holds for all i, then with GW-PF Wilf follows whenever ≤ e − 1 PF numbers lie in the upper half
+    (≥ ⌊(K+2)/2⌋m), uniformly in K. That would generalize FGH.
+  - The residual class sits at K = 4, 5 (E206), where residues are unavoidable.
+- **Strategic picture.** Universal Wilf now splits into:
+  - (i) residue-free large-M window theorems H_i (combinatorial charging; i ≤ 4 done);
+  - (ii) low-K regimes with residues, i.e. GW at K = 4 (RC4), K = 5, … The mechanism there is transfer + packing.
+    It needs a K-uniform packing/stability lemma: a deficient small-generator face is B_h-saturated, saturation
+    forces missing residues, and missing residues force compensating directions.
+  - (iii) the top correction N_top ≤ d + slack, where it is not already implied.
