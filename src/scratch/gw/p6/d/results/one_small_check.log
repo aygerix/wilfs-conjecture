@@ -1,0 +1,7 @@
+{"k": 6, "e": 3, "m": 26, "counts": {"nodes": 266, "pruned": 204, "leaves": 0, "complete": 0}, "minS": null}
+{"k": 7, "e": 3, "m": 34, "counts": {"nodes": 2294, "pruned": 1878, "leaves": 0, "complete": 0}, "minS": null}
+{"k": 6, "e": 4, "m": 25, "counts": {"nodes": 316, "pruned": 226, "leaves": 0, "complete": 0}, "minS": null}
+{"k": 7, "e": 4, "m": 33, "counts": {"nodes": 2951, "pruned": 2381, "leaves": 0, "complete": 0}, "minS": null}
+{"k": 8, "e": 4, "m": 42, "counts": {"nodes": 25224, "pruned": 21342, "leaves": 0, "complete": 0}, "minS": null}
+{"k": 9, "e": 4, "m": 52, "counts": {"nodes": 179427, "pruned": 158225, "leaves": 0, "complete": 0}, "minS": null}
+PASS independent Python certificate

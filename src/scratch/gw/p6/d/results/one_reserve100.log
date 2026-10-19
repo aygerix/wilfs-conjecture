@@ -1,0 +1,4 @@
+reserved profiles 802 by p {1: 725, 2: 77, 3: 0} maximum k 34
+p 1 count 725 k range (6, 34)
+p 2 count 77 k range (12, 26)
+p 3 count 0 k range None

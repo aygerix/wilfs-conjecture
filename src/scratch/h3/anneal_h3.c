@@ -45,7 +45,7 @@ static int rebuild(St *s, const unsigned char *old){
   return 1;
 }
 typedef struct { ll f, CR, FL, Ct, hc; int k, q, p, t, s, d, nC, unpaid; int sg, hsg; } Ev;
-static int TMIN=1, DOHC=0, B2=-1;
+static int TMIN=1, TMAX=1000, DOHC=0, B2=-1;
 static Ev eval(St *s){
   Ev v; int nC=0, kk=0, q=0, p=0, t=0, maxu=0; static int w[MAXC]; static ll coef[MAXM];
   for(int i=0;i<nc;i++) if(s->in[i]) nC++;
@@ -84,7 +84,7 @@ static Ev eval(St *s){
 static double obj(Ev *v, int mode){
   if(mode==0) return (double)v->f;
   if(mode==4){ double avg=(double)v->Ct*(m-1)/2.0; double o=(avg>0? v->hc/avg : 1e9);
-    o+=1.0*((v->k<3?3-v->k:0)+(v->t<TMIN?TMIN-v->t:0)); return o; }
+    o+=1.0*((v->k<3?3-v->k:0)+(v->t<TMIN?TMIN-v->t:0)+(v->t>TMAX?v->t-TMAX:0)); return o; }
   if(mode==3){ double avg=(double)v->Ct*(m-1)/2.0; double o=(avg>0? v->f/avg : 1e9);
     o+=0.001*(((v->CR>0?v->CR:0)+(v->FL>0?v->FL:0))/(double)(m*m));
     o+=1.0*((v->k<5?5-v->k:0)+(v->d<6?6-v->d:0)+(v->t<TMIN?TMIN-v->t:0));
@@ -104,7 +104,7 @@ int main(int argc, char **argv){
   if(argc<7){ fprintf(stderr,"usage: anneal_h3 K m seed iters restarts mode\n"); return 1; }
   K=atoi(argv[1]); m=atoi(argv[2]); rs=strtoull(argv[3],0,10)*2654435761ULL+88172645463325252ULL; ll iters=atoll(argv[4]); int R=atoi(argv[5]), mode=atoi(argv[6]);
   if(K+1>m || m>=MAXM){ fprintf(stderr,"bad m\n"); return 1; }
-  build(); if(getenv("B2")) B2=atoi(getenv("B2")); if(getenv("TMIN")) TMIN=atoi(getenv("TMIN")); if(mode==4 || getenv("DOHC")) DOHC=1;
+  build(); if(getenv("B2")) B2=atoi(getenv("B2")); if(getenv("TMIN")) TMIN=atoi(getenv("TMIN")); if(getenv("TMAX")) TMAX=atoi(getenv("TMAX")); if(mode==4 || getenv("DOHC")) DOHC=1;
   static St cur, nx, best, bestU; Ev ec, en, eb, ebU; int haveU=0, nneg=0;
   if(mode==2){ /* evaluate one given state: argv[7..6+K] = P, then cell exponent strings of degree >= 2 */
     for(int a=0;a<K;a++) cur.P[a]=atoi(argv[7+a]); relabel(&cur); unsigned char f2[MAXC]; memset(f2,0,sizeof f2);
@@ -145,7 +145,7 @@ int main(int argc, char **argv){
         if(mode!=4 && ec.unpaid && ec.t>=TMIN && (mode==3 ? (!haveU || ec.f*(double)ebU.Ct < ebU.f*(double)ec.Ct) : ec.f<ebU.f)){ ebU=ec; bestU=cur; haveU=1; }
         if(ec.f<0 && nneg<20){ nneg++; dump("NEGATIVE", &cur, &ec); }
         if(DOHC && ec.hc<0 && nneg<40){ nneg++; dump("HC-NEGATIVE", &cur, &ec); }
-        if(mode==4 && (!haveU || ec.hc*(double)ebU.Ct < ebU.hc*(double)ec.Ct) && ec.k>=3 && ec.t>=TMIN){ ebU=ec; bestU=cur; haveU=1; } }
+        if(mode==4 && (!haveU || ec.hc*(double)ebU.Ct < ebU.hc*(double)ec.Ct) && ec.k>=3 && ec.t>=TMIN && ec.t<=TMAX){ ebU=ec; bestU=cur; haveU=1; } }
     }
   }
   dump("BEST", &best, &eb);

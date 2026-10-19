@@ -1,0 +1,7 @@
+BAD-NARROW small k 3 lower 1/5
+BAD-NARROW small k 4 lower 8/5
+BAD-NARROW small k 5 lower 5
+first origin-bad low-factor witness {"Q": [[0, 1], [1, 1]], "T": [[0, 1, 1]], "U": [3, 6], "evaluation": {"A": 6, "B": 1, "HC": 56, "Lplus": 48, "OW": 0, "Orest": 0, "PAplus": 0, "Pplus": 2, "S": 56, "beta": 1, "d": 4, "delta": [2, 0], "e": 1, "g": 1, "gain": 0, "k": 2, "p": 2, "q": 2, "qD": 0, "rho": 0, "s": 2, "t": 1, "v": 1}, "m": 8}
+local injective cores tested through first witness modulus 68
+large dimension and cluster algebra: all exact checks passed
+quartic wrong-lift counterexample: m=5, P=1, sigma=1, rho=4, ell3=-8, ell4=-12

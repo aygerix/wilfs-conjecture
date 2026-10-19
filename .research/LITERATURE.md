@@ -562,3 +562,18 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
   bound on heavy triple fibers (many disjoint triples with one common sum) in Sidon sets. Per-sum bounds (B_3[g]) do
   not give it, since they degrade as g^{1/3} instead of linearly in ε. Searching found no such result, which does
   not show that none exists.
+
+### Search 2026-10-19 (night): Apéry-factorization-length / reduction-number classes; newest arXiv
+- Queries:
+  - "Wilf conjecture numerical semigroup Apéry set elements factorization length at most two";
+  - "Wilf ... reduction number Apéry elements order";
+  - "arXiv 2026 Wilf's conjecture numerical semigroups new result".
+- No source states Wilf for "every Apéry element has a factorization of length ≤ 2" (our Lean-checked Flat-MaxCL
+  corollary), for reduction number ≤ 2, or for the no-wrap class. The nearest results are:
+  - Apéry half-factoriality for e = 2 or e ≥ m − 1 (elasticity paper);
+  - e ≥ m/3 (Eliahou), which already covers much of the class.
+  Absence of a hit is not proof of novelty.
+- New since the last search: Hellus–Hübl–Rechenauer, "Numerical Semigroups with a_e = 2g+1", arXiv:2604.21948
+  (22 Apr 2026). Per the abstract, Wilf holds for semigroups with a generator equal to 2g+1 and for some semigroups
+  derived from them. Only the abstract was read; exact hypotheses are UNREAD.
+- Marashdeh arXiv:2608.12531 and Delgado–Kumar–Marion arXiv:2501.04417 v3 were already READ (rows 12, 33, 35, 36).

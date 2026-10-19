@@ -1,0 +1,7 @@
+k=6 e=3 m=26 u_cases=3 nodes=110 prune_e=55 prune_A=38 leaves=0 complete=0
+k=7 e=3 m=34 u_cases=5 nodes=639 prune_e=262 prune_A=298 leaves=0 complete=0
+k=6 e=4 m=25 u_cases=3 nodes=81 prune_e=19 prune_A=48 leaves=0 complete=0
+k=7 e=4 m=33 u_cases=5 nodes=549 prune_e=117 prune_A=363 leaves=0 complete=0
+k=8 e=4 m=42 u_cases=7 nodes=3688 prune_e=1108 prune_A=2216 leaves=0 complete=0
+k=9 e=4 m=52 u_cases=9 nodes=23224 prune_e=8607 prune_A=12830 leaves=0 complete=0
+PASS: no violating complete residue set in the six exact bases

@@ -477,6 +477,23 @@ Proof: Σ_b Σ_cols Σ_{x∈C} (r(t) − r(x)) = Σ_{all tops} |C|·r(t) − d·
 
 **Corollary (phase-free NO-WRAP).** Suppose the canonical lift satisfies x·P < m on D, i.e. v(x) = x·P is a bijection
 D → [0, m). Then MaxCL holds at EVERY σ. Proof: E = 0 in the column form.
+
+Second proof (elementary; the route to formalize). Write U = {x : v(x) ≥ m − ρ_0}, an up-set with |U| = ρ_0.
+Then r = v + ρ_0 − m·1_U and Σ_D v = M'.
+- (i) Gauss on columns gives (d+1)·Σ_D v = Σ_b Σ_{b-cols} |C|·v(t) exactly. Hence
+  (d+1)Σ_D v − Σ_A (d+|y|) v(y) = Λ := Σ_{t ∉ A} |C| v(t).
+- (ii) Each b-column meeting U has its top t in U, and |C ∩ U| ≤ |C|. Summing over b,
+  d·|U| ≤ Σ_{y∈A∩U} (d+|y|) + Σ_{t∉A, t∈U} |C|.
+- (iii) For t ∈ U, ρ_0 + v(t) ≥ m. So m·Σ_{t∉A, t∈U} |C| ≤ Σ_{t∉A} |C|(ρ_0 + v(t)) = Λ + ρ_0·Dep, where
+  Dep = Σ_{t∉A} |C| = dm − Ω.
+- Combining: Σ_A (d+|y|) r(y) = Σ_A (d+|y|) v + ρ_0Ω − m·Σ_{A∩U} (d+|y|)
+  ≤ (d+1)M' − Λ + ρ_0Ω − m·d·ρ_0 + Λ + ρ_0·Dep = (d+1)M'. ∎
+- Wilf corollary (paper). Suppose every Apéry element w_i has a factorization x with Σ_a x_a⟨n_a⟩_m = i exactly
+  (no reduction mod m). Then W(S) ≥ 0. Reason: the least factorizations for the monomial order "weight x·⟨n⟩, then
+  grlex" form a factorization tile, and by hypothesis it has no wrap. Then use wilf_of_tileTOPAt_of_isFactTile and
+  tileTOPAt_of_maxCLAt.
+  - Example: ⟨7, 8, 13⟩ is NOT in the class: w_5 = 26 = 2·13 is its only factorization, with residue sum 12.
+  - Novelty vs the literature is UNVERIFIED (search 2026-10-19 night found nothing).
 - This strengthens "Γ = 0 ⇒ MaxCL" above, which needs ρ_0 + x·P < m and so depends on the phase.
 - It covers:
   - postage-stamp tiles (grlex-min representations of 0..m−1 over a coin set containing 1);
@@ -615,6 +632,40 @@ m = 1 + d + q + t.
   ROW-DEF below the CR threshold. Exact reduction: by WINDOW-ID, HC′ ≥ 0 ⟸ mβ ≤ L_+ + m(O_rest + P_+ + gain), i.e. the
   β "bad cubics" must be charged injectively. Next lemma (codex): ONE-RELAY (t = 1: at a zero unit outside the cubic,
   if O_W + B = −1 then L_+ + mP_A^+ ≥ m), then the injective relay charging of β in general.
+- **Codex P6d (2026-10-19; src/scratch/gw/p6/P6D_REPORT.md, code in p6/d/; reviewed by the lead, E261).**
+  - **ONE-CUBIC (PROVED).** HC′ ≥ 0, hence MaxCL, at EVERY phase for EVERY height-3 tile with exactly one cubic,
+    in any dimension and with any number of spikes. Proof: ONE-RELAY (L_+ ≥ m at every ONE-DEFICIT phase). At
+    other phases O_W + B ≥ 0. Ingredients:
+    - DIFF-CENSUS (cyclic; valid at composite m): E_D ≤ Σ_F [4C(g_F,2) − 2ℓ_F(g_F−1) + C(ℓ_F,2)] and
+      m − 1 ≥ n(n−1) − E_D. Consequence COARSE-PACK: m ≥ n(n−1) + 1 − 2e(e+1).
+    - WEIGHTED-PACK (unwrapped fibres): WP gives A ≥ n(n−1) − m + 1 − e; WP2 (2 ∉ V) gives A ≥ n(n−1) − m + 1.
+    - ONE-UNWRAP (P_A^+ = 0, A < m) and ONE-WEIGHTED. ONE-WEIGHTED pays the wrapped fibres by the two
+      unavailable integer pairs {ρ, w−ρ} and {r, w−r}, where r is the least N2 residue and HOLES gives ρ ≥ 3r + 2.
+    - Bounds (4)–(7): L_+ − m ≥ A + (s−1)Q_k + e + k − s − 4 for s ≥ 1. For s = 0 the bound is split by cube type,
+      with the pure-cube, r = 2 case settled by WP2.
+    - Small cases k = 3, 4, 5 are analytic. The last one, k = 5, e = 2, m = 20, ρ = 8, is excluded by collision
+      counting.
+    - The lead re-derived every step against the accepted ONE-DEFICIT classification (P6c).
+    - Semigroup corollary: Wilf holds whenever some factorization tile has height ≤ 3 and at most one cubic.
+  - **BAD-NARROW (PROVED).** At ρ = 0, if every core unit label lies in (m/2, 2m/3), then
+    P_+ + gain + L_+/m ≥ β and HC′ ≥ 0. Proof: β = t; residues in (2b−m, a) are spikes, so s > m/6 − 1;
+    k + t ≤ ⌊(m−1)/2⌋. The cases k ≥ 6 and k ≤ 5 are explicit (lead re-checked the k = 3, 4, 5 table: 1/5, 8/5, 5).
+  - **Further PROVED payments.**
+    - Origin bad-cubic classification: at ρ = 0, bad ⟺ carry 1 with three positive face carries. At least two
+      factor copies exceed m/2; not all three need to (m = 8 example).
+    - DEGREE-MOMENT and the Mcover bounds on A. GENERAL-SHAPE: HC′ ≥ M_shape + m(O_rest + P_+ + gain − β).
+    - ONE-BAD-SHAPE (β ≤ 1 and Ξ ≥ 0 ⇒ MaxCL, any t) and ONE-BAD-LOWPAIR.
+  - **WINDOW-H (PROVED, every height).** Lift (j−1)ℓ(y) + ρ = Σ y_i ℓ(y−e_i). The identity is
+    HC_H = L_H + m[O_H + P_+ + Σ_{j≥3} Σ_{C_j} b_y], with b_y = κ_y + [r(y) ∈ W] ≥ −(j−2) and O_H ≥ 0.
+    - Independently re-implemented by the lead from the report's definitions only
+      (src/scratch/h3/p6d_review/windowH_check.py): exact at every phase on 744 Apéry tiles of heights 2–19.
+    - The quartic lift is 3ℓ + ρ, not 3ℓ + 2ρ (the lead's earlier statement was wrong). A local quartic loss of 2m
+      occurs (m = 7, P = 5, column, σ = 0).
+  - **Preserved failed candidate.** ONE-DEFICIT does not need a spike: m = 17, ρ = 8, U = (0,1,3,5,7),
+    Q = {00,01,02,03,11,12,13,33,34,44}, T = {333}, s = 0, S = HC′ = 30.
+- **Remaining family after P6d.** k ≥ 5, d ≥ 6 and t ≥ 2, failing all old and new payment criteria. A violating phase
+  needs β > O_rest + P_+ + gain + ⌊M_shape/m⌋; for β = 1 it also needs Ξ < 0. Next lemma (open), HIGH-ORIGIN:
+  at ρ = 0 with every core unit > m/2, L_+/m + p + t ≥ 2β. BAD-NARROW is its case with all units below 2m/3.
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
   failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
   flat window for A2.

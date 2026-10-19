@@ -2631,3 +2631,29 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - **H1: β ≥ |F|.** It held on every sampled (tile, σ): 1,012 cases with F ≠ ∅, 0 failures.
   - H1 would give WRAP-MAX MaxCL, which generalizes Flat-MaxCL. The tight examples printed so far are height-2
     tiles: the β-pairs sit at the cell 0, and the F cells are pairs e_a + e_b with both units in the window.
+- **H1 is FALSE (pure counting).** Counterexample (WRAP-MAX tile): ⟨17, 24, 26, 29, 30, 32⟩, grlex tile, ρ_0 = 10.
+  - F = {e0+e2, e0+e3, e1+e2, e0+e4, 2e0+e1}, so |F| = 5.
+  - β = 4: the pairs (0, b) for b = 0, 2, 3, 4. Direction 1 is blocked because top_1(0) = 2e1 wraps without carry.
+  - MaxCL still holds, with S = 126. The fractional column mass Σ_{nonmax-top cols} |C| r(t) = 143 pays the deficit.
+  - (Found by src/scratch/nowrap/h1_examples.py, seed 7.)
+- Correct reduction. WRAP-MAX MaxCL ⟺
+  (d+1)·n_W ≤ ρ_0 + Σ_A (|y|−1) K(y) + (1/m) Σ_{nonmax-top cols} |C| (ρ_0 + v(t)),
+  where n_W is the number of non-maximal window cells.
+  - After column charging, the deficit is F' = {y ∈ A : K(y) = 1, all column-below cells in the window}, one unit each.
+  - It must be paid by the maximal window cells (ρ_0 − n_W of them) plus the fractional mass.
+  - Support-2 cells of F have r(y) ≥ m − ρ_0, which are distinct residues, as in the height-2 bound B ≤ ρ_0.
+    Support s cells only give r(y) ≥ (m − ρ_0)/(s − 1).
+
+- **WRAP-DESCENT by single flips is FALSE.** A flip moves a maximal cell to another cell with the same label, keeping
+  the down-set. Test: tiles with E > E_min (grlex Apéry tiles plus random flips; m ≤ 24, d ≤ 4). In 749 of 1,127
+  (tile, σ) pairs, no E-lowering flip keeps S(σ) from increasing. Also, 28 tiles have no E-lowering single flip at
+  all (src/scratch/nowrap/descent_test.py, seed 1). So MaxCL does not reduce to E-minimal tiles by a monotone flip
+  path. Branch closed.
+- **P6d accepted (E261).**
+  - Height-3 MaxCL is now PROVED for every tile with at most one cubic, at every phase.
+  - BAD-NARROW and several multi-cubic payment criteria are also PROVED.
+  - WINDOW-H is an exact all-height identity with local loss (j−2)m per degree-j cell. It was independently
+    re-implemented and holds on heights 2–19.
+  - Remaining at height 3: t ≥ 2 bad cubics; the next lemma is HIGH-ORIGIN.
+  - Measured on random tiles at heights ≥ 5: the negative WINDOW-H mass sometimes exceeds the global budget. So
+    an all-height proof must use the positive b_y, not only L_H, O_H and the pair carries.
