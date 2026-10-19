@@ -17,3 +17,4 @@ import Wilf.ColumnTop
 import Wilf.NoWrap
 import Wilf.TileCLMax
 import Wilf.LayerKneser
+import Wilf.SymRect

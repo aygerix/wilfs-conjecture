@@ -724,6 +724,10 @@ m = 1 + d + q + t.
     - Proof: G = the zero label plus the h = k − v + 1 good units, V = the zero label plus all units, D₁ = {g − b : g ∈ G,
       b ∈ V, g ≠ b}. Then |D₁| = hk, |D₁ ∩ −D₁| ≤ h(h−1) + 4e, and 0 ∉ D₁ ∪ −D₁.
     - Height-independent. For v = e = 0 it is the Sidon-set bound m ≥ k(k+1) + 1.
+    - **LEAN (kernel-checked 2026-10-19, lean/Wilf/SymRect.lean `symmetric_rectangle`; standard axioms only).**
+      Abstract form over ZMod m: G ⊆ V, Mo a set of ordered missing pairs with both entries outside G; non-missing
+      pairs have distinct sums. Conclusion: 2·#G·(#V − 1) + 1 ≤ m + #G(#G − 1) + 2·#Mo. With #Mo ≤ 2e and #G = k − v + 1
+      this is (SR). No swap-closure, completeness or 0 ∈ G hypothesis is needed.
   - **RETAINED-MOMENT (lead re-derived).** A = Σ δ_i u_i ≥ F(v, e) = [C(q_D,2) + (v+1)(X²/(2v) − X/2)]/v, where
     q_D = v(v+1)/2 − e and X = 2e − v. Ingredients: the rank bound on the weights δ_i − 1 ≤ v, and distinct integer pair
     sums on the defective directions.
