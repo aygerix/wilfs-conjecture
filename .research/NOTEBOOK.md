@@ -2213,3 +2213,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     pure-low, so t0 ≤ min(10, t − t_forced).
   Survivors: 0 for every a = 13..40. Codex reported the same closure mid-turn, by two routes; its write-up is
   pending. Remaining for α = 3: 7 ≤ a ≤ 12.
+- **Strategic review (2026-10-19 night).**
+  - **Distance.** The concrete theorem line is now Wilf for 3m < c ≤ 4m. Proved or verified pieces:
+    - a ≤ 6 (so e ≤ 7);
+    - α ≤ 2, any a;
+    - α = 3 with a ≥ 13, pending the E232 instance runs.
+    Open: α = 3 with 7 ≤ a ≤ 12, and α ≥ 4.
+  - **Theory of success** for the whole regime: the arc/arc/joint-packing trichotomy is uniform in α at leading
+    order. Its single missing ingredient is the bounded-defect packing lemma LSP*. This is the first time the c ≤ 4m
+    program has a one-lemma reduction, though only heuristically.
+  - **What would change the plan:**
+    - a structured family that refutes LSP* (heavy triple fibers in tightly packed Sidon sets);
+    - or lower-order terms at small α that swamp the asymptotic margin (≈ 0.8α³ at κ ≈ 2.13).
+  - **Beyond c ≤ 4m:** the same three ingredients have degree-K analogues: transfer (conjecture TR), arcs on
+    [h, h+H), and B_{K−1}-type signed packing. So a K-uniform program is conceivable, but no ingredient is proved
+    for K ≥ 5. Decision: finish c ≤ 4m first (codex P5d), then P6 (height ≤ 3), then reassess TR at K = 5.
+  - **Killed or parked this cycle:** the per-fiber cardinality bound H − NS ≤ c·ex (false for planted fibers;
+    codex's fiber_family.py builds the same family); count-only packing (too weak for κ < 7.3).
