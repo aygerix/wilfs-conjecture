@@ -3009,3 +3009,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   tile rows: a relation αn_1 = vn_2 + km with k ≥ 1 ends every row. So B_chain = B_tile and CHAIN ⟺ Wilf.
   Generally, CHAIN loses exactly the "factorization switches", O = B_tile − B_chain, and CHAIN-H3 ⟺ O ≤ mW on its
   class.
+
+## 2026-10-19 (latest+++++++++) — the n_1 dichotomy; REST-M3
+- Observation: M < 3n_1 forces Apéry height ≤ 2 (a length-≥3-only element is ≥ 3n_1), so Flat-MaxCL (LEAN) settles
+  that half. Every CHAIN failure ever seen has M < 3n_1 (E288).
+- On A = {M ≥ 3n_1}, the split Δ = con(0) + REST is decisive. con(0) ≤ d(m−1) ≤ C2 for d ≤ m/2, and REST was
+  negative on all 18.4M S of genus ≤ 33 in A (max −0.198·C2). Conjecture REST-M3: REST ≤ 0 on A. It implies Wilf for
+  every S, with Sammartano for d > m/2.
+- Count form: REST = Σ_a n_a N_a − m d ℓ′, where N_a counts chain links (w, w + j n_a) with w ≠ 0, and ℓ′ counts the
+  left elements outside mℕ. So REST-M3 says: on A, chain links weighted by generator size are at most d·m per left
+  element of nonzero residue.
+- REST ≤ 0 fails outside A in every family seen: intervals, level-2 coverings, and q ≤ 3 clusters.
+- codex P11 (received) independently named Bulk = REST ≤ 0 as its next chain target at depth four.
+- Launched codex P12 on REST-M3. Lead: e = 3 proof first.
+- Process: a 6-example REST arithmetic check (rest_check.py) was run on the laptop by mistake. All other computation
+  was on fejer.

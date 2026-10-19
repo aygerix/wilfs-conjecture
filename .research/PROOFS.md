@@ -2682,7 +2682,46 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
       through many factorizations and B_chain ≪ B_tile.
     - For a pure level-k generator set, a length-3 Apéry element must sit at level ≥ 3k, which raises M by ≥ m and every
       chain value with it.
-  - Status: CONJECTURE, the current main target of plan line 1.
+  - Status: CONJECTURE. Superseded as the line-1 target by REST-M3 below, which implies it on a larger class.
+- **The n_1 dichotomy (PROVED, 2026-10-19).** Let n_1 be the least minimal generator > m.
+  - If M < 3n_1, every Apéry element has a factorization of length ≤ 2, hence Wilf by Flat-MaxCL (LEAN
+    `wilf_of_apery_height_le_two`).
+    Proof: factorizations of Apéry elements never use m. An element all of whose factorizations have length ≥ 3 is
+    ≥ 3n_1 > M. ∎
+  - So it suffices to prove Wilf on the class A := {S : M ≥ 3n_1}, which contains every S of Apéry height ≥ 3.
+  - Spirito's hypothesis n_1 > (c+m)/3 is the special case M + 1 < 3n_1 of the first branch, without his extra
+    conditions (cf. LITERATURE #24).
+- **Conjecture REST-M3 (2026-10-19, lead; plan line 1).** If M ≥ 3n_1, then
+      REST := Σ_{w ∈ Ap∖{0}} con(w) ≤ 0.
+  - Equivalent count form (exact): REST = Σ_a n_a N_a − m·d·ℓ′, where N_a = #{(w, j) : w ∈ Ap∖{0}, j ≥ 1,
+    w + j n_a ∈ Ap} = Σ_{w≠0} k_{w,a}, and ℓ′ = #{x ∈ S ∩ (0, c) : m ∤ x} = Σ_{w≠0} λ(w).
+    Proof: con_a(w) = k_{w,a} n_a − mλ(w), and Σ_{w≠0} λ(w) counts the left elements in nonzero residues. ∎
+    So REST-M3 ⟺ Σ_a n_a N_a ≤ d·m·ℓ′ on the class A.
+  - **Implication (PROVED): REST-M3 ⇒ Wilf for every numerical semigroup.**
+    - M < 3n_1: the dichotomy above.
+    - M ≥ 3n_1: Δ = con(0) + REST ≤ con(0) ≤ d·s_0 ≤ d(m − 1), which is ≤ C2 when d ≤ m/2. Hence B_chain ≥ need and
+      W ≥ 0 (criterion CH-CHAIN).
+    - If d > m/2, then 2e > m, and Wilf is Sammartano 2012 Th. 18 (also Eliahou's 3e ≥ m).
+    - Only Flat-MaxCL (LEAN), CH′/CH-CHAIN (PROVED) and Sammartano or Eliahou (cited) are used.
+  - con(0) bound without citation (partial, PROVED): if the d tops top_a(0) are pairwise distinct, then
+    Σ_a y_{0,a} ≥ C(d,2) (distinct residues mod m). This gives con(0) ≤ d(m−1) − C(d,2) ≤ C2 for every d ≤ m − 1.
+    Ties k_a n_a = k_b n_b do occur.
+    - con(0) ≤ C2 had 0 failures on all 63,754,402 S of genus ≤ 33, of which 1,687,244 have tied tops.
+    - A proof with ties would remove the citation (OPEN).
+  - Weaker sufficient form: REST ≤ C2 − con(0) on A.
+  - Evidence (E288):
+    - Exhaustive genus ≤ 33: all 18,416,677 S with M ≥ 3n_1 have REST < 0.
+      - max REST/C2 = −0.1978 with 3e ≥ m (⟨14,15,23,24,26⟩);
+      - max REST/C2 = −0.4487 with 3e < m (⟨13,16,17,18⟩).
+    - Recomputed in the count form, independently (Dijkstra): identical values.
+    - Kunz annealing on A: no REST > 0 (the annealer is weak at maximizing REST).
+  - FALSE nearby statements, all failing with M < 3n_1:
+    - REST ≤ 0 for all S. Counterexamples: ⟨13,18..22⟩ (+0.96·C2, q = 3); ⟨18,25..31⟩ (+1.72·C2); the q = 5
+      CHAIN-failing intervals; ⟨19,21,22,26,27,29⟩ (+0.316·C2, 3e < m); the m = 61 level-2 near-miss (+0.202·C2).
+    - Per element (PW0′, ⟨5,9,12⟩).
+    - Per direction: codex P11, m = 4k+1, ⟨m, m+1..m+k⟩, direction m+k gives +6k² (in A, with REST < 0).
+    - SC (y ↦ m on chains ending below c): 2 failures in A.
+  - Status: CONJECTURE. Lead and codex P12 (launched 2026-10-19) are working on it.
 - **Repaired Conjecture CHAIN-WILF(3e<m): B_chain ≥ need whenever c > 3m and 3e < m.** Together with Eliahou's
   theorems for c ≤ 3m and for 3e ≥ m, it would still imply Wilf.
   - Evidence so far:

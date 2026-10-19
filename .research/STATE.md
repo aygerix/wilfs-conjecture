@@ -8,7 +8,19 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
-1. **CHAIN-H3** (lead, now; supersedes CHAIN-WILF(3e<m) as the line-1 target, PROOFS). If some Apéry element has least
+1. **REST-M3** (lead + codex P12, from 2026-10-19 late; PROOFS "The n_1 dichotomy" and "Conjecture REST-M3").
+   - The dichotomy: if M < 3n_1, the Apéry height is ≤ 2, so Wilf holds (Flat-MaxCL, LEAN).
+   - If M ≥ 3n_1, REST := Σ_{w≠0} con(w) ≤ 0 would give Δ ≤ con(0) ≤ d(m−1) ≤ C2 when d ≤ m/2. Sammartano covers
+     d > m/2.
+   - So REST-M3 alone ⇒ Wilf for every S (PROVED implication).
+   - Evidence (E288): genus ≤ 33, 18.4M S in the class, REST < 0 in all, max −0.198·C2.
+   - Next:
+     - (a) a proof for e = 3 (rectangles and L-shapes) as a template;
+     - (b) the count form Σ_a n_a N_a ≤ d m ℓ′, looking for a charging of chain links to left elements;
+     - (c) codex P12: an adversarial search plus a proof attempt.
+   - Pivot trigger: a counterexample to REST-M3. Then keep the class A and target Δ ≤ C2 directly (CHAIN on A had 0
+     failures).
+   Previous line-1 target, kept: **CHAIN-H3** (it supersedes CHAIN-WILF(3e<m), PROOFS). If some Apéry element has least
    factorization length ≥ 3, then B_chain ≥ need. With Flat-MaxCL (height ≤ 2, LEAN) this implies Wilf for every S,
    using no depth condition and no Eliahou.
    - Evidence (E286): every CHAIN failure ever seen has height 2. Genus ≤ 33 height ≥ 3: 1,768,572 semigroups, 0
