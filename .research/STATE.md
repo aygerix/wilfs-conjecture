@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, evening; H3-D5/H3-E6 (codex P6, lead independent re-check d ≤ 5); CR + spike reduction; quartic cap; codex P6b running)
+# STATE.md — handoff (updated 2026-10-19, late evening; codex P6b ACCEPTED (DENSE075, DENSE9, THREE-CUBICS, FEW-CUBICS, ROW-PACK, SHADOW-COVER, FLAT-CR); codex P6c RUNNING; lead annealers: no MaxCL/HC′ violation at heights 3–5)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,6 +184,31 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0F) NEW 2026-10-19 late evening, read first.
+    - **Codex P6b accepted** (bcce63c; PROOFS "Height-3 MaxCL: partial results"; lead re-check E256).
+      - New proved classes, at every σ with any spikes:
+        - DENSE075: ε ≤ ⌊3k²/40⌋;
+        - DENSE9: complete face, ε ≤ ⌊k²/9⌋;
+        - THREE-CUBICS: complete face, t ≤ 3;
+        - FEW-CUBICS: complete face, k ≥ 19, t ≤ ⌊k²/16⌋.
+      - Tools: ROW-PACK, SHADOW-COVER, FLAT-CR.
+      - Remaining: k ≥ 5, d ≥ 6, CR < 0, FLAT-CR < 0, outside those classes.
+    - **Codex P6c RUNNING.**
+      - Session 01a1525d; message $SP/codex/p6c_msg.md; log $SP/codex/p6c_log.txt; fejer ~/wilf/p6c; report
+        src/scratch/gw/p6/P6C_REPORT.md.
+      - Task: the k ≥ 5 middle family, via partial-row packing, B-COVER/SINGLE-COVER, or HC′ at the near-flat end.
+      - Also: which tools generalize to height H.
+      - After it ends: review, commit, then decide P6d vs P5h (draft $SP/codex/p5h_draft.md).
+    - **Lead annealers** (E257; src/scratch/h3/anneal_h3.c, src/scratch/hh/anneal_hh.c).
+      - No MaxCL or HC′ violation at height 3 (K = 5..8, m ≤ 60), nor at heights 4–5 (K = 4..7, m ≤ 60).
+      - The middle family is realizable but loose (normalized slack 0.19–0.46 for t ≥ 2). MaxCL is tight only at the
+        near-flat end, e.g. flat + one pure-power column.
+      - Spike bonus is sharp: β < 1 fails already at k = 1.
+      - Unpaid examples for codex: examples/h3_middle_family_unpaid.md (when written).
+    - **Per-α sweeps α = 6, 7 stopped** (diverging). Counts are in the NOTEBOOK, 2026-10-19 late evening. α = 6 falls
+      after a = 25; restart at a = 28 if needed.
+    - Growth / sumset line assessed and NOT pursued: the elementary Freiman bound is of the same kind as the known
+      Macaulay results. NOTEBOOK.
 (0E) NEW 2026-10-19 evening, read first.
     - **Codex P6 (accepted):**
       - H3-D5: MaxCL for every height-≤3 tile with d ≤ 5, by finite certificate. The lead's independent DFS

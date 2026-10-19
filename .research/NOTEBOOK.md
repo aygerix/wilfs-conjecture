@@ -2539,3 +2539,52 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     slack m − |C| ≥ (2/9)θ²k², not the k³/3 of the full a+b−c count. Candidate sources are signed labels
     φ(z) − p_c over "complete" pairs z (every cubic above z present). These are distinct, and they miss every cell
     label φ(x) with x + e_c ∈ C.
+
+## 2026-10-19 (late evening): P6b accepted; adversarial annealers; discrepancy form of MaxCL
+- **Codex P6b accepted** (PROOFS "Height-3 MaxCL: partial results", E256). New proved classes, each at every σ with any
+  number of spikes: DENSE075 (ε ≤ ⌊3k²/40⌋, any face), DENSE9 (complete face, ε ≤ ⌊k²/9⌋), THREE-CUBICS (complete face,
+  t ≤ 3), FEW-CUBICS (complete face, k ≥ 19, t ≤ ⌊k²/16⌋), plus the uniform tools ROW-PACK, SHADOW-COVER, FLAT-CR.
+  Remaining height-3 family: k ≥ 5, d ≥ 6, CR < 0 and FLAT-CR < 0, outside those classes.
+- **Adversarial annealer for height-3 MaxCL and HC′** (src/scratch/h3/anneal_h3.c; E257). State = unit labels plus
+  an injective down-set core; moves add/remove top cells or change one unit label. Evaluation cross-checked against
+  lcr_check2 (F3: 78) and an independent Python evaluator (src/scratch/h3/hc_core_eval.py).
+  - No state with S < 0 or HC′ < 0 was found (K = 5..8 directions, m = 14..60).
+  - Normalized slack ratio = min_σ S / mean_σ S. In the unpaid region (CR < 0, FLAT-CR < 0, k ≥ 5) the minimum
+    found is ≈ 0.15 (near-flat, t = 1, defective face). Ratios rise with the cubic count: ≈ 0.17–0.28 for t ≥ 4 and
+    ≈ 0.23–0.46 for t ≥ 8. **MaxCL is tight only at the near-flat end; the middle family is loose.** The proof gap
+    there is in our bounds, not near a counterexample.
+  - Tight states drift to large s with clustered N labels (ratio → 0 like spread/m), so the ratio is not bounded
+    below. Only the sign matters.
+- **Annealer at heights 4–6** (src/scratch/hh/anneal_hh.c; E257). Same design, cells of degree ≤ H. No MaxCL
+  violation found (K = 4..7, H = 4, 5, also with s ≤ 0, 2, 6). The best states are again near-flat with one long
+  pure-power column (x^H) or small s near-flat cores.
+- **Per-α sweeps α = 6, 7 stopped** (fejer ~/wilf/lead23). α = 6: survivors 0, 3, 136, 827, 2,172, 3,247, 3,652,
+  2,988, 1,773 for a = 19..27; with quartic 311, 274, 189, 22 for a = 24..27 (peak at a = 25, then falling).
+  α = 7: 15, 500, 1,783, 5,456 for a = 19..22 (quartic 0, 1, 52, 188). Like α = 8, only height-3 MaxCL plus the
+  quartic rows can close these. α = 6 may close by itself for larger a. Restart at a = 28 if needed.
+- **Discrepancy form of MaxCL (PROVED, exact; any height).** Put weights w (d+1 on N, −(|y|−1) on A, 0 on spikes)
+  at the labels φ(x) ∈ ℤ/m, Ctot = Σ w, and D(u) = Σ_{φ(x) < u} w(x) − Ctot·u/m for u = 0..m−1. Then
+      S(σ) = Ctot(m−1)/2 + m·(D(σ) − mean_u D(u)).
+  - Proof: S(σ+1) − S(σ) = m·w(φ^{-1}(σ)) − Ctot = m(D(σ+1) − D(σ)), and mean_σ S = Ctot(m−1)/2.
+  - So MaxCL(every σ) ⟺ mean D − min D ≤ Ctot(m−1)/(2m): the weighted label measure has one-sided discrepancy at
+    most ≈ Ctot/2. A single positive atom already attains this (S = 0 at its own phase), so the bound is exactly at
+    the one-atom scale. Negative atoms (maximal cells) must be shadowed by positive mass just before them on the
+    circle.
+- **Window subadditivity (PROVED; any height; generalizes the Flat-MaxCL window).** For any cell y and any
+  decomposition y = z + z′ with z, z′ ∈ D: r(z) + r(z′) ≡ r(y) + ρ_0 (mod m). If y lies outside the window
+  (r(y) < m − ρ_0), then r(z) + r(z′) ≥ r(y) + ρ_0. Exactly ρ_0 cells lie in the window.
+  - So every maximal cell outside the window is dominated by EVERY two-part split of it into N cells. A pure local
+    charging (average over all splits) gives load 2(|y|−1)/(Π(y_b+1)−2) per (y, cell below y). This is 1, 2/3, 3/7
+    for squarefree y of degree 2, 3, 4, but 2 for pure powers, and units carry the load of every maximal cell above
+    them. This is the unit-load obstruction again, so the coupling with distinctness is still required.
+- **Spike bonus is sharp (E257).** MaxCL with a reduced bonus, N weight k + 1 + βs, fails for β = 0 and β = 1/2. The
+  smallest failure is k = 1, core {0, x, x²} with many spikes: S = (k+1+βs)(ρ_0 + ρ_x) − r(x²) is exactly 0 at β = 1
+  when ρ_0 + ρ_x = 1 and r(x²) = m − 1. So no part of the spike bonus can be borrowed for a proof.
+- **Growth / sumset line, assessed (literature checked 2026-10-19).** An elementary doubling bound: f(N) := |S ∩ [0,N)|
+  has f(N+M) ≥ f(N) + f(M) − 1. Freiman's 3k−4 theorem (X = S ∩ [0,N) contains all generators, so a covering AP has
+  difference 1) gives f(2N) ≥ min(3f(N) − 3, f(N) + N − m) for N > n_max. Hence Wilf when c > n_max and
+  e(⌊c/N_0⌋e + 1) ≥ c (N_0 = n_max + 1; e.g. e² ≥ 2N_0). This is the same kind of statement as known growth results:
+  Eliahou's Macaulay-based c ≤ 3m, and Spirito arXiv:1710.09245 Prop 4.6 (m ≤ (8/25)e² + e/5 − 5/4 with
+  a_2 > (c+m)/3, e ≥ 10). Not pursued: it needs e ≳ √n_max, so it misses exactly the small-e and c ≈ n_max regimes
+  where the open cases live. The crude Cauchy–Davenport layer bound (prime m) fails with ≥ 3 full layers only for
+  e ≤ 7 at genus ≤ 26 (cdtest_e.c), because of the +1 index shift that ignores non-carrying sums.
