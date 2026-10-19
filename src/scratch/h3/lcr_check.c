@@ -28,6 +28,8 @@ int main(int argc,char**argv){
       int a=k-1; while(a>=0 && p[a]==m-1){ p[a]=1; a--; } if(a<0) break; p[a]++;
     }
     nreal+=anyreal;
+    if(anyreal && getenv("LCR_VERBOSE")){ int np=0,nq=0,nt=0; for(int j=0;j<nc;j++){ int h=0; for(int a=0;a<k;a++) h+=cv[j][a]; if(h==2){ nq++; if(w[j]>0) np++; } if(h==3) nt++; }
+      printf("REAL m=%d s=%d |C|=%d q=%d p=%d t=%d maxpairs=%d\n",m,s,nc,nq,np,nt,nq-np); }
   }
   printf("k=%d cases=%lld realizable=%lld labelings=%lld phases=%lld FAILURES=%lld minslack=%lld\n",k,ncase,nreal,nlab,nph,nfail,nlab?minsl:-1);
   return 0;

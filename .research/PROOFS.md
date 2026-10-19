@@ -515,7 +515,15 @@ m = 1 + d + q + t.
   4. That leaves 11 (C, s) with s ≥ 3. Nine have injective labelings: 672 labelings, all checked at every σ by the
      spike form (k+s+1)Σ_N r − Σ_A(|y|−1)r: 10,200 checks, min slack 39, 0 failures. The other two have none.
   Script: src/scratch/h3/lcr3_exh.py 3 full. With H3-CORE2, height-3 MaxCL holds whenever k ≤ 3.
-- **Remaining family:** d ≥ 6, k ≥ 4 (after H3-CORE3), failing SPIKE and the carry criteria (P6_REPORT §9). Next lemma: MIN-COVER, or
+- **H3-CORE4 (lead, 2026-10-19; PROVED, computer-assisted).** The same for exactly 4 non-maximal units.
+  - 2,134,621 height-3 core shapes in ℕ⁴; none fails CR for every s.
+  - CR fails for s ≥ 2 on 11,712 (C, s), forming 710 S₄-orbit cases with m ≤ 42; 31 are realizable.
+  - All 20,752 injective labelings of those, at every σ (524,072 checks): min slack 49, 0 failures.
+  - Scripts: lcr_export.py 4 | lcr_check 4 (C). E252.
+  - Every realizable CR failure is NEAR-FLAT: q = 8–10 of the 10 pairs, p = 1–3, t = 1–4.
+  So **height-3 MaxCL holds whenever k ≤ 4 (any d) or d ≤ 5**.
+- **Remaining family:** d ≥ 6 and k ≥ 5, failing CR. The data say these are near-flat cores with few cubics, where
+  the Flat-MaxCL window should pay the maximal pairs; the few cubics and non-maximal pairs remain. Next lemma: MIN-COVER, or
   the lead's hybrid (maximal pairs by the flat window, cubics by rearrangement or CUBIC-LIFT, near-perfect cores
   excluded by cyclic packing).
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
