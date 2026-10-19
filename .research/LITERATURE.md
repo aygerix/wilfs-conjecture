@@ -502,3 +502,12 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   GW-25 covers e of every size, whereas Spirito's needs m ≤ (8/25)e² + …, which fails here since m can be ≈ e³/6.
 - The arc lemma GW-25a is elementary and may be folklore. No priority is claimed for it.
 
+
+## Search 2026-10-19 (scope: Wilf for 3m < c ≤ 4m, before making the low-unit case the focus)
+- Web search (extended) for Wilf with c ≤ 4m / conductor at most 4m / depth 4, 2025–2026. Found only:
+  - c ≤ 3m (Eliahou; re-proved in DKM 2501.04417);
+  - m | c with 4e ≥ m (divsets);
+  - genus ≤ 100/120 verifications;
+  - Spirito (large second generator).
+- No proof of Wilf for c ≤ 4m was found. Our GW-24/25/26/26b are therefore beyond the known frontier, subject to
+  the usual caveat that the absence of a hit is not proof of absence.
