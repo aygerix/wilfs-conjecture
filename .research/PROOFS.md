@@ -1534,9 +1534,17 @@ Both sequences are non-increasing (x ∉ S ⇒ x − m ∉ S; x ∈ S ⇒ x + m 
   - This is exactly the condition for W to have a pointwise nonnegative localization Σ_x[Σ_b λ(σ_b x) − κ(x)] with d
     arbitrary bijections σ_b of Ap (fractional version, by weak majorization).
   - Corner reflection (FGH) gives MAJ with t (type) in place of d.
-- Implications: per-depth (a_j ≤ d b_j ∀j) ⇒ STAIR ⇒ RECT ⇒ {PGW, MAJ} ⇒ Wilf.
-- Status: per-depth is FALSE on semigroups (217,493 failures at genus ≤ 30). STAIR, RECT and MAJ have 0 failures on all
-  semigroups of genus ≤ 30 and on ≈ 64k random instances with m ≤ 200 (E226). All are tight for e = 2.
+- **STAIR-p (conjecture; the sharpest form).** The gap-pair profile is (d−1)-dominated: for every non-increasing z,
+  Σ_j min(p_j, z_j) ≤ (d − 1)·Σ_j min(b_j, z_j). Since min(b+p, z) ≤ min(b, z) + min(p, z), STAIR-p ⇒ STAIR.
+  - In words: map the integers x below the first m-multiples-layer structure with x and F − x both gaps into S near
+    the conductor, (e−2)-to-1, without increasing the layer index or the rank.
+  - The FGH maps x ↦ f − x (f ∈ PF ∖ {F}) send bottom layer j to top layer ≥ j, the wrong direction. So a proof needs
+    descent along generators as well as reflection.
+- For e = 3 even per-depth holds: the tile's corner reflection (GW-8) is depth-preserving and t(D) ≤ 2 in dimension
+  two (GW-10). STAIR and STAIR-p are therefore e ≥ 4 statements.
+- Implications: per-depth (a_j ≤ d b_j ∀j) ⇒ STAIR-p ⇒ STAIR ⇒ RECT ⇒ {PGW, MAJ} ⇒ Wilf.
+- Status: per-depth is FALSE on semigroups (217,493 failures at genus ≤ 30). STAIR-p, STAIR, RECT and MAJ have 0
+  failures on all semigroups of genus ≤ 30 and on ≈ 80k random instances with m ≤ 200 (E226). All are tight for e = 2.
 
 **Identity GW-CR (column–residue decomposition; PROVED, exact, any down-set).** Let D be a finite down-set in
 ℕ^d, n_a > 0, M = max v, and r(x) = v(x) mod m. For a b-column C = {z + j e_b : 0 ≤ j ≤ J} with top t, write

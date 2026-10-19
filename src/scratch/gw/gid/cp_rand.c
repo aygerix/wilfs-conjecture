@@ -20,7 +20,7 @@ static int maxflow(int n,int s,int t){ int tot=0; static int prev[NN], q[NN]; fo
   return tot; }
 static unsigned long long st; static unsigned long long rnd(void){ st^=st<<13; st^=st>>7; st^=st<<17; return st; }
 static long ap[MM]; static int done[MM], gens[64], X[MM][DM]; static long mg[DM]; static long Dl[MM];
-static int m,d; static long MAJ_t,MAJ_f,RECT_t,RECT_f,STAIR_f; static long FS_t[2],FS_f[2]; static long REG_t[6],REG_f[6],REG_td[6]; static int BIND; static long BIND_n,BIND_principal,BIND_min=1L<<40,BIND_h[16],PR_h[16],PR_neg; static long ST_def[8],ST_corner,ST_noncorner,ST_top,ST_nontop,ST_sup[16],ST_bestlow_insuff;
+static int m,d; static long MAJ_t,MAJ_f,RECT_t,RECT_f,STAIR_f,STAIRP_f; static long FS_t[2],FS_f[2]; static long REG_t[6],REG_f[6],REG_td[6]; static int BIND; static long BIND_n,BIND_principal,BIND_min=1L<<40,BIND_h[16],PR_h[16],PR_neg; static long ST_def[8],ST_corner,ST_noncorner,ST_top,ST_nontop,ST_sup[16],ST_bestlow_insuff;
 /* is the vector X[r]+e_a in D?  returns residue or -1 */
 static int up(int r,int a){ long nv=ap[r]+mg[a]; int tr=(int)(nv%m); if(ap[tr]!=nv) return -1;
   for(int h=0;h<d;h++) if(X[tr][h]!=X[r][h]+(h==a)) return -1; return tr; }
@@ -65,6 +65,10 @@ int main(int argc,char**argv){
         { static long best[MM+2], nb[MM+2]; for(int z=0;z<=m;z++) best[z]=0; long mx=0;
           for(long j=1;j<=K;j++){ long run=-(1L<<40); for(int z=m;z>=0;z--){ if(best[z]>run) run=best[z]; long val=(aa[j]<z?aa[j]:z)-(long)d*(bb[j]<z?bb[j]:z); nb[z]=(j==1?val:run+val); }
             for(int z=0;z<=m;z++){ best[z]=nb[z]; if(best[z]>mx) mx=best[z]; } }
+          { static long bp[MM+2], np2[MM+2]; for(int z=0;z<=m;z++) bp[z]=0; long mp=0;
+            for(long j=1;j<=K;j++){ long pj=aa[j]-bb[j]; long run=-(1L<<40); for(int z=m;z>=0;z--){ if(bp[z]>run) run=bp[z]; long val=(pj<z?pj:z)-(long)(d-1)*(bb[j]<z?bb[j]:z); np2[z]=(j==1?val:run+val); }
+              for(int z=0;z<=m;z++){ bp[z]=np2[z]; if(bp[z]>mp) mp=bp[z]; } }
+            if(mp>0){ STAIRP_f++; if(STAIRP_f<=5){ printf("STAIR-p FAIL m=%d d=%d W=%ld gens:",m,d,W); for(int a2=0;a2<d;a2++) printf(" %ld",mg[a2]); printf("\n"); } } }
           if(mx>0){ STAIR_f++; if(STAIR_f<=5){ printf("STAIR FAIL m=%d d=%d W=%ld gens:",m,d,W); for(int a2=0;a2<d;a2++) printf(" %ld",mg[a2]); printf("\n"); } } }
         RECT_t++; if(rb){ RECT_f++; if(RECT_f<=5){ printf("RECT FAIL m=%d d=%d W=%ld gens:",m,d,W); for(int a2=0;a2<d;a2++) printf(" %ld",mg[a2]); printf("\n"); } } }
       MAJ_t++; if(bad){ MAJ_f++; if(MAJ_f<=5){ printf("MAJ FAIL m=%d d=%d W=%ld gens:",m,d,W); for(int a2=0;a2<d;a2++) printf(" %ld",mg[a2]); printf("\n"); } } }
@@ -118,7 +122,7 @@ int main(int argc,char**argv){
   }
   for(int i=1;i<32;i++) if(hist[i]) printf("maxdeg=%d tested=%ld CPfail=%ld\n",i,hist[i],histf[i]);
   if(BIND){ printf("binding: deficient cells %ld, min over Z ∋ y equals principal ideal sum in %ld; min margin %ld; margin hist:",BIND_n,BIND_principal,BIND_min); for(int i=0;i<16;i++) printf(" %ld",BIND_h[i]); printf(" | principal hist:"); for(int i=0;i<16;i++) printf(" %ld",PR_h[i]); printf(" principal<0: %ld\n",PR_neg); }
-  printf("MAJ fails %ld/%ld  RECT fails %ld/%ld  STAIR fails %ld\n",MAJ_f,MAJ_t,RECT_f,RECT_t,STAIR_f);
+  printf("MAJ fails %ld/%ld  RECT fails %ld/%ld  STAIR fails %ld  STAIR-p fails %ld\n",MAJ_f,MAJ_t,RECT_f,RECT_t,STAIR_f,STAIRP_f);
   printf("fractional: split among deficient-above fail %ld/%ld; among corners-above fail %ld/%ld\n",FS_f[0],FS_t[0],FS_f[1],FS_t[1]);
   printf("regions:"); for(int i=0;i<6;i++) printf(" rule%d fail %ld/%ld (with deficit %ld)",i,REG_f[i],REG_t[i],REG_td[i]); printf("\n");
   printf("deficits:"); for(int i=1;i<8;i++) printf(" %d:%ld",i,ST_def[i]); printf(" | corner %ld noncorner %ld | top %ld nontop %ld | supp:",ST_corner,ST_noncorner,ST_top,ST_nontop); for(int i=0;i<16;i++) if(ST_sup[i]) printf(" %d:%ld",i,ST_sup[i]); printf(" | single best lower cover insufficient %ld\n",ST_bestlow_insuff);

@@ -13,7 +13,7 @@ typedef unsigned __int128 u128;
 #ifndef GRADED
 #define GRADED 0
 #endif
-static long majfail, rectfail, stairfail, pdfail; static int G; static long cnt, nsg, idfail, sgdef, cpfail, fsfail, nsfail, wfail; static double fsmin=1e30; static long defh[8], nonc;
+static long majfail, rectfail, stairfail, pdfail, stairpfail, rectpfail, pnegfail; static int G; static long cnt, nsg, idfail, sgdef, cpfail, fsfail, nsfail, wfail; static double fsmin=1e30; static long defh[8], nonc;
 static int cap[PM+2][PM+2], fl[PM+2][PM+2];
 static int maxflow(int n,int s,int t){ int tot=0; static int prev[PM+2], q[PM+2]; for(int i=0;i<n;i++) for(int j=0;j<n;j++) fl[i][j]=0;
   while(1){ for(int i=0;i<n;i++) prev[i]=-1; prev[s]=s; int h=0,tl=0; q[tl++]=s;
@@ -55,7 +55,14 @@ static void analyze(u128 gm,int F,int mm,int *gens,int e){
       long mx=0; for(int j=1;j<=K;j++){ /* prefix-max over z' >= z of best[z'] (previous row length >= current) */
         long run=-(1L<<40); for(int z=m;z>=0;z--){ if(best[z]>run) run=best[z]; long val=(long)(a[j]<z?a[j]:z)-(long)d*(b[j]<z?b[j]:z); nb[z]=(j==1?0:run)+val; if(j==1) nb[z]=val; }
         for(int z=0;z<=m;z++){ best[z]=nb[z]; if(best[z]>mx) mx=best[z]; } }
-      if(mx>0){ stairfail++; if(stairfail<=5) show("STAIR FAIL",W); } } }
+      if(mx>0){ stairfail++; if(stairfail<=5) show("STAIR FAIL",W); } }
+    /* STAIR-p: p_j=a_j-b_j; max over staircases of sum [min(p_j,z_j) - (d-1) min(b_j,z_j)] <= 0 ; also RECT-p and per-depth-p */
+    { static long best[PM+2], nb[PM+2]; for(int z=0;z<=m;z++) best[z]=0; long mx=0; int neg=0;
+      for(int j=1;j<=K;j++){ long pj=a[j]-b[j]; if(pj<0) neg=1; long run=-(1L<<40); for(int z=m;z>=0;z--){ if(best[z]>run) run=best[z]; long val=(pj<z?pj:z)-(long)(d-1)*(b[j]<z?b[j]:z); nb[z]=(j==1?val:run+val); }
+        for(int z=0;z<=m;z++){ best[z]=nb[z]; if(best[z]>mx) mx=best[z]; } }
+      if(neg){ pnegfail++; if(pnegfail<=3) show("p_j<0 ?!",W); }
+      if(mx>0){ stairpfail++; if(stairpfail<=5) show("STAIR-p FAIL",W); }
+      int bad=0; for(int k2=1;k2<=m&&!bad;k2++){ long A=0,B=0; for(int i=1;i<=K;i++){ long pj=a[i]-b[i]; A+=pj<k2?pj:k2; B+=b[i]<k2?b[i]:k2; if(A>(long)(d-1)*B){ bad=1; break; } } } if(bad) rectpfail++; } }
   long Dl[PM]; long tot=0;
   for(int r=0;r<m;r++){ long De=-(ap[r]/m);
     for(int b=0;b<d;b++){ int J=X[r][b], cur=r; while(1){ int nx=up(cur,b); if(nx<0) break; cur=nx; J++; }
@@ -88,4 +95,4 @@ static void visit(u128 gm,int F,int m,int *gens,int e,int genus){
 }
 int main(int argc,char**argv){ G=atoi(argv[1]); int gens[]={1}; visit(0,-1,1,gens,1,0);
   printf("GRADED=%d genus<=%d all=%ld analyzed=%ld IDfail=%ld Wilf fails=%ld | S with a deficit %ld | CP fails %ld | FS fails %ld (min FS slack %.4f) | NS fails %ld | noncorner deficient cells %ld | deficit hist:",GRADED,G,cnt,nsg,idfail,wfail,sgdef,cpfail,fsfail,fsmin,nsfail,nonc);
-  for(int i=1;i<8;i++) printf(" %ld",defh[i]); printf(" | MAJ fails %ld | RECT fails %ld | STAIR fails %ld | per-depth fails %ld\n",majfail,rectfail,stairfail,pdfail); return 0; }
+  for(int i=1;i<8;i++) printf(" %ld",defh[i]); printf(" | MAJ fails %ld | RECT fails %ld | STAIR fails %ld | per-depth fails %ld | STAIR-p fails %ld | RECT-p fails %ld | p<0 %ld\n",majfail,rectfail,stairfail,pdfail,stairpfail,rectpfail,pnegfail); return 0; }
