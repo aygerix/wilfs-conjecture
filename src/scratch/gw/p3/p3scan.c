@@ -16,6 +16,7 @@ static Cell X[NN];
 static int d,m,sz,mode,n[DD],s[DD],perm[DD],used[DD],canonical,aut;
 static uint64_t shapes,weightedshapes,instances,complete,fail,highfail,lpbad,tcibad,weight;
 static uint64_t lowchecks;
+static uint64_t highchecks,carried_checks,cubic_charges,column_charges;
 static int64_t minhigh;
 static int above[NN][NN],lower[NN][DD],nonmax[NN];
 static uint64_t unit(int a){return UINT64_C(1)<<(6*a);}
@@ -64,6 +65,29 @@ static void check(void){
   if(i){int trap=1;for(int a=0;a<d;a++)if(lower[i][a]>=0&&H[lower[i][a]]>=3*m)trap=0;Y+=trap;}
  }
  int sl=d*B-A;
+ {
+  int sep=0,surplus=0,carry=0,colslack=0,used_cubic[NN]={0},used_column[NN][DD]={{0}};
+  for(int i=0;i<m;i++){
+   int z=0,deg=0;for(int a=0;a<d;a++){z+=small(X[i].x[a]*n[a]/m);deg+=X[i].x[a];}sep+=z;
+   int fx=small(V[i]/m);if(z>fx)surplus+=z-fx;
+   if(z<fx){assert(fx-z==1);assert(deg==2);int dirs[2],p=0;for(int a=0;a<d;a++)if(X[i].x[a]){assert(X[i].x[a]==1);dirs[p++]=a;}assert(p==2);
+    int a=dirs[0],b=dirs[1];assert(n[a]<2*m&&n[b]<2*m&&n[a]+n[b]>=3*m);carry++;
+    if(n[a]>n[b]){int t=a;a=b;b=t;}
+    if(M>=4*m-1){
+     int j=find(X[i].z+unit(b));
+     if(j>=0){assert(!used_cubic[j]);used_cubic[j]=1;assert(small(n[a]/m)+small(2*n[b]/m)-small(V[j]/m)>=1);cubic_charges+=weight;}
+     else {int base=find(unit(a));assert(base>=0&&!used_column[base][b]);used_column[base][b]=1;assert(small((M-n[a])/m)+small((M-n[a]-n[b])/m)-small(n[b]/m)>=1);column_charges+=weight;}
+     carried_checks+=weight;
+    }
+   }
+  }
+  for(int a=0;a<d;a++)for(int i=0;i<m;i++)if(!X[i].x[a]){
+   int t=0,left=0,right=0;while(1){int j=find(X[i].z+t*unit(a));if(j<0)break;left+=small((M-V[j])/m);right+=small(t*n[a]/m);t++;}
+   assert(left>=right);colslack+=left-right;
+  }
+  assert(sep-A==surplus-carry);assert(d*B==sep+colslack);
+  if(M>=4*m-1){int assignedS=0,assignedC=0;for(int i=0;i<m;i++){assignedS+=used_cubic[i];for(int a=0;a<d;a++)assignedC+=used_column[i][a];}assert(assignedS<=surplus);assert(assignedC<=colslack);assert(carry==assignedS+assignedC);assert(sl>=0);highchecks+=weight;}
+ }
  if(sl<0){if(!fail)dump("P3FAIL",sl);fail+=weight;}
  if(M>=4*m){if(sl<minhigh)minhigh=sl;if(sl<0){if(!highfail)dump("HIGHFAIL",sl);highfail+=weight;}}
  if(d*C<A){if(!lpbad)dump("LP3FAIL",d*C-A);lpbad+=weight;}
@@ -105,9 +129,9 @@ static void generate(void){
 }
 int main(int argc,char**argv){
  if(argc!=5)return 1;d=atoi(argv[1]);int first=atoi(argv[2]),last=atoi(argv[3]);mode=atoi(argv[4]);if(d<1||d>DD||last>=NN)return 1;
- puts("d,m,mode,canonical_shapes,labeled_shapes,instances,residue_complete,P3fail,Kge4fail,minKge4slack,LP3fail,TCI3fail,K3_lemma_checks");fflush(stdout);
+ puts("d,m,mode,canonical_shapes,labeled_shapes,instances,residue_complete,P3fail,Kge4fail,minKge4slack,LP3fail,TCI3fail,K3_lemma_checks,high_lemma_checks,carried_pair_checks,cubic_charges,column_charges");fflush(stdout);
  for(m=first;m<=last;m++){
-  shapes=weightedshapes=instances=complete=fail=highfail=lpbad=tcibad=lowchecks=0;minhigh=LLONG_MAX;sz=1;memset(X,0,sizeof(X));generate();
-  printf("%d,%d,%d,%llu,%llu,%llu,%llu,%llu,%llu,%lld,%llu,%llu,%llu\n",d,m,mode,(unsigned long long)shapes,(unsigned long long)weightedshapes,(unsigned long long)instances,(unsigned long long)complete,(unsigned long long)fail,(unsigned long long)highfail,(long long)minhigh,(unsigned long long)lpbad,(unsigned long long)tcibad,(unsigned long long)lowchecks);fflush(stdout);
+  shapes=weightedshapes=instances=complete=fail=highfail=lpbad=tcibad=lowchecks=highchecks=carried_checks=cubic_charges=column_charges=0;minhigh=LLONG_MAX;sz=1;memset(X,0,sizeof(X));generate();
+  printf("%d,%d,%d,%llu,%llu,%llu,%llu,%llu,%llu,%lld,%llu,%llu,%llu,%llu,%llu,%llu,%llu\n",d,m,mode,(unsigned long long)shapes,(unsigned long long)weightedshapes,(unsigned long long)instances,(unsigned long long)complete,(unsigned long long)fail,(unsigned long long)highfail,(long long)minhigh,(unsigned long long)lpbad,(unsigned long long)tcibad,(unsigned long long)lowchecks,(unsigned long long)highchecks,(unsigned long long)carried_checks,(unsigned long long)cubic_charges,(unsigned long long)column_charges);fflush(stdout);
  }
 }

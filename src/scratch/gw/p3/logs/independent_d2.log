@@ -1,0 +1,15 @@
+{"d": 2, "m": 1, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 2, "m": 2, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 2, "m": 3, "instances": 18, "total": 18, "high": 6, "low": 10, "carries": 0}
+{"d": 2, "m": 4, "instances": 72, "total": 90, "high": 64, "low": 24, "carries": 2}
+{"d": 2, "m": 5, "instances": 180, "total": 270, "high": 226, "low": 42, "carries": 6}
+{"d": 2, "m": 6, "instances": 252, "total": 522, "high": 474, "low": 52, "carries": 16}
+{"d": 2, "m": 7, "instances": 594, "total": 1116, "high": 1066, "low": 58, "carries": 34}
+{"d": 2, "m": 8, "instances": 684, "total": 1800, "high": 1750, "low": 60, "carries": 60}
+{"d": 2, "m": 9, "instances": 1134, "total": 2934, "high": 2884, "low": 60, "carries": 102}
+{"d": 2, "m": 10, "instances": 1224, "total": 4158, "high": 4108, "low": 60, "carries": 154}
+{"d": 2, "m": 11, "instances": 2430, "total": 6588, "high": 6538, "low": 60, "carries": 244}
+{"d": 2, "m": 12, "instances": 1728, "total": 8316, "high": 8266, "low": 60, "carries": 320}
+distinct_value_P3_failure {'m': 6, 'n': (9, 10), 'lhs': 11, 'rhs': 10}
+false_strengthening {'d': 2, 'm': 10, 'n': (11, 19), 'M': 57, 'Y': 4, 'beta': 5, 'T': 3, 'TCI_lhs': 12, 'TCI_rhs': 11, 'LP_lhs': 22, 'LP_rhs': 24}
+false_strengthening {'d': 7, 'm': 37, 'n': (56, 56, 56, 56, 56, 56, 56), 'M': 168, 'Y': 22, 'beta': 14, 'T': 7, 'TCI_lhs': 66, 'TCI_rhs': 63, 'LP_lhs': 94, 'LP_rhs': 91}

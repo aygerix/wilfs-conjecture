@@ -1111,9 +1111,84 @@ and more generally Σ_w min(i, ⌊w/m⌋) ≤ (e − 1)Σ_w min(i, ⌊H(w)/m⌋)
   cells' top deficit is at most their bottom deficit. This is the mechanism of |Y_1| ≤ |A| in Lemma Y.
 - Evidence: E193 (LP_i), E194 (TCI_i for every i).
 
+**Theorem GW-19 (P_3; PROVED on paper 2026-10-18; proof by codex P3, every step re-checked by the lead).**
+Let D ⊂ ℕ^d be a finite down-set, |D| = m. Let n_a > m for every a with e_a ∈ D. Assume x ↦ x·n mod m is a bijection
+D → ℤ/m. Then
+
+    Σ_{x∈D} min(3, κ(x)) ≤ d · Σ_{x∈D} min(3, λ(x)).
+
+Inactive directions may be deleted, and D = {0} is trivial, so assume every e_a ∈ D. Three regimes:
+- M < 3m: this is P_2 (GW-16).
+- 3m ≤ M < 4m: here P_3 = GW (all κ, λ ≤ 3); use the band proof below. Residues are used only in this regime.
+- M ≥ 4m: Theorem H below, with q = m. No residues are used.
+
+*Theorem H (residue-free, any scale q).* Let q ≥ 1, D a finite nonempty down-set, n_a > q on active directions,
+M = max_D x·n ≥ 4q − 1, and F(t) = min(3, ⌊t/q⌋). Then Σ_D F(v) ≤ d Σ_D F(M − v). The cutoff is sharp:
+{|x|₁ ≤ 2} ⊂ ℕ², n = (2q−1, 2q−1), M = 4q − 2 fails (11 > 10 at q = 6).
+
+Proof of Theorem H:
+- (H1) *Column reflection.* Fix a direction b and a b-column z + j e_b (0 ≤ j ≤ J, z_b = 0) with top t, and put
+  δ = M − v(t) ≥ 0. Reflecting j ↦ J − j gives Σ_j F(M − v(z) − j n_b) = Σ_j F(δ + j n_b) ≥ Σ_j F(j n_b).
+  Call the difference s(b, z) ≥ 0. Summing over all columns of all d directions:
+  d Σ_D F(M − v) = Σ_D B(x) + CS, where B(x) = Σ_a F(x_a n_a) and CS = Σ s(b, z).
+- (H2) *Deficits.* B(x) ≥ F(v(x)) except on C, the mixed quadratics e_a + e_b (a ≠ b) with q < n_a, n_b < 2q and
+  n_a + n_b ≥ 3q. There the deficit is exactly 1. For the other cells:
+  - degree ≤ 1 and axis quadratics give equality;
+  - a mixed quadratic with some F(n_a) ≥ 2 has B ≥ 3;
+  - for |x| ≥ 3, B(x) ≥ Σ_a min(3, x_a) ≥ 3, since ⌊x_a n_a/q⌋ ≥ x_a.
+  Hence Σ B − Σ F(v) = Σ_σ − |C|, where Σ_σ = Σ_x max(0, B(x) − F(v(x))).
+- (H3) *Payments.* Orient each pair of C as (a, b) with n_b ≥ n_a, so 2n_b ≥ 3q.
+  - If e_a + 2e_b ∈ D, that cubic has B = 1 + 3 = 4 > 3 ≥ F(v), so it contributes 1 to Σ_σ. The cubic determines
+    (a, b).
+  - Otherwise the b-column based at e_a is exactly {e_a, e_a + e_b}. Its slack is
+    F(M − n_a) + F(M − n_a − n_b) − F(0) − F(n_b) ≥ 2 + 0 − 0 − 1 = 1, because M − n_a ≥ 4q − 1 − (2q − 1) = 2q. The
+    column determines (a, b).
+  - So |C| ≤ Σ_σ + CS, which is the claim.
+
+*Band proof for 3m ≤ M < 4m.*
+- Put ρ = 4m − 1 − M and I_j = [jm − ρ, (j+1)m − ρ), so λ = 3 − j on I_j. Split the directions by the band of n_a
+  into A, B, C (I_1, I_2, I_3), with sizes a, b, c.
+- Since n_a > m, every cell has degree ≤ 3, and the cells of degree ≥ 2 are exactly:
+  - Q (quadratics in I_2; all A-supported), with |Q| = q;
+  - R (AA in I_3), F (AB in I_3), T (BB in I_3), with sizes r, s, t;
+  - U (cubics, all AAA, in I_3), with |U| = u.
+  So m = 1 + d + q + r + s + t + u.
+- Every quadratic divisor of a cubic lies in Q. The weighted shadow count (pairs (x, i) weighted by x_i) gives
+  3u ≤ (a+2)q. Monomial counting gives q + r ≤ a(a+1)/2, s ≤ ab and t ≤ b(b+1)/2.
+- The T-values are distinct integers in [4m − 2ρ, M], so t ≤ ρ.
+- ℓ = 3 + 2a + b + q, and residue completeness gives g + ℓ = M − m + 1 = 3m − ρ. Then
+  W := (d+1)ℓ − (3m − ρ) = H + b(3a + b + 1 + q) − 3(s + t) + c(2a + b + q) + ρ,
+  where H = 2a(a+1) + (a−2)q − 3(r + u) ≥ a(a+1)/2 − q ≥ 0. With s ≤ ab and ρ − 3t ≥ −2t ≥ −b(b+1) this gives
+  W ≥ H + bq + c(2a + b + q) ≥ 0. ∎
+
+*Residue dependence.* Only two consequences are used: t ≤ ρ (distinct values) and g + ℓ = M − m + 1 (completeness).
+Distinct values alone do not suffice: {|x| ≤ 2}, n = (9, 10), m = 6 has distinct values and P_3 fails (11 > 10).
+
+*Corollary GW-19s (window WW_3 for every numerical semigroup).* #(gaps < 3m) ≤ (e − 1) · #(S ∩ [c − 3m, c)).
+- Translation via the minimal tile, as in GW-17.
+- For c ≤ 3m this is Wilf (Eliahou JEMS 2018, Cor. 6.5). Here it gets an elementary proof: no Macaulay theorem, only
+  the weighted shadow count.
+
+*Verification.*
+- E199: exhaustive, every proof identity asserted. That covers 81,566,262 residue-complete instances (d = 2, m ≤ 24;
+  d = 3, m ≤ 18; d = 4, m ≤ 14; k_a ≤ 3) and 6.0e9 residue-free Theorem-H instances.
+- An independent Python verifier agreed on 628,452 instances.
+- Not yet in Lean.
+
+*Reformulation of GW suggested by (H1)* (untruncated, F(t) = ⌊t/m⌋): GW ⟺ Σ_x carry(x) ≤ CS. Here
+- carry(x) = κ(x) − Σ_a ⌊x_a n_a/m⌋ = ⌊Σ_a ((x_a n_a) mod m)/m⌋ ∈ [0, |supp x| − 1];
+- for a b-column with top t (δ = M − v(t) = mλ(t) + ε, 0 ≤ ε < m),
+  s(b, z) = (J + 1)λ(t) + #{0 ≤ j ≤ J : (j n_b mod m) + ε ≥ m}.
+So Wilf is "total carries ≤ total column slack". Carries live only on cells of support ≥ 2.
+
 **Status.** PGW (all P_i on every residue-complete down-set, n > 0) is a CONJECTURE that strengthens GW. Proved:
 - t ≤ d (GW-12);
 - depths j ≤ k_min (GW-13/14);
 - P_1 and P_2 in the multiplicity form, without residues (GW-14, GW-16).
-- Next case P_3: it contains Eliahou's c ≤ 3m theorem, and it is the first level where residues are necessary.
+- P_3 (GW-19): residues are needed only for 3m ≤ M < 4m. It contains Eliahou's c ≤ 3m theorem.
+- Next case P_4: its regime 4m ≤ M < 5m is exactly Wilf for 3m < c ≤ 4m, which is OPEN in the literature
+  (LITERATURE item 22).
+  - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1
+    gives 27 > 26.
+  - The class-face splitting of the band proof also fails at K = 4 (E200).
 - A proof by induction on i must move mass across depths, because the per-depth inequalities are false.

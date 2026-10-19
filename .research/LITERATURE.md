@@ -471,3 +471,16 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
       Marashdeh 2608.12531 (smallest t + 1 − e PF numbers, Prop 5.1).
     - Not found: any criterion that counts only PF numbers ≥ 2m (GW-18) or ≥ m.
     - Absence of hits is not proof of novelty.
+22. **Search before making "Wilf for c ≤ 4m (K = 4 band counting)" the focus (2026-10-18).**
+    - Queries:
+      - web, extended: Wilf + conductor c ≤ 4m / depth 4 / q = 4;
+      - web: GitHub + Lean + "4m";
+      - `gh search repos` "wilf semigroup" and "numerical semigroups wilf" (no public hits).
+    - Found:
+      - Eliahou JEMS 2018 (c ≤ 3m, via Macaulay; W_0 counterexamples sit at c = 4m);
+      - Eliahou divsets (m | c, 4e ≥ m);
+      - DEF g ≤ 100 (computer);
+      - preprints202604.0551 (first Kunz layer, item 19);
+      - Marashdeh 2608.12531 (item 10).
+    - Not found: any proof of Wilf for all S with c ≤ 4m (3m < c ≤ 4m open as far as searched).
+    - Absence of hits is not proof of novelty.

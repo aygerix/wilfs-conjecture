@@ -1909,3 +1909,35 @@ asserted on every test.
   - The 2-D proof (three-distance theorem) is this cycle structure. P_3 needs some consequence of it; residues are
     necessary there (E191).
 - Delegated: codex P3 task (prove P_3 / LP_3 / TCI_3; brief in session scratchpad).
+
+## 2026-10-19 (late night) — P_3 proved; Wilf is "carries ≤ column slack"; the c ≤ 4m frontier
+
+- **P_3 is a theorem (PROOFS GW-19).** The proof is by codex; I re-checked every step.
+  - For 3m ≤ M < 4m, P_3 = GW. The band classification, the weighted shadow count 3u ≤ (a+2)q, the bound t ≤ ρ and
+    g + ℓ = M − m + 1 suffice; no Macaulay theorem is needed.
+  - For M ≥ 4m − 1, Theorem H needs no residues. Column reflection gives d Σ F(M−v) = Σ_x Σ_a F(x_a n_a) + CS. The only
+    deficit cells are the carried mixed quadratics, and each is paid by a surplus cubic or by a two-cell column.
+  - Semigroup form: #(gaps < 3m) ≤ (e−1)·#(S ∩ [c−3m, c)) for every S. This contains Eliahou's c ≤ 3m theorem.
+- **Untruncated (H1) gives a clean form of Wilf:**
+
+      Σ_x carry(x) ≤ Σ_{columns} [(J+1)λ(top) + #{j : (j n_b mod m) + ε_top ≥ m}].
+
+  - carry(x) = ⌊Σ_a ((x_a n_a) mod m)/m⌋ lives only on cells with support ≥ 2.
+  - Column slack lives on columns whose top is below M − m, or whose top's residue offset ε catches the column's own
+    residues.
+  - Tight families (⟨5,6⟩, T_{m,4}): no carries and zero slack.
+- **K = 4 (Wilf for 3m < c ≤ 4m, OPEN in the literature, item 22).** The K = 3 band proof does not transfer face by
+  face.
+  - The pure-A face can be deficient by up to about a³/6. The configuration has every AA cell in I_3 and every AAA
+    cell in I_4; these are exactly the Eliahou–Fromentin B_3-sets.
+  - Example: ⟨23,35,37⟩ ∪ [92,∞) has W(F_1) = −1 with ρ = 0. The deficit is offset only because residue completeness
+    forces the uncovered residues (≈ m/6 of them, in the middle third) onto other directions, and each of those adds
+    ℓ(F_1) ≈ a²/2 to the multiplier.
+  - So the missing ingredient at K = 4 is a residue-coverage lemma: the residues a deficient face misses force many
+    directions outside it.
+  - GW = P_{K−1} + (N_top ≤ d + slack). N_top ≤ d alone is false, though rarely (E201).
+  - Near-tight K = 4 semigroups are only T_{m,4}-type (W = ρ), so a lossy argument has room.
+- Next:
+  - (1) Delegate P_4 / K = 4 to codex, with the column-carry framework.
+  - (2) Lead: a general carry-to-column charging, i.e. a Theorem H for i ≥ 4 using residues. Find which columns pay
+    each carry, and why residue completeness guarantees enough slack.

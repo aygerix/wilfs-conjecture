@@ -1,0 +1,8 @@
+{"d": 4, "m": 1, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 4, "m": 2, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 4, "m": 3, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 4, "m": 4, "instances": 0, "total": 0, "high": 0, "low": 0, "carries": 0}
+{"d": 4, "m": 5, "instances": 1944, "total": 1944, "high": 648, "low": 1560, "carries": 0}
+{"d": 4, "m": 6, "instances": 23328, "total": 25272, "high": 19944, "low": 6840, "carries": 864}
+{"d": 4, "m": 7, "instances": 128304, "total": 153576, "high": 137928, "low": 20160, "carries": 8640}
+{"d": 4, "m": 8, "instances": 384912, "total": 538488, "high": 509040, "low": 39288, "carries": 44280}
