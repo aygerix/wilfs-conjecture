@@ -1046,6 +1046,28 @@ and conductor c:
 - Literature (item 20): no statement of the window inequality was found. Not claimed new until checked against Kaplan's
   paper and its citations.
 
+**Local form and trapped cells (CONJECTURES, with the reduction PROVED).** Multiplicity form throughout.
+- Local heights: h(w) = max{v(u) : w + u ∈ D} and λ_h(w) = ⌊h(w)/m⌋ ≤ λ(w).
+- LP_i: Σ_x min(i, κ(x)) ≤ d·Σ_w min(i, λ_h(w)). LP_i implies P_i.
+- Bands: T^{(j)} = {w non-maximal : jm ≤ h(w) < (j+1)m}. Trapped cells: Y^{(i)} = {x ≠ 0 : every lower cover w of x has
+  h(w) < im}. Bottom deficit: β'_i = Σ_{x≠0}(i − κ(x))_+.
+- **TCI_i:** i·|Y^{(i)}| ≤ d·Σ_{j<i} j·|T^{(j)}| + β'_i.
+- **Reduction (proved): TCI_i ⇒ LP_i.**
+  - LP_i ⟺ d·Σ_{j<i}(i − j)|T^{(j)}| ≤ i·(d|NonMax| − (m−1)) + β'_i, since min(i, λ_h) = i − (i − j) on T^{(j)} and 0 on
+    corners. Use CL's slack identity.
+  - The descent map, routed away from the shallow non-maximal cells, gives d|NonMax| − (m−1) ≥ dΣ_{j<i}|T^{(j)}| − |Y^{(i)}|.
+    Substitute.
+- TCI_2 is Lemma Y (proved, GW-16).
+- TCI_∞ is equivalent to local GW (Σκ ≤ dΣλ_h): for large i, Y^{(i)} = D∖{0} and β'_i = i(m−1) − g. So the reduction
+  is lossless in the limit.
+- **Pair counting** (x, a) ↦ (x − e_a, a) gives i|Y^{(i)}| ≤ Σ_{w shallow, non-max} up_Y(w) + Σ_{x∈Y^{(i)}}(i − |supp x|)_+.
+  Cells of support ≥ i are therefore free. What remains is the trapped cells on faces of dimension < i, against the
+  unused upper-cover slots of the bands and β'_i.
+  - The crude version with up_Y(w) ≤ #{a : k_a ≤ j} is FALSE (E194). The unused slots are needed.
+- **Axis reflection.** On the a-axis, λ_h(j e_a) ≥ κ((K_a − j)e_a), where K_a e_a is the top of the axis. So the axis
+  cells' top deficit is at most their bottom deficit. This is the mechanism of |Y_1| ≤ |A| in Lemma Y.
+- Evidence: E193 (LP_i), E194 (TCI_i for every i).
+
 **Status.** PGW (all P_i on every residue-complete down-set, n > 0) is a CONJECTURE that strengthens GW. Proved:
 - t ≤ d (GW-12);
 - depths j ≤ k_min (GW-13/14);
