@@ -179,9 +179,16 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       (53 checks, incl. JOINT-SP) are RUNNING on fejer, ~/wilf/lead23/{r_*,j_*}.log. When they finish clean, record
       GW-26e = T2.3F in PROOFS, together with JOINT-SP ⇒ a ≥ 14 once codex confirms it.
     - JOINT-SP (lead, NOTEBOOK 2026-10-19 night) cuts the 172 profiles to 11, all at a = 13.
-    - P5d task: one argument for every α. The heuristic says the arc/arc/packing trichotomy closes for a ≥ 2α + 1
-      when the localized defect is small. The obstruction is a signed-packing lemma with bounded defect constant
-      (heavy fibers). Also: a ≤ 2α + 1, and 7 ≤ a ≤ 12.
+    - P5d task: one argument for every α. Lead heuristic (NOTEBOOK 2026-10-19 night): the arc/arc/JOINT-SP
+      trichotomy closes at leading order for EVERY a ≥ α when the localized defect is small.
+      - So the primary regime reduces to LSP*: 3s − 2 ≥ H(n) − 13.5·ex for pair-distinct n-sets in s consecutive
+        integers, i.e. a bounded defect constant. Only heavy fibers (g ≥ 4 disjoint triples on one sum) can break it.
+      - Evidence: annealing and planted-fiber searches give large positive slack (E231). No literature result
+        (LITERATURE 2026-10-19 night).
+      - Also: 7 ≤ a ≤ 12 for α = 3.
+      - Codex reported mid-turn that it killed the 11 a = 13 profiles (signed labels without deletion, or retaining
+        D3 in the cold-pair step). UNVERIFIED.
+    - To send when P5d's turn ends: scratchpad codex/p5e_note_draft.md (fiber accounting, LSP*, the κ < 2 heuristic).
     Next codex task after P5: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
