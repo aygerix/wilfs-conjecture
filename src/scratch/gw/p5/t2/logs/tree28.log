@@ -1,0 +1,13 @@
+low_pair_omission m=16 h=8 alpha=1 q2=0 ra=2 weights=19,22,28,29,30,31,34,37,40,42,43
+low_pair_omission m=15 h=10 alpha=1 q2=0 ra=1 weights=19,23,28,29,32,33,36,37,40,41,50
+low_pair_omission m=14 h=14 alpha=1 q2=0 ra=3 weights=20,26,30,31,32,33,36,37,38,39,43,49
+low_pair_omission m=13 h=12 alpha=1 q2=0 ra=2 weights=18,23,30,33,34,35,38,40,42,45
+low_pair_omission m=12 h=12 alpha=1 q2=0 ra=2 weights=17,22,32,33,37,38,40,42,43
+low_pair_omission m=11 h=10 alpha=1 q2=0 ra=1 weights=15,19,36,39,40,43,46
+low_pair_omission m=10 h=10 alpha=1 q2=0 ra=1 weights=14,18,41,43,45,47,49
+low_pair_omission m=9 h=8 alpha=1 q2=0 ra=3 weights=12,15,35,37,38,40,41,43
+low_pair_omission m=8 h=8 alpha=1 q2=0 ra=1 weights=11,14,34,37
+low_pair_omission m=7 h=6 alpha=1 q2=0 ra=1 weights=9,11
+low_pair_omission m=6 h=6 alpha=1 q2=0 ra=3 weights=8,10,25,27,29
+genus<=28 all=5311726 primary=642239 upper=580615 linear=5588 curvature=16404 low_instances=6258 adaptive=189141 LC=8894 classes=127517,572143,566292,262513 max_a=6 max_b=12 minW=0 min_strong_slack=1
+continuation primary=642239 general_arc=8894 one_low=3 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=6

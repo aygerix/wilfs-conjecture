@@ -1,0 +1,13 @@
+low_pair_omission m=5 h=5 alpha=2 q2=0 ra=6 weights=6,7,8,24
+d=4 m=5 canonical_shapes=1 instances=6144 primary=4200 upper=3024 linear=0 curvature=0 low_instances=24 adaptive=1608 LC=24 classes=432,2064,2064,3024 max_a=1 max_b=3 minW=0 min_strong_slack=9
+continuation primary=4200 general_arc=24 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5
+d=4 m=6 canonical_shapes=2 instances=14336 primary=7584 upper=5160 linear=60 curvature=0 low_instances=74 adaptive=3480 LC=74 classes=1056,4028,3454,4736 max_a=2 max_b=4 minW=0 min_strong_slack=7
+continuation primary=7584 general_arc=74 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5
+d=4 m=7 canonical_shapes=6 instances=49152 primary=13078 upper=8192 linear=262 curvature=18 low_instances=254 adaptive=7316 LC=254 classes=2430,6738,5328,6630 max_a=2 max_b=4 minW=0 min_strong_slack=3
+continuation primary=13078 general_arc=254 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5
+d=4 m=8 canonical_shapes=16 instances=123904 primary=21389 upper=12174 linear=705 curvature=77 low_instances=681 adaptive=13584 LC=723 classes=4369,10455,7947,8035 max_a=3 max_b=4 minW=0 min_strong_slack=2
+continuation primary=21389 general_arc=723 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5
+d=4 m=9 canonical_shapes=38 instances=321024 primary=32933 upper=16749 linear=1308 curvature=266 low_instances=1726 adaptive=23155 LC=1853 classes=6971,14771,10329,9189 max_a=3 max_b=4 minW=0 min_strong_slack=1
+continuation primary=32933 general_arc=1853 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5
+d=4 m=10 canonical_shapes=86 instances=478208 primary=42237 upper=19316 linear=1833 curvature=451 low_instances=2873 adaptive=31325 LC=3155 classes=8404,17155,11687,9611 max_a=4 max_b=4 minW=0 min_strong_slack=1
+continuation primary=42237 general_arc=3155 one_low=0 low_a_ge7=0 old_frontier=0 new_closed=0 closest_LOW_deficit=-1000000000 smallest_low_pair_omission_m=5

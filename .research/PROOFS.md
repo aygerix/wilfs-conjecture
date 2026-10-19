@@ -1366,6 +1366,27 @@ L = min_A t_a, δ = max(0, h − 2L), K = q₃ + b + c + e + s₄ + t₄.
 - Consequence: a counterexample to Wilf with 3m < c ≤ 4m must have a ≥ 7, δ > 0 (some generator with 2n < c − m),
   3δ > (a−1)(b+1) + G + L_min + (b+2)q₂ + b u₃ + k + (c+e)(2q₂+u₃), and GW-24's LC− conditions.
 
+**Theorem GW-26c (one low unit; PROVED 2026-10-19 on paper by codex P5b, src/scratch/gw/p5/P5_REPORT.md §§12–14;
+verified by the lead: algebra of OL, OL-res and the final remainder re-derived by hand; the η-substitution in LOW-ID
+checked; every ingredient checked numerically, E221).** In the primary regime 4m ≤ M < 5m, if at most one A direction
+has 2t < h, then W ≥ 0, for every b, c, e.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and 2n_2 ≥ c − m, n_2 the second generator above m. No condition on
+  n_1.
+- Ingredients:
+  - IARC: h ≤ 2(q₃+b+c+e+s₄+t₄) + 2 + 2J, where J counts the actual non-allowed occupants of the arc Y.
+  - I-LOW (a ≥ 3): W ≥ A* − max(0, η − (b+2)q₂ − k) for any η with h ≤ 2K + 2 + η.
+  - OL (a ≥ 6, one low unit x): 2J_A ≤ (a−1) + LC_actual + 2q₂ + k.
+  - OL-out: J − J_A ≤ b(1+ε₂) + c.
+  - Final remainder: b[a−1+q₂+u₃−2(1+ε₂)] + G − 2c ≥ 0.
+  - For a ≤ 5, GW-24 (paper part) applies.
+- Also proved there (§15), algebra re-derived by the lead:
+  - ASR: ρ ≥ t₃ + I + v₃ + w + z + H₃, where H₃ counts AAA cells with τ ≥ 2h.
+  - HIGH: W ≥ LC_actual + C(p+2,3) − C(a+1,3) + 5r_A + D₃ + T, with p = #{A units with 3t ≥ 2h}.
+- Remaining frontier for 3m < c ≤ 4m (§17): a ≥ 7, at least two low units, δ > 0, LC−, LP-low, MAC−, and (F1) η > A*
+  + (b+2)q₂ + k, (F2) W_A + T + H₃ < 0, (F3) HIGH < 0.
+- False route, preserved: the unrestricted OL (any number of low units) fails on a relaxed, non-residue-complete full
+  cubic simplex (a = 7, m = h = 5, offsets (2,2,3,3,3,3,3)).
+
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
 CORRECTION (2026-10-19, same day): this is NOT a new result of this project. It is the corollary of Flat-MaxCL
@@ -1651,6 +1672,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   with residues (distinct weights). The primary regime 4m ≤ M < 5m is proved:
   - for a ≤ 5 on paper and a = 6 with two finite certificates;
   - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
+  - with at most one low unit (GW-26c; semigroups: 2n_2 ≥ c − m);
   - whenever LOW+ holds (GW-26b).
   Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete
   down-sets: Flat-MaxCL (2026-10-17, LEAN) and GW-27 (second proof). Open: the primary regime for a ≥ 7 with a low unit

@@ -721,3 +721,722 @@ completion, moving the arc to `3L` produces the explicit low-unit
 loss and the LC reduction in section 9. The remaining task for a
 full c<=4m theorem is to control that loss in the stated LC-minus
 frontier; bounded LP searches do not settle it.
+
+## 12. T2 continuation: status and exact new results (2026-10-19)
+
+The lead has independently verified sections 1–9 and recorded them
+as GW-26 and GW-26b. This continuation leaves those sections intact.
+**The full primary regime is not closed here.** The following are
+new proved results, uniform in a:
+
+1. A stronger arc reduction using the actual intruders, the actual
+   low-face cost, and retained shadow/capacity defects (section 13).
+2. **Wilf whenever at most one A unit is low**, with arbitrary B/C/E
+   directions (section 14). Combined with GW-24, this covers every a.
+   In semigroup notation it suffices that `2n_2>=C_S-m`, where n_2 is
+   the second minimal generator other than m; n_1 may be arbitrarily
+   small.
+3. An augmented joint short-residue lemma and a high-core certificate
+   (section 15).
+4. A corrected low-pair count and an exact total-Macaulay restriction
+   on any remaining deficient A face (section 16).
+
+The remaining structured family is specified in section 17. Its
+nonemptiness as an actual residue-complete family is not established.
+The adversarial searches in section 18 did not reach the old LOW+
+frontier; this is explicitly a limitation of the searches, not a
+proof that the frontier is empty.
+
+Notation remains that of sections 1–9. In this continuation put
+
+```
+Q=binom(a+1,2), U=binom(a+2,3), F=binom(a+1,3),
+q=q2+q3, u=u3+u4,
+r_A=Q-q, t_A=U-u,
+D3=(a+2)q-3u=3t_A-(a+2)r_A,
+LC_actual=(a+1)(q2+u3)-4k.
+```
+
+All are exact counts or nonnegative defects, except that LC_actual
+needs LC (a>=3) for its nonnegativity. Two useful identities are
+
+```
+WA=3a(a+1)+(a-3)q-4u+LC_actual
+  =-F+LC_actual-(a-3)r_A+4t_A.                         (A-ID)
+```
+
+The term T is exactly the nonnegative transfer term in GW-21 / P4
+section 3; G is as in section 9 above.
+
+## 13. The actual-intruder reduction, retaining defects
+
+Take the same fixed arc as in GW-26:
+
+```
+theta=ceil(3h/2),
+Y=[h,min(theta,m)) union [1,theta-m).
+```
+
+Let J be the number of cells whose residues are in Y and which are
+not of any of these allowed types:
+
+```
+q3; B/C/E units; s4; t4.
+```
+
+Let J_A be the number of these intruders supported entirely in A.
+These definitions apply without U. In particular, J counts cells,
+not formal factorizations that are absent from D.
+
+Since `|Y|>=h/2-1`, residue injectivity gives the unconditional
+inequality
+
+```
+h<=2(q3+b+c+e+s4+t4)+2+2J.                            (IARC)
+```
+
+This is also immediate by partitioning the actual occupants of Y
+into allowed cells and intruders. There is no assumption about the
+number or location of low directions in IARC.
+
+Define
+
+```
+Mq=(ab-s3-s4)+(B-t3-t4),
+Cdef=D3+4Mq+3(ac-H)+3(bc-I),
+Astar=(a-1)(b+1)+G+LC_actual+b u3
+      +(c+e)(2q2+u3)+Cdef,
+eta=min(3delta,2J), delta=max(0,h-2L).
+```
+
+Here H and I count AC and BC cells. Every term in Cdef is
+nonnegative. **For a>=3,**
+
+```
+W>=Astar-max(0, eta-(b+2)q2-k).                        (I-LOW)
+```
+
+In particular Wilf follows if
+
+```
+eta <= Astar+(b+2)q2+k.                              (I-LOW+)
+```
+
+Proof. Both AARC and IARC imply
+`h<=2K+2+eta`, with K from section 9. Repeat LOW-ID with the
+arc loss `3delta` replaced by eta, and retain the low-face cost as
+LC_actual. The low terms are exactly
+
+```
+LC_actual+b u3+(c+e)(2q2+u3)
+   +lambda[(b+2)q2+k-eta].
+```
+
+The total AAA shadow defect is D3. Its multiplier in ID is
+`(4-lambda)/3>=1`; those of Mq and the AC/BC capacity defects are
+at least 4,3,3. They therefore contribute at least Cdef at both
+endpoints. The endpoint bridge and Region I certificate remain
+unchanged, and `lambda J0>=min(0,J0)` for
+`J0=(b+2)q2+k-eta`. This proves I-LOW. All its terms apart from
+the final loss are nonnegative. I-LOW+ follows.
+
+This strengthens GW-26b in three independent ways: eta can be
+smaller than 3delta, LC_actual can exceed its minimum, and Cdef was
+previously discarded. Its proof uses the already verified symbolic
+LOW-ID rather than a new numerical optimization.
+
+There is a useful **high-relative family of arcs**. Choose a threshold
+H with `ceil(h/2)<=H<h`, and call the A directions with t>=H its
+upper core. Put
+
+```
+Theta_H=h+H,
+Y_H=[h,min(Theta_H,m)) union [1,Theta_H-m),
+J_H=# occupants of Y_H not of an allowed type.
+```
+
+Then `|Y_H|>=H-1` and
+
+```
+H<=K+J_H+1,
+h<=2K+2+[h-2H+2J_H].                                (HARC)
+```
+
+Moreover, every intruder in J_H contains an A direction outside
+the upper core. An all-core cubic has tau>=3H>=h+H; an all-core
+quartic cannot fit. A core unit misses the low interval since
+`Theta_H-m<=H`. AB and BB using only core A directions have tau
+at least h+H; AC and BC have tau at least m+h+H. Their possible
+wraps miss Y_H exactly as in the fixed-arc proof. Core AA cells
+are allowed q3 cells.
+
+It follows that I-LOW remains valid with the stronger choice
+
+```
+eta=min(3delta,2J, h-2H+2J_H for chosen upper-core thresholds H).
+                                                               (ETA)
+```
+
+The last quantity can be negative; the endpoint proof only requires
+the displayed valid arc inequalities and still gives the same
+maximum-with-zero formula. For the explicit remaining family below,
+take every H which occurs as an offset of an upper A unit. There
+are at most a such tests.
+
+This repairs an endpoint problem in the proposed `Theta=3H` arc.
+Without additional hypotheses its low interval can contain high
+units: in the semigroup from section 16, m=h=6, L=2, H=4, the
+proposed `[1,3H-m)=[1,6)` contains the high unit with offset 4.
+It therefore cannot be treated as an arc with only low-supported
+intruders under the stated general hypotheses. The choice h+H
+above avoids this issue, including when H>m/2.
+
+## 14. A complete proof with exactly one low A direction
+
+**Theorem T2.1.** In the full primary regime, if a>=6 and at most one
+A direction satisfies `2t_j<h`, then W>=0, for every b,c,e.
+The case of no low directions is GW-26. Combining the new case
+with the paper part of GW-24 (a<=5) proves the assertion for every a;
+the a=6 finite certificates are not needed for this corollary.
+
+We first prove a down-set inequality which does not need residue
+injectivity or the cardinality relation. Its inputs need only obey
+the P4 value bound and unit ranges at the fixed scale m,h.
+
+**One-low arc payment lemma.** Suppose a>=6, the only low A unit is
+x with offset L<h/2, and every other A offset is at least ceil(h/2).
+Then
+
+```
+2J_A <= (a-1)+LC_actual+2q2+k.                         (OL)
+```
+
+Proof. Write `p=a-1`. A cold residue means an integer in
+`[1,theta-m)`; its upper endpoint is at most ceil(h/2).
+A hot pure-A cubic has tau in `[h,theta)`.
+
+Every pure-A intruder is of one of these types:
+
+* a cold cell `x`, `x^2`, `x^3`, or `x^4`;
+* a hot cubic `x^3`, `x^2 y`, or `x y z`, where y,z are high A
+  directions, and y=z is allowed.
+
+Indeed a cell containing a high direction cannot be cold; all-high
+cubics have tau at least theta. High AA cells are allowed q3 cells.
+Any quartic with at least two high factors has tau greater than h-1
+and cannot lie in D. A quartic with one high factor can be in D,
+but cannot be cold and therefore is not an intruder. The list is
+an upper bound; a zero residue or an endpoint omitted from Y only
+reduces J_A.
+
+Let l count the present low pairs `xy` with `L+t_y<h`. A hot
+`xyz` intruder forces both xy and xz to be such pairs: otherwise
+its tau is at least `h+ceil(h/2)=theta`. Thus there are at most
+`binom(l+1,2)` such intruders, with `0<=l<=a-1`.
+
+If x^2 is absent, q2=l and u3=k=0. Only the cold unit x and the
+above xyz cubics can intrude. Therefore the right side minus left
+side of OL is at least
+
+```
+(a-1)+(a+3)l-l(l+1)-2
+ =a-3+l(a+2-l)>=0.
+```
+
+Suppose x^2 is present. Let
+
+```
+epsilon3=1 if x^3 is present and 3L<h, otherwise 0,
+epsilon4=1 if x^4 is present, otherwise 0,
+u0=# {x^2 y in D: 2L+t_y<h},
+v0=# {x^3 y in D}.
+```
+
+Then
+
+```
+q2=1+l, u3=epsilon3+u0, k=epsilon4+v0,
+0<=v0<=u0, epsilon4<=epsilon3.
+```
+
+The last two facts follow by deleting x from a quartic. There are
+at most `p-u0` hot x^2 y intruders, since those with tau<h and
+those with tau>=h are disjoint. Subtracting the upper bounds on
+these and the xyz intruders from the proposed payment leaves at
+least
+
+```
+4+l(a+2-l)+(a+1)epsilon3-3epsilon4+a u0,                (OL-res)
+```
+
+before the cold cells and a possible hot x^3 are paid. This is
+exactly the following calculation:
+
+```
+(a-1)+(a+3)(1+l)+(a+1)(epsilon3+u0)-3(epsilon4+v0)
+ -l(l+1)-2(a-1-u0)
+ =4+l(a+2-l)+(a+1)epsilon3-3epsilon4
+   +(a+3)u0-3v0
+ >=OL-res.
+```
+
+If `3L>=h`, then epsilon3=epsilon4=u0=0; there can be one hot
+x^3 and one cold x, but x^2 is not cold since
+`2L>=2h/3>=ceil(h/2)`. These cost at most 4, paid by OL-res.
+
+If `3L<h`, there is no hot x^3. The cold cells cost at most
+`2(2+epsilon3+epsilon4)`. Subtracting this from OL-res leaves
+
+```
+l(a+2-l)+a u0+(a-1)epsilon3-5epsilon4>=0,
+```
+
+because a>=6 and epsilon4<=epsilon3. This proves OL.
+
+To finish the theorem, every non-pure-A intruder must contain x.
+The only possibilities are an I3 cell xB, an AC cell xC, and an
+AAB cell x^2 B. There are at most b,c,b of them respectively, and
+the last family requires x^2 in D. Thus, writing epsilon2 for the
+presence of x^2,
+
+```
+J-J_A <= b(1+epsilon2)+c.                              (OL-out)
+```
+
+The range exclusions are explicit: a cubic x y B with high y has
+tau at least `L+ceil(h/2)+h>theta`; ABB and BBB have tau>theta;
+BC has tau at least m+2h and misses Y. A high AC or high AB cell
+cannot be an intruder by the original GW-26 range argument.
+
+Use I-LOW with eta replaced by 2J. Its total proposed payment
+for that loss is at least
+
+```
+(a-1)(b+1)+G+LC_actual+b u3+(b+2)q2+k.
+```
+
+After using OL and OL-out, the remaining payment is at least
+
+```
+b[a-1+q2+u3-2(1+epsilon2)]+G-2c>=0.
+```
+
+For epsilon2=0 the bracket is at least a-3; for epsilon2=1,
+q2>=1 makes it at least a-4. Also
+`G>=c(c+e+1)>=2c` whenever c>0, with the c=0 case immediate.
+All omitted terms in I-LOW are nonnegative. This proves W>=0.
+
+**Semigroup corollary.** Let `m<n_1<n_2<...` be the minimal
+generators other than m. Wilf holds for
+
+```
+3m<C_S<=4m, 2n_2>=C_S-m.
+```
+
+If there is only one generator other than m, Wilf already holds.
+The condition says exactly that at most one A direction is low,
+since every generator outside A automatically satisfies the
+upper-unit inequality. No restriction on n_1 is imposed.
+
+## 15. An augmented short-residue lemma and the high core
+
+Let H3 count the present AAA cells whose tau is at least 2h.
+Then
+
+```
+rho >= t3+I+v3+w+z+H3.                               (ASR)
+```
+
+Proof. The five old families have residues in the cyclic interval
+obtained by reducing `[2h,m+h)` modulo m. This interval has rho
+integer residues. Every additional AAA cell in H3 has
+`2h<=tau<=m+h-1` and therefore lies in that same interval. The
+families are disjoint and all residues are distinct. This proves ASR.
+
+Consequently the exact transfer identity gives
+
+```
+W>=WA+T+H3.                                          (HOT)
+```
+
+Define
+
+```
+p=# {A units j: 3t_j>=2h}.
+```
+
+Every present cubic on these p directions is counted by H3. At
+most t_A of the `binom(p+2,3)` formal cubics can be absent, so
+`H3>=binom(p+2,3)-t_A`. Substituting A-ID and
+`3t_A=(a+2)r_A+D3` into HOT proves the uniform certificate
+
+```
+W >= LC_actual+binom(p+2,3)-F+5r_A+D3+T.               (HIGH)
+```
+
+In particular it proves Wilf whenever the right side is nonnegative.
+For p>=a-1 this gives W>=LC_actual+5r_A+D3+T>=0. This special
+case is contained in Theorem T2.1, but HIGH also applies to families
+with several low units. It is an independent certificate whose
+positive D3 term makes missing cubic cells pay for the deficit.
+
+One can augment ASR further with any other known occupants of that
+same cyclic interval. For example, if h<=m/2, zero, all A units,
+all q2 and u3 cells, and all quartics have residues in it, and hence
+
+```
+rho>=t3+I+v3+w+z+H3+1+a+q2+u3+k.                    (ASR-small)
+```
+
+This follows because the interval is then
+`[2h,m) union [0,h)` in ordinary residues. This optional bonus
+was not used in the proof of T2.1.
+
+## 16. Correcting the low-pair premise; total Macaulay
+
+Let alpha count the low A units, those with 2t<h. Every formal
+pair of low units has tau<h. If that monomial is present it is q2;
+if absent it is one of the r_A missing AA monomials. The correct
+unconditional count is
+
+```
+binom(alpha+1,2)<=q2+r_A,                             (LP-low)
+```
+
+not `binom(alpha+1,2)<=q2`. The latter premise in the lead's
+structural observations needs a completeness hypothesis on AA.
+
+A smallest-multiplicity actual semigroup counterexample is
+
+```
+S=<6,8,10,25,27,29>, C_S=24,
+Ap(S,6)=(0,25,8,27,10,29) by residue,
+a=2, h=6, L=2, alpha=1, q2=0, r_A=3.
+```
+
+In particular `2*8=10+6` is not in Ap, so the low unit has no
+loop in D. Its conductor is 24 because 23 is a gap and 24 through
+29 are in S. The other missing AA cells are 8+10=18 and
+10+10=20, also not in Ap. All six displayed generators are
+minimal. The genus-28 tree found no smaller-multiplicity example;
+that tree covers every primary semigroup with m<6, since C_S<=20
+there implies genus<=16. Thus the minimal-multiplicity statement
+here is an exact finite verification, not a random-search claim.
+No conclusion `alpha<a/sqrt(3)` is inferred without accounting for
+r_A.
+
+There is also a useful stronger total-Macaulay restriction on a
+deficient A face. Let `q^{<2>}` be the exact Macaulay growth at
+degree two. Since the A face is a multicomplex,
+`u3+u4<=q^{<2>}`. A-ID gives
+
+```
+WA<0 => 4q^{<2>}>3a(a+1)+(a-3)q+LC_actual.             (MAC-)
+```
+
+LC-minus already implies `LC_actual>=(a+1)q2` in this situation.
+Therefore every possible deficient profile must satisfy
+
+```
+4q^{<2>}>3a(a+1)+(a-3)q+(a+1)q2.                     (MAC-simple)
+```
+
+These are exact integer conditions. For each fixed a they give a
+finite explicit list of possible q and q2 counts, which can then be
+combined with LP-low. No asymptotic estimate is substituted for the
+exact growth operation. The script `t2/count_frontier.py` evaluates
+these finite necessary count lists for the a values in its log.
+
+For example, the number of surviving total-q values and the largest
+alpha permitted by these *necessary count tests* are:
+
+| a | total-q values | alpha upper bound |
+|---:|---:|---:|
+| 7 | 3 | 3 |
+| 8 | 4 | 3 |
+| 12 | 15 | 6 |
+| 20 | 53 | 10 |
+| 50 | 428 | 29 |
+| 100 | 1,917 | 61 |
+
+These are not claims that actual residue-complete examples attain
+the bounds. After T2.1 the remaining alpha range starts at 2.
+
+## 17. The remaining structured family and the failure of a simpler route
+
+Combining the new results with GW-24, GW-26, and GW-26b, any
+counterexample in the primary regime must satisfy all of:
+
+```
+a>=7, alpha>=2, delta>0;
+LC-minus, LP-low, and MAC-minus;
+eta>Astar+(b+2)q2+k;                                  (F1)
+WA+T+H3<0;                                           (F2)
+LC_actual+binom(p+2,3)-F+5r_A+D3+T<0.                 (F3)
+```
+
+Here all terms are explicit counts or thresholds of the A offsets;
+eta, Astar, H3 and p are defined in sections 13 and 15. In particular
+F1 implies both a large adaptive-arc deficit and enough actual
+intruders to overwhelm the retained low-face and capacity costs.
+F3 restricts the population of units at or above 2h/3. These are
+uniform restrictions with no bound on a,b,c,e. This report does not
+prove that this remaining structured family is empty.
+
+The promising but false unrestricted analogue of OL would assert
+
+```
+2J_A <= (a-1)+LC_actual+2q2+k
+```
+
+for any number of low directions using only the down-set and
+value-band hypotheses. A small counterexample within the main
+range a>=7 is the full degree-three simplex in seven variables,
+at scale `m=h=5`, with offsets `(2,2,3,3,3,3,3)`.
+Its actual maximum is `24=4m+h-1`, and
+
+```
+q2=3, u3=k=0, J_A=21, LC_actual=24,
+(a-1)+LC_actual+2q2+k-2J_A=-6.
+```
+
+J_A comprises two low units, four low-only cubics, and fifteen
+low-low-high cubics. This is a counterexample to the proposed
+scale/cardinality-free payment, not to Wilf: its down-set has 120
+cells, not m=5, and has many repeated residues. It is the smallest
+a in the stipulated a>=7 domain, and m=5 is the smallest scale
+in the full-cubic two-level exact-maximum family at a=7, checked
+in `validate.py`.
+The experimental scripts retain the full failing inputs and label
+their relaxed hypotheses.
+
+A second relaxation explains why the fixed arc and the high-cubic
+certificate alone do not prove the full result. Take the full cubic
+simplex with
+
+```
+a=12, m=455, h=317,
+four offsets 106 and eight offsets 257.
+```
+
+Now `|D|=m` and its actual maximum is
+`2136=4m+h-1`. Its counts are
+
+```
+q2=10, q3=68, u3=k=0, u4=364,
+LC_actual=130, WA=-156, p=8, H3=120,
+J_A=100, delta=105, D3=r_A=0.
+```
+
+The formal band expression would be WA+rho=-18; the actual P4
+slack, computed directly from the floors, is -104. They differ
+because the band identity uses residue completeness. This relaxed
+example has only a handful of distinct residues, and is not a
+numerical-semigroup or residue-complete example. Even taking all
+twelve weights distinct, with offsets 106..109 and 250..257,
+leaves the same band counts and direct P4 slack -104.
+
+HARC does exclude this profile: at H=257 one has J_H=104 and
+K=q3=68, so it would require `257<=68+104+1=173`. This failure
+is a reason for retaining the high-relative arcs in ETA. The
+example is not claimed to survive the complete F1–F3 reduction.
+
+Signed B3 packing immediately excludes either full cubic simplex
+as a residue-injective tile: it would require
+`m>=H_12=13(78+1)=1027`, rather than 455. Thus this is evidence
+for retaining residue packing in any further attack, not evidence
+for a Wilf counterexample. The naive intruder-only payment has been
+discontinued; OL is used only with its proved one-low hypothesis.
+
+There is an explicit packing supplement in the full-AA family.
+If r_A=0, write X for the number of cells involving outside
+directions, and retain k quartics. Cardinality gives
+`m=binom(a+3,3)-t_A+k+X`. Applying GW-24 LP to the A face gives
+
+```
+(3a+1)t_A>=4F-2k-2X.                                (PACK-A)
+```
+
+Indeed `2m>=2H_a-3(a+1)t_A` and
+`H_a=binom(a+3,3)+2F`. For a pure-A, no-quartic a=12 profile,
+PACK-A forces t_A>=31. If q2=10, u3=0 and J_A<=100 remain as
+in the displayed two-level phase, I-LOW receives at least 93
+through D3, more than its possible 39-unit intruder-payment
+deficit. This excludes that near-full scalar phase. PACK-A does not
+uniformly control the entire remaining family when a is unbounded
+and many cubic cells are missing.
+
+## 18. Continuation computations and adversarial searches
+
+All computation in this continuation ran on fejer in `~/wilf/p6`,
+with `nice`, no more than four single-core processes at once. Local
+work was reading, editing and copying. No commits were made.
+The code and archived outputs are under `t2/`.
+
+`p6_check.h` independently counts the arc intruders and high AAA
+cells on actual residue-complete inputs, and checks LP-low, HOT,
+HIGH, I-LOW, and OL whenever its one-low hypothesis applies. The
+old P5 checker runs as well. The semigroup tree independently
+constructs and checks its lexicographic factorization down-set.
+The final runs had zero assertion failures:
+
+| Check | Domain | Verified instances / tests |
+|---|---|---:|
+| Semigroup tree | genus<=28, 5,311,726 nodes including N | 642,239 primary semigroups |
+| General intruder/defect bound on that tree | a>=3 | 8,894 |
+| High-relative arcs on that tree | all upper A thresholds, a>=3 | 20,546 |
+| Exhaustive arbitrary down-sets | d=4, m=5..10, lifts 1..4 | 992,768 residue-bijective weight assignments; 42,237 primary |
+| General bound on those down-sets | a>=3 | 3,155 |
+| High-relative arcs on those down-sets | all upper A thresholds, a>=3 | 4,826 |
+| Targeted random semigroups | seed=202610194; 100,000 attempts; 120<=m<=3000 | 97,340 primary; 89,443 with a>=7 |
+| OL on the random semigroups | a>=6, exactly one low A unit | 11,046 |
+
+The random run found 302 low-unit instances with a>=7 and WA<0,
+with minimum WA=-126. None violated LOW+. All HOT/HIGH assertions
+and the general bound retaining D3 passed. The genus tree has only
+three one-low instances with a>=6, all at a=6; the random run is
+therefore useful evidence beyond the small-genus range.
+
+The min-closure experiment in `arc_minclosure.py` is a different
+kind of test: at fixed weights and scale it minimizes the proposed
+pure-A payment over **all** eligible down-sets by a maximum-flow
+reduction. Cells with negative coefficients have source edges,
+positive coefficients have sink edges, and every cell has an
+infinite-capacity edge to every immediate divisor; units are forced
+present. The residual source side recovers a minimizing down-set.
+It omits residue constraints deliberately to test the combinatorial
+payment lemma. On 2,987 one-low inputs with 6<=a<=19, seed
+202610192 and 3<=h<=m<=1000, it found no negative payment; the
+smallest value was 2. This verifies examples of OL and is not its
+proof. The unrestricted run found a negative payment after 22
+inputs; the smaller explicit construction in section 17 replaces
+that large random witness for review.
+
+`adversary.c` constructs actual semigroups
+`<m,base> union [3m+h,infinity)`, then computes their actual
+conductor rather than assuming that the forced endpoint is sharp.
+It recovers minimal generators, a lexicographic Apéry tile, and all
+counts used in the new inequalities. The generator flavors place
+low offsets below h/2 and high offsets near h-L, above h/2, near
+h/3..2h/3, or above 2h/3; up to forty B candidates are added. The
+search records negative WA faces and tests whether they violate
+LOW+. It is biased toward the proposed mechanisms, but does not
+guarantee a frontier instance.
+
+`tile_adversary.c` searches arbitrary residue-complete down-sets,
+which gives more freedom than semigroup closure. It builds an A
+face from present quadratic and I4 cubic cells, adds B directions
+and their eligible descendants while preserving all divisor and
+residue constraints, then fills unused residues with E units. The
+maximum residue h-1 is reserved for the E unit at `4m+h-1`, so
+the claimed primary regime is exact. The greedy mode optimizes the
+LOW deficit; the coverage mode allows adverse intermediate steps
+and prioritizes covering unused residues. The two-low mode forces
+at least two low A units. It saves the closest completed down-set
+as `tile_best.json` rather than only recording a count vector.
+
+`validate.py` reconstructs that saved complete down-set in ordinary
+coordinate tuples, checks downward closure and residue bijectivity
+without the C code, recomputes every floor in W, and checks the new
+certificates. It also independently checks the explicit relaxed
+counterexamples in section 17. `count_frontier.py` uses exact
+Macaulay integer growth, not condensed or floating approximations.
+
+The final multi-low completion run used seed 202610198, 10,000
+attempts, 100<=m<=1800, coverage mode, and at least two low units.
+It produced 41 initial negative-WA faces which were extended with
+B directions and completed. None violated LOW+. Its closest saved
+completion, [tile_best.json](t2/tile_best.json), has
+
+```
+m=717, h=278, a=7, b=35, c=0, e=35, alpha=2,
+q2=3, q3=25, u3=k=0, u4=81,
+WA=-20, W=18475, delta=74,
+J=17, J_A=7, H3=49, D3=9, T=9406.
+```
+
+Its LOW+ right side exceeds 3delta by 9,334: it is still far from
+the old frontier, despite the targeted construction. The independent
+validator gives HIGH lower bound 9,403 and I-LOW lower bound 11,802.
+Its five upper-unit thresholds give
+
+```
+(H,J_H,h-2H+2J_H)=
+(185,32,-28), (213,46,-56), (220,50,-62),
+(266,84,-86), (270,86,-90).
+```
+
+Thus ETA is -90 for this actual example. The saved file includes
+682 core cells including zero; the validator supplies 35 E units
+to give all 717 cells. All these cells are checked independently
+in ordinary coordinate tuples.
+
+The [continuation logs](t2/logs/) include final checks, explicit
+relaxation witnesses, earlier probe outputs, and SHA256SUMS of the
+executed sources. The principal final commands on fejer were:
+
+```sh
+cd ~/wilf/p6
+cp ../p5/p5_check.h .
+gcc -O2 p6_tree.c -o p6_tree
+gcc -O2 p6_scan.c -o p6_scan
+gcc -O2 adversary.c -o adversary
+gcc -O2 tile_adversary.c -o tile_adversary
+nice -n 10 ./p6_tree 28 > tree28_final.log
+nice -n 10 ./p6_scan 4 5 10 > scan4_final.log
+nice -n 10 ./adversary 202610194 100000 120 3000 > adversary_b40_final.log
+nice -n 10 ./tile_adversary 202610198 10000 100 1800 1 2 > tile_two_low.log
+nice -n 10 ~/mathenv/bin/python validate.py > validate_final.log
+nice -n 10 ~/mathenv/bin/python count_frontier.py > count_frontier.log
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 nice -n 10 ~/mathenv/bin/python \
+  arc_minclosure.py --one-low --amin 6 --trials 3000 > one_low_ge6.log
+```
+
+The source `p5_check.h` is copied unchanged from the T1 directory.
+The final tree and exhaustive run also assert the corrected
+high-arc support exclusions and MAC-minus on every deficient face.
+
+A final discriminating test, `full_relaxation.py`, varied the
+near-full two-level obstruction rather than expanding the actual
+semigroup boxes. It generated 10,000 full-cubic cardinality-correct
+profiles, 7<=a<=40, seed 202610199, with exact primary maximum,
+at least two low units in `[ceil(h/3),ceil(h/2))`, and upper units
+in `[ceil(h/2),Hmax]`. Of these, 4,519 had negative formal band
+slack. **None satisfied all the high-relative arc coverage tests.**
+This supports retaining the full high-arc family; it does not prove
+that those arcs suffice on arbitrary down-sets. The profiles in
+this experiment were explicitly relaxed and were not claimed to
+have distinct residues. The command was
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 nice -n 10 \
+  ~/mathenv/bin/python full_relaxation.py > full_relaxation.log
+```
+
+## 19. Strategic review and exact open task after this continuation
+
+Two distinct mechanisms advanced the task: local payment for arc
+intruders proved the one-low theorem, while short-residue
+augmentation supplied HIGH for general low populations. The
+proposed universal intruder payment failed and was replaced by a
+proved restricted lemma, rather than promoted from random checks.
+
+The full-primary claim remains unproved. The fixed arc and the
+high-cubic scalar certificate allow the relaxed full simplex in
+section 17; the high-relative arc then excludes it. Thus that
+example diagnoses a weakness of the fixed-arc route, rather than
+refuting the complete new arc family. A uniform payment for all
+multiple-low populations has not been proved. The tested actual
+examples have substantial outside-direction or shadow payment and
+did not reach LOW+'s remaining frontier. Expanding those same
+random boxes would not establish the missing assertion.
+
+The next discriminating mathematical task is a uniform choice of
+upper-core threshold H paying for its multiple-low intruders in
+F1, or a proof that such a failure is paid by HIGH. The last
+experiment favors this quantile-arc route over simply enlarging the
+fixed-arc LP. A packing supplement using shifted pair residues is
+still available: PACK-A succeeds in the near-full pure-A phase,
+but its current coefficient loses a factor of a as the missing
+cubic family grows. No assertion is made that all packing
+approaches or all proof routes have been exhausted.

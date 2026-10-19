@@ -1,0 +1,3 @@
+{"relaxation": "full cubic, two weight levels", "a": 12, "m": 455, "h": 317, "t": [106, 106, 106, 106, 257, 257, 257, 257, 257, 257, 257, 257], "ell": 128, "g": 1640, "actual_P4_slack": -104, "band_expression": -18, "distinct_residues": 10}
+{"false_unrestricted_payment": {"a": 7, "m": 7, "h": 6, "t": [2, 2, 4, 4, 4, 4, 4], "q2": 3, "u3": 0, "k": 0, "J": 19, "LC": 24, "slack": -2, "cardinality": 120, "residues": 7}}
+{"path": "tile_best.json", "m": 717, "h": 278, "a": 7, "b": 35, "c": 0, "e": 35, "alpha": 2, "W": 18475, "WA": -20, "q2": 3, "q3": 25, "u3": 0, "u4": 81, "k": 0, "delta": 74, "J": 17, "JA": 7, "hot": 49, "D3": 9, "T": 9406, "new_lower": 11802, "high_lower": 9403}

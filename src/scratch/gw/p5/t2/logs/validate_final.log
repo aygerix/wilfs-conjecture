@@ -1,0 +1,5 @@
+{"relaxation": "full cubic, two weight levels", "a": 12, "m": 455, "h": 317, "t": [106, 106, 106, 106, 257, 257, 257, 257, 257, 257, 257, 257], "ell": 128, "g": 1640, "actual_P4_slack": -104, "band_expression": -18, "distinct_residues": 10}
+{"relaxation": "same phase, distinct weights", "distinct_residues": 110, "P4_slack": -104}
+{"false_unrestricted_payment": {"a": 7, "m": 5, "h": 5, "t": [2, 2, 3, 3, 3, 3, 3], "q2": 3, "u3": 0, "k": 0, "J": 21, "LC": 24, "slack": -6, "cardinality": 120, "residues": 5}}
+Smallest scale in the a=7 full-cubic two-level exact-maximum family: m=5.
+{"path": "tile_best.json", "m": 717, "h": 278, "a": 7, "b": 35, "c": 0, "e": 35, "alpha": 2, "W": 18475, "WA": -20, "q2": 3, "q3": 25, "u3": 0, "u4": 81, "k": 0, "delta": 74, "J": 17, "JA": 7, "hot": 49, "D3": 9, "T": 9406, "eta": -90, "high_arcs": [[185, 32, -28], [213, 46, -56], [220, 50, -62], [266, 84, -86], [270, 86, -90]], "new_lower": 11802, "high_lower": 9403}

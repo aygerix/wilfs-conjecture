@@ -1,0 +1,6 @@
+closest m=1587 h=619 a=9 b=0 e=1385 WA=-48 W=100640 LOWdef=-97278 alpha=1 p=8 q2=1 q3=43 u4=148 J=7 JA=7 hot=127 newlower=99735 weights=1717,2068,2079,2084,2118,2153,2191,2195,2198
+closest m=883 h=350 a=8 b=0 e=731 WA=-23 W=45101 LOWdef=-43625 alpha=1 p=6 q2=2 q3=33 u4=108 J=3 JA=3 hot=81 newlower=44586 weights=1014,1064,1150,1152,1170,1171,1188,1216
+closest m=834 h=559 a=8 b=0 e=674 WA=-10 W=44749 LOWdef=-43070 alpha=1 p=4 q2=6 q3=30 u4=115 J=12 JA=12 hot=49 newlower=44474 weights=978,1128,1194,1202,1217,1219,1256,1288
+closest m=896 h=400 a=7 b=0 e=782 WA=-8 W=41152 LOWdef=-39354 alpha=1 p=4 q2=3 q3=25 u4=78 J=7 JA=7 hot=55 newlower=40652 weights=1002,1106,1161,1241,1266,1281,1293
+closest m=765 h=337 a=7 b=0 e=648 WA=-36 W=32792 LOWdef=-31543 alpha=1 p=6 q2=1 q3=27 u4=81 J=1 JA=1 hot=67 newlower=32408 weights=896,1009,1017,1037,1038,1082,1091
+seed=202610196 attempts=2000 valid_negative_A=25 optimized=25 old_frontier=0 new_frontier=0 closest_LOW_deficit=-31543 minWA=-64

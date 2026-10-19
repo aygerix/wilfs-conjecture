@@ -79,8 +79,8 @@
 - Wilf for every S whose Apéry set is quadratic (Ap ⊆ {0} ∪ P ∪ (P+P)), at every depth: Flat-MaxCL (2026-10-17, LEAN
   `wilf_of_apery_height_le_two`). GW-27 (2026-10-19) is a second proof in Kunz coordinates, not a new result. Hence Wilf
   whenever 3n_1 > c + m, without Spirito's conditions.
-- GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. P5b reports a one-low-unit extension
-  (2n_2 ≥ c − m); not yet verified by the lead.
+- GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. GW-26c (codex P5b, verified by the lead, E221):
+  the same when 2n_2 ≥ c − m (at most one low unit).
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -161,8 +161,10 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) Codex P5b is RUNNING (session 01a1525d-16ff-7fc2-a405-17a585c3ec31, log scratchpad codex/p5b_log.txt). Target: Wilf for
-    all 3m < c ≤ 4m (low units). It reports a proof for one low unit (2n_2 ≥ c − m). Verify step by step when it lands.
+(a) Codex P5c is RUNNING (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31, brief scratchpad codex/p5c_msg.md, log
+    codex/p5c_log.txt). Target: the multi-low case α ≥ 2, which would close Wilf for all 3m < c ≤ 4m. P5b's one-low
+    theorem is verified and recorded as GW-26c (Wilf for 3m < c ≤ 4m when 2n_2 ≥ c − m). Verify P5c step by step
+    when it lands.
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
     - Deficient cells (c_x < 0) are almost all top cells with residue ≤ μ, in every degree (E220).

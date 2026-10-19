@@ -1,0 +1,12 @@
+{"a": 7, "q_profiles": 3, "upper": {"alpha": 3, "q": 28, "q2_cap": 6, "rA": 0, "low_pair_slots": 6}}
+{"a": 8, "q_profiles": 4, "upper": {"alpha": 3, "q": 35, "q2_cap": 6, "rA": 1, "low_pair_slots": 7}}
+{"a": 9, "q_profiles": 6, "upper": {"alpha": 4, "q": 45, "q2_cap": 11, "rA": 0, "low_pair_slots": 11}}
+{"a": 10, "q_profiles": 11, "upper": {"alpha": 4, "q": 45, "q2_cap": 1, "rA": 10, "low_pair_slots": 11}}
+{"a": 12, "q_profiles": 15, "upper": {"alpha": 6, "q": 78, "q2_cap": 21, "rA": 0, "low_pair_slots": 21}}
+{"a": 15, "q_profiles": 26, "upper": {"alpha": 7, "q": 91, "q2_cap": 0, "rA": 29, "low_pair_slots": 29}}
+{"a": 20, "q_profiles": 53, "upper": {"alpha": 10, "q": 153, "q2_cap": 0, "rA": 57, "low_pair_slots": 57}}
+{"a": 30, "q_profiles": 142, "upper": {"alpha": 16, "q": 324, "q2_cap": 1, "rA": 141, "low_pair_slots": 142}}
+{"a": 50, "q_profiles": 428, "upper": {"alpha": 29, "q": 859, "q2_cap": 19, "rA": 416, "low_pair_slots": 435}}
+{"a": 100, "q_profiles": 1917, "upper": {"alpha": 61, "q": 3134, "q2_cap": 0, "rA": 1916, "low_pair_slots": 1916}}
+{"a": 200, "q_profiles": 8195, "upper": {"alpha": 127, "q": 11906, "q2_cap": 0, "rA": 8194, "low_pair_slots": 8194}}
+{"a": 500, "q_profiles": 53284, "upper": {"alpha": 326, "q": 71989, "q2_cap": 40, "rA": 53261, "low_pair_slots": 53301}}
