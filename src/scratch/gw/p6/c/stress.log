@@ -1,0 +1,4 @@
+F3 {"CR": -2, "FLAT_CR": -33, "P": [1, 4, 6, 9], "d": 6, "k": 4, "m": 16, "minHCprime": {"HCprime": 78, "OW": 0, "P_A_plus": 0, "S": 78, "sigma": 0}, "minS": {"HCprime": 78, "OW": 0, "P_A_plus": 0, "S": 78, "sigma": 0}, "p": 1, "q": 8, "s": 2, "t": 1}
+HYBRID_UNPAID {"CR": -12, "FLAT_CR": -83, "d": 13, "k": 5, "m": 31, "minHCprime": {"HCprime": 473, "OW": 1, "P_A_plus": 0, "S": 473, "sigma": 30}, "minS": {"HCprime": 473, "OW": 1, "P_A_plus": 0, "S": 473, "sigma": 30}, "p": 2, "q": 15, "s": 8, "t": 2}
+DIGITAL_FIRST_CR_FAILURE {"CR": -154440, "k": 33, "m": 1728, "maxTopPhase": 0, "minS": 5595480, "p": 363, "q": 363, "r": 11, "s": 0, "t": 1331}
+DIGITAL_RANGE 60 ALL_PASS

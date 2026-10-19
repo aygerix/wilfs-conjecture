@@ -547,9 +547,38 @@ m = 1 + d + q + t.
   - Preserved: F3, the smallest CR- and FLAT-CR-unpaid core with k ≥ 4, d ≥ 6: k = 4, m = 16, P = (1,4,6,9), all
     pairs except x₂x₃ and x₄², T = {x₁³} (CR = −2, FLAT-CR = −33, true min S = 78). F4: R(21) = −5 for k = 4,
     t = p = 2 (an intermediate table claim; the base is now explicit).
-- **Remaining family:** k ≥ 5, d ≥ 6, R(m) < 0 and FLAT-CR < 0, ε > ⌊3k²/40⌋, and (if all pairs are present) t ≥ 4,
-  ε > ⌊k²/9⌋, t > ⌊k²/16⌋ for k ≥ 19. Every retained complete face must satisfy ROW-DEF below the CR threshold.
-  Next lemma (codex): SINGLE-COVER / B-COVER (the weighted pair-container payment for incomplete successor rows).
+- **Codex P6c (2026-10-19; src/scratch/gw/p6/P6C_REPORT.md; every proof below re-derived by the lead, E258).**
+  Notation: δ_i = k+1−deg_Q(i) (so Σδ_i = 2e, e = Q_k − q), L_+ = Σ_i(s+δ_i)ρ_i + Σ_{N2}(d+2−ψ)r ≥ 0, W = [m−ρ_0, m).
+  - **WINDOW-ID (PROVED, exact).** With κ_y = 2K(y) − Σ_i y_iK(y−e_i) (CUBIC-LIFT gives mκ_y = Σ y_i r(y−e_i) −
+    2r(y) − ρ_0, so κ_y ≥ −2, and κ_y ≥ −1 outside W), b_y = κ_y + [r(y) ∈ W] ≥ −1, β = #{b_y = −1}:
+    HC′ = L_+ + m(O_rest + P_+ + gain − β), O_rest ≥ 0. Hence **WINDOW-LOSS: HC′ ≥ L_+ − mβ ≥ L_+ − mt** at every
+    phase, with no face or dimension hypothesis. A bad cubic costs at most one m.
+  - **CONE-PHASE (PROVED).** If every cubic contains x_i, then at the zero phase of x_i, O_W + B ≥ 0 and HC′ ≥ L_+.
+  - **One cubic (t = 1), all PROVED:** ONE-PAIR-PHASE (an N2 pair at residue 0 ⇒ HC′ ≥ L_+); ONE-DEFICIT
+    (O_W + B < 0 only if K(y) = −1, r(y) ∈ W, all N2 carries 0, O_W = 1, and then m ≥ 17; sharp family preserved);
+    **ONE-COVERED-ALL: MaxCL for every one-cubic tile whose missing-pair graph covers every core unit**, any k, any
+    spikes; ONE-PARTIAL-COVER (≤ 1 complete quadratic row when k ≥ 12); ONE-LARGE-DEFECT (k ≥ 36, e² ≥ k³).
+    With ONE-CUBIC (complete face), the one-cubic frontier is: incomplete face with a complete row, minimizing zero at
+    a unit outside the cubic, ρ_0 ≥ 8, 2ρ_0 < m; s ≤ 3 when k ≥ 15.
+  - **DEFECT-FLAT (PROVED):** FLAT-CR with the unit term improved by F_G = Σ_j j·δ_(j) ≥ 2e²/(k+1) − e.
+  - **CUBIC-DEGREE (PROVED; t and k unbounded):** 2 ≤ t ≤ k/2 and δ_i ≥ t for every core unit ⇒ HC′ ≥ 0 ⇒ MaxCL.
+  - **UPPER-ARC / UPPER-PAY (PROVED, phase-specific):** with G = {i : 2ρ_i ≥ m + ρ_0}, S ≥ L_+ + m(2g − d − 1 + η −
+    cost), cost = a_1 + 2a_0 + 4t_2 + 6t_1 + 8t_0.
+  - **DIGITAL-STAR (PROVED, every height):** mixed-radix products of stars satisfy MaxCL at every phase and every spike
+    lift (PREFIX coupling + column-top lemma). They have s = 0, unbounded k, t/U_k → 2/9 and CR < 0 for r ≥ 11. So
+    **a face-free packing bound m − |C| ≥ c·t²/k⁴ is FALSE**, and CR + packing cannot close the middle. Smallest zero-spike
+    core with k ≥ 5, d ≥ 6: k = d = 6, m = 12, P = (3,1,4,7,2,8), Q = {00,12,23,45}, T = {000} (min S = 173).
+  - **RECTANGLE-PACK (PROVED, every height, no face hypothesis):** for any set J of h directions and
+    F_J = {z : z + e_i ∈ D ∀ i ∈ J}, the labels φ(z) and φ(z) − φ(e_c) (c ∈ J ∖ supp z) are distinct, so
+    m ≥ Σ_{z∈F_J}(h + 1 − |supp z ∩ J|). Full-face B_H: m ≥ C(h+H−1,H−1) + h·C(h+H−2,H−1). Also CR_H, and the
+    all-height identity FLAT-WINDOW-H: S = HC′_H + m·#{maximal pairs with K = +1}.
+  - Preserved false: O_W + B ≥ 0 for one cubic (sharp family, smallest m = 17, k = 6, s = 1, σ = 9,
+    P = (9,10,12,13,14,15), Q = {00,01,11,02,03,04,05,44}, T = {444}: L_+ = 133, S = HC′ = 116).
+- **Remaining family:** k ≥ 5, d ≥ 6, R(m) < 0 and FLAT-CR < 0 (and DEFECT-FLAT < 0), ε > ⌊3k²/40⌋, outside
+  CUBIC-DEGREE, ONE-COVERED-ALL, THREE-CUBICS and the dense/few-cubic classes. Every retained complete face must satisfy
+  ROW-DEF below the CR threshold. Exact reduction: by WINDOW-ID, HC′ ≥ 0 ⟸ mβ ≤ L_+ + m(O_rest + P_+ + gain), i.e. the
+  β "bad cubics" must be charged injectively. Next lemma (codex): ONE-RELAY (t = 1: at a zero unit outside the cubic,
+  if O_W + B = −1 then L_+ + mP_A^+ ≥ m), then the injective relay charging of β in general.
 - **FALSE, preserved:** L-CR3 ("CR for every injective height-3 core with k + s ≥ 6"). Exhaustive k = 3: 9 realizable
   failures, e.g. all six pairs plus x³, m = 14, d = 6, p = (1,4,6). Maximal pairs defeat CR, so a CR proof needs the
   flat window for A2.
