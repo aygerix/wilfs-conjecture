@@ -2669,3 +2669,16 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     (≈ 0.3) suggests a lossy argument could suffice there, unlike the general all-d problem.
   - Candidate next lemma (NEAR-SIMPLEX-4): if Ω > (d+1)m/2 with d = 4, then the maximal labels are spread enough
     that max_σ discrepancy ≤ Ctot(m−1)/(2m). This is unproved.
+- **e = 5 obstruction anatomy** (E262 continued; src/scratch/e5/crude_fail_*.py).
+  - Among height ≥ 4 4-D tiles failing Ω-crude (m = 20–30), only ≈ 10% are no-wrap and ≈ 20% are WRAP-MAX. So
+    those classes do not cover e = 5.
+  - At m = 30–36 every crude-failing tile contains Δ_1 or Δ_2 and is "low and thin": maximal cells at levels 3–5,
+    level 2 nearly full, level 3 at 12–15 of 20, plus a few cells of degree 4–6. They are height-3-like cores plus
+    a few higher cells.
+  - Asymptotically, Minkowski + Rogers–Shephard on the difference body of Δ_h (vol = C(8,4)·h⁴/24) gives: a 4-D
+    tile containing Δ_h has |Δ_h| ≤ (16/70 + o(1))·m. So 4-D tiles with m large are far from simplices. Whether
+    Ω > 2.5m can persist for large m without a big simplex is the open structural question. If not, crude MaxCL
+    plus a finite check would prove e = 5.
+  - Proposed next e = 5 lemma (OMEGA-4): every 4-D lattice tile with m ≥ M0 has Ω ≤ 2.5m, or it is covered by an
+    explicit criterion. Test the trend of max Ω/m beyond m = 39 before investing (needs an enumeration or annealing
+    in 4-D).

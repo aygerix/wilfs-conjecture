@@ -577,3 +577,7 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
   (22 Apr 2026). Per the abstract, Wilf holds for semigroups with a generator equal to 2g+1 and for some semigroups
   derived from them. Only the abstract was read; exact hypotheses are UNREAD.
 - Marashdeh arXiv:2608.12531 and Delgado–Kumar–Marion arXiv:2501.04417 v3 were already READ (rows 12, 33, 35, 36).
+- e = 5 status check (2026-10-19 night): a web search ("Wilf conjecture embedding dimension 5") and GitHub
+  (`gh search repos`) found no e = 5 proof. kseth/wilf-e4 (last push 2026-10-05) is e = 4 only. Nearest results:
+  Sammartano 2ν ≥ m and m ≤ 8; Eliahou e ≥ m/3; Dhayni m − ν = 5 and m = 9 (a different invariant). So e = 5 is OPEN
+  as of this search.
