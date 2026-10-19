@@ -490,7 +490,14 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   2026 items. Found: Spirito 1710.09245 (#24; needs n_1 > (c+m)/3, e ≥ 10, m ≤ (8/25)e² + …); Eliahou–Fromentin
   1710.03623 (#30; the c = 4m B₃ near-miss family, W ≥ 9 proved for it); Eliahou divsets (#22; m | c, 4e ≥ m);
   preprints.org 202604.0551 (abstract only: m | c and e(3η+4) ≥ 4m with η = #S∩(m,2m); not read).
-- None states the GW-25 class result. Spirito's hypothesis n_1 > (c+m)/3 implies Ap = A_{≤2} (GW-25a with k = 2).
+- None states the GW-25 class result.
+  - CORRECTION (same day): GW-25 has r = 0, so it does not contain the Eliahou–Fromentin near-misses (#30), which
+    need r > 0.
+  - Bacher (v9, Oct 2026) numbering: the class result is Thm 3.5 (h-regular, collision-free, r ≥ ℓ ⇒ W ≥ 0). The
+    complementary case is Conj 2.6 (r < ℓ ⇒ E ≥ 0), which is open.
+  - Bacher's Table 1 has a "not h-regular" row, so Eliahou semigroups are not all h-regular.
+  - Bacher v9 reports Wilf proved for c ≤ 200 (a search with no conjectures) and a list conjecturally complete to
+    c ≤ 400 (104,569 Eliahou semigroups). Spirito's hypothesis n_1 > (c+m)/3 implies Ap = A_{≤2} (GW-25a with k = 2).
   For c ≤ 5m, the GW-25 hypothesis n_1 ≥ (c−m)/2 is the weaker one, but GW-25 also assumes pure A and 3m < c ≤ 4m.
   GW-25 covers e of every size, whereas Spirito's needs m ≤ (8/25)e² + …, which fails here since m can be ≈ e³/6.
 - The arc lemma GW-25a is elementary and may be folklore. No priority is claimed for it.

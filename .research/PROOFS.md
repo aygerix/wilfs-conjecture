@@ -1295,10 +1295,13 @@ Proof.
 6. Hence W ≥ 3a² + 4a − 1 − 6p = a − 1 + 6(C(a+1,2) − p). □
 - Checked (E216): 35,907 random S in the class (m ≤ 120, a = 3..15). The arc bound, the W bound and the identity
   had 0 failures, and the W bound is attained (min slack 0).
-- Relation to the literature: the class contains the Eliahou–Fromentin near-miss family (LITERATURE #30: c = 4m,
-  A ⊂ [(3m+1)/2, (5m−1)/3] a B₃-set, W₀ = −C(n,3)). For that family they prove W ≥ 9; GW-25 proves W ≥ e − 2 for
-  the whole class, uniformly in e. In P_4 terms (GW-21/24), GW-25 is the primary regime with b = c = e = 0 and
-  q₂ = 0, for every a, including missing AA pairs. It supersedes the a = 7 computer certificate (GW-24) and codex's
+- Relation to the literature: the hypothesis "every generator < c − 2m" excludes right generators (r = 0), so on
+  this class Eliahou's number equals W, and GW-25 says E = W ≥ e − 2.
+  - CORRECTION (2026-10-19): an earlier version of this entry claimed the class contains the Eliahou–Fromentin
+    near-miss family (LITERATURE #30). It does not. W₀ = −C(n,3) < 0 forces right generators (W = E when r = 0).
+  - Those near-misses lie in the GW-26 class: 2n_1 ≥ c − m with E directions allowed.
+  - In P_4 terms (GW-21/24), GW-25 is the primary regime with b = c = e = 0 and q₂ = 0, for every a, including
+    missing AA pairs. It supersedes the a = 7 computer certificate (GW-24) and codex's
   "uniform remaining claim" 4[C(a+2,3) − u₄] + ρ ≥ C(a+1,3).
 - Mechanism: packing (LP/SP/HP) uses residues only, and loses a factor ≈ a. The arc uses the integer location of
   τ = v − deg·m inside its band: a whole residue arc of length ≈ h/2 is reachable only by pairs. This forces

@@ -2005,7 +2005,9 @@ asserted on every test.
     and loses a factor ≈ a. The arc does not.
 - **Proved (GW-25).** Pure A (all generators < c − 2m), 2n_1 ≥ c − m, 3m < c ≤ 4m:
   W = 3a² + 4a + 1 + (a−2)p − 3u − h exactly. The arc gives h ≤ 2p + 2, so W ≥ a − 1 + 6(C(a+1,2) − p) ≥ e − 2.
-  - This holds for every e and contains the Eliahou–Fromentin c = 4m near-miss family (W₀ = −C(n,3)).
+  - This holds for every e. It has r = 0 right generators, so E = W there.
+  - CORRECTION: it does NOT contain the Eliahou–Fromentin near-misses, which need r > 0. Those are in the GW-26
+    class.
   - It replaces the a = 7 computer certificate and closes codex's "uniform remaining claim".
   - Sharp: there are semigroups with h = 2p + 2 (E216).
 - **Refined arc.** With outside directions (still 2n_1 ≥ c − m), the arc Y ⊂ [h, 3h/2) can only hold AA, B/C/E
