@@ -2810,6 +2810,16 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
     - β(v) ≤ m−1−s_v fails in 477,205 S (worst ⟨7,13,36,37⟩).
     - Σβ⁺ ≤ C2 without the m·Λ_top credit fails in 5,685 S (⟨7,11,38⟩).
     So the deep-top credit Λ_top is essential.
+  - Local flows, genus ≤ 24 (712,316 S; theta_flow.c):
+    - FALSE: each deficient v splits c − mΘ(v) equally among its lower covers v − n_a, and each cover pays from its own
+      surplus. Fails in 155,833 S; worst ⟨7,13,29,30⟩.
+    - Nearly true: for every v, the total positive surplus of its lower covers is ≥ its deficit, ignoring sharing.
+      Fails in only 72 S.
+    So the surplus sits next to the deficits but is shared. A proof needs a global routing (Hall-type) argument, which
+    brings back the global problem. Branch closed, with no new lemma.
+  - With c = qm − ρ and λ(0) = q: mW = (d+1)ρ + m·Σ_{v∈{0}∪P} Σ_b λ(top_b(v)) + Σ_{v∈D_A}(mΘ(v) − c), where D_A is the
+    set of decomposable Apéry elements. This is an exact Eliahou-type split. Comparing it with W_0 = |P∩L||L| − q|D_q| + ρ
+    is open.
 - **The n_1 dichotomy, general height (PROVED).** If M < (h+1)·n_1, then every Apéry element has a factorization of
   length ≤ h, so the grlex factorization tile has height ≤ h.
   - Hence MaxCL for tiles of height ≤ h ⇒ Wilf for every S with (h+1)·n_1 > c + m − 1.
