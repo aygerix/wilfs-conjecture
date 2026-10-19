@@ -465,3 +465,9 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
       - Almirón–Moyano-Fernández, arXiv:2104.03793 (Quaest. Math. 46 (2023)): Eliahou number, Wilf function,
         concentration.
     - Absence of hits is not proof of novelty.
+21. **Search for the PF-count criterion GW-18 (2026-10-19, night).** Query: Wilf + number of pseudo-Frobenius numbers
+    above the multiplicity / above km + embedding dimension (web, extended).
+    - Found: e > t ⇒ Wilf (FGH 1987, as quoted in BGOW 1903.04342); Sammartano 2e ≥ m; Dhayni (2 + 1/q)e ≥ m;
+      Marashdeh 2608.12531 (smallest t + 1 − e PF numbers, Prop 5.1).
+    - Not found: any criterion that counts only PF numbers ≥ 2m (GW-18) or ≥ m.
+    - Absence of hits is not proof of novelty.

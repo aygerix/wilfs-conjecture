@@ -1883,3 +1883,29 @@ asserted on every test.
 - NEXT: formulate P_3 as shape + carry graph. The data are κ(e_a + e_b) = k_a + k_b + ε_ab. Residue completeness
   constrains which carry patterns ε can occur together with the shape. Find the residue fact that kills the d = 2
   example and test whether it suffices.
+
+## 2026-10-19 (night) — each window rung gives a pseudo-Frobenius criterion; trapped cells; column reflection per cell
+
+- **Window rungs to Wilf criteria (PROOFS GW-PF, GW-18).**
+  - FGH reflection refined by depth: only PF numbers ≥ (j − 1)m serve the gaps at depth j.
+  - So P_i plus this reflection gives: Wilf holds whenever at most e − 1 PF numbers are ≥ im.
+  - With P_2 (proved), this is GW-18. It covers 99.86% of semigroups of genus ≤ 24; the classical t ≤ e − 1 covers
+    95.16%.
+  - With P_3, all but 32 semigroups of genus ≤ 24 would be covered. Each rung removes nearly all remaining
+    semigroups, but a uniform mechanism is still needed.
+- **Trapped-cell inequalities (PROOFS).**
+  - Routing the descent map away from the shallow cells reduces local P_i to TCI_i: i|Y^{(i)}| ≤ dΣ_{j<i} j|T^{(j)}| + β'_i.
+  - TCI_2 is Lemma Y. TCI_∞ is local GW, and the reduction is lossless in the limit.
+  - TCI_i holds on all data. Pair counting leaves only the trapped cells of support < i. The crude slot bound is false,
+    so the unused upper-cover slots are needed.
+- **Column reflection per cell (E196).**
+  - Since every column reflection R_a is a bijection, Σ_x[Σ_a λ(R_a x) − κ(x)] = dℓ − g exactly.
+  - Per cell this fails only at corners, by at most d − 1 (carries among the axis residues r(y_a e_a)).
+  - Inner cells carry slack ≈ Σ_a(M − v(top_a x))/m. This is the column form of B ≥ τ. What remains is to move the
+    inner slack to the corners near the top.
+- **Residue structure that matters: translation permutations.**
+  - Residue completeness makes each τ_a (residue + s_a) a permutation of D. It links the a-columns into cycles: the top
+    of each column goes to the bottom of the next, and the drops μ sum to n_a.
+  - The 2-D proof (three-distance theorem) is this cycle structure. P_3 needs some consequence of it; residues are
+    necessary there (E191).
+- Delegated: codex P3 task (prove P_3 / LP_3 / TCI_3; brief in session scratchpad).

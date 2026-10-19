@@ -1046,6 +1046,36 @@ and conductor c:
 - Literature (item 20): no statement of the window inequality was found. Not claimed new until checked against Kaplan's
   paper and its citations.
 
+**Lemma GW-PF (per-depth FGH with pseudo-Frobenius numbers; elementary).** Let S be a numerical semigroup with
+multiplicity m, Kunz coordinates κ_r and λ_r = #{elements of class r below c}. Put U_j = {r : κ_r ≥ j} and
+L_j = {r : λ_r ≥ j}. Then for every j ≥ 1:
+
+    |U_j| ≤ #{f ∈ PF(S) : f ≥ (j − 1)m} · |L_j|.
+
+- Proof:
+  - Let r ∈ U_j, with Apéry element w_r, and z = w_r − jm, a gap.
+  - Choose w_f maximal in (Ap(S, m), ≤_S) with w_r ≤_S w_f. Then f = w_f − m ∈ PF and w_f ≥ w_r > jm.
+  - s := f − z = (w_f − w_r) + (j − 1)m. Here w_f − w_r ∈ Ap(S, m), since (w_f − w_r) − m ∈ S would give w_f − m ∈ S.
+    So s is the j-th element of its class, and s ≤ f < c. Hence class(s) ∈ L_j.
+  - For fixed f the map r ↦ class(w_f − w_r) is injective. □
+- This is FGH's g ≤ tℓ refined by depth: only PF numbers ≥ (j − 1)m serve depth j.
+- Check: 0 violations on all 712,373 semigroups of genus ≤ 24 (E195).
+
+**Corollary GW-18 (a new sufficient condition for Wilf).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 2m,
+then S satisfies Wilf's conjecture.
+- Proof: g = Σ_j|U_j| ≤ (e−1)(|L_1| + |L_2|) + Σ_{j≥3} #{f ≥ (j−1)m}·|L_j| ≤ (e−1)Σ_j|L_j| = (e−1)ℓ. The first two
+  depths use GW-17. The rest use GW-PF with #{f ≥ (j−1)m} ≤ #{f ≥ 2m} ≤ e − 1. And g ≤ (e−1)ℓ is Wilf. □
+- Likewise (from GW-14): Wilf holds if at most e − 1 PF numbers are ≥ m.
+- In general: once P_i is proved, Wilf holds whenever at most e − 1 PF numbers are ≥ im.
+- Coverage (E195), genus ≤ 24:
+  - classical t ≤ e − 1: 95.16%;
+  - #PF ≥ m ≤ e − 1: 97.16%;
+  - **GW-18: 99.86%**;
+  - with P_3 (conjectural): all but 32 of 712,373.
+- Literature (2026-10-19): the known statement is e > t ⇒ Wilf (FGH). Marashdeh's reduction (2608.12531, Prop 5.1)
+  involves the smallest t + 1 − e PF numbers and is a different mechanism. No statement of GW-18 was found. Novelty
+  is UNVERIFIED beyond this search.
+
 **Local form and trapped cells (CONJECTURES, with the reduction PROVED).** Multiplicity form throughout.
 - Local heights: h(w) = max{v(u) : w + u ∈ D} and λ_h(w) = ⌊h(w)/m⌋ ≤ λ(w).
 - LP_i: Σ_x min(i, κ(x)) ≤ d·Σ_w min(i, λ_h(w)). LP_i implies P_i.
