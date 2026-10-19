@@ -2500,3 +2500,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - The HCR minimizers there are height-4 near-simplices (min HCR 1.108 at m = 30).
   - So e = 5 does not reduce to P6. Its hard tiles are near-simplices of every height, which is exactly CR's failure
     shape.
+- **Flat window on maximal pairs only: the bound HC′ (PROVED identity; conjecture HC′ ≥ 0).**
+  - For a height-≤3 tile and any phase, with O_W the number of cells in the top window [m−ρ_0, m) other than maximal
+    pairs z = a+b of carry −1 (ρ_a + ρ_b < ρ_0), and P_A^+ the number of maximal pairs of carry +1:
+        S = HC′ + m·P_A^+,
+        HC′ := Σ_{a non-max}(d+1−adeg a)ρ_a + (d+1)Σ_{N2} r − 2Σ_T r − (p+t)ρ_0 + m·O_W
+             = L_+ + m[O_W + 2Σ_T K − Σ_{N2}(ψ−1)K].
+  - Proof: on A2, r = ρ_a + ρ_b − ρ_0 − mK with K ∈ {−1,0,1}. The carry −1 pairs lie in the window, which has
+    exactly ρ_0 cells, so B_A = ρ_0 − O_W. Also d + 1 + |A2| − m = −(p+t). The second form follows from CUBIC-LIFT and
+    from r(z) = ρ_a + ρ_b − ρ_0 − mK on N2.
+  - So HC′ ≥ 0 is MaxCL with the positive maximal-pair carries dropped, and maximal pairs enter only through adeg and
+    window occupancy. Flat tiles: HC′ = Σ(d+1−adeg)ρ_a + mO_W ≥ 0 (this is Flat-MaxCL).
+  - Data (E254): HC′ ≥ 0 at every phase of 1,042 random, core+spike and near-B_3 height-≤3 tiles. It equals S at
+    the minimizing phase of E47 (90), ⟨16,17,20,21⟩ (30), ⟨14,16,17,19⟩ (64) and the −3 Tile-CL tile (2,428).
+  - On every CR-failing k = 3, 4 case at every phase: HC′ ≥ 29 / 36. The cruder HC (O_W dropped, B_A ≤ ρ_0) is
+    negative at only 12 / 3,400 and 4 / 524,072 phases.
+  - Remaining negative terms: cubics of carry −1 outside the window (cost 2m), or inside it (net m); and N2 pairs of
+    carry +1 (cost (ψ−1)m, but then ρ_a + ρ_b ≥ m + ρ_0, so their units are heavy).
