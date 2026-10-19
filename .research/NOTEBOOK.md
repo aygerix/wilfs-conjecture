@@ -2202,3 +2202,8 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     g ≥ 4 in a sparse set gives H − NS = 9C(g,2) > 13.5(g−1). So LSP* is a genuine packing statement that needs the
     density s < H/3. For exact B_3 sets, Green's bound (s ≳ n³/3.5) is stronger than SP (s ≳ n³/6). This suggests
     that a robust (few-collision) Green-type bound would give LSP* with room for large n.
+- **Scaling for a < 2α+1** (κ ∈ [1,2)): the H0-arc bound B ≈ α³[1/3 + (κ−2)/2] is negative for κ ≤ 4/3. For
+  4/3 < κ < 2, JOINT-SP with small defect still contradicts the fixed-arc failure ((1+ρ)³/2 vs 4.5[1/3 + (κ−2)/2]).
+  The α lows alone lie in [L, h/2), of length δ/2, so δ ≳ α³/3 by LSP; this matches 2c0 ≈ α³/3 at leading order.
+  **Heuristic conclusion: the whole primary regime 3m < c ≤ 4m reduces, at leading order, to an LSP-type lemma with
+  a bounded defect constant (LSP*), plus exact lower-order bookkeeping.**
