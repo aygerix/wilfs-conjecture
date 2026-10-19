@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, midday; GW-26g a ≤ 18 verified ⇒ Wilf for e ≤ 19 and c ≤ 4m; LARGE-A′ a ≥ 10Q_α; codex P5f running)
+# STATE.md — handoff (updated 2026-10-19, afternoon; GW-26g a ≤ 18, GW-26h α ≤ 4, LARGE-A′ a ≥ 10Q_α; codex P5g (ambient packing) running)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -86,8 +86,15 @@
   T2-SMALL16/17/18, verified by the lead E237): a ≤ 18 for every α, hence **Wilf for every S with e ≤ 19 and c ≤ 4m**,
   and (with Eliahou's 3e ≥ m) for c ≤ 4m and m ≤ 60. Also U-SMALL, U-B0, the B-free strip for α ≤ 14, and
   **LARGE-A′ (lead, 2026-10-19): a ≥ 10·C(α+1,2) ⇒ W ≥ 0** (codex had 16·C(α+1,2)²).
-  Remaining in 3m < c ≤ 4m: α ≥ 4, 19 ≤ a < 10·C(α+1,2). It is finite for each α (19 ≤ a ≤ 99 at α = 4), but α is
-  unbounded.
+  **GW-26h (lead): α = 4 is closed for every a**, so the primary regime is proved whenever α ≤ 4 (Wilf for
+  3m < c ≤ 4m with at most four minimal generators in (m, (c−m)/2)).
+  Remaining in 3m < c ≤ 4m: α ≥ 5, 19 ≤ a < 10·C(α+1,2). It is finite for each α, but α is unbounded.
+  - Codex P5f (§§52–59) showed the count relaxation has NEGATIVE leading profiles for unbounded α. These are relaxed
+    profiles, not semigroups.
+    - BASE: a = 3α, ε = α³/24. It is killed by P(C) with constant C, but not by LSP.
+    - The matching perturbation needs MATCH-P.
+    - The B-loop family (b ≍ α^{3/2}) needs retained-pair packing.
+  - So uniform closure needs ambient packing lemmas, not more enumeration.
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -177,19 +184,19 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
-(a) Codex P5f (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31; message scratchpad codex/p5f_msg.md; log
-    codex/p5f_log.txt; report P5_REPORT.md §52 onward). Task: make the primary regime uniform in α. This means a
-    scaling-limit analysis (a, α → ∞ with θ = a/α fixed) of the binding inequalities, to extract an explicit a_0 beyond
-    which W ≥ 0 analytically, so that P_4 becomes ONE finite certificate (a < a_0), or to exhibit the asymptotic
-    obstruction. Codex is NOT to keep raising a by one.
-    - P5e review DONE: T2-SMALL16/17 reproduced (E237); E-REPAIR, LOCAL-COVER, PAIR-COVER, LINKED-DEF and MIX-PACK
-      checked on paper; LARGE-A, P47-B0 and the B-free strip checked (E238). Recorded as GW-26g.
-    - T2-SMALL18 is confirmed by the lead (E237, 0 survivors), and GW-26g is upgraded to a ≤ 18.
-    - Lead runs a = 19, 20 (MLPEH) are going: fejer ~/wilf/lead23/t2h_19.log and t2h_20.log.
-    - LARGE-A′ (E240) is to be sent to codex when its turn ends. The open strip is now a < 10Q_α, i.e. a/α < 5α.
-    - P(C) evidence (E239): the annealing maximum of (H−(3s−2))/ex is ≈ 5.2 for n ≤ 36, so P(47) has a huge margin.
-      A proof (robust B_3/Green-type hole bound plus heavy-fibre control) is a lead-side target.
-    Next codex task after P5: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
+(a) Codex P5g is RUNNING (session 01a1525d-16ff-7fc2-a405-17a585c3ec31; message scratchpad codex/p5g_msg.md; log
+    codex/p5g_log.txt; report P5_REPORT §60 onward). Task: ambient packing. In order:
+    - P(C) with O(n²) error (any explicit C < 130 kills BASE), then the zero-error P(C†) for n ≥ 33;
+    - MATCH-P (§59) and the B-loop variant;
+    - what each closes;
+    - or explicit counterexample families.
+    Lead data sent with it: C*(9) = 107/19, annealing ≈ 5.2 for n ≤ 48, the end-loaded t^{1/3} extremal structure.
+(a′) Lead, per-α closure (fejer ~/wilf/lead23; lead_t2small_g with flags MLPEHG and α restriction).
+    - α = 4 is done (GW-26h).
+    - α = 5..8 are next, over a ∈ [19, a0_coupled) with a0_coupled = 62, 84, 109, ~135. Above a0_coupled, the coupled
+      check (coupled_large_a.py, exact per (α, a)) closes [a0, 10R0), and LARGE-A′ closes a ≥ 10R0.
+    - The slow part is small a < 1 + 2α + R0, where the GLOC b coefficient can be negative and the early cap does not
+      apply. α = 5 timings are in al5_time.log.
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.
     - Deficient cells (c_x < 0) are almost all top cells with residue ≤ μ, in every degree (E220).

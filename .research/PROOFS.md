@@ -1545,6 +1545,21 @@ lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 18 then 
   re-implementation is independent code written from the report text, and it agrees with codex on every count column
   at a = 14..17.
 
+**Theorem GW-26h (α = 4, every a; PROVED 2026-10-19 by the lead, computer-assisted).** In the primary regime
+4m ≤ M < 5m, if α = 4 then W ≥ 0. With GW-26/26c/26d/26e/26f, the primary regime is therefore proved whenever α ≤ 4.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most four minimal generators n satisfy m < 2n − m < c − 2m,
+  i.e. at most four lie in (m, (c − m)/2).
+- Proof, in three ranges.
+  - a ≤ 18 is GW-26g.
+  - a ≥ 100 = 10·C(5,2) is LARGE-A′.
+  - 19 ≤ a ≤ 99 is the lead's certificate (E237 code, flags MLPEHG) restricted to α = 4, run for every a: 0 survivors
+    (E241). It is the same exhaustive §39 necessary domain with all tests, restricted to α = 4. No domain assertion
+    (q + q2 + 2 ≥ 2(α+E)) failed.
+- Mechanism: for every a ∈ [19, 99] each profile dies at the global SP/PSP-versus-cardinality comparison or at an empty
+  DELTA-UP/LOW-FIN δ range. No window, joint, LINK or MIX-PACK test is needed there.
+- The early GLOC cap (flag G) used to make this fast is a necessary condition (§24). It leaves every profile count
+  unchanged where both versions were run (a = 15, 16).
+
 **Theorem LARGE-A′ (sharpened LARGE-A; PROVED 2026-10-19 by the lead, paper plus a small exact check).** Under the
 primary hypotheses, if α ≥ 4 and a ≥ 10·C(α+1,2), then W ≥ 0, for arbitrary b, c, e, r, l, ε and high exceptions.
 Codex's LARGE-A (P5_REPORT §46) needs a ≥ 16·C(α+1,2)². The new threshold is linear in R0 := C(α+1,2) ≈ α²/2.
@@ -1925,6 +1940,7 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - whenever a ≤ 13, for every low population (GW-26f; semigroups: at most 13 minimal generators in (m, c − 2m));
   - whenever a ≤ 18, for every low population (GW-26g; semigroups: at most 18 minimal generators in (m, c − 2m));
   - whenever α ≥ 4 and a ≥ 10·C(α+1,2) (LARGE-A′);
+  - whenever α ≤ 4, for every a (GW-26h);
   - whenever LOW+ holds (GW-26b).
   - Semigroup corollary of GW-26g (superseding GW-26f's e ≤ 14): **Wilf holds for every S with e ≤ 19 and c ≤ 4m**,
     and, with Eliahou's 3e ≥ m theorem, for every S with c ≤ 4m and m ≤ 60.
