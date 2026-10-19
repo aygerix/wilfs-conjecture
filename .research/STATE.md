@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, morning; GW-26f a ≤ 13 verified ⇒ Wilf for e ≤ 14 and c ≤ 4m; codex P5e running)
+# STATE.md — handoff (updated 2026-10-19, late morning; GW-26g a ≤ 17 verified ⇒ Wilf for e ≤ 18 and c ≤ 4m; codex P5f next)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -82,8 +82,11 @@
 - GW-26 (codex P5, verified): Wilf for 3m < c ≤ 4m when 2n_1 ≥ c − m. GW-26c (codex P5b, verified by the lead, E221):
   the same when 2n_2 ≥ c − m (at most one low unit). GW-26d (codex P5c, verified by the lead, E227): the same when
   2n_3 ≥ c − m (at most two low units). GW-26e (codex P5c + lead refinements, E228–E232): exactly three low units
-  and a ≥ 13. GW-26f (codex P5d T2-SMALL, verified by the lead E234–E235): a ≤ 13 for every α, hence **Wilf for every S with
-  e ≤ 14 and c ≤ 4m**. Also U-SMALL, U-B0 (paper-checked). Remaining in 3m < c ≤ 4m: FRONTIER-41 (a ≥ 14, α ≥ 4).
+  and a ≥ 13. GW-26f (codex P5d T2-SMALL, verified by the lead E234–E235): a ≤ 13 for every α. GW-26g (codex P5e
+  T2-SMALL16/17, verified by the lead E237): a ≤ 17 for every α, hence **Wilf for every S with e ≤ 18 and c ≤ 4m**, and
+  (with Eliahou's 3e ≥ m) for c ≤ 4m and m ≤ 57. Also U-SMALL, U-B0, LARGE-A (a ≥ 16Q_α² ⇒ W ≥ 0), and the B-free
+  strip for α ≤ 14 (paper/certificate-checked). T2-SMALL18 is claimed by codex; the lead's a = 18 run is pending.
+  Remaining in 3m < c ≤ 4m: α ≥ 4, 18 ≤ a < 16Q_α² (finite for each α; α unbounded).
 
 ## Refuted on the way (preserved in NOTEBOOK/EXPERIMENTS/examples)
 - Ω = 2Tri + qO ≤ C − 2.
@@ -173,16 +176,17 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
-(a) Codex P5e is RUNNING (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31; brief scratchpad codex/p5e_msg.md; log
-    codex/p5e_log.txt; report P5_REPORT.md §42 onward). Task: the conditional theorem (which ambient packing statement
-    P closes FRONTIER-41), a proof of P, or a shrinking of FRONTIER-41. Mid-turn data: its frontier certificate
-    extended to a = 14..18 still has survivors at a = 18 (175,177 δ-tuples), so finite extension alone will not close it.
-    - P5d (§§31–41) review DONE: T2-SMALL reproduced (E235; MIX-GAP needed at a = 13), U-SMALL/U-B0 checked on paper,
-      general-α lemmas checked on 225k semigroups (E234). Recorded as GW-26f.
-    - To send when P5e's turn ends: the review result; the true packing constants C*(n) ≤ 5.36 for n ≤ 8 (E236; n = 9
-      pending, fejer ~/wilf/lead23/ratio_n9_c5.log) and SP12 exhaustive n ≤ 9 (E233; n = 10 pending, sp12_n10.log);
-      the domain remark on q + q2 + 2 ≥ 2(α+E) (needs W_A < 0; proof in GW-26f).
-    - Lead runs still going on fejer: lead_t5_check_v4 seeds 41, 42 (t5v4_*.log), append to E234.
+(a) Codex P5f (same session 01a1525d-16ff-7fc2-a405-17a585c3ec31; message scratchpad codex/p5f_msg.md; log
+    codex/p5f_log.txt; report P5_REPORT.md §52 onward). Task: make the primary regime uniform in α. This means a
+    scaling-limit analysis (a, α → ∞ with θ = a/α fixed) of the binding inequalities, to extract an explicit a_0 beyond
+    which W ≥ 0 analytically, so that P_4 becomes ONE finite certificate (a < a_0), or to exhibit the asymptotic
+    obstruction. Codex is NOT to keep raising a by one.
+    - P5e review DONE: T2-SMALL16/17 reproduced (E237); E-REPAIR, LOCAL-COVER, PAIR-COVER, LINKED-DEF and MIX-PACK
+      checked on paper; LARGE-A, P47-B0 and the B-free strip checked (E238). Recorded as GW-26g.
+    - Pending lead run: fejer ~/wilf/lead23/t2h_18.log (a = 18, flags MLPEH, full domain), to confirm T2-SMALL18. If it
+      gives 0, upgrade GW-26g to a ≤ 18 (e ≤ 19, m ≤ 60).
+    - P(C) evidence (E239): the annealing maximum of (H−(3s−2))/ex is ≈ 5.2 for n ≤ 36, so P(47) has a huge margin.
+      A proof (robust B_3/Green-type hole bound plus heavy-fibre control) is a lead-side target.
     Next codex task after P5: P6 (height ≤ 3), brief scratchpad codex/p6_brief_draft.md (now with CP as Route 2).
 (b) Lead, G-ID line (PROOFS GW-27 and NOTEBOOK 2026-10-19 midday):
     - Exact cell identity W = Σ λφ + Σ x_aβ_{x,a} − Σ γ for every residue-complete down-set.

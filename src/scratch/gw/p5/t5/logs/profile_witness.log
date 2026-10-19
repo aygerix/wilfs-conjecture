@@ -1,0 +1,11 @@
+{'kind': 'relaxed count vector, NOT an actual residue-complete instance', 'a': 17, 'alpha': 7, 'r': 4, 'n0': 28, 'l': 0, 't': 80, 'eps': 18, 'c0': 84, 'beta': 0, 'R': 10, 'b': 0, 'delta': 247, 'm': 1056, 'WA': -48, 'D3': 164, 'kcover': 4, 'legal_defect': 12, 'global_SP': 1054, 'joint_H': 1027, 'joint_capacity': 1111, 'delta_bounds': [247, 665], 'fixed_payment': -2}
+{'matching_forced': {'r': 4, 't': 80, 'm': 1056}, 'smaller_cover_lower_bounds': [1897, 1554, 1253]}
+{'matching_forced': {'r': 5, 't': 85, 'm': 1050}, 'smaller_cover_lower_bounds': [2089, 1734, 1433, 1210]}
+{'matching_forced': {'r': 5, 't': 86, 'm': 1049}, 'smaller_cover_lower_bounds': [2065, 1711, 1410, 1191]}
+{'hot_window': {'r': 4, 't': 80, 'm': 1056}, 'core_min': 126, 'h_min': 1009, 'delta': [247, 283]}
+{'hot_window': {'r': 5, 't': 85, 'm': 1050}, 'core_min': 129, 'h_min': 1009, 'delta': [246, 277]}
+{'hot_window': {'r': 5, 't': 86, 'm': 1049}, 'core_min': 128, 'h_min': 1012, 'delta': [247, 276]}
+{'E_REPAIR_exclusion': {'r': 4, 't': 80, 'c0': 84}, 'delta_lower': 247, 'delta_upper': 201}
+{'E_REPAIR_exclusion': {'r': 5, 't': 85, 'c0': 84}, 'delta_lower': 246, 'delta_upper': 205}
+{'E_REPAIR_exclusion': {'r': 5, 't': 86, 'c0': 83}, 'delta_lower': 247, 'delta_upper': 200}
+{'E_REPAIR_exclusion': {'r': 5, 't': 86, 'c0': 84}, 'delta_lower': 247, 'delta_upper': 202}

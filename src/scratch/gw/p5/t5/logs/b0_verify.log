@@ -1,0 +1,12 @@
+{'alpha': 4, 'endpoint_intervals': 431, 'survivors': 0}
+{'alpha': 5, 'endpoint_intervals': 687, 'survivors': 0}
+{'alpha': 6, 'endpoint_intervals': 1043, 'survivors': 0}
+{'alpha': 7, 'endpoint_intervals': 1538, 'survivors': 0}
+{'alpha': 8, 'endpoint_intervals': 2207, 'survivors': 0}
+{'alpha': 9, 'endpoint_intervals': 3096, 'survivors': 0}
+{'alpha': 10, 'endpoint_intervals': 4252, 'survivors': 0}
+{'alpha': 11, 'endpoint_intervals': 5733, 'survivors': 0}
+{'alpha': 12, 'endpoint_intervals': 7602, 'survivors': 0}
+{'alpha': 13, 'endpoint_intervals': 9926, 'survivors': 0}
+{'alpha': 14, 'endpoint_intervals': 12774, 'survivors': 0}
+{'total': 49289}

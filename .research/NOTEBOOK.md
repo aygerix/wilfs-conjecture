@@ -2268,3 +2268,28 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   ψ(x) ≤ d + 2 on pairs and none on units. But its carry κ(y) ∈ {−2,…,2} is not controlled separately: doubling loses
   the half-residue information. 1,428 random height-3 tiles: MaxCL 0 failures, normalized slack ≥ 0.25 (E-run on
   fejer ~/wilf/h3). This adds nothing beyond E71; kept as P6 material.
+- **LSP* as a fiber-distribution statement (exact reduction of the per-fiber proof).** Write Σ for the signed set
+  (normal labels b_p + b_q − b_x, x ∉ {p,q}, plus units), HOLES = 3s − 2 − |Σ|, and let fibers of 3B have sizes g_f.
+  - A fiber is g pairwise disjoint triples with one common sum; Sidon forces disjointness.
+  - It loses at most Σ_{i<j} t_i t_j ≤ 9C(g,2) labels and contributes g − 1 to ex. Per unit of ex this is 9, 13.5, 18
+    for g = 2, 3, 4.
+  - So SP_C ⇐ Σ_f [Σ_{i<j} t_i t_j − C(g_f − 1)]⁺ ≤ HOLES + Σ_f [C(g_f − 1) − Σ_{i<j} t_i t_j]⁺.
+  - For C = 13.5 the only positive terms come from fibers with g ≥ 4. A sufficient form is
+    4.5·Σ_{g_f ≥ 4}(g_f − 1)(g_f − 3) ≤ HOLES + 4.5·N_2, where N_2 is the number of size-2 fibers.
+  - Heavy fibers force no extra collisions: shifted triples (T_i∖y) ∪ w collide only via w − y = w′ − y′, which Sidon
+    excludes. So the payment must come from HOLES, i.e. from the interval.
+  - Heuristic for large n: with s ≈ κn³ and B spread out, labels within y of either end of [−(s−1), 2(s−1)] number
+    ≈ 108y³/n⁶ ≪ y for y ≪ n³/10. So HOLES ≳ c n³. Concentrating B near the ends is limited by the Sidon property.
+    A proof needs an explicit HOLES lower bound valid for every Sidon set, plus control of Σ_heavy (g−1)(g−3), which
+    is not ≤ const·ex in general.
+- **Where P(C) can fail (exact, elementary).** Let B be pair-distinct, |B| = n, in s consecutive integers, with triple
+  excess ex. Then each of the following gives P(C), i.e. 3s − 2 ≥ H(n) − C·ex:
+  - LSP: λ_n ≤ C. For C = 47 this covers n ≤ 32.
+  - LINK-Q: 3s − 2 ≥ H − 9C(ex+1,2), which suffices when ex ≤ 2C/9 − 1. For C = 47: ex ≤ 9.
+  - The 3B count: 3s − 2 ≥ C(n+2,3) − ex, which suffices when ex ≥ (H − C(n+2,3))/(C − 1), roughly n³/(3(C−1)).
+  - Per-fiber accounting: loss ≤ Σ_f (9g_f/2)(g_f − 1). So P(C) holds unless 3B has a fiber of size g > 2C/9, i.e.
+    more than 2C/9 pairwise disjoint triples with one common sum.
+  - For C = 47 that means a fiber of at least 11 disjoint triples. Such a fiber must be paid by holes of the signed
+    set: about (g−1)(4.5g − 47) of them per fiber.
+  - So P(47) is a statement about very heavy triple fibers in Sidon sets. Codex's P47-B0 makes exactly this the open
+    part of the B-free full-pair branch for α ≥ 15.

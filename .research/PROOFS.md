@@ -1463,6 +1463,8 @@ re-implementation of the certificate (E235), instance checks of every lemma it u
 check of U-SMALL/U-B0 (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 13 then W ≥ 0, for every α, b, c, e.
 - Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most 13 minimal generators lie in (m, c − 2m). Since
   a ≤ d = e − 1, **Wilf holds for every S with e ≤ 14 and c ≤ 4m** (with GW-19, or Eliahou, for c ≤ 3m).
+- Corollary (with an external input): **Wilf holds for every S with c ≤ 4m and m ≤ 45.** If e ≤ 14 this is the above;
+  if e ≥ 15 then 3e ≥ 45 ≥ m, and Wilf follows from Eliahou's theorem for 3e ≥ m (LITERATURE; CITED, not re-proved).
 - Cases: a ≤ 6 is GW-24; α ≤ 2 is GW-26/26c/26d; 7 ≤ a ≤ 13 with α ≥ 3 is a finite count certificate over
   (a, α, r, n0, l; t, u0, u1; c0; β ∈ {0, β_max}; R, b; δ), cut by:
   - W̄_A + Ĥ ≤ −1 (HOT-ALL; Ĥ = H_cold of COLD-HIGH if β ≥ 1, else 0), with quartic allowances
@@ -1488,6 +1490,56 @@ check of U-SMALL/U-B0 (below). Statement: in the primary regime 4m ≤ M < 5m, i
 - Caveats: the certificate is over relaxed count profiles (necessary conditions), re-implemented independently. The
   MIX-GAP budget containment and completion accounting are paper lemmas of codex, checked on actual semigroups (E234),
   not re-derived line by line by the lead.
+
+**Theorem GW-26g (a ≤ 17, every low population; PROVED 2026-10-19, computer-assisted).** Sources: codex P5e,
+src/scratch/gw/p5/P5_REPORT.md §§42–50 (T2-SMALL16, T2-SMALL17), on top of GW-26f. Verification by the lead: an
+independent C re-implementation of the whole certificate from the report text (E237), and a paper check of every new
+lemma (below). Statement: in the primary regime 4m ≤ M < 5m, if a ≤ 17 then W ≥ 0, for every α, b, c, e.
+- Semigroup form: Wilf holds whenever 3m < c ≤ 4m and at most 17 minimal generators lie in (m, c − 2m). Hence **Wilf
+  holds for every S with e ≤ 18 and c ≤ 4m**.
+- Corollary (with an external input): **Wilf holds for every S with c ≤ 4m and m ≤ 57.** If e ≤ 18 this is the above;
+  if e ≥ 19 then 3e ≥ 57 ≥ m, and Eliahou's 3e ≥ m theorem applies (LITERATURE; CITED, not re-proved).
+- New lemmas used, each checked on paper by the lead:
+  - PAIR-COVER (§43). For r distinct quadratic monomials G on d variables (loops allowed), F_G = dr − C(r,2) + D_G + T_G,
+    and D_G + T_G ≥ C(τ(G),2).
+  - PAIR-ID. ζ = t − dr + C(r,2) = D_G + T_G + v, where v counts the legal missing cubics.
+  - LINKED-DEF. The actual minimum cover k has C(k,2) ≤ ζ − v_lower, and the legal-defect budget is
+    e_k = min(ε_M, ζ − C(k,2)); for the A face v_lower = max(0, t0 − α·r_LL).
+  - LINK-SP, LINK-Q, LINK-PSP. Packing on the N − k residues left after removing the cover; the same k must serve the
+    global test and all three interval tests.
+  - MIX-PACK (§44). A partial mixed face of size q_g with E_g = ⌊(D3 + M − Δ_g)/3⌋ and the linked cover k_g, tested
+    against MIX-CARD; no ambient packing conjecture.
+  - E-REPAIR (§50).
+    - For the actual minimum cover k, the number of high units below h − L is at most
+      E_k = min(p, l + min(r − r_LL, r − k + 1)) (E_0 = min(p, l)).
+    - Reason: each such unit's pair with the least low unit L is present (≤ l) or an absent edge at L, and
+      deg_G(L) ≤ r − τ(G) + 1.
+    - In §34, E enters C_H, B_H and Ω_H only as that upper bound, each monotonically in the safe direction.
+- What kills the profiles (E237):
+  - a = 14 and 15: MIX-PACK (42 and 339 profiles, all r = 0, α = 4, n0 = 10, β = 10);
+  - a = 16: MIX-GAP 108,405, LINK 105, MIX-PACK 12,031;
+  - a = 17: without E-REPAIR exactly four matching rows survive (α = 7, n0 = q2 = 28, l = b = 0, (r, t, c0) =
+    (4, 80, 84), (5, 85, 84), (5, 86, 83), (5, 86, 84)), identical to codex. With E-REPAIR, E_k = 1, so δ ≤ 201..205,
+    while LOW-FIN needs δ ≥ 246. 0 survivors.
+- Uniform consequences recorded with it (paper, re-derived by the lead; not needed for the theorem):
+  - LOW-H(E). For α = A ≥ 4, all low pairs present and l = b = c = e = 0, a counterexample needs
+    4a − 6A + 2(2A+1−a)Q_A + 4D3 − 6E_k[1 + A(a−A)] − 6C(E_k+2,3) ≤ 0.
+  - MATCH-LOW. For a matching missing-pair graph, PAIR-ID gives t = ar + v and D3 = 2(a−1)r + 3v, so
+    8(a−1)r + 12v + 4a − 6A − 12 + 2(2A+1−a)Q_A − 6A(a−A) ≤ 0.
+- Further codex P5e results (checked by the lead as stated; NOT used above):
+  - LARGE-A (§46, paper; constants checked in E238): for α ≥ 4, a ≥ 16·C(α+1,2)² ⇒ W ≥ 0, for arbitrary b, c, e, r, l.
+  - P47-B0 (§45, CONDITIONAL on the ambient packing P(C†), C† ≈ 47.2296): the whole branch r = l = b = 0. The identity
+    and certificates were checked symbolically (E238).
+  - B-free strip (§47, finite): r = l = b = 0 with 4 ≤ α ≤ 14 is closed for every a (independent check, E238).
+  - T2-SMALL18 (§50, codex: C enumeration plus a replay of 90 profile hulls with LOCAL-COVER/Ehat_k). LOCAL-COVER was
+    checked on paper by the lead. The lead's independent full-domain a = 18 run is pending (E237); until then a = 18 is
+    NOT counted here.
+- Remaining in the primary regime (codex §51): α ≥ 4 and 18 ≤ a < 16·C(α+1,2)² (19 ≤ a once T2-SMALL18 is
+  confirmed), with all FRONTIER-41 and linked-cover conditions. For each fixed α this is a finite search, but α is
+  unbounded.
+- Caveats: as for GW-26f, these are finite certificates over relaxed count profiles (necessary conditions). The lead's
+  re-implementation is independent code written from the report text, and it agrees with codex on every count column
+  at a = 14..17.
 
 **Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
 checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
@@ -1827,7 +1879,10 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
   - with exactly three low units and a ≥ 13 (GW-26e);
   - whenever a ≤ 13, for every low population (GW-26f; semigroups: at most 13 minimal generators in (m, c − 2m));
+  - whenever a ≤ 17, for every low population (GW-26g; semigroups: at most 17 minimal generators in (m, c − 2m));
   - whenever LOW+ holds (GW-26b).
+  - Semigroup corollary of GW-26g (superseding GW-26f's e ≤ 14): **Wilf holds for every S with e ≤ 18 and c ≤ 4m**,
+    and, with Eliahou's 3e ≥ m theorem, for every S with c ≤ 4m and m ≤ 57.
   - Semigroup corollary of GW-26f (superseding the a ≤ 6 corollary for e ≤ 7): **Wilf holds for every S with e ≤ 14 and
     c ≤ 4m**. Earlier: the a ≤ 6 case gave Wilf for every S with e ≤ 7 and c ≤ 4m
     (with Eliahou, or our GW-19, for c ≤ 3m). More generally, it holds when 3m < c ≤ 4m and at most six minimal

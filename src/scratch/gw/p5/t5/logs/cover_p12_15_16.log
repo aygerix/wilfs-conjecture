@@ -1,0 +1,15 @@
+amin=15 amax=16 ambient_numerator=12 ambient_denominator=1
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=57 eps=3 u0=0 u1=0 c0=53 beta=0 R=9 b=0 first=166 last=522 k=0 cv=4 WA=-44
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=57 eps=3 u0=0 u1=0 c0=54 beta=0 R=9 b=0 first=166 last=524 k=0 cv=4 WA=-44
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=57 eps=3 u0=0 u1=0 c0=55 beta=0 R=9 b=0 first=166 last=526 k=0 cv=4 WA=-44
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=57 eps=3 u0=0 u1=0 c0=56 beta=0 R=9 b=0 first=166 last=528 k=0 cv=4 WA=-44
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=58 eps=4 u0=0 u1=0 c0=55 beta=0 R=9 b=0 first=167 last=523 k=0 cv=4 WA=-40
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=58 eps=4 u0=0 u1=0 c0=56 beta=0 R=9 b=0 first=167 last=525 k=0 cv=4 WA=-40
+PROFILE a=15 alpha=6 r=4 n0=21 l=0 t=59 eps=5 u0=0 u1=0 c0=56 beta=0 R=9 b=0 first=168 last=522 k=0 cv=4 WA=-36
+a=15 base=5624 u=3879965 packing_profiles=83071 surviving_delta_tuples=2511
+PROFILE a=16 alpha=6 r=4 n0=21 l=0 t=66 eps=8 u0=0 u1=0 c0=55 beta=0 R=10 b=0 first=181 last=571 k=0 cv=4 WA=-111
+PROFILE a=16 alpha=6 r=4 n0=21 l=0 t=66 eps=8 u0=0 u1=0 c0=56 beta=0 R=10 b=0 first=181 last=573 k=0 cv=4 WA=-111
+PROFILE a=16 alpha=6 r=4 n0=21 l=0 t=67 eps=9 u0=0 u1=0 c0=56 beta=0 R=10 b=0 first=182 last=570 k=0 cv=4 WA=-107
+PROFILE a=16 alpha=6 r=7 n0=14 l=0 t=94 eps=3 u0=0 u1=0 c0=11 beta=14 R=10 b=9 first=279 last=1151 k=0 cv=2 WA=-157
+PROFILE a=16 alpha=6 r=7 n0=14 l=0 t=95 eps=4 u0=0 u1=0 c0=11 beta=14 R=10 b=9 first=234 last=1148 k=0 cv=3 WA=-153
+a=16 base=9813 u=11135603 packing_profiles=320665 surviving_delta_tuples=2961

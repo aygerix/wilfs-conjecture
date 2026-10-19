@@ -1,0 +1,6 @@
+amin=17 amax=17 ambient_numerator=-1 ambient_denominator=1
+PROFILE a=17 alpha=7 r=4 n0=28 l=0 t=80 eps=18 u0=0 u1=0 c0=84 beta=0 R=10 b=0 first=247 last=665 k=0 cv=4 WA=-48
+PROFILE a=17 alpha=7 r=5 n0=28 l=0 t=85 eps=10 u0=0 u1=0 c0=84 beta=0 R=10 b=0 first=246 last=841 k=0 cv=5 WA=-42
+PROFILE a=17 alpha=7 r=5 n0=28 l=0 t=86 eps=11 u0=0 u1=0 c0=83 beta=0 R=10 b=0 first=247 last=836 k=0 cv=5 WA=-38
+PROFILE a=17 alpha=7 r=5 n0=28 l=0 t=86 eps=11 u0=0 u1=0 c0=84 beta=0 R=10 b=0 first=247 last=838 k=0 cv=5 WA=-38
+a=17 base=16337 u=29039496 packing_profiles=1119332 surviving_delta_tuples=2197

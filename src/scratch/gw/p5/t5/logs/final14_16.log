@@ -1,0 +1,4 @@
+amin=14 amax=16 ambient_numerator=-1 ambient_denominator=1
+a=14 base=3100 u=1301946 packing_profiles=26159 surviving_delta_tuples=0
+a=15 base=5624 u=3879965 packing_profiles=83071 surviving_delta_tuples=0
+a=16 base=9813 u=11135603 packing_profiles=320665 surviving_delta_tuples=0

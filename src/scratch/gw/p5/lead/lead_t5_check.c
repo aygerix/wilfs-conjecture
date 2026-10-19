@@ -14,7 +14,7 @@
 #define DM 72
 static unsigned long long st; static unsigned long long rnd(void){ st^=st<<13; st^=st>>7; st^=st<<17; return st; }
 static long ap[MM]; static int done[MM], gens[DM+16], X[MM][DM]; static long mg[DM]; static int isE[MM], intr[MM], intrA[MM];
-#define NCHK 48
+#define NCHK 50
 static const char *nm[NCHK]={
  "struct u3=u0+u1,k=k0+k1,q2=n0+l",        /*0*/
  "A-ID / D3 identities",                    /*1*/
@@ -63,7 +63,9 @@ static const char *nm[NCHK]={
  "B-NEIGH + C/E costs",                     /*44*/
  "MIX budget: W-W_A-H3-X_SR >= Dv+Dw+Dz",   /*45*/
  "completion: budget>=bu3+2br+3(mm-br)+CEfull", /*46*/
- "Gamma test: Dvwz<Gamma => complete"};     /*47*/
+ "Gamma test: Dvwz<Gamma => complete",      /*47*/
+ "MIX-PACK budget: bud >= Dvwz + b*u3",     /*48*/
+ "MIX-PACK s/t: bud >= (ab-s3)+b*u3+D_w"};  /*49*/
 static long fails[NCHK], applic[NCHK], minsl[NCHK];
 static int curm; static long curW; static int g0;
 static void chk(int i,long slack){ applic[i]++; if(slack<minsl[i]) minsl[i]=slack; if(slack<0){ fails[i]++; if(fails[i]<=3){ printf("FAIL %s slack=%ld m=%d W=%ld gens:",nm[i],slack,curm,curW); for(int k=0;k<g0;k++) printf(" %d",gens[k]); printf("\n"); } } }
@@ -140,7 +142,7 @@ int main(int argc,char**argv){
     long g=0,l=0; for(int r=0;r<m;r++){ g+=ap[r]/m; l+=(M-ap[r])/m; } long W=(long)(d+e)*l-g;
     curm=m; curW=W; tested++; chk(33,W); if(alpha<40) byal[alpha]++; if(a<64) bya[a]++;
     long p=a-alpha, hc=(H+1)/2, theta=(3*H+1)/2, H0=H-L, delta=H-2*L;
-    long q2=0,q3=0,u3=0,u4=0,k=0,s3=0,t3=0,n0=0,u0=0,u1=0,k0=0,k1=0,beta=0,betaH=0,c0=0,H3=0,ncubAB=0,v2=0; static long lp[DM]; memset(lp,0,sizeof lp); int badstruct=0;
+    long nABB=0; long q2=0,q3=0,u3=0,u4=0,k=0,s3=0,t3=0,n0=0,u0=0,u1=0,k0=0,k1=0,beta=0,betaH=0,c0=0,H3=0,ncubAB=0,v2=0; static long lp[DM]; memset(lp,0,sizeof lp); int badstruct=0;
     long sigma = 2*H-m>0? 2*H-m : 0; long XSR=0;
     for(int r=1;r<m;r++){ intr[r]=0; intrA[r]=0; if(isE[r]) continue; int deg=0,nA=0,nB=0,nC=0,nl=0,lowf=-1; for(int q=0;q<d;q++){ int xq=X[r][q]; deg+=xq; if(!xq) continue; if(cls[q]==0) nA+=xq; else if(cls[q]==1) nB+=xq; else nC+=xq; if(low[q]){ nl+=xq; lowf=lowix[q]; } }
       long tau=ap[r]-(long)deg*m;
@@ -149,6 +151,7 @@ int main(int argc,char**argv){
       if(deg==4){ k++; if(nA!=4||tau>=H||nl<3) badstruct=1; if(nl==4) k0++; if(nl==3) k1++; }
       if(deg==2&&nA==1&&nB==1&&tau<m+H) s3++;
       if(deg==2&&nB==2&&tau<m+H) t3++;
+      if(deg==3&&nA==1&&nB==2) nABB++;
       if(deg==3&&nA+nB==3){ ncubAB++; if(nA==2&&nB==1){ /* AAB: AA divisor tau */ long tA=0; for(int q=0;q<d;q++) if(cls[q]==0) tA+=X[r][q]*tof[q]; if(tA<H) v2++; } }
       if(deg==2&&nl==2){ n0++; if(tau<hc) beta++; if(tau<H0) betaH++; }
       if(deg==2&&nA==2&&nl==1&&tau<H) lp[lowf]++;
@@ -226,6 +229,8 @@ int main(int argc,char**argv){
     { long K0=mac3(u0); long K0b=(alpha+3)*u0/4; if(K0b<K0) K0=K0b; chk(42,K0-k0); chk(43,(alpha+2)*u1-3*k1); }
     { long d0x=a+b, qgx=q+s3+t3; long Dvwz=(d0x+2)*qgx-3*ncubAB+((long)b*q2-v2)-D3; long bud=W-WA-H3-XSR; chk(45,bud-Dvwz);
       long BBn=(long)b*(b+1)/2; int complete=(s3==(long)a*b && t3==BBn);
+      chk(48,bud-Dvwz-(long)b*u3);
+      { long Dw=(long)a*t3+(long)(b+1)*s3-3*nABB; chk(49,bud-((long)a*b-s3)-(long)b*u3-Dw); }
       /* Gamma(d0,q,r) */ long hi=(d0x+1)*d0x/2-r-1, gam=1L<<50; for(long x=q;x<=hi;x++){ long v=(d0x+2)*x-3*mac2(x); if(v<gam) gam=v; } if(gam<(1L<<50)) gam-=2L*(a-1)*r;
       if(Dvwz<gam) chk(47,complete?0:-1);
       if(complete && b>=1){ long formal=(long)Q*b+(long)a*BBn+C3(b+2); long presmix=ncubAB-uu; long mm=formal-presmix; long co=q+q2+u3+(long)a*b+BBn;

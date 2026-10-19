@@ -1,0 +1,253 @@
+{
+  "finite": [
+    [
+      14,
+      3100,
+      1301946,
+      26159,
+      0
+    ],
+    [
+      15,
+      5624,
+      3879965,
+      83071,
+      0
+    ],
+    [
+      16,
+      9813,
+      11135603,
+      320665,
+      0
+    ]
+  ],
+  "python_full_slices": [
+    [
+      14,
+      3100,
+      1301946,
+      26159,
+      0
+    ],
+    [
+      15,
+      5624,
+      3879965,
+      83071,
+      0
+    ],
+    [
+      16,
+      9813,
+      11135603,
+      320665,
+      0
+    ]
+  ],
+  "a17_pre_E": [
+    [
+      17,
+      16337,
+      29039496,
+      1119332,
+      2197
+    ]
+  ],
+  "a17_profiles": [
+    {
+      "a": "17",
+      "alpha": "7",
+      "r": "4",
+      "n0": "28",
+      "l": "0",
+      "t": "80",
+      "eps": "18",
+      "u0": "0",
+      "u1": "0",
+      "c0": "84",
+      "beta": "0",
+      "R": "10",
+      "b": "0",
+      "first": "247",
+      "last": "665",
+      "k": "0",
+      "cv": "4",
+      "WA": "-48"
+    },
+    {
+      "a": "17",
+      "alpha": "7",
+      "r": "5",
+      "n0": "28",
+      "l": "0",
+      "t": "85",
+      "eps": "10",
+      "u0": "0",
+      "u1": "0",
+      "c0": "84",
+      "beta": "0",
+      "R": "10",
+      "b": "0",
+      "first": "246",
+      "last": "841",
+      "k": "0",
+      "cv": "5",
+      "WA": "-42"
+    },
+    {
+      "a": "17",
+      "alpha": "7",
+      "r": "5",
+      "n0": "28",
+      "l": "0",
+      "t": "86",
+      "eps": "11",
+      "u0": "0",
+      "u1": "0",
+      "c0": "83",
+      "beta": "0",
+      "R": "10",
+      "b": "0",
+      "first": "247",
+      "last": "836",
+      "k": "0",
+      "cv": "5",
+      "WA": "-38"
+    },
+    {
+      "a": "17",
+      "alpha": "7",
+      "r": "5",
+      "n0": "28",
+      "l": "0",
+      "t": "86",
+      "eps": "11",
+      "u0": "0",
+      "u1": "0",
+      "c0": "84",
+      "beta": "0",
+      "R": "10",
+      "b": "0",
+      "first": "247",
+      "last": "838",
+      "k": "0",
+      "cv": "5",
+      "WA": "-38"
+    }
+  ],
+  "replays": [
+    {
+      "source": "cover_14_17.log",
+      "a": 16,
+      "profile_hulls": 5,
+      "surviving_hulls": 0,
+      "survivors": []
+    },
+    {
+      "source": "final17.log",
+      "a": 17,
+      "profile_hulls": 4,
+      "surviving_hulls": 0,
+      "survivors": []
+    },
+    {
+      "source": "erepair18.log",
+      "a": 18,
+      "profile_hulls": 90,
+      "surviving_hulls": 0,
+      "survivors": []
+    }
+  ],
+  "graphs": [
+    {
+      "n": 1,
+      "graphs": 2,
+      "tight": 2,
+      "shape_zero": 2,
+      "max_repair_gain": 0
+    },
+    {
+      "n": 2,
+      "graphs": 8,
+      "tight": 8,
+      "shape_zero": 6,
+      "max_repair_gain": 1
+    },
+    {
+      "n": 3,
+      "graphs": 64,
+      "tight": 36,
+      "shape_zero": 19,
+      "max_repair_gain": 2
+    },
+    {
+      "n": 4,
+      "graphs": 1024,
+      "tight": 133,
+      "shape_zero": 55,
+      "max_repair_gain": 3
+    },
+    {
+      "n": 5,
+      "graphs": 32768,
+      "tight": 412,
+      "shape_zero": 146,
+      "max_repair_gain": 4
+    },
+    {
+      "n": 6,
+      "graphs": 2097152,
+      "tight": 1176,
+      "shape_zero": 364,
+      "max_repair_gain": 5
+    }
+  ],
+  "graph_total": 2131018,
+  "b0_endpoint_intervals": 49289,
+  "actual": [
+    {
+      "log": "actual_4.log",
+      "primary": 11923,
+      "p5e": {
+        "mixpack": 11844,
+        "improved_joint": 11830,
+        "better_cover": 0
+      }
+    },
+    {
+      "log": "actual_link6.log",
+      "primary": 11929,
+      "p5e": {
+        "mixpack": 11866,
+        "improved_joint": 11861,
+        "better_cover": 244
+      }
+    },
+    {
+      "log": "actual_final4.log",
+      "primary": 7948,
+      "p5e": {
+        "mixpack": 7912,
+        "improved_joint": 7903,
+        "better_cover": 251
+      }
+    },
+    {
+      "log": "actual_hot5.log",
+      "primary": 5943,
+      "p5e": {
+        "mixpack": 5907,
+        "improved_joint": 5905,
+        "better_cover": 144
+      }
+    }
+  ],
+  "primary_total": 37743,
+  "identities": 36,
+  "ambient_constant": "unproved",
+  "versions": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+  }
+}

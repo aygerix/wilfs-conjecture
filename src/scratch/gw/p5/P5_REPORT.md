@@ -4084,3 +4084,1197 @@ random boxes would not address that interval. The completed
 small-dimension exclusions and the explicit heavy-fiber family
 are retained as constraints on the next proof, not presented
 as a proof of the full conductor range.
+
+## 42. P5e: the conditional packing question, without a hidden reduction
+
+This continuation is dated 2026-10-19. Sections 1--41 are retained
+unchanged. The lead has verified sections 24--33 and recorded GW-26e;
+sections 34--39 remain under independent review. Results below that
+use those sections retain that dependency. In particular no assertion
+here upgrades the lead's review status of T2-SMALL or U-SMALL.
+
+Write P(C) for the following ambient statement, with no modulus:
+
+> For every n-element integer set X in an interval of s integers,
+> if its unordered pair sums, including loops, are distinct, and
+> epsilon_X=C(n+2,3)-|3X|, then
+> `3s-2 >= H(n)-C*epsilon_X`, where H(n)=n(C(n,2)+1).
+
+The loss is the ordinary unordered triple excess, including repeated
+summands. There is no unspecified O(n^2) term. A larger C is a weaker
+statement. P(12) is the lead's candidate; it is not proved here.
+
+There is **not yet a proof that P(12) empties the entire FRONTIER-41**.
+The new conditional theorem in section 45 closes the entire
+`r=l=b=0` branch with the substantially weaker P(47). It includes
+all localized cubic defects and all C/E directions, and hence includes
+MID-B0. Sections 43--44 give an exact repair-and-defect treatment of
+r>0, including its lower-order terms. Links and B units remain in
+the exact R-EXACT/DELTA-UP coefficients of section 34. Neither is
+silently set to zero in the general reduction.
+
+Here is the precise general conditional test supplied by P(C).
+Let k be the minimum number of A units meeting every absent A pair.
+Put
+
+```
+zeta_A=t-a*r+C(r,2),
+e_k=min(epsilon_M,zeta_A-C(k,2)),
+n_j=max(0,alpha+R-k), s_j=ceil(3delta/2),
+n_w=max(0,R-k),
+n_s=max(0,R-l-r-k), s_s=ceil(delta/2).
+```
+
+Then P(C), if true, gives all three inequalities
+
+```
+3s_j-2 >= H(n_j)-C*e_k,
+3delta-2 >= H(n_w)-C*e_k,
+3s_s-2 >= H(n_s)-C*e_k.                         (P-REPAIR)
+```
+
+The allowed k and the nonnegative e_k are bounded exactly in section
+43. The global cyclic SP/PSP inequalities of that section are also
+required, but P(C) cannot be applied to a cyclic set by calling its
+modulus an interval length. The B-direction test in section 44 is
+an additional, independent global cyclic test. A conditional proof
+for the full primary regime still has to exclude all count profiles
+satisfying these tests and R-EXACT, DELTA-UP, LOW-FIN, HIGH, COLD-HIGH
+and the retained outside budgets, including E-REPAIR in section 50.
+Such an exclusion is not presently
+established uniformly in alpha. Thus there is no justified global
+"weakest C" yet. Section 45 specifies the sufficient constant and
+its optimization for the branch actually reduced to ambient P.
+
+## 43. Missing-pair defect, vertex covers, and linked packing
+
+The following lemma applies to arbitrary loop graphs and does not
+assume residue completeness.
+
+**PAIR-COVER.** Let G be a family of r distinct quadratic monomials
+on d variables, including possible squares. Let F_G be the number
+of cubic monomials divisible by a member of G, and let tau(G) be
+the smallest number of variables meeting all monomials in G. Put
+
+```
+D_G=#{unordered pairs of members of G with disjoint supports},
+T_G=#{three distinct variables whose three edges belong to G}.
+```
+
+Then
+
+```
+F_G=d*r-C(r,2)+D_G+T_G,
+D_G+T_G >= C(tau(G),2).                         (PAIR-COVER)
+```
+
+The second inequality is sharp: r disjoint loops have tau=r and
+D_G=C(r,2), T_G=0. A triangle has tau=2, D_G=0, T_G=1.
+
+Proof of the identity. Every absent quadratic has d distinct cubic
+multiples. Two distinct quadratics have a common cubic multiple
+exactly when their supports intersect; that multiple is unique.
+Three distinct quadratics have a common cubic multiple exactly
+when they are the three edges of a triangle on distinct variables.
+A cubic has at most three distinct quadratic divisors. Inclusion
+and exclusion therefore stops after the triangle term and proves
+the identity, including loops.
+
+Proof of the cover inequality, by induction on r. Give a vertex
+degree equal to the number of members of G containing it; a loop
+counts once. If some vertex v has degree Delta>=3, remove its star
+and call the remaining graph G'. Each edge of G' intersects at most
+two of the Delta star edges. Hence the new disjoint pairs number
+at least `(Delta-2)|G'|>=|G'|`. Also
+`tau(G')>=tau(G)-1` and `|G'|>=tau(G)-1`, since v together with one
+endpoint from each edge of G' is a cover of G. The induction
+hypothesis gives
+
+```
+D_G+T_G >= C(tau(G)-1,2)+tau(G)-1=C(tau(G),2).
+```
+
+If tau(G)=1 the conclusion is simply nonnegativity; use that
+case directly, without interpreting C(-1,2).
+
+It remains to consider maximum degree at most two. Let
+`J=sum_v C(deg(v),2)`. Each intersecting pair has exactly one common
+vertex, so `D_G=C(r,2)-J`, and J<=r. If G has no intersecting pair,
+tau=r and the result is equality. If J<=r-1 and there is an
+intersecting pair, tau<=r-1 and
+`D_G>=C(r,2)-(r-1)=C(r-1,2)`. If J=r, equality in the degree sum
+forces no loops and every nonisolated vertex to have degree two.
+Thus G is a disjoint union of simple cycles. If a triangle occurs,
+T_G>=1 and again `D_G+T_G>=C(r-1,2)`. If no triangle occurs,
+tau<=r-2, while `D_G=C(r,2)-r>=C(r-2,2)` for r>=4. This proves
+all remaining cases. The empty graph has tau=0.
+
+Here is the exact connection to the tile defect. Suppose all
+present cubic monomials on these d directions have present pairs.
+If t cubics are missing, let v be the number of legal missing
+cubics, whose pair divisors are all present. Then
+
+```
+zeta:=t-d*r+C(r,2)=D_G+T_G+v.                    (PAIR-ID)
+```
+
+Consequently the actual minimum cover k satisfies
+
+```
+C(k,2)<=zeta-v_lower,
+v<=min(epsilon_M,zeta-C(k,2)),
+epsilon_M=q^{<2>}-(C(d+2,3)-t), q=C(d+1,2)-r.    (LINKED-DEF)
+```
+
+Here v_lower is any established lower bound for v. The inequality
+v<=epsilon_M follows because the number of legal cubic monomials
+is at most q^{<2>}. If r<=d, the near-full Macaulay formula is
+`C(d+2,3)-q^{<2>}=d*r-C(r,2)`, so zeta is exactly epsilon_M.
+For larger r, PAIR-ID is still valid; zeta must not be replaced
+by epsilon_M.
+
+An explicit cover upper bound used in the scripts is as follows.
+For z>=0 define gamma(0,z)=0. For r>0 start with
+
+```
+gamma=min(r,floor((1+sqrt(1+8z))/2)).
+```
+
+Let `D0=1+ceil((C(r,2)-z)/r)`. If D0>=3, also take the minimum
+with `1+floor(z/(D0-2))`. The first bound is PAIR-COVER. For the
+second, `sum C(deg(v),2)>=C(r,2)-z` and
+`sum C(deg(v),2)<=r(Delta-1)` force Delta>=D0. A star of maximum
+degree leaves at most z/(Delta-2) edges outside it. Its center
+and one endpoint of each remaining edge cover G. Clamp gamma
+to d if necessary. At z=0 and r>0 this gives gamma=1: all missing
+pairs have a common endpoint. This also follows directly since a
+pairwise intersecting family of edges is a star or a triangle,
+and the triangle has T_G=1.
+
+For the A face one may take
+
+```
+v_lower=max(0,t0-alpha*r_LL), r_LL=Q_alpha-n0,
+z=zeta_A-v_lower.
+```
+
+Indeed at most alpha*r_LL pure-low cubics are forced absent by
+low pairs; every other missing pure-low cubic is a legal omission.
+This spends the low defect before repairing the missing-pair graph.
+
+**Linked residue packing.** Let N=d+1 denote zero together with
+the d units. For the actual cover k, remove its k unit residues.
+All remaining pairs, including those with zero, are present and
+injective. Cubics involving zero are already present lower-degree
+cells. The missing cubics on this set number at most
+
+```
+e_k=min(epsilon_M,zeta-C(k,2)).
+```
+
+Thus the existing cyclic SP lemma gives
+
+```
+2m >= 2H(N-k)-L2(N-k)*e_k, L2(n)=2lambda_n.      (LINK-SP)
+```
+
+PSP on all N directions gives the additional bound
+
+```
+m >= H(N)-4E_r
+       -9[N*E_r+(r+1)e_k+C(e_k,2)],
+E_r=C(r+1,2).                                   (LINK-PSP)
+```
+
+The same argument on a selected interval proves P-REPAIR if P(C)
+is assumed, or the unconditional version with C=lambda_n. One
+must use the same k and e_k in the global A packing and the
+three interval tests. Taking the largest possible k and simultaneously
+allowing the entire epsilon_M loses this coupling. In a relaxed
+certificate enumerate `k=0` if r=0 or
+`1<=k<=min(d,gamma(r,z))` otherwise; for each k use e_k.
+Exclusion of every such k excludes the original tile.
+
+For a repaired, pair-injective set there is also the older
+quadratic collision bound
+
+```
+m>=H(N-k)-9C(e_k+1,2).                           (LINK-Q)
+```
+
+Indeed a triple fiber of size g contributes at most 9C(g,2)
+colliding normal-label pairs. Summing and using
+`sum(g-1)<=e_k` bounds this by 9C(e_k+1,2). Normal labels avoid
+the unit residues by pair injectivity. This is the P4 signed-union
+argument before its linear support optimization. The final scripts
+use the maximum of LINK-Q and LINK-SP, and their interval analogues.
+
+## 44. MIX-PACK: a partial mixed face is sufficient
+
+The mixed face need not be completely quadratic before using
+global residue packing. The following version retains its exact
+shadow defect. Write d0=a+b, U_d0=C(d0+2,3), and
+
+```
+q_g=q+s3+t3, r_g=C(d0+1,2)-q_g,
+u_g=(u3+u4)+(v2+v3)+w+z,
+epsilon_g=q_g^{<2>}-u_g,
+Delta_g=(d0+2)q_g-3q_g^{<2>}.
+```
+
+Every actual A/B cubic has legal quadratic divisors, where legal
+means all AA pairs and the I3 AB/BB pairs. Therefore epsilon_g>=0.
+The exact identity in section 38 is
+
+```
+D3+D_mix=Delta_g+3epsilon_g+(b*q2-v2).            (MIX-ID)
+```
+
+In particular if D_mix<=M, then
+
+```
+epsilon_g<=floor((D3+M-Delta_g)/3).              (MIX-EP)
+```
+
+This upper bound uses an already paid shadow budget; it is not
+an independent arbitrary allowance for missing mixed cubics.
+
+Here is a finite necessary test for each profile in section 39,
+valid without completing the mixed face. Use quartic upper
+allowances K and WAbar as there, a lower bound Hhat on the
+short-residue slack, and u=u3. Set
+
+```
+M=-WAbar-Hhat-1-b*u,
+s_min=max(0,ab-M),
+t_min=max(0,ceil((b*s_min+ab-M)/(2a))).
+```
+
+A counterexample requires M>=0. Since T pays `ab-s3+b*u`,
+`s3>=s_min`. Also w<=a*t3 and
+`D_w=a*t3+(b+1)s3-3w>=(b+1)s3-2a*t3`.
+The budget `D_w+(ab-s3)<=M` implies t_min. Thus enumerate only
+
+```
+q+s_min+t_min <= q_g <= C(d0+1,2)-r.
+```
+
+Retain only q_g satisfying
+
+```
+Delta_g<=M+2(a-1)r,
+Delta_g<=D3+M.                                  (MIX-RANGE)
+```
+
+The first is MIX-GAP with b*u already paid; the second is MIX-ID.
+Put E_g=floor((D3+M-Delta_g)/3), and
+
+```
+Z_g=U_d0-q_g^{<2>}+E_g-d0*r_g+C(r_g,2),
+V_A=max(0,t-a*r).
+```
+
+At least V_A pure-A omissions are legal in this global graph,
+because at most a*r are forced by absent AA pairs. Therefore
+the actual cover k_g obeys
+
+```
+1<=k_g<=min(d0,gamma(r_g,Z_g-V_A))  if r_g>0,
+k_g=0                                             if r_g=0.
+```
+
+Negative Z_g-V_A excludes q_g. For each remaining k_g use
+
+```
+e_g=min(E_g,Z_g-C(k_g,2)), N=d0+1.
+```
+
+The maximum of LINK-SP and LINK-PSP is a lower bound on m for
+that choice. The unknown actual epsilon_g and actual missing
+cubic count were bounded above to obtain Z_g and e_g; every
+replacement enlarges the feasible set.
+
+For the upper bound put co=q_g+q2+u. The retained C/E transfer
+costs are at least
+
+```
+c(c+1+co)+e(3a+2b+c+co).
+```
+
+All A/B cubics number at most q_g^{<2>}, and each missing AA pair
+also excludes its b AAB multiples. Hence
+
+```
+Bcard=min(C(d0+3,3)-r(1+b)-t+K,
+          1+d0+C(d0+1,2)-r+q_g^{<2>}+K),
+m <= Bcard+c(d0+1)+e.                            (MIX-CARD)
+```
+
+For every integer c>=0 with c(c+1+co)<=M maximize this bound by
+setting `e=floor((M-c(c+1+co))/(3a+2b+c+co))`. Call the resulting
+maximum U_g. If every q_g and every k_g has its packing lower
+bound greater than U_g, the profile cannot come from a tile.
+This is MIX-PACK. No ambient packing conjecture is used here.
+
+## 45. An exact conditional theorem covering MID-B0
+
+**Theorem P47-B0.** Under the primary hypotheses, alpha>=4 and
+`r=l=b=0`, assume P(47). Then W>=0 for every c,e, with no
+restriction on epsilon_M. The same follows from P(C) with C<=47.
+
+Proof. Assume W<0. Put A=alpha, Q0=C(A+1,2), U0=C(A+2,3),
+epsilon=epsilon_M=t. The A-LOW, U-SMALL and U-B0 arguments in
+section 36 give a>5A/3+1, a>=2A+3 and MID-B0. In particular
+
+```
+x:=a-2A-1-6epsilon/Q0 >= (2a-3A)/Q0 >0.
+```
+
+Let y=epsilon/Q0. COLD-FIX and R-LOW, retaining D3=3epsilon,
+give, for n=A+R,
+
+```
+n >= a/2+2A/3+5/6+(a-2A)/(2Q0)+3y/2
+  > nu:=a/2+2A/3+5/6+3y/2.
+```
+
+All joint pairs are present. DELTA-UP, dropping its nonnegative
+low-cubic term and using c0<=U0, gives
+
+```
+delta<=B0-3epsilon-1,
+B0=(a-2A-1)Q0+2U0+2A-a+1.
+```
+
+All C/E terms discarded in these two bounds are nonnegative by
+the calculation in section 36; MID-B0 also retains that fact.
+The integer capacity satisfies
+`2(3ceil(3delta/2)-2)<=9delta-1`. P(47), monotonicity of
+n^3-n^2+2n for n>=1, and n>nu would therefore require
+
+```
+F:=nu^3-nu^2+2nu-9B0-67epsilon+10 <0.            (P47-NEC)
+```
+
+Here is a complete positive certificate. Set
+
+```
+T=9y/(2A)>=0, V=x/(2A)>=0, w=T+V,
+g(w)=w^3+5w^2-(46/9)w+44/27,
+j(w)=3w^2-(31/9)w-2/3.
+```
+
+Direct expansion gives the exact identity
+
+```
+F=A^2[(A-4)g(w)+4g(w)+j(w)]
+  +(40/9)(A^3+A^2)V
+  +A[16/9+(50/3)T+(68/3)V]+358/27.              (P47-ID)
+```
+
+The two needed polynomials have explicit certificates
+
+```
+g(w)=w^3+5(w-23/45)^2+131/405,
+4g(w)+j(w)=4w(w-1/2)^2
+                +27(w-112/243)^2+254/2187.
+```
+
+Both are strictly positive for w>=0, so F>0, a contradiction.
+All constants and lower-order terms are displayed.
+`t5/p5e_identities.py` verifies the identities over exact Fractions.
+
+There is a modest optimization. For general C replace L=46/9
+by `(2C-48)/9` in g, and replace 31/9 in j by `L-5/3`.
+The identity has coefficient `(2C-54)/9` on `(A^3+A^2)V`,
+which is nonnegative for C>=27. Define
+
+```
+C_dagger=min_{w>0} [51/2+(18/5)w^2+(207/10)w+79/(15w)].
+```
+
+The minimizer is the unique positive root of
+`216w^3+621w^2-158=0`. One has 47<C_dagger<48: the lower bound
+is the strict certificate above; evaluate at w=1/2 for the upper
+bound. For C<=C_dagger, `4g+j>=0`. Also g>0 for C<=48, since
+`g>=w^3+5(w-8/15)^2+28/135`. Thus the same proof works at
+C=C_dagger. This is the largest C allowed by this two-polynomial
+core certificate. It is **not asserted to be the sharp constant
+for the original integer branch or for FRONTIER-41**.
+
+Two unconditional consequences are useful. First, if the actual
+joint set has n<=32, existing SP gives lambda_n<=47, so P47-B0
+requires no conjecture. In particular it closes the entire
+`r=l=b=0, a<=32` branch. Second, that branch is also closed when
+a>=2Q0+38. Indeed MID-B0 gives epsilon<aQ0/6, R-LOW gives
+n>a/2, and the derivative of
+`f(n)=n^3-n^2+(2-3epsilon)n` is positive for n>=a/2 if a>=2Q0.
+Unconditional JOINT-SP and DELTA-UP would require
+
+```
+0 > f(a/2)-9B0+10
+  >= a[a^2/8-a(Q0/4+1/4)-9Q0+1]+10.
+```
+
+Here B0<=aQ0. The bracket equals
+
+```
+172+[a-(2Q0+38)](a/8+9/2),
+```
+
+which is positive when a>=2Q0+38. This is an analytic bound for
+every fixed A, not a finite-grid extrapolation. Section 47 records
+a bounded computation between these two analytic ends.
+
+## 46. Uniform large-a closure, with arbitrary missing pairs and links
+
+**Theorem LARGE-A.** Under the primary hypotheses let alpha>=4
+and put R0=C(alpha+1,2). If
+
+```
+a>=16R0^2,
+```
+
+then W>=0 for every b,c,e. There are no restrictions on
+r,l,epsilon or the number of high exceptions. Thus every fixed
+alpha has an explicit upper bound on a in a counterexample.
+
+Proof. Assume W<0. Write A=alpha, R0=C(A+1,2), K=R0-1 and
+U0=C(A+2,3). We use GLOC, Macaulay and cyclic SP, plus elementary
+counts; no ambient P is assumed. Since R0>=10, all inequalities
+below follow from a>=16R0^2.
+
+First q>=C(R0+1,2). Otherwise Macaulay gives
+`u3+u4<=C(R0+2,3)<=R0^3`, while the original expression
+`W_A=3a(a+1)+(a-3)q-4(u3+u4)+LC` is positive: LC>=0 and
+3a(a+1)>4R0^3. This contradicts W_A<0.
+
+The two low-cubic terms of GLOC are nonnegative:
+
+```
+(a+1)u0-5k0 >= [a+1-5(A+3)/4]u0>=0,
+(a+3)u1-3k1 >=(a+1-A)u1>=0.
+```
+
+Its C/E remainder is nonnegative: its c coefficient is at
+least q+1-2A>0 and its e coefficient is positive. Its b
+coefficient is at least `a-1-2A-R0>=a/2`. As a>=2A+1,
+n0<=R0 and c0<=U0, the remaining pure term is at least
+
+```
+D3-M_A(a)+S,
+M_A(a)=(R0-1)a+2A+1-R0(4A-1)/3 <K*a.
+```
+
+The strict inequality follows from R0>=A and (4A-1)/3>=5.
+The negative counterexample payment Phi therefore forces
+
+```
+D3<K*a,                   b<2K.                 (LA-BUDGET)
+```
+
+We next prove r<R0. Write q=C(j+1,2)+z with 0<=z<=j and
+Delta=(a+2)q-3q^{<2>}. Then j>=R0 and
+
+```
+Delta=(a-j)C(j+1,2)+(a+2)z-3C(z+1,2).
+```
+
+If j<=a/2, its z term is nonnegative and
+`Delta>=a R0(R0+1)/4>K*a`. If a/2<j<=a-2, concavity in z
+reduces to the endpoints. At z=0 the bound exceeds a^2/4.
+At z=j use the exact identity
+
+```
+Delta=(a-j-1)C(j+2,2)+3j+1-a>a^2/8>K*a.
+```
+
+Both cases contradict Delta<=D3<K*a. The full q=C(a+1,2)
+case has r=0. In the remaining last block j=a-1,
+
+```
+Delta=r(4a-3r-1)/2, 1<=r<=a.
+```
+
+If r>=R0, concavity in r reduces to R0 and a. At R0 the
+bound is `2R0*a-(3R0^2+R0)/2>=K*a`; at a it is
+`a(a-1)/2>=K*a`. Again this is impossible. Hence r<=K.
+Also epsilon_M=(D3-Delta)/3<K*a/3.
+
+Delete at most r pair endpoints from zero and the a A units.
+The remaining pair-injective cyclic set has
+`n=a+1-r>=(15/16)a`, and n<=a+1. Cyclic SP gives
+
+```
+2m >= n^3-n^2+2n-3n*epsilon_M
+    > n[n^2-n+2-K*a]
+    >= (15a/16)[(209/256)a^2+1].
+```
+
+For the last inequality use n^2>=225a^2/256 and
+`(K+1)a<=a^2/16`. In particular
+
+```
+m>(3135/8192)a^3>a^3/3.                          (LA-LOWER)
+```
+
+There is an incompatible upper bound. Put d0=a+b. From b<2K
+we have d0+3<(17/16)a, because a/16>=R0^2>2R0+1. Thus
+
+```
+C(d0+3,3)<(4913/24576)a^3<a^3/5.
+```
+
+Transfer and -W_A<=F imply
+`c(c+1)<=F-1`, `e<a^2/18`, and hence `c<a^(3/2)/2`.
+Since a>=256 and d0+1<(17/16)a,
+
+```
+c(d0+1)<(17/512)a^3<a^3/30.
+```
+
+Every quartic has at most one high factor. Its pure-low part
+satisfies `k0<=(A+3)U0/4<=R0^4<=a^2/256`; its remaining
+part satisfies
+`k1<=(A+2)u1/3<=(A+2)R0*a/3<=R0^2*a<=a^2/16`.
+Thus k<a^2/8 and
+
+```
+k+e<(13/72)a^2<a^3/60.
+```
+
+All A/B cells except quartics number at most C(d0+3,3).
+A C unit contributes at most itself and its d0 A/B pairs;
+an E unit contributes only itself. Consequently
+
+```
+m<=C(d0+3,3)+k+c(d0+1)+e
+ <a^3(1/5+1/30+1/60)=a^3/4,                     (LA-UPPER)
+```
+
+contradicting LA-LOWER. This proves LARGE-A. The large constant
+is deliberate: it supplies an explicit analytic closure for every
+fixed alpha, with all outside directions retained. No optimization
+of 16 is claimed.
+
+## 47. Finite continuation: a<=16, and four matching profiles at a=17
+
+The finite certificate of section 39 extends through a=16 after
+adding LINKED-DEF and MIX-PACK. This is a computer-assisted result;
+it retains the section 39 dependencies, whose independent review
+by the lead is not yet complete.
+
+**Theorem T2-SMALL16 (finite certificate).** Under the primary
+hypotheses, a<=16 implies W>=0, for every alpha,b,c,e.
+
+For a<=13 use section 39. For a=14,15,16 the two programs
+`t5/frontier_counts.py` and `t5/frontier_counts.c` enumerate the
+same section 39 domain. The Python implementation uses monotone
+delta endpoints; the C implementation tests every integer delta.
+The new steps, after the old section 39 tests, are:
+
+1. Compute zeta_A=t-a*r+C(r,2) and
+   `v_lower=max(0,t0-alpha*(Q_alpha-n0))`.
+2. Enumerate the possible actual minimum covers
+   `k=0` if r=0 or `1<=k<=min(a,gamma(r,zeta_A-v_lower))`.
+   Use e_k=min(epsilon_M,zeta_A-C(k,2)).
+3. Require one and the same k to satisfy the global A cyclic
+   packing bounds and the short, wide and joint interval bounds.
+   Use LINK-SP, LINK-Q and LINK-PSP. The initial linear-only
+   version already gives zero survivors through a=16; LINK-Q
+   subsequently strengthens the certificate.
+4. Apply MIX-PACK with the linked cover/defect test to every
+   possible q_g. Keep a profile only if some q_g and k_g survive.
+
+Every replacement in sections 43--44 is a necessary condition.
+Quartic counts are still replaced by upper allowances exactly as
+in section 39. The C/E remainders have nonnegative coefficients
+on every enumerated base state; both programs check that assertion
+instead of discarding failures. Thus the finite tests enlarge the
+set of possible counterexamples and zero survivors proves the result.
+
+| a | Base states | u states | Packing profiles | Surviving delta tuples |
+|---:|---:|---:|---:|---:|
+| 14 | 3,100 | 1,301,946 | 26,159 | 0 |
+| 15 | 5,624 | 3,879,965 | 83,071 | 0 |
+| 16 | 9,813 | 11,135,603 | 320,665 | 0 |
+
+A base state and packing profile have exactly the meanings in
+section 39. The independently written Python endpoint calculation
+and C direct-delta calculation are compared in the audit. The
+completed Python a=14,15 slices used the weaker linear-only LINK-SP.
+The cached a=16 replay and the C final run also use LINK-Q.
+The unstrengthened comparisons have the same
+three base/u/packing columns, which are determined before the
+new linked tests.
+
+For a=17, the final C relaxation, with LINK-Q, gives
+16,337 base states, 29,039,496 u states, 1,119,332 packing
+profiles, and exactly the following four surviving profiles:
+
+```
+alpha=7, n0=q2=28, l=u0=u1=k0=k1=beta=b=0, R=10.
+
+r   t    epsilon_M   c0   delta_min  delta_max  m      WA
+4   80   18          84   247        665        1056   -48
+5   85   10          84   246        841        1050   -42
+5   86   11          83   247        836        1049   -38
+5   86   11          84   247        838        1049   -38
+```
+
+The four intervals contain 2,197 delta tuples. These are relaxed
+counts, not realizable tiles. Their outside budgets force c=e=0:
+for example even the first C cost c(c+1+q+q2) already exceeds
+-WA-1 in every row. Thus m=C(20,3)-r-t is exact, and
+W=WA+rho. A counterexample in the respective rows needs
+
+```
+0<=rho<=47,  0<=rho<=41,  0<=rho<=37,  0<=rho<=37.
+```
+
+There is further exact structure, not just a list of counts.
+All these rows require the actual absent-pair graph to be a
+matching, with loops allowed. If its minimum cover were at
+most r-1, LINK-SP at the worst remaining cover would give:
+
+```
+(r,t,m)=(4,80,1056): k=3, e_k<=15, m>=ceil(1590-22.5*15)=1253;
+(r,t,m)=(5,85,1050): k=4, e_k<=4,  m>=1288-19.5*4=1210;
+(r,t,m)=(5,86,1049): k=4, e_k<=5,  m>=ceil(1288-19.5*5)=1191.
+```
+
+Smaller k give still larger lower bounds (direct substitution
+in the finite set k=1,...,r-1). Hence tau(G)=r. Any intersecting
+pair of edges would have a common-endpoint cover and reduce
+this to r-1, so G is a matching. PAIR-ID now says there are
+exactly 12, 0, 1 and 1 legal cubic omissions respectively.
+No absent pair is low--low, since n0=Q_7.
+
+For the r=4 row the data
+
+```
+a=17, alpha=7, r=4, q2=28, t=80, c0=84,
+R=10, b=c=e=0, delta=247, m=1056,
+WA=-48, D3=164, k_cover=4, e_k=12
+```
+
+survive the pre-E-REPAIR necessary count tests even after replacing
+all three interval inequalities in P-REPAIR by
+`capacity>=H(n)` (zero defect loss). The joint set has n=13,
+H(n)=1027 and capacity 1111. The global cyclic A lower bound
+is 1054, just below m=1056. The short and wide interval tests
+also pass, as does the MIX-PACK relaxation.
+`t5/profile_witness.py` replays these numbers exactly.
+
+This refutes the *proposed count-certificate shortcut* of simply
+substituting P(12) into the existing scalar tests and declaring
+all profiles excluded. It does not refute P(12), or the possibility
+that further geometric uses of P(12), HIGH or the band ranges
+close this row. In particular it is not an actual residue-complete
+counterexample to anything proved.
+
+The linear-only C exploration was also extended to a=18. It gave
+26,725 base states, 71,891,624 u states and 4,008,931 packing
+profiles, with 175,177 surviving delta tuples. This is a bounded
+exploration, not an exclusion. The final quadratic refinement
+was not swept over all a=18 profiles; no such claim is made.
+
+There is a separate small certificate for the B-free, full-pair,
+link-free branch. The two analytic ends in section 45 reduce it
+to 33<=a<2Q_alpha+38 and a>=2alpha+3. For fixed alpha,a,n, use
+
+```
+e_min=floor(Q_alpha/4)+1,
+e_max=min(floor(((a-2alpha-1)Q_alpha-2a+3alpha)/6),
+          floor((B0-2)/3),
+          floor((2Q_alpha(n-alpha)-a+2alpha+2U_alpha
+                                      -(a+3)Q_alpha)/3)).
+```
+
+When e_min<=e_max, JOINT-SP and DELTA-UP require
+
+```
+2H(n)-9B0+10+[27-L2(n)]epsilon<=0.
+```
+
+This is linear in epsilon, so check the two endpoints.
+`t5/b0_strip.c` selects the adverse endpoint;
+`t5/b0_verify.py` checks both endpoints independently.
+For 4<=alpha<=14 every interval fails. Combined with the two
+analytic ends this proves W>=0 for **every a** when
+`4<=alpha<=14, r=l=b=0`, for all c,e. At alpha=15 the weaker
+scalar test first leaves `(a,n,epsilon)=(44,36,248)`; this is
+not a tile and does not assert that the full other tests pass.
+
+## 48. Checks, preserved failures, and limits of the new computations
+
+All computation in this continuation was run on fejer, in
+`~/wilf/p9/`, with nice 10 and at most four owned single-core jobs.
+The laptop was used only to read/edit/copy files. No commits were
+made, no foreign process was changed, and the lead's exhaustive
+ambient runs were not duplicated.
+
+The experiment predicates were fixed before each computation:
+
+- The count continuation tests the necessary domain of section 39,
+  adding only the proved linked and mixed packing conditions.
+  A survivor is a count vector, not evidence of a tile. Zero
+  survivors in a fully enumerated a slice give an exclusion.
+- `cover_graphs.c` tests PAIR-ID by explicitly enumerating cubic
+  divisors and computes the exact minimum cover from every vertex
+  subset. It covers every loop graph on n<=6 vertices. A single
+  failure would refute PAIR-COVER or its implementation.
+- `multi_low.h` in t5 adds actual-instance checks of MIX-ID,
+  MIX-EP's underlying nonnegative defect, the BB shadow lower
+  bound, MIX-CARD, the improved repaired SP and linked global
+  packing. It retains the earlier actual checks from t4. Actual
+  runs are controls and inequality checks, not exhaustive bounds
+  on the primary regime.
+- `p5e_identities.py` verifies seven new rational polynomial identities
+  in addition to the 29 imported earlier identities; the numerical
+  constants in LARGE-A are exact Fraction comparisons.
+- `b0_strip.c` checks the explicit B-free middle strip through
+  alpha=40. Its independent Python replay covers alpha=4,...,14
+  and checks both endpoints of 49,289 nonempty epsilon intervals.
+  The alpha=15,...,40 survivors are deliberately retained.
+
+The graph check gives:
+
+| n | All loop graphs | Equality in C(tau,2)<=D+T | D+T=0 |
+|---:|---:|---:|---:|
+| 1 | 2 | 2 | 2 |
+| 2 | 8 | 8 | 6 |
+| 3 | 64 | 36 | 19 |
+| 4 | 1,024 | 133 | 55 |
+| 5 | 32,768 | 412 | 146 |
+| 6 | 2,097,152 | 1,176 | 364 |
+
+The exact formulas and paper proof in section 43 apply to every
+n; this table is an independent implementation check, not an
+induction base for an otherwise unproved extension.
+
+Actual primary-instance control runs used the following seeds:
+
+```
+2026101951: 12,000 proposals, proposed 4 lows, lex, m=200..6000;
+2026101952: 12,000 proposals, proposed 6 lows, grlex, m=400..8000;
+2026101953:  8,000 proposals, proposed 4 lows, grlex, m=300..7000;
+2026101954:  6,000 proposals, proposed 5 lows, grlex, m=300..8000.
+```
+
+Proposed A counts were 7..20; actual counts are recomputed after
+finding the conductor and primitive generators. The first run
+checks the initial repair and mixed identities. The second adds
+linked repair, the third includes LINK-Q, and the fourth checks
+HOT-WINDOW as well. None is claimed to
+sample uniformly or exhaust the matching profiles of section 47.
+All found zero failures on 37,743 accepted primary instances:
+11,923, 11,929, 7,948 and 5,943 respectively. These counts include
+repeated semigroups/tiles and are not uniqueness counts. The last
+three runs exhibited strictly improved cover
+bounds on 244, 251 and 144 actual instances respectively.
+
+The small structured adversarial test `matching_moduli.py`
+examines the r=5,t=85 matching profile with five disjoint off-diagonal
+absent pairs sharing one sum modulo p. For p=2,3,5 it enumerates
+all residue counts of the 17 units compatible with at least five
+such disjoint pairs and tests the tile's residue counts modulo p.
+This is an exact finite necessary test for that structured
+subfamily; it does not construct a tile. Balanced residue-count
+profiles survive: 2, 3 and 10 respectively, out of 26, 333 and
+15,225 tested profiles. They are saved, not reported as a closure.
+The test shows that individual small-modulus projections do not
+exclude even this narrower matching construction. Section 50
+subsequently excludes it by E-DELTA. General absent
+pairs need not share a residue, and are not covered by that test.
+
+The literature check was restricted to the particular proposed
+Fourier tool. Green, *The number of squares and B_h[g] sets*,
+Acta Arith. 100 (2001), Theorem 17, proves the asymptotic B3 bound
+with leading constant (7/2)^(1/3); its hypothesis has zero triple
+excess. The proof's pointwise convolution bound in Lemma 16 uses
+that hypothesis. No robust constant-excess version needed here
+was found in or deduced from that statement. The primary source is
+[Green's paper](https://www.impan.pl/shop/en/publication/transaction/download/product/82571).
+This continuation does not cite its asymptotic bound as an exact
+finite P(C), and does not claim an impossibility result about
+adapting the method.
+
+The lead's Ambient SP12 n=9 log was read after completion. It
+reports 220,523,125 DFS nodes, 170,153 complete unpruned leaves,
+minimum slack 115 at
+`{0,1,4,14,46,65,76,85,93}`, s=94 and excess 14, with no failure.
+Its n=10 log was still empty at the last check. These are the
+lead's results, not reruns by this agent; neither supplies an
+induction step for all n.
+
+Preserved failures and cautions:
+
+1. Extending the old count-code assertion `bc>=0` past its verified
+   a<=13 domain is false for the raw enumerated domain. The first
+   a found is 17: alpha=3,r=35,q=118,n0=l=q2=u0=u1=0,t=318,
+   epsilon=0, WA=-34 gives min(2r,2a-r)=-1. All slices through
+   a=16 passed that guard. This is a relaxed Macaulay count profile,
+   not a semigroup and not a failure of B-NEIGH. The valid repair
+   is `bc=u+max(0,min(2r,2a-r))`, since transfer also pays b*u
+   separately. Both final enumerators use that bound. The interrupted
+   preliminary a=17 log is retained.
+2. Independent worst-case endpoint deletion and cubic excess are
+   weaker than their linked treatment. Before keeping the C(k,2)
+   cost, the a=15 relaxation retained 2,511 delta tuples and a=16
+   retained 2,966. These are not counterexamples to either version;
+   they document the lost correlation. The linked version excludes
+   both slices.
+3. Merely adding Ambient SP12 to the earlier scalar certificate is
+   not a proved reduction of the entire frontier. Section 47 gives
+   an explicit survivor even with zero interval defect loss. This
+   is a failure of that certificate shortcut; no actual tile is
+   asserted. The sharp ambient constant itself remains unknown.
+4. The earlier signed-union constant counterfamily remains a
+   counterexample only to its signed-union assertion. Nothing in
+   this continuation changes it into a counterexample to ambient P.
+
+No actual residue-complete counterexample to Wilf or a verified
+step of GW-24/26/26c was found. No proof of ambient P(C), for a
+constant independent of n in the unresolved range, is claimed.
+
+## 49. HOT-WINDOW and a 129-tuple refinement at a=17
+
+There is a further paper reduction of the four matching rows,
+using the actual high offset window rather than a stronger ambient
+packing conjecture.
+
+**HOT-WINDOW.** Fix an actual minimum cover k of the absent A-pair
+graph, with r>0. The degree of each vertex of that graph is at
+most r-k+1: taking that vertex and one endpoint of every edge
+outside its star gives a cover of size at most r-deg(v)+1.
+Consequently the number j of high units below H0=h-L satisfies
+
+```
+j<=E_k:=min(a-alpha,l+r-k+1).
+```
+
+Indeed each such high unit has an I2 pair with the minimum low
+unit. At most l such pairs are present; every other one is an
+absent edge incident to that low unit. For r=0 use E_0=min(p,l).
+
+Put p=a-alpha. For each j between 0 and E_k, write n=p-j and
+
+```
+r_h=max(0,r-r_LL-max(0,j-l)),
+K_k=max(0,min_{0<=j<=E_k}[C(n+2,3)-n*r_h-e_k]).
+```
+
+Here e_k is the legal cubic budget of section 43. The actual
+nonexceptional high core has at least K_k present cubic cells:
+at most n*r_h cubes are forced by its absent pairs, and at most
+e_k legal cubes are missing. All core offsets are at least h-L.
+Its nonhot cubes have tau in `[3(h-L),2h)`, an interval with
+max(0,3L-h) integers. Residue injectivity implies distinct ordinary
+values for these cubes. Thus
+
+```
+H3>=K_k-max(0,3L-h),
+K_k<=rho+max(0,3L-h).                            (HOT-WINDOW)
+```
+
+The first inequality can be replaced by its maximum with zero;
+the second follows from the joint short-residue lemma rho>=H3.
+The actual-instance checker separately verifies the underlying
+interval-occupancy inequality on the actual nonexceptional core.
+The graph checker also verifies deg(v)<=r-tau(G)+1 for every
+loop graph on at most six vertices.
+
+For each a=17 row, the matching condition gives k=r, l=r_LL=0,
+and hence j<=1. The legal cubic budgets v are exactly 12,0,1,1.
+The resulting lower core-cubic counts are respectively 126,129,
+128,128, since
+
+```
+K=min(C(12,3)-10*r-v, C(11,3)-9*(r-1)-v).
+```
+
+Because b=c=e=0, a counterexample has W=WA+rho<0, so
+`h>=h_min:=m+WA+1`. The function
+`m-h+max(0,(h-3delta)/2)` decreases with h. HOT-WINDOW therefore
+requires
+
+```
+2K<=2m-2h_min+max(0,h_min-3delta).                (HOT-FIN)
+```
+
+In all four rows K>m-h_min. It follows that
+
+```
+delta<=floor((2m-h_min-2K)/3).
+```
+
+This gives the sharper necessary table
+
+| r | t | c0 | m | h_min | K | delta interval |
+|---:|---:|---:|---:|---:|---:|:---|
+| 4 | 80 | 84 | 1056 | 1009 | 126 | 247..283 |
+| 5 | 85 | 84 | 1050 | 1009 | 129 | 246..277 |
+| 5 | 86 | 83 | 1049 | 1012 | 128 | 247..276 |
+| 5 | 86 | 84 | 1049 | 1012 | 128 | 247..276 |
+
+There are 37+32+30+30=129 delta tuples. Parity of h and delta,
+additional offset restrictions, and the full residue-injective
+weight problem have not been enumerated, so 129 is an upper
+bound on a structured family, not a realization count. The example
+at delta=247 in section 47 remains within this refined family.
+`t5/profile_witness.py` checks the four HOT-FIN endpoint calculations.
+
+## 50. E-REPAIR closes the matching families
+
+The four families in section 49 are excluded by a stronger use of
+the same degree observation. That section's 129-tuple reduction is
+retained as an intermediate result; none of those tuples remains
+after the following step.
+
+**E-REPAIR.** For the actual minimum cover k of the absent A-pair
+graph, replace the previous exception bound min(p,l+r) by
+
+```
+E_k=min(p,l+min(r-r_LL,r-k+1)) if r>0,
+E_0=min(p,l) if r=0.
+```
+
+Every occurrence of E in the section 34 H0 accounting can use
+this bound. The reason is that E enters there only as an upper
+bound on the number of high units below h-L. Section 49 proved
+the degree bound directly. Also at most r-r_LL absent pairs can
+be low--high, giving the other term in the minimum. C_H is
+increasing in E; the bounds on
+outside intruders use alpha+E in the same direction. Therefore
+each counterexample, with the same k used in LINKED-DEF, requires
+
+```
+delta<=2C_H(E_k)-(a-1)-(a+3)q2-(a+1)u3+5k_quartic
+                       -D3-b B_H(E_k)-Omega_H(E_k)-1.   (E-DELTA)
+```
+
+Here k_quartic denotes the old quartic count; it is not the
+minimum cover k. Both final count programs keep this distinction.
+Dropping a nonnegative Omega_H gives the necessary version used
+in the small certificate. Its nonnegativity is checked at the
+larger old E bound, so it remains valid after reducing E.
+
+All four a=17 families have minimum cover k=r, l=b=c=e=0,
+u3=k_quartic=0 and n0=q2=28. Hence E_k=1. Their new constants
+and necessary delta upper bounds are
+
+| r | t | c0 | C_H(1) | D3 | E-DELTA upper | LOW-FIN lower |
+|---:|---:|---:|---:|---:|---:|---:|
+| 4 | 80 | 84 | 471 | 164 | 201 | 247 |
+| 5 | 85 | 84 | 471 | 160 | 205 | 246 |
+| 5 | 86 | 83 | 470 | 163 | 200 | 247 |
+| 5 | 86 | 84 | 471 | 163 | 202 | 247 |
+
+Each interval is empty. This is a paper exclusion of all four
+rows, using the finite count reduction only to obtain their list.
+In particular the pre-E-REPAIR witness in section 47 is now excluded;
+it remains a useful counterexample to the earlier count shortcut.
+
+**Theorem T2-SMALL17 (finite certificate).** Under the primary
+hypotheses, a<=17 implies W>=0 for every alpha,b,c,e. For a<=16
+use section 47. At a=17 the exhaustive necessary count relaxation
+leaves precisely the four rows, each excluded by E-DELTA above.
+The final C version also includes E-DELTA directly and gives zero
+survivors, providing a redundant check of the row argument.
+
+There is a uniform analytic consequence beyond these four rows.
+Suppose alpha=A>=4, all low pairs are present, and
+`l=b=c=e=0`. A counterexample has q2=Q_A, u1=k1=0. A-LOW gives
+a>5A/3+1. Combining LOW-FIN and E-DELTA, and using
+c0<=U_A, 4k0<=(A+3)u0, yields the necessary inequality
+
+```
+4a-6A+2(2A+1-a)Q_A+4D3
+        -6E_k[1+A(a-A)]-6C(E_k+2,3)<=0.           (LOW-H(E))
+```
+
+For completeness the exact pre-shadow difference of the lower
+bound for 3delta and three times its upper bound is
+
+```
+4a-6A+(6A+6-2a)Q_A-6c0
+ +4(a+1)u0-18k0+4D3
+ -6E_k[1+A(a-A)]-6C(E_k+2,3).
+```
+
+Replacing c0 by U_A gives the displayed Q_A term. The remaining
+u0 coefficient is nonnegative because 8a-9A-19>0 follows from
+A-LOW for A>=4, as in section 36. Thus LOW-H(E) is a uniform
+necessary condition, not a finite-grid observation. At r=0 it
+recovers LOW-H. If the missing pairs form a matching, E_k=1 and
+PAIR-ID gives D3=2(a-1)r+3v, with v the legal missing-cubic
+count. In that case a counterexample requires
+
+```
+8(a-1)r+12v+4a-6A-12
+       +2(2A+1-a)Q_A-6A(a-A)<=0.                 (MATCH-LOW)
+```
+
+The four row exclusions are also immediate from this inequality.
+The exact difference identity is included in the Fraction audit.
+
+The following local cover refinement is stronger than the simple
+E_k bound, and is the final version used in the replay certificate.
+Let j be the number of low vertices in an actual minimum cover k,
+and put f(j)=alpha*j-C(j,2). Necessarily
+
+```
+max(0,k-p)<=j<=min(alpha,k),
+r<=a*k-C(k,2),        r_LL<=f(j).                (LOCAL-COVER)
+```
+
+Indeed a cover of j low vertices meets at most f(j) low pairs;
+all other low pairs must be present. Equivalently
+`n0>=C(alpha-j+1,2)`. The total-pair bound is the same argument
+on all a vertices. This rejects a proposed k when no such j exists.
+
+Distinguish whether the minimum low unit belongs to the chosen
+cover. If it does not, every absent pair from it to a high unit
+ends at a covered high vertex. Therefore its missing high-neighbor
+count is at most
+
+```
+min(k-j,r-r_LL,r-k+1)                 if j<alpha.  (E0)
+```
+
+If it belongs to the cover, the other j-1 low vertices can cover
+at most f(j-1) absent low pairs. Its own missing low degree is
+therefore at least d_L=max(0,r_LL-f(j-1)). Since its total missing
+degree is at most r-k+1, its missing high degree is at most
+
+```
+min(r-r_LL,r-k+1-d_L)                  if j>=1.   (E1)
+```
+
+A negative latter bound makes this membership case impossible.
+Take the maximum of all feasible E0/E1 bounds over feasible j,
+add l, and cap at p. Denote this result by Ehat_k. If there is no
+feasible case, discard k. For r=0, Ehat_0=min(p,l). Each actual
+minimum cover supplies one of these cases, so its actual exception
+count is at most Ehat_k. Moreover Ehat_k<=E_k. Substitution of
+Ehat_k for E_k in E-DELTA is therefore valid. These are elementary
+cover counts, not a conjectural Sidon or Fourier estimate.
+
+**Theorem T2-SMALL18 (two-stage finite certificate).** Under the
+primary hypotheses, a<=18 implies W>=0 for all alpha,b,c,e.
+For a<=17 use the preceding theorem. For a=18 the C enumeration
+with the simpler degree-only E-REPAIR (E=min(p,l+r-k+1)) has
+
+```
+26,725 base states; 71,891,624 u states;
+4,008,931 packing profiles;
+151,063 surviving delta tuples in 90 profile hulls.
+```
+
+`t5/replay_profiles.py` independently reads all 90 exported hulls.
+For each hull and each allowed k it computes e_k, tests LOCAL-COVER,
+computes Ehat_k and the new E-DELTA upper bound, and checks the
+linked global A and short/wide/joint packing inequalities. It
+finds zero surviving hulls. This is a complete bounded certificate:
+the initial enumeration is exhaustive on the section 39 necessary
+domain, and its first/last-delta hulls enlarge its survivor set.
+For a fixed k all the interval packing tests increase in delta;
+thus it suffices to test them at the smaller of the hull's upper
+endpoint and E-DELTA's upper bound, provided it is at least the
+hull's lower endpoint. Global packing is independent of delta.
+No interval containing an actual candidate is lost by this replay.
+No ambient packing conjecture is used.
+
+The same independent replay also excludes the five earlier a=16
+profile hulls and the four a=17 hulls. This replay does not claim
+to be a second full-domain enumeration at a=18. The completed
+full Python domain slices are a=14,15,16; the bounded-loop a=16
+replay agrees exactly on all three count columns with C. Two
+slower redundant a=16 sweeps and an optional GLOC-pruned a=17
+continuation were stopped. No completed full Python a=17 or 18
+sweep is claimed. The C full-domain enumeration and the independent
+bounded replay, with the stated analytic pruning, are the actual
+dependencies of the small theorem. The source and every exported
+hull used by the replay are retained.
+
+For example the a=18 raw hulls include alpha=7,r=18,n0=14,
+epsilon_M<=7. The generic cover upper bound forces k=1 there,
+but r_LL=28-14=14 exceeds f(1)=7. LOCAL-COVER immediately excludes
+that apparent star. This illustrates the missing consistency
+condition between global pair repair and the low face; it was
+not an actual residue-complete counterexample.
+
+## 51. P5e status and exact remaining work
+
+The full primary regime, and Wilf for every numerical semigroup
+with 3m<c_S<=4m, remain open in this report. The new mathematical
+results of this continuation are PAIR-COVER and its linked defect
+packing, MIX-PACK, E-REPAIR/LOCAL-COVER, the conditional P47-B0
+certificate (optimized to C_dagger), HOT-WINDOW, and the analytic
+LARGE-A theorem.
+The new finite certificates extend T2-SMALL through a=18 and
+close `r=l=b=0` for 4<=alpha<=14 for every a. The lead has not
+independently reviewed these new statements; their proof and
+finite-verification dependencies are stated above.
+
+Subject to those explicit finite certificates, every remaining
+counterexample must satisfy all FRONTIER-41 conditions and
+
+```
+alpha>=4,
+19<=a<16*C(alpha+1,2)^2,
+LINKED-DEF, LINK-SP/Q/PSP, HOT-WINDOW, LOCAL-COVER,
+E-DELTA with Ehat_k, and MIX-PACK.
+```
+
+This is a uniform explicit bound on a for every fixed alpha.
+It is not an absolute finite bound on alpha: the low population
+is still unbounded. Each fixed alpha now has a finite search,
+since section 38 also bounds b,c,e,m and every active weight.
+The four intermediate a=17 matching families and all 90 a=18
+profile hulls are excluded in section 50.
+
+In the branch r=l=b=0 a counterexample further needs
+
+```
+alpha>=15, a>=2alpha+3,
+33<=a<2*C(alpha+1,2)+38,
+epsilon_M>Q_alpha/4 and MID-B0,
+alpha+R>=33.
+```
+
+P(C_dagger), with exactly zero lower-order error, would remove
+this entire branch. Even after assuming that P, the branches
+r+l+b>0 still require a uniform geometric/payment argument;
+no claim that they have already been reduced to P is made.
+
+The next precise uniform packing target is P(C_dagger) on
+pair-distinct integer sets with n>=33, retaining the ordinary
+unordered triple excess. The next precise finite target is the
+a=19 necessary domain with LOCAL-COVER and Ehat_k included from
+the start; no a=19 exclusion is claimed. A successful uniform
+argument must also use the r/l/B budget beyond the present
+P-REPAIR count substitution. Section 47 identifies a historical
+profile which E-REPAIR now excludes. For the general branch the
+remaining task is to close the coupled k/Ehat_k/legal-defect
+inequalities uniformly, retaining their coupling.
+
+For a numerical semigroup the translation is
+`h=c_S-3m`, `a=#{minimal n>m : n<c_S-2m}` and
+`alpha=#{minimal n>m : 2n<c_S-m}`. Thus T2-SMALL18 proves Wilf
+in this conductor range when a<=18, and LARGE-A proves it when
+`a>=16*C(alpha+1,2)^2`. Together with the earlier zero-, one-,
+two- and three-low results, any remaining semigroup has the
+explicit parameters just displayed. These are partial extensions,
+not a proof for every c_S<=4m.
+
+Since a is at most the embedding dimension minus one, the finite
+certificate also covers every semigroup of embedding dimension
+at most 19 in this conductor range.
+
+The reproducible P5e artifacts are in `src/scratch/gw/p5/t5/`.
+The audit compares the independent count outputs, graph enumeration,
+B-free endpoints, polynomial identities and actual-instance logs;
+`AUDIT.json` records totals and `SHA256SUMS` records the remote
+source/report/log inventory. Failed preliminary logs are retained.

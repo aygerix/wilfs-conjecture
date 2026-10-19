@@ -1,0 +1,6 @@
+n=1 graphs=2 tight=2 shape_zero=2 max_repair_gain=0
+n=2 graphs=8 tight=8 shape_zero=6 max_repair_gain=1
+n=3 graphs=64 tight=36 shape_zero=19 max_repair_gain=2
+n=4 graphs=1024 tight=133 shape_zero=55 max_repair_gain=3
+n=5 graphs=32768 tight=412 shape_zero=146 max_repair_gain=4
+n=6 graphs=2097152 tight=1176 shape_zero=364 max_repair_gain=5
