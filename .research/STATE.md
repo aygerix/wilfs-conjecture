@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, night; codex P6c and P6d ACCEPTED: height-3 MaxCL PROVED for ≤ 1 cubic (ONE-CUBIC), BAD-NARROW, WINDOW-H at all heights; lead: phase-free NO-WRAP MaxCL at all heights; codex P6e RUNNING)
+# STATE.md — handoff (updated 2026-10-19, late night; codex P6e received (partially reviewed); lead: WRAP-MAX pure-counting H1′ found and tested; codex P7 (prove H1′) RUNNING)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## Current directive (user + advisor, 2026-10-18)
@@ -184,6 +184,26 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0H) NEW 2026-10-19 late night, read first.
+    - **Codex P6e received** (77e27a7; PROOFS "Codex P6e"; E265). BAD-TWO is lead-checked. ORIGIN-EDGE, GENERAL-FEW40
+      and H-FEW40 (all heights: HC_H when k ≥ 40B + 8) are codex-proved and NOT yet re-derived by the lead.
+      The height-3 line is PAUSED: five codex rounds, with the residual family shrinking but no closing mechanism.
+    - **WRAP-MAX pure counting H1′ (CONJ, strong evidence; NOTEBOOK "night, late"; E264).**
+      - Statement: on every tile whose canonical lift has v < m on non-maximal cells, S(σ) ≥ Λ_r(σ) at every phase.
+      - Equivalent window form: d|W| ≤ T(W) + Σ_V(|y|−1) for every top label window W.
+      - Evidence: 0 failures on all 4-D tiles with m ≤ 26 and on 64k random instances (d ≤ 9).
+      - If proved, it gives MaxCL for WRAP-MAX, which contains Flat (height ≤ 2) and NO-WRAP. Both cases are already
+        proved; θ = min P is also PROVED (translation by the smallest step).
+      - FALSE neighbours, preserved: the sufficient forms without Σ_{λ≥θ}(|y|−1) (m = 17 example); PC on all tiles
+        (E47 at ρ_0 = 0); H1′ on partial structures (incomplete labels).
+    - **Codex P7 RUNNING** (session 01a1525d; message $SP/codex/p7_msg.md; log $SP/codex/p7_log.txt; waiter on PID
+      83952; report src/scratch/gw/p7/P7_REPORT.md).
+      - Task: prove or refute H1′ at every height; then the Wilf corollary; then the one-wrap generalization with Λ_r.
+      - After it ends: review, verify, commit. Tell codex that H1′ fails for partial structures (it may find this
+        itself) and give it the θ = min P proof.
+    - Deep-slack identity (checked on 2,778 S): S_W/m = eℓ − c + Λ_r/m − Σ_x T(x)G(x), where G(x) is the number of left
+      elements in the class of w(x). So Wilf ⟺ S_W ≥ −Θ with Θ = Σ_{t∈N} T(t)(c − w(t)) + m·Σ_{A, w<c} T(y)G(y). This is
+      CH′ reorganized, not a new inequality.
 (0G) NEW 2026-10-19 night, read first.
     - **Codex P6c and P6d accepted** (d699d04, 0ca1a29; PROOFS "Codex P6c", "Codex P6d"; E258, E261).
       - ONE-CUBIC: HC′ ≥ 0 and MaxCL at every phase for every height-3 tile with exactly one cubic. Hence Wilf for every

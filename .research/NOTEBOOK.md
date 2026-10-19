@@ -2709,4 +2709,13 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Consequence if H1′ is proved: MaxCL at every phase for every WRAP-MAX tile (S ≥ Λ_r ≥ 0), which contains both
   Flat-MaxCL (height ≤ 2) and NO-WRAP. Wilf corollary: every S with a factorization tile in which every non-maximal
   cell x has Σ x_a⟨n_a⟩ < m.
-
+- **H1′ needs label completeness.** On random partial structures (down-set D = D° ∪ V, v < m injective on D°, V maximal
+  with v ∈ [m, 2m) and labels distinct from v(D°), but |D| < m), the degree form fails in 1,325 of 12,898 cases
+  (src/scratch/wrapmax/wm_partial.py, seed 1; first failure m = 20, P = (10, 9, 12), 11 cells). So there is no
+  cell-by-cell induction: the proof must use that every residue occurs.
+- **H1′ at θ = min P (PROVED, lead).** Let p = P_a = min P, and suppose every e_b ∈ D. Then D°_θ = {0}, and every label in
+  [1, p) is a wrapped cell. Every wrapped cell is an a-top, so σ_a (label + p) maps these p − 1 cells injectively onto
+  a-floor cells with labels in [p+1, 2p). A non-wrapped a-floor cell with v < 2p is a single unit e_b with P_b ∈ (p, 2p).
+  Hence at least p − 1 − (d − 1) of the labels in [p+1, 2p) are wrapped cells with λ ≥ p, each with |y| − 1 ≥ 1. So
+  Σ_{λ ≥ p}(|y|−1) ≥ p − d ≥ p − 1 − d, which is H1′ at θ = p with one unit to spare. Mechanism: translation by the
+  smallest step sends low wrapped labels to wrapped cells with higher labels.

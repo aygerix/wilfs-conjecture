@@ -581,3 +581,8 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
   (`gh search repos`) found no e = 5 proof. kseth/wilf-e4 (last push 2026-10-05) is e = 4 only. Nearest results:
   Sammartano 2ν ≥ m and m ≤ 8; Eliahou e ≥ m/3; Dhayni m − ν = 5 and m = 9 (a different invariant). So e = 5 is OPEN
   as of this search.
+- **Search 2026-10-19 (late night), before making WRAP-MAX / H1′ a sub-target.** GitHub (`gh search repos`, updated
+  after 2026-10-12: "wilf conjecture", "numerical semigroup", "apery set"): only our repo, Flaman55/NumericalSemigroups
+  and Aurantium-47/numerical-semigroup-endpoint-residues (shifted-semigroup endpoint residues; not Wilf). alphaXiv
+  (recency): no new Wilf result. Newest relevant items are 2608.12531 (item 10), the e = 4 papers, and 2610.06426
+  (reflexive ideals; not Wilf). No statement resembling NO-WRAP, WRAP-MAX or H1′ was found.
