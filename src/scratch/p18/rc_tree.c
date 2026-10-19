@@ -49,6 +49,7 @@ static void visit(u128 gm, int F, int m, int *gens, int e, int g) {
     tq[cls][e]++;
     if (2 * R < need) {
       fail[g][e]++; fq[cls][e]++;
+      if (cls == 1 && 3 * e < m) { static int n4 = 0; if (n4++ < 60) { printf("FAILq4_3e<m g=%d m=%d c=%lld e=%d W=%lld 2R/need=%.4f gens=", g, m, (long long)c, e, (long long)W, r); for (int a = 0; a < d; a++) printf("%d,", n[a]); printf("\n"); } }
       if (cls == 2 && nshow < 40) { nshow++; printf("FAILq5 g=%d m=%d c=%lld q=%d e=%d W=%lld 2R/need=%.4f gens=", g, m, (long long)c, q, e, (long long)W, r);
         for (int a = 0; a < d; a++) printf("%d,", n[a]); printf("\n"); }
     }

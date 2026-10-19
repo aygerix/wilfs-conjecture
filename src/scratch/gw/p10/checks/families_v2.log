@@ -1,0 +1,81 @@
+{"polynomial": ["1707/5", "11664/5", "5907/10", "256/5", "3/2"], "boundary_constants": "exact OK"}
+{"family": "support_two", "N": 3, "m": 13, "q": 7, "height": 4, "W": 103, "H": 43, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 4, "m": 21, "q": 11, "height": 6, "W": 284, "H": 129, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 5, "m": 31, "q": 15, "height": 8, "W": 598, "H": 282, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 6, "m": 43, "q": 19, "height": 10, "W": 1081, "H": 520, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 7, "m": 57, "q": 23, "height": 12, "W": 1769, "H": 861, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 8, "m": 73, "q": 27, "height": 14, "W": 2698, "H": 1323, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 9, "m": 91, "q": 31, "height": 16, "W": 3904, "H": 1924, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 10, "m": 111, "q": 35, "height": 18, "W": 5423, "H": 2682, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 11, "m": 133, "q": 39, "height": 20, "W": 7291, "H": 3615, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 12, "m": 157, "q": 43, "height": 22, "W": 9544, "H": 4741, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 13, "m": 183, "q": 47, "height": 24, "W": 12218, "H": 6078, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 14, "m": 211, "q": 51, "height": 26, "W": 15349, "H": 7644, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 15, "m": 241, "q": 55, "height": 28, "W": 18973, "H": 9457, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 16, "m": 273, "q": 59, "height": 30, "W": 23126, "H": 11535, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 17, "m": 307, "q": 63, "height": 32, "W": 27844, "H": 13896, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 18, "m": 343, "q": 67, "height": 34, "W": 33163, "H": 16558, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 19, "m": 381, "q": 71, "height": 36, "W": 39119, "H": 19539, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 20, "m": 421, "q": 75, "height": 38, "W": 45748, "H": 22857, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 21, "m": 463, "q": 79, "height": 40, "W": 53086, "H": 26530, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 22, "m": 507, "q": 83, "height": 42, "W": 61169, "H": 30576, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 23, "m": 553, "q": 87, "height": 44, "W": 70033, "H": 35013, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 24, "m": 601, "q": 91, "height": 46, "W": 79714, "H": 39859, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 25, "m": 651, "q": 95, "height": 48, "W": 90248, "H": 45132, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 26, "m": 703, "q": 99, "height": 50, "W": 101671, "H": 50850, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 27, "m": 757, "q": 103, "height": 52, "W": 114019, "H": 57031, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 28, "m": 813, "q": 107, "height": 54, "W": 127328, "H": 63693, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 29, "m": 871, "q": 111, "height": 56, "W": 141634, "H": 70854, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 30, "m": 931, "q": 115, "height": 58, "W": 156973, "H": 78532, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 31, "m": 993, "q": 119, "height": 60, "W": 173381, "H": 86745, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 32, "m": 1057, "q": 123, "height": 62, "W": 190894, "H": 95511, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 33, "m": 1123, "q": 127, "height": 64, "W": 209548, "H": 104848, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 34, "m": 1191, "q": 131, "height": 66, "W": 229379, "H": 114774, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 35, "m": 1261, "q": 135, "height": 68, "W": 250423, "H": 125307, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 36, "m": 1333, "q": 139, "height": 70, "W": 272716, "H": 136465, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 37, "m": 1407, "q": 143, "height": 72, "W": 296294, "H": 148266, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 38, "m": 1483, "q": 147, "height": 74, "W": 321193, "H": 160728, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 39, "m": 1561, "q": 151, "height": 76, "W": 347449, "H": 173869, "t": [0, 2, 2, 0, 0]}
+{"family": "support_two", "N": 40, "m": 1641, "q": 155, "height": 78, "W": 375098, "H": 187707, "t": [0, 2, 2, 0, 0]}
+{"family": "balanced_L", "N": 3, "m": 15, "q": 8, "height": 4, "W": 100, "H": 40, "t": [0, 2, 3, 0, 0], "LKYZ": 32, "LKYZ_covers": true}
+{"family": "balanced_L", "N": 4, "m": 24, "q": 12, "height": 6, "W": 285, "H": 126, "t": [0, 2, 3, 0, 0], "LKYZ": 72, "LKYZ_covers": true}
+{"family": "balanced_L", "N": 5, "m": 35, "q": 16, "height": 8, "W": 608, "H": 280, "t": [0, 2, 3, 0, 0], "LKYZ": 128, "LKYZ_covers": true}
+{"family": "balanced_L", "N": 6, "m": 48, "q": 20, "height": 10, "W": 1105, "H": 520, "t": [0, 2, 3, 0, 0], "LKYZ": 200, "LKYZ_covers": true}
+{"family": "balanced_L", "N": 7, "m": 63, "q": 24, "height": 12, "W": 1812, "H": 864, "t": [0, 2, 3, 0, 0], "LKYZ": 288, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 8, "m": 80, "q": 28, "height": 14, "W": 2765, "H": 1330, "t": [0, 2, 3, 0, 0], "LKYZ": 392, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 9, "m": 99, "q": 32, "height": 16, "W": 4000, "H": 1936, "t": [0, 2, 3, 0, 0], "LKYZ": 512, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 10, "m": 120, "q": 36, "height": 18, "W": 5553, "H": 2700, "t": [0, 2, 3, 0, 0], "LKYZ": 648, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 11, "m": 143, "q": 40, "height": 20, "W": 7460, "H": 3640, "t": [0, 2, 3, 0, 0], "LKYZ": 800, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 12, "m": 168, "q": 44, "height": 22, "W": 9757, "H": 4774, "t": [0, 2, 3, 0, 0], "LKYZ": 968, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 13, "m": 195, "q": 48, "height": 24, "W": 12480, "H": 6120, "t": [0, 2, 3, 0, 0], "LKYZ": 1152, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 14, "m": 224, "q": 52, "height": 26, "W": 15665, "H": 7696, "t": [0, 2, 3, 0, 0], "LKYZ": 1352, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 15, "m": 255, "q": 56, "height": 28, "W": 19348, "H": 9520, "t": [0, 2, 3, 0, 0], "LKYZ": 1568, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 16, "m": 288, "q": 60, "height": 30, "W": 23565, "H": 11610, "t": [0, 2, 3, 0, 0], "LKYZ": 1800, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 17, "m": 323, "q": 64, "height": 32, "W": 28352, "H": 13984, "t": [0, 2, 3, 0, 0], "LKYZ": 2048, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 18, "m": 360, "q": 68, "height": 34, "W": 33745, "H": 16660, "t": [0, 2, 3, 0, 0], "LKYZ": 2312, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 19, "m": 399, "q": 72, "height": 36, "W": 39780, "H": 19656, "t": [0, 2, 3, 0, 0], "LKYZ": 2592, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 20, "m": 440, "q": 76, "height": 38, "W": 46493, "H": 22990, "t": [0, 2, 3, 0, 0], "LKYZ": 2888, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 21, "m": 483, "q": 80, "height": 40, "W": 53920, "H": 26680, "t": [0, 2, 3, 0, 0], "LKYZ": 3200, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 22, "m": 528, "q": 84, "height": 42, "W": 62097, "H": 30744, "t": [0, 2, 3, 0, 0], "LKYZ": 3528, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 23, "m": 575, "q": 88, "height": 44, "W": 71060, "H": 35200, "t": [0, 2, 3, 0, 0], "LKYZ": 3872, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 24, "m": 624, "q": 92, "height": 46, "W": 80845, "H": 40066, "t": [0, 2, 3, 0, 0], "LKYZ": 4232, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 25, "m": 675, "q": 96, "height": 48, "W": 91488, "H": 45360, "t": [0, 2, 3, 0, 0], "LKYZ": 4608, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 26, "m": 728, "q": 100, "height": 50, "W": 103025, "H": 51100, "t": [0, 2, 3, 0, 0], "LKYZ": 5000, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 27, "m": 783, "q": 104, "height": 52, "W": 115492, "H": 57304, "t": [0, 2, 3, 0, 0], "LKYZ": 5408, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 28, "m": 840, "q": 108, "height": 54, "W": 128925, "H": 63990, "t": [0, 2, 3, 0, 0], "LKYZ": 5832, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 29, "m": 899, "q": 112, "height": 56, "W": 143360, "H": 71176, "t": [0, 2, 3, 0, 0], "LKYZ": 6272, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 30, "m": 960, "q": 116, "height": 58, "W": 158833, "H": 78880, "t": [0, 2, 3, 0, 0], "LKYZ": 6728, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 31, "m": 1023, "q": 120, "height": 60, "W": 175380, "H": 87120, "t": [0, 2, 3, 0, 0], "LKYZ": 7200, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 32, "m": 1088, "q": 124, "height": 62, "W": 193037, "H": 95914, "t": [0, 2, 3, 0, 0], "LKYZ": 7688, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 33, "m": 1155, "q": 128, "height": 64, "W": 211840, "H": 105280, "t": [0, 2, 3, 0, 0], "LKYZ": 8192, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 34, "m": 1224, "q": 132, "height": 66, "W": 231825, "H": 115236, "t": [0, 2, 3, 0, 0], "LKYZ": 8712, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 35, "m": 1295, "q": 136, "height": 68, "W": 253028, "H": 125800, "t": [0, 2, 3, 0, 0], "LKYZ": 9248, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 36, "m": 1368, "q": 140, "height": 70, "W": 275485, "H": 136990, "t": [0, 2, 3, 0, 0], "LKYZ": 9800, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 37, "m": 1443, "q": 144, "height": 72, "W": 299232, "H": 148824, "t": [0, 2, 3, 0, 0], "LKYZ": 10368, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 38, "m": 1520, "q": 148, "height": 74, "W": 324305, "H": 161320, "t": [0, 2, 3, 0, 0], "LKYZ": 10952, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 39, "m": 1599, "q": 152, "height": 76, "W": 350740, "H": 174496, "t": [0, 2, 3, 0, 0], "LKYZ": 11552, "LKYZ_covers": false}
+{"family": "balanced_L", "N": 40, "m": 1680, "q": 156, "height": 78, "W": 378573, "H": 188370, "t": [0, 2, 3, 0, 0], "LKYZ": 12168, "LKYZ_covers": false}
+{"family": "spike_box", "N": 4, "m": 64, "q": 16, "height": 8, "W": 1288, "H": 613, "t": [0, 1, 0, 3, 0]}
+{"family": "spike_box", "N": 8, "m": 512, "q": 40, "height": 20, "W": 28680, "H": 14085, "t": [0, 1, 0, 3, 0]}
+{"family": "spike_box", "N": 12, "m": 1728, "q": 64, "height": 32, "W": 158984, "H": 78629, "t": [0, 1, 0, 3, 0]}
+{"family": "spike_box", "N": 24, "m": 13824, "q": 136, "height": 68, "W": 2764808, "H": 1375493, "t": [0, 1, 0, 3, 0]}

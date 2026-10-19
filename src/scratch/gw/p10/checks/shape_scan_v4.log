@@ -1,0 +1,43 @@
+MIN7 18 {"m":5,"r":[1,2,3,4],"H":0,"t":4,"zero":5,"one":0,"D":[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,1,0,0],[1,0,0,0]]}
+RATIO 10/4 {"m":5,"r":[1,2,3,4],"H":0,"t":4,"zero":5,"one":0,"D":[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,1,0,0],[1,0,0,0]]}
+DONE m=5 count=1 total=1 maxC=10/4 min7=18 boundary=1 two=1 minBH2x6=0 minBH3x4=0 failures=0
+MIN7 17 {"m":6,"r":[1,2,3,4],"H":8,"t":3,"zero":3,"one":0,"D":[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,1,0,0],[0,1,1,0],[1,0,0,0]]}
+DONE m=6 count=7 total=8 maxC=10/4 min7=17 boundary=8 two=8 minBH2x6=0 minBH3x4=0 failures=0
+MIN7 16 {"m":7,"r":[1,2,5,6],"H":16,"t":2,"zero":2,"one":0,"D":[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,1,0,0],[1,0,0,0],[1,1,0,0]]}
+DONE m=7 count=13 total=21 maxC=10/4 min7=16 boundary=21 two=21 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=8 count=69 total=90 maxC=10/4 min7=16 boundary=90 two=90 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=9 count=125 total=215 maxC=10/4 min7=16 boundary=215 two=214 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=10 count=319 total=534 maxC=10/4 min7=16 boundary=534 two=511 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=11 count=356 total=890 maxC=10/4 min7=16 boundary=890 two=847 minBH2x6=0 minBH3x4=0 failures=0
+RATIO 18/7 {"m":12,"r":[1,3,5,6],"H":6,"t":7,"zero":7,"one":4,"D":[[0,0,0,0],[0,0,0,1],[0,0,1,0],[0,0,1,1],[0,0,2,0],[0,1,0,0],[0,1,0,1],[0,1,1,0],[1,0,0,0],[1,0,0,1],[1,1,0,0],[2,0,0,0]]}
+DONE m=12 count=1278 total=2168 maxC=18/7 min7=16 boundary=2168 two=1942 minBH2x6=0 minBH3x4=0 failures=0
+RATIO 22/8 {"m":13,"r":[1,2,6,9],"H":4,"t":8,"zero":9,"one":4,"D":[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,0,1,0],[0,0,2,0],[0,1,0,0],[0,1,0,1],[0,1,1,0],[0,2,0,0],[1,0,0,0],[1,0,0,1],[1,0,1,0],[1,1,0,0]]}
+HCR_FAIL {"m":13,"r":[1,2,6,9],"H":4,"t":8,"zero":9,"one":4,"D":[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,0,1,0],[0,0,2,0],[0,1,0,0],[0,1,0,1],[0,1,1,0],[0,2,0,0],[1,0,0,0],[1,0,0,1],[1,0,1,0],[1,1,0,0]]}
+HCR_FAIL {"m":13,"r":[1,5,8,12],"H":4,"t":8,"zero":9,"one":4,"D":[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,0,1,0],[0,0,1,1],[0,0,2,0],[0,1,0,0],[0,1,0,1],[0,2,0,0],[1,0,0,0],[1,0,1,0],[1,1,0,0],[2,0,0,0]]}
+DONE m=13 count=1084 total=3252 maxC=22/8 min7=16 boundary=3252 two=2904 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=14 count=2551 total=5803 maxC=22/8 min7=16 boundary=5803 two=4905 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=15 count=3721 total=9524 maxC=22/8 min7=16 boundary=9524 two=7814 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=16 count=5388 total=14912 maxC=22/8 min7=16 boundary=14904 two=11744 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=17 count=5407 total=20319 maxC=22/8 min7=16 boundary=20310 two=15761 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=18 count=12980 total=33299 maxC=22/8 min7=16 boundary=33273 two=23954 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=19 count=10302 total=43601 maxC=22/8 min7=16 boundary=43569 two=30929 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=20 count=22103 total=65704 maxC=22/8 min7=16 boundary=65593 two=44190 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=21 count=24675 total=90379 maxC=22/8 min7=16 boundary=90246 two=58546 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=22 count=34081 total=124460 maxC=22/8 min7=16 boundary=124196 two=77605 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=23 count=30532 total=154992 maxC=22/8 min7=16 boundary=154663 two=94974 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=24 count=67526 total=222518 maxC=22/8 min7=16 boundary=221708 two=127846 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=25 count=53516 total=276034 maxC=22/8 min7=16 boundary=275024 two=155409 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=26 count=85392 total=361426 maxC=22/8 min7=16 boundary=359724 two=196693 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=27 count=87198 total=448624 maxC=22/8 min7=16 boundary=446335 two=237381 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=28 count=132672 total=581296 maxC=22/8 min7=16 boundary=577529 two=295179 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=29 count=109359 total=690655 maxC=22/8 min7=16 boundary=686011 two=345622 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=30 count=250141 total=940796 maxC=22/8 min7=16 boundary=931856 two=443390 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=31 count=155766 total=1096562 maxC=22/8 min7=16 boundary=1085919 two=510682 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=32 count=246007 total=1342569 maxC=22/8 min7=16 boundary=1327763 two=608249 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=33 count=273598 total=1616167 maxC=22/8 min7=16 boundary=1596776 two=713693 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=34 count=358772 total=1974939 maxC=22/8 min7=16 boundary=1948157 two=851410 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=35 count=355271 total=2330210 maxC=22/8 min7=16 boundary=2296784 two=979613 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=36 count=552315 total=2882525 maxC=22/8 min7=16 boundary=2833518 two=1166075 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=37 count=397044 total=3279569 maxC=22/8 min7=16 boundary=3221975 two=1313642 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=38 count=639921 total=3919490 maxC=22/8 min7=16 boundary=3843683 two=1536912 minBH2x6=0 minBH3x4=0 failures=0
+DONE m=39 count=649381 total=4568871 maxC=22/8 min7=16 boundary=4473923 two=1755418 minBH2x6=0 minBH3x4=0 failures=0

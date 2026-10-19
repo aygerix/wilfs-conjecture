@@ -2947,3 +2947,31 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Since e ≤ 19 is already closed at c ≤ 4m (GW-26g), "RC for c ≤ 4m and e ≥ 20" would finish c ≤ 4m.
   - Genus ≤ 30 shows RC failures at q = 4 only for e ≤ 7.
   - Random e ≥ 20 at q = 4: 100% covered, min 1.40. An annealer inside the exact residual (α ≥ 6, a ≥ 19) is running.
+
+## 2026-10-19 (night, latest+++++++) — CHAIN-WILF: deficit form, packing variants, refutation by intervals; codex P10 verified
+
+- **Deficit form.** CHAIN-WILF ⟺ Δ = Σ_{w,a}(s_w − y_{w,a}) ≤ C(m,2), with s_w = (M−w) mod m and y_{w,a} = M − top_a(w).
+  Only chains whose top lies in [c, M] contribute positively. On T_{m,q} all of Δ sits at w = 0.
+- **The w = 0 term.** It is ≤ d(m−1) (Lemma W0). So "con(w) ≤ 0 for all w ≠ 0" (PW0′) would give Wilf, using
+  Sammartano for 2e ≥ m. PW0′ is FALSE (⟨5,9,12⟩). PACK (positive parts per pair) and PACK-A (per direction) are FALSE.
+  PACK-W (per element) survived genus ≤ 33 at q ≥ 4.
+- **Layer-1 identity (proved).** Σ_{λ=1} con = Σ_a n_a·#{(x ∈ S, x + n_a − m gap) in [c−m, c−1]} − md|L1|. Layer sums
+  are not separately signed, so the cancellation is global.
+- **Refutation.** A Kunz-coordinate annealer (a new tool: it reaches large e, which the generator annealers cannot)
+  found ⟨36, 82..95⟩, ratio 0.964. A scan of interval semigroups gives the smallest found, ⟨23, 54..61⟩
+  (q = 5, ratio 0.987). The ratio tends to ≈ 0.70 at m = 130.
+  - Mechanism: Apéry chains of intervals cross many factorizations, so B_chain ≪ B_tile, while W stays ≈ 6.5m.
+  - Every failure has width ≈ m/3, hence 3e ≥ m (Eliahou). So CHAIN-WILF(3e<m) survives and would still imply Wilf.
+  - Weak point: the boundary 3w ≈ m is forced by intervals at q = 5 (1- and 2-fold sums must cover the residues).
+    Families that are Sidon-like at level 2 reach q = 5 with e ≈ √(2m) and need separate testing.
+  - Boundary campaign E284 (EMAX = ⌊(m−1)/3⌋) is running.
+- **Strategic note.** The tile-free relaxations (RC, CHAIN) lose exactly where the Apéry poset has many factorizations.
+  Any universal criterion must either see the tile (HCR/MaxCL), or be restricted to the regime 3e < m where
+  factorizations are scarce.
+- **Codex P10 verified (E285).** Theorems B4 and B2 for e = 5, the first hypothesis classes of e = 5 outside the
+  m/q/height regimes. Intrinsic forms: Σ_{i≤4} n_i ≥ c+m with m ≥ 10,648, and Σ_{i≤3} n_i ≥ c+m with m ≥ 60. Every
+  certificate was reproduced exactly by independent code.
+- **Next.**
+  - P11 to codex on closing c ≤ 4m. In the residual α ≥ 6, a ≥ 19, 3e < m, CHAIN at q = 4 has slack ≥ 2.5 in
+    annealing, so a crude proof may suffice. This depends on the boundary campaign showing no q = 4 failures.
+  - Keep e = 5 FULL-INTERIOR as the follow-up.

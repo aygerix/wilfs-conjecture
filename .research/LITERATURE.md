@@ -625,3 +625,13 @@ excess ε, how small can s be? Our LSP/SP gives 3s − 2 ≥ n(C(n,2)+1) − λ_
 - Verification (ours): every proof in §§2–5 re-derived by hand; (a), (b) exhaustively over genus ≤ 34 (E272).
 - Coverage (E272, 996 structured S with q ≥ 3): LK+YZ covers 545 and YZ's first-layer criteria (Cor 3.3/4.2/4.5) about 285.
   129 S are covered by LK+YZ and by none of: YZ 3.3/4.2/4.5, DKM 1.5, Cor 1.6, LIT, Kaplan, type ≤ e−1, symmetric.
+
+**Search 2026-10-19 (latest), before recording codex P10's e = 5 classes and the CHAIN-WILF repair.** Queries: "Wilf
+conjecture numerical semigroups embedding dimension five 2025 2026 arXiv"; "Wilf conjecture sum of generators conductor
+Apéry factorization support". Hits were only known items: Sammartano 1111.1863 (2e ≥ m, m ≤ 8), Dhayni 1610.08726
+(m − e = 5), Spirito 1710.09245 (e ≥ 10, large second generator), Eliahou 1703.01761, near-misses 1710.03623, and Cisto–Utano
+2024 (a family).
+- Correction to item 12: Hellus–Rechenauer–Waldi, "Note on a theorem of Eliahou", Semigroup Forum 97 (2018) 64–74. Per the
+  abstract (Regensburg repository), it constructs one class of embedding dimension FIVE with arbitrarily high type
+  satisfying Wilf. The full text was not available. This is a constructed family, not a hypothesis class like B2/B4.
+- No result of the form "Σ of three (or four) generators ≥ c + m ⇒ Wilf" was found.

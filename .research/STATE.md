@@ -184,6 +184,22 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
   Exact identity a_j = b_j + p_j (bottom-layer gaps = mirrored top-layer elements + gap pairs).
 
 ## Next precise task
+(0M) NEW 2026-10-19 latest++++, read first.
+    - **Codex P10 VERIFIED (PROOFS "Codex P10", E285).** Two new infinite e = 5 classes:
+      - B4: a tile without (1,1,1,1) and m ≥ 10,648 ⇒ W ≥ 3 (intrinsic form: Σ_{i≤4} n_i ≥ c+m);
+      - B2: a support-two tile and m ≥ 60 ⇒ W ≥ 1 (intrinsic form: Σ_{i≤3} n_i ≥ c+m).
+      Both certificates were reproduced exactly by lead code.
+      Open e = 5 residual: full-support tiles (unbounded m), boundary tiles with 40 ≤ m ≤ 10,647, support-two tiles with
+      40 ≤ m ≤ 59. Next lemma: FULL-INTERIOR H + 7|max D| ≥ 2m.
+    - **CHAIN-WILF is FALSE** (E284): interval semigroups at q = 5, smallest found ⟨23, 54..61⟩, ratio → 0.70.
+      - All failures have 3e ≥ m. The repaired CHAIN-WILF(3e<m) survives and, with Eliahou (c ≤ 3m, 3e ≥ m), would
+        imply Wilf. Its 3e < m boundary campaign is E284/ck3.
+      - PACK, PACK-A, PW0′ are FALSE. PACK-W is false by implication. Deficit form, Lemma W0 and the layer-1 identity
+        are PROVED (PROOFS).
+    - Tool: src/scratch/p18/chain_kunz.c is a Kunz-coordinate annealer, the only one of our searches that reaches
+      large e at depth ≥ 4.
+    - NEXT: P11 (codex) = close c ≤ 4m, i.e. the residual α ≥ 6, 19 ≤ a < 10·C(α+1,2), 3e < m, q = 4. Tools: CHAIN at
+      q = 4 (0 failures so far, slack ≥ 2.5 in the residual), RC reformulations, the GW-26 framework.
 (0L) NEW 2026-10-19 latest+++, read first.
     - **Codex P9 REVIEWED and accepted** (PROOFS "Codex P9", E279: own code, exhaustive m ≤ 15 + 11.7k random + sympy;
       0 failures). Problem 1.8 criteria:

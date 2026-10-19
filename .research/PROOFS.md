@@ -2655,6 +2655,23 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
   - Equivalently Σ_{t∈Ap} τ(t)(M − t) ≥ need, with τ(t) = Σ_{a: t+n_a ∉ Ap} (length of the a-chain ending at t). This is
     Tile-TOP′′ with Apéry chains in place of tile columns, hence stronger than Tile-TOP′′ for every tile.
 - **Conjecture CHAIN-WILF: B_chain ≥ need for every S with c > 3m.** With Eliahou (c ≤ 3m), it would imply Wilf.
+  **FALSE (2026-10-19, lead; E284).** Interval semigroups ⟨m, 2m+a, …, 2m+b⟩ at q = 5 break it. The smallest found is
+  ⟨23, 54, 55, …, 61⟩ (e = 9, c = 100, q = 5, W = 89, ratio 0.987). The Kunz annealer first hit ⟨36, 82, …, 95⟩
+  (B_chain = 7893 < need = 8190, W = 341). Both were recomputed from the generators by independent Python
+  (src/scratch/p18/chain_interval.py). The ratio decreases with m: 0.815 (m = 44), 0.766 (60), 0.717 (100), 0.706 (130).
+  Every failing interval has width ≈ m/3, so 3e ≥ m, which is already covered by Eliahou. Wilf holds there with a large
+  margin (W ≈ 6.5m): the loss is in the step B_tile ≥ B_chain. Apéry chains of intervals run through many
+  factorizations, so they are much longer than tile columns. PACK-W, which implies CHAIN-WILF, is false there too.
+- **Repaired Conjecture CHAIN-WILF(3e<m): B_chain ≥ need whenever c > 3m and 3e < m.** Together with Eliahou's
+  theorems for c ≤ 3m and for 3e ≥ m, it would still imply Wilf.
+  - Evidence so far:
+    - genus ≤ 33 (all q ≥ 4: 0 failures for every e);
+    - interval semigroups restricted to 3e < m: min ratio 1.49, 1.40, 1.35, 1.34 for m = 60, 80, 100, 130;
+    - all Kunz-annealing failures have 3e ≥ m (e = 13, 15 at m = 36).
+  - The 3e < m boundary campaign is E284.
+  - Status: weakly supported. The 3e = m boundary of the interval family looks structural: q = 5 for an interval needs
+    1- and 2-fold sums to cover almost all residues, which forces 3w ≈ m. That boundary need not hold for other
+    families.
   - Evidence (E280): exhaustive over all S of genus ≤ 30 (src/scratch/p18/rc_tree.c).
     - Exactly ONE failure overall: ⟨15, 21, 22, 23, 24, 25, 26⟩, c = 36 = q·m − 9 with q = 3, ratio 0.962, W = 27.
     - 0 failures at q = 4 and at q ≥ 5, for every e.
@@ -2668,3 +2685,96 @@ progression in Ap with difference n_a through w; top_a(w) is its largest element
     0.35 (e.g. ⟨104, 111, 114, 115, 116⟩, q = 11, W = 1238). There the quotient part n_a⌊(M − top)/n_a⌋ carries the
     margin.
   - So RC is the residue analogue of the fast-growth regime, complementary to the band/Kneser tools (slow growth).
+
+### CHAIN-WILF in deficit form; the w = 0 term; packing variants (2026-10-19, lead)
+Notation as above. For w ∈ Ap: s_w := (M − w) mod m, λ(w) := ⌊(M − w)/m⌋ (co-level), y_{w,a} := M − top_a(w). Layer
+λ is Ap ∩ [c − λm, c − λm + m − 1]; L0 = Ap ∩ [c, M]. C2 := m(m−1)/2. Since c ∈ ((q−1)m, qm], λ(0) = q and
+s_0 = r0 := M − qm ∈ [0, m−1].
+- **Deficit form (PROVED, an identity).** B_chain = d·C2 − Δ, where Δ := Σ_{w,a}(s_w − y_{w,a}) = Σ_a n_aP_a − dmℓ.
+  So CHAIN-WILF ⟺ Δ ≤ C2. Write Δ = Σ_w con(w), con(w) := Σ_a(s_w − y_{w,a}) = Σ_a(k_{w,a}n_a − mλ(w)), where k_{w,a}
+  is the number of chain steps from w to top_a(w).
+  - Only pairs with top_a(w) ∈ L0 can have s_w − y_{w,a} > 0, since otherwise y_{w,a} ≥ m > s_w. On T_{m,q} the whole
+    deficit sits at w = 0: con(0) = Σ_a b_a = C2, and con(w) = 0 for w ≠ 0.
+- **Lemma W0 (PROVED).** con(0) = Σ_a(k_a n_a − qm) ≤ d·r0 ≤ d(m−1), where k_a n_a is the largest multiple of n_a in
+  Ap. Proof: k_a n_a ≤ M = qm + r0.
+- **Corollary (PROVED; conditional on PW0′).** Suppose con(w) ≤ 0 for every w ≠ 0 (PW0′). Then Δ ≤ d(m−1). So if
+  d ≤ m/2, CHAIN-WILF holds and W ≥ 0. Since d > m/2 means 2e > m + 2, the case d > m/2 is Sammartano's theorem (Wilf
+  for 2e ≥ m; LITERATURE). Hence PW0′ for all S with q ≥ 4, plus Eliahou for c ≤ 3m, would imply Wilf's conjecture.
+- **PW0′ is FALSE.** The smallest counterexample at q = 4 is ⟨5, 9, 12⟩, c = 17, w = 9, con(w) = 1 (genus 10).
+  - Genus ≤ 33 at q = 4: failures for every e ≤ 10 (e.g. 20/63 at e = 3, 51/987,032 at e = 9, 20/1,291,439 at e = 10);
+    0 for 11 ≤ e ≤ 20.
+  - At q ≥ 5: failures only for e ≤ 7.
+  - So positive deficits at w ≠ 0 must be cancelled globally.
+- **PACK (Δ⁺ := Σ_{w,a} max(0, s_w − y_{w,a}) ≤ C2) is FALSE.**
+  - q = 4: ⟨5, 8, 12⟩, c = 20, Δ⁺ = 14 > 10. Ratio C2/Δ⁺ goes down to 0.42 at q = 4 and 0.23 at q ≤ 3 (genus ≤ 33).
+  - Cancellation between directions at the same w is essential.
+- **PACK-A (Σ_a max(0, C2 − B_chain,a) ≤ C2) is FALSE.** q = 5: ⟨7, 18, 19, 34⟩, c = 32, 22 > 21.
+- **Conjecture PACK-W: PW := Σ_w max(0, con(w)) ≤ C2 for every S with q ≥ 4.** It implies CHAIN-WILF, so it is
+  FALSE: interval semigroups at q = 5 (E284). The evidence below is restricted to its range. Evidence:
+  - E283: genus ≤ 33, 0 failures at q ≥ 4 (8,515,046 semigroups with e ≥ 3: 7,096,029 at q = 4, 1,419,017 at q ≥ 5).
+  - E282: Kunz annealing that maximizes PW/C2 (m ≤ 50, q ≥ 4/5), 0 failures. PW/C2 → 1 only near T_{m,q}. For 3e < m it
+    stays ≤ 0.35.
+  - PACK-W fails at q ≤ 3 (e = 6..14, genus ≤ 33).
+- **Layer-1 identity (PROVED).** Let I = [c − m, c − 1], L1 = Ap ∩ I, and G = ℕ \ S. Then
+  Σ_{w∈L1} con(w) = Σ_a n_a·E_a − m·d·|L1|, where E_a := #{x ∈ S ∩ I : x + (n_a − m) ∈ I ∩ G}
+  (so E_a = 0 unless n_a < 2m).
+  Proof:
+  - For w ∈ L1, w + 2n_a > M. If w + n_a ∈ Ap, its top is w + n_a ∈ L0 and the term is n_a − m. Otherwise top_a(w) = w
+    and the term is −m. Hence con(w) = Σ_{a: w+n_a∈Ap} n_a − md.
+  - w + n_a ∈ Ap ⟺ w + n_a − m ∉ S, which forces n_a < 2m and w + n_a − m ≤ F.
+  - Conversely, if x ∈ S ∩ I and x + n_a − m ∉ S, then x ∈ Ap, since x − m ∈ S would give x + n_a − m ∈ S. □
+- **Layer sums are not separately signed (E283).** At q = 4 there are positive layer sums:
+  - λ = 1: up to 0.31·C2 (⟨10, 17, 18, 19, 24⟩);
+  - λ = 2: up to 0.50·C2 (⟨12, 14, 27, 31, 32, 35⟩);
+  - λ = 3: up to 0.42·C2 (⟨9, 10, 32, 34⟩).
+  All of these have e ≤ 6. Random q = 4 semigroups with 3e < m and m = 40–120 have Δ ≤ −5.28·C2 (CHAIN ratio far
+  above 1), with con(0) ≤ 0.26·C2.
+- **Depth mechanism of the q ≤ 3 failure ⟨15, 21..26⟩ (c = 36).**
+  - Layer 1 is exactly the generators, and their pairwise sums 42..50 are Apéry elements in L0.
+  - So each generator escapes into L0 in almost every direction (con(21) = 6 + 7 + 8 − 15 + 10 + 11 = 27).
+  - At q ≥ 4, layer-1 elements lie above 2m and are sums. By the layer-1 identity, escaping requires gaps x + n_a − m ∈ I
+    for many a.
+
+## Codex P10 (e = 5): Theorems B4 and B2 — VERIFIED by the lead 2026-10-19
+Source: src/scratch/gw/p10/P10_REPORT.md (code and logs in src/scratch/gw/p10/). Setting: S = ⟨m, n_1 < n_2 < n_3 < n_4⟩
+with e = 5. D ⊂ ℕ⁴ is an Apéry factorization down-set (|D| = m, x ↦ x·n bijective onto Ap). N_s / t_s count the cells /
+maximal cells of support size s. h(x) is the height of D above x, H = Σ_x Σ_a h(top_a x), and R is the rank term of the
+maximal-cell weights 4 + |y|.
+- **(HC) [PROVED; = HCR].** mW ≥ (m+1)H + R − (3/2)m(m−1). Hence H ≥ 3m/2 ⇒ W ≥ 3.
+- **Lemma BH2 [PROVED].** If N_4 = 0, then H ≥ 2m − (5/2)t_1 − (10/3)t_2 − 6t_3.
+  - Proof: bound Σ(2 − H_x)_+. Maximal cells cost 2 each.
+  - A non-maximal cell of support r ≤ 2 pays by its missing directions whose tops are maximal. These incidences are
+    injective into (maximal cell of support r+1, positive coordinate).
+  - A support-3 non-maximal cell with H_x < 2 has h = 1 and three maximal upper covers; there are ≤ t_3 of them.
+- **Lemma BH3 [PROVED].** If N_3 = N_4 = 0, then H ≥ 3m − (15/4)t_1 − 6t_2.
+- Antichain tools [PROVED, self-contained]: LYM, GAUSS (Σ_{max}(r + |y|) ≤ rn), TYPE2 (n ≥ a(a+1)/2), TYPE3
+  (6n ≥ a(√(8a+1) + 3)), FACE-TYPE (12N_2 ≥ t_2² + 6t_2, 6N_3 ≥ t_3(√(2t_3+1) + 3)), DEG-HEIGHT (rΣh ≥ Σ|x|), G3
+  (3H ≥ D_3(N_3; 4) when N_4 = 0), G3-CONT (H ≥ (N_3/4)(3N_3/2)^{1/3} − N_3/2, by the bathtub principle on four octants).
+- **Theorem B4 [PROVED, analytic].** If some Apéry tile D has (1,1,1,1) ∉ D and m ≥ 22³ = 10,648, then W ≥ 3.
+  - Proof: if N_3 ≥ 3m/8, G3-CONT gives H > 4N_3 ≥ 3m/2. Otherwise BH2 + TYPE-WEAK gives
+    H ≥ 2m − 10 − (35/3)√m − (33/4)m^{2/3} > 3m/2, since the loss is < (739/1500)m.
+  - **Intrinsic corollary:** n_1 + n_2 + n_3 + n_4 ≥ c + m and m ≥ 10,648 ⇒ Wilf (no Apéry element has all four
+    directions, since Σn_i > M).
+- **Theorem B2 [PROVED, analytic + exact certificates].** If some Apéry tile has every cell of support ≤ 2 and m ≥ 60,
+  then W ≥ 1.
+  - m ≥ 144: analytic, via BH3, R ≥ 3t(t−1), t ≤ √(12m) − 3 and the polynomial A144-POLY with positive coefficients.
+  - 64 ≤ m ≤ 143: count-profile certificate FIN64, using AXIS-FACE: H ≥ D_2(N_2; f) + J_12(3N_1 − N_2 − f).
+  - 60 ≤ m ≤ 63: placed-face certificate (§10: axis lengths ℓ_i, maximal-axis set J, concavity of the rank term).
+  - **Intrinsic corollary:** n_1 + n_2 + n_3 ≥ c + m and m ≥ 60 ⇒ Wilf.
+  - Non-vacuous at unbounded m and height: S_N = ⟨N(N+2), 2m−N−1, 2m−1, (4N−4)m+1, (4N−4)m+1+N⟩ has q = 4N − 4,
+    3e < m and NO-WRAP failing.
+- **Lead verification (E285).**
+  - Paper re-derivation of HC, BH2, BH3, LYM/TYPE2/TYPE3/FACE-TYPE, DH, G3, G3-CONT, the B4 arithmetic, AXIS-FACE and
+    the A144 algebra. No gap found.
+  - Independent re-implementations of FIN64 and of §10 reproduce codex's profile counts, minima and minimizing tuples
+    exactly. sympy confirms A144-POLY.
+  - 1,228 actual e = 5 lex tiles (237 support-two, 824 with N_4 = 0, codex's L-family): 0 violations.
+- Novelty check (2026-10-19): the literature has e ≤ 4 and families. Spirito (1710.09245) needs e ≥ 10.
+  Hellus–Rechenauer–Waldi (Semigroup Forum 97, 2018) construct one special e = 5 family of arbitrarily high type (full
+  text not available to us). No hypothesis class of the B2/B4 form was found.
+- Remaining e = 5 (after all project results): m ≥ 40, q ≥ 5, height ≥ 4, and one of:
+  - (1,1,1,1) ∈ D for every tile (unbounded m);
+  - a boundary tile with a positive three-face, 40 ≤ m ≤ 10,647;
+  - support-two with 40 ≤ m ≤ 59 (828 relaxed profiles at m = 59).
+  The next lemma, FULL-INTERIOR H(D) + 7|max D| ≥ 2|D| for lattice tiles, is OPEN. Its finite census is slack-positive
+  (min 16, m ≤ 39) and it would imply Wilf for m ≥ 409,771 via TYPE4.

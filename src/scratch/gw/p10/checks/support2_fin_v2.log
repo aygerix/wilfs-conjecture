@@ -1,0 +1,55 @@
+SURV m=40 n1=15 n2=24 a=0,1,1,3,3,4 mask=7 H=37 R=772 slack=-51
+SURV m=41 n1=16 n2=24 a=0,1,1,3,3,4 mask=7 H=40 R=772 slack=-8
+SURV m=41 n1=15 n2=25 a=0,1,1,3,3,4 mask=7 H=40 R=772 slack=-8
+SURV m=40 n1=15 n2=24 a=0,1,1,3,3,4 mask=11 H=37 R=772 slack=-51
+SURV m=41 n1=16 n2=24 a=0,1,1,3,3,4 mask=11 H=40 R=772 slack=-8
+SURV m=41 n1=15 n2=25 a=0,1,1,3,3,4 mask=11 H=40 R=772 slack=-8
+SURV m=40 n1=15 n2=24 a=0,1,1,3,3,4 mask=13 H=37 R=777 slack=-46
+SURV m=41 n1=16 n2=24 a=0,1,1,3,3,4 mask=13 H=40 R=777 slack=-3
+SURV m=41 n1=15 n2=25 a=0,1,1,3,3,4 mask=13 H=40 R=777 slack=-3
+SURV m=40 n1=15 n2=24 a=0,1,1,3,3,4 mask=14 H=37 R=801 slack=-22
+SURV m=41 n1=16 n2=24 a=0,1,1,3,3,4 mask=15 H=36 R=891 slack=-57
+SURV m=42 n1=17 n2=24 a=0,1,1,3,3,4 mask=15 H=39 R=891 slack=-15
+SURV m=42 n1=16 n2=25 a=0,1,1,3,3,4 mask=15 H=39 R=891 slack=-15
+SURV m=40 n1=15 n2=24 a=0,1,1,3,4,3 mask=7 H=37 R=772 slack=-51
+SURV m=41 n1=16 n2=24 a=0,1,1,3,4,3 mask=7 H=40 R=772 slack=-8
+SURV m=41 n1=15 n2=25 a=0,1,1,3,4,3 mask=7 H=40 R=772 slack=-8
+SURV m=40 n1=15 n2=24 a=0,1,1,3,4,3 mask=11 H=37 R=777 slack=-46
+SURV m=41 n1=16 n2=24 a=0,1,1,3,4,3 mask=11 H=40 R=777 slack=-3
+SURV m=41 n1=15 n2=25 a=0,1,1,3,4,3 mask=11 H=40 R=777 slack=-3
+SURV m=40 n1=15 n2=24 a=0,1,1,3,4,3 mask=13 H=37 R=772 slack=-51
+SURV m=41 n1=16 n2=24 a=0,1,1,3,4,3 mask=13 H=40 R=772 slack=-8
+SURV m=41 n1=15 n2=25 a=0,1,1,3,4,3 mask=13 H=40 R=772 slack=-8
+SURV m=40 n1=15 n2=24 a=0,1,1,3,4,3 mask=14 H=37 R=801 slack=-22
+SURV m=41 n1=16 n2=24 a=0,1,1,3,4,3 mask=15 H=36 R=891 slack=-57
+SURV m=42 n1=17 n2=24 a=0,1,1,3,4,3 mask=15 H=39 R=891 slack=-15
+SURV m=42 n1=16 n2=25 a=0,1,1,3,4,3 mask=15 H=39 R=891 slack=-15
+SURV m=40 n1=15 n2=24 a=0,1,1,4,3,3 mask=7 H=37 R=777 slack=-46
+SURV m=41 n1=16 n2=24 a=0,1,1,4,3,3 mask=7 H=40 R=777 slack=-3
+SURV m=41 n1=15 n2=25 a=0,1,1,4,3,3 mask=7 H=40 R=777 slack=-3
+SURV m=40 n1=15 n2=24 a=0,1,1,4,3,3 mask=11 H=37 R=772 slack=-51
+M 40 states=1289989 survivors=40107 min_slack=-339
+M 41 states=1451939 survivors=38372 min_slack=-324
+M 42 states=1629007 survivors=35461 min_slack=-296
+M 43 states=1822421 survivors=36001 min_slack=-304
+M 44 states=2033159 survivors=32557 min_slack=-312
+M 45 states=2262188 survivors=28659 min_slack=-289
+M 46 states=2510627 survivors=30157 min_slack=-269
+M 47 states=2779763 survivors=25478 min_slack=-287
+M 48 states=3070777 survivors=20168 min_slack=-269
+M 49 states=3384559 survivors=22997 min_slack=-255
+M 50 states=3722339 survivors=19382 min_slack=-212
+M 51 states=4085646 survivors=12972 min_slack=-229
+M 52 states=4475879 survivors=12966 min_slack=-210
+M 53 states=4894524 survivors=12484 min_slack=-197
+M 54 states=5342811 survivors=6929 min_slack=-149
+M 55 states=5821684 survivors=6666 min_slack=-151
+M 56 states=6332673 survivors=5350 min_slack=-110
+M 57 states=6877813 survivors=1798 min_slack=-63
+M 58 states=7458723 survivors=610 min_slack=-63
+M 59 states=8076675 survivors=828 min_slack=-17
+M 60 states=8733115 survivors=0 min_slack=36
+M 61 states=9429611 survivors=0 min_slack=40
+M 62 states=10168171 survivors=0 min_slack=99
+M 63 states=10950744 survivors=0 min_slack=154
+DONE edge_profiles=134382 states=118604837 survivors=389942 min_slack=-339
