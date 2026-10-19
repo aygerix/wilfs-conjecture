@@ -125,7 +125,9 @@
    - **Stronger conjecture PGW (prefix/window family, PROOFS).**
      - Statement: Σ_{j≤i}|U_j| ≤ dΣ_{j≤i}|L_j| for every i. For semigroups: #(gaps < im) ≤ (e−1)·#(S ∩ [c−im, c)).
      - Evidence: 0 failures on 5.9·10⁹ down-set instances and on all semigroups of genus ≤ 36 (E188, E189).
-     - Proved: P_1 (multiplicity form), all P_i when t ≤ d, and P_i for i ≤ k_min.
+     - Proved: P_1 and **P_2 (GW-16; multiplicity form, no residues needed)**, all P_i when t ≤ d, P_i for i ≤ k_min.
+       Semigroup corollary GW-17: #(gaps < 2m) ≤ (e−1)·#(S ∩ [c−2m, c)), which contains Kaplan's c ≤ 2m.
+     - P_3 contains Eliahou's c ≤ 3m and needs residues (no-residue counterexample, E191).
      - Use: it is the Hall condition for matching gaps to elements with depth-lowering allowed. A proof must trade the
        descent map (fails only through directions with n_a < jm) against corner reflection (fails only through more
        than d corners at depth j).
@@ -138,11 +140,11 @@ two-face e = 5 failures); the cube version of ATOP (false in d = 4); crude CR fo
 relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) ≥ min W(S minus one generator) (false).
 
 ## Next precise task
-(a) PGW, first open case: P_2 in the multiplicity form with k_min = 1 and t > d.
-    - Find the charging that moves depth-2 gaps of cells whose lower covers all use directions n_a < 2m onto the spare
-      capacity left by the descent map at depth 1.
-    - Test candidate rules exhaustively (d = 3, 4) before proving.
-    - Near-stars first: there the exact identity of the near-star bullet in NOTEBOOK applies.
+(a) PGW at depth 3 (contains Eliahou's c ≤ 3m).
+    - Write P_3 in the multiplicity form as shape + carry graph ε_ab = [s_a + s_b ≥ m].
+    - Find which residue-completeness consequence excludes the no-residue counterexample (2-D level-2 simplex, all
+      ε = 1).
+    - Test "shape + that constraint" exhaustively before trying to prove it.
 (b) Codex HT4 pipeline: verify the subclass proofs in src/scratch/tile4/HT4_REPORT.md (products, two-face) before
     recording them as proved.
 (c) The gfan re-check of E153 (fejer logs/gfan_hcr_5_36.log) must reach 39 before "Wilf for e = 5, m ≤ 39" is called

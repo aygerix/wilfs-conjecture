@@ -1861,3 +1861,25 @@ asserted on every test.
     are the extreme of each mechanism.
 - NEXT: P_2 in the multiplicity form with k_min = 1. The obstruction there is a cell x with κ(x) ≥ 2 all of whose lower
   covers x − e_a use directions with n_a < 2m.
+
+## 2026-10-19 (early, continued) — P_2 proved without residues; arithmetic first enters at depth 3
+
+- **Theorem GW-16 (PROOFS).** In the multiplicity form (every n_a > m), Σ min(2, κ) ≤ dΣ min(2, λ). It holds for every
+  down-set and every such n; residue completeness is not used.
+  - Left side, exact: 2(m − 1) − |A|, with A = {a : n_a < 2m}.
+  - Right side: NonMax ⊂ L_1, and every non-maximal cell with a 2-step or a "long" upper cover lies in L_2.
+  - What is left is a pure shape inequality. Call T the non-maximal cells whose upper covers are all corners in
+    A-directions. It reads d|T| − |A| ≤ 2·(d|NonMax| − (m − 1)): twice the slack of the corner bound CL.
+  - Proof: route the descent map away from T. Only the corners Y whose lower covers all lie in T are forced into it.
+    Counting pairs (corner, lower cover) gives 2|Y| ≤ |A|(|T| + 1).
+- **Corollary GW-17 (semigroups).** #(gaps < 2m) ≤ (e − 1)·#(S ∩ [c − 2m, c)) for every S. For c ≤ 2m it is Kaplan's
+  theorem; for c > 2m it is a new constraint on the first two Kunz layers against the top two windows below c.
+- **Depth 3 needs arithmetic.** Without residues P_3 fails already for d = 2: the 2-D level-2 simplex with n = (9,9)
+  and m = 6. Every pair carries (ε = 1), which residue completeness forbids.
+  - This matches the literature: c ≤ 2m (Kaplan) is elementary; c ≤ 3m (Eliahou) needs Macaulay's theorem. P_3
+    contains Eliahou's case.
+- So the ladder is: P_1 (descent), P_2 (descent + corner counting; shape only), P_3 (first arithmetic rung), …,
+  P_q = Wilf.
+- NEXT: formulate P_3 as shape + carry graph. The data are κ(e_a + e_b) = k_a + k_b + ε_ab. Residue completeness
+  constrains which carry patterns ε can occur together with the shape. Find the residue fact that kills the d = 2
+  example and test whether it suffices.

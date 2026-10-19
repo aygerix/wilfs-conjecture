@@ -989,7 +989,60 @@ multiplicity m, embedding dimension e and type t. Then:
     one. So |D| − 1 ≤ d(|D| − t(D)), i.e. d·t(D) ≤ (d − 1)|D| + 1.
   - For the minimal tile, Max_{≤S} Ap(S, m) ⊂ v(Max D), since x + e_a ∈ D gives v(x) + n_a ∈ Ap. So t ≤ t(D).
 
+**Theorem GW-16 (P_2 in the multiplicity form; no residue hypothesis).** Let D ⊂ ℕ^d be a finite down-set, m = |D|,
+and n ∈ ℤ^d with n_a > m for every a such that e_a ∈ D. Put v = x·n, M = max_D v, κ = ⌊v/m⌋, λ = ⌊(M − v)/m⌋. Then
+
+    Σ_{x∈D} min(2, κ(x))  ≤  d · Σ_{x∈D} min(2, λ(x)).
+
+- Notation:
+  - Max = maximal cells of D, NonMax = D ∖ Max, A = {a : e_a ∈ D, n_a < 2m}.
+  - T = {w ∈ NonMax : every upper cover w + e_a ∈ D is maximal and has a ∈ A}, and N = NonMax ∖ T.
+  - Y = {y ∈ Max, y ≠ 0 : y − e_a ∈ T for every a with y_a > 0}.
+- Step 1 (left side = 2(m − 1) − |A|).
+  - κ(0) = 0, and κ(x) ≥ 1 for x ≠ 0 since v(x) ≥ n_a > m.
+  - If |x|_1 ≥ 2 then x ≥ e_a + e_b for some a, b, so v(x) ≥ n_a + n_b > 2m and κ(x) ≥ 2.
+  - κ(e_a) ≥ 2 iff a ∉ A.
+- Step 2 (right side ≥ d(2|NonMax| − |T|)).
+  - If w + e_a ∈ D then v(w) ≤ M − n_a < M − m, so λ(w) ≥ 1 on NonMax.
+  - Let w ∈ N. Either some w + e_a ∈ D has a ∉ A, so v(w) ≤ M − n_a ≤ M − 2m. Or some w + e_a ∈ D is non-maximal,
+    w + e_a + e_b ∈ D, so v(w) ≤ M − n_a − n_b < M − 2m. Either way λ(w) ≥ 2.
+- Step 3 (reduction). By Steps 1–2 it suffices that d|T| − |A| ≤ 2(d|NonMax| − (m − 1)).
+- Step 4 (descent avoiding T).
+  - For each x ≠ 0 choose a lower cover φ(x) = x − e_a (x_a > 0), taking one outside T whenever possible.
+  - Lower covers are non-maximal, and φ(x) = w forces x = w + e_a. So φ: D∖{0} → NonMax with |φ⁻¹(w)| ≤ d.
+  - φ(x) ∈ T only if x ∈ Y:
+    - if x is non-maximal, each lower cover has the non-maximal upper cover x, so it is not in T;
+    - if x is maximal and x ∉ Y, some lower cover lies outside T.
+  - Hence
+    d|NonMax| − (m − 1) = Σ_{w∈NonMax}(d − |φ⁻¹(w)|) ≥ Σ_{w∈T}(d − |φ⁻¹(w)|) ≥ d|T| − |Y|.
+  - So Step 3 follows from 2|Y| ≤ d|T| + |A|.
+- Step 5 (counting Y).
+  - (y, a) ↦ (y − e_a, a), for y ∈ Y and y_a > 0, is injective into {(w, a) : w ∈ T, w + e_a ∈ D}, and for w ∈ T these a
+    lie in A. So Σ_{y∈Y} |supp y| ≤ |A|·|T|.
+  - Let Y_1 = {y ∈ Y : |supp y| = 1}. Each is y = k e_a, and (k − 1)e_a ∈ T has the upper cover y in direction a, so
+    a ∈ A. A maximal cell on the a-axis is unique, so |Y_1| ≤ |A|.
+  - Therefore 2|Y| ≤ Σ_{y∈Y}|supp y| + |Y_1| ≤ |A|·|T| + |A| ≤ d|T| + |A|. □
+- Residues are not used. Residues ARE needed from depth 3 on.
+  - Without them P_3 fails: d = 2, D = {x : |x|_1 ≤ 2}, m = 6, n = (9,9). There Σ min(3, κ) = 11 > 2·5 (E191).
+  - With residue completeness P_3 has no counterexample in E188.
+- Checks (E191):
+  - The counting lemma of Step 5 on every down-set and every A ⊂ [d]: d = 2 (m ≤ 9), d = 3 (m ≤ 9), d = 4 (m ≤ 8).
+  - P_2 on every (D, n) with n_a ∈ (m, Km], no residue condition: 0 failures.
+
+**Corollary GW-17 (window Wilf at depth 2).** For every numerical semigroup S with multiplicity m, embedding dimension e
+and conductor c:
+
+    #((ℕ∖S) ∩ [0, 2m))  ≤  (e − 1) · #(S ∩ [c − 2m, c)).
+
+- Proof: apply GW-16 to the minimal (lex-largest factorization) tile of Ap(S, m) in ℕ^{e−1}. It is a down-set with
+  v(D) = Ap(S, m) and n_a the generators other than m, all > m. Then use the semigroup form of P_i above.
+- For c ≤ 2m both windows are everything, and this is Wilf: Kaplan's theorem (c ≤ 2m) is the special case.
+- Literature (item 20): no statement of the window inequality was found. Not claimed new until checked against Kaplan's
+  paper and its citations.
+
 **Status.** PGW (all P_i on every residue-complete down-set, n > 0) is a CONJECTURE that strengthens GW. Proved:
-t ≤ d (GW-12), depths j ≤ k_min (GW-13/14), and hence P_1 in the multiplicity form.
-- Open first case: P_2 with t > d and k_min = 1, e.g. the near-stars with some n_a ∈ (m, 2m).
+- t ≤ d (GW-12);
+- depths j ≤ k_min (GW-13/14);
+- P_1 and P_2 in the multiplicity form, without residues (GW-14, GW-16).
+- Next case P_3: it contains Eliahou's c ≤ 3m theorem, and it is the first level where residues are necessary.
 - A proof by induction on i must move mass across depths, because the per-depth inequalities are false.
