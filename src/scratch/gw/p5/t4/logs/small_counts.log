@@ -1,0 +1,8 @@
+{"a": 7, "base": 1, "u": 3, "packing_profiles": 5}
+{"a": 8, "base": 7, "u": 92, "packing_profiles": 25}
+{"a": 9, "base": 25, "u": 813, "packing_profiles": 92}
+{"a": 10, "base": 103, "u": 5252, "packing_profiles": 272}
+{"a": 11, "base": 303, "u": 24219, "packing_profiles": 953}
+{"a": 12, "base": 735, "u": 105982, "packing_profiles": 2724}
+{"a": 13, "base": 1580, "u": 386234, "packing_profiles": 8823}
+{"total": {"base": 2754, "u": 522595, "packing_profiles": 12894}, "survivors": 0, "unbounded": 0, "first": [], "first_unbounded": []}

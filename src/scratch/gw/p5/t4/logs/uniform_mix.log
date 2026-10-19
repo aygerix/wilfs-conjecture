@@ -1,0 +1,6 @@
+seed=202610196 target_alpha=4 grlex=1 trials=2000 actual=1983 a_ge7=1917 deficient_low=0 frontier=0 frontier_after_new=0 one_low_checks=6 best_WA=78 best_frontier_W=1000000000
+P7 primary=1983 two_low_a_ge7=11 negative_WA=0 negative_missing_pair=0 full_quadratic=0 sidon_branches=0 a7_negative=0 qgap_checks=11 min_P=36 min_refined_slack=1000000000 min_high_slack=1000000000
+P7_BRANCHES full_l0=0 full_l1=0 actual_fixed_payment_negative=0 a7_beta3=0 a7_l0_R5=0
+MULTI primary=1983 alpha_ge3=1933 alpha3=98 alpha3_gap_theorem=0 GLOC_nonnegative=1975 ASR_extra_positive=1973 end_arc_improves=1971 old_frontier=0 surviving_frontier=0 closest_old_frontier=-1000000000000
+THREE refined_checks=0 negative_stars_paid=0 negative_nearfull_paid=0
+NEW joint=1971 cold_fix=1797 missing_pair_packing=1971

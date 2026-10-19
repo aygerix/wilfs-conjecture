@@ -2852,3 +2852,1235 @@ search should impose the finite profiles or the four-low
 localized-defect constraints before attempting residue-complete
 realization. This is the strategic gap after this continuation,
 not an assertion that all other proof methods are exhausted.
+
+## 31. Joint low/high packing (continuation, 2026-10-19)
+
+Sections 1–30 are retained as the historical record. The lead has
+independently reviewed the identities and certificates described
+in his continuation request. The new results below supersede the
+frontier in section 30. They do not prove the full primary regime.
+All notation and the exact residue-complete down-set hypotheses
+remain those of sections 1 and 20–27.
+
+Put `Q_alpha=C(alpha+1,2)`, `U_alpha=C(alpha+2,3)`,
+`t=U-u3-u4`, `r=r_A`, and
+
+```
+epsilon=q^{<2>}-(u3+u4),
+theta=ceil(3h/2), delta=h-2L>0,
+R=#{high A units with t_j<theta-2L}.
+```
+
+**JOINT-SP/COUNT (the lead's lemma, re-checked here).** For every
+alpha>=1, set `s=ceil(3delta/2)` and `n=max(0,alpha+R-r)`. Then
+
+```
+3s-2 >= H(n)-lambda_n*epsilon,                       (JOINT-SP)
+3s-2 >= C(alpha+R+2,3)-t.                            (JOINT-COUNT)
+```
+
+Proof. All lows and the R indicated highs lie in the single integer
+interval `[L,theta-2L)`. Indeed `theta-2L>h/2`, whereas every low
+has offset below h/2. The interval has exactly
+`theta-3L=ceil(3delta/2)` integers. Delete an endpoint of each
+missing pair on these directions, deleting the only endpoint if
+it is a loop. This leaves at least alpha+R-r directions with all
+pairs present. Section 27's localization gives at most epsilon
+missing cubics on them; LSP proves JOINT-SP. On all alpha+R
+directions there are at least `C(alpha+R+2,3)-t` present cubics.
+Their distinct ordinary sums lie in an interval of 3s-2 integers.
+This proves JOINT-COUNT. There is no restriction on a, r or alpha.
+
+The new scripts are in `src/scratch/gw/p5/t4/`. `joint_profiles.py`
+uses integer endpoint bounds; `joint_profiles.c` enumerates every
+delta. On the section 27 FIN range 13<=a<=40 they both give
+51,502 pre-packing profiles and exactly 11 JOINT survivors, with
+101 expanded delta tuples and ordered checksum
+`16894550478840797404`. There are none for a>=14. The 11 rows are
+exactly those supplied by the lead. Thus JOINT-SP alone extends
+the section 27 certificate from a>=16 to a>=14. The next two
+sections eliminate a=13 as well.
+
+## 32. Signed packing without deleting missing-pair endpoints
+
+The following bound is useful when the legal cubic defect is
+small. It does not assume pair injectivity on the absent pairs.
+
+**Partial signed packing (PSP).** Let n distinct integers lie in
+an interval of s integers. Specify at most r absent unordered
+pairs, with loops allowed, and some present cubics. Suppose the
+present pairs have distinct sums and the present cubics have
+distinct sums. A cubic is legal when all its pair divisors are
+present. Suppose at most epsilon legal cubics are absent. Then
+
+```
+3s-2 >= H(n)-4 C(r+1,2)
+         -9[n C(r+1,2)+(r+1)epsilon+C(epsilon,2)].    (PSP)
+```
+
+The same conclusion, with m on the left, holds directly in Z/m
+when unit residues are distinct and present pair and cubic
+residues are injective.
+
+Proof. Let E2 and E3 be the numbers of unordered collision pairs
+of formal pair and triple sums, respectively, in the ambient
+group. At most one formal pair per sum is present. Consequently
+`E2<=C(r+1,2)`: if the fiber excesses are e_i, their sum is at
+most r and `sum C(e_i+1,2)<=C(r+1,2)`.
+
+There are `n C(n,2)` normal signed labels `(p,q;x)`, with
+p,q different from x, and n unit labels. A collision between a
+normal signed label and a unit comes from a collision of two
+distinct pair monomials. Each such pair collision gives at most
+four normal labels of this kind (choose the positive pair and
+the negative member of the other pair). Hence their total loss
+is at most 4E2. A collision of two distinct normal labels maps
+to a collision of two distinct triple monomials by moving the
+negative entries across. The triples cannot be the same formal
+monomial: normality would then force the labels to be identical.
+Each unordered triple collision gives at most nine unordered
+normal-label collision pairs, by choosing one support member
+from each triple. Thus the represented union has size at least
+`H(n)-4E2-9E3`. This argument also permits intersecting triple
+supports.
+
+Partition the absent cubics into the illegal family F, of size f,
+and the absent legal family E, of size at most epsilon. For each
+absent pair, its n cubic multiples have distinct sums, since the
+units are distinct. Therefore `f<=nr`, each sum fiber of F has
+size at most r, and the number of collision pairs within F is
+at most `n C(r,2)`. The last assertion follows by assigning each
+illegal cubic to one of its absent pair divisors: two different
+assigned pair families have at most n matches. Each F cubic has
+at most one collision with a present cubic. Each E cubic has
+at most r collisions with F and at most one with a present
+cubic. Finally E has at most C(epsilon,2) internal collision
+pairs. It follows that
+
+```
+E3 <= nr+n C(r,2)+(r+1)epsilon+C(epsilon,2).
+```
+
+This proves PSP in a group. For the interval assertion translate
+the minimum to zero and take modulus 3s-2. Pair and triple
+sums have spans 2s-2 and 3s-3, so equality modulo this modulus
+is ordinary equality. QED.
+
+Two refinements used only for the 11 rows are worth recording.
+With one missing pair there are exactly n illegal cubics and
+no internal F collisions. Thus the PSP loss is
+`4+9[n+2epsilon+C(epsilon,2)]`.
+With two missing pairs sharing a factor, f=2n-1. Their sums
+are different. A fixed nonzero ordinary unit difference has
+multiplicity at most four: C(v,2)<=2E2<=6, since each pair-sum
+collision induces at most two equal-difference pairs. One match
+between the two translated pair families is their common formal
+cubic. Hence F has at most three nontrivial internal collisions.
+The improved loss is
+
+```
+12+9[2n+2+3epsilon+C(epsilon,2)].                   (PSP-2*)
+```
+
+If the two missing pairs do not share a factor, their 2n cubic
+multiples are distinct formal monomials and have at most n
+internal collision pairs. With epsilon=0 the loss is at most
+`12+27n`. These statements retain the pair endpoints throughout.
+
+For the 11 JOINT rows n=a=13. For r=1, t=13 and 14 give lower
+bounds 906 and 888, respectively, for `3ceil(3delta/2)-2`; their
+largest allowed values are 889 and 808. For r=2,t=25 the missing
+pairs must share a factor; PSP-2* gives 763, versus at most 682.
+For r=2,t=26, sharing a factor gives at least 736, and disjoint
+pairs give at least 664; the allowed value is at most 616. All
+11 are impossible. Both new FIN implementations check these
+integer comparisons.
+
+## 33. Cold low pairs pay without spending D3
+
+Here is a simpler independent elimination of the 11 rows, and
+a useful improvement for every alpha.
+
+Let beta be the number of present low--low pairs with
+`tau<ceil(h/2)`. Let `t0=U_alpha-c0`. Every extension of such a
+pair by any low unit has tau<h. Weighted shadow incidence gives
+
+```
+(alpha+2)beta <= 3(u0+t0).                         (COLD)
+```
+
+Indeed a quadratic receives total incoming weight alpha+2;
+each resulting cubic receives total weight at most three. A
+resulting cubic is either an I3 pure-low cubic or an absent
+pure-low cubic. Absence includes illegality.
+
+Every two-low--one-high cubic that enters the fixed arc uses
+a high direction counted by R. The sharper intruder count is
+
+```
+J_A <= alpha+beta+c0+k0+n0 R-u1+sum_i C(l_i+1,2).
+```
+
+The same range proof as section 26 proves this: present low
+pairs in the arc are cold; pure-low cubics contribute at most
+c0; hot one-low--two-high cubics force their two low--high
+divisors into I2; an I3 two-low--one-high cubic is outside the
+fixed arc and can be subtracted. Quartics with a high factor
+do not enter this arc.
+
+Put `S=sum l_i(a+2-l_i)` and `P=a-1+LC+2q2+k-2J_A`. Then
+
+```
+P+D3 >= D3+a-1-2alpha-2beta-2c0+(a+3)n0+S-2n0 R
+          +(a+1)u0-5k0+(a+3)u1-3k1.               (R-EXACT)
+```
+
+Suppose alpha>=3, a+1>=alpha, and
+
+```
+(alpha+2)(4a-5alpha-11)>=24.                       (COLD-SIGN)
+```
+
+The shadows give `(a+1)u0-5k0 >= A u0`, where
+`A=(4a-5alpha-11)/4>=6/(alpha+2)`, and
+`(a+3)u1-3k1 >=(a+1-alpha)u1>=0`. Since
+`min(A,2)(u0+t0)>=2beta` by COLD, R-EXACT proves
+
+```
+P+D3 >= D3+a-1-2alpha-2U_alpha
+          +(a+3)n0+S-2n0 R.                       (COLD-FIX)
+```
+
+In particular D3 is retained in full. This corrects no previous
+inequality; it strengthens the earlier cold-payment lower bound,
+which had already replaced c0 by U_alpha before paying cold pairs.
+
+For the 11 rows `(alpha,a,n0,R)=(3,13,6,10)`, COLD-FIX is
+`-38+S+D3`. For r=1,l=1 it is 0 or 3, and for r=2,l=0 it is
+7 or 10. The fixed outside coefficients from section 27 are
+nonnegative in all these rows, so I-LOW proves W>=0 directly.
+
+**Theorem T2.3G.** Under the exact primary P4 hypotheses,
+alpha=3 and a>=13 imply W>=0, for all b,c,e. Proof: section 26
+covers a>=41 and excludes r>=3 and the large-star cases; the
+independently implemented FIN enumeration on 13<=a<=40, with
+JOINT-SP, leaves only the 11 rows. Either PSP in section 32 or
+COLD-FIX eliminates them. This theorem retains the finite
+certificate dependency; it is not claimed to be an all-paper
+replacement for FIN.
+
+## 34. Exact uniform R and delta bounds, with outside directions
+
+This section gives quantified versions of the lead's heuristic.
+No signs are suppressed. Let `E=min(a-alpha,l+r)` and define
+
+```
+beta_H=#{present low--low pairs with tau<h-L},
+B_f=a-1+q2+u3-2alpha-2beta,
+B_H=a-1+q2+u3-2(alpha+E+l+beta_H),
+Omega_f=G+(c+e)(2q2+u3)-2alpha*c,
+Omega_H=G+(c+e)(2q2+u3)-2(alpha+E)c,
+C_H=alpha+n0+c0+l+E+C(E+2,3)+(n0+alpha E)(a-alpha).
+```
+
+The sharper outside bounds are
+
+```
+J-J_A <= b(alpha+beta)+alpha*c,
+J_H-J_{H,A} <= b(alpha+E+l+beta_H)+c(alpha+E),
+beta_H <= min(n0,u0+t0).                           (H-COLD)
+```
+
+For the fixed arc an AAB intruder has two low A factors and
+its AA divisor is cold; its B offset is at least h. For H0=h-L,
+an intruding AAB's I2 divisor has tau<H0. Its low--low choices
+are counted by beta_H and its remaining choices by l. Low and
+exceptional AB or AC cells account for alpha+E. Finally multiply
+each pair counted by beta_H by the lowest low unit: the resulting
+distinct formal pure-low cubics have tau<h, and are counted by
+u0 or t0. These arguments prove all three bounds.
+
+In a counterexample, the fixed I-LOW payment is negative. Under
+COLD-SIGN, COLD-FIX therefore implies the exact necessary bound
+
+```
+2n0 R >= D3+a-2alpha-2U_alpha+(a+3)n0+S
+             +b B_f+Omega_f.                       (R-LOW)
+```
+
+The extra 1 comes from the negative integer payment being at
+most -1. When n0>0, divide by 2n0 and take the ceiling. Without
+COLD-SIGN use R-EXACT instead, with its displayed shadow terms;
+this gives a valid exact bound for every a>=3. When n0=0 the
+same formula is interpreted as a direct payment test, not a
+division.
+
+The H0 payment is bounded below by
+
+```
+delta+a-1+(a+3)q2+D3+(a+1)u3-5k-2C_H
+       +b B_H+Omega_H.
+```
+
+Consequently every counterexample satisfies
+
+```
+delta <= 2C_H-(a-1)-(a+3)q2-(a+1)u3+5k
+                -D3-b B_H-Omega_H-1.               (DELTA-UP)
+```
+
+This version requires no shadow-sign hypothesis. If
+`a+1>=5(alpha+3)/4` and `a+1>=5(alpha+2)/3`, the term
+`(a+1)u3-5k` is nonnegative and can be dropped. The resulting
+constant, before the `-D3-b B_H-Omega_H-1`, is exactly
+
+```
+(a-2alpha-1)n0+2c0+2alpha-a+1-(a+1)l
+ +2E[1+alpha(a-alpha)]+2C(E+2,3).                    (B-EXACT)
+```
+
+When l=0, u1=k1=0, so only the first shadow-sign condition is
+needed. R-LOW, DELTA-UP and JOINT-SP/COUNT are the requested
+general-alpha inequalities. They explicitly exhibit two potential
+escapes: a large localized cubic defect and a negative outside
+B coefficient. Sections 35–38 give further control of each.
+
+## 35. Localized low defects, cold Macaulay, and hot high cubics
+
+Three uniform refinements make the general-alpha conditions
+substantially sharper.
+
+**LOC-LOW.** With `r_LL=Q_alpha-n0`,
+
+```
+t0 <= alpha*r_LL+epsilon,       c0<=n0^{<2>}.         (LOC-LOW)
+```
+
+Proof. Each missing low pair has alpha formal pure-low cubic
+multiples. Their union has size at most alpha*r_LL. Every other
+absent pure-low cubic is legal, and there are at most epsilon
+absent legal A cubics in total by section 27. The second bound
+is Macaulay on the pure-low face.
+
+**COLD-MAC.** With beta as in section 33,
+
+```
+u0+t0 >= U_alpha-(Q_alpha-beta)^{<2>}.               (COLD-MAC)
+```
+
+Proof. All formal cubics extending one of the beta cold pairs
+have tau<h. The complementary cubics have all pair divisors in
+the other Q_alpha-beta formal low pairs. Their number is at
+most `(Q_alpha-beta)^{<2>}` by Macaulay. Every extended cubic
+is either counted by u0 or absent and counted by t0. This proves
+the assertion. COLD-MAC is stronger than the weighted incidence
+bound COLD; it uses all formal low pairs in the complement,
+regardless of whether that complementary pair is present in D.
+
+We also have the mixed weighted shadow
+
+```
+2u1 <= (alpha+1)l,   u1<=n0(a-alpha).               (LLH)
+```
+
+For the first inequality count the total low exponent two in
+an I3 LLH cubic against its low--high I2 pair divisors. Such a
+pair has total possible incoming low weight alpha+1. The second
+follows by deleting the high factor.
+
+**COLD-HIGH.** Suppose beta>=1. Put p=a-alpha, E=min(p,l+r),
+and for 0<=j<=E put
+
+```
+n_j=p-j,
+r_j=max(0,r-r_LL-max(0,j-l)).
+H_cold=max(0, C(p-E+2,3)-t+t0,
+                min_{0<=j<=E}[C(n_j+2,3)-n_j*r_j-epsilon]).
+```
+
+Then `H3>=H_cold`, and hence
+
+```
+W >= W_A+T+H_cold+X_SR.                            (COLD-HIGH)
+```
+
+Proof. A cold pair has tau>=2L, so beta>=1 implies L<h/4.
+Every high unit at least H0=h-L is then above 3h/4, and all
+cubics on such units have tau>2h. If exactly j high units
+lie below H0, j<=l+r. At least max(0,j-l) of the lowest-low/high
+pairs are absent, in addition to r_LL absent low pairs. Thus
+at most r_j missing pairs can be entirely on the other n_j
+high directions. At most n_j*r_j cubics there are illegal, and
+at most epsilon legal ones are absent. This gives the minimum
+term in H_cold. Independently, the t0 absent pure-low cubics
+are disjoint from this high family, so at least
+`C(p-E+2,3)-(t-t0)` high cubics are present. ASR-ALL supplies
+the final W inequality. All estimates hold with j or n_j zero.
+
+The large-fiber obstruction below is not an obstruction to
+these three statements. In particular LOC-LOW prevents charging
+all missing A cubics to the low face when most are already
+forced by pairs outside that face.
+
+## 36. A uniform small-defect theorem, including a<=2alpha+1
+
+**Theorem U-SMALL.** Under the exact primary P4 hypotheses,
+suppose alpha>=4, `r_A=0`, `l=0`, and
+
+```
+epsilon <= Q_alpha/4.
+```
+
+Then W>=0 for every a,b,c,e. Thus this is a theorem for every
+low population, including the strip a<=2alpha+1; alpha is not
+bounded and a does not need to exceed 13.
+
+Proof. Assume W<0. Write Q0=Q_alpha, U0=U_alpha. The hypotheses
+give n0=q2=Q0, u1=k1=0 and `t=epsilon`. LC-minus implies
+
+```
+a(a-1)>3alpha(alpha+1),   a>5alpha/3+1.              (A-LOW)
+```
+
+For the second assertion evaluate a(a-1) at 5alpha/3+1:
+its difference from 3alpha(alpha+1) is
+`-2alpha^2/9-4alpha/3<0`, and a(a-1) increases in this range.
+COLD-SIGN holds: for alpha>=6, A-LOW gives
+`4a-5alpha-11>5alpha/3-7`, whose product with alpha+2 is
+at least 24. For alpha=4,5 the first inequality forces a>=9,11,
+respectively, and direct substitution verifies COLD-SIGN.
+In particular `(a+1)u0-5k0>=0` for the H0 payment.
+
+LOC-LOW gives t0<=epsilon. COLD implies
+`u0>=(alpha+2)beta/3-t0`. Consequently
+
+```
+B_f >= a-1-2alpha+Q0-t0+(alpha-4)beta/3
+    >= Q0-epsilon-alpha/3 >= 3Q0/5.                (UF)
+```
+
+Here alpha/3<=2Q0/15 for alpha>=4, so the penultimate bound
+is in fact at least 37Q0/60. Also H-COLD implies
+`Q0+u0-2beta_H>=-t0`, by splitting at u0+t0=Q0. Thus
+
+```
+B_H >= a-1-2alpha-t0 >= -alpha/3-Q0/4 >= -2Q0/5.  (UH)
+```
+
+Both Omega terms in section 34 are nonnegative: E=0 and
+their C coefficients are at least `2+Q+Q0-2alpha>0`; their
+E coefficients are positive as well.
+
+The negative fixed payment and COLD-FIX now force, with n=alpha+R,
+
+```
+n > a/2+2alpha/3+5/6+(a-1-2alpha)/(2Q0)
+                       +3epsilon/(2Q0)+3b/10
+  > nu := a/2+2alpha/3+3/4+3b/10.                  (UN)
+```
+
+Indeed `(a-1-2alpha)/(2Q0)>-1/[3(alpha+1)]>=-1/15`.
+Set
+
+```
+B0=(a-2alpha-1)Q0+2U0+2alpha-a+1.
+```
+
+The H0 payment, using c0<=U0, its nonnegative u0/k0 term,
+and UH, gives the necessary inequality
+
+```
+delta <= B0+(2/5)bQ0-1.                            (UD)
+```
+
+The -1 remains valid despite the rational lower coefficient:
+the actual payment is a negative integer, and every real lower
+bound for it is therefore at most -1.
+
+All pairs on the joint n directions are present. JOINT-SP,
+`lambda_n<=3n/2`, and epsilon<=Q0/4 give
+
+```
+2[3ceil(3delta/2)-2]
+ >= f(n):=n^3-n^2+2n-(3/4)nQ0.
+```
+
+The polynomial f is increasing for n>=alpha: its derivative
+is at least `(21alpha^2-19alpha+16)/8>0`. Since n>nu>alpha,
+and `2[3ceil(3delta/2)-2]<=9delta-1`, UN and UD contradict
+
+```
+f(nu)-9B0-(18/5)bQ0+10 >0.                        (U-POLY)
+```
+
+Here is a complete certificate for this last inequality. Put
+`x=a-5alpha/3-1>0`, `z=alpha-4>=0`. The left side of U-POLY
+is identically
+
+```
+(9alpha/8)(x-7alpha/12-1/4)^2
+ +(119z^3+1086z^2+2559z+2126)/128
+ +(355/32)x+(11/16)x^2+x^3/8
+ +b[201/160+(33/40)x+(9/40)x^2+(9/16)alpha
+                         +(27/20)alpha*x+(9/80)alpha^2]
+ +b^2[99/400+(27/200)x+(81/200)alpha]+(27/1000)b^3.
+```
+
+Every displayed summand is nonnegative and the second is
+strictly positive. `uniform_polys.py` verifies this identity
+in an exact sparse Fraction polynomial ring. This proves
+U-SMALL. For alpha=4 the test specializes to r=l=0,t<=2;
+it is one test of a uniform mechanism, not a four-low endpoint.
+
+There is a useful complement that removes the small-defect
+hypothesis on the low-dimensional, B-free side.
+
+**Corollary U-B0.** Suppose alpha>=4, r=l=0 and b=0. If
+`a<=2alpha+2`, then W>=0, with no restriction on epsilon,c,e.
+For general a, a counterexample in this B-free full-pair family
+must satisfy the explicit middle-defect restriction
+
+```
+Q_alpha/4 < epsilon
+ <= [(a-2alpha-1)Q_alpha-2a+3alpha]/6.              (MID-B0)
+```
+
+Proof. For b=0 retain the u0,k0 terms in DELTA-UP. Its bound
+is `delta<=B1-D3-1`, apart from a nonnegative C/E payment, with
+
+```
+B1=(a-2alpha-1)Q_alpha+2c0+2alpha-a+1
+                                      -(a+1)u0+5k0.
+```
+
+Violation of LOW+ requires
+`3delta>=a-1+(a+1)(Q_alpha+u0)-3k0+D3+2Q_alpha+1`,
+again with nonnegative outside terms. Subtract three times
+the upper bound for delta from this lower bound. The result
+is exactly
+
+```
+4a-6alpha+(6alpha+6-2a)Q_alpha-6c0
+                           +4(a+1)u0-18k0+4D3.
+```
+
+Using c0<=U_alpha and 4k0<=(alpha+3)u0 makes it at least
+
+```
+4a-6alpha+2(2alpha+1-a)Q_alpha+4D3.                 (LOW-H)
+```
+
+The discarded u0 coefficient is nonnegative because
+`8a-9alpha-19>0` follows from A-LOW for alpha>=4. The outside
+remainder is at least
+`4G+4(c+e)(2Q_alpha+u0)-6alpha*c>=0`.
+Since D3=3epsilon and 4a-6alpha>0, LOW-H is positive for
+a<=2alpha+1. For a=2alpha+2 it is positive whenever
+epsilon>Q_alpha/4; the complementary range is U-SMALL.
+For general a, LOW-H must be nonpositive in a counterexample,
+which gives the upper bound in MID-B0. U-SMALL gives its
+strict lower bound. The identity is verified by
+`uniform_identities.py`. This quantifies an actual gap in the
+current uniform argument rather than hiding it in an asymptotic
+statement: MID-B0 can be nonempty when a grows faster than
+2alpha.
+
+## 37. What an n-independent signed-loss assertion cannot say
+
+The following precise proposed strengthening is false:
+
+> There is an absolute C such that, for every pair-distinct
+> n-element integer set B with triple collision excess epsilon,
+> the union of B and its normal signed-label sums has at least
+> H(n)-C*epsilon elements.
+
+For every g>=2 take independent formal coordinates A_i,B_i,Z,
+and the 3g vectors `A_i,B_i,Z-A_i-B_i`. All pairs are distinct.
+The only triple collision is the fiber of g triples
+`A_i+B_i+(Z-A_i-B_i)=Z`. To obtain explicit positive integers
+after a common translation, choose `R=10^(4g)` and, for
+0<=i<g, use
+
+```
+R+10^(2i), R+10^(2i+1), 2R-10^(2i)-10^(2i+1).       (HF-FAMILY)
+```
+
+Base-ten coefficient comparison is valid: a difference of two
+sums of degree at most three has digit coefficients of absolute
+value at most six, and its lower part has absolute value less
+than R. In the free-coordinate description a relation has
+equal coefficients on A_i,B_i and the i-th third vector.
+Its Z coefficient then forces their sum to be zero. At degrees
+at most three, the only nonzero possibilities are the difference
+of two indicated squarefree triples. This also rules out
+relations between different total degrees at most three.
+
+Thus epsilon=g-1, there is a single fiber of size g, and
+all its triple supports are disjoint. For each i<j its nine
+choices of one member from each support give nine signed-label
+collisions. Each collision fiber has size two: its common
+signed sum is `4R-p-q`, and pair distinctness makes p+q unique.
+There are no other signed collisions, and no signed label equals
+a unit. Consequently the union has exactly
+
+```
+H(3g)-9 C(g,2),
+[H(3g)-union]/epsilon=9g/2.                         (HF-LOSS)
+```
+
+This ratio is unbounded. For the particular false choice C=12,
+g=3 gives n=9, epsilon=2, H(9)=333 and union size 306, smaller
+than 333-24. The dimension n=9 is minimal for that value C:
+the verified SP constants for n<=8 are at most 12. No minimum
+diameter claim is made for the explicit base-ten witness.
+
+This is not merely an abstract support partition. It also
+occurs inside residue-complete primary tiles satisfying LC-minus.
+Add the following 2g high A offsets to HF-FAMILY:
+
+```
+3R-10^(2g+j),  0<=j<2g;
+a=5g, alpha=2g, h=3R+2, m=10R.
+```
+
+Take every formal A monomial of degree at most three except
+g-1 of the g cubics of sum 4R. Their tau values are distinct
+modulo m, even between degrees, by the same digit proof; all
+are below 9R<m. The residue h-1=3R+1 is unused. For each
+unoccupied residue r introduce a separate E unit of weight
+
+```
+3m+h+((r-h) mod m).
+```
+
+This defines an active residue-complete down-set of cardinality
+m, and the unused residue h-1 ensures its maximum is
+`4m+h-1`. It has
+
+```
+q2=3g^2+2g, r_A=0, u3=k=0, t=epsilon=g-1,
+LC=(5g+1)(3g^2+2g),
+W_A=-(35/6)g^3+13g^2+(41/6)g-4.
+```
+
+The unexpanded expression is
+`-C(5g+1,3)+(5g+1)(3g^2+2g)+4(g-1)`.
+For g=3+u the polynomial is
+`-24-(218/3)u-(79/2)u^2-(35/6)u^3<0`.
+Also `a(a-1)-6q2=g(7g-17)>0` for g>=3, so LC-minus holds.
+There are no other triple collisions after adding the high
+directions, whose reserved digit coordinates are independent.
+
+`fiber_family.py` verifies all pair/triple fibers, cross-degree
+injectivity, signed-union cardinalities and these exact counts
+for g=2,...,12; the infinite claims have the digit proof above.
+The fill is given by a formula, not an enumeration of 10R units.
+These examples have enormous E payment and do not violate LOW+.
+
+Crucial limitation: HF-LOSS refutes an n-independent constant
+for the *standard signed-label union*. It does **not** refute
+`3s-2>=H(n)-C*epsilon` for the ambient interval or
+`m>=H(n)-C*epsilon` for an ambient cyclic group: the examples
+have very large diameter and modulus. Neither a proof nor a
+counterexample to those stronger ambient statements is claimed.
+Similarly, a frontier-specific fiber bound could still use
+LOW-plus violation or the outside-payment budget. A fiber-size
+bound from pair distinctness, residue completeness and LC-minus
+alone is false by the displayed primary tiles.
+
+## 38. A uniform cutoff for B directions from the transfer budget
+
+This lemma removes the unbounded-b escape in any fixed A
+dimension. It also finishes the small-a certificate below.
+
+Let Hhat be any proved nonnegative lower bound for the short
+slack `rho-t3-BC-v3-w-z`; for example Hhat=H3+X_SR, or H_cold.
+In a counterexample define
+
+```
+F=C(a+1,3), B0=-W_A-Hhat-1>=0.
+```
+
+**B-CUT.** For a>=7 every counterexample satisfies
+
+```
+b <= max(3, floor((B0+2)/2), floor(sqrt(2F+1))-a).    (B-CUT)
+```
+
+In particular, without computing Hhat,
+
+```
+b <= floor((F+1)/2).                               (B-UNIFORM)
+```
+
+Proof. Let B=C(b+1,2), p_AB=ab-s3 and delta_B=B-t3. Write
+Dv,Dw,Dz for the last three mixed defects in GW-21's transfer
+identity. The budget T+R-Hhat<=B0 holds, and these three defects
+are disjoint from the short slack. Suppose
+
+```
+b>3,  2b-2>B0.
+```
+
+If 2<=t3<B, MG2, applied in b variables, implies
+`Dz>=(b+2)t3-3t3^{<2>}>=2b-2>B0`. If t3 is zero or one,
+`s3>=ab-B0` since T>=p_AB, and w<=a*t3 gives
+
+```
+Dw >= (b+1)(ab-B0)-2a > B0.
+```
+
+For the strict inequality substitute B0<2b-2; its remaining
+positive difference is at least
+`(a-2)[b(b+1)-2]>0`. Thus necessarily t3=B.
+
+For an A direction let k_i be the number of B directions
+which are not its I3 AB neighbors. Then its ABB count is at
+most C(b-k_i+1,2), because every ABB divisor is an I3 AB or
+I3 BB pair. Its contribution to p_AB+Dw is at least
+
+```
+k_i+B+(b+1)(b-k_i)-3C(b-k_i+1,2)
+       = k_i(4b+3-3k_i)/2.
+```
+
+For 1<=k_i<=b the concave expression is at least 2b, by
+checking k_i=1,b. This exceeds B0. Hence s3=ab as well.
+With all these neighbors,
+
+```
+Dv=2br+4(bq2-v2)+3(bq3-v3).
+```
+
+So r=0, since 2b>B0. Also b*u3<=B0 gives u3<=1, and
+Macaulay on the I3 cubic family gives k<=1. A C unit would
+cost at least s3=ab>B0 in T, and an E unit at least 2b>B0;
+therefore c=e=0.
+
+All pairs in the a+b directions are now present. Let d0=a+b
+and let t_all count their missing cubic monomials. The three
+mixed defects are at least three times the missing mixed
+cubics. Thus
+
+```
+t_all <= t+B0/3
+ = [F-LC-t-1-Hhat]/3 <F/3.
+```
+
+Here `W_A=-F+LC+4t`, since r=0. The whole cardinality satisfies
+`m=C(d0+3,3)-t_all+k`, k<=1. Global SP on zero and these d0
+unit residues gives
+
+```
+2C(d0+1,3) <= ((3/2)(d0+1)-1)t_all+k
+            <= (3d0+1)F/6+1.
+```
+
+Multiplying by three and dividing by d0 yields
+`d0^2-1<=2F+3/d0`. Since d0>=11, integrality gives
+`d0^2<=2F+1`. Therefore, whenever b is larger than the first
+two terms of B-CUT, it is at most the third. This proves the
+cutoff.
+
+For B-UNIFORM, the exact identity
+`4t-(a-3)r=(4/3)D3+(a+17)r/3>=0` and LC>=0 imply
+`-W_A<=F`. Thus B0<=F-1. For a>=7, F>=56, the other two
+terms in B-CUT are at most floor((F+1)/2).
+
+A second bound, useful before the cutoff, is
+
+```
+T+R-Hhat >= b[u3+min(2r,2a-r)]                     (B-NEIGH)
+```
+
+when its bracket is nonnegative. For a B direction missing
+p>=1 I3 A-neighbors, at least
+`p(2a-p+1)/2-r` present A pairs are lost among its possible
+AAB divisors. Its p_AB+Dv cost is at least
+`p(4a+3-3p)/2-r>=2a-r`. At p=0 its Dv cost is at least 2r.
+Summing, and retaining b*u3, proves B-NEIGH. Its proof uses
+neither the short slack nor any C/E term, so those costs can
+be retained simultaneously.
+
+There is consequently a genuine finite-instance reduction for
+each fixed a, uniform in alpha. In any remaining counterexample
+
+```
+b<=floor((F+1)/2),
+c(c+1)<=F-1,        e<=floor((F-1)/(3a)),
+m<=C(a+b+3,3)+c(a+b+1)+e+C(a+3,4).                 (FIXED-A-FIN)
+```
+
+The last bound counts A/B cells through degree three, C units
+and their AC/BC pairs, E units, and A quartics. Every active
+weight is below 5m. Thus this is a finite family of actual
+integer weighted down-sets for every fixed a; it is not just
+a finite collection of real LP profiles. The dimension a is
+still unbounded, so FIXED-A-FIN does not finish Wilf.
+
+There is a stronger completion test which combines the A and
+B Macaulay faces rather than estimating them separately.
+
+**MIX-GAP.** Put d0=a+b, `qg=q+s3+t3`, and
+`Delta_d(x)=(d+2)x-3x^{<2>}`. Then, for every primary tile,
+
+```
+Dv+Dw+Dz >= Delta_{d0}(qg)-2(a-1)r.                (MIX-GAP)
+```
+
+Proof. Keep all present A pairs but only I3 AB and BB pairs
+as a formal quadratic down-set in d0 variables. All actual
+A/B cubics are legal for it. Of the t missing pure-A cubics,
+at most ar are forced by missing A pairs. Thus at least t-ar
+missing legal cubics remain in this global face. Macaulay gives
+
+```
+u3+u4+v2+v3+w+z <= qg^{<2>}-(t-ar).
+```
+
+This remains valid if t-ar is negative. The exact identity
+
+```
+D3+Dv+Dw+Dz
+ =(d0+2)qg-3(u3+u4+v2+v3+w+z)+(bq2-v2)
+```
+
+and `D3=3t-(a+2)r` prove MIX-GAP. For r=0 all t are legal,
+so their D3 cost cancels instead of being charged a second
+time to the mixed budget.
+
+If some AB or BB pair is not in I3, q<=qg<=C(d0+1,2)-r-1.
+Define
+
+```
+Gamma(d0,q,r)=min_{q<=x<=C(d0+1,2)-r-1} Delta_{d0}(x)
+                                                -2(a-1)r.
+```
+
+An empty minimum is +infinity. If the available mixed budget
+B0 is smaller than Gamma, every AB and BB pair lies in I3.
+This is an explicit uniform criterion. On each Macaulay block
+`x=C(j+1,2)+z`, 0<=z<=j, Delta is the concave quadratic
+
+```
+(d0-j)C(j+1,2)+(d0+2)z-3C(z+1,2).
+```
+
+Thus Gamma is computed exactly by the two endpoints of each
+block intersecting its interval. The two finite programs use
+independently coded endpoint loops; no numerical optimization
+is involved.
+
+There are useful analytic bounds on the main frontier a>=13.
+If the mixed quadratic face is incomplete, then
+
+```
+r=0: Dv+Dw+Dz >= 2(a+b)-2;
+r=1: Dv+Dw+Dz >= 2a+4b-5;
+r=2: Dv+Dw+Dz >= 2a+6b-14.                         (MIX-012)
+```
+
+For r=0 use MG2. For r=1, MG6 covers qg<=C(d0+1,2)-3,
+where its bound exceeds 4d0-7; the remaining endpoint has
+Delta=4d0-7. Subtract 2(a-1). For r=2 use MG6 and subtract
+4(a-1). The hypotheses qg>=q>=Q-2>=6 and d0>=13 verify
+every use of MG6.
+
+Once the completion test succeeds, let
+
+```
+rem=B0-b*u3-2br,
+t_all_up=t+br+floor(rem/3),
+epsilon_all_up=t_all_up-[C(d0+2,3)
+                               -(C(d0+1,2)-r)^{<2>}].
+```
+
+If rem or epsilon_all_up is negative, the branch is impossible.
+Otherwise all mixed legal cubic omissions cost at least three:
+the identity for Dv with full neighbors supplies the baseline
+2br and the retained defects. Hence epsilon_all_up bounds the
+global legal cubic defect on all d0 directions. Apply SP after
+deleting r pair endpoints from zero and these units, and PSP
+without deletion, to obtain a global lower bound for m. Its
+upper bound is
+
+```
+C(d0+3,3)-r(1+b)-t+k+c(d0+1)+e,
+```
+
+with c,e bounded using rem and the full-neighbor C/E cost
+`c(c+1+q+q2+u3+ab+B)+e(3a+2b+c+q+q2+u3+ab+B)`.
+These are the additional completion/cardinality tests in the
+final small-dimension certificate. MIX-GAP is uniform in alpha.
+
+## 39. The small-A strip 7<=a<=13 is closed
+
+**Computer-assisted Theorem T2-SMALL.** Under the exact primary
+P4 hypotheses, a<=13 implies W>=0, for every low population
+and all b,c,e. The cases a<=6 are GW-24. The cases alpha<=2
+are GW-26/26c/26d. For 7<=a<=13 and alpha>=3 the following
+finite count certificate has zero survivors.
+
+The source files `t4/small_counts.py` and `t4/small_counts.c`
+implement the following fully integral relaxation. The Python
+version computes monotone delta endpoints; the C version tests
+every delta. The latter was written separately from the Python
+loop body and shares no imported implementation.
+
+Enumerate a=7,...,13, alpha=3,...,a, r=0,...,Q, p=a-alpha,
+
+```
+max(0,Q_alpha-r)<=n0<=Q_alpha, 0<=l<=alpha*p,
+q2=n0+l<=q=Q-r,
+3(a+1)q2+(a+17)r<3F.
+```
+
+Let `t_f=U-q^{<2>}`. Enumerate
+
+```
+t_f<=t<=floor((F-(a+1)q2+(a-3)r-1)/4),
+epsilon=t-t_f, D3=3t-(a+2)r,
+0<=u0<=U_alpha,
+0<=u1<=min(p*n0,floor((alpha+1)l/2),
+                         U-t-u0,q2^{<2>}-u0).
+```
+
+Set
+
+```
+K0=min(u0^{<3>},floor((alpha+3)u0/4)),
+K1=floor((alpha+2)u1/3), K=K0+K1, u=u0+u1,
+LCbar=(a+1)(q2+u)-4K,
+WAbar=-F+LCbar-(a-3)r+4t.
+```
+
+These maximize the quartic allowances and therefore lower
+every payment used. The relevant enumerated states satisfy
+LCbar>=(a+1)q2; both implementations assert this rather than
+discarding a state on that assumption. If WAbar>=0 the state
+is excluded. Enumerate
+
+```
+max(u0,U_alpha-t,U_alpha-alpha(Q_alpha-n0)-epsilon)
+ <= c0 <= min(n0^{<2>},U-t-u1).
+```
+
+Let t0=U_alpha-c0. Use COLD-MAC to compute the largest possible
+beta in [0,n0]. Treat beta=0 separately, and for beta>=1 use
+this maximum. This is a valid domination: increasing beta
+decreases both the fixed constant and its B coefficient; the
+COLD-HIGH lower bound only requires beta>=1 and is independent
+of its size. Set beta_H=min(n0,u0+t0), E=min(p,l+r), and use
+Hhat=0 for beta=0 or H_cold for the positive branch. If
+WAbar+Hhat>=0 the branch is excluded.
+
+For the star sum use its exact minimum with 0<=l_i<=p and
+sum l_i=l. If l=kp+z, 0<=z<p, it is
+`S_min=kp(a+2-p)+z(a+2-z)`; at p=0 it is zero. This follows
+by repeatedly transferring mass to an endpoint in the concave
+function x(a+2-x).
+
+Use R-EXACT with beta,K0,K1 and S_min to obtain a lower fixed
+payment `f_R+b B_f`, and DELTA-UP with these same quartic
+allowances to obtain `delta<=B-D3-b B_H-1`. Enumerate
+R=0,...,p and b from zero through the smaller of B-CUT and
+B-NEIGH's bound, using WAbar and Hhat in the budget. If B_f>0
+also impose `b<=floor((-f_R-1)/B_f)`. Keep only
+`f_R+b B_f<=-1`. Every C/E remainder in both arc payments is
+nonnegative in these ranges: the code checks
+`q+q2+2>=2(alpha+E)` on every base state. Thus outside C/E
+directions need not be enumerated in the arc constraints.
+
+They are nevertheless included in the cardinality comparison.
+Put `bc=u+min(2r,2a-r)` and
+`budget=-WAbar-Hhat-b*bc-1`. For each integer cc>=0 with
+`cc(cc+1+q+q2+u)<=budget`, let
+
+```
+ee=floor((budget-cc(cc+1+q+q2+u)) /
+                            (3a+2b+cc+q+q2+u)).
+m_up=max_cc [C(a+b+3,3)-r(1+b)-t+K+cc(a+b+1)+ee].
+```
+
+This follows from the retained C/E terms in T and the capacity
+bound v2+v3<=bq. Each missing A pair removes itself and its b
+AAB multiples, accounting for r(1+b). It is an upper bound
+even when the independent quartic allowances are incompatible.
+
+For the lower cardinality bound apply global SP after deleting
+at most r pair endpoints from zero and the a A directions,
+and also apply PSP to all a+1 directions:
+
+```
+n_g=max(0,a+1-r), er=C(r+1,2),
+m_low=max(ceil(H(n_g)-lambda_{n_g}epsilon),
+ H(a+1)-4er-9[(a+1)er+(r+1)epsilon+C(epsilon,2)]).
+```
+
+Zero-padded legal pair and unit triples are already present,
+so the same localized epsilon is valid in these global bounds.
+If m_low>m_up discard the branch. Also impose delta<=m_up-2,
+because h=delta+2L<=m and L>=1. Finally impose all section 27
+WINDOW-SP/COUNT and PSID bounds, JOINT-SP/COUNT, PSP on the
+alpha+R joint directions, and violation of LOW+:
+
+```
+3delta >= (a-1)(b+1)+(a+1)(q2+u)+D3
+                         +(b+2)q2+b*u-3K+1.        (LOW-FIN)
+```
+
+Also apply the MIX-GAP completion test and resulting global
+cardinality comparison in section 38. LOW-FIN is I-LOW with
+eta=3delta, after dropping nonnegative C/E
+costs; `LC+k=(a+1)(q2+u3)-3k`. Every step enlarges the possible
+counterexample set. The bounded loops and these explicit tests
+therefore give a complete finite certificate.
+
+Both implementations give the following table. A base state is
+(a,alpha,r,n0,l) admitting some t. The u-column counts
+(t,u0,u1) states with WAbar<0 before c0 is enumerated. Packing
+profiles are branches (including R,b and the dominating beta
+choice) reaching the final packing/cardinality tests.
+
+| a | Base states | u states | Packing profiles | Surviving delta tuples |
+|---:|---:|---:|---:|---:|
+| 7 | 1 | 3 | 5 | 0 |
+| 8 | 7 | 92 | 25 | 0 |
+| 9 | 25 | 813 | 92 | 0 |
+| 10 | 103 | 5,252 | 272 | 0 |
+| 11 | 303 | 24,219 | 953 | 0 |
+| 12 | 735 | 105,982 | 2,724 | 0 |
+| 13 | 1,580 | 386,234 | 8,823 | 0 |
+| Total | 2,754 | 522,595 | 12,894 | 0 |
+
+For an additional transparent endpoint check, before using the
+Hhat budget in B-CUT there were exactly three survivors:
+`a=12,alpha=4,r=0,n0=10,l=3,t=20,u0=u1=k=c0=0`,
+beta=10,R=8,b=17,18,19. All have WAbar=-37 and H_cold=35.
+The residual budget is one. B-CUT then gives b<=11, eliminating
+all three. One can alternatively see the contradiction directly:
+this budget forces all AB and BB pairs into I3, all mixed cubics
+present, and c=e=0. The resulting nearly full cubic simplex
+violates global SP. These were relaxed count profiles, not
+actual residue-complete examples.
+
+**Semigroup consequences.** In the range 3m<c_S<=4m, a is the
+number of nonmultiplicity minimal generators below
+`c_S-2m`. The new small theorem proves Wilf whenever this number
+is at most 13. Combined with T2.3G, Wilf also holds for every
+such semigroup having at most three nonmultiplicity minimal generators with
+`2n_j<c_S-m`. For U-SMALL, r and l are measured in the chosen
+residue-complete factorization tile; no tile-free translation
+of those two additional hypotheses is asserted.
+
+## 40. Checks, preserved failures, and reproduction for sections 31–39
+
+All computations in this continuation ran on fejer in
+`~/wilf/p8/`, with nice level 10 and single-core programs.
+No more than four owned computation jobs ran concurrently;
+the main verification stages used one or two. The laptop was
+used for reading, editing and copying files. No commits were
+made. The new sources and outputs are under `t4/`; earlier T1
+and T2 sources and the text of sections 1–30 are retained.
+Recorded versions are Python 3.12.3, NumPy 2.5.4, SciPy 1.18.1
+and GCC 13.3.0. Symbolic verification uses exact Fractions,
+without sympy.
+
+The principal exact checks are:
+
+- JOINT-FIN: two implementations, a=13,...,40; 51,502
+  pre-packing profiles; 11 JOINT survivors and 101 expanded
+  delta tuples; all 11 excluded by the independently proved
+  PSP bounds. This agrees with the lead's supplied table.
+- T2-SMALL: Python endpoint calculations and independent C
+  direct-delta calculations agree on every row of the section
+  39 table: 2,754 base states, 522,595 u states, 12,894 packing
+  profiles, no unbounded b branches, zero survivors.
+- `uniform_identities.py`: 29 exact Fraction polynomial
+  identities, including R-EXACT, B-EXACT, the B-neighbor
+  polynomial, the B-free LOW/H0 identity, both heavy-fiber
+  W_A expansions, and the exact MIX-GAP identity.
+- `uniform_polys.py`: exact verification of U-POLY's displayed
+  positive certificate. Its preliminary polynomial expansions
+  are diagnostics; the final identity and coefficient signs
+  prove the infinite parameter range, not a numerical grid.
+- `fiber_family.py`: g=2,...,12; pair distinctness, the unique
+  nontrivial triple fiber, signed-union sizes, cross-degree
+  injectivity after adding the high units, the unused top
+  residue, and the exact low counts. The large E fill is
+  implicit and justified by the formula in section 37.
+
+Actual-semigroup checks used the sparse lex/grlex generator
+from section 29, with the updated `t4/multi_low.h`. Each accepted
+tile is checked for residue bijection and down-set closure by
+the generator and checker. In addition to the old checks the
+new header verifies JOINT-SP/COUNT, COLD and COLD-MAC, LOC-LOW,
+LLH, H-COLD, both refined outside counts, R-EXACT, COLD-FIX
+when its signs apply, COLD-HIGH, B-NEIGH, and PSP. The final
+control runs were:
+
+| Seed | Proposals | Proposed lows | Factorization | m range | Proposed A range | Primary instances |
+|---:|---:|---:|:---|:---|:---|---:|
+| 202610193 | 15,000 | 4 | lex | 200–6,000 | 7–20 | 14,890 |
+| 202610195 | 10,000 | 6 | grlex | 500–8,000 | 7–20 | 9,937 |
+| 202610196 | 2,000 | 4 | grlex | 500–5,000 | 13–26 | 1,983 |
+
+Total: 26,810 primary instances (not asserted to be distinct).
+There were 26,625 applications of the new joint bounds and
+18,483 applications of COLD-FIX's sign condition. MIX-GAP was
+added for the last run and passed on its 1,983 primary instances.
+The last two controls did not reach a negative W_A multi-low
+frontier; the first had minimum W_A=-120. None reached violation
+of the old LOW+ test. These facts limit the adversarial claim:
+the controls verify inequalities on actual instances, but do
+not certify that random sampling approaches an actual remaining
+counterexample. The finite certificates and symbolic proofs
+are separate from this sampling evidence.
+
+A distinct adversarial experiment tested the **unproved ambient
+SP12 assertion** discussed below. `ambient_adversary.c` uses
+pair-distinct sets with n=9,12,...,30, interval bounds
+`floor((H(n)+2)r/300)` for r=40,60,80,95, two greedy starts
+per bound when initialization succeeds, and 2,000 mutations
+per successful start. It minimizes ordinary triple collision
+excess while retaining pair distinctness, with fixed seed
+202610194. It evaluated 116,000 mutations, 8,439 of which
+were pair-distinct; repetitions are included. No SP12 failure
+was found. The largest observed necessary constant
+`[H(n)-(3span-2)]/epsilon` was 650/137. The log records the
+full best set for each initialized interval. This is a bounded
+stochastic falsification test, not a packing theorem.
+
+Preserved failures and distinctions:
+
+1. The proposed absolute constant for the standard signed-label
+   union is false, by HF-FAMILY. For C=12 the smallest dimension
+   admitting the exhibited violation is n=9, with complete
+   explicit integer data in `fiber_family.json`. The same
+   construction supplies unbounded fibers even in primary,
+   residue-complete tiles with LC-minus.
+2. The implication from that pointwise failure to failure of an
+   ambient-modulus or ambient-interval estimate is invalid.
+   The explicit examples have large unused ambient space. No
+   counterexample to the ambient estimate is claimed.
+3. A draft expansion of the heavy-fiber W_A with coefficients
+   `-35g^3/6+51g^2/2+31g/3-4` was an arithmetic error. At the
+   smallest g in the recorded family, g=2, it gives 72 rather
+   than the exact 15. Section 37 gives the corrected polynomial
+   and its independently checked shift at g=3.
+4. A draft evaluation used S=15 for a=13,l=1, whereas
+   `S=l(a+2-l)=14`. The corresponding COLD-FIX bounds for
+   t=13,14 are 0,3, rather than 1,4. The first affected row
+   is `(a,r,l,n0,t,R)=(13,1,1,6,13,10)`. The corrected
+   nonnegative bound suffices, and both JOINT programs now
+   check it on every survivor.
+5. Before retaining H_cold in B-CUT, the small-A relaxation
+   left three a=12 profiles. Their full count data and direct
+   exclusion are recorded in section 39. Before MIX-GAP, the
+   a=13 relaxation left 126 profiles, all alpha=4: 10 with r=0,
+   109 with r=1, and 7 with r=2. MIX-GAP and the resulting
+   global packing comparison exclude them. No such profile
+   was asserted to have a residue-complete realization.
+
+The reproducibility inventory is `t4/MANIFEST.json`, with file
+digests in `t4/SHA256SUMS`. It checks rowwise totals between the
+finite implementations, all saved empty-survivor results, the
+11 JOINT rows and their PSP exclusions, and the symbolic logs.
+Principal commands, run on fejer, are:
+
+```sh
+cd ~/wilf/p8
+nice -n 10 ~/mathenv/bin/python joint_profiles.py 13
+nice -n 10 gcc -O2 joint_profiles.c -o joint_profiles
+nice -n 10 ./joint_profiles 13
+nice -n 10 ~/mathenv/bin/python small_counts.py 7 13
+nice -n 10 gcc -O2 small_counts.c -o small_counts
+nice -n 10 ./small_counts
+nice -n 10 ~/mathenv/bin/python uniform_identities.py
+nice -n 10 ~/mathenv/bin/python uniform_polys.py
+nice -n 10 ~/mathenv/bin/python fiber_family.py
+nice -n 10 gcc -O2 uniform_semigroups.c -o uniform_semigroups
+nice -n 10 ./uniform_semigroups 202610193 15000 200 6000 4 0 7
+nice -n 10 ./uniform_semigroups 202610195 10000 500 8000 6 1 7
+nice -n 10 ./uniform_semigroups 202610196 2000 500 5000 4 1 13
+nice -n 10 gcc -O2 ambient_adversary.c -o ambient_adversary
+nice -n 10 ./ambient_adversary
+nice -n 10 ~/mathenv/bin/python audit_p8.py
+```
+
+For `audit_p8.py`, redirect outputs to the log names in its
+source and copy the final report to `~/wilf/p8/P5_REPORT.md`.
+No counterexample to Wilf or a verified step of GW-24/26/26c
+was found.
+
+## 41. Final frontier and the next precise packing question
+
+The full primary regime, and therefore Wilf for every semigroup
+with 3m<c_S<=4m, remains unproved. The new established results
+are T2.3G (all three-low cases with a>=13), T2-SMALL (all a<=13),
+U-SMALL and U-B0 (uniform in alpha), and the general JOINT,
+cold-defect, R/delta, B-CUT and MIX-GAP lemmas. The first two
+retain explicit finite-certificate dependencies; the latter
+statements have paper proofs above.
+
+Any remaining counterexample must now have
+
+```
+a>=14, alpha>=4, delta>0,
+W_A<0, LC-minus, LP-low, MAC-minus,
+violation of LOW+, I-LOW+ and the exact END-ETA test,
+Phi<0, Psi<0,
+W_A+T+H3+X_SR<0,
+LC+C(p_hi+2,3)-F+5r+D3+T+X_SR<0.                   (FRONTIER-41)
+```
+
+It must satisfy all WINDOW and JOINT packing/count inequalities,
+PSP, LOC-LOW, COLD-MAC, COLD-HIGH, the exact section 34 R and
+delta bounds, B-CUT and FIXED-A-FIN. When MIX-GAP completes
+the mixed quadratic face, its global-cardinality test must
+also pass. These are necessary conditions, not assertions
+that every such count vector has a tile realization.
+
+There are two more explicit exclusions:
+
+- If r=l=0, then epsilon>Q_alpha/4.
+- If also b=0, then a>=2alpha+3 and MID-B0 holds. Thus the
+  B-free low-dimensional strip a<=2alpha+2 is closed throughout
+  the r=l=0 branch, including arbitrary localized cubic defect.
+
+In semigroup language any remaining counterexample has at
+least 14 nonmultiplicity minimal generators below c_S-2m,
+and at least four with 2n_j<c_S-m. The count a remains the
+only unbounded dimension in FIXED-A-FIN; for each a it gives
+explicit bounds on b,c,e,m and on every active weight.
+
+The precise unresolved packing candidate is:
+
+> **Ambient SP12 (unproved).** Let B be an n-element integer
+> set in an interval of s integers, with all unordered pair
+> sums distinct, and let epsilon be the excess of the number
+> of unordered triples over the number of their ordinary sums.
+> Then `3s-2>=H(n)-12epsilon`.
+
+It is true from SP for n<=8, and follows from LSP at epsilon=0.
+HF-FAMILY refutes the analogous signed-union statement but not
+this ambient statement. The coefficient 12 is chosen because
+the retained payment `3epsilon` in DELTA-UP buys 13.5epsilon
+in the joint ambient capacity `3ceil(3delta/2)-2`; thus a loss
+of 12epsilon would leave a positive linear payment. For r>0
+the pair endpoint loss must still be included, or replaced by
+PSP/MIX-GAP. No claim is made that Ambient SP12 alone already
+proves all of FRONTIER-41.
+
+The strategic decision after the cold-payment and global-mixed
+attempts is therefore to discontinue an n-independent bound
+on the standard signed union or on fiber size under LC-minus
+alone. Both are disproved. The productive next lemma must use
+ambient interval space, or impose the full FRONTIER-41 payment
+budget on heavy fibers. MID-B0 identifies exactly the middle
+localized-defect interval still left by the present uniform
+argument in its simplest branch. Enlarging the earlier E-heavy
+random boxes would not address that interval. The completed
+small-dimension exclusions and the explicit heavy-fiber family
+are retained as constraints on the next proof, not presented
+as a proof of the full conductor range.

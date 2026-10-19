@@ -1,0 +1,213 @@
+{
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "gcc": "13.3.0"
+  },
+  "finite_rows": [
+    [
+      7,
+      1,
+      3,
+      5,
+      0
+    ],
+    [
+      8,
+      7,
+      92,
+      25,
+      0
+    ],
+    [
+      9,
+      25,
+      813,
+      92,
+      0
+    ],
+    [
+      10,
+      103,
+      5252,
+      272,
+      0
+    ],
+    [
+      11,
+      303,
+      24219,
+      953,
+      0
+    ],
+    [
+      12,
+      735,
+      105982,
+      2724,
+      0
+    ],
+    [
+      13,
+      1580,
+      386234,
+      8823,
+      0
+    ]
+  ],
+  "finite_totals": {
+    "base": 2754,
+    "u": 522595,
+    "packing_profiles": 12894
+  },
+  "joint_survivors": 11,
+  "joint_expanded": 101,
+  "exact_identities": 29,
+  "controls": [
+    {
+      "file": "uniform_final4.log",
+      "primary": 14890,
+      "joint": 14787,
+      "cold": 10779,
+      "psp": 14787
+    },
+    {
+      "file": "uniform_final6.log",
+      "primary": 9937,
+      "joint": 9867,
+      "cold": 5907,
+      "psp": 9867
+    },
+    {
+      "file": "uniform_mix.log",
+      "primary": 1983,
+      "joint": 1971,
+      "cold": 1797,
+      "psp": 1971
+    }
+  ],
+  "inventory_paths_relative_to": "src/scratch/gw/p5/t4",
+  "files": {
+    "../P5_REPORT.md": {
+      "bytes": 148868,
+      "sha256": "15bf6abc0bd664a02d35d5f8b00bffec1f11121ec759702eccf52b39326148b7"
+    },
+    "ambient_adversary.c": {
+      "bytes": 2321,
+      "sha256": "736602b318e634151aea55b292f8e6747d547b76f3f59112a81b3ad08e6c3ace"
+    },
+    "logs/ambient_adversary.log": {
+      "bytes": 4663,
+      "sha256": "893625728dfd869c2364ddb33dde7d3461f0a5bc95b23c31a6f507060698bf54"
+    },
+    "audit_p8.py": {
+      "bytes": 3038,
+      "sha256": "ae6f559d934ff82abf7eefb32c775b2bb807b4f0c69ac42d16d1636e12b3904a"
+    },
+    "fiber_family.json": {
+      "bytes": 21812,
+      "sha256": "ccaf96af0105a5e66918945eb9961a920d675683c0384cf7a03fddd734f3e548"
+    },
+    "logs/fiber_family.log": {
+      "bytes": 1298,
+      "sha256": "2452307d9e0d0e2eed7b4afeee555661be3934d778f5828ca53d0e099cccb16d"
+    },
+    "fiber_family.py": {
+      "bytes": 1989,
+      "sha256": "c4e8ffc78e6ce46ce0c25df3f2023b4acee89655a3aa907cd71364edb7950b8e"
+    },
+    "logs/joint_c.log": {
+      "bytes": 913,
+      "sha256": "343ba135afbc57f2a553497e4ee0a2489e7061960863319af502231282fc9fd6"
+    },
+    "joint_profiles.c": {
+      "bytes": 2966,
+      "sha256": "a5f68f7d2ecda82cadfdb2d1136bec4477885331fa711faf708f75721d8df5cc"
+    },
+    "joint_profiles.py": {
+      "bytes": 4959,
+      "sha256": "5a1c2bb91c032818e7e7e16bcaccaad8144000714bbe32d38b26d19ff58efd53"
+    },
+    "joint_profiles_survivors.json": {
+      "bytes": 2539,
+      "sha256": "8ec3cdf34f19dc7392b93396172c349da83ecaca50ba1dbfb8d4d6f2aebf6888"
+    },
+    "logs/joint_python.log": {
+      "bytes": 2773,
+      "sha256": "048d11f95c2683b05e26f9017925bd37904aba12eac78c7214a9caf9b61b2a57"
+    },
+    "multi_low.h": {
+      "bytes": 12274,
+      "sha256": "402e949cede3f41f230857c439aa6f60a40775df82c3ea5658b081e69a6682a9"
+    },
+    "logs/small_c.log": {
+      "bytes": 459,
+      "sha256": "852b93ac4d03cd62128129a247b698504b11ed7386d1709449130f8b6d34545b"
+    },
+    "small_counts.c": {
+      "bytes": 5415,
+      "sha256": "d7814f74361a79be4d8f5a9a3474d0cf296ef83b6d15b5610d6438644753d557"
+    },
+    "logs/small_counts.log": {
+      "bytes": 537,
+      "sha256": "5c46481cc48cc6d1323c613e5576ae3fa295f009530fe63fcd0828955b77fde7"
+    },
+    "small_counts.py": {
+      "bytes": 6685,
+      "sha256": "fec5995b35ada823de1728629e32dfe385b90bf4ad369e7dd41bd423b85cb4d3"
+    },
+    "small_survivors.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "small_unbounded.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "two_low.h": {
+      "bytes": 6782,
+      "sha256": "ea30b6441ae1ede43a1f3739d18540bfbc8f392f5119733b72b58e9597925af8"
+    },
+    "logs/uniform_3.log": {
+      "bytes": 905,
+      "sha256": "34526cafae0787011ffc35fa66fe7e5cf9b4ae632aef9eefec32c1fa813bedaf"
+    },
+    "logs/uniform_4.log": {
+      "bytes": 1380,
+      "sha256": "73353f88ec61c3bdec410f259ad4758ce3d29bdc9779216142dcce9d4e337274"
+    },
+    "logs/uniform_final4.log": {
+      "bytes": 1010,
+      "sha256": "4d6f3ed909a435e4b911115b39b2aed61274d79c5dc02b6585e97e91c663377b"
+    },
+    "logs/uniform_final6.log": {
+      "bytes": 789,
+      "sha256": "e22e1192dd41a19b8fa0a7b4cb3750e5198341f2f192cc51e50146721353b681"
+    },
+    "logs/uniform_identities.log": {
+      "bytes": 719,
+      "sha256": "c11807a9275e35b0331b7422e1843611b56854b4d06f01158cadd6bc3770d591"
+    },
+    "uniform_identities.py": {
+      "bytes": 5013,
+      "sha256": "b1d7f8b61c8a1b50a8e9c7d8b952cf1ba9a3d333ce2a44e1a26b32e859c797c2"
+    },
+    "logs/uniform_mix.log": {
+      "bytes": 790,
+      "sha256": "c8d969e81821eb3401abca0a6cbbb1184f31992ec83c2b34892d1b3b3d321dc8"
+    },
+    "logs/uniform_polys.log": {
+      "bytes": 2475,
+      "sha256": "a8074fe35f25f2816b2eb857e8974cda97dbd4d4787758e67454356083764eb3"
+    },
+    "uniform_polys.py": {
+      "bytes": 1451,
+      "sha256": "c347abd4f41c5e3c0558f7fd669c556224cbbd8a1b7bdffbaf2df89fe6612546"
+    },
+    "uniform_semigroups.c": {
+      "bytes": 7282,
+      "sha256": "e49150fe5759555289bdb18e930e0720618e2f30bc92c464f4394e6515771409"
+    }
+  }
+}
