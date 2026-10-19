@@ -1,0 +1,8 @@
+FINITE {"bound": 10, "covering_vectors": 40, "d": 2, "dp_unions": 2, "feasible_containers": 3, "flat_faces": 11, "forced": 0, "h3_pairfaces": 36, "hard_faces": 1, "largest_covering_m": 8, "maxdp": 2, "shape": 35, "sigma_tests_container": 6, "sigma_tests_dp": 18, "vectors": 120}
+FINITE {"bound": 20, "covering_vectors": 549, "d": 3, "dp_unions": 24, "feasible_containers": 142, "flat_faces": 82, "forced": 65, "h3_pairfaces": 854, "hard_faces": 11, "largest_covering_m": 16, "maxdp": 4, "shape": 778, "sigma_tests_container": 922, "sigma_tests_dp": 1106, "vectors": 4845}
+FINITE {"bound": 35, "covering_vectors": 9601, "d": 4, "dp_unions": 784, "feasible_containers": 6766, "flat_faces": 823, "forced": 2121, "h3_pairfaces": 34457, "hard_faces": 152, "largest_covering_m": 25, "maxdp": 35, "shape": 32184, "sigma_tests_container": 33755, "sigma_tests_dp": 45006, "vectors": 324632}
+FINITE {"bound": 56, "covering_vectors": 229082, "d": 5, "dp_unions": 27266, "feasible_containers": 575727, "flat_faces": 13820, "forced": 100466, "h3_pairfaces": 2443823, "hard_faces": 2177, "largest_covering_m": 40, "maxdp": 162, "shape": 2341180, "sigma_tests_container": 2109628, "sigma_tests_dp": 2671494, "vectors": 32468436}
+INDEPENDENT 1103 11963
+CORE2 52724
+MILP_STATUSES {0: 59, 1: 30}
+P6_AUDIT_PASS

@@ -1,0 +1,4 @@
+CHARGING_COUNTS {"CENTERED_PAIR": 383, "CENTERED_PAIR_h3_negative_bracket": 52, "CENTERED_PAIR_negative_bracket": 216, "PAIR_ZERO": 476, "PAIR_ZERO_negative_cubic": 29, "TileCL_trap": 2, "UNIT_LOAD_at0": 103, "height3_phases": 2801, "height3_tiles": 76, "minimum_boundary": 79, "negative_bracket": 1484, "pairform_kappa_below_minus1": 558, "tile_sigma": 3327, "tiles": 120}
+WORST (Fraction(0, 1), 'range_min_m4', 4, 1, 2, 0)
+PAIRFORM_RANGE_COUNTEREXAMPLE {"D": [[0], [1], [2], [3]], "cubic": [3], "kappa": -2, "m": 4, "p": [3], "r0": 2, "sigma": 2}
+CHARGING_ALL_PASS

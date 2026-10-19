@@ -2444,10 +2444,59 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - The bound. In the primary setting (4m ≤ M < 5m, A offsets τ ∈ [1,h), B ∈ [h, h+m), C, E higher), a cell of
     height ≥ 4 has value ≥ 4m + Σ τ. If it contains a B, C or E unit, its value is ≥ 4m + h = 5m − ρ > M.
   - Consequence. **Every height-4 cell of a primary tile is an A-quartic, and there are no cells of height ≥ 5.** So a
-    primary tile with k = 0 (no A-quartics present) has Apéry height ≤ 3.
+    primary tile with no A-quartic has Apéry height ≤ 3.
   - What it closes. MaxCL for height-≤3 tiles (P6), with MaxCL ⇒ Tile-TOP'' ⇒ Wilf (LEAN), would exclude every
     quartic-free primary profile for every α and a. That includes:
     - P5f's BASE leading profile (u3 = k = 0) and its perturbations;
-    - all lead residual rows at α = 6 (a = 20, 21) and α = 8 (a = 19, 20), all with u0 = u1 = 0, so K = 0 and k = 0.
+    - all lead residual rows at α = 6 (a = 20, 21) and α = 8 (a = 19, 20), all with u0 = u1 = 0. Then no I3 cubic has
+      two low factors, so there is no A-quartic (every quartic has ≥ 3 low factors): the quartic count k0 + k1 is 0.
+      [Correction, same day.] The certificate's printed `k` (4–7 on the α = 8 rows) is the LINK pair-cover number of the
+      absent A-pair graph, a different quantity. The earlier wording "K = 0 and k = 0" conflated the two.
   - So the two lines converge. The P4 remainder after P6 would be exactly the profiles with A-quartics (k ≥ 1).
   - To tell codex at the end of P6.
+
+## 2026-10-19 (evening) — the crude rearrangement bound CR, spikes as missing residues, and packing
+- **Spike reduction (PROVED, exact).**
+  - In a tile, maximal units ("spikes") contribute 0 to the MaxCL left side, and every cell of height ≥ 2 lies in the
+    core C spanned by the k non-maximal unit directions.
+  - Conversely, an injective linear labeling of any down-set C ⊂ ℕ^k into ℤ/m extends to a tile, by adding one spike
+    for each missing residue.
+  - Hence MaxCL for all tiles ⟺ IMaxCL for all injective labelings: with s = m − |C|,
+        Σ_{A(C)} (|y|−1) r(y) ≤ (k + 1 + s)·Σ_{N(C)} r     (every σ).
+  - Residue completeness survives only as the bonus s·Σ_N r. Without the bonus, MaxCL is false for injective
+    labelings already at k = 1 (E245: C = {0,1,2}, m = 4, p = 3, σ = 3). With it, k = 1 holds by the trivial count:
+    (J−1)r_J ≤ (m−J+1)·J(J−1)/2 because (J−2)(m−J−1) ≥ 0.
+- **CR (crude rearrangement; shape-only, implies MaxCL at every σ).**
+  - Statement: Σ_i w_i(m−1−i) ≤ (d+1)|N|(|N|−1)/2, with w = (|y|−1) over A sorted decreasingly. Give A the largest
+    residues and N the smallest.
+  - Data:
+    - It proves MaxCL on 3,880 / 3,885 random and core+spike tiles of heights 2–6, including E47 (92 ≤ 105).
+    - Adversarial height-≤3 families (cyclic near-perfect cores, near-B_3 sets, arithmetic): 1 failure in 1,509 tiles,
+      at d = 3.
+    - All e = 5 tiles (exhaustive 4-D, m = 10–25): ≤ 0.6% fail per m, only at heights 2–5; min rhs/lhs ≈ 0.74–1.05
+      (E247).
+  - Where CR fails. On a full d-simplex of height h, CR holds iff roughly h(h−1)(2d+h) ≤ d²(d+1), i.e. h ≲ 0.618d.
+    For small t, CR ⟺ roughly Dep ≥ (d−1)m/2 (Dep = cells in columns with a non-maximal top). So CR fails only on
+    near-simplex shapes: few non-maximal cells, many heavy maximal cells, few spikes.
+- **Packing forbids the near-simplices (mechanism, cyclic).**
+  - If all ≤ 3-fold sums of {0} ∪ P are distinct mod m, then ({a,b}, c ∉ {a,b}) ↦ a + b − c is injective mod m. A
+    collision gives a + b + c′ ≡ a′ + b′ + c, so the multisets agree. Hence m ≳ k³/2, three times the simplex size.
+  - CR for the full k-simplex core of height 3 needs only m ≥ C(k+3,3)·(1 + O(1/k)), so it holds.
+  - Exact check: the full 3-D height-3 simplex (20 cells) has NO injective labeling mod m for m = 20..29; the first is
+    m = 30 (16 labelings), where s = 10 ≥ 5 and CR holds.
+  - The same collision argument works mod m for every pair of PRESENT cubics, so with absent cubics it becomes a
+    defect count, as in P5 SC/CP (which was integer; the cyclic version needs only this injectivity, not DIFF2).
+- **Candidate route to height-3 MaxCL (to be proved): CR + cyclic packing for d ≥ 6, plus codex's d ≤ 5 certificate.**
+  Coefficient analysis: with n = k + |P_N|, Q = 2T + |P_A|, CR is linear in s with s-coefficients Q (left) and
+  n(n+1)/2 (right). Macaulay gives Q ≤ n(n+1)/2, so CR fails iff s < s*(core). The needed lemma is a cyclic packing
+  bound m − |C| ≥ s*(C) for every injective height-3 core with k + s ≥ 6.
+- **Broader picture (conjectural).**
+  - MaxCL = CR (free on non-simplex-like tiles) + packing (near-simplex tiles cannot be lattice tiles).
+  - Flat tiles (h ≲ 0.6d) and fat tiles (large Dep) are covered by CR. The work is quantitative non-existence of
+    near-perfect simplex-like tiles: a cyclic B_h statement for small h, and lattice-tile geometry for tall tiles in
+    low dimension.
+- 4-D height split (E247):
+  - 4-D tiles of height ≤ 3 disappear at m ≥ 26.
+  - The HCR minimizers there are height-4 near-simplices (min HCR 1.108 at m = 30).
+  - So e = 5 does not reduce to P6. Its hard tiles are near-simplices of every height, which is exactly CR's failure
+    shape.

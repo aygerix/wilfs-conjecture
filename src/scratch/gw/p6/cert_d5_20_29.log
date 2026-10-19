@@ -1,0 +1,10 @@
+d=5 m=20 vectors=11628 covers=9678 h3_pairfaces=196046 flat=0 shape=184822 forced=10887 dp_faces=337 dp_masks=3745 sigma_tests=299380 maxdp=28 min_bound=0 FAILURES=0
+d=5 m=21 vectors=15504 covers=13170 h3_pairfaces=242656 flat=0 shape=234580 forced=7763 dp_faces=313 dp_masks=4504 sigma_tests=264180 maxdp=35 min_bound=0 FAILURES=0
+d=5 m=22 vectors=20349 covers=13692 h3_pairfaces=178795 flat=0 shape=170955 forced=7620 dp_faces=220 dp_masks=5652 sigma_tests=296824 maxdp=73 min_bound=0 FAILURES=0
+d=5 m=23 vectors=26334 covers=18216 h3_pairfaces=239734 flat=0 shape=229526 forced=10030 dp_faces=178 dp_masks=4322 sigma_tests=334190 maxdp=49 min_bound=0 FAILURES=0
+d=5 m=24 vectors=33649 covers=16320 h3_pairfaces=147032 flat=0 shape=142692 forced=4323 dp_faces=17 dp_masks=423 sigma_tests=114312 maxdp=40 min_bound=4 FAILURES=0
+d=5 m=25 vectors=42504 covers=21240 h3_pairfaces=184380 flat=0 shape=177180 forced=7181 dp_faces=19 dp_masks=280 sigma_tests=187000 maxdp=28 min_bound=0 FAILURES=0
+d=5 m=26 vectors=53130 covers=16920 h3_pairfaces=103758 flat=0 shape=101613 forced=2135 dp_faces=10 dp_masks=712 sigma_tests=74282 maxdp=162 min_bound=0 FAILURES=0
+d=5 m=27 vectors=65780 covers=20088 h3_pairfaces=109602 flat=0 shape=107442 forced=2160 dp_faces=0 dp_masks=0 sigma_tests=58320 maxdp=0 min_bound=6 FAILURES=0
+d=5 m=28 vectors=80730 covers=16596 h3_pairfaces=72244 flat=0 shape=71200 forced=1044 dp_faces=0 dp_masks=0 sigma_tests=29232 maxdp=0 min_bound=1 FAILURES=0
+d=5 m=29 vectors=98280 covers=17808 h3_pairfaces=65660 flat=0 shape=63784 forced=1876 dp_faces=0 dp_masks=0 sigma_tests=54404 maxdp=0 min_bound=15 FAILURES=0

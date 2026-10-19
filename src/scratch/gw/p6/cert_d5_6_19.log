@@ -1,0 +1,14 @@
+d=5 m=6 vectors=1 covers=1 h3_pairfaces=0 flat=1 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=5 m=7 vectors=6 covers=6 h3_pairfaces=0 flat=18 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=5 m=8 vectors=21 covers=21 h3_pairfaces=6 flat=123 shape=6 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=4 FAILURES=0
+d=5 m=9 vectors=56 covers=56 h3_pairfaces=96 flat=544 shape=90 forced=5 dp_faces=1 dp_masks=2 sigma_tests=72 maxdp=2 min_bound=9 FAILURES=0
+d=5 m=10 vectors=126 covers=126 h3_pairfaces=734 flat=1262 shape=718 forced=16 dp_faces=0 dp_masks=0 sigma_tests=160 maxdp=0 min_bound=3 FAILURES=0
+d=5 m=11 vectors=252 covers=252 h3_pairfaces=3890 flat=2764 shape=3820 forced=69 dp_faces=1 dp_masks=2 sigma_tests=792 maxdp=2 min_bound=2 FAILURES=0
+d=5 m=12 vectors=462 covers=461 h3_pairfaces=9114 flat=2601 shape=8450 forced=660 dp_faces=4 dp_masks=8 sigma_tests=8064 maxdp=2 min_bound=2 FAILURES=0
+d=5 m=13 vectors=792 covers=792 h3_pairfaces=28500 flat=3576 shape=27492 forced=1004 dp_faces=4 dp_masks=14 sigma_tests=13286 maxdp=4 min_bound=0 FAILURES=0
+d=5 m=14 vectors=1287 covers=1281 h3_pairfaces=41256 flat=1257 shape=40116 forced=1115 dp_faces=25 dp_masks=100 sigma_tests=17360 maxdp=4 min_bound=0 FAILURES=0
+d=5 m=15 vectors=2002 covers=1998 h3_pairfaces=81058 flat=1428 shape=74942 forced=6062 dp_faces=54 dp_masks=220 sigma_tests=95040 maxdp=6 min_bound=1 FAILURES=0
+d=5 m=16 vectors=3003 covers=2970 h3_pairfaces=98212 flat=116 shape=91900 forced=6221 dp_faces=91 dp_masks=456 sigma_tests=108288 maxdp=8 min_bound=0 FAILURES=0
+d=5 m=17 vectors=4368 covers=4320 h3_pairfaces=169536 flat=112 shape=160288 forced=9034 dp_faces=214 dp_masks=1202 sigma_tests=177650 maxdp=8 min_bound=0 FAILURES=0
+d=5 m=18 vectors=6188 covers=5850 h3_pairfaces=139666 flat=0 shape=132130 forced=7251 dp_faces=285 dp_masks=2226 sigma_tests=175716 maxdp=31 min_bound=0 FAILURES=0
+d=5 m=19 vectors=8568 covers=8244 h3_pairfaces=237870 flat=18 shape=225234 forced=12232 dp_faces=404 dp_masks=3398 sigma_tests=304646 maxdp=16 min_bound=0 FAILURES=0

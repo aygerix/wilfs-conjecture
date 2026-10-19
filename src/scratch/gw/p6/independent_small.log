@@ -1,0 +1,26 @@
+{"actual_tiles": 0, "d": 2, "flat": 1, "m": 3, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 2, "flat": 4, "m": 4, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 4, "d": 2, "flat": 6, "m": 5, "min_slack": 1, "pairfaces": 4, "sigma_pairs": 20}
+{"actual_tiles": 12, "d": 2, "flat": 0, "m": 6, "min_slack": 4, "pairfaces": 11, "sigma_pairs": 72}
+{"actual_tiles": 15, "d": 2, "flat": 0, "m": 7, "min_slack": 8, "pairfaces": 15, "sigma_pairs": 105}
+{"actual_tiles": 6, "d": 2, "flat": 0, "m": 8, "min_slack": 24, "pairfaces": 6, "sigma_pairs": 48}
+{"actual_tiles": 0, "d": 2, "flat": 0, "m": 9, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 2, "flat": 0, "m": 10, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 3, "flat": 1, "m": 4, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 3, "flat": 8, "m": 5, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 2, "d": 3, "flat": 19, "m": 6, "min_slack": 2, "pairfaces": 2, "sigma_pairs": 12}
+{"actual_tiles": 36, "d": 3, "flat": 32, "m": 7, "min_slack": 8, "pairfaces": 36, "sigma_pairs": 252}
+{"actual_tiles": 94, "d": 3, "flat": 10, "m": 8, "min_slack": 5, "pairfaces": 86, "sigma_pairs": 752}
+{"actual_tiles": 168, "d": 3, "flat": 12, "m": 9, "min_slack": 11, "pairfaces": 138, "sigma_pairs": 1512}
+{"actual_tiles": 162, "d": 3, "flat": 0, "m": 10, "min_slack": 6, "pairfaces": 136, "sigma_pairs": 1620}
+{"actual_tiles": 210, "d": 3, "flat": 0, "m": 11, "min_slack": 12, "pairfaces": 170, "sigma_pairs": 2310}
+{"actual_tiles": 118, "d": 3, "flat": 0, "m": 12, "min_slack": 19, "pairfaces": 82, "sigma_pairs": 1416}
+{"actual_tiles": 136, "d": 3, "flat": 0, "m": 13, "min_slack": 15, "pairfaces": 112, "sigma_pairs": 1768}
+{"actual_tiles": 40, "d": 3, "flat": 0, "m": 14, "min_slack": 38, "pairfaces": 20, "sigma_pairs": 560}
+{"actual_tiles": 84, "d": 3, "flat": 0, "m": 15, "min_slack": 60, "pairfaces": 56, "sigma_pairs": 1260}
+{"actual_tiles": 16, "d": 3, "flat": 0, "m": 16, "min_slack": 30, "pairfaces": 16, "sigma_pairs": 256}
+{"actual_tiles": 0, "d": 3, "flat": 0, "m": 17, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 3, "flat": 0, "m": 18, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 3, "flat": 0, "m": 19, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+{"actual_tiles": 0, "d": 3, "flat": 0, "m": 20, "min_slack": null, "pairfaces": 0, "sigma_pairs": 0}
+INDEPENDENT_EXPLICIT_TILES_PASS

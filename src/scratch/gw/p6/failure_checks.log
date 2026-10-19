@@ -1,0 +1,6 @@
+PAIRFORM_RANGE {'m': 4, 'p': [3], 'sigma': 2, 'residues': [2, 1, 0, 3], 'kappa': -2, 'slack': 0}
+TWO_BASES_NOT_ENOUGH {'m': 4, 'p': [3], 'sigma': 0, 'K0': [0, 0, 1, 2], 'K1': [-1, 0, 2, 4], 'slack': 8}
+FORCED_ONLY_FALSE {'m': 6, 'p': [1, 5], 'sigma': 5, 'forced_bound': -7, 'actual_slacks': [5, 13], 'actual_phase_minima': [5, 4]}
+E47_ESSENTIAL_LINEAR_SLACK {'sigma': 0, 'r0': 0, 'slack': 90, 'Lplus': 104, 'Br0': -1, 'Br1': 6, 'nonmax_pair_carries': [1, 1, 1]}
+CENTERED_EXACT_PAYMENT {'sigma': 2, 'r0': 12, 'slack': 64, 'Lplus': 36, 'Br0': -10, 'Br1': 0, 'nonmax_pair_carries': [-1, -1, -1, -1, -1]}
+FAILURE_CHECKS_PASS

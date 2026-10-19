@@ -10,6 +10,9 @@
      E    : E-REPAIR (section 50): fix the minimum cover k first, E_k=min(p,l+min(r-r_LL,r-k+1)) in C_H, B_H, H_cold.
      H    : LOCAL-COVER (section 50): r<=ak-C(k,2); j low cover vertices with r_LL<=f(j); E replaced by Ehat_k.
      G    : early GLOC cap on t per state (necessary condition, P5 section 24; used when Bc>=0 and q>=2alpha).
+     Q    : quartic face cap (lead, 2026-10-19): a 3-low+1-high quartic is (3-low I3 cubic) + (high unit), so
+            k1 <= p*u0; in particular u0=0 forces no quartic.  K1=min(floor((al+2)u1/3), p*u0).
+   Output field withquartic = survivors whose quartic allowance K0+K1 is > 0 (others are quartic-free, height <= 3).
    usage: lead_t2small amin amax flags [alphamin alphamax]   (flags: any of M, L, P, E, H, G) */
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,7 +51,10 @@ static ll Gamma_(ll a,ll d0,ll q,ll r){ if(!GK){ GK=malloc(sizeof(ll)*GH*4); GV=
     if(GK[4*i]==-1){ ll v=Gamma_raw(a,d0,q,r); GK[4*i]=a; GK[4*i+1]=d0; GK[4*i+2]=q; GK[4*i+3]=r; GV[i]=v; return v; }
     if(GK[4*i]==a&&GK[4*i+1]==d0&&GK[4*i+2]==q&&GK[4*i+3]==r) return GV[i]; }
   return Gamma_raw(a,d0,q,r); }
-static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0,GCAP=0; static ll ngcap=0; static ll ALMIN=3, ALMAX=1000000;
+#ifndef K1CAPDEF
+#define K1CAPDEF 0
+#endif
+static int MIX=0,LINK=0,PACK=0,EREP=0,LCOV=0,GCAP=0,K1CAP=K1CAPDEF; static ll ngcap=0; static ll ALMIN=3, ALMAX=1000000;
 static ll nmix=0,nlink=0,npack=0; static ll nbig64=0; /* k-cover ranges longer than 64 (diagnostic) */
 #define KCAP 4096
 #ifndef SURVMAX
@@ -78,11 +84,11 @@ static int mixpack_kills(ll a,ll b,ll r,ll q,ll q2,ll u,ll t,ll K,ll D3,ll WAbar
       if(lo<=Ug) return 0; } }
   return 1; }
 int main(int argc,char**argv){ mac2_init();
-  int amin=atoi(argv[1]), amax=atoi(argv[2]); if(argc>3){ MIX=strchr(argv[3],'M')!=0; LINK=strchr(argv[3],'L')!=0; PACK=strchr(argv[3],'P')!=0; EREP=strchr(argv[3],'E')!=0; LCOV=strchr(argv[3],'H')!=0; GCAP=strchr(argv[3],'G')!=0; if(LCOV) EREP=1; if(EREP) LINK=1; } if(argc>5){ ALMIN=atoll(argv[4]); ALMAX=atoll(argv[5]); }
+  int amin=atoi(argv[1]), amax=atoi(argv[2]); if(argc>3){ MIX=strchr(argv[3],'M')!=0; LINK=strchr(argv[3],'L')!=0; PACK=strchr(argv[3],'P')!=0; EREP=strchr(argv[3],'E')!=0; LCOV=strchr(argv[3],'H')!=0; GCAP=strchr(argv[3],'G')!=0; if(strchr(argv[3],'Q')) K1CAP=1; if(LCOV) EREP=1; if(EREP) LINK=1; } if(argc>5){ ALMIN=atoll(argv[4]); ALMAX=atoll(argv[5]); }
   ll tot=0;
   for(ll a=amin;a<=amax;a++){
     ll Q=Cn(a+1,2), U=Cn(a+2,3), F=Cn(a+1,3); ll sq=(ll)floor(sqrt((double)(2*F+1))); while((sq+1)*(sq+1)<=2*F+1) sq++; while(sq*sq>2*F+1) sq--;
-    ll nbase=0,nu=0,npre=0,nprof=0,nsurv=0; nmix=nlink=npack=0; nbig64=0;
+    ll nbase=0,nu=0,npre=0,nprof=0,nsurv=0,nsurvQ=0; nmix=nlink=npack=0; nbig64=0;
     for(ll al=(ALMIN>3?ALMIN:3);al<=a&&al<=ALMAX;al++){ ll p=a-al, Qa=Cn(al+1,2), Ua=Cn(al+2,3);
      for(ll r=0;r<=Q;r++){ ll q=Q-r, tf=U-mac2(q);
       for(ll n0=(Qa-r>0?Qa-r:0);n0<=Qa;n0++){ ll rLL=Qa-n0;
@@ -91,7 +97,7 @@ int main(int argc,char**argv){ mac2_init();
         int CEok=(q+q2+2>=2*(al+E)); int hit=0; ll m2q2=mac2(q2);
         for(ll u0=0;u0<=Ua&&u0<=m2q2;u0++){ ll K0=mac3(u0); ll kb=(al+3)*u0/4; if(kb<K0) K0=kb;
          ll u1max=p*n0; ll t1=(al+1)*l/2; if(t1<u1max) u1max=t1; if(m2q2-u0<u1max) u1max=m2q2-u0;
-         for(ll u1=0;u1<=u1max;u1++){ ll K1=(al+2)*u1/3, K=K0+K1, u=u0+u1; ll LCbar=(a+1)*(q2+u)-4*K;
+         for(ll u1=0;u1<=u1max;u1++){ ll K1=(al+2)*u1/3; if(K1CAP && p*u0<K1) K1=p*u0; ll K=K0+K1, u=u0+u1; ll LCbar=(a+1)*(q2+u)-4*K;
           ll num=F-LCbar+(a-3)*r-1; ll tmax= num>=0? num/4 : -((-num+3)/4); if(U-u0-u1<tmax) tmax=U-u0-u1;
           /* G: early GLOC cap (P5 section 24).  W<0 forces Phi<=-1.  With c0<=min(U_al,n0^<2>), S>=Smin, quartic
              allowances K0>=k0, K1>=k1, a nonnegative b coefficient Bc=a-1+q2+u-2al-2n0 and q>=2al (C/E remainder >=0):
@@ -154,8 +160,8 @@ int main(int argc,char**argv){ mac2_init();
                      if(packlow(nj2,ek)>3*sj-2) continue; if(packlow(nw2,ek)>3*dl-2) continue; if(packlow(ns2,ek)>3*w-2) continue; okk=1; }
                    if(!okk) continue; }
                  any=1; }
-               if(any){ nsurv++; if(nsurv<=SURVMAX) printf("  SURV a=%lld al=%lld r=%lld n0=%lld l=%lld t=%lld eps=%lld u0=%lld u1=%lld c0=%lld beta=%lld R=%lld b=%lld WAbar=%lld Hh=%lld mup=%lld mlow=%lld k=%lld E=%lld dmin=%lld dmax=%lld D3=%lld\n",a,al,r,n0,l,t,eps,u0,u1,c0,beta,R,b,WAbar,Hh,mup,mlow,kf,Ek,dmin,dmax,D3); }
+               if(any){ nsurv++; if(K0+K1>0) nsurvQ++; if(nsurv<=SURVMAX) printf("  SURV a=%lld al=%lld r=%lld n0=%lld l=%lld t=%lld eps=%lld u0=%lld u1=%lld c0=%lld beta=%lld R=%lld b=%lld WAbar=%lld Hh=%lld mup=%lld mlow=%lld k=%lld E=%lld dmin=%lld dmax=%lld D3=%lld\n",a,al,r,n0,l,t,eps,u0,u1,c0,beta,R,b,WAbar,Hh,mup,mlow,kf,Ek,dmin,dmax,D3); }
               } } } } } } } }
         if(hit) nbase++; } } } }
-    printf("a=%lld base=%lld u=%lld profiles(card test)=%lld nonempty-delta=%lld killed: MIX=%lld LINK=%lld PACK=%lld survivors=%lld krange>64=%lld\n",a,nbase,nu,npre,nprof,nmix,nlink,npack,nsurv,nbig64); fflush(stdout); tot+=nsurv; }
+    printf("a=%lld base=%lld u=%lld profiles(card test)=%lld nonempty-delta=%lld killed: MIX=%lld LINK=%lld PACK=%lld survivors=%lld krange>64=%lld withquartic=%lld q1cap=%d\n",a,nbase,nu,npre,nprof,nmix,nlink,npack,nsurv,nbig64,nsurvQ,K1CAP); fflush(stdout); tot+=nsurv; }
   printf("total survivors %lld\n",tot); return 0; }

@@ -1,0 +1,8 @@
+d=2 m=3 vectors=1 covers=1 h3_pairfaces=0 flat=1 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 method=1 FAILURES=0
+d=2 m=4 vectors=3 covers=3 h3_pairfaces=0 flat=4 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 method=1 FAILURES=0
+d=2 m=5 vectors=6 covers=6 h3_pairfaces=4 flat=6 shape=4 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=1 method=1 FAILURES=0
+d=2 m=6 vectors=10 covers=9 h3_pairfaces=11 flat=0 shape=10 forced=0 dp_faces=1 dp_masks=3 sigma_tests=6 maxdp=0 min_bound=4 method=1 FAILURES=0
+d=2 m=7 vectors=15 covers=15 h3_pairfaces=15 flat=0 shape=15 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=8 method=1 FAILURES=0
+d=2 m=8 vectors=21 covers=6 h3_pairfaces=6 flat=0 shape=6 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=19 method=1 FAILURES=0
+d=2 m=9 vectors=28 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 method=1 FAILURES=0
+d=2 m=10 vectors=36 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 method=1 FAILURES=0

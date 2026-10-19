@@ -1,0 +1,17 @@
+d=3 m=4 vectors=1 covers=1 h3_pairfaces=0 flat=1 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=3 m=5 vectors=4 covers=4 h3_pairfaces=0 flat=8 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=3 m=6 vectors=10 covers=10 h3_pairfaces=2 flat=19 shape=2 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=2 FAILURES=0
+d=3 m=7 vectors=20 covers=20 h3_pairfaces=36 flat=32 shape=36 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=7 FAILURES=0
+d=3 m=8 vectors=35 covers=34 h3_pairfaces=86 flat=10 shape=74 forced=10 dp_faces=2 dp_masks=4 sigma_tests=128 maxdp=2 min_bound=1 FAILURES=0
+d=3 m=9 vectors=56 covers=56 h3_pairfaces=138 flat=12 shape=120 forced=14 dp_faces=4 dp_masks=8 sigma_tests=234 maxdp=2 min_bound=1 FAILURES=0
+d=3 m=10 vectors=84 covers=76 h3_pairfaces=136 flat=0 shape=126 forced=5 dp_faces=5 dp_masks=12 sigma_tests=220 maxdp=4 min_bound=0 FAILURES=0
+d=3 m=11 vectors=120 covers=100 h3_pairfaces=170 flat=0 shape=170 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=1 FAILURES=0
+d=3 m=12 vectors=165 covers=68 h3_pairfaces=82 flat=0 shape=82 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9 FAILURES=0
+d=3 m=13 vectors=220 covers=88 h3_pairfaces=112 flat=0 shape=100 forced=12 dp_faces=0 dp_masks=0 sigma_tests=156 maxdp=0 min_bound=15 FAILURES=0
+d=3 m=14 vectors=286 covers=20 h3_pairfaces=20 flat=0 shape=12 forced=8 dp_faces=0 dp_masks=0 sigma_tests=112 maxdp=0 min_bound=15 FAILURES=0
+d=3 m=15 vectors=364 covers=56 h3_pairfaces=56 flat=0 shape=56 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=6 FAILURES=0
+d=3 m=16 vectors=455 covers=16 h3_pairfaces=16 flat=0 shape=0 forced=16 dp_faces=0 dp_masks=0 sigma_tests=256 maxdp=0 min_bound=30 FAILURES=0
+d=3 m=17 vectors=560 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=3 m=18 vectors=680 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=3 m=19 vectors=816 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0
+d=3 m=20 vectors=969 covers=0 h3_pairfaces=0 flat=0 shape=0 forced=0 dp_faces=0 dp_masks=0 sigma_tests=0 maxdp=0 min_bound=9223372036854775807 FAILURES=0

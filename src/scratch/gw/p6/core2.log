@@ -1,0 +1,4 @@
+CORE2 {"max_threshold": 14, "rows": 167, "sigma_pairs": 52724}
+NAMED_CORE_SPIKES {"core_weights": [5, 6], "min_slack": 104, "slacks": [288, 352, 290, 228, 166, 104, 168, 232, 198, 164, 130, 194, 258, 322], "spike_weights": [7, 8, 9, 13]}
+NAMED_CORE_SPIKES {"core_weights": [8, 9], "min_slack": 90, "slacks": [90, 154, 120, 184, 248, 312, 278, 244, 210, 274, 338, 276, 214, 152], "spike_weights": [1, 5, 6, 7]}
+CORE2_ALL_PASS
