@@ -1759,6 +1759,9 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - with at most one low unit (GW-26c; semigroups: 2n_2 ≥ c − m);
   - with at most two low units (GW-26d; semigroups: 2n_3 ≥ c − m);
   - whenever LOW+ holds (GW-26b).
+  - Semigroup corollary of the a ≤ 6 case: since a ≤ d = e − 1, **Wilf holds for every S with e ≤ 7 and c ≤ 4m**
+    (with Eliahou, or our GW-19, for c ≤ 3m). More generally, it holds when 3m < c ≤ 4m and at most six minimal
+    generators lie in (m, c − 2m).
   Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete
   down-sets: Flat-MaxCL (2026-10-17, LEAN) and GW-27 (second proof). Open: the primary regime for a ≥ 7 with a low unit
   violating LOW+, and 5m ≤ M ≤ 6m − 4. The primary
