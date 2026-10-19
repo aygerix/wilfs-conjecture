@@ -4,7 +4,7 @@ Tested on all 4-D tiles of the E153 certificates.  usage: python pc_all.py mlo m
 import gzip, json, sys
 mlo, mhi, cdir = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
 for m in range(mlo, mhi+1):
-    nt = fail = 0; worst = None; failwm = 0
+    nt = fail = 0; worst = None; failwm = 0; failspk = 0
     with gzip.open(f'{cdir}/certificate_all_{m}.jsonl.gz', 'rt') as f:
         for line in f:
             rec = json.loads(line); P = [x % m for x in rec['r']]
@@ -30,7 +30,8 @@ for m in range(mlo, mhi+1):
                     if S < Lam:
                         fail += 1
                         wm = all(v[x] < m for x in D if x not in A); failwm += wm
+                        spk = sum(1 for a in range(d) if tuple(int(i == a) for i in range(d)) in A); failspk += spk > 0
                         if fail <= 2: print("PC FAIL m", m, "P", P, "rho0", r0, "S", S, "Lam", Lam, "wrapmax", wm, "D", sorted(D), flush=True)
                     q = (S-Lam)/m
                     if worst is None or q < worst[0]: worst = (q, P, r0)
-    print("m=%d tiles=%d PC_fail(tile,phase)=%d of_which_wrapmax=%d min (S-Lam)/m=%s" % (m, nt, fail, failwm, worst), flush=True)
+    print("m=%d tiles=%d PC_fail(tile,phase)=%d of_which_wrapmax=%d with_spikes=%d min (S-Lam)/m=%s" % (m, nt, fail, failwm, failspk, worst), flush=True)
