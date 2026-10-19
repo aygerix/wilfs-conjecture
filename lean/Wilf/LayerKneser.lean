@@ -511,6 +511,104 @@ theorem band_superadditive (hp : m.Prime) (hmS : m ∈ S) (a b : ℕ)
   have hb := card_bandGaps_le hmS hp.pos b
   omega
 
+/-! ### LK-SHARP: the wrapped translates land in a short top window
+
+If every residue of `R_j` is `≤ β`, then for `H ≥ 1`, `G_{H+j} - R_j ⊆ G_H ∪ (G_{H-1} ∩ [m - β, m))` (mod `m`):
+no band is lost, at the cost of the residues of the window that first appear in band `H`.
+-/
+
+/-- **Sharp shift inclusion.** -/
+theorem shift_mem_sharp (hm : 0 < m) {β : ℕ} (H j r b : ℕ)
+    (hr : r ∈ S.bandGaps m (H + 1 + j)) (hb : b ∈ S.bandRes m j) (hbβ : b ≤ β) :
+    (r + m - b) % m ∈ S.bandGaps m (H + 1) ∪
+      (S.bandGaps m H).filter (fun x => m - β ≤ x) := by
+  have hbm : b < m := mem_range.1 (mem_filter.1 hb).1
+  have hgen : j * m + b ∈ S := (mem_filter.1 hb).2
+  simp only [bandGaps, mem_filter, mem_range] at hr
+  rw [mem_union]
+  by_cases hrb : b ≤ r
+  · left
+    have he : (r + m - b) % m = r - b := by
+      rw [show r + m - b = (r - b) + m by omega, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega)]
+    rw [he]
+    simp only [bandGaps, mem_filter, mem_range]
+    refine ⟨by omega, fun hmem => hr.2 ?_⟩
+    have := add_mem hmem hgen
+    have e : (H + 1 + j) * m + r = (H + 1) * m + (r - b) + (j * m + b) := by
+      have : (H + 1 + j) * m = (H + 1) * m + j * m := by ring
+      rw [this]; omega
+    rw [e]; exact this
+  · right
+    have he : (r + m - b) % m = r + m - b := Nat.mod_eq_of_lt (by omega)
+    rw [he]
+    simp only [bandGaps, mem_filter, mem_range]
+    refine ⟨⟨by omega, fun hmem => hr.2 ?_⟩, by omega⟩
+    have := add_mem hmem hgen
+    have e : (H + 1 + j) * m + r = H * m + (r + m - b) + (j * m + b) := by
+      have : (H + 1 + j) * m = H * m + j * m + m := by ring
+      rw [this]; omega
+    rw [e]; exact this
+
+/-- **LK-SHARP step** (prime `m`): if `R_j ⊆ [0, β]` and band `H + 1 + j` has a gap, then
+`#G_{H+1+j} + #R_j ≤ #G_{H+1} + #{x ∈ G_H ∖ G_{H+1} : x ≥ m - β} + 1`. -/
+theorem card_bandGaps_step_sharp (hp : m.Prime) (hmS : m ∈ S) {β : ℕ} (H j : ℕ)
+    (hβ : ∀ b ∈ S.bandRes m j, b ≤ β) (hne : (S.bandGaps m (H + 1 + j)).Nonempty) :
+    #(S.bandGaps m (H + 1 + j)) + #(S.bandRes m j) ≤
+      #(S.bandGaps m (H + 1)) + #((S.bandGaps m H \ S.bandGaps m (H + 1)).filter (fun x => m - β ≤ x)) + 1 := by
+  have hm := hp.pos
+  have hinj : Set.InjOn (Nat.cast : ℕ → ZMod m) (range m : Set ℕ) := by
+    intro a ha b hb hab
+    simp only [coe_range, Set.mem_Iio] at ha hb
+    have := (ZMod.natCast_eq_natCast_iff' a b m).1 hab
+    rwa [Nat.mod_eq_of_lt ha, Nat.mod_eq_of_lt hb] at this
+  have hRsub : S.bandRes m j ⊆ range m := filter_subset _ _
+  set T := S.bandGaps m (H + 1) ∪ (S.bandGaps m H).filter (fun x => m - β ≤ x) with hT
+  have hXc : #((S.bandGaps m (H + 1 + j)).image (Nat.cast : ℕ → ZMod m)) =
+      #(S.bandGaps m (H + 1 + j)) :=
+    card_image_of_injOn (hinj.mono (by
+      intro r hr; exact mem_coe.2 (mem_filter.1 (mem_coe.1 hr)).1))
+  have hYc : #((S.bandRes m j).image (fun b : ℕ => -(b : ZMod m))) = #(S.bandRes m j) := by
+    rw [card_image_of_injOn]
+    intro a ha b hb hab
+    exact hinj (hRsub (mem_coe.1 ha)) (hRsub (mem_coe.1 hb)) (neg_inj.1 hab)
+  have hsub : (S.bandGaps m (H + 1 + j)).image (Nat.cast : ℕ → ZMod m) +
+      (S.bandRes m j).image (fun b : ℕ => -(b : ZMod m)) ⊆ T.image Nat.cast := by
+    intro z hz
+    obtain ⟨x, hx, y, hy, rfl⟩ := mem_add.1 hz
+    obtain ⟨r, hr, rfl⟩ := mem_image.1 hx
+    obtain ⟨b, hb, rfl⟩ := mem_image.1 hy
+    refine mem_image.2 ⟨(r + m - b) % m, shift_mem_sharp hm H j r b hr hb (hβ b hb), ?_⟩
+    have hbm : b ≤ r + m := by
+      have := mem_range.1 (hRsub hb); omega
+    rw [ZMod.natCast_mod, Nat.cast_sub hbm, Nat.cast_add, ZMod.natCast_self]
+    ring
+  have hcd := ZMod.cauchy_davenport hp (hne.image (Nat.cast : ℕ → ZMod m))
+    (⟨_, mem_image_of_mem _ (zero_mem_bandRes hmS hm j)⟩ :
+      ((S.bandRes m j).image (fun b : ℕ => -(b : ZMod m))).Nonempty)
+  have hle := (card_le_card hsub).trans card_image_le
+  -- 0 ∉ T, so #T < m
+  have hTsub : T ⊆ (range m).erase 0 := by
+    intro x hx
+    rcases mem_union.1 hx with hx | hx
+    · exact bandGaps_subset_erase hmS (H + 1) hx
+    · exact bandGaps_subset_erase hmS H (mem_filter.1 hx).1
+  have hTlt := card_le_card hTsub
+  rw [card_erase_of_mem (mem_range.2 hm), card_range] at hTlt
+  -- #T ≤ #G_{H+1} + #((G_H ∖ G_{H+1}) ∩ window)
+  have hTcard : #T ≤ #(S.bandGaps m (H + 1)) +
+      #((S.bandGaps m H \ S.bandGaps m (H + 1)).filter (fun x => m - β ≤ x)) := by
+    have : T ⊆ S.bandGaps m (H + 1) ∪ (S.bandGaps m H \ S.bandGaps m (H + 1)).filter (fun x => m - β ≤ x) := by
+      intro x hx
+      rcases mem_union.1 hx with hx | hx
+      · exact mem_union.2 (Or.inl hx)
+      · by_cases h : x ∈ S.bandGaps m (H + 1)
+        · exact mem_union.2 (Or.inl h)
+        · exact mem_union.2 (Or.inr (mem_filter.2 ⟨mem_sdiff.2 ⟨(mem_filter.1 hx).1, h⟩, (mem_filter.1 hx).2⟩))
+    exact (card_le_card this).trans (card_union_le _ _)
+  have hRpos : 0 < #(S.bandRes m j) := card_pos.2 ⟨0, zero_mem_bandRes hmS hm j⟩
+  rw [hXc, hYc] at hcd
+  omega
+
 /-- The multiplicity case of LAYER-KNESER (prime multiplicity). -/
 theorem ell_ge_layer_multiplicity (hp : S.multiplicity.Prime) {q : ℕ} (hq : 1 ≤ q)
     (hqc : q * S.multiplicity < S.conductor) (hcq : S.conductor ≤ (q + 1) * S.multiplicity) :

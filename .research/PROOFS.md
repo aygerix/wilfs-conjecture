@@ -2505,6 +2505,11 @@ per j + 1 bands in LK-SUPER, at a one-time cost β_j.
 P18 form (j = 1, β = max B): Θ_t ≥ max(k + δ⌊(t−1)/2⌋, k + (t−1)δ − β), inserted in the YZ exact formula.
 For B in an interval [0, k] this gives Θ_t ≥ (t−1)k, against the true tk.
 
+**LEAN (kernel-checked 2026-10-19, LayerKneser.lean; standard axioms only):**
+- `shift_mem_sharp`: the inclusion, for any m > 0 (m ∈ S is not even needed).
+- `card_bandGaps_step_sharp`: the step for prime m ∈ S, with any β ≥ max R_j, written with H + 1 in place of H:
+  #G_{H+1+j} + #R_j ≤ #G_{H+1} + #{x ∈ G_H ∖ G_{H+1} : x ≥ m − β} + 1.
+
 Checks (E276): exhaustive genus ≤ 33, every j, 65,568,154 checks, 0 failures (prime and general forms;
 src/scratch/p18/super_check.c). Coverage on the 996 structured P18 S of E272: LK-SHARP+YZ covers 610 (LK+YZ 545);
 29 S are covered by it and by none of LK+YZ, the YZ criteria, DKM, LIT, Kaplan, FGH, or symmetric.
