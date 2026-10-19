@@ -200,6 +200,9 @@ relaxation (weaker than HCR on thin tiles); the generator-drop induction W(S) �
       large e at depth ≥ 4.
     - NEXT: P11 (codex) = close c ≤ 4m, i.e. the residual α ≥ 6, 19 ≤ a < 10·C(α+1,2), 3e < m, q = 4. Tools: CHAIN at
       q = 4 (0 failures so far, slack ≥ 2.5 in the residual), RC reformulations, the GW-26 framework.
+    - **P11 LAUNCHED 2026-10-19** (message $SP/codex/p11_msg.md, log $SP/codex/p11_log.txt; report will be
+      src/scratch/gw/p11/P11_REPORT.md). The lead meanwhile stress-tests CHAIN-WILF(3e<m): at m = 61 the boundary
+      campaign reached ratio 1.08 (e = 16, q = 5). Thin-basis level-2 families (m = 60, 90): min 1.41, no failure.
 (0L) NEW 2026-10-19 latest+++, read first.
     - **Codex P9 REVIEWED and accepted** (PROOFS "Codex P9", E279: own code, exhaustive m ≤ 15 + 11.7k random + sympy;
       0 failures). Problem 1.8 criteria:
