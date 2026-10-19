@@ -1361,6 +1361,49 @@ L = min_A t_a, δ = max(0, h − 2L), K = q₃ + b + c + e + s₄ + t₄.
 - Consequence: a counterexample to Wilf with 3m < c ≤ 4m must have a ≥ 7, δ > 0 (some generator with 2n < c − m),
   3δ > (a−1)(b+1) + G + L_min + (b+2)q₂ + b u₃ + k + (c+e)(2q₂+u₃), and GW-24's LC− conditions.
 
+**Theorem GW-27 (Wilf for quadratic Apéry sets, every depth; PROVED on paper 2026-10-19 by the lead; every step
+checked on all 61,985,800 quadratic semigroups of genus ≤ 33 and 104k random ones with m ≤ 200, E219).**
+Down-set form. Let D ⊂ ℕ^d be a finite down-set with weights n_a > 0 and values v(x) = Σ x_a n_a. Assume D is
+residue complete mod m (v is a bijection D → ℤ/m) and every cell has total degree ≤ 2. Put M = max v,
+λ(x) = ⌊(M − v(x))/m⌋, κ(x) = ⌊v(x)/m⌋, ℓ = Σ λ, g = Σ κ. Then dℓ ≥ g.
+Semigroup form. If every element of Ap(S, m) is 0, a minimal generator, or a sum of two minimal generators, then
+e(S)·ℓ(S) ≥ c(S).
+- Corollary: Wilf holds whenever 3n_1 > c + m, n_1 the least generator above m. (Each Apéry element is ≤ c + m − 1
+  < 3n_1, so it has no factorization of length ≥ 3.) Spirito (arXiv:1710.09245, LITERATURE #24) proved this only
+  under e ≥ 10 and m ≤ (8/25)e² + e/5 − 5/4. No condition on e, m or the depth ⌈c/m⌉ is needed here.
+
+Notation. K = ⌊M/m⌋, μ = M − Km, r_a = n_a mod m (pairwise distinct, nonzero), κ_a, λ_a for x = e_a,
+δ_a = [r_a > μ], D_hi = Σ δ_a, D_lo = d − D_hi. Each cell x = e_a + e_b (a ≤ b) has carry γ_x = [r_a + r_b ≥ m],
+remainder ε_x = M − v(x) − mλ(x) ∈ [0, m) and bonus β_x = [ε_x + r_a ≥ m] + [ε_x + r_b ≥ m]. deg(a) = number of
+degree-2 cells containing a, with 2e_a counted twice, and f_a = d + 1 − deg(a) ≥ 0.
+
+Lemma GW-27a (exact identity).
+    W := dℓ − g = Σ_a f_a λ_a + D_hi + Σ_{|x|=2} c_x,   c_x = (d+2)λ(x) + β_x − γ_x.
+- Proof: λ_a + κ_a = K − δ_a. For x = e_a + e_b: κ(x) = κ_a + κ_b + γ_x. Also
+  M − n_a = mλ(x) + ε_x + mκ_b + r_b, so λ_a = λ(x) + κ_b + [ε_x + r_b ≥ m], and symmetrically for b.
+  Hence κ(x) = λ_a + λ_b − 2λ(x) − β_x + γ_x. Sum over D with ℓ = K + Σλ_a + Σλ(x). □
+
+Lemma GW-27b (pair contributions). Let |x| = 2 with residue s = v(x) mod m (s ≠ 0).
+- (a) c_x ≥ −1, with equality iff λ(x) = 0, γ_x = 1, β_x = 0 ("deficient").
+- (b) A deficient x has s ≤ μ and r_a, r_b > μ, hence s = r_a + r_b − m ∈ [2μ + 2 − m, μ].
+- (c) If μ < s ≤ 2μ, then c_x ≥ 1.
+- Proof. (a) is immediate. Let λ(x) = 0. If s ≤ μ, then v(x) = Km + s and ε_x = μ − s. If s > μ, then
+  v(x) = (K−1)m + s and ε_x = m + μ − s.
+  - (b) If s > μ and γ_x = 1, then r_a + r_b = m + s and ε_x + r_b = 2m + μ − r_a ≥ m, so β_x ≥ 1. Hence s ≤ μ.
+    Then ε_x + r_b = m + μ − r_a, and β_x = 0 forces r_a > μ; likewise r_b > μ.
+  - (c) If λ(x) ≥ 1, then c_x ≥ d + 1. Otherwise ε_x = m + μ − s. With carry, both bonuses hold as in (b), so
+    c_x = 1. Without carry, r_a + r_b = s ≤ 2μ, so (say) r_a ≤ μ, and ε_x + r_b = m + μ − r_a ≥ m. □
+
+Proof of GW-27. Let U = #deficient cells. Each residue class holds exactly one cell.
+- Case 2μ ≤ m − 1. The μ residues in (μ, 2μ] hold D_mid := #{a : μ < r_a ≤ 2μ} units and μ − D_mid pairs, each
+  with c_x ≥ 1. Deficient cells lie in [1, μ], disjoint from the D_lo low units, so U ≤ μ − D_lo. Hence
+  W ≥ F + D_hi + (μ − D_mid) − U ≥ F + d − D_mid ≥ 0, where F = Σ f_a λ_a.
+- Case 2μ ≥ m. The m − 1 − μ residues in (μ, m) hold all D_hi high units and m − 1 − μ − D_hi pairs with c_x ≥ 1.
+  Deficient cells lie in [2μ + 2 − m, μ], a set of m − 1 − μ residues. Hence W ≥ F + D_hi + (m − 1 − μ − D_hi) − U
+  ≥ F ≥ 0. □
+- Minimality of the generators is not used. The mechanism is new to this record: carries are paid by residue
+  occupancy of the window (μ, 2μ] just above the top residue μ = M mod m. Lean: queued.
+
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
 - Proof: as GW-18, with P_3 (GW-19s) in place of P_2:
@@ -1596,7 +1639,8 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
   - for a ≤ 5 on paper and a = 6 with two finite certificates;
   - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
   - whenever LOW+ holds (GW-26b).
-  Also proved: quadratic down-sets and saturated EF faces. Open: the primary regime for a ≥ 7 with a low unit
+  Also proved: quadratic down-sets and saturated EF faces. Full GW (every depth) for quadratic residue-complete
+  down-sets: GW-27. Open: the primary regime for a ≥ 7 with a low unit
   violating LOW+, and 5m ≤ M ≤ 6m − 4. The primary
   regime is Wilf for 3m < c ≤ 4m, which is OPEN in the literature (LITERATURE item 22).
   - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1

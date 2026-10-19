@@ -511,3 +511,14 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
   - Spirito (large second generator).
 - No proof of Wilf for c ≤ 4m was found. Our GW-24/25/26/26b are therefore beyond the known frontier, subject to
   the usual caveat that the absence of a hit is not proof of absence.
+
+## Search 2026-10-19 (scope: Wilf for quadratic Apéry sets, Ap ⊆ {0} ∪ P ∪ (P+P), before making it the focus)
+- Web (extended): Wilf + Apéry set + "sum of at most two generators"; Wilf + Apéry poset depth/height two, 2025–2026;
+  Wilf + "reduction number"; Wilf + Apéry + "sum of two" minimal generators 2026.
+- GitHub: `gh search repos "wilf conjecture"` sorted by update (only our own repository).
+- Hits: only known items. These are Spirito 1710.09245 (#24: needs e ≥ 10 and m ≤ (8/25)e² + e/5 − 5/4 under
+  n_1 > (c+m)/3), DKM 2501.04417 (depth ≤ 3), BGOW 1903.04342, Marashdeh 2608.12531, Dhayni 1610.08726, Sammartano
+  1111.1863, preprints202604.0551. New (not read): arXiv 2605.14775 (fixed quotient; says Wilf is known for depth ≤ 3).
+- No statement of Wilf for every S with quadratic Apéry set, or for n_1 > (c+m)/3 without Spirito's conditions.
+  GW-27 is therefore beyond what we found, with the usual caveat that a missing hit is not proof of absence.
+

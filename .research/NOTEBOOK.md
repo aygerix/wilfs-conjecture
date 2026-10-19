@@ -2023,3 +2023,30 @@ asserted on every test.
   - What is left is low units (q₂ > 0) with many A directions.
   - The general lesson for all K: W = Σ_x [Kd − (d+1)j(x)] + ρ, where only top-band cells cost. ρ is controlled by
     arcs, which see positions inside bands. This should be tried as the K-uniform mechanism.
+
+## 2026-10-19 (midday) — Wilf for quadratic Apéry sets at every depth (GW-27); a general cell identity
+
+- **GW-27 (proved, checked on 62M semigroups).** If every Apéry element is 0, a generator or a sum of two
+  generators, Wilf holds. Corollary: Wilf whenever 3n_1 > c + m, with no condition on e or m. This removes Spirito's
+  hypotheses (e ≥ 10, m ≤ (8/25)e² + …).
+- **Mechanism.**
+  - Exact identity: W = Σ f_a λ_a + D_hi + Σ_pairs c_x with c_x = (d+2)λ(x) + β_x − γ_x ≥ −1.
+  - A cell has c_x = −1 only if it lies in the top window, has a carry and no bonus. Such cells have residue in
+    [1, μ] and both units above μ.
+  - Every pair cell with residue in (μ, 2μ] has c_x ≥ 1.
+  - Counting residue occupancy in [1, μ] against (μ, 2μ] gives W ≥ F + d − D_mid. When 2μ ≥ m it gives W ≥ F.
+  - Nothing uses depth: K = ⌊M/m⌋ never enters.
+- **General cell identity (G-ID, exact for every residue-complete down-set D).**
+
+      W = Σ_{y≠0} λ(y)φ(y) + Σ_x Σ_a x_a β_{x,a} − Σ_x γ(x),
+
+  where φ(y) = Σ_{a : y+e_a ∉ D} (y_a + 1) ≥ 0, β_{x,a} = [ε_x + r_a ≥ m] and γ(x) = ⌊Σ_a x_a r_a / m⌋.
+  - Proof: λ(x − e_a) = λ(x) + κ_a + β_{x,a} and κ(x) = Σ_a x_a κ_a + γ(x). Sum over D; the coefficient of λ(0)
+    cancels.
+  - GW-27a is the degree-2 case. Wilf in general ⟺ Γ ≤ Σ λφ + B.
+- **Why degree 3 is harder.**
+  - The deficiency of a cubic cell can be 2.
+  - An interior cell (φ = 0) with λ ≥ 1 can be deficient.
+  - A window cell can have c_x = 0, e.g. three units with r = 6 when μ = 10 and s = 18.
+- **Open question.** Is there a multi-window version of the occupancy count, (μ, 2μ], (2μ, 3μ], …, that pays the
+  cubic deficits?
