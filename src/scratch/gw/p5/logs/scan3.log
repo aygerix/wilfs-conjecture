@@ -1,0 +1,10 @@
+d=3 m=4 canonical_shapes=1 instances=384 primary=222 upper=180 linear=0 curvature=0 low_instances=0 adaptive=60 LC=0 classes=18,96,96,180 max_a=1 max_b=2 minW=0 min_strong_slack=8
+d=3 m=5 canonical_shapes=2 instances=1024 primary=438 upper=332 linear=0 curvature=0 low_instances=0 adaptive=160 LC=0 classes=54,230,176,280 max_a=1 max_b=3 minW=0 min_strong_slack=6
+d=3 m=6 canonical_shapes=5 instances=2048 primary=645 upper=461 linear=4 curvature=0 low_instances=0 adaptive=278 LC=0 classes=94,346,254,314 max_a=2 max_b=3 minW=0 min_strong_slack=5
+d=3 m=7 canonical_shapes=11 instances=6912 primary=1088 upper=699 linear=26 curvature=0 low_instances=3 adaptive=593 LC=3 classes=204,557,366,363 max_a=2 max_b=3 minW=0 min_strong_slack=1
+d=3 m=8 canonical_shapes=21 instances=12032 primary=1464 upper=849 linear=64 curvature=0 low_instances=15 adaptive=905 LC=23 classes=290,686,416,376 max_a=3 max_b=3 minW=0 min_strong_slack=1
+d=3 m=9 canonical_shapes=39 instances=22272 primary=1958 upper=1007 linear=109 curvature=0 low_instances=50 adaptive=1349 LC=63 classes=398,822,451,391 max_a=3 max_b=3 minW=0 min_strong_slack=1
+d=3 m=10 canonical_shapes=73 instances=27136 primary=2211 upper=1052 linear=125 curvature=0 low_instances=69 adaptive=1582 LC=87 classes=423,859,460,394 max_a=3 max_b=3 minW=0 min_strong_slack=1
+d=3 m=11 canonical_shapes=129 instances=64000 primary=2552 upper=1113 linear=157 curvature=0 low_instances=120 adaptive=1907 LC=151 classes=468,903,468,394 max_a=3 max_b=3 minW=0 min_strong_slack=1
+d=3 m=12 canonical_shapes=227 instances=63744 primary=2750 upper=1131 linear=164 curvature=0 low_instances=170 adaptive=2098 LC=204 classes=479,918,468,394 max_a=3 max_b=3 minW=0 min_strong_slack=1
+d=3 m=13 canonical_shapes=390 instances=148224 primary=2989 upper=1156 linear=179 curvature=0 low_instances=244 adaptive=2332 LC=282 classes=499,939,468,394 max_a=3 max_b=3 minW=0 min_strong_slack=1

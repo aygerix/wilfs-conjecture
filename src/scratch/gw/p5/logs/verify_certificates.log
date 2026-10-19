@@ -1,0 +1,12 @@
+Exact endpoint, sign, and curvature checks: 217379
+exception 2 2 9 2 58/5
+exception 2 3 14 1 405/7
+exception 2 4 19 -1 1720/9
+exception 2 5 24 -4 5350/11
+exception 2 6 29 -8 13554/13
+exception 3 5 41 12 13050/11
+exception 3 6 50 11 29646/13
+exception 4 6 74 36 63126/13
+exception 5 7 120 59 194684/15
+Positive-coefficient identity verified exactly: 26 monomials
+Linear certificate exact checks: 126245

@@ -1,0 +1,3 @@
+scan2 weight assignments= 72224 final: d=2 m=22 canonical_shapes=504 instances=10080 primary=94 upper=52 linear=4 curvature=0 low_instances=0 adaptive=58 LC=0 classes=16,34,16,18 max_a=2 max_b=2 minW=0 min_strong_slack=1
+scan3 weight assignments= 347776 final: d=3 m=13 canonical_shapes=390 instances=148224 primary=2989 upper=1156 linear=179 curvature=0 low_instances=244 adaptive=2332 LC=282 classes=499,939,468,394 max_a=3 max_b=3 minW=0 min_strong_slack=1
+scan4 weight assignments= 992768 final: d=4 m=10 canonical_shapes=86 instances=478208 primary=42237 upper=19316 linear=1833 curvature=451 low_instances=2873 adaptive=31325 LC=3155 classes=8404,17155,11687,9611 max_a=4 max_b=4 minW=0 min_strong_slack=1

@@ -1,0 +1,1 @@
+seed=20261019 trials=250000 m=10..120 primary=14444 upper=5885 linear=844 curvature=799 low_instances=5674 adaptive=11611 LC=6635 classes=3052,5787,3638,411 max_a=11 max_b=13 minW=13 min_strong_slack=11

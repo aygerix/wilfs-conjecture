@@ -1306,9 +1306,60 @@ Proof.
 - Mechanism: packing (LP/SP/HP) uses residues only, and loses a factor ≈ a. The arc uses the integer location of
   τ = v − deg·m inside its band: a whole residue arc of length ≈ h/2 is reachable only by pairs. This forces
   ρ = m − h ≥ m − 2p − 2, and ρ enters W with coefficient +1.
-- OPEN extension: the same class with B/C/E directions or with q₂ > 0. A crude count of intruders into the arc fails
-  when a B direction carries many AAB cells. Those configurations are where packing is strong, so an interpolation
-  is needed.
+- Extension to B/C/E directions: Theorem GW-26 below. The case q₂ > 0 is reduced in GW-26b.
+
+**Theorem GW-26 (Wilf for 3m < c ≤ 4m whenever 2n_1 ≥ c − m; PROVED 2026-10-19 on paper by codex P5; every
+identity re-derived and checked symbolically by the lead, src/scratch/gw/p5/lead/).**
+Statement (multiplicity form):
+- Hypotheses: P4 hypotheses, primary regime 4m ≤ M < 5m, and every A unit satisfies 2t_a ≥ h (upper-unit (U)).
+- If a ≥ 1:
+      W ≥ (a−1)(b+1) + c(c+e+1) + e(3a+2b−1) + (c+e)(q₃+s₃+t₃).
+- If a = 0: W ≥ c(c+1) + e(2b+c) + (c+e)t₃ ≥ 0.
+- Semigroup form: **Wilf holds for every S with 3m < c ≤ 4m and 2n_1 ≥ c − m.**
+  - Classes: A: n < c − 2m; B: [c−2m, c−m); C: [c−m, c); E: [c, c+m).
+  - Use the lexicographic Apéry tile.
+  - Hypothesis (U) for A generators is exactly 2n_1 ≥ c − m. It holds automatically outside A.
+Proof (P5_REPORT §§2–7):
+1. Refined arc (ARC): h ≤ 2(q₃ + b + c + e + s₄ + t₄) + 2.
+   - Take Y = [h, min(⌈3h/2⌉, m)) ∪ [1, ⌈3h/2⌉ − m). Every residue in Y is occupied by an I₃ AA cell, a B/C/E unit,
+     or an I₄ AB/BB cell. No cubic, AC, BC or A cell can occupy Y.
+2. Exact identity (ID), λ ∈ [0,1]:
+   - W = C_λ + k_λq₃ + j_λs₃ + l_λt₃ − 3(v₃+w+z) + G_λ + (nonnegative shadow and capacity slacks)
+     + (1−λ)·SRslack + λ·ARCslack.
+   - SR is the joint short-residue lemma (3). λ = 0 is the band identity and λ = 1 the arc.
+3. Region I (a ≥ 2, b ≤ a² − a − 1, b(2a+b+1) ≤ 6a(a+1); contains a ≥ 3, b ≤ a+1, and (2,0), (2,1)):
+   - Take λ = 1 with linear shadows and explicit rational multipliers (LIN).
+   - This gives W ≥ (a−1)(b+1) + G₁.
+4. Region II (a ≥ 2, b ≥ a+2, and (2,2), (2,3)):
+   - Use the B-face curvature inequality 3z ≤ (b+2)t₃ − 2t₃(B−t₃)/(2b+1). It follows from condensed Macaulay
+     z ≤ C(x+2,3) at t₃ = C(x+1,2), since the B units, I₃ BB and BBB cells form a multicomplex.
+   - The endpoint certificates λ = 0 and λ = 1 give two concave quadratics in x = t₃/B, with values −F_a and
+     (a−1)(b+1) at x = 1.
+   - An analytic bridge shows max ≥ (a−1)(b+1). It reduces to the parameter inequality (S), proved by a 26-term
+     polynomial with all coefficients positive in X = a−1, Y = b−a−2, plus 9 exact small cases.
+5. a ≤ 1 directly from W = W_A + T + R.
+- Lead's checks:
+  - (ID) as an exact polynomial identity in all 20 variables;
+  - all LIN identities; Region I certificate = first line;
+  - both endpoint branches and EP;
+  - the MC identity; POLY (26 monomials, min coefficient 6);
+  - the 9-point table (exact match);
+  - Region II grid, 63,905 parameter pairs, signs and (S): 0 failures;
+  - weak bound W ≥ (a−1)(b+1) + c(c+e+1) + e(3a+2b−1) on 24,651 random semigroups (lead's own classifier):
+    0 failures, min slack 6.
+  - Codex additionally ran exhaustive d ≤ 4 down-sets, the genus ≤ 28 tree (580,615 upper-unit instances) and
+    random checks.
+- Contains the Eliahou–Fromentin c = 4m near-miss family (LITERATURE #30), all of whose generators lie in
+  [(3m+1)/2, (5m−1)/3]. Uniform in e. No packing, no finite certificates.
+
+**Reduction GW-26b (low units; PROVED, codex P5 §9, identities re-checked by the lead).** Drop (U). Put
+L = min_A t_a, δ = max(0, h − 2L), K = q₃ + b + c + e + s₄ + t₄.
+- Adaptive arc: h ≤ 2K + 2 + 3δ. (If 3L ≤ h this is trivial. Otherwise use Y_L = [h, min(3L, m)) ∪ [1, 3L − m).)
+- (LOW), for a ≥ 3:
+      W ≥ (a−1)(b+1) + G + min((a+1)q₂, C(a+1,3)) + b u₃ + (c+e)(2q₂+u₃) − max(0, 3δ − (b+2)q₂ − k).
+  - Uses LC (GW-24); identity LOW-ID re-derived by the lead in both endpoint branches.
+- Consequence: a counterexample to Wilf with 3m < c ≤ 4m must have a ≥ 7, δ > 0 (some generator with 2n < c − m),
+  3δ > (a−1)(b+1) + G + L_min + (b+2)q₂ + b u₃ + k + (c+e)(2q₂+u₃), and GW-24's LC− conditions.
 
 **Corollary GW-20 (PROVED; from GW-19 + GW-PF).** If at most e − 1 pseudo-Frobenius numbers of S are ≥ 3m, then
 S satisfies Wilf's conjecture.
@@ -1540,10 +1591,13 @@ So Wilf is "total carries ≤ total column slack". Carries live only on cells of
 - depths j ≤ k_min (GW-13/14);
 - P_1 and P_2 in the multiplicity form, without residues (GW-14, GW-16).
 - P_3 (GW-19): residues are needed only for 3m ≤ M < 4m. It contains Eliahou's c ≤ 3m theorem.
-- P_4: PARTIAL (GW-21, GW-24). Proved: H4 for M ≥ 6m − 1 (residue-free, sharp), and M ≥ 6m − 3 with residues
-  (distinct weights). The primary regime 4m ≤ M < 5m is proved for a ≤ 5 on paper and for a = 6 with two finite
-  certificates. Also proved: quadratic down-sets and saturated EF faces. Open: the primary regime for a ≥ 7, and
-  5m ≤ M ≤ 6m − 4. The primary
+- P_4: PARTIAL (GW-21, GW-24, GW-25, GW-26). Proved: H4 for M ≥ 6m − 1 (residue-free, sharp), and M ≥ 6m − 3
+  with residues (distinct weights). The primary regime 4m ≤ M < 5m is proved:
+  - for a ≤ 5 on paper and a = 6 with two finite certificates;
+  - for every a under the upper-unit hypothesis (GW-26; semigroups: 2n_1 ≥ c − m);
+  - whenever LOW+ holds (GW-26b).
+  Also proved: quadratic down-sets and saturated EF faces. Open: the primary regime for a ≥ 7 with a low unit
+  violating LOW+, and 5m ≤ M ≤ 6m − 4. The primary
   regime is Wilf for 3m < c ≤ 4m, which is OPEN in the literature (LITERATURE item 22).
   - Theorem H does not extend to i = 4 without residues: {|x| ≤ 3} ⊂ ℕ², n = (16,17), m = 10, M = 51 ≥ 5m − 1
     gives 27 > 26.
