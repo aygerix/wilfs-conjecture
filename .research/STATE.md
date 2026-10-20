@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20 night: P18 depth four a = 0 PROVED (0f); T1/Lemma U line DEAD (codex P15 + external review, lead-verified); next: depth-four LOW closure, item 0d)
+# STATE.md — handoff (updated 2026-10-20 small hours: order–level identity + power tokens, W = U − e·T_c for ALL S (0g); P18 depth four e ≤ 6 certified; Conjecture M; next: prove M's open classes)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,6 +8,20 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0g. **NEWEST (2026-10-20 small hours): Wilf in "carry" form, for every numerical semigroup (PROOFS "Order–level identity",
+    "Power tokens").**
+    - PROVED: W = U − e·T_c. U counts the unused power tokens of the condensed-Macaulay injection on gr(R/t^m R);
+      T_c = Σ (level − order) over Ap(S, m).
+    - PROVED: each carried element owns (e−1)·t dead tokens, so W ≥ U_unc − T_c.
+    - PROVED: P18 depth-four Wilf for e ≤ 6 (complete enumeration, E319). Also Lemma NS0 (NS = ∅).
+    - P18 depth four: W = E2 + U3 + U4 − p − q + [(e−1)p_lo − χ3] (exact). PROVED pieces: p_hi ≤ U3; p ≤ U3 when 2h ≤ m;
+      carried triples with a sub-pair < h have injective dead tokens.
+    - Conjectures, all with 0 failures: J, CL4, M (inside matching).
+    - FALSE: C4, J0, K. Also CL for general S at depth ≥ 4.
+    - **Next precise task:** prove Conjecture M (PROOFS "P18 depth four in token form") for:
+      (a) low carried pairs {b ≤ b′ < h} (only when 2h > m);
+      (b) carried triples with all sub-pairs ≥ h, using the covering of [h, m).
+      Then test whether M survives at depth five.
 0f. **NEWEST (2026-10-20 night): P18 depth four, a = 0 PROVED (Theorem A0, W ≥ 1); token lemma OVF; RED-A2.**
     - Proved on paper (PROOFS "Token proof of degree-3 truncated Macaulay…" and "Theorem A0"):
       - Lemma TOK3: an elementary token proof of TCM at j = 3. E3_L = #unused tokens, and every overflow token

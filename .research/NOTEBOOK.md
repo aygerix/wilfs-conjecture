@@ -3368,3 +3368,29 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     the route).
   - Prove the a ≤ 3 third-regime case (SP0 ≥ 0 for a = 2, 3 by a finite order-type case analysis).
   - Formulate the exact additive lemma that, with (★L) + TOK3, closes the near-basis regimes.
+
+## 2026-10-20 (small hours) — orders vs levels: Wilf as "carry ≤ unused Macaulay tokens"
+- The near-simplex class NS is empty (Lemma NS0). The top Apéry element forces 3·max B ≥ m + h − 1, while 2·max B < m,
+  and the covering of [h, m) by 2B forces h ≥ 2m/3. So the "all-A carried near-simplex" heuristic of the previous entry
+  describes no semigroup.
+- e = 6 certificate finished: P18 depth-four Wilf for e ≤ 6 (367,234 S, min W 37, none with m > 75).
+- **New frame (all S, all depths):** use the ORDER o(w) (longest factorization) of each Apéry element, not only its
+  level. The H_j are the Hilbert function of gr(R/t^m R), condensed Macaulay applies to them exactly, and
+  W = Σ_{k=2}^{q−1} E_k + (e−1)h − (e+q−1)H_q − e·T_c, with T_c = Σ (level − order).
+  - Eliahou's true grading (Thm 7.1) is the case T_c = 0.
+  - At c = qm, a free Hilbert function makes the Macaulay part 0 exactly, so each unit of carry costs e.
+- Power tokens give a one-line proof of condensed Macaulay: (u, b, k) ↦ u + (k − o(u))·g_b. The slacks E_k are exactly the
+  unused tokens, so **W = U − e·T_c** (all S).
+  - A carried element owns (e−1)·t dead tokens. Hence W ≥ U_unc − T_c: **after Macaulay, each unit of carry costs ONE
+    token.** This is the advisor's "face-sharing vs compensation" made quantitative at every depth.
+  - The deficit is real: T_c ≤ U_unc fails for general S at depth ≥ 4, so carried elements' extra dead tokens are needed.
+- P18 depth four:
+  - W = E2 + U3 + U4 − p − q + [(e−1)p_lo − χ3]. Conjecture J (no degree-3 Macaulay) and CL4 hold on all data.
+  - Pieces: C3 (p ≤ U3) robust, with p_hi ≤ U3 proved by an injective dead generator token; C4 (q ≤ U4) FALSE at a = 0.
+  - **Conjecture M:** carried elements can be matched injectively to unused tokens inside their own representation
+    (Hall condition held on every S tested). Two of the four classes have explicit injective dead tokens. Open: low
+    carried pairs with both elements below h, and carried triples whose sub-pairs all exceed h.
+- Next:
+  - Prove M for the open classes. The covering of [h, m) must prevent B from clustering in the windows
+    [m − s, m − s + h).
+  - Check whether M extends to depth five (carries ≤ 2) as stated.

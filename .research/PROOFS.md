@@ -3625,3 +3625,165 @@ So **Conjecture TB4 alone implies P18 depth-four Wilf** (SIG1 is no longer neede
   - But SP0 ≥ 0 is FALSE in the abstract: a B_3-like core C ⊂ [h/2, 2h/3) gives y0 = a + 1 and t ≈ C(a+1,2) + C(a+2,3).
   - So any proof must also use the high part, (β − β1)(y0 − 1), or the slack dropped in RED-A, namely
     G = E3_L − OVF_L (token collisions forced by one-dimensionality) and the other overflow tokens.
+
+## Finite certificate: P18 depth four for e ≤ 6 (PROVED by complete enumeration, 2026-10-20; E319)
+- **Bound (PROVED).** Depth four gives c ≤ 4m, so every Apéry element is < 5m. Hence it is a sum of at most 4 generators
+  m + b, and its residue is the residue of a 4-fold sum of A. So m ≤ |4A| ≤ C(e+3, 4), and for fixed e the
+  depth-four P18 semigroups form a finite list.
+- Enumeration: src/scratch/p27/p18e.c (every B ⊂ [1, m−1] with |B| = e−1, gcd 1, Apéry set by Dijkstra; a 4-fold
+  residue-cover prefilter, validated by reproducing the unfiltered counts).
+  - e = 3: 26 S, min W = 7.
+  - e = 4: 514 S, min W = 12.
+  - e = 5: 12,184 S (m ≤ C(8,4) = 70; the largest m that occurs is 45), min W = 27.
+  - e = 6: 367,234 S (m ≤ C(9,4) = 126 searched in full; m ∈ [76, 126] has none, the largest m is ≤ 75), min W = 37.
+- So **P18 depth-four Wilf holds for e ≤ 6.** This is a checkable finite certificate (fejer ~/wilf/p25/p18e6_*.txt; 8 range
+  jobs 7–60, 61–75, 76–85, 86–93, 94–100, 101–108, 109–117, 118–126).
+
+## Near-simplex class NS is EMPTY (PROVED 2026-10-20); the formula below is vacuous
+Class NS: P18 depth four with B ⊂ [1, h), 2B ⊂ [0, m) and 3B ⊂ [m, m + h).
+- **Lemma NS0 (PROVED).** For m ≥ 4, no numerical semigroup S = ⟨m, m + B⟩ lies in NS.
+  - Proof. Let b₋ = min B and b₊ = max B. From 3B ⊂ [m, m+h) and 2B ⊂ [0, m): 3b₋ ≥ m and 2b₊ < m.
+  - (i) The Apéry element 4m + h − 1 = c + m − 1 is a sum of k generators m + b with b ∈ B (no generator m, since it
+    is an Apéry element). So it equals km + s with s ∈ kB.
+    - k ≤ 2 is impossible, since s < kh ≤ 2m.
+    - k = 4 needs s = h − 1 ∈ 4B, but 4B ≥ 4m/3 > h.
+    - k ≥ 5 gives s < 0.
+    - So k = 3 and m + h − 1 ∈ 3B. Then m + h − 1 ≤ 3b₊ < 3m/2, i.e. h < m/2 + 1.
+  - (ii) If h < m, the residue r = m − 1 has its Apéry element w ≤ 4m + h − 1, and w = km + s with s ∈ kB, s ≡ m − 1.
+    - k = 1 is impossible, since B < h ≤ m − 1.
+    - k = 3 would need s = 2m − 1 ∈ 3B ⊂ [m, m + h), i.e. h = m, which is excluded here.
+    - k = 4 gives w = 4m + s with s ≡ −1 and s ≥ 4b₋ ≥ 4m/3, so s ≥ 2m − 1 and w > 4m + h − 1.
+    - So k = 2 and m − 1 ∈ 2B ⊂ [2b₋, 2b₊]. Every residue of [h, m) has the same fate, so [h, m) ⊂ 2B, which forces
+      h ≥ 2b₋ ≥ 2m/3. With (i), 2m/3 < m/2 + 1, i.e. m < 6. For m ∈ {4, 5} with h < m, direct check: none.
+    - If h = m, (i) gives m < m/2 + 1, i.e. m < 2. ∎
+  - Checked: random and constructed (B = x + U, 3U an initial interval) searches found no NS instance (E319).
+- Consequence: the formula below concerns no semigroup. The "all-A carried near-simplex" model of the late-night
+  NOTEBOOK heuristic (3B filling [m, m+h) with 2B < m) is therefore not realisable either. The additive-basis
+  obstruction survives only in configurations where 2A meets [m, 2m) (carried pairs) or where B has high elements.
+- (Original derivation, kept for the record:)
+- Structure (PROVED): R_2 = R_3 = 2A, so [h, m) ⊂ 2B. The Apéry set is {0} ∪ (m + B) ∪ (2m + 2B) together with the layer-4
+  elements 4m + r for r ∈ ((3B − m) ∖ 2A) ⊂ [0, h). Put N3 = |(3B − m) ∖ 2A|, ρ = m − h = |2A ∩ [h, m)|,
+  ν = |2B ∩ [0, h)|, and assume 2B ∩ B = ∅ for simplicity. Then ℓ = 1 + e + |2A| + h − N3 and h = e + ν + N3, so
+  **W = 3e(e−1) + (e−3)ρ + (2e−4)ν − 4N3.**
+- Macaulay (TCM, j = 3): N3 ≤ |3B| ≤ (e−1)(e + ρ + ν)/3. This covers the e(e−1) and ν terms with room. The ρ term is
+  not covered: the coefficient (4/3)(e−1) exceeds e − 3. So in NS, Wilf needs an additive input precisely when the
+  interval [h, m) inside 2B is long (ρ ≳ 5e).
+- The earlier "B_3-simplex model" (W = ρ − C(k+1,3)) is the extreme ρ = n2: a Sidon set whose sumset is an interval.
+  That cannot exist, and the needed input is an **interval–collision principle**: a long interval I ⊂ 2A forces
+  unused tokens (s, x), s ∈ I, since all of them point into I + B. Counting gives
+  E3_L ≥ (e−1)ρ − 3|(I + B) ∩ (3A ∖ 2A)|, and |I + B| ≤ ρ + Σ_i min(g_i, ρ), with g_i the gaps of B.
+  When the gaps are large, I can be covered by at most |B| pair sums, so ρ ≤ e. So the competition is elementary
+  and needs no postage-stamp constants. (Heuristic; to be made a lemma.)
+- Correction to the evening heuristic (NOTEBOOK): the "efficiency ≤ 3/4" requirement assumed 2B both Sidon and an
+  interval. That assumption is self-contradictory, so the requirement does not follow.
+
+## Order–level identity for generators in (m, 2m), every depth — PROVED 2026-10-20 (checks E320)
+Setting: S = ⟨m, m + B⟩, B ⊂ [1, m−1], e = |B| + 1, c > m, depth q = ⌈c/m⌉ ≥ 2, h = c − (q−1)m ∈ (0, m].
+For w ∈ Ap(S, m): level x(w) = ⌊w/m⌋. Order o(w) = the largest k with w a sum of k generators; no representation of an
+Apéry element uses m, so o(w) = max{k : w − km ∈ kB}.
+- H_j = #{w ∈ Ap : o(w) = j}. This is the Hilbert function of the standard graded algebra G = gr_𝔪(R/t^m R),
+  R = k[[S]] (basis t^w, w ∈ Ap; t^w ∈ 𝔪^j + t^m R iff o(w) ≥ j). Here H_0 = 1 and H_1 = e − 1.
+- E_k = (e−1)(H_0 + … + H_{k−1}) − k·H_k. These are ≥ 0 by the condensed Macaulay inequality
+  (Eliahou JEMS 2018, Thm 5.11).
+- T_c = Σ_{w ∈ Ap} (x(w) − o(w)) = g − Σ_w o(w) ≥ 0 is the total carry. It is 0 iff Eliahou's "true grading" holds
+  up to level q.
+- **Identity (PROVED; exact).** W = e(c − g) − c = Σ_{k=2}^{q−1} E_k + (e−1)·h − (e+q−1)·H_q − e·T_c.
+  - Proof. Orders are ≤ levels ≤ q. So W = (e−1)c − e·g = (e−1)((q−1)Σ_j H_j + h) − e(Σ_j j·H_j + T_c).
+  - Put n = e − 1. Telescoping gives Σ_{j ≤ q−1} H_j(n(q−1) − (n+1)j) = Σ_{k=1}^{q−1} E_k, with E_1 = n − H_1 = 0.
+  - The j = q term is H_q(n(q−1) − (n+1)q) = −(n+q)H_q. ∎
+  - At c = qm (h = m) it reads **W = Σ_{k=2}^{q} E_k − e·T_c**: the slack of condensed Macaulay minus e per unit of carry.
+  - The free Hilbert function H_j = C(n+j−1, j) makes every E_k vanish. So "true grading ⇒ Wilf" is sharp there,
+    and every carry costs exactly e.
+- Carry-free case (recovers Eliahou Thm 7.1 inside this class). If T_c = 0, a nonzero product t^u·t^v in G has residue
+  r_u + r_v with no wrap. So {t^w : r(w) ≥ h} spans an ideal, and the quotient has Hilbert function
+  (#{w : o = j, r(w) < h})_j. Condensed Macaulay for the quotient at degree q gives q·H_q ≤ (e−1)(h − H_q), hence
+  W ≥ 0. With carries this ideal property fails: **carries are exactly what breaks truncated Macaulay**, and the identity
+  prices each unit of carry at e.
+- Checked (E320, `src/scratch/p28/ordall.py`): 0 mismatches on 90k random S (e = 3, 4, 6; depths 3–59); E_k ≥ 0 on all.
+
+## Depth four: the split W = J + σ and Conjecture J (lead, 2026-10-20; checks E320)
+Depth four (q = 4). Carries are 0 or 1. Put:
+- p = #{w : x = 3, o = 2} (carried pairs) and q₄ = #{w : x = 4, o = 3} (carried triples; residues < h);
+- H4 = #{w : o = 4} (uncarried 4-sums; residues < h) and y = #{r < h : x_r ≤ 3}, so h = y + H4 + q₄;
+- q_Q = #{carried triples w having a summand w − m − b (b ∈ B) that is a carried pair}.
+- **Identity (PROVED).** W = E2 + E3 + (e−1)·y − 4·H4 − q₄ − e·p. This is the order–level identity with h = y + H4 + q₄.
+- **RTCM on G (PROVED).** Let Q = the carried pairs in G_2. Their products with G_1 that are nonzero in G are Apéry
+  elements of level ≥ 4 and order 3, i.e. carried triples, and each such product is counted in q_Q. Condensed Macaulay for
+  G/(Q) at degree 3 gives σ := E3 − (e−1)p + 3q_Q ≥ 0.
+- **Split:** W = J + σ with **J := E2 + (e−1)·y − 4·H4 − q₄ − 3·q_Q − p**.
+- **Conjecture J (CONJ).** J ≥ 0 for every P18 depth-four S. It implies P18 depth-four Wilf and uses no degree-3 Macaulay.
+  - Data (E320): 0 failures — exhaustive e = 4 (m ≤ 40), e = 5 (m ≤ 30); random e = 6, 9; annealing (anJ.c, m ≤ 300,
+    e ≤ 21).
+  - Sharp: J = 0 at ⟨15, 18, 19, 25⟩ (B = {3, 4, 10}, h = 3 ≤ e). For h > e the minimum found is J = 1 at
+    ⟨9, 10, 16⟩ (h = 7), and J = 2 at ⟨17, 21, 29, 31, 32⟩ (h = 7, p = 7), the RES4-sharp example.
+  - Meaning: after Macaulay, each carry costs about one unit. Carried pairs and carried triples each cost 1, plus 3 for a
+    triple grown from a carried pair; uncarried order-4 elements cost 4. These are paid by the low window, (e−1) per
+    residue below h of level ≤ 3, and by the pair-collision slack E2.
+  - The weaker J0 (q_Q replaced by q₄) is FALSE: −10 at ⟨21, 25, 28, 30, 31⟩. Carried triples that do not grow from a
+    carried pair must stay cheap.
+
+## Power tokens: an elementary condensed Macaulay and the exact form W = U − e·T_c (every numerical semigroup) — PROVED 2026-10-20 (checks E320)
+Setting: any numerical semigroup S ≠ N with multiplicity m and minimal generators m, g_1, …, g_{e−1}. Ap = Ap(S, m).
+level x(w) = ⌊w/m⌋. Order o(w) = the largest number of minimal generators summing to w; m is never used, since w − m ∉ S.
+H_j = #{w ∈ Ap : o(w) = j}. Carry t(w) = x(w) − o(w) ≥ 0 (every g_b has level ≥ 1) and T_c = Σ t(w) = g − Σ_w o(w).
+c = (q−1)m + h with 0 < h ≤ m.
+- **Lemma PT (power tokens; PROVED, elementary).** A power token is (u, b, k) with u ∈ Ap, b ∈ {1,…,e−1} and k > o(u).
+  Its target is u + (k − o(u))·g_b. For each w ∈ Ap of order k, fix one maximal-order representation, with multiplicities
+  a_b. Let w use the k tokens (w − j·g_b, b, k), 1 ≤ j ≤ a_b. Each first coordinate w − j·g_b is a summand of w, so it
+  lies in Ap, and its order is exactly k − j (a longer representation would lengthen w's).
+  - A token determines its target, so no token is used twice. Hence k·H_k ≤ (e−1)(H_0 + … + H_{k−1}). This is
+    Eliahou's condensed Macaulay inequality for G = gr(R/t^m R), with a one-line proof.
+  - **E_k = (e−1)Σ_{i<k}H_i − k·H_k is exactly the number of unused degree-k tokens.** In particular every dead token (target
+    not an Apéry element of order k) is unused.
+  - (The same map (u, b) ↦ u·x_b^{k−deg u} proves condensed Macaulay for any order ideal of monomials, hence, through an
+    initial ideal, for every standard graded algebra.)
+- **Theorem (exact form of Wilf).** W(S) = U − e·T_c. Here U is the number of unused power tokens of degrees
+  2 ≤ k ≤ q−1, together with the unused degree-q tokens whose first coordinate has residue < h.
+  - Proof: the order–level identity (previous section; its derivation never used P18) gives
+    W = Σ_{k=2}^{q−1} E_k + (e−1)h − (e+q−1)H_q − e·T_c.
+  - Every order-q element has level q, so it is uncarried with residue < h, and so are its token sources. Hence
+    (e−1)h − (e+q−1)H_q = (e−1)·#{r < h : o(w_r) ≤ q−1} − q·H_q is the number of unused degree-q tokens from residues
+    < h. ∎
+- **Own dead tokens (PROVED).** Let u be carried, with order d and carry t. In each of t consecutive degrees, all e − 1
+  tokens of u are dead. The degrees are k ∈ [q−t+1, q] if r(u) < h, and k ∈ [q−t, q−1] if r(u) ≥ h (then x(u) ≤ q−1).
+  - Reason: levels are superadditive, so the target has level ≥ k + t. That is > q, or it equals q at a residue ≥ h.
+  - Hence U ≥ U_unc + (e−1)·T_c, where U_unc counts unused tokens with uncarried first coordinate, and
+    **W ≥ U_unc − T_c: after Macaulay, each unit of carry costs exactly one token.**
+- Checked (E320, `src/scratch/p28/carry.py`): W = U − e·T_c and the own-token bound on 84k random semigroups
+  (generators in (m, 4m) and P18; depths 2–140), 0 failures.
+- The **Carry Lemma** T_c ≤ U_unc is FALSE in general. It fails often at depth ≥ 4 for general S, and at depth ≥ 7 in
+  P18; e.g. e = 2, ⟨37, 144⟩ has W = 0 with U = 2T_c, so the carried elements own far more than (e−1)t dead tokens.
+  At P18 depth four it held exhaustively (e ≤ 5, min slack 6, 10, 21) and under annealing (in progress).
+
+## P18 depth four in token form (lead, 2026-10-20)
+Notation: p = p_lo + p_hi carried pairs (level 3, order 2; residue < h or ≥ h); q carried triples (level 4, order 3);
+H4 order-4 elements; y0 = |3A ∩ [0,h)| uncarried residues < h; U_k = unused degree-k tokens with uncarried first coordinate;
+χ3 = degree-3 tokens with carried first coordinate that carried triples use.
+- **Exact:** W = E2 + U3 + U4 − p − q + [(e−1)p_lo − χ3]. The bracket is ≥ 0, since every carried first coordinate of a
+  degree-3 token used by a carried triple is a low carried pair, and each has e − 1 tokens.
+  - Here U2 = E2, U4 = (e−1)y0 − 4H4, and U3 = E3 − (e−1)p + χ3.
+- **Lemma C3hi (PROVED).** p_hi ≤ U3. Map a high carried pair with chosen representation {b ≤ b′} (b + b′ = m + r, r ≥ h)
+  to the generator token (g_b, b′, 3). Its target 3m + b + 2b′ has residue r + b′ ≥ h at level 4, or level ≥ 5, so the
+  token is dead; the map is injective.
+  - The same token is dead for every carried pair once 2h ≤ m, since then b′ ≥ m/2 ≥ h. So **p ≤ U3 when 2h ≤ m.**
+- **C4 alone is FALSE:** q + 4H4 ≤ (e−1)y0 fails at a = 0, e.g. m = 83, B = {20,21,22,25,28,31,34,37,39,81,82}, h = 18:
+  y0 = 1, q = 17, C4 = −6, W = 441. The carried triples there are paid by degree-3 overflow (U3 − p = 407).
+- **Conjecture CL4 (carry lemma at P18 depth four):** p + q ≤ E2 + U3 + U4. It implies Wilf, since W ≥ CL4 slack.
+  - Exhaustive e ≤ 5: min slack 6, 10, 21; annealing in progress.
+- **Conjecture M (inside matching; CONJ, 2026-10-20).** At P18 depth four there is an injection φ from the carried Apéry
+  elements to unused power tokens such that:
+  - the first coordinate of φ(v) is a proper sub-sum of v's chosen representation (0 allowed);
+  - φ(v) is either a token with uncarried first coordinate, or a spare token of a carried sub-sum (or of v), i.e. one
+    beyond the e − 1 forced dead tokens.
+  - M implies CL4, hence P18 depth-four Wilf.
+  - Data (E320, match4.py, bipartite matching): saturating on every S tested (exh e ≤ 5, random e = 7, 9, 12, the C4
+    counterexamples).
+  - Partial canonical choices (PROVED):
+    - high carried pairs ↦ (g_b, b′, 3) (Lemma C3hi);
+    - carried triples with a sub-pair b_i + b_j < h ↦ (u_{ij}, b_k, 4). Its target u_{ij} + 2g_{b_k} has level ≥ 5, and
+      the map is injective because the token determines v = u_{ij} + g_{b_k}.
+  - Open: low carried pairs whose token (g_b, b′, 3) is used (then b ≤ b′ < h and 2h > m), and carried triples with
+    every sub-pair ≥ h.
+  - For the latter, the overflow tokens (u_s, x, 3), s + x ≥ m + h, of a parent pair element u_s number
+    |B ∩ [m − s + h, m)|, while the triples through u_s number at most |B ∩ [m − s, m − s + h)|. A Hall argument has to
+    use the covering of [h, m) to rule out B clustering in such windows.
