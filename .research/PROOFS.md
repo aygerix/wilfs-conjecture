@@ -3380,3 +3380,28 @@ k[[S]]/(t^m)); ε(w) = k(w) − L(w) ≥ 0, the excess (carries plus generator e
     The harm is excess at low order relative to the top.
 - Failed split (E309): order-Wilf at the virtual conductor c_0 = max(L(w)m + r(w)) − m + 1, together with
   e·Σε ≤ (e−1)(c − c_0). The first fails in 569 S and the second in 237,480 (genus ≤ 24), never both. Wrong reference.
+
+## P18 depth four, all-A case: exact identity and the free part (FREE-A)
+Setting: S = ⟨m, m+B⟩, A = {0} ∪ B, depth four (3m < c = 3m + h ≤ 4m), all-A: B ⊂ (0, h). Sumsets jA are integer sumsets;
+y0 = |3A ∩ [0,h)|, U1 = |3A ∩ [m, m+h)| (carried pairs and cubes), P_lo = |2A ∩ [m, m+h)|,
+δ = #{s ∈ 2A ∩ [m, m+h) : s − m ∈ 3A}, N4 = |(4A ∖ 3A) ∩ [0,h)|, ν = |{r ∈ (4A ∖ 3A) ∩ [0,h) : r + m ∈ 2A, r ∉ 3A}|,
+H4b = residues r < h of Kunz level 4 with r ∉ 4A, Ω = U1 − P_lo − |H4b| ≥ 0; E1, E2, E3 as in P18-CHAIN (a = e − 1, b = 0).
+- **Identity (PROVED; exact).** W = E1 + E2 + E3 − U1 − (e−4)δ + 4ν + 4Ω.
+  - Proof: all-A gives 2A ⊂ [0, 2h) ⊂ [0, m+h), so P_hi = 0 and τ_2 = |2A| − P_lo. Coverage of [h, m) is by 3A alone, since
+    carried pairs have residues below 2h − m ≤ h; so m − h = |3A ∩ [h, m)|. Then 3|3A ∩ [h,m)| = 3|3A ∩ [0, m+h)| − 3y0 − 3U1,
+    3|3A ∩ [0, m+h)| = (e+2)|2A| − E3, e(e+1) − 2τ_2 = E1 + 2P_lo, x = y0 + P_lo − δ, and n_4 = (N4 − ν) + |H4b| with
+    |H4b| = U1 − P_lo − Ω. Substitute into W = e(1+e+τ_2+x) − 3(m−h) − 4h. ∎
+  - Checked: 0 mismatches on 7,035 all-A depth-four S (k = 3, m ≤ 40; k = 4, m ≤ 30; random k = 5, 7) (E311).
+- **Conjecture FREE-A (CONJ).** 4h + e·δ ≤ (e+3)·y0 + 3·U1. Equivalently E2 + 4ν + 4Ω − U1 − (e−4)δ ≥ 0.
+  - Then W = FREE-A slack + E1 + E3 with E1, E3 ≥ 0 (Macaulay slacks). **In the all-A case collisions never hurt**: the
+    extremal sets are collision-free (B_3-like), which is exactly the near-simplex regime.
+  - Data (E311): 0 failures; min slack 7 (k = 3), 9 (k = 4), 39 (k = 5 random), 46 (k = 7 random).
+- **Conjecture FA2 (CONJ; stronger, drops Ω).** 4N4 + U1 + (e−4)δ ≤ (e−1)·y0, i.e. U1 + (e−4)δ ≤ E2. FA2 ⟹ FREE-A (from
+  h ≤ y0 − δ + N4 + U1). Data: 0 failures, but TIGHT at ⟨15,22,24,25⟩ (A = {0,7,9,10}, h = 14, U1 = 12 = (e−1)y0). Treat
+  as fragile: in the core regime B ⊂ [h/2, h) it amounts to U1 ≤ e(e−1), which sits at the window-filling (postage-stamp)
+  constant.
+- **Core regime B ⊂ [h/2, h) (reduction, PROVED).** Here y0 = e and N4 = 0. With h = e + (P_lo − δ) + |H4b|, FREE-A ⟺
+  h ≤ e² − (e−3)δ + 3Ω. Window filling: [h, m+h) ∖ (A+m) ⊂ 2B ∪ 3B and 3B ≥ 3h/2, so |2B ∩ [h, 3h/2)| ≥ h/2 − (e′ − δ′),
+  where e′ = |(A+m) ∩ [h, 3h/2)| ≤ |A ∩ [0, 3h/2 − m)| ≤ 1 (since m ≥ h and B ≥ h/2) and δ′ = |(A+m) ∩ [h,3h/2) ∩ 2B|.
+  Hence h ≤ e(e−1) + 2(e′ − δ′) ≤ e(e−1) + 2. So FREE-A holds in the core regime whenever δ = 0 (then e² ≥ e(e−1) + 2 for
+  e ≥ 2). The case δ ≥ 1 remains (needs (e−3)δ ≤ e − 2 + 3Ω + window slack).

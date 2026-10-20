@@ -3263,3 +3263,9 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   that h-fold sums collide, and that high residues force carries. This is the CHAIN-CONJ / window-filling ingredient
   in another form. Direction confirmed: attack CHAIN-CONJ (P18, depth four) as additive combinatorics, starting with
   all-A and 2h ≤ m.
+- **All-A P18 depth four: collisions never hurt (data).** Exact identity W = E1 + E2 + E3 − U1 − (e−4)δ + 4ν + 4Ω. The
+  part without the collision slacks E1, E3 is never negative. It equals FREE-A, 4h + eδ ≤ (e+3)y0 + 3U1, a purely
+  additive statement whose extremal sets are collision-free: the B_3 / near-simplex regime. This is the quantitative
+  coupling the advisor asked for, in the all-A case. Core regime B ⊂ [h/2, h): FREE-A reduces to
+  h ≤ e² − (e−3)δ + 3Ω, and window filling gives h ≤ e(e−1) + 2. So δ = 0 is proved there and δ ≥ 1 is open.
+  The stronger FA2 is tight already at m = 15 and is set aside as fragile.
