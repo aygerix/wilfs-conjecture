@@ -3243,3 +3243,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   said −2). Direction: (i) CHAIN-CONJ with the coverage conditions as the achievable theorem, coupling the deficits
   U1, P_hi and δ jointly; (ii) for full Wilf, a quantitative reason, valid at every depth, why face-sharing cannot
   outrun compensation. No more equivalent charging identities.
+
+## 2026-10-20 (morning, later) — level-wise Wilf is false; order grading
+- Exact identity W = Σ_J M_J + M_top, with M_J the Kunz-level condensed-Macaulay slacks. Its partial sums (BANDWILF)
+  survive the whole genus ≤ 26 census, but annealing kills them at once: ⟨46,72,73,76⟩, e = 4, Φ_4 = −4. Continuous
+  interpolations through Wilf at N = c die too (⟨39,59,61,64,68⟩). This answers part of the advisor's question
+  negatively and precisely. Payments must be coupled across levels; no Kunz-level prefix inequality holds.
+- Why: generators near αm make j-fold sums land at level ≈ αj, so the level clock skips. The natural clock is
+  factorization length (order). Ap graded by order is an O-sequence (Hilbert function of k[[S]]/(t^m)), it stays one
+  under any value truncation, and Macaulay holds with no CM hypothesis.
+- LEN (proved): e·|S ∩ [0,N)| ≥ Σ_{window} L(z). At N = c this is order-Wilf, (e−1)ℓ ≥ Σ_w L(w), so W = LENslack −
+  Σ(k − L) exactly. Two-generator semigroups show proportional excess is free. The open problem is now: excess at
+  low order must be paid by order slack.
+- Next: test whether value-truncated order-Macaulay (all thresholds tm, tm + h) plus level/residue bookkeeping
+  implies depth-four Wilf, as an LP over the counts n[order][level][residue side]. A dual certificate would be a
+  coupled payment proof. If the LP fails, its optimum shows the missing arithmetic constraint.

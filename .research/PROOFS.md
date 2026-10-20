@@ -3348,3 +3348,35 @@ T_l = {i : k_i ≤ l}; P′ = minimal generators other than m, |P′| = e − 1.
   negative (to −21 in P18 at depth four, E303), so TB2 alone does not give Wilf. In P18 it is much weaker than TCM
   (4·n_4 against (e−2)·x). It is a structural inequality valid at every depth, and its proof is open.
 - Data: E305.
+
+## Level-wise Wilf families (FALSE) and the order grading (LEN, order-Wilf: PROVED)
+Notation: Kunz level k(w) = ⌊w/m⌋ on Ap = Ap(S, m); L(w) = longest factorization length of w (the order of t^w in
+k[[S]]/(t^m)); ε(w) = k(w) − L(w) ≥ 0, the excess (carries plus generator excess); H_J = |S ∩ [Jm, (J+1)m)| = #{w : k(w) ≤ J}.
+- **Exact level identity (PROVED, every S).** With q = ⌈c/m⌉, x = |S ∩ [(q−1)m, c)|, n_q = h − x:
+  W = Σ_{J=0}^{q−2} M_J + M_top, where M_J = (e−1)H_J − (J+1)(H_{J+1} − H_J) and M_top = (e−1)x − q·n_q.
+  Each M_J is a condensed-Macaulay slack in the Kunz-level grading. Partial sums Φ_J = e·|S ∩ [0, Jm)| − J·H_J.
+- **BANDWILF (Φ_J ≥ 0 for all J ≤ q) — FALSE.** It survives the genus ≤ 26 census (5.7M instances), but:
+  ⟨14,22,23⟩ (e = 3): Φ_4 = 39 − 40 = −1; ⟨27,68,70⟩ (e = 3): Φ_7 = −1; ⟨46,72,73,76⟩ (e = 4, q = 9, W = 232): Φ_4 = −4;
+  also ⟨48,74,77,79⟩ and ⟨56,85,89,92⟩ (e = 4, Φ_4 = −4). Verified by independent pure-Python code (E308).
+  Its continuous interpolations GBW (m·e·|S ∩ [0,N)| ≥ N·|S ∩ [N,N+m)|) and GBW″ (e·|S ∩ [0,N)| ≥ Σ_{z ∈ S∩[N,N+m)} ⌊z/m⌋,
+  which is Wilf at N = c) are also FALSE: GBW″ fails at ⟨39,59,61,64,68⟩ (e = 5), N = 98, 35 < 41.
+  - Mechanism: with generators clustered near αm (α ∈ (1, 2)), j-fold sums land at level ≈ αj, so levels are skipped
+    (⟨46,72,73,76⟩ has H = 1, 4, 4, 10, 20, 20, 33, …). The level slacks M_J swing (0, 12, −6, −10, 60, −18, 71, 63) and
+    are repaid only at later levels. **Any proof must couple payments across levels; no per-level or prefix inequality
+    in the Kunz grading is true.** The Kunz level is the wrong clock.
+- **Order O-sequence (classical; re-derived).** h(j) = #{w ∈ Ap : L(w) = j} is the Hilbert function of
+  gr_𝔪(k[[S]]/(t^m)), a standard graded algebra with h(1) = e − 1. So Macaulay and condensed Macaulay hold with no
+  Cohen–Macaulay hypothesis. Truncated form: for every value threshold T, h_T(j) = #{w ∈ Ap : w < T, L(w) = j} is an
+  O-sequence. ((t^w : w ≥ T) is an ideal, and orders below T are unchanged in the quotient, since everything is graded
+  by value.)
+  - Consequence (condensed Macaulay, induction on J): Σ_w L(w) ≤ (1 − 1/e)(D+1)m, where D = max L.
+- **Lemma LEN (PROVED, every S, every N ≥ 0).** e·|S ∩ [0, N)| ≥ Σ_{z ∈ S ∩ [N, N+m)} L(z).
+  - Proof: fix a longest factorization f of each window element z. The triples (z, p, t), with 1 ≤ t ≤ f_p(z), map to
+    the pairs (p, z − tp) ∈ P × (S ∩ [0, N)) (z − tp ∈ S, and z − p < N because p ≥ m). This map is injective: z ≡ s mod p,
+    and the window has length m ≤ p. ∎
+  - At N = c: **order-Wilf, (e−1)ℓ ≥ Σ_{w∈Ap} L(w).** Hence the exact split W = [(e−1)ℓ − Σ_w L(w)] − Σ_w ε(w):
+    a proved-nonnegative order slack minus the total excess. Wilf ⟺ Σε ≤ the LEN slack.
+  - Two-generator semigroups have W = 0 at every dilation b/a, so excess is benign when it is proportional to order.
+    The harm is excess at low order relative to the top.
+- Failed split (E309): order-Wilf at the virtual conductor c_0 = max(L(w)m + r(w)) − m + 1, together with
+  e·Σε ≤ (e−1)(c − c_0). The first fails in 569 S and the second in 237,480 (genus ≤ 24), never both. Wrong reference.
