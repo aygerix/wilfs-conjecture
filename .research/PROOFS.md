@@ -5006,3 +5006,65 @@ W(S) ≥ P̂ + (1/m)Σ_{y∈Max(M̂), φ(y)<c} (|y| + N)·ε(y) ≥ 0.
   - the shape-only version (residues replaced by the rearrangement bound) fails for n = 3 by ≤ 4%;
   - RISE (dropping Σ(n − |I(β)|)ε) fails;
   - λ = 0 plus P̂′ ≥ Nρ fails (PSHIFT, 41/2,165).
+
+### SUPP-WILF: W ≥ Dep − κ₀ + N ≥ Dep − Σ_x(|supp x| − 1)⁺ for every S — PROVED 2026-10-21 (paper; elementary)
+**Setting.**
+- S is a numerical semigroup with multiplicity m and minimal generators m < g_1 < … < g_d (d = e − 1 ≥ 1).
+- c is the conductor, ℓ = c − g, W = e·ℓ − c, M′ = m(m−1)/2.
+- A *factorization tile* is a down-set D ⊂ ℕ^d such that x ↦ w(x) := x·g is a bijection D → Ap(S,m). The lex-least
+  factorizations give one.
+- δ_b = g_b mod m. ⟨u⟩ denotes u mod m ∈ [0, m).
+- For x ∈ D and a direction b:
+  - k_b(x) = max{k : x + k e_b ∈ D} and t_b(x) = x + k_b(x) e_b (the b-column top above x);
+  - A = {x : x + e_b ∉ D for all b} (maximal cells);
+  - Dep = #{(x,b) : t_b(x) ∉ A}.
+- Conductor labels: r(x) = ⟨w(x) − c⟩.
+
+**Theorem.** W ≥ Dep − κ₀ + N, where
+    κ₀ = Σ_{x∈D} ⌊ Σ_b ⟨x_b δ_b⟩ / m ⌋,      N = #{(x,b) : k_b(x) ≥ 1, r(x) > r(t_b(x))}.
+Corollaries:
+- (i) W ≥ Dep − κ₀.
+- (ii) Since ⌊Σ_b⟨x_bδ_b⟩/m⌋ ≤ |supp x| − 1 for x ≠ 0: **W ≥ Dep − Σ_{x∈D}(|supp x| − 1)⁺**.
+- (iii) **Wilf holds whenever Σ_{x∈D}(|supp x| − 1)⁺ ≤ Dep** for some factorization tile. This is a condition on the
+  shape of D only. More generally, Wilf holds whenever κ₀ ≤ Dep, which uses only D and the residues δ.
+
+**Proof.**
+1. *Selmer and Euler.*
+   - Since w mod m is a bijection onto ℤ/m, Σ_D w = mg + M′.
+   - On a b-column of length L, k_b takes the values L−1, …, 0, so Σ_x k_b(x) = Σ_x x_b.
+   - Hence Σ_{(x,b)} w(t_b x) = dΣ_D w + Σ_b g_b Σ_x x_b = (d+1)Σ_D w.
+   - Therefore mW = m(dc − (d+1)g) = (d+1)M′ − Σ_{(x,b)} (w(t_b x) − c). (This is CH′.)
+2. *Sharp top bounds.*
+   - Every Apéry element is ≤ c + m − 1, and w(t) − c ≡ r(t). So w(t) − c ≤ r(t).
+   - If t ∉ A, then w(t) + g_a ∈ Ap for some a. So w(t) − c ≤ m − 1 − g_a < 0, hence w(t) − c ≤ r(t) − m.
+   - Thus mW ≥ (d+1)M′ + m·Dep − Σ_{(x,b)} r(t_b x).
+3. *Inversions.*
+   - r(t_b x) − r(x) ∈ (−m, m) and ≡ k_b(x)δ_b. So r(t_b x) − r(x) = ⟨k_b(x)δ_b⟩ − m·[r(x) > r(t_b x)].
+   - Summing, with Σ_{(x,b)} r(x) = dM′: Σ_{(x,b)} r(t_b x) = dM′ + Σ_{(x,b)}⟨k_b(x)δ_b⟩ − mN.
+4. *Column reflection and the axis overflow.*
+   - As in step 1, Σ_x ⟨k_b(x)δ_b⟩ = Σ_x ⟨x_bδ_b⟩.
+   - Σ_b⟨x_bδ_b⟩ ≡ x·δ ≡ w(x), and x ↦ ⟨x·δ⟩ is a bijection onto ℤ/m. So Σ_{(x,b)}⟨x_bδ_b⟩ = M′ + mκ₀.
+5. Combining: Σ_{(x,b)} r(t_b x) = (d+1)M′ + m(κ₀ − N), so mW ≥ m(Dep − κ₀ + N). ∎
+
+**Remarks.**
+- N and κ₀ are the two sides of the Tile-CL inversion identity V = N − κ₀ (NOTEBOOK night 11). The new ingredients are:
+  - step 2's Dep term (DEP-CARRY);
+  - the reading of κ₀ as an axis-overflow count, which makes the trivial bound N ≥ 0 usable.
+- Checks:
+  - wsupp.py asserts W ≥ Dep − κ₀ + N ≥ Dep − Σsupp with a brute-force W on 3,000 random S;
+  - Σsupp ≤ Dep held for all of them (2,240 in the open regime 3e < m, c > 4m), minimum (Dep − Σsupp)/m = 0.118 in
+    the open regime;
+  - all 6,000 random tiles (δ and −δ) satisfy it.
+- The criterion fails only for simplex-like tiles (near-perfect B_h bases). The CR-TILE counterexample
+  ⟨19,39,41,50,52,53⟩ has Dep = 4 < Σsupp = 8; its mirror ⟨19,35,37,43,45,61⟩ has κ₀ = 5 > Dep = 4. There N ≥ 6 at
+  every phase, and Tile-CL holds.
+- Every known Tile-CL failure satisfies Dep ≥ Σsupp:
+  - E47: 20 ≥ 3;
+  - the E244 −3 tile: 183 ≥ 22;
+  - ⟨70,73,104,110,223,299⟩: 189 ≥ 56;
+  - ⟨33,53,60,67,69,88⟩: 99 ≥ 26;
+  - ⟨27,43,56,68,72,87,119⟩: 50 ≥ 11.
+- Residual for Wilf after SUPP-WILF: S all of whose factorization tiles have κ₀ > Dep, i.e. a simplex-like Apéry set.
+  - CONJ TCL-DICHOTOMY: Tile-CL holds whenever Dep < Σsupp. It would close DEP-ALL, and with it Wilf.
+- Novelty: web searches (2026-10-21) found no comparable support or column-top criterion. Zhai 1111.2779 has CH′ in crude
+  form; Marashdeh 2608.12531 has a different identity.

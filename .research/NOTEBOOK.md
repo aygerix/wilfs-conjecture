@@ -3872,3 +3872,18 @@ Consequences:
   each incidence. It keeps δ only through the window sizes, and it is a min-cost assignment problem, so it has an LP dual.
 - Evidence: 0 failures on 2,000 random S (crdelta.py). Slack 2, 4, 12, 5 on the four hard tiles above (true-label
   slack 5, 5, 18, 6).
+
+### SUPP-WILF (PROVED): W ≥ Dep − κ₀ + N ≥ Dep − Σ_x(|supp x| − 1)⁺ — the trivial half of DEP-ALL is a Wilf theorem
+- Since V = N − κ₀ ≥ −κ₀ ≥ −Σsupp, DEP-CARRY holds whenever Dep ≥ Σsupp := Σ_x(|supp x| − 1)⁺. With the DEP
+  inequality this is a direct lower bound on W. Full statement and proof: PROOFS "SUPP-WILF".
+- Coverage: 3,000 random S (brute-force W asserted) all satisfy Σsupp ≤ Dep; in the open regime the minimum of
+  (Dep − Σsupp)/m is 0.118.
+- Every known Tile-CL failure lies in this trivial regime: E47, the E244 −3 tile, and the new d = 5, 6 failures
+  (tcldef.py: ⟨70,73,104,110,223,299⟩ min V = −2, Dep = 189, Σsupp = 56; ⟨33,53,60,67,69,88⟩ −1, 99, 26;
+  ⟨27,43,56,68,72,87,119⟩ −1, 50, 11).
+  - New: Tile-CL fails already at d = 5 in the open regime.
+  - The largest fraction of Dep ever used by a Tile-CL deficit is about 2%.
+- Residual: the simplex-like regime Dep < Σsupp (κ₀ > Dep), e.g. the near-B₂ tile in ℕ⁵, where Tile-CL holds.
+  - **CONJ TCL-DICHOTOMY**: Dep < Σsupp ⇒ min_σ V ≥ 0.
+  - It is at least as strong as DEP-ALL on that regime.
+  - Gate: annealer tcldich.py running (fejer, logs tdx_*).

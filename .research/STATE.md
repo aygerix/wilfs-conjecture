@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-21 night, latest: CR-TILE FALSE; DEP-CARRY ⟺ N(σ) + Dep ≥ κ₀ = Σ axis overflows (A0000000))
+# STATE.md — handoff (updated 2026-10-21 night, latest: SUPP-WILF PROVED — W ≥ Dep − Σ(|supp|−1)⁺; residual = simplex-like tiles (A00000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,15 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000) **NEWEST: SUPP-WILF PROVED (PROOFS "SUPP-WILF").** For every S and every factorization tile D:
+          W ≥ Dep − κ₀ + N ≥ Dep − Σ_{x∈D}(|supp x| − 1)⁺. So Wilf holds whenever Σsupp ≤ Dep, a condition on
+          the shape of D only. This covers all 3,000 random S tested and every known Tile-CL failure.
+          - Residual: simplex-like Apéry sets (Dep < Σsupp), e.g. near-perfect B_h bases.
+          - NEXT:
+            (1) gate TCL-DICHOTOMY (Tile-CL whenever Dep < Σsupp) with annealers (tcldich.py ann);
+            (2) describe the structure of the regime Dep < Σsupp (few non-maximal tops, high support);
+            (3) prove Tile-CL or DEP-ALL there, using inversions N (at least 6 at every phase on the near-B₂ mirror);
+            (4) Lean queue: SUPP-WILF. It is short: CH′, the sharp bounds, the inversion identity, column reflection.
       (A0000000) **NEWEST (2026-10-21, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
           (NOTEBOOK "CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form"; FAILED Pattern C; E349.)
           - CR-TILE is FALSE: ⟨19,39,41,50,52,53⟩ (c = 88, 3e < m, c > 4m), a height-2 near-B₂ tile in ℕ⁵, slack −4. That

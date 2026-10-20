@@ -857,3 +857,8 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   2608.12531 (item 10), Delgado–Kumar 2512.23891 (max primitive ≤ 60), DKM 2501.04417, Yang–Zhang preprints.org
   202604.0551, Wilf and Macaulay (EMS). All already listed. No statement of a rearrangement bound over column-top weights
   of a factorization tile, or of the sharp non-maximal-top bound w − c ≤ r − m, was found.
+- 2026-10-21 (night, latest) search before recording SUPP-WILF (W ≥ Dep − κ₀ + N ≥ Dep − Σ(|supp|−1)⁺): two web searches
+  (extended + standard) on Apéry-set factorization support / column-top / Kunz-coordinate sufficient conditions. Hits:
+  1610.08726, 1710.09245, 1909.03699, 1111.1863, 1903.04342, 2608.12531 (#35), 1703.01761, PJM 2018 (Dhayni),
+  Math. Z. 2023, 1710.03623, 2012.01358, preprints.org 202604.0551. All already listed; none states a support or
+  non-maximal-top criterion.
