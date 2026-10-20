@@ -3462,3 +3462,21 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - If S2 (or S3 = with the slots of 0) is proved, Wilf for P18 depth four follows with no matching argument: π handles
     pairs inside G, and the count does the rest.
   - The (★★) failure is explained: it counted only overflow-dead tokens, not collision-dead ones.
+
+## 2026-10-20 (night) — S3 dies at large e; a universal level-three inequality; the reduction to STAR
+- I expected the slot-count route (S2/S3/TFZ) to fail when m ≫ k², because T_c ≤ m while Z + G ≤ 4k + 3k². The
+  construction sym(t, t) confirms it: S3 = −5889 at e = 237. The DEAD margin there is millions, so the failure is in the
+  reduction, not in DEAD or Wilf.
+- New viewpoint: the layer recursion S_{j+1} = S_j ∪ (S_j + B)_{<m} ∪ ((S_{j−1} + B)_{≥m} − m) is exact for P18.
+  Wilf at depth four becomes W = Q3 + Q4.
+  - Q3 involves only levels ≤ 3. It is a sharp universal inequality, PROVED by a deficit count: degenerate triples are
+    charged to pairs, two units each.
+  - Q4 = k·L3 − 4·d4 carries the depth-four difficulty.
+- Refining the Q3 proof gives the exact split W = STAR + (nonnegative level-three slack). So STAR ⟹ Wilf for P18 depth
+  four. STAR is about level-four residues only, and their parents (N3 ∩ [0, h) unwrapped, U2 wrapped). 0 failures; tight
+  only at tiny h and small k; huge margin in the k³ regime.
+- Next: prove STAR. The carried triples have only 3 parents. The fourth unit must come from waste:
+  - outgoing incidences of S_2 ∩ [0, h);
+  - wrapped U2-incidences into S_3;
+  - outgoing wraps of N3 ∩ [0, h).
+  Local accounting fails (LOC −9), so a global count is needed.

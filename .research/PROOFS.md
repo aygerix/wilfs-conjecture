@@ -3996,3 +3996,67 @@ Setting as in "Power tokens".
     suffice.
   - Proof idea: inject carried elements and full rays into B × B. Full rays map to themselves and carried pairs to
     their π pair (non-full, injective). Open: carried triples.
+- **S2, S3, TF, TFZ are FALSE for large e (2026-10-20; E325).** Construction sym(t, u):
+  - D = [0, t) ∪ t·[0, t) ∪ t²·[0, u), with 2n = u·t².
+  - X = D ∪ (2n − 1 − D), B = n + X, m = 4n.
+  - Fillers: add the uncovered residues until depth ≤ 4. None were needed for t = u ≤ 50.
+  - Then B ⊂ [m/4, 3m/4), so 4B ∩ [0, m) = ∅ and every level-four residue is a carried triple. T_c grows like m ≈ k³/108,
+    while Z + G ≤ 4k + 3k².
+  - t = u = 40: m = 128000, e = 237, h = 95959, T_c = 91983, Z + G = 86094, so S3 = −5889 and S2 = −6346.
+    DEAD margin 2,598,811; W = 4,205,531.
+  - t = u = 50: m = 250000, e = 297, S3 = −46342.
+  - TFZ already fails at t = 30 (m = 54000): −8230.
+  - Consequence: no argument using only the slots of 0 and of the generators can prove DEAD (or Wilf) at P18 depth four.
+    Slots of higher elements, or a different mechanism, are required in the regime m ≫ k².
+
+## P18 depth four: layer form, the universal inequality Q3, and the reduction to STAR (lead, 2026-10-20; checks E325)
+
+Setting: S = ⟨m, m + B⟩, B ⊂ [1, m − 1], |B| = k, e = k + 1, A = {0} ∪ B.
+- Layers: S_j = {r ∈ [0, m) : jm + r ∈ S}.
+  - Exact recursion (every nonzero element of S minus some generator lies in S):
+    S_{j+1} = S_j ∪ (S_j + B)_{<m} ∪ ((S_{j−1} + B)_{≥m} − m).
+  - So S_1 = A, S_2 = (A + A) ∩ [0, m), and S_3 = S_2 ∪ (S_2 + B)_{<m} ∪ ((A + B)_{≥m} − m).
+  - The level of residue r is min{j : r ∈ S_j}.
+- Depth four (3m < c ≤ 4m) means S_4 = [0, m) ≠ S_3. Write h = c − 3m. Then h − 1 = max([0, m) ∖ S_3), and [h, m) ⊂ S_3.
+- Notation:
+  - U2 = S_2 ∖ S_1, N3 = S_3 ∖ S_2, D = [0, m) ∖ S_3 ⊂ [0, h).
+  - d_j = |S_j ∖ S_{j−1}|, so d2 = |U2|, d3 = |N3|, d4 = |D|.
+  - L3 = |S_3 ∩ [0, h)| = h − d4.
+  - P_u, P_w = numbers of multisets {x, y} ⊂ B with x + y < m, resp. ≥ m. P_u + P_w = k(k+1)/2.
+- **Identity (PROVED).**
+  - ℓ = |S_0| + |S_1| + |S_2| + L3 = 2k + 3 + d2 + L3, and c = 3m + h with m = 1 + k + d2 + d3 + d4.
+  - Hence W = Q3 + Q4, where Q3 = 2k² + 2k + (k − 2)·d2 − 3·d3 and Q4 = k·L3 − 4·d4.
+  - Equivalently, Wilf ⟺ (k + 1)(|S_0| + |S_1| + |S_2| + |S_3|) + k·h ≥ (k + 4)·m. At depth q in general, P18 Wilf ⟺
+    (k+1)·Σ_{j<q} |S_j| + k·h ≥ (k + q)·m.
+- **Theorem Q3 (PROVED; no depth hypothesis; every B ⊂ [1, m−1]).** 3·d3 ≤ 2k(k+1) + (k − 2)·d2.
+  - Proof.
+    1. N3 = T ∪ R, where T = new unwrapped triples (3A ∩ [0, m)) ∖ S_2 and R = ((A + B)_{≥m} − m) ∖ S_2. Then |R| ≤ P_w.
+    2. For t ∈ T, write t = x + y + z with x, y, z ∈ B. A zero summand would put t in S_2. The three pair sums are < m.
+       They lie in U2: if x + y ∈ A, then t ∈ A + A.
+    3. Let P(t) be the set of pair sums of a chosen representation. Each s ∈ P(t) gives an incidence (s, t − s) ∈ U2 × B,
+       and incidences of different t are distinct. So Σ_t |P(t)| ≤ k·d2.
+    4. Choose a representation with distinct summands when one exists. Then 3 − |P(t)| is 0; or 1 for t = 2x + z
+       (x ≠ z), injectively to the ordered pair (x, z) with x + z < m; or 2 for t = 3x, injectively to x with 2x < m.
+       So Σ_t (3 − |P(t)|) ≤ 2·P_u.
+    5. Combining with d2 ≤ P_u: 3·d3 ≤ k·d2 + 2P_u + 3P_w = (k − 2)d2 + 2d2 + 2P_u + 3P_w ≤ (k − 2)d2 + 4P_u + 4P_w
+       = (k − 2)d2 + 2k(k+1). ∎
+  - Equality holds for free B (all sums distinct, no wrap). So Q3 is a sharp Plünnecke-type linear inequality.
+- **Corollary (PROVED).** P18 depth four with 4·d4 ≤ k·L3 (equivalently d4 ≤ k·h/(k + 4)) satisfies Wilf.
+  Q4 < 0 occurs: 44 of the 514 S with e = 4, and 127 of the 11,895 S with e = 5.
+- **Exact four-term split (PROVED).** W = G_T + G_R + G_4 + F, where:
+  - G_T = 4P_u − 2d2 + J_< − 3|T| ≥ 2(P_u − d2) + (2P_u − D1 − 2D0) + (J_< − Σ|P(t)|) ≥ 0;
+  - G_R = 4P_w − 3|N3 ∖ T| ≥ P_w;
+  - G_4 = J_≥ + k·|N3 ∩ [0, h)| − 4·d4;
+  - F = k(1 + |B ∩ [0, h)| + |U2 ∩ [0, h)|);
+  - J_≥ = #{(s, b) ∈ U2 × B : s + b ≥ m} and J_< = k·d2 − J_≥.
+- **Conjecture STAR (0 failures; E325).** STAR := P_w + J_≥ + k·L3 − 4·d4 ≥ 0, i.e. (k + 4)·d4 ≤ k·h + J_≥ + P_w.
+  - STAR is exactly the part of W that remains after the PROVED level-three slack: W = STAR + G_T + (G_R − P_w).
+  - So **STAR ⟹ Wilf for P18 depth four** (DKM Problem 1.8 at depth four).
+  - Why STAR is plausible: every level-four residue r < h lies in (N3 ∩ [0, h)) + B or in (U2 + B) − m. These are
+    exactly the incidences counted by k·L3 and J_≥.
+  - A wrapped-triple residue r + m = x + y + z has at most 3 such parents. So the deficit (≥ 1 per carried triple) must
+    be paid by wasted incidences (from S_2 ∩ [0, h), from N3 ∩ [0, h), wrapped U2-incidences into S_3) and by P_w.
+  - Local versions fail:
+    - RESs (only incidences that land in D, plus F and P_w): −2 at m = 13, B = {3, 4, 5}.
+    - LOC / LOC3 (local deficits against k(1 + a1) + P_w (+ W3)): −9 at m = 25, B = {1, 5, 6}.
+    - So every waste term is needed somewhere.
