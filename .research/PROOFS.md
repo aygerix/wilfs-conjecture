@@ -4154,3 +4154,24 @@ Wilf for 3e ≥ m (Eliahou).
     - STAR = 827 still holds there. Theorem A0 (a = 0 ⟹ W ≥ 1) is consistent with it.
   - Lesson: the last window can be almost empty (D = [1, h), h > e). Then the layer-three Macaulay slack Q3 (here 3132)
     pays the whole depth-four deficit. A "last-window" argument alone cannot prove depth-four Wilf; Q3 must be used.
+
+### Identity LAYER3-ALL and the all-depth corollary (lead, 2026-10-20; PROVED; checks E329)
+- **Identity (PROVED; every S with c > 3m).** W = Q3 + (e − 1)·L − G − 3·D4, where:
+  - Q3 = e·|S ∩ [0, 3m)| − 3·|S ∩ [3m, 4m)| ≥ 0 (Theorem LAYER3);
+  - L = |S ∩ [3m, c)|, G = #gaps in [3m, c);
+  - D4 = #{r : Kunz coordinate x_r ≥ 4} = m − s_3.
+  - Proof: W = e(s_0 + s_1 + s_2 + L) − c, c = 3m + L + G, e(s_0 + s_1 + s_2) = 3s_3 + Q3, s_3 = m − D4.
+- **Corollary LAYER3-W (all depths; PROVED).** If G + 3·D4 ≤ (e − 1)·L, then S satisfies Wilf. In words: Wilf holds
+  unless the tail [3m, c) is gap-heavy. At depth four this is (e + 3)d4 ≤ (e − 1)h.
+- **Census (genus ≤ 30, every depth ≥ 4, E329).** Every S with e ≥ 3 is covered by LAYER3-W, Eliahou's c ≤ 3m, or
+  Eliahou's 3e ≥ m, except 7 semigroups.
+  - All 7 have depth four and e = 4: ⟨13,15,16,19⟩, ⟨13,15,16,21⟩, ⟨13,15,18,19⟩, ⟨13,16,17,18⟩, ⟨13,16,17,19⟩,
+    ⟨14,16,17,19⟩, ⟨14,16,19,20⟩.
+  - Six of them have h ≤ e, so DEPTH4-EH covers them. ⟨13,16,17,19⟩ remains (W = 23).
+  - The only other uncovered S are e = 2 (⟨7,10⟩, ⟨7,11⟩; Sylvester).
+- So, structurally, a Wilf counterexample needs all of:
+  - c > 3m and 3e < m;
+  - a gap-heavy tail, G + 3·D4 > (e − 1)·|S ∩ [3m, c)|;
+  - near-tightness of LAYER3: Q3 < G + 3·D4 − (e − 1)L.
+  The last condition means the Macaulay-type layer-three bound is almost an equality, which happens only near "free"
+  (B_3-like) configurations of the layer-one generators.
