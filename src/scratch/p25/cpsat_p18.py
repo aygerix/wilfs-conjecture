@@ -5,7 +5,8 @@ Integer sumsets jA are boolean vectors (exact OR-of-AND encodings).  Targets:
   W   = e*l - 3m - h,  l = 1 + e + |2A n [0,m)| + |T3 n [0,h)|
   TB4 = e*y0 + E1 - h - 3*N4,  y0 = |3A_<h|, N4 = |(4A\3A)_<h|, E1 = e(e+1) - 2|2A|
 mode W / TB4: feasibility of target <= thr (default -1; INFEASIBLE = certified none at this (m, h));
-mode minW / minTB4: minimize the target.  unc=1 restricts to S not covered by h <= e, e(e+1) >= 2m, (e-1)^2 >= 2m, 3e >= m.
+mode minW / minTB4: minimize the target.  unc=1 restricts to S not covered by h <= e, e(e+1) >= 2m, (e-1)^2 >= 2m, 3e >= m; unc=2 restricts to a = 0 (B >= h);
+unc=3: a = 0 and h > e; unc=4: a = 0, h > e and e(e+1) < 2m (mode W/minW: any such S at all?).
 Every solution is re-verified independently (Dijkstra Apery set).
 usage: python cpsat_p18.py m mode hlo hhi unc timelimit workers [thr]"""
 import sys, time, heapq
@@ -62,7 +63,12 @@ def build(m, h, mode, unc, thr):
         obj = prod + esq + e - 2 * n2 - h - 3 * sum(n4)
     if mode.startswith("min"): M.Minimize(obj)
     else: M.Add(obj <= thr)
-    if unc:
+    if unc in (2, 3, 4):
+        for i in range(1, h): M.Add(x[i] == 0)
+        if unc >= 3: M.Add(e < h)
+        if unc == 4:
+            esq4 = M.NewIntVar(0, m * m + m, "esq4"); M.AddMultiplicationEquality(esq4, [e, e]); M.Add(esq4 + e < 2 * m)
+    if unc == 1:
         M.Add(e < h); esq2 = M.NewIntVar(0, m * m + m, "esq2"); M.AddMultiplicationEquality(esq2, [e, e])
         M.Add(esq2 + e < 2 * m); M.Add(3 * e < m)
         esq3 = M.NewIntVar(0, m * m, "esq3"); em1 = M.NewIntVar(1, m, "em1"); M.Add(em1 == e - 1); M.AddMultiplicationEquality(esq3, [em1, em1]); M.Add(esq3 < 2 * m)
