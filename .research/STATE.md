@@ -9,6 +9,8 @@ Frame:
   in e.
 Lines, in order of cost to decide:
 0c. **NEW (2026-10-19, latest): Wilf for c ≤ 3m + e (DEPTH4-EH, PROVED; from codex P13 Theorem A, lead-verified E292).**
+    - **LEAN (kernel-checked, standard axioms): c > 3m ⇒ e·ℓ ≥ 3m + e**, hence Wilf for 3m < c ≤ 3m + e
+      (lean/Wilf/DepthFour.lean, `wilf_of_conductor_le_three_mul_add_embDim`). Elementary proof in PROOFS.
     - At depth four, W = ρ + Λ − R + Z with K ≤ 1. Codex P13 is VERIFIED (hand + own code, genus ≤ 32).
     - Open: UF-RELAY R_A ≤ Λ + C_U + p_A closes c ≤ 4m. Codex P14 is RUNNING on it (log $SP/codex/p14_log.txt,
       waiter bxaonrulc, report src/scratch/gw/p14/P14_REPORT.md).

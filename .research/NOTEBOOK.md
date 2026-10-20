@@ -3076,7 +3076,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 ## 2026-10-19 (latest+++++++++++++) — depth four: Wilf for c ≤ 3m + e; the K-identity at every depth
 - Codex P13's Theorem A (K ≤ 1 at depth four, MF ⇒ K ≤ −1) has an immediate corollary: critical values are
   decomposable, so R ≤ m − 1 − d and W ≥ e − (c − 3m) + Λ + Z. **Wilf for c ≤ 3m + e** (PROOFS "DEPTH4-EH").
-  This is the first proved band above Eliahou's c ≤ 3m that is uniform in m and e. A depth-four counterexample needs
+  It is a band above Eliahou's c ≤ 3m, uniform in m and e (none found in the dated search). A depth-four counterexample needs
   c − 3m > e + Λ + Z.
 - The same count at any depth turns Wilf into Σ_{v decomposable}(K(v) − 1) ≤ Λ + (e − h), h = c − (q−1)m.
   GEN-EH drops the (e − h) term: Σ_dec(K − 1) ≤ Λ. It holds on all of genus ≤ 31, at every depth, although K reaches 4.

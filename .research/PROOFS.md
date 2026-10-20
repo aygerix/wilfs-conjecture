@@ -3029,6 +3029,17 @@ the d primitives have K = 0, so R ≤ m − 1 − d. Then W = ρ + Λ − R + Z 
 - Literature (dated search 2026-10-19, LITERATURE): no statement of Wilf for c ≤ 3m + e was found; Eliahou's q ≤ 3 is
   the nearest. Novelty UNVERIFIED beyond that search.
 - With Eliahou (3e ≥ m), every depth-four counterexample needs e < min(m/3, c − 3m).
+- **Elementary proof of the Wilf consequence (no Theorem A needed), KERNEL-CHECKED.** Statement proved: if c > 3m
+  (any depth), then **e·ℓ ≥ 3m + e**; hence Wilf for 3m < c ≤ 3m + e. Lean: `three_mul_add_embDim_le`,
+  `wilf_of_conductor_le_three_mul_add_embDim` (lean/Wilf/DepthFour.lean; axioms propext, Classical.choice, Quot.sound;
+  no sorry). Proof: λ(w) = ⌊(M−w)/m⌋, ℓ = Σ_{Ap} λ.
+  (1) Column: for p ∈ P', Σ_w ν_p(w)λ(w−p) ≤ ℓ + Σ_w ν_p(w)λ(w) (reindex w ↦ w−p on ν_p ≥ 1; ν_p(w) ≤ ν_p(w−p)+1).
+  (2) Pointwise: for a factorization f of w of length J, Σ_p ν_p(w)(λ(w−p) − λ(w)) ≥ Σ_q f_q(λ(w−q) − λ(w)).
+      J ≥ 3: every generator exceeds m, so each drop is ≥ 1. J ≤ 2: m⌊x/m⌋ + m − 1 ≥ x at x_q = M−w+q, with M ≥ 4m.
+      Result: λ(w) + L1(w) ≥ 3 + N(w), and ≥ 4 + N(w) for w ∈ {0} ∪ P'.
+  (3) Sum over Ap: ℓ + dℓ + ΣN ≥ 3m + (d+1) + ΣN. ∎  Only M ≥ 4m is used, so the bound holds at every depth q ≥ 4;
+  it is the q = 4 case of GEN-EH (e·ℓ ≥ (q−1)m + e). The same scheme gives, at depth q, only
+  λ(w) + L1(w) − N(w) ≥ max(λ(w) + J, q + 1 − J), which is short of q − 1 for 3 ≤ J ≤ q − 2.
 
 ### Conjecture GEN-EH (lead, 2026-10-19) — CONJ; 0 failures at genus ≤ 26 (E293)
 For every S with q = ⌈c/m⌉ ≥ 2: W(S) ≥ e − (c − (q−1)m). Equivalently Σ_v K(v)⁺ ≤ (m − 1 − d) + Λ + Z. It would give
