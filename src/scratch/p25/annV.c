@@ -3,6 +3,8 @@
  * Q = Dset u Pset_hi.  mode 0: min V; mode 1: min V over S not covered by (h<=e, e(e+1)>=2m, (e-1)^2>=2m, 3e>=m);
  * mode 2: min (V - E1) ; mode 3: min T + 3 delta_hi - P_hi ; mode 4: min W (sanity);
  * mode 5: min TB4 = T + E1 ; mode 6: min SIG1 = sigma - P_hi, sigma = 3|Q+A| - (e+2)|Q| + E3f ; mode 7: TB4 on uncovered S only.
+ * mode 8: min REDA = T + E1 + (OP - P_hi) + 2 delta + (e-1-a)(P_lo - delta) + 3 delta_hi ; mode 9: REDA on uncovered S only;
+ * mode 10: min W on uncovered S only.
  * usage: ./annV mode seed mlo mhi kmin kmax iters restarts */
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,12 +43,16 @@ static double evalS(St *s){
   for (int s = m + h; s < L; s++) tau += X3[s];
   for (int s = 0; s < L; s++) nQA += QA[s];
   long long extra = tau + omega - nQA, T = (long long)e * y0 - 3 * N4 - h;
+  long long OP = 0; int Plo = 0, a = 0; for (int i = 0; i < k; i++){ if (B[i] < h) a++; for (int j = 0; j < k; j++) if (B[i] + B[j] >= m + h) OP++; }
+  for (int s2 = m; s2 < m + h; s2++) Plo += X2[s2];
+  long long REDA = T + E1 + (OP - Phi) + 2 * delta + (long long)(e - 1 - a) * (Plo - delta) + 3 * dhi;
   long long V = E1 + T + 2 * delta - Phi + 3 * dhi + 3 * extra, W = (long long)e * (c - g) - c;
   long long E3f = (long long)(e + 2) * n2 - 3LL * n3, sigma = 3LL * nQA - (long long)(e + 2) * (delta + Phi) + E3f;
   int known = (h <= e) || ((long long)e * (e + 1) >= 2 * m) || ((long long)(e - 1) * (e - 1) >= 2 * m) || (3 * e >= m);
-  info[0] = h; info[1] = e; info[2] = W; info[3] = V; info[4] = T; info[5] = delta; info[6] = Phi; info[7] = dhi; info[8] = extra; info[9] = E1; info[10] = y0; info[11] = N4; info[12] = known; info[13] = sigma;
+  info[0] = h; info[1] = e; info[2] = W; info[3] = V; info[4] = T; info[5] = delta; info[6] = Phi; info[7] = dhi; info[8] = extra; info[9] = E1; info[10] = y0; info[11] = N4; info[12] = known; info[13] = sigma; info[14] = REDA; info[15] = a;
   switch (mode){ case 0: return V; case 1: return known ? 1e9 : V; case 2: return V - E1; case 3: return T + 3 * dhi - Phi;
-    case 5: return T + E1; case 6: return sigma - Phi; case 7: return known ? 1e9 : T + E1; default: return W; }
+    case 5: return T + E1; case 6: return sigma - Phi; case 7: return known ? 1e9 : T + E1;
+    case 8: return REDA; case 9: return known ? 1e9 : REDA; case 10: return known ? 1e9 : W; default: return W; }
 }
 int main(int argc, char **argv){
   mode = atoi(argv[1]); srand(atoi(argv[2])); int mlo = atoi(argv[3]), mhi = atoi(argv[4]), kmin = atoi(argv[5]), kmax = atoi(argv[6]); long iters = atol(argv[7]); int R = atoi(argv[8]);
@@ -70,7 +76,7 @@ int main(int argc, char **argv){
       double g2 = evalS(&t); if (g2 >= 1e9) continue;
       if (g2 <= f || urand() < exp((f - g2) / T)){ s = t; f = g2; }
       if (f < best){ best = f; evalS(&s);
-        printf("mode %d best %.0f m=%d e=%lld h=%lld W=%lld V=%lld T=%lld delta=%lld Phi=%lld dhi=%lld extra=%lld E1=%lld y0=%lld N4=%lld known=%lld sigma=%lld B=", mode, best, s.m, info[1], info[0], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12], info[13]);
+        printf("mode %d best %.0f m=%d e=%lld h=%lld W=%lld V=%lld T=%lld delta=%lld Phi=%lld dhi=%lld extra=%lld E1=%lld y0=%lld N4=%lld known=%lld sigma=%lld REDA=%lld a=%lld B=", mode, best, s.m, info[1], info[0], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12], info[13], info[14], info[15]);
         int tmp[64]; memcpy(tmp, s.B, sizeof(int) * s.k); for (int a = 0; a < s.k; a++) for (int b2 = a + 1; b2 < s.k; b2++) if (tmp[b2] < tmp[a]){ int x = tmp[a]; tmp[a] = tmp[b2]; tmp[b2] = x; }
         for (int a = 0; a < s.k; a++) printf("%d,", tmp[a]); printf("\n"); fflush(stdout); }
       T *= 0.99995; if (T < 0.05) T = 0.05;

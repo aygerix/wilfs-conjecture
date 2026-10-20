@@ -3334,3 +3334,37 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - a ≥ 1. Split A = A_s ⊔ B_h (below / at least h). For 3h ≤ m the same chain reduces W ≥ 0 to a small-part
     inequality about A_s plus (2 − a)δ.
   - Combine it with the CORE4 window [h, 3h′) when A_s is core-heavy.
+
+## 2026-10-20 (late night) — RED-A for all a; the small part; where additive-basis efficiency enters
+- **RED-A (proved).** The δ-penalty disappears for every a. A token (s, u) with s ∈ Dset and u small is either
+  overflow, unused, or a rep token of a window 3-sum v = s + u with v − m ∈ 4A, which 3ω pays (≤ 3 tokens per v).
+  So W ≥ T + E1 + (OP − P_hi) + 2δ + (e−1−a)(P_lo − δ) + 3δ_hi, and **TB4 alone ⟹ P18 depth-four Wilf.**
+- **Third regime (3h ≤ m), proved chain:** W ≥ SP0 + (β − β1)(y0 − 1) + 2δ, with SP0 = (a+1)y0 − 3N4 − t + E1.
+  - SP0 is a statement about A_s = A ∩ [0, h) alone. Exhaustively (src/scratch/p27/sp0.c) SP0_s ≥ 2 for a = 2
+    (h ≤ 120) and ≥ 0 for a = 3 (h ≤ 70).
+  - It is NEGATIVE from a = 4: −3 at U = {22,23,27,29}, h = 44 (B_3-like cores in [h/2, 2h/3)). It is bounded below
+    by (a+1)² − C(a+1,2) − C(a+2,3) ≈ −a³/6.
+  - a = 1: SP0 ≥ 2 by a four-case check on u ∈ A_s. So **a = 1 in the third regime is proved** (W ≥ 2).
+- Adversarial constructions (b3core.py): a B_3 core plus greedily added high elements gives real depth-four S, but
+  with e = 26–59 and huge W. B_3 cores are sparse, so they force many high elements.
+- **Heuristic (NOT proved) — the additive-basis obstruction.** Model configurations show what a proof for unbounded e
+  must pay for.
+  - (i) An all-A carried near-simplex: 3B fills the window [m, m+h) with κ collisions. Then
+    W ≈ ρ + 4κ − C(k+1,3), so W ≥ 0 needs κ ≳ C(k+2,3)/4, i.e. 3-fold covering efficiency ≤ 3/4.
+  - (ii) A dense core U = h/2 + D, with D a thin 3-basis, plus high elements whose pair sums form a restricted 2-basis
+    of [m+h, m+3h/2).
+    - TB4 fails once the 2-basis efficiency exceeds 2/3.
+    - The RED-A residual fails once it exceeds 0.8.
+    - In both cases W itself stays positive through the overflow tokens R (pairs x + u < m with x + u + x′ ≥ L),
+      dropped in RED-A, and the 3-sum collision slack G = E3_L − OVF_L.
+  - Literature check (2026-10-20, web): no upper bound for the 3-stamp postage problem n(3,k) below the trivial
+    ~k³/6 was found (Rohrbach's bound; recent work, e.g. arXiv 2507.23627, treats many stamps).
+  - So **TB4 and the RED-A residual are probably FALSE for very large e**, and a universal proof must keep the full
+    overflow OVF_L and the collision slack G. The natural robust target is TOV (all of OVF_L) or W itself.
+  - Small k is safe in practice. The best restricted 3-bases found have efficiency 0.80, 0.71, 0.61, 0.58
+    (k = 4..7, nearsimp.c), and the semigroups built on them have e·ℓ/c ≥ 1.38.
+- Next:
+  - Make (ii) concrete: build an explicit real S with TB4 < 0 (this would refute TB4 and settle that TB4 cannot be
+    the route).
+  - Prove the a ≤ 3 third-regime case (SP0 ≥ 0 for a = 2, 3 by a finite order-type case analysis).
+  - Formulate the exact additive lemma that, with (★L) + TOK3, closes the near-basis regimes.

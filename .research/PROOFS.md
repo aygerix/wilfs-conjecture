@@ -3597,3 +3597,31 @@ Setting: S = ⟨m, m + B⟩, B ⊂ [1, m−1], 3m < c = 3m + h ≤ 4m, A = {0} �
   "h > e ⇒ Yang–Zhang". With RED-A2, the remaining P18 depth-four cases all have a ≥ 1, and for a ∈ {1, 2} Wilf
   follows from TB4 alone.
 - Lean: good candidate (elementary; needs the (★L) bookkeeping and the token lemma).
+
+## Proposition RED-A (P18 depth four, every a) — PROVED 2026-10-20 (strengthens RED-A2; checks E318)
+**W ≥ (T + E1) + (OP − P_hi) + 2δ + (e−1−a)(P_lo − δ) + 3δ_hi.** Every bracket except T + E1 is ≥ 0.
+So **Conjecture TB4 alone implies P18 depth-four Wilf** (SIG1 is no longer needed, for any a).
+- Proof. Start from (★L): W = E1 + E3_L + T − P_hi − eδ + 3δ_hi + 3ω, L = m + h. Classify the tokens of TOK3 whose
+  first coordinate is s ∈ Dset (s ∈ 2A ∩ [m, L) with r = s − m ∈ 3A):
+  - (s, x) with x ∈ B ∩ [h, m): s + x ≥ m + h = L, so it is an overflow token; e−1−a of them per s.
+  - (s, u) with u ∈ B ∩ [1, h) (a of them per s) falls into one of three cases:
+    - (a) s + u ≥ L: an overflow token;
+    - (b) s + u < L and the token is unassigned;
+    - (c) s + u < L and the token is assigned. Since s ≥ m > max A, s ∉ A, so (s, u) is a rep token of
+      v = s + u ∈ (3A ∖ 2A) ∩ [m, L). Here v − m = r + u ∈ 3A + A ⊂ 4A, so v is counted by ω; and v ∉ 2A, so v ∉ Dset.
+      Each v carries exactly 3 assigned tokens, so at most 3 tokens of type (c) point to the same v.
+  - The overflow tokens (x′, x) with x′ ∈ B (OP of them) and (s′, x) with s′ ∈ 2A ∩ [m, L), x ∈ B ∩ [h, m) (that is
+    (e−1−a)·P_lo) are disjoint from the tokens of types (a), (b) (different coordinates). Hence
+    E3_L ≥ OP + (e−1−a)P_lo + #(a) + #(b).
+  - ω counts Dset itself (u = 0) and the type-(c) values, which are distinct from Dset. So 3ω ≥ 3δ + #(c).
+  - Since #(a) + #(b) + #(c) = a·δ: E3_L + 3ω ≥ OP + (e−1−a)P_lo + (a+3)δ. Substituting, the coefficient of δ is
+    −e + (e−1−a) + a + 3 = 2. ∎
+- Checked (E318): 0 violations on every real depth-four S of E317's ranges (exh k = 2..5; random k = 6, 8, 11).
+- Third regime (3h ≤ m). The first window gives h ≤ t + β1·y0″ + p1. Here t = |3A_s ∩ [h, 2h)| with A_s = A ∩ [0, h),
+  β1 = |B ∩ [h, 2h)|, y0″ = |2A_s ∩ [0, h)| and p1 ≤ P_hi. Also η ≤ β − β1, with β = e − 1 − a. With
+  OP − P_hi ≥ P_hi − η this gives (PROVED):
+  **W ≥ SP0 + (β − β1)(y0 − 1) + 2δ**, where SP0 = (a+1)·y0 − 3N4 − t + E1 (0 violations, E318).
+  - SP0 ≥ 1 held on all real S and on all random local fakes.
+  - But SP0 ≥ 0 is FALSE in the abstract: a B_3-like core C ⊂ [h/2, 2h/3) gives y0 = a + 1 and t ≈ C(a+1,2) + C(a+2,3).
+  - So any proof must also use the high part, (β − β1)(y0 − 1), or the slack dropped in RED-A, namely
+    G = E3_L − OVF_L (token collisions forced by one-dimensionality) and the other overflow tokens.
