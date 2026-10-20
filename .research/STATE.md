@@ -54,6 +54,18 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0) **NEW, main target (PROOFS "Identity ID-q", "Conjecture ANCHOR-q"; E337).**
+          - ID-q (PROVED, every depth, every P18 model, strips allowed):
+            W₀ = ρ + Σ_x (q − λ_x)·u(x) + Σ_y (c_y − j_y). Wraps are refunded by crossing parent incidences.
+          - Conjecture ANCHOR-q: DEF ≤ ρ + EXC + U_top + p. It implies CORE₁ at every depth, hence Wilf for every S
+            with all minimal generators below 2m (DKM Problem 1.8 in full).
+          - Gate so far: 0 failures. Exhaustive for m ≤ 30, K ≤ 5, q = 5–7, and every B for m ≤ 18. Random up to
+            m = 200, K = 30. On perfect-Sidon models ANCHOR-q ⟺ CORE₁ (implied by Wilf).
+          - Proof route: generalize the external shell + PAYMENT (EXT1), deficits at all levels.
+          - Strip-free q ≤ 5 (only j ≤ 1) is equivalent to N − |U| ≤ 2p + U_top + C, where U = unwrapped canonical
+            positions with λ ≤ q and C = used crossing incidence weight. This is a sumset lower bound (missing window
+            slots are paid by crossing incidences, holes and unused top incidences).
+          - First precise task: prove it at q = 5 strip-free, starting from the translation by an anchor high offset.
       (A) Uniform anchor mechanism for P18 cores at depth q (DKM Problem 1.8 for depth ≥ 5, plus truncations):
           - (i) compute, at q = 5 with K ≥ 4, the top-level carried positions with their canonical representations
             (once-wrapped 4-sums, twice-wrapped 3-sums);
