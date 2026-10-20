@@ -4456,3 +4456,81 @@ Remarks.
   This is a last-window type bound. By FAILED.md pattern A it is not a proof target.
 - Check: E336 (`anchor_layer4.py`). 0 failures on 17,864 random sets with a high offset, 12,722 of them of depth ≥ 5.
   The minimum of the left side was 5; LAYER(4) failed 49 times on the same sample.
+
+### Identity ID-q: wraps paid by crossing incidences (every depth, every P18 model) — PROVED 2026-10-20 (checks E337)
+Setting:
+- m > ρ ≥ 0, B ⊂ [1, m) with |B| = K (strip offsets allowed), q ≥ 1, and T = ⟨m, m + b : b ∈ B⟩ ∪ [qm − ρ, ∞).
+- Shifted position of v: u = (v + ρ) mod m; level ⌊(v + ρ)/m⌋. An element km + u − ρ sits at position u, level k.
+- **Canonical representation** α_u of position u: the multiset of offsets (an element Σ α_i(m + b_i)) at position u
+  minimizing (level, degree, code), with code = Σ α_i·B̂^i for a fixed base B̂ > q + 1. Write λ_u (level),
+  t_u = |α_u| (degree), j_u = λ_u − t_u (wraps).
+- **Divisor closure.** If α_i > 0 for y's representation α = α_y, then α − e_i = α_x for the position x of the parent
+  element, and λ_y = λ_x + 1 + κ, where κ = [x + b_i ≥ m] (a "crossing").
+  - Proof: let γ beat α − e_i at x. Elements at a common position differ by multiples of m, and adding m + b_i shifts
+    every element at x to y by the same level step. So γ + e_i beats α at y. ∎
+  - Consequently κ = [b_i > y]. The minimal element at a position never uses the generator m.
+- **Incidences.** Each x with λ_x ≤ q has out-incidences (x, i) of weight α_x(i) + 1, total K + t_x. (x, i) is
+  **used** if the child y = x + b_i mod m has λ_y ≤ q and α_y = α_x + e_i. Put
+  - u(x) = unused weight of x;
+  - c_y = Σ_{i : b_i > y} α_y(i), the crossing in-weight of y.
+  By divisor closure each y with λ_y ≤ q receives used in-weight exactly t_y.
+
+**Identity ID-q.** With ℓ = Σ_x (q − λ_x)_+, d = #{x : λ_x ≤ q} and W₀ = (K + 1)ℓ − q·d + ρ (so W(T) = W₀ + p(ℓ − q),
+p = m − d):
+
+  W₀ = ρ + Σ_{x : λ_x ≤ q} (q − λ_x)·u(x) + Σ_{y : λ_y ≤ q} (c_y − j_y).
+
+Proof.
+- W₀ − ρ = Σ_{λ_x ≤ q} f(x) with f(x) = (K + 1)(q − λ_x) − q.
+- Algebra: f(x) = (q − λ_x)(K + t_x) − (q + 1 − λ_x)t_x − j_x, since λ = t + j.
+- Split K + t_x into used and unused weight, and write Σ_y (q + 1 − λ_y)t_y as a sum over used incidences.
+- Each used incidence x → y contributes (q − λ_x) − (q + 1 − λ_y) = κ ∈ {0, 1}. Summing κ over the in-incidences of y
+  gives c_y. ∎
+
+Remarks.
+- Every term is ≥ 0 except the **deficit** DEF = Σ_y max(0, j_y − c_y), coming from positions with fewer crossing
+  parents than wraps. Write EXC = Σ_y max(0, c_y − j_y). Unwrapped positions have j = c = 0. A once-wrapped pair
+  (strip-free) has c = 2, j = 1.
+- At q = 4, strip-free, this is exactly the external ID2:
+  - DEF = |Q₃| (j = 1, c = 0);
+  - EXC = |Ẑ| + |Q₁| + 2|Q₀| (+ strip terms);
+  - the weight-3 pool is 6(P_u − h₂) + 6(P_w − |Ẑ|); the weight-2 pool is 2d₃''; the weight-1 pool is
+    A + d₄ + 4|Ẑ ∩ Y₄|.
+- It refines the power-token identity W = U − e·T_c. There each wrap costs e; here each wrap costs 1 and is refunded by
+  every crossing parent incidence.
+- Check (E337, `src/scratch/p32/idq.py`): 0 mismatches on 3,000 strip-free and 3,000 general models, q = 3–7.
+  - Strip-free: DEF comes from (j, c) = (1, 0), plus (2, 0) and (2, 1) from q = 6 on.
+  - With strips: (2, ·) from q = 5 and (3, ·) at q = 7.
+
+### Conjecture ANCHOR-q (every depth; UNDER GATE, 2026-10-20; checks E337)
+For every P18 model as above:
+
+  DEF ≤ ρ + EXC + U_top + p,   with U_top = Σ_{λ_x = q−1} u(x) (the weight-1 pool) and p = #{x : λ_x > q}.
+
+- With ID-q, ANCHOR-q gives W₀ + p ≥ Σ_{λ_x ≤ q−2} (q − λ_x)u(x) ≥ 0, i.e. CORE₁. That gives Wilf for every pure P18
+  semigroup (p = 0, W = W₀): all of DKM Problem 1.8. It also gives CORE₁ for every generalized core at every depth.
+- **Necessity audit.** ANCHOR-q discards only the pool of weight ≥ 2 (levels ≤ q − 2).
+  - At q = 4 the external anchor theorem gives DEF ≤ ρ + EXC + A + 4|Ẑ ∩ Y₄| + h₄ + p. That is ANCHOR-4 with h₄ in
+    place of the weight-1 pool of M₃; the latter is ≥ d₄ ≥ h₄ under the external residual hypotheses.
+  - On perfect-Sidon models (every incidence below level q − 1 used), the discarded pool is 0. There ANCHOR-q ⟺
+    CORE₁, which is implied by Wilf for T. Examples: the Eliahou–Fromentin B₃ family (q = 4, W₀ = −C(n,3)) and its
+    q = 5 analogue (offsets in [m/3, m/2), B₄ mod m).
+  - So a counterexample needs the lower pool to be the payer.
+- **Equality cases seen.**
+  - m = 16, ρ = 5, B = {1,2,11,14}, q = 6: the 5 deficit positions are exactly [m − ρ, m), so DEF = ρ.
+  - m = 26, ρ = 0, B = {2,3,10,17}, q = 6: DEF = EXC = 2.
+- Status (E337): 0 failures in every test so far.
+  - Exhaustive, true depth (λ(m−1) ≥ q, so c(T) = qm − ρ), K ≤ 5:
+    - q = 5: m ≤ 30 strip-free, 234,400 models; m ≤ 26 with strips, 699,195 models;
+    - q = 6, m ≤ 30: 101,801 models;
+    - q = 7, m ≤ 30: 55,994 models.
+    The minimum slack is 1–2. The minimum slack/DEF (DEF ≥ 4) is 0.29 (q = 7, m = 26, ρ = 2, B = {3,12,15}, DEF = 14,
+    slack 4).
+  - Random large models (m ≤ 200, K ≤ 30, offsets from random intervals): 16,585 true-depth models at q = 5–7, with
+    and without strips. Minimum slack/DEF is 1.07.
+  - The DK model (m = 302, ρ = 266): DEF = 255, slack 2,594. The STAR model (m = 47, ρ = 42): DEF = 38, slack 137.
+  - The ID-q identity was asserted on all of these: 0 mismatches.
+- The tested range is small (K ≤ 5 exhaustive). Annealing struggles under the true-depth constraint. Next gate step: a
+  proof attempt, generalizing the external shell + PAYMENT. A deficit at depth q can sit at levels below q (for
+  example, once-wrapped triples at level 4 with all sub-pairs wrapped, at q = 5), so the shell must handle every
+  level.
