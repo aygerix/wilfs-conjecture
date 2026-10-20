@@ -54,6 +54,25 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000) **NEWEST (2026-10-20 late): Theorem CF-WILF PROVED (PROOFS; E341).**
+          - Every collision-free h-regular S satisfies Wilf (Bacher's class). The proof is elementary and needs no
+            hypothesis on r; it supersedes Bacher's Thm 3.5.
+          - Three ingredients:
+            - W = E + r(k − q);
+            - averaging (simplex centroid) gives E > ρr/m − n(h−1)s′/h;
+            - difference body: r ≥ |H_h(n)| − C(n+h, h) ≥ n(n²−1)/3.
+          - Lesson for the main line: the Wilf multiplier (k − q) on r is what makes the proof easy. CORE₁ / T2 / WR1
+            drop it. In the CF-regular regime ID-q has P = 0 and T2 = CORE₁, which needs m ≥ s + |E₀|. That is a
+            B_h-density statement, false-to-prove by the difference body alone for n ≤ 6 at h = 3.
+          - Consider an intermediate target that keeps the multiplier: CORE_a, E + a·r ≥ 0, with a = #{w ∈ Ap : 0 < w < c}.
+            Wilf follows from it because k − q ≥ a.
+          - NEXT: h-regular S WITH collisions (PROOFS "Regular semigroups with collisions").
+            - Lemma CENTROID is PROVED: X(M) ≥ 0 for every down-set M ⊆ Δ_h. The proof is normalized matching, with
+              edge weights α_i + 1, the ID-q weights.
+            - Bound: W > ρr/m + (c/m)X − B + r(k − q).
+            - It certifies Wilf on all but 23 of 19,946 h-regular S with q ≥ 5 and m ≤ 18. The exceptions are
+              two-generated, or h = 2 with r = 0.
+            - Missing: a difference-body bound with collisions, and an integer (ceiling) version for small h.
       (A00) **NEWEST, main target (PROOFS "ID-q for every numerical semigroup; Conjectures ANCHOR and CORE₁"; E338).**
           - ID-q holds for EVERY S (PROVED): crossing multiplicities κ = ⌊(x + b)/m⌋ for high generators, and the
             holes p are the right primitives r.

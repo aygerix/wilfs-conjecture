@@ -56,7 +56,7 @@ Verification-status legend used below:
 | 29 | Wilf | S = gluing k1·A ⊔ k2·B of two Wilf semigroups | Singh–Srinivasan, arXiv:2306.09876 | Thm 2.3 | READ |
 | 30 | W ≥ 9 (although W_0 = -C(n,3)) | S = ⟨{m} ∪ A⟩_{4m}, A ⊂ [(3m+1)/2, (5m-1)/3], |A| = n-1, A a B_3-set mod m | Eliahou–Fromentin, Semigroup Forum 98 (2019) 285–298, arXiv:1710.03623 | Prop 3.3, Prop 4.1 | READ |
 | 31 | W > 0 | Delgado's families S(p) = ⟨μ, γ, γ+1⟩_{pμ} (unbounded depth, negative W_0) | Delgado, Math. Z. 288 (2018) 595–627, arXiv:1608.01353 | Prop 6 | SECONDARY |
-| 32 | W ≥ 0 | S h-regular, collision-free, and r ≥ ℓ (r = #right primitives, ℓ = |P∩L|) | Bacher, arXiv:2604.25051 (Apr 2026) | Thm 15 | READ |
+| 32 | W ≥ 0 | S h-regular, collision-free, and r ≥ ℓ (r = #right primitives, ℓ = |P∩L|) | Bacher, arXiv:2604.25051 (Apr 2026) | Thm 3.5 in v9 (Thm 15 in an earlier version) | READ; SUPERSEDED by our Theorem CF-WILF (no hypothesis on r) |
 | 33 | Wilf | q > 2 and |S ∩ (m,2m)| ≥ sqrt(qm/(q-2)); in particular |S ∩ (m,2m)| ≥ sqrt(2m) | Delgado–Kumar–Marion arXiv:2501.04417 | Thm 1.5 | READ |
 | 34 | m ≤ (e-1)n + 1; c ≤ q·e·n; c ≤ e·n^2; t ≤ (e-2)(n-q+1) + 2 | all S | D'Anna–Moscariello, Math. Z. 304 (2023), arXiv:2208.14090 | Thm 2, Thm 1, Thm 3 | READ |
 | 35 | Exact identity W = (e-t-1)n + σ + Θ; t ≤ Σ_{p∈P\{m}} ν(p-m) ≤ e-1+Ξ ≤ e-1+Θ; g + σ ≤ e-1 + t(n-1); W ≥ Θ - Σ_{i≤d} λ(f_i) when t ≥ e | all S | Marashdeh, arXiv:2608.12531 (Aug 2026, not refereed) | Prop 3.2, Thm 1.2/4.4, Cor 4.8, Prop 5.1 | READ |
@@ -66,7 +66,7 @@ Verification-status legend used below:
 | 39 | Computer: Wilf for g ≤ 50 / 60 / 65 / 66 / **100** | genus bound | Bras-Amorós SF 76 (2008) / Fromentin–Hivert Math. Comp. 85 (2016) / Bras-Amorós–Marín Rodríguez (MDAI 2021, arXiv:2307.10682) / Bras-Amorós Math. Comp. 93 (2024) / **Delgado–Eliahou–Fromentin, J. Algebra 664 (2025) 150–163, arXiv:2310.07742** | DEF Thm 3.5 | READ (DEF) |
 | 40 | Computer: Wilf for special S (m \| c) with g ≤ 120 | m \| c, g ≤ 120 | DEF 2025 | Thm 4.4 | READ |
 | 41 | Computer: Wilf for max primitive ≤ 60 | max P ≤ 60 | Delgado–Kumar, arXiv:2512.23891 | Thm 3 | READ |
-| 42 | Computer, CONDITIONAL: all Eliahou semigroups (W_0 < 0) with c ≤ 320 listed (17,064, all Wilf) ⇒ Wilf for c ≤ 320 (⇒ g ≤ 160) **if** Bacher's Conjecture 20 holds | c ≤ 320 | Bacher arXiv:2604.25051 | §5 | READ (conditional) |
+| 42 | Computer, CONDITIONAL: all Eliahou semigroups (W_0 < 0) with c ≤ 320 listed (17,064, all Wilf) ⇒ Wilf for c ≤ 320 (⇒ g ≤ 160) **if** Bacher's Conjecture 20 holds (Conj 2.6 in v9) | c ≤ 320 | Bacher arXiv:2604.25051 | §5 | READ (conditional) |
 | 43 | Asymptotic: proportion of S of genus g that are Wilf → 1 | counting by genus | Zhai, Semigroup Forum 86 (2013) (prop. with c ≤ 3m → 1) + #13; alternatively Kaplan–Singhal, Enum. Comb. Appl. 3 (2023) Cor 7 (prop. with e ≥ m/2 → 1) + #19 | — | SECONDARY (DKM Prop 2.11, 2.12, Cor 2.16) |
 | 44 | Asymptotic: proportion of S with Frobenius number F that are Wilf → 1 | counting by F | Backelin, Math. Scand. 66 (1990) Prop 2 (m ≈ F/2) + #13 | DKM Cor 2.17 | READ (in DKM) |
 | 45 | Asymptotic: proportion of S with max primitive N that are Wilf → 1 | counting by max primitive | Delgado–Kumar–Marion | Thm 1.7 | READ |
@@ -799,3 +799,26 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - Search of conjectures.io (2026-10-20): its only Wilf items are source23 (c ≤ 4m, solved) and source22 (e = 4,
   withdrawn as already solved). No c ≤ 5m, full-Wilf or Problem 1.8 item was visible; the catalog listing was
   truncated, so this is not exhaustive.
+
+## Search 2026-10-20 (scope: Wilf for collision-free h-regular semigroups; B_h difference bounds)
+- Sources: Bacher arXiv:2604.25051 v9, read verbatim by the fetch agent; web searches (extended), arXiv, conjectures.io.
+- Bacher v9, exact statements:
+  - Def 3.1: h-regular means hΓ ⊂ [c, c+m).
+  - Def 3.2: collision-free means every element below c+m has a unique factorization. Equivalently, Γ is B_h and
+    the sumsets iΓ are pairwise disjoint mod m.
+  - Thm 3.3: for collision-free S, E = E₀(h, a/b, ℓ) + ℓω + ρ.
+  - Thm 3.5: h-regular, collision-free and r ≥ ℓ ⇒ W ≥ 0.
+  - Conj 2.6: r < ℓ ⇒ E ≥ 0, with no further hypotheses. Bacher notes that it would give Wilf for every CF h-regular S.
+  - §3.3: "packing a B_3 set modulo m of cardinality ℓ ≥ 3 with only ℓ gaps is probably already impossible". He
+    infers that there is "no collision-free h-regular counterexample". This is heuristic only.
+  - No difference-set, Minkowski or lattice-packing bound on r appears. Kovačević–Tan is not cited. The only B_h
+    reference is O'Bryant 2024 (thick B_h sets).
+- Def 4.4 as transcribed: m̂ = [(b+b′)h − bb′]δ + b + b′, Γ̂ = [(a+a′)h − ab′]δ + a + a′ + Δ, ĉ = h·maxΓ̂ + 1.
+  - This is inconsistent with h-regularity, since ĉ − 1 ∈ hΓ̂ ⊂ S. Not used by us.
+- No paper or platform proves Wilf for collision-free h-regular semigroups.
+- The injectivity of differences of ⌊h/2⌋- and ⌈h/2⌉-fold sums of a B_h set is the classical route to upper bounds
+  for B_h sets: a B_{2k} set A gives |kA − kA| distinct differences. We claim only its application here.
+- Kovačević–Tan (arXiv 1409.5276, 1610.01341) link B_h sets mod m to lattice packings of simplices. That is the
+  geometric form of Lemma 2.
+- Status of our Theorem CF-WILF (PROOFS): new as far as this search shows. It removes the hypothesis r ≥ ℓ from
+  Bacher's Thm 3.5 and needs neither Thm 3.3 nor Conj 2.6.

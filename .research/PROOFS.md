@@ -4688,3 +4688,144 @@ Two exact forms found on the way (both PROVED; used below):
     models.
   - Survives the T1 counterexamples with margins 130 to 182.
   - True-depth annealers at q = 5–7 are running (E340).
+
+## Theorem CF-WILF (every collision-free h-regular numerical semigroup satisfies Wilf) — PROVED 2026-10-20 (paper; checks E341)
+**Setting (Bacher, arXiv:2604.25051, Defs 3.1–3.2).**
+- S is a numerical semigroup with multiplicity m and conductor c. Its left generators are m < γ_1 < … < γ_n
+  (all minimal generators below c), and Γ = {γ_1, …, γ_n}. Put ℓ = n + 1, q = ⌈c/m⌉, ρ = qm − c, k = |L|,
+  r = number of primitive elements ≥ c, and e = ℓ + r.
+- **h-regular:** hΓ ⊂ [c, c + m), where hΓ is the set of sums of exactly h elements of Γ, with repetition.
+- **Collision-free (CF):** every element of S below c + m has exactly one factorization over {m} ∪ Γ.
+- For α ∈ ℕⁿ write α·Γ = Σ α_iγ_i and |α| = Σ α_i. Put s = C(n+h, h) and s′ = C(n+h−1, h−1).
+- E = ℓk − q(m − r) + ρ is the Eliahou number. **Identity (every S):** W = ek − c = E + r(k − q).
+
+**Theorem CF-WILF.** If S is h-regular and collision-free, then W(S) ≥ 0. More precisely:
+- (i) r ≥ |H_h(n)| − s, where H_h(n) = {z ∈ ℤⁿ : |z⁺| ≤ ⌊h/2⌋, |z⁻| ≤ ⌈h/2⌉}. So r ≥ n(n²−1)/3 when h ≥ 3, and
+  r ≥ n(n−1)/2 when h = 2.
+- (ii) E > ρr/m − A, with A = n(h−1)s′/h.
+- (iii) W > (s′ − 1)r − A.
+- Hence W > 0 unless (n, r) = (1, 0), in which case S = ⟨m, γ_1⟩ and W = 0, or (h, n) = (2, 2) with r = 1, in which
+  case W ≥ 0.
+
+**Lemma 1 (structure).** Let n ≥ 1 and h ≥ 2. (For h = 1, h-regularity forces n = 0.)
+- (a) c > (h − 1)m.
+  - Proof: c ≤ hγ_1, since hγ_1 ∈ hΓ.
+  - Also hγ_n < c + m and γ_n > m, so c > hγ_n − m > (h − 1)m.
+- (b) Position of α·Γ by degree:
+  - If |α| ≤ h − 1, then α·Γ ≤ (h−1)γ_n < (h−1)(c+m)/h ≤ c. The last step uses (a).
+  - If |α| = h, then α·Γ ∈ [c, c + m).
+  - If |α| ≥ h + 1, then α·Γ ≥ (h+1)γ_1 ≥ c + γ_1 > c + m.
+- (c) Counting left elements. Every element of S below c is a combination of left generators.
+  - By (b) and CF, L = {tm + α·Γ : |α| ≤ h−1, t ≥ 0, tm + α·Γ < c}, and these representations are distinct.
+  - So k = Σ_{|α| ≤ h−1} κ_α with κ_α = ⌈(c − α·Γ)/m⌉ ≥ 1, and κ_0 = q.
+- (d) The non-primitive elements of [c, c + m).
+  - x ∈ [c, c + m) is non-primitive iff x = y + z with y, z ∈ S∖{0}. Then y, z ≤ x − m < c, so x ∈ ⟨m, Γ⟩.
+  - Conversely, x ∈ ⟨m, Γ⟩ ∩ [c, c+m) exceeds γ_n, so it is not a generator.
+  - By (b), these x are the elements y_α ∈ [c, c+m) with y_α ≡ α·Γ (mod m) and |α| ≤ h; note y_α ≥ α·Γ.
+  - By CF they are pairwise distinct. So m − r = #{α : |α| ≤ h} = s.
+  - Also e = ℓ + r, since no element ≥ c + m is primitive.
+- (e) **Residue injectivity.** The residues α·Γ mod m, |α| ≤ h, are pairwise distinct. Proof: equal residues give
+  y_α = y_β, an element below c + m with two factorizations.
+
+**Lemma 2 (difference body; the standard difference-set bound for B_h sets).** Let k_1 + k_2 = h and
+A_k = {α ∈ ℕⁿ : |α| ≤ k}.
+- The map z ↦ z·Γ mod m is injective on A_{k_1} − A_{k_2} = H := {z : |z⁺| ≤ k_1, |z⁻| ≤ k_2}. Hence m ≥ |H|.
+- Proof of injectivity:
+  - Suppose (a − a′)·Γ ≡ (b − b′)·Γ.
+  - Then (a + b′)·Γ ≡ (b + a′)·Γ, with a + b′, b + a′ ∈ A_h.
+  - By Lemma 1(e), a + b′ = b + a′.
+- Proof that A_{k_1} − A_{k_2} = H: z = a − a′ has z⁺ ≤ a and z⁻ ≤ a′ coordinatewise. Conversely, z = z⁺ − z⁻.
+
+**Lemma 3 (count).** |H| = Σ_p C(n,p) C(k_1,p) C(n−p+k_2, k_2).
+- Derivation: choose the support of z⁺ (size p), then z⁺ on it (a positive p-tuple with sum ≤ k_1, C(k_1, p)
+  ways), then z⁻ ≥ 0 on the other n − p coordinates with sum ≤ k_2.
+- Vandermonde gives s = C(n + h, n) = Σ_p C(k_1,p) C(n+k_2, n−p). Hence
+  |H| − s = Σ_{p ≥ 1} C(k_1, p)·[C(n,p)·C(n−p+k_2, n−p) − C(n+k_2, n−p)].
+- Each bracket is ≥ 0. Injection: an (n−p)-subset T of [n] ⊔ X with |X| = k_2 maps to (P, T), where P is the set
+  of the p smallest elements of [n]∖T. Then T ⊆ ([n]∖P) ⊔ X.
+- The p = 1 bracket equals C(n−1+k_2, k_2)·k_2(n−1)/(k_2+1).
+- With k_1 = ⌊h/2⌋ and k_2 = ⌈h/2⌉, this gives:
+  - h ≥ 3 (k_1 ≥ 1, k_2 ≥ 2): |H| − s ≥ C(n+1, 2)·2(n−1)/3 = n(n²−1)/3.
+  - h = 2: |H| − s = n(n−1)/2 exactly, since C(1, p) = 0 for p ≥ 2.
+- Then (i) follows from Lemma 1(d) and Lemma 2: r = m − s ≥ |H| − s.
+
+**Lemma 4 (averaging).** Proof of (ii).
+- By Lemma 1(c), k ≥ Σ_{|α|≤h−1} (c − α·Γ)/m.
+- Moment sum: Σ_{|α|≤h−1} α_i = Σ_{u=0}^{h−2} C(n+u, u) = C(n+h−1, h−2) =: N for each i. Since γ_i < (c+m)/h,
+  Σ_{|α|≤h−1} α·Γ < nN(c+m)/h.
+- N/s′ = (h−1)/(n+1), so nN/h = θs′ with θ = n(h−1)/(h(n+1)).
+- Therefore ℓk > (n+1)s′[(1−θ)c/m − θ] = s·c/m − A. This uses (n+1)s′(1−θ) = s′(n+h)/h = s and
+  (n+1)s′θ = A.
+- Hence E = ℓk − qs + ρ > s(c/m − q) + ρ − A = ρ(m − s)/m − A = ρr/m − A.
+
+**Proof of (iii) and the theorem.**
+- Bound (iii): k − q = Σ_{1≤|α|≤h−1} κ_α ≥ s′ − 1. So W = E + r(k − q) > (s′−1)r − A + ρr/m.
+- W is an integer, so W ≥ 0 as soon as (s′−1)r ≥ A − 1.
+- n ≥ 2, h ≥ 3: r ≥ n(n²−1)/3 ≥ n. Also (s′−1)n − A = n(s′/h − 1) ≥ 0, because s′ ≥ C(h+1, 2) ≥ h. So W > 0.
+- n ≥ 3, h = 2: r ≥ n(n−1)/2 ≥ n and s′ = n + 1 ≥ h, so W > 0.
+- n = 2, h = 2: s′ = 3, A = 3, and r ≥ 1, so 2r ≥ 2 = A − 1 and W ≥ 0.
+- n = 1: s′ = h and A = h − 1.
+  - If r ≥ 1, then W > 0.
+  - If r = 0, then S = ⟨m, γ_1⟩: every element of [c, c+m) lies in ⟨m, γ_1⟩, hence so does every element ≥ c. Then
+    W = 2(c − g) − c = 0 by symmetry. ∎
+
+**Remarks.**
+- Bacher's Theorem 3.5 (W ≥ 0 for CF h-regular S when r ≥ ℓ) and Conjecture 2.6 (r < ℓ ⇒ E ≥ 0) left the class
+  open. His §3.3 gives the heuristic that packing a B_3 set mod m with only ℓ gaps is "probably impossible". Lemma 2
+  makes that quantitative: r ≥ n(n²−1)/3 for h ≥ 3. Bound (iii) needs only r ≥ n, not r ≥ ℓ.
+- For n ≥ 3 and h ≥ 3, r ≥ n(n²−1)/3 ≥ n + 1 = ℓ. So the hypothesis r < ℓ of Bacher's Conjecture 2.6 is impossible
+  for CF h-regular S, except possibly when n ≤ 2 or h = 2.
+- CORE₁ (E + r ≥ 0) does NOT follow from these crude bounds. For h = 3, |H| − s = n(n²−1)/3 < A = n(n+1)(n+2)/3.
+  With Bacher's exact E = E₀ + ℓω + ρ, the difference body gives CORE₁ only for n ≥ 7 (E341).
+- **Mechanism, for the general programme:**
+  - first-order cancellation: (n+1)Σ_{|α|<h}(1 − |α|/h) = s, which is the centroid of the simplex;
+  - the boundary loss A comes from the top layer γ < (c+m)/h;
+  - the right primitives pay that loss, through W = E + r(k − q), and must be numerous because the B_h tile cannot
+    tile ℤ/m (difference body).
+  - Collisions break Lemma 2. A collision also removes elements of the canonical down-set below the simplex, which
+    raises the centroid excess. The general programme is to trade these two effects (NOTEBOOK 2026-10-20, "CF-WILF").
+- Dependencies: only elementary counting (Vandermonde, hockey stick) and the definitions. It uses neither Bacher's E₀
+  formula nor his Thm 3.5, nor any computer search.
+
+## Regular semigroups with collisions: Lemma CENTROID (PROVED) and the bound REG-BND (PROVED); REG-WILF open (lead, 2026-10-20; checks E342)
+**Setting.**
+- S is h-regular (hΓ ⊂ [c, c+m)), with collisions allowed.
+- Lemma 1(a)–(d) of CF-WILF hold without CF, except for the distinctness statements.
+- Each α with |α| ≤ h has α·Γ < c + m. The degree of an element below c + m is well defined, because the value
+  intervals [tc/h, t(c+m)/h) of distinct degrees t ≤ h are disjoint when c > (h−1)m.
+- M ⊆ Δ_h = {|α| ≤ h} is the set of lexicographically least factorizations of the Apéry elements of ⟨m, Γ⟩ below
+  c + m. It is a down-set, |M| = d = m − r, and z ↦ z·Γ mod m is injective on M.
+- Notation: d_t = #{α ∈ M : |α| = t}, N_t = C(n+t−1, t), x = c/m, and k = Σ_{α∈M, |α|<h} ⌈(c − α·Γ)/m⌉.
+
+**Lemma CENTROID.**
+- Statement: for every down-set M ⊆ Δ_h(n), X(M) := (n+1)Σ_{α∈M}(1 − |α|/h) − |M| ≥ 0.
+- Exact form: X(M) = Σ_{t=1}^{h}(u_t − u_{t−1})T_t, where
+  - u_t = 1 − d_t/N_t (nondecreasing in t);
+  - f(t) = 1 − (n+1)(h−t)/h;
+  - T_t = Σ_{s≥t} f(s)N_s ≥ 0, with T_0 = 0.
+- Proof:
+  - (Normalized matching.) Put the weight α_i + 1 on the edge α → α + e_i between degrees t and t+1 (t < h).
+    Every α of degree t has total weight t + n, and every β of degree t+1 has total weight Σβ_i = t + 1.
+  - Let U = Δ_h ∖ M, an up-set, with U_t its degree-t part. Its upper shadow lies in U_{t+1}. So
+    (t+n)|U_t| ≤ (t+1)|U_{t+1}|, i.e. |U_t|/N_t ≤ |U_{t+1}|/N_{t+1}.
+  - Σ_{Δ_h} f = 0. This is the simplex identity (n+1)Σ_{Δ_h}(1 − |α|/h) = C(n+h, h), from PROOFS CF-WILF Lemma 4.
+    Hence X(M) = −Σ_M f = Σ_U f = Σ_t f(t)N_t u_t.
+  - Apply Abel summation. f is increasing and has total sum 0, so every tail sum T_t is ≥ 0. ∎
+
+**Bound REG-BND.** For every h-regular S:
+  W > ρr/m + x·X(M) − B(M) + r(k − q), with B(M) = ((n+1)/h)·Σ_{t<h} t·d_t.
+- Proof: as in CF-WILF Lemma 4, with sums over M.
+  - k ≥ Σ_{α∈M, |α|<h}(c − α·Γ)/m.
+  - α·Γ < |α|(c+m)/h.
+  - (n+1)Σ_{M}(1 − |α|/h) = d + X.
+  - W = E + r(k − q). ∎
+- In the CF case, X = 0 and B = A; CF-WILF then follows from the difference body.
+
+**Status of REG-WILF (Wilf for every h-regular S).** OPEN.
+- REG-BND certifies W ≥ 0 (bound ≥ −1) except when r is small and X is small.
+  - The exhaustive m ≤ 18 exceptions are two-generated S (W = 0), or h = 2 with r = 0 and one collision.
+- Missing ingredient: a difference-body bound that survives collisions.
+  - Each coincidence (a − a′)·Γ ≡ (b − b′)·Γ in H comes from a collision pair (a + b′, b + a′) in Δ_h.
+  - Each collision pair costs at most splits(μ)·splits(ν) elements of H.
+  - The collisions themselves raise X by Σ_U f ≥ n·u_h, through the factor x = c/m ≥ h − 1.
+- For h ≤ 4, the regime q ≤ 4 is covered by the depth-four theorem (LITERATURE).

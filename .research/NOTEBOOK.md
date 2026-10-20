@@ -3558,3 +3558,45 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   ANCHOR (DEF ≤ ρ + EXC + U_top + r). Evidence: 0 failures on 14.4M S (genus ≤ 30), e = 3/4 to m = 60/120, and
   every known negative-Eliahou family, whose margins grow with depth (= p − 1 on Delgado-type truncations).
   Correction: CORE₁ ⟹ Wilf, not the converse (fixed in the records). Next: prove ANCHOR for j ≤ 1.
+
+## 2026-10-20 (late) — Theorem CF-WILF; centroid lemma; regular semigroups with collisions
+- **PROVED: CF-WILF** (PROOFS). Every collision-free h-regular S has W ≥ 0. Strict unless S is two-generated or
+  (h, n, r) = (2, 2, 1).
+  - The proof is W = E + r(k − q), plus averaging E > ρr/m − n(h−1)s′/h, plus the difference body
+    r ≥ |H| − s ≥ n(n²−1)/3.
+  - Checks: E341, 20,000 random CF S, 0 failures of each step; 42 S from Bacher's construction.
+  - Bacher's Def 4.4 as transcribed has ĉ − 1 ∈ S. We used the largest valid c instead.
+- Literature (dated search): the result is not in Bacher v9 (heuristic only, §3.3) or elsewhere.
+- **PROVED: Lemma CENTROID.**
+  - Statement: for every down-set M ⊆ Δ_h(n), X(M) := (n+1)Σ_{α∈M}(1 − |α|/h) − |M| ≥ 0.
+  - Proof:
+    - The weighted bipartite graph between degrees t and t+1, with weight α_i + 1 on α → α + e_i, is biregular:
+      t + n from below, t + 1 from above.
+    - Hence the complement up-set U = Δ_h ∖ M has a nondecreasing normalized profile u_t = |U_t|/N_t.
+    - Abel summation: X(M) = Σ_U f = Σ_t (u_t − u_{t−1})T_t, where f(t) = 1 − (n+1)(h−t)/h is increasing and the
+      tail sums T_t are ≥ 0, with T_0 = 0.
+  - The edge weights α_i + 1 are exactly the ID-q incidence weights. So ID-q is a refinement of this centroid
+    inequality.
+- **Regular semigroups with collisions** (h-regular, any collisions). M is the canonical down-set, d_t is its degree
+  profile and x = c/m.
+  - Bound: W > ρr/m + xX(M) − B(M) + r(k − q), with B = ((n+1)/h)Σ_{t<h} t·d_t.
+  - Checks (regcol.py, regexh.py):
+    - 40,000 random S: 0 failures of the bound or of CENTROID.
+    - Exhaustive m ≤ 18, h ≤ 6, c ≤ (h+3)m: 51,737 S, 0 Wilf failures.
+    - The bound alone certifies W ≥ 0 except for 82 S (23 of them with q ≥ 5). These are two-generated (W = 0) or
+      h = 2 with r = 0 and one collision (W ≥ 2).
+  - Missing ingredient: when r is small, the collisions must make X large. A collision removes an up-set U, and
+    X = Σ_U f ≥ n·u_h.
+    - The difference body breaks by at most 4 coincidences per collision pair at h = 2. In general it breaks by at
+      most splits(μ)·splits(ν) per pair.
+    - Needed: a DB-with-collisions bound r ≥ |H| − s + |U| − coinc(U), traded against x·X(U).
+- **Strategic observation.** CORE₁ / WR1 / T2 drop the Wilf multiplier (k − q) on r.
+  - In the CF-regular regime they reduce to a B_h density statement, m ≥ s + |E₀|. The difference body proves it only
+    for n ≥ 7 at h = 3.
+  - Wilf itself keeps the multiplier, and there the difference body suffices for every n.
+  - Plan: keep T2/WR1 as observations (the annealers are still running) and add a multiplier-keeping target.
+    - CORE_a: E + a·r ≥ 0, with a = #{w ∈ Ap : 0 < w < c}. Wilf follows from it because k − q ≥ a.
+    - Proposed general mechanism: E ≥ −Λ(M), the centroid loss over the canonical down-set, which is always injective
+      mod m. Then r ≥ |A − A′| − |M| for all down-sets with A + A′ ⊆ M (DB for every S). Wilf would follow from
+      Λ(M) ≤ a·DB(M) + (collision gains).
+
