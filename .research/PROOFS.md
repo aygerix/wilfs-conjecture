@@ -4275,3 +4275,60 @@ W = 2k² + 2k + (k − 2)d2 + k·L3 − 3d3 − 4d4. ∎
   - K5, p ≤ defU: m = 17, B = {2, 9, 11}.
   - K6 (defU + incC ≥ p + q), L3 (incU ≥ q_res), L5 (incC ≥ grown q_res).
   - "Wrap/high tokens pay all carries" (C3) fails at the DK counterexample: 22 − 35 − 24 < 0.
+
+### CARRY-ID consequences: a short proof of Theorem A0, the window bound R2, and Conjectures LM, TB4-LOC (lead, 2026-10-20; checks E333)
+Setting and notation as in "CARRY-ID". Write y0 = |3A ∩ [0, h)| = y − p_lo (uncarried X) and N4 = H4.
+
+**Lemma 2ND (PROVED).** A carried pair u ≥ h has both repeat entries free. If its representation is x + y = m + u with
+x < y, the entries (x, y) and (y, x) have values 2x + y and 2y + x, both ≥ m + h. If x = y, both copies of x are free.
+- So defU ≥ n_i + p_hi.
+- If 2h ≤ m, then n_i = p, so defU ≥ p + p_hi.
+
+**Theorem A0 again (PROVED; new short proof).** If B ⊂ [h, m), then W ≥ 1.
+- Facts when B ⊂ [h, m):
+  - pair sums are ≥ 2h and triple sums are ≥ 3h, so 3A ∩ [0, h) = {0}, y0 = 1 and H4 = 0;
+  - hence sl_B = k (the tokens (0, b));
+  - q = h − 1 − p_lo;
+  - every carried pair has max summand ≥ h, so self-payment (i) applies: n_i = p.
+- **2h ≤ m.**
+  - [h, 2h) ⊂ S_3, and 3A ∩ [h, 2h) = B ∩ [h, 2h), so h ≤ |B ∩ [h, 2h)| + |CP ∩ [h, 2h)| ≤ k + p_hi.
+  - Then W ≥ sl_B + defU − p − q ≥ k + (p + p_hi) − p − (k − 1 + p_hi) = 1.
+- **2h > m.** Then 3B ≥ 3h ≥ m + h, so q = 0 and W ≥ k + p_hi ≥ 1. ∎
+
+**Proposition R2 (PROVED; regime 2h ≤ m).**
+
+    W ≥ e·y0 − 3·N4 − |3A ∩ [h, 2h)| + 2δ2 + incU + incC + p_lo.
+
+- Proof: in CARRY-ID use
+  - defU ≥ p + p_hi (Lemma 2ND);
+  - q = h − y0 − p_lo − N4;
+  - the window covering h ≤ |3A ∩ [h, 2h)| + |CP ∩ [h, 2h)| (residues of the window covered by a wrapped pair that are
+    not carried pairs lie in S_2 ⊂ 3A);
+  - sl_B = k·y0 − 4N4. ∎
+- Consequences:
+  - |3A ∩ [h, 2h)| ≤ h and E1 ≤ 2δ2, so **TB4 ⟹ Wilf for 2h ≤ m directly** (RED-A is not needed).
+  - In the core regime B ⊂ [h/2, h) with 2h ≤ m, the window lies in 3A, so R2 = e² + 2δ2 + … − h. This is ≥ 0 by
+    CORE4's half-window bound h ≤ e² − e + 2.
+- Witness scheme toward R2 ≥ 0. Every v ∈ 3A ∩ [h, 2h) has a witness (v − a, a) ∈ (3A ∩ [0, h)) × A, except the core
+  triples (every representation is x + y + z with x + y ≥ h). Every element of N4 has ≥ 3 witnesses except repeated
+  4-sums. The witnesses (u, 0) are never used. Open: pay the core triples and repeated 4-sums by E1 and unused witnesses.
+
+**Conjecture LM (local matching; 0 failures, E333).** Every carry can be assigned injectively to an unused slack item
+attached to one of its own representations:
+- **Carried pair u = {x, y}:** its repeat entries; its incidences (m + u, b); the tokens (a, b) with a ∈ {0, x, y} ∩ X_unc and
+  b ∈ {x, y}.
+- **Carried triple {x, y, z}:** its pair tokens; the incidences in its pair rows; the entries among its summands; the tokens
+  (a, b) with a ∈ {0, x, y, z} ∩ X_unc and b in the triple.
+- Redundancy units (2δ2) are never needed (ablation, e = 4, 5 and random e = 10). So LM implies the stronger
+  K1: p + q ≤ sl_A + sl_B.
+- The degree condition (min carry degree ≥ max item degree) FAILS. So does uniform discharging (load 1.74). The
+  per-largest-summand column split also FAILS (m = 17, B = {2, 9, 11}).
+
+**Conjecture TB4-LOC (0 failures, E333).** Let A = {0} ∪ B ⊂ [0, m), 1 ≤ h ≤ m, S_3 = 3A_{<m} ∪ (2A_{≥m} − m), and assume
+- (G) h − 1 ∉ S_3;
+- (W) [h, min(2h, m)) ⊂ S_3;
+- (L) [0, h) ⊂ 4A ∪ ((3A ∩ [m, m + h)) − m).
+Then h + 3N4 ≤ e·y0 + E1 (TB4).
+- Only the first window is required, not the covering of [2h, m). With the half window [h, 3h′) in place of (W),
+  TB4 FAILS (E314).
+- With RED-A and Theorem A0, TB4-LOC implies P18 depth-four Wilf.
