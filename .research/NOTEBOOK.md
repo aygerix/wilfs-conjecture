@@ -3187,3 +3187,13 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   and data (E291) shows the true ℓ is about 1.2× the need.
 - Next: a sharper lower bound for ℓ in the nearly-P18 small-e regime at depth four. Count co-level-2 and co-level-1 elements
   through sumset growth of the A/B offsets (Kneser/Plünnecke at fixed small depth) rather than the linear staircase.
+
+## 2026-10-20 (later) — advisor review; C1 stress test near simplices
+- The advisor independently verified ⟨13,22,23,50,51,60⟩ (ΣK_5 = 8 > 7; W = 39). They accept Lemma B and CE-DIRECTIONS′ as
+  proved (modest), treat the depth-five material as a P14 rediscovery, and advise: break C1 on near-simplex Apéry sets
+  (many critical cubics on few faces). If C1 survives, find the structural reason why shared faces force enough blocked
+  directions.
+- Exhaustive near-simplex test (E302): no C1 failure; min slack 27 at k = 4. The reason is visible in the data: perfect
+  or near-perfect B_3 cores need a modulus far above C(k+3,3), since no 5-element B_3 set mod m exists for m ≤ 60. The
+  missing residues must then be filled, and fillers at or above 2m block every face. Candidate structural lemma: a lower
+  bound for the B_3 modulus forces filler count ≥ c_k·(core excess).
