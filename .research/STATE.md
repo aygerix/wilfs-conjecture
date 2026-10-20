@@ -22,16 +22,15 @@ Lines, in order of cost to decide:
     - LAYER(j) for j ≥ 4 is FALSE, even for e = 4, 5 (P18, m ≈ 100). LAYER(j ≤ 9) has 0 failures at genus ≤ 36.
     - Conjectures, all with 0 failures:
       - STAR: 4d4 ≤ k·L3 + J_≥ + P_w (P18 depth four).
-      - DK = LASTWIN: h ≤ e·|S ∩ [(q−1)m, c)| for every S at every depth q ("Wilf for the last window"). 0 failures on
-        the tree to genus 30, all depths.
-      - HD1: |H_D| ≤ k(1 + |B ∩ [0, h)|) (P18). Here H_D = level-four residues all of whose parents are high pairs.
-        HD1 ⟹ DK at P18 depth four.
+      - DK = LASTWIN, HD1, HG1, SUMH: all FALSE (E328). Examples: DK at P18 depth four, m = 302, e = 23, h = 36,
+        d4 = 35, L3 = 1; LASTWIN at ⟨55,109,159,319⟩, depth 26. The last window can be nearly empty; then Q3 pays.
     - Structure: Wilf at depth four ⟺ Q3 + (DK slack) ≥ 3·d4. The free model gives Q3 = 3d4 exactly. So the exchange is:
       the Macaulay slack of layer three must compensate any DK shortfall, and vice versa. In BIG, DK pays. In near-free
       S, Q3 pays.
     - **Next precise tasks:**
-      (a) prove HD1, hence DK at P18 depth four, using the covering of [h, 2h) (as in Theorem A0, which settles a = 0);
-      (b) prove STAR in the uncovered regime d4 > (e−1)h/(e+3), where X = S_3 ∩ [0, h) is sparse;
+      (a) prove STAR. It must use J_≥, the wrapped U2-incidences, including those landing in S_3. In the DK
+          counterexample, J_≥ = 909 ≫ 4·d4 = 140;
+      (b) find the general-S form of the four-term split W = G_T + G_R + J_≥ + (e−1)L3 − 4d4.
       (c) extend LAYER3-W beyond P18 ingredients: a general-S STAR;
       (d) Lean, after 2026-10-25: Theorem LAYER3 and Corollary LAYER3-W (finite combinatorics; high leverage).
 0h. **NEWEST (2026-10-20 morning): Conjecture DEAD — a strengthening of Wilf (PROOFS "Twin tokens and Conjecture DEAD").**

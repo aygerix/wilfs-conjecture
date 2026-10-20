@@ -4142,3 +4142,15 @@ Wilf for 3e ≥ m (Eliahou).
   - HD1 ⟹ DK. Proof: the other level-four residues inject into X × B through their parent incidence. The k(1 + a1)
     incidences from 0 and from B ∩ [0, h) never land in D.
   - Theorem A0 (PROVED earlier) settles B ∩ [0, h) = ∅ for Wilf. There, [h, 2h) must be covered by B and by wrapped pairs.
+- **REFUTED (2026-10-20, same night; E328): LASTWIN, DK, HD1, HG1, SUMSET and SUMH are all FALSE.**
+  - LASTWIN at large depth. S = ⟨55, 109, 159, 319⟩ (e = 4): c = 1381, q = 26, h = 6, |S ∩ [1375, 1381)| = 1, so
+    e·1 = 4 < 6. Checked by brute-force membership DP (independent of the Apéry code).
+  - DK at depth four, P18. S = ⟨302, 302 + B⟩ with B = {36, 37, 38, 41, 42, 43, 45, 51, 53, 63, 65, 71, 75, 97, 170, 171, 175,
+    176, 178, 183, 185, 186}:
+    - e = 23, c = 942, h = 36, |S ∩ [906, 942)| = 1 (only 3m), d4 = 35;
+    - DK slack (e−1)·1 − 35 = −13;
+    - B ⊂ [h, m), so HD1 and HG1 fail too (35 hard residues > k = 22). SUMH: |X + A*| = 23 < 36;
+    - checks: brute force (lwfail.brute) and Dijkstra (dead.info) agree on c and e, and give W = 3014;
+    - STAR = 827 still holds there. Theorem A0 (a = 0 ⟹ W ≥ 1) is consistent with it.
+  - Lesson: the last window can be almost empty (D = [1, h), h > e). Then the layer-three Macaulay slack Q3 (here 3132)
+    pays the whole depth-four deficit. A "last-window" argument alone cannot prove depth-four Wilf; Q3 must be used.

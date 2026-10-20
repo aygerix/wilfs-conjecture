@@ -4,6 +4,7 @@
  * STAR = P_w + J_ge + k h - (k+4) d4,  J_ge = #{(s,b) in U2 x B : s + b >= m},  P_w = #{x <= y in B : x + y >= m}.
  * W = 2k^2 + 2k + (k-2) d2 + k L3 - 3 d3 - 4 d4 (identity).  mode 0: min STAR; 1: min STAR/k; 2: min W; 3: min W/k;
  * 4: min STAR/(k h) over h >= 10; 5: min STAR/d4 over d4 >= 10;
+ * 8: min (k L3 - d4)/d4 over d4 >= 10 (DK); 9: min k(1 + a1) - #hard (HG1, hard = no b <= r with r - b in N3);
  * 6: min Q4/(k h) over h > e, 3e < m (Q4 = k L3 - 4 d4; LAYER3-W covers Q4 >= 0); 7: min W over Q4 < 0, h > e, 3e < m.
  * usage: ./anT mode seed mlo mhi kmin kmax iters restarts */
 #include <stdio.h>
@@ -35,12 +36,17 @@ static double evalS(St *s){
   for (int r = 0; r < m; r++){
     int u2 = s2[r] && !in1[r] && r; if (u2){ d2++; for (int i = 0; i < k; i++) if (r + B[i] >= m) Jge++; }
     if (s3[r] && !s2[r]) d3++; if (!s3[r]) d4++; if (s3[r] && r < h) L3++; }
+  long long a1 = 0, hard = 0; for (int i = 0; i < k; i++) if (B[i] < h) a1++;
+  for (int r = 0; r < h; r++) if (!s3[r]){ int ok = 0; for (int i = 0; i < k && !ok; i++){ int u = r - B[i]; if (u >= 0 && s3[u] && !s2[u]) ok = 1; } if (!ok) hard++; }
+  info[9] = hard; info[10] = a1;
   long long kk = k, STAR = Pw + Jge + kk * h - (kk + 4) * d4;
   long long W = 2 * kk * kk + 2 * kk + (kk - 2) * d2 + kk * L3 - 3 * d3 - 4 * d4;
   info[0] = h; info[1] = W; info[2] = STAR; info[3] = d2; info[4] = d3; info[5] = d4; info[6] = L3; info[7] = Jge; info[8] = Pw;
   switch (mode){ case 0: return STAR; case 1: return (double)STAR / k; case 2: return W; case 3: return (double)W / k;
     case 4: return (h >= 10) ? (double)STAR / ((double)k * h) : 1e18;
     case 5: return (d4 >= 10) ? (double)STAR / d4 : 1e18;
+    case 8: return (d4 >= 10) ? (double)(kk * L3 - d4) / d4 : 1e18;
+    case 9: return (double)(kk * (1 + a1) - hard);
     case 6: return (h > k + 1 && 3 * (k + 1) < m) ? (double)(kk * L3 - 4 * d4) / ((double)k * h) : 1e18;
     default: return (h > k + 1 && 3 * (k + 1) < m && kk * L3 - 4 * d4 < 0) ? (double)W : 1e18; }
 }
@@ -66,7 +72,7 @@ int main(int argc, char **argv){
       double g2 = evalS(&t); if (g2 >= 1e17) continue;
       if (g2 <= f || urand() < exp((f - g2) / T)){ s = t; f = g2; }
       if (f < best){ best = f; evalS(&s);
-        printf("mode %d best %.3f m=%d k=%d h=%lld W=%lld STAR=%lld d2=%lld d3=%lld d4=%lld L3=%lld Jge=%lld Pw=%lld B=", mode, best, s.m, s.k, info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8]);
+        printf("mode %d best %.3f m=%d k=%d h=%lld W=%lld STAR=%lld d2=%lld d3=%lld d4=%lld L3=%lld Jge=%lld Pw=%lld hard=%lld a1=%lld B=", mode, best, s.m, s.k, info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10]);
         int tmp[200]; memcpy(tmp, s.B, sizeof(int) * s.k); for (int a = 0; a < s.k; a++) for (int b2 = a + 1; b2 < s.k; b2++) if (tmp[b2] < tmp[a]){ int x = tmp[a]; tmp[a] = tmp[b2]; tmp[b2] = x; }
         for (int a = 0; a < s.k; a++) printf("%d,", tmp[a]); printf("\n"); fflush(stdout); }
       T *= 0.99995; if (T < 0.05) T = 0.05;
