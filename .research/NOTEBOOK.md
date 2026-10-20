@@ -3756,3 +3756,48 @@ With U_j = {x : x·δ ≥ jm} and γ_j = Σ_b |B_b(U_j)| − |U_j|: MaxCL(0) ⟺
   Σ_{N} r to Λ_nm.
 - Direction form: P − B = Σ_b (S_b − δ_b X_b/m) + (m−1)/2 with X_b = Σ_D x_b and S_b = Σ_{r(x)<δ_b} x_b (the b-mass in
   the label window [0, δ_b), where exactly the b-wraps land). A spike b contributes −δ_b/m.
+
+## 2026-10-21 (night, later) — DEP-CARRY and the shape-only reduction CR_DEP: Wilf ⟸ an inequality on tile shapes
+
+### The sharp tile-only form of CH′ (PROVED)
+Setting: S, m, a factorization tile D ⊂ ℕ^d of Ap(S,m) over the generators n_1..n_d other than m (lex tile or any
+monomial order), w(x) = x·n, r(x) = ⟨w(x) − c⟩ (phase σ = c mod m). For a direction b, a b-top t (t + e_b ∉ D) heads
+a b-column of length t_b + 1. CH′: mW = (d+1)M' − Σ_{b-tops t, all b} (t_b + 1)(w(t) − c), M' = m(m−1)/2.
+**Lemma (sharp top bounds).** If t is maximal in D then w(t) − c ≤ r(t). If t is a non-maximal top then
+w(t) − c ≤ r(t) − m.
+Proof. w(t) ≤ max Ap = c + m − 1 and w(t) − c ≡ r(t) give the first. If t + e_a ∈ D then w(t) + n_a ∈ Ap, so
+w(t) ≤ c + m − 1 − n_a < c, and w(t) − c ≡ r(t) with r(t) ∈ [0, m) gives the second. ∎
+With ω(t) := Σ_{b : t+e_b∉D} (t_b + 1) (the number of (cell, direction) incidences whose column top is t; Σ_t ω = dm)
+and Dep := Σ_{t non-maximal} ω(t):
+    mW ≥ (d+1)M' + m·Dep − Σ_t ω(t) r(t).                                   (DEP)
+**DEP-CARRY (CONJ):** for every tile and phase, Σ_t ω(t) r(t) ≤ (d+1)M' + m·Dep, i.e.
+    Σ_{y∈A} (d+|y|) r(y) ≤ (d+1)M' + Σ_{t non-max top} (t_b+1)(m − r(t)).
+It is weaker than MaxCL (which drops the second sum) and than Tile-TOP'' (allowance Dep instead of Σ(m − r)).
+Carry form: W = ρ_0 + Σ_x κ_σ(x) + Σ_tops (t_b+1) j(t), ρ_0 = ⟨−c⟩, κ_σ(x) = Σ_{b: δ_b > r(x)} x_b − ⌊(ρ_0 + x·δ)/m⌋,
+j(t) = (r(t) − w(t) + c)/m ≥ 0, with j ≥ 1 on non-maximal tops. Checked exactly on 1,500 + 3,000 S (E348).
+
+### CR_DEP: rearrangement removes the residues (PROVED implication)
+The labels r are injective on D, so Σ_t ω(t) r(t) ≤ Σ_i ω_(i)(m − 1 − i) (ω sorted decreasingly). Hence
+**Theorem (shape-only Wilf criterion).** If a factorization tile D of S satisfies
+    CR_DEP:  Σ_i i·ω_(i) + m·Dep ≥ (d−1)·m(m−1)/2,
+equivalently Σ_{k≥1} C(n_k, 2) + m·Dep ≥ (d−1)·C(m,2) with n_k = #{t : ω(t) ≥ k}, then W(S) ≥ 0.
+(Proof: (DEP) and rearrangement give mW ≥ CR_DEP slack; Σ_i iω_(i) = Σ_{pairs} min(ω_s, ω_t) = Σ_k C(n_k,2).)
+Every step asserted on 3,000 random S (crdep_chain.py).
+**Conjecture CR-TILE:** every lattice tile (finite down-set fundamental domain of a lattice in ℤ^d) satisfies CR_DEP.
+CR-TILE ⇒ Wilf for every S. Since Wilf is known for 3e ≥ m, tiles with m ≤ 3(d+1) are not needed.
+Evidence (E348):
+- every lattice tile with d = 2, m ≤ 30 and d = 3, m ≤ 18; every down-set of ℕ⁴ with m ≤ 13 (27,248, tile or not);
+- 4,000 random semigroup tiles (2,012 in the open regime 3e < m, c > 4m);
+- all known failures of MaxCL's rearrangement CR: the e = 5 two-face tiles at m = 25, 26 (CR −0.086·m², CR_DEP
+  +0.33·m²); the box family ⟨n², n²+1, n²+n, n²+n+1⟩ (CR −0.08·m², CR_DEP 0.15, 0.20, 0.24, 0.27, 0.29, 0.31·m² for
+  n = 4..9); E47 (1.19·m²); the Load-Lemma tile ⟨39,71,72,77⟩ (0.34·m²).
+- Tight: the column (d = 1) and the unit simplex {0, e_1..e_d}.
+- The tile property is essential: non-tile down-sets fail (2-D staircases with ≥ 3 corners; the simplices {|x| ≤ n},
+  e.g. d = 3, n = 5: 1680 + 0 < 3080; 3-D: 1, 3, 3, 6 failing non-tiles at m = 10, 11, 14, 17). The one-step
+  difference body m ≥ |N_1 − Δ_1| does not exclude them; the sum-difference conditions |E_Δ − Δ| ≤ m
+  (E_Δ = {x : x + Δ ⊆ D}) exclude all but 2-D staircases (cylinder lemma) and 3 sets at m = 17.
+- Structural facts used later: Dep = 0 only for the column and the unit simplex (difference body: Σ_{z∈∂}(deg⁻_{N_1}(z) − 1)
+  ≤ 0 forces |supp y| = 1 on A); Dep ≥ |∂∖A| ≥ Σ_{y∈A}(deg⁻_{N_1}(y) − 1); the crude bound gives CR_DEP whenever
+  Dep ≥ (d−1)(m−1)/2 (93% of open-regime S).
+- With the true labels, DEP-CARRY has slack ≥ 0.37·m² in adversarial searches (open regime, all phases) and
+  ≥ 0.87·m² on random open-regime S, versus MaxCL's near-zero minima.
