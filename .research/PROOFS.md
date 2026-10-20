@@ -3225,4 +3225,7 @@ faces are UF with K = −1 (P14 §2.1)).
 - FACE-WILF (R ≤ ρ + Σ_F τ + Z, conjecture; sufficient for Wilf): 0 failures on 586 structured excess-regime S
   (363 with R_A > p_A). Filler annealing around dense high-A B_3 cores (m = 61, 101) gives min slack per excess cubic
   20.7 and 36.4 (E300). The truncation-tail construction always adds E primitives, so this probes η > 0 only.
-
+- **LAM4 equivalence (PROVED, identity).** At q = 4, by DEC-ID: Λ + Z ≥ h − e ⟺ W ≥ m − e − R, i.e. Wilf with surplus equal to
+  the number of decomposable Apéry elements with K ≤ 0. So "DEPTH4-EH suffices" is a strengthening of Wilf. It fails only
+  at small m in all data (⟨9,19,21,22⟩, ⟨25,26,30,31⟩, annealing m ≤ 25). In pure P18 at depth four it holds on every S of
+  E301 (k = 4, m ≤ 44; k = 5, m ≤ 34), except ⟨25,26,30,31⟩ (k = 3).

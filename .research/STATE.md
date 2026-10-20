@@ -8,6 +8,34 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0e. **HANDOFF 2026-10-20 (end of long session; codex unavailable until 2026-10-25 14:57).**
+    (a) Proved / verified today:
+      - external-review and codex P15 counterexamples (Lemma U, T1-DOWN, T1 at the true shift, U-FULL), all lead-verified;
+      - identities I1–I5 (Wilf in walk form);
+      - Lemma B (Λ + Z ≥ L2);
+      - the face-blocking bound Λ ≥ Σ_F τ and the charging form of DEC-ID;
+      - CE-DIRECTIONS′ (a ≤ 3g′ + 1 ⇒ Wilf at q = 4; extends P14 §2.3);
+      - LAM4 ⟺ W ≥ m − e − R;
+      - re-derivation of P14 §8.1 (depth-five classification; attribution corrected).
+    (b) Conjectures with data:
+      - C1/C2 (depth four), E298;
+      - FACE-WILF, E300;
+      - GEN-EH (robust under annealing, E299);
+      - LAM4 except small m (E298, E301).
+      Dead: T1, Lemma U, U-FULL, T1-DOWN, TAIL.
+    (c) Reproduce: src/scratch/p22/{d4lam.c, facebig.c, p18cov.c, faceup.py, faceanneal.py, genehadv.c, q5class.c}
+        on fejer ~/wilf/p22 (gcc -O2; Python ~/mathenv/bin/python). Note: `pkill -f` must not match its own ssh command
+        line; split kill and launch into separate ssh calls.
+    (d) Three most promising lines:
+      1. Depth four, now pinned to a small-e nearly-P18 regime (η < √(2m), a ≥ 3g′ + 2). In pure P18, DEPTH4-EH covers
+         everything tested, so a P18-specific proof of Λ + Z ≥ h − e (equivalently W ≥ m − e − R) at depth four would
+         close Problem 1.8's depth-four slice.
+      2. The cubic relay (pay R − p from Λ for dense face graphs). It closes both depth four and GEN-EH at depth five
+         (P14 §8).
+      3. GW / e = 5 tile line (FULL-INTERIOR).
+    (e) First task next session: prove Λ + Z ≥ h − e for pure P18 at depth four, where every generator is m + b with
+        b < m. Start from the line structure (each step climbs 1 or 2 co-levels) and the band counts of
+        S ∩ [3m, c) vs Apéry elements in [4m, 4m+h). Codex on return: resume P16 with this P18 target.
 0d. **NEWEST (2026-10-20): the T1 / Lemma U line is DEAD (PROOFS "Conjecture T1", "Lemma U"; E296, E297).**
     - Refuted, all lead-verified:
       - Lemma U (review: m = 83; codex: m = 13, r = (9,10), p = 5, the binary cubic simplex);
