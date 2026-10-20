@@ -3308,3 +3308,29 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - No-small regime with b ≤ 2a + 1: prove V ≥ 0 from the free count.
   - Many high elements: find what forces δ_hi or collisions. Note the high elements lie in ((m+h)/2, m), an interval of
     length (m − h)/2.
+
+## 2026-10-20 (night) — overflow tokens; a = 0 is proved (Theorem A0)
+- **Local conditions suffice for e ≥ 5 (observed).** Drop the covering of [h, m) and keep only its count (m → m_eff),
+  the low covering (C1) and the defining gap. Then W_eff ≥ 0 still held on all data with e ≥ 5 (min 13 at e = 5). It
+  fails at e = 3, 4 (−2, −4) and is restored there by the first window [h, 2h) alone (min 4, 5). So the global covering
+  enters P18 depth four essentially through counting plus the first window.
+- **Exact identity (★L).** W = E1 + E3_{m+h} + T − P_hi − eδ + 3δ_hi + 3ω, with one truncated Macaulay slack.
+- **Token lemma.** The degree-3 truncated Macaulay bound has a two-line proof by tokens (s, x) ∈ 2A_{<L} × B: each
+  new 3-sum gets 3 tokens. Its slack is exactly the unused tokens, and every overflow token (s + x ≥ L) is unused. So
+  **E3_L ≥ OVF_L.** This is the quantitative "large elements pay" statement. Each high element x contributes one token
+  for every 2-sum s ≥ L − x.
+- Consequences:
+  - RED-A2: W ≥ T + E1 + (2 − a)δ. So TB4 ⟹ Wilf for a ≤ 2 (SIG1 is not needed there).
+  - **Theorem A0 (proved): a = 0 ⟹ W ≥ 1.** Combine RED-A2 with the first-window bound h ≤ β1 + P_hi and the pair count
+    OP − P_hi ≥ P_hi − η. The overlap O = B ∩ [L/2, 2h) is paid by the window pairs x + min B.
+  - So the regime behind every local failure of TB4 is now settled.
+- Refuted on the way:
+  - ZW (E3_L replaced by 3|Z|, the pair-free 3-sums above L): fails on real S (−1 at m = 21, B = (4,12,14,15,17), h = 3;
+    −2 at m = 21, B = (4,8,14,15,17), h = 7). The slack sits in overflow tokens, not in pair-free 3-sums.
+  - TB4 under local conditions fails (min −16), but TOV (E3_L → OVF_L) held on every real S and every random local
+    fake with e ≥ 5. Postage-stamp fakes (a 2-basis translate plus one element) keep TOV ≥ 5 for basis sizes 5, 6;
+    the asymptotics may break it for large bases (heuristic), so TOV likely needs the first window at large e.
+- Next:
+  - a ≥ 1. Split A = A_s ⊔ B_h (below / at least h). For 3h ≤ m the same chain reduces W ≥ 0 to a small-part
+    inequality about A_s plus (2 − a)δ.
+  - Combine it with the CORE4 window [h, 3h′) when A_s is core-heavy.

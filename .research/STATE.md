@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20; T1/Lemma U line DEAD (codex P15 + external review, lead-verified); next: depth-four LOW closure, item 0d)
+# STATE.md — handoff (updated 2026-10-20 night: P18 depth four a = 0 PROVED (0f); T1/Lemma U line DEAD (codex P15 + external review, lead-verified); next: depth-four LOW closure, item 0d)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,6 +8,19 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0f. **NEWEST (2026-10-20 night): P18 depth four, a = 0 PROVED (Theorem A0, W ≥ 1); token lemma OVF; RED-A2.**
+    - Proved on paper (PROOFS "Token proof of degree-3 truncated Macaulay…" and "Theorem A0"):
+      - Lemma TOK3: an elementary token proof of TCM at j = 3. E3_L = #unused tokens, and every overflow token
+        (s + x ≥ L) is unused (Lemma OVF).
+      - Identity (★L): W = E1 + E3_{m+h} + T − P_hi − eδ + 3δ_hi + 3ω.
+      - RED-A2: W ≥ T + E1 + (2 − a)δ + (nonnegative). So TB4 ⟹ Wilf when a ≤ 2 (SIG1 not needed).
+      - Theorem A0: B ⊂ [h, m) ⟹ W ≥ 1 (W ≥ 1 + E1 if 3h ≤ m). No Macaulay theory, no external theorem.
+    - Observed (E317): Wilf survives when the [h, m) covering is replaced by its count (local fakes), for e ≥ 5;
+      e = 3, 4 also need the first window [h, 2h). TOV (E3_L → OVF_L) held on all real S.
+    - Open, next precise task: a ≥ 1. With A_s = A ∩ [0, h), for 3h ≤ m the chain gives
+      W ≥ (a+1)y0 − 3N4 − t + E1 + (2 − a)δ + (nonneg), t = |3A_s ∩ [h, 2h)|. This "small-part inequality" fails in the
+      core regime, so it must be combined with the CORE4 window [h, 3h′). Then handle m/3 < h.
+    - Lean candidates: Theorem A0 (elementary), CORE4.
 0e. **HANDOFF 2026-10-20 (end of long session; codex unavailable until 2026-10-25 14:57).**
     (a) Proved / verified today:
       - external-review and codex P15 counterexamples (Lemma U, T1-DOWN, T1 at the true shift, U-FULL), all lead-verified;

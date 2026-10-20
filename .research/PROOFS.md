@@ -3521,3 +3521,79 @@ Setting: S = ⟨m, m + B⟩, B ⊂ [1, m−1], 3m < c = 3m + h ≤ 4m, A = {0} �
     - It needs the covering of [h, m) as well. In both failures a = 0: all of B lies above h.
   - Window form: since h ≤ 2·#(window coverers) − 3[h odd], TB4 ⟸ 2(β1 + |(2B∖A) ∩ W_1| + t3w + π′ + e″) + 3N4 ≤
     e·y0 + E1 + 3[h odd]. In the core this is 4|2B ∩ W_1| ≤ … and holds by |2B| ≤ C(e,2).
+
+## Token proof of degree-3 truncated Macaulay; overflow bound; reduction W ≥ T + E1 + (2 − a)δ (lead, 2026-10-20)
+Setting: A ⊂ N finite, 0 ∈ A, B = A ∖ {0}, e = |A|; jA integer sumsets; for L ≥ 1,
+E3_L = (e−1)|2A ∩ [0, L)| − 3|(3A ∖ 2A) ∩ [0, L)|.
+- **Lemma TOK3 (PROVED, elementary; no Macaulay theory).** Tokens are pairs (s, x) ∈ (2A ∩ [0, L)) × B, so there are
+  (e−1)|2A ∩ [0, L)| of them; the token (s, x) points to s + x. Each v ∈ (3A ∖ 2A) ∩ [0, L) receives 3 distinct tokens,
+  and no token is given to two values. Hence 3|(3A∖2A) ∩ [0,L)| ≤ (e−1)|2A ∩ [0,L)|, i.e. E3_L ≥ 0 (TCM, j = 3), and
+  **E3_L = number of unassigned tokens.**
+  - Proof. Let v ∈ (3A ∖ 2A) ∩ [0, L). Every representation v = x + y + z with x, y, z ∈ A has x, y, z ∈ B (a zero summand
+    would put v in 2A). Fix one, x ≤ y ≤ z. Every partial sum of two summands lies in 2A ∖ A (if, say, y + z ∈ A then
+    v ∈ A + A) and is < v < L.
+    - x < y < z: give v the tokens (y+z, x), (x+z, y), (x+y, z). They are distinct (different second coordinates).
+    - x = y < z: give (x+z, x), (2x, z) and the token (x, z), whose first coordinate x lies in A.
+    - x < y = z: give (y+z, x), (x+y, y) and the token (y, x), first coordinate y ∈ A.
+    - x = y = z: give (2x, x) and the tokens (x, x) and (0, x), first coordinates in A.
+    Tokens with first coordinate in 2A ∖ A point to v itself, so they are never shared between different v. A token
+    (r, t) with r ∈ A is given only as follows: (r, t) with t ≠ r goes to the value with representation {r, r, t};
+    (x, x) and (0, x) go to 3x. So each such token determines its receiver. ∎
+- **Lemma OVF (PROVED).** E3_L ≥ OVF_L := #{(s, x) ∈ (2A ∩ [0, L)) × B : s + x ≥ L}.
+  - Proof: every token handed out in TOK3 points to a value < L. Rep tokens point to v < L. The tokens (r, t) with r ∈ A
+    point to r + t, which is x + z, x + y, 2x or x, all < v < L. So overflow tokens are never assigned. ∎
+  - Checked: every A of E317 (k ≤ 9) at 8 values of L each, 0 violations.
+  - Meaning: truncated Macaulay is lossy exactly where the A-shadow of a 2-sum leaves [0, L). This is a quantitative
+    form of "large elements pay": each 2-sum s < L contributes |B ∩ [L − s, ∞)| to the slack.
+- **Identity (★L) (PROVED; exact).** P18 at depth four (S = ⟨m, m+B⟩, B ⊂ [1, m−1], c = 3m + h, 0 < h ≤ m), L = m + h:
+  **W = E1 + E3_L + T − P_hi − e·δ + 3δ_hi + 3ω**, with T = e·y0 − 3N4 − h and the notation of Identity (★).
+  - Proof: as for (★). Write 3|3A ∩ [h, m)| = 3|2A ∩ [0, L)| + 3|(3A∖2A) ∩ [0,L)| − 3y0 − 3U1, use
+    3|(3A∖2A) ∩ [0,L)| = (e−1)|2A ∩ [0,L)| − E3_L, e(e+1) − 2|2A| = E1, and h = y0 + N4 + U1 − ω. ∎
+  - It uses only the low covering (C1) [0, h) ⊂ 4A ∪ ((3A ∩ [m, L)) − m) as an identity, and the covering of [h, m) only
+    through its count m − h = |3A ∩ [h, m)| + P_hi − δ_hi. Checked: 0 mismatches (E317).
+- **Proposition RED-A2 (PROVED).** At depth four, with a = |B ∩ [1, h)| and OP the number of ordered pairs
+  (x, x′) ∈ B × B with x + x′ ≥ L:
+  **W ≥ (T + E1) + (OP − P_hi) + (2 − a)·δ + (e−1−a)(P_lo − δ) + 3(ω − δ) + 3δ_hi**, all brackets except (2−a)δ ≥ 0.
+  In particular **W ≥ T + E1 whenever a ≤ 2 or δ = 0**, so Conjecture TB4 implies P18 depth-four Wilf in those cases
+  (with no need for SIG1).
+  - Proof: OVF_L counts the tokens (x′, x) with x′ ∈ B and x + x′ ≥ L (that is OP), and for each of the P_lo elements
+    s ∈ 2A ∩ [m, L) every token (s, x) with x ∈ B ∩ [h, m) (that is e − 1 − a of them). These classes are disjoint, so
+    E3_L ≥ OP + (e−1−a)P_lo. OP ≥ P_hi: each s ∈ 2A ∩ [L, 2m) is x + x′ with x, x′ ∈ B (a zero summand gives s < m), and
+    distinct s give distinct ordered pairs. Finally δ ≤ P_lo and δ ≤ ω (s ∈ Dset lies in 3A ∩ [m, L) with s − m ∈ 4A).
+    Substitute into (★L). ∎
+  - Checked: W ≥ T + E1 held on every real depth-four S with a ≤ 2 of E317 (0 violations).
+- **Conjecture TOV (CONJ).** E1 + T + OVF_L + 3δ_hi + 3ω ≥ P_hi + e·δ. Then W = TOV + (E3_L − OVF_L) ≥ TOV.
+  - Data (E317): 0 failures on real S (min 3, 4, 6, 15 for e = 3, 4, 5, 6; exhaustive k = 2..5, random k = 6, 9).
+  - Unlike TB4 it also held on all random LOCAL fakes with e ≥ 5 (configurations satisfying (C1) and the defining gap,
+    with m replaced by the count m_eff, but not the covering of [h, m)).
+
+## Theorem A0 (P18 depth four, no element of B below h) — PROVED 2026-10-20 (paper; checks E317)
+Setting: S = ⟨m, m + B⟩, B ⊂ [1, m−1], 3m < c = 3m + h ≤ 4m, A = {0} ∪ B, e = |A|, and **B ⊂ [h, m)** (a = 0).
+**Statement: W(S) ≥ 1.** More precisely W ≥ 1 + E1 when 3h ≤ m.
+- Notation: L = m + h; P_lo = |2A ∩ [m, L)|, P_hi = |2A ∩ [L, 2m)|; δ = [m ∈ 2A] (here 3A ∩ [0,h) = {0});
+  H = B ∩ [L/2, m), η = |H|; B_1 = B ∩ [h, 2h), β1 = |B_1|; O = B ∩ [L/2, 2h) = H ∩ B_1.
+- Step 1 (RED-A2 with a = 0). y0 = 1 and N4 = 0, since every element of B is ≥ h. So T = e − h and
+  W ≥ e − h + E1 + (OP − P_hi) + (e−1)(P_lo − δ) + 2δ.
+- Step 2 (OP − P_hi ≥ P_hi − η). Let U be the unordered pairs {x, x′} ⊂ B (x = x′ allowed) with x + x′ ≥ L. Then
+  P_hi ≤ |U| and OP = 2|U| − η, since the pairs with x = x′ are exactly those with x ∈ H. So OP − P_hi ≥ 2|U| − η − |U| ≥ P_hi − η.
+- Step 3 (h ≥ m/2). Then 3B ≥ 3h ≥ L, so no 3-sum lies in [m, L). The low covering puts r + m ∈ 3A for every
+  r ∈ [1, h) (4A ∩ [1, h) = ∅), so those r + m lie in 2B, and P_lo ≥ h − 1. Also δ ≤ 1. Step 1 gives
+  W ≥ e − h + (e−1)(h − 1 − δ) + 2δ ≥ (e−2)(h−1) + 1 ≥ 1 (h ≥ 2 because h − 1 ∉ 3A ∋ 0).
+- Step 4 (2h ≤ m). [h, 2h) ⊂ [h, m) ⊂ R_3. Here 3A ∩ [h, 2h) = B_1 (2B ≥ 2h), and the carried part of R_3 ∩ [h,2h) is
+  (2A ∩ [m+h, m+2h)) − m, which has at most P_hi elements. So h ≤ β1 + P_hi. With Steps 1 and 2:
+  W ≥ e − β1 − η + E1 + (e−1)(P_lo − δ) + 2δ. Also β1 + η = |B ∩ ([h,2h) ∪ [L/2, m))| + |O| ≤ e − 1 + |O|, so
+  **W ≥ 1 − |O| + E1 + (e−1)(P_lo − δ) + 2δ.**
+  - 3h ≤ m: then 2h ≤ L/2, so O = ∅ and W ≥ 1 + E1.
+  - m/3 < h < m/2, min B ≥ m − h: then 3B ≥ 3(m−h) ≥ L, and as in Step 3, P_lo ≥ h − 1 and W ≥ 1.
+  - m/3 < h < m/2, μ = min B < m − h: each x ∈ O has x + μ ≥ L/2 + h > m (as 3h > m) and x + μ < 2h + m − h = L.
+    So the |O| sums x + μ are distinct elements of 2A ∩ (m, L), and P_lo ≥ |O|. If δ = 0, W ≥ 1 + (e−2)|O| ≥ 1. If δ = 1,
+    W ≥ 1 − |O| + (e−1)(|O| − 1) + 2 ≥ 2 when |O| ≥ 1, and W ≥ 1 + E1 + 2 when O = ∅. ∎
+- Dependencies: Identity (★L) and Lemma OVF (both elementary). No Macaulay theory and no external theorem.
+- Checks: a = 0 real S of E317 — 3h ≤ m: 0 violations of W ≥ 1 + E1 (exhaustive k ≤ 5, random k = 6, 8);
+  m/3 < h: complete enumeration of every B ⊂ (m/3, m) for m ≤ 33 (`src/scratch/p27/a0mid.c`). The minimum W there
+  is 41 (m = 13), and Eliahou's criterion 3e ≥ m fails for many of these S (676 at m = 31), so the band is not
+  covered by known criteria.
+- Leverage: a = 0 was the regime of every local-condition failure of TB4 (E314) and of the a = 0 refutation of
+  "h > e ⇒ Yang–Zhang". With RED-A2, the remaining P18 depth-four cases all have a ≥ 1, and for a ∈ {1, 2} Wilf
+  follows from TB4 alone.
+- Lean: good candidate (elementary; needs the (★L) bookkeeping and the token lemma).
