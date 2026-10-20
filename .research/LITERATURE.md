@@ -827,3 +827,19 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   (conjectures.io) uses pruning and shells, not this class. Status of P0-WILF: new as far as our searches show; not
   separately searched beyond the 2026-10-20 Bacher/B_h search.
 
+
+## 2026-10-21 search: Wilf for leaves of the semigroup tree (r = 0, S = ⟨L(S)⟩)
+- Queries: web (extended) "Wilf conjecture leaves of the semigroup tree"; "Wilf reduces to leaves".
+  - Read: Delgado arXiv:1910.12377 (Trimming), §5–6.
+  - Read via agent: Chappelon–Ramírez Alfonsín–Stamate arXiv:2507.15006, §4.1.
+  - Inaccessible (403 or Anubis challenge): Fromentin–Hivert "Exploring the tree" (ResearchGate, HAL); "On a question
+    of Wilf" (ResearchGate).
+- Delgado, Remark 5.15: S is a leaf ⟺ S = ⟨L(S)⟩ ⟺ every primitive is left. Prop. 5.16: if gcd L(S) = 1, then
+  T = ⟨L(S)⟩ is a descendant of S.
+  - No Wilf statement for leaves.
+  - "Cutting semigroups" use hereditary properties, which leaves do not give.
+- 2507.15006: non-hyperelliptic symmetric semigroups are leaves; type bounds for leaves. No Wilf content.
+- A search-summary claim that "Wilf reduces to the leaves of the tree" was NOT confirmed in any source read. Treat it as
+  unsupported.
+- Status: Wilf for leaves is not known to us. For leaves, W equals Eliahou's W₀. Leaves include generic e = 4
+  semigroups (cf. kseth e = 4, which is computer-assisted).

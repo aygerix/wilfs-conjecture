@@ -90,6 +90,18 @@ def analyse(m, G, c):
     assert r >= Rgen, (m, G, c, r, Rgen)
     Rg = max(Rgen, 1 if r >= 1 else 0)
     certG = Fr(rho * Rg, m) + Gn + Pt - Lam + Rg * (k - q)
+    Ytot = sum(sum(a) - 1 for a, x in M.items() if c <= x < T)
+    crudeG = Rg * (k - q) + Pt - Ytot          # crude general inequality: no G, no theta
+    crudeNP = Rg * (k - q) - Ytot              # same without P~
+    # generalized P0 steps: G1: Ytot <= edges(M_<) + Rg ; G2: (n-1) edges(M_<) <= D Rg ; G3: k-q-1 >= D/(n-1)
+    Mlt = [a for a, x in M.items() if x < c]
+    edges = sum(sum(1 for t in a if t) for a in Mlt)
+    Yl = [a for a, x in M.items() if c <= x < T]
+    Dm = max([sum(a) for a in Yl] or [0])
+    Ysupp = sum(sum(1 for t in a if t) - 1 for a in Yl)
+    gsteps = (Ytot <= edges + Rg, (n - 1) * edges <= Dm * Rg, n < 2 or (k - q - 1) * (n - 1) >= Dm, Ysupp <= Rg)
+    Bl = [a for a in M if a not in M1 and M[a] < c]
+    nsink = sum(1 for a in Bl if all(tuple(a[t] + (t == i) for t in range(n)) not in M for i in range(n)))
     RR = max(R, 1) if (Pt == 0 and n >= 2) else 0
     crude = None
     if Pt == 0:
@@ -97,7 +109,7 @@ def analyse(m, G, c):
         crude = RR * (k - q) - (Ksupp + R)      # crude P0 inequality: sum_Y(|y|-1) <= R'(k-q)
     certR = Fr(rho * RR, m) + Gn + Pt - Lam + RR * (k - q)
     cert = Fr(rho * rdb, m) + Gn + Pt - Lam + rdb * (k - q)
-    return dict(E=E, W=W, r=r, kq=k - q, G=Gn, P=Pt, L=Lam, rho=rho, m=m, n=n, d=d, rj=rj, rdb=rdb, cert=cert, R=R, certR=certR, crude=crude, Rgen=Rgen, certG=certG)
+    return dict(E=E, W=W, r=r, kq=k - q, G=Gn, P=Pt, L=Lam, rho=rho, m=m, n=n, d=d, rj=rj, rdb=rdb, cert=cert, R=R, certR=certR, crude=crude, Rgen=Rgen, certG=certG, crudeG=crudeG, crudeNP=crudeNP, nBl=len(Bl), nsink=nsink, gsteps=gsteps)
 if __name__ == '__main__':
     if sys.argv[1] == 'list':
         v = list(map(int, sys.argv[2:])); res = analyse(v[0], v[1:-1], v[-1])

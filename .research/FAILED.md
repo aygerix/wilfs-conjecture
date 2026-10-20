@@ -43,17 +43,26 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | WQ | 0 failures to genus 30, false beyond (STATE) |
 | XDEAD (conductor-free DEAD) | PROOFS "DEAD" section |
 | Q3 ≥ 4h − (k+4) | ⟨27,28,32,35⟩, Q3 = 3 (E332) |
+| ALL-BUT-ONE (every S, lex tile M̂ ⊆ ℕ^N, N = e − 1): B^i := Σ_{β∈M̂}(c + m − 1 − φ(end_i β)) ≥ m(m−1)/2 for every direction i except at most one; equivalently γ_i·Σ_{w∈Ap} α_i(w) ≤ m·ℓ. Sum form = CH′ = Wilf. Right-primitive directions always satisfy it (proved) | ⟨7,11,12,20⟩ (c = 18): B/h = 0.571, 0.381, 1.714; at depth 5: ⟨34,38,42,43,71,73⟩ (c = 139): B/h = 2.49, 0.907, 0.927, 2.417, 2.652. Even pairs fail (0.571 + 0.381 < 1). Random census: 0 failures on 3,179 S with c > 4m; the annealer found them in minutes (E345) |
 
 | T1 (every S): Σ_y (j_y − c_y) ≤ ρ + r, i.e. E + r ≥ P (the whole ID-q pool); also T1′ (holes below ρ dropped), T0 (≤ ρ), and the combinatorial version for arbitrary injective multiset ideals | ⟨66,67,71,72,98,103,128⟩: c = 326, q = 5, ρ = 4, r = 0, J − C = 6, T1 = −2; also ⟨61,62,63,67,88,89,112⟩ (−1) and ⟨64,65,69,75,95,100⟩ (q = 6, −1). Two codes agree (E340). T0 already fails at ⟨14,22,23⟩₅₆ (J − C = 1, ρ = 0). T1 had 0 failures and min slack 0 on all of genus ≤ 30, e = 3 exhaustive, e = 4 random and the negative-Eliahou families: tight statements need annealing, not census | the pool P (unused incidences); E + r = 451 there |
 
 | (B) / P1 (every S with r ≥ 1): E + (k − q) ≥ 0, i.e. Wilf with r replaced by min(r, 1); also E + a ≥ 0 (a = #nonzero left Apéry residues). This would have reduced Wilf to the case r = 0 | ⟨798, 1205, 1206, 1209, 1218, 1237, 1276, 1329⟩ ∪ [3192, ∞): r = 678, E = −56, k − q = 49, (B) = −7 (E343). Family Γ ⊂ (3m/2, 5m/3), c = 4m, collision-free: E = −(n³−n)/6 while k − q = 3n + C(n+1, 2); fails for all n ≥ 7. It survived 46,862 negative-Eliahou Delgado truncations (slack ×8) and P18 annealing: small-e families never reach it | many right primitives (r ≥ n/3 is needed; the difference body gives n(n²−1)/3) |
 
+| MAJ(v) (every S, 1 ≤ v ≤ m): the ray incidences ending in the top v-slice number at most (N−1)v + m (a Hall/layer-cake strengthening of CH′) | ⟨5,11,12⟩ (c = 20), ⟨12,13,59⟩ (c = 107), ⟨4,7,13⟩ (c = 11): deficit 1 against early slack 16, 427, 3 (E345). Exact form: mW = Σ_v[(N−1)v + m − cnt_v] + early |
+| TOP (every S): Λ ≤ G (ceiling gains alone pay the top loss); also TOPP (the same, given P̃ > 0) and GT (Λ ≤ G + max(R_gen,0)(k−q)) | TOP: ⟨37,69,70⟩₂₄₄, r = 22, P̃ = 0, slack −8.9 (P0 class: r(k−q) pays). TOPP: ⟨41,72,73,75⟩₁₈₅, P̃ = 2.85, slack −8.6. GT: ⟨31,55,56,57⟩₁₄₁, R_gen = −6, P̃ = 9.2 pays (E345). TOP restricted to leaves (r = 0) survives: Conjecture TOP0 |
+| LEAF-MIN: W(S) ≥ W(⟨L(S)⟩) (truncations dominate their leaf) | ⟨11,13,18,25,36,43⟩ truncated at c = 20, 21, 22: W = 20, 15, 14 < W(leaf) = 34 (E345) |
+| SUBADD-TOP for general down-sets (any down-set D with maximal set Z, any subadditive ε ≥ 0 with ε(0) = 0): Σ_Z(\|y\|−1)ε(y) ≤ (n+1)Σ_{D∖Z}ε | 2D, size 11, Z = {(0,4),(1,2),(2,1),(3,0)}: LP value 0.23 > 0. 3D: first failures at size 12 with \|Z\| = 5. No failure seen with \|Z\| ≤ n+1 (E345). The tile structure must enter for large type |
+| HALL-TOP at threshold c for ρ > 0 (box-local transport for TOP0); LOAD (uniform box shares) | 304/4,548 leaves with ρ > 0; e.g. ⟨10,11,17,18⟩ (c = 27, ρ = 3), shortfall 20. LOAD: ⟨12,13,14,19⟩ (c = 36), excess 2/3. Box pairing loses when h(y) + ρ ≥ m. At threshold qm (ρ′ = 0), HALL-TOP holds on all tested leaves |
+
 ## Pattern C — a relaxation that removes the structure doing the work
 | Statement | Counterexample |
 |---|---|
 | TB4 with only the half window [h, 3h′) | E314 |
+| RANK (replace the depth δ(z) of a ray end by its rank in the φ-order) | 2,586 of 2,738 random S fail, e.g. ⟨12,17,19,20⟩ (c = 48), −15 (E345). The gaps between φ-values matter |
 | Z12 without any window covering | m = 47, B = {10,12,13}, h = 20, slack −2 (E335) |
 | Small-part inequality (core regime) | STATE 0f |
+| UCG (every S, c > 4m): Σ_{y∈Y}(\|y\| − 1) ≤ R*(k − q) + P̃ with R* = max(R_gen, min(r, 1)); it drops G, ρR*/m and the θ-weights of Λ from the ray identity | two-generated S with r = 0 and W = 0: ⟨8,9⟩ (c = 56, slack −6), ⟨9,10⟩ (c = 72, −7), ⟨7,8⟩ (−5); also ⟨7,9,24⟩₃₀ (W = 6, −1/7) and the tile ⟨16,27,28,31⟩₇₈ (r = 0, −23/8). Annealers found these in minutes (E345). Who pays: the ceiling gains G pay all of Λ in the two-generated case |
 
 ## Pattern E — reductions that are only conditional
 | Statement | Counterexample |

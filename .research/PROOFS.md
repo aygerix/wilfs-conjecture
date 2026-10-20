@@ -4914,3 +4914,52 @@ satisfies Wilf.
   - Conjecture GDB: W with r replaced by max(R_gen, [r ≥ 1]) is > −1. 0 failures on 6,000 random S with q ≥ 2 and
     q ≥ 5 (E344).
   - Its r = 0 part is literally E ≥ 0.
+
+## The full lex tile; leaves; Conjecture TOP0 — 2026-10-21
+**Setting.**
+- g_1 < … < g_N are all minimal generators other than m, so N = e − 1. Right primitives are included.
+- M̂ ⊆ ℕ^N is the set of lex-least factorizations (last coordinate compared first) of the m Apéry elements. It is a
+  down-set and a complete residue system for L = ker(φ mod m), i.e. a lattice tile (HRW 2018, Prop. 2.3/2.5).
+- Ŷ = {y ∈ M̂ : φ(y) ≥ c} (the top window). θ_y = (φ(y) − c)/m.
+- end_i(β) is the last point of the i-ray from β in M̂.
+
+**Lemma T1 (CH′ in ray form; every S).**
+  mW = Σ_{β∈M̂} Σ_{i=1}^N (c + m − 1 − φ(end_i β)) − (N−1)m(m−1)/2
+     = (N+1)m(m−1)/2 + Σ_{β,i} (c − φ(end_i β)).
+*Proof.* For a down-set, Σ_{α∈M̂} α_i = Σ_β ℓ_i(β), where ℓ_i(β) is the number of further i-steps from β. So
+Σ_{β,i} φ(end_i β) = (N+1)Σ_{M̂}φ. Also Σ_{M̂}φ = Σ Ap = mg + m(m−1)/2 and W = (N+1)(c−g) − c. ∎
+
+**Lemma T2 (residue form; every S).** W = (N+1)(m−1)/2 + P̂ − Σ_{y∈Ŷ}(|y| + N)θ_y, where
+  P̂ = (1/m)Σ_{z: φ(z)<c} Σ_{i: z+e_i∉M̂} (z_i+1)(c − φ(z)).
+*Proof.* Group the terms of T1 by ray end z. The point z ends the i-rays from z − te_i (0 ≤ t ≤ z_i) for each i with
+z + e_i ∉ M̂, and every i qualifies when z ∈ Ŷ (since g_i > m). ∎
+- Equivalently, this is the ray identity on M̂: W = Ĝ + P̂ − Λ̂ with Ĝ = (N+1)Σ_{M̂_<}{(φ−c)/m}. The values
+  {(φ−c)/m} over M̂ run over {0, 1/m, …, (m−1)/m}.
+- Checked: 0 mismatches on 2,668 S (E345).
+
+**Lemma T3 (every S).** Every Apéry element w ≥ c is maximal for ≤_S in Ap(S, m). So Ŷ ⊆ PF(S) + m and |Ŷ| ≤ t(S).
+*Proof.* w + s ≥ c + m > max Ap for every s ∈ S∖{0}. ∎
+
+**Lemma T4 (right-primitive directions; every S with n ≥ 1).** For the direction p of a right primitive,
+B^p := Σ_β (c+m−1 − φ(end_p β)) ≥ m(m−1)/2.
+*Proof.* end_p(β) = β for β ≠ 0, and end_p(0) = e_p. So B^p/m = (m−1)/2 + ℓ − p/m with ℓ = |L|. Moreover
+p < c + m ≤ (q+1)m, and ℓ ≥ q + 1 because a left generator exists. ∎
+(The analogous per-direction bound fails for left directions; ALL-BUT-ONE in FAILED.)
+
+**Leaves.**
+- S is a leaf of the semigroup tree ⟺ r = 0 ⟺ S = ⟨L(S)⟩ (Delgado 2019, Rem. 5.15). Then M̂ = M, N = n, and the ray
+  identity reads W = G + P̃ − Λ with G = (n+1)[(m−1)/2 − Σ_{y∈Y}θ_y].
+- **Threshold shift (leaves).** Write c = qm − ρ and W′ := (n+1)|S ∩ [0, qm)| − qm. Then W = W′ − nρ.
+  - W′ obeys the same ray identity with threshold qm (the algebra needs only M ⊆ {φ < qm + m}).
+  - Its top set is U = {u : x_u = q}, the residues of maximal Kunz coordinate, and there φ(y) − qm = u.
+
+**Conjecture TOP0 (leaves, n ≥ 2).** Λ ≤ G, i.e. Σ_{y∈Y}(|y| + n)(φ(y) − c) ≤ (n+1)m(m−1)/2.
+- It implies W ≥ P̃ ≥ 0, so Wilf for every leaf.
+- Status: 0 failures on all 5,411,788 leaves with n ≥ 2 and genus ≤ 30; min m(G − Λ) = 2 at ⟨5,16,17⟩ (c = 30).
+  Annealing min 0.4 (E345).
+- It is false without r = 0: TOP fails on the P0 class with large r (FAILED).
+- **Weaker form TOP0′ (threshold qm, ρ-free):** Σ_{u∈U}(deg w_u − 1)·u ≤ (n+1)Σ_{u∉U} u, with deg the lex degree.
+  - Mechanism: ε := φ mod m is subadditive on M and satisfies ε(β) + ε(y−β) ≥ ε(y) for β ≤ y (box pairing).
+  - So TOP0′ follows from SUBADD-TOP for the down-set ↓U.
+  - SUBADD-TOP is FALSE for general down-sets with ≥ n+2 maximal elements (FAILED). No failure with ≤ n+1 (E345).
+  - TOP0′ alone does not give Wilf when ρ > 0: it needs P̃′ ≥ nρ in addition.
