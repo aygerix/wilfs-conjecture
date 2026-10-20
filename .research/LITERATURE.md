@@ -849,3 +849,11 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   - No inequality over the maximal elements (socle) of the tessellating staircase, weighted by degree and residue (our
     Conjecture TM), was found.
   - preprints.org 202604.0551: HTTP 403, NOT checked.
+
+## 2026-10-21 (night) search: DEP-CARRY / CR_DEP (column-top rearrangement on the factorization tile)
+- Queries: "Wilf conjecture numerical semigroup Apéry set factorization down-set lattice tile inequality" (extended);
+  "Wilf conjecture Gröbner / standard monomials Apéry set maximal embedding arXiv 2025 2026 proof".
+- Hits: Dobbs–Matthews 1610.08726, BGOW 1903.04342, Sammartano 1710.09245, graph approach 1909.03699, Marashdeh
+  2608.12531 (item 10), Delgado–Kumar 2512.23891 (max primitive ≤ 60), DKM 2501.04417, Yang–Zhang preprints.org
+  202604.0551, Wilf and Macaulay (EMS). All already listed. No statement of a rearrangement bound over column-top weights
+  of a factorization tile, or of the sharp non-maximal-top bound w − c ≤ r − m, was found.

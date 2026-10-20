@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-21, latest: TM = MaxCL (re-derived); resume the MaxCL residual (A00000))
+# STATE.md — handoff (updated 2026-10-21 night, latest: Wilf ⟸ CR-TILE, a shape-only lattice-tile inequality (A000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,24 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000) **NEWEST (2026-10-21, night): Wilf reduced to a SHAPE-ONLY inequality on lattice tiles (CR-TILE).**
+          (NOTEBOOK "DEP-CARRY and the shape-only reduction CR_DEP"; E348.)
+          - PROVED: for any factorization tile D of S, mW ≥ (d+1)M' + m·Dep − Σ_t ω(t) r(t) (CH′ plus the sharp
+            bounds w − c ≤ r on maximal tops, w − c ≤ r − m on non-maximal tops), hence by rearrangement
+            W ≥ 0 whenever CR_DEP holds: Σ_i i·ω_(i) + m·Dep ≥ (d−1)m(m−1)/2, i.e.
+            Σ_{k≥1} C(n_k,2) + m·Dep ≥ (d−1)C(m,2), where ω(t) = Σ_{b: t+e_b∉D}(t_b+1), n_k = #{ω ≥ k},
+            Dep = Σ_{t non-max} ω(t). No residues, no c.
+          - CONJ CR-TILE: every lattice tile satisfies CR_DEP (⇒ Wilf for all S; only m > 3e is needed).
+            0 failures: all tiles d = 2 (m ≤ 30), d = 3 (m ≤ 18), all down-sets of ℕ⁴ (m ≤ 13), 4,000 + 3,000
+            random S, all known CR/ATOP failures (two-face, box family). Non-tiles fail (staircases, simplices).
+          - Coarser sufficient forms that also held on 3,000 S: SC1 C(|∂|,2) + d·C(|A|,2) + m·Dep ≥ (d−1)C(m,2)
+            (fails on 3 small 3-D tiles, m = 9) and SC2; and H1: Dep ≥ (d−1)(|interior| − 1) (0 failures; the
+            pointwise version is false).
+          - DEP-CARRY (with the true labels; weaker than MaxCL and Tile-TOP'') has slack ≥ 0.37·m² in the open
+            regime in adversarial searches.
+          - NEXT: (1) prove CR-TILE for d = 3 with the cylinder lemma (gives Wilf for e = 4); (2) find the
+            lattice-tile inequality behind H1/SC1 in general d; (3) keep the CR_DEP annealers ca_1..3 running
+            (fejer ~/wilf/p34) and record their minima.
       (A00000) **NEWEST (2026-10-21) — CORRECTION: "Conjecture TM" IS MaxCL (2026-10-17).** I re-derived it without
           consulting the record (context loss). The MaxCL line (Flat-MaxCL, NO-WRAP, ONE-CUBIC, H3-D5, H3-CORE2/3/4,
           the open height-3 residual, WRAP-MAX, H1′ refuted) is the existing body of work. Resume THERE.
