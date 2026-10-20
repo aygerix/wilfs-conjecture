@@ -3289,3 +3289,22 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     - Z = e(y0 − e) + 2(|2A_{<h}| − e) + e − 2|(3A∖2A) ∩ W_1| − 3N4 − 2e″ + 3[h odd] ≥ 0;
     - D = 3τ + 3ω − eδ ≥ 0.
   - Z ≥ 0 and D ≥ 0 together give W ≥ 2E1 + E3f + 2ρ ≥ 0 for all-A.
+
+## 2026-10-20 (evening) — relative Macaulay; the residual V; where P18 depth four is tight
+- **Lemma RTCM (proved).** Apply Eliahou's condensed Macaulay inequality to R/(Q), where Q is any set of 2-sums. Result:
+  3|Q + A| ≥ (e+2)|Q| − E3f. Shared faces (overlapping translates q + A) are paid out of the global Macaulay slack.
+  The statement is depth-independent; this is the coupling mechanism the advisor asked for.
+- With Q = the wasted carried pairs, the depth-four identity splits exactly as W = V + σ. Here σ is the RTCM slack and
+  V = E1 + (e·y0 − 3N4 − h) + 2δ − P_hi + 3δ_hi + 3·extra. V has no E3f, so it is a first-order statement.
+- Conjecture RES4: V ≥ 0. It is sharp at ⟨17,21,29,31,32⟩ and survives annealing. It gives a two-line proof of CORE4 from
+  the window bound.
+- Where it is hard:
+  - The small-element regimes are slack.
+  - The tight uncovered S have a few high elements whose pairwise sums are carried above m + h (P_hi), with h only a
+    little above e.
+  - In V each such pair costs 1, and 2 more if its residue lands in the window. Only (a+1)(b+1) is available, so b ≫ a
+    needs δ_hi, the extra waste, E1 or σ.
+- Next:
+  - No-small regime with b ≤ 2a + 1: prove V ≥ 0 from the free count.
+  - Many high elements: find what forces δ_hi or collisions. Note the high elements lie in ((m+h)/2, m), an interval of
+    length (m − h)/2.
