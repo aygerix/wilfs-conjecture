@@ -3394,3 +3394,46 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Prove M for the open classes. The covering of [h, m) must prevent B from clustering in the windows
     [m − s, m − s + h).
   - Check whether M extends to depth five (carries ≤ 2) as stated.
+- (later) **Conjecture M generalises.**
+  - The inside matching of the carry deficit held for P18 at every depth tested (2–37) and for general S (generators in
+    (m, 4m), depths 2–12): 0 failures, including the e = 2 case where it must be perfect.
+  - The P18 depth-four reduction:
+    - pairs are matched by π (PROVED), and triples with a sub-pair below h by ρ (PROVED);
+    - the residual class R (b1 + b2 ≥ h) is matched by a Hall condition (0 failures);
+    - "zero tokens suffice for R" (R3) is FALSE (third regime, e = 14, m = 200: R = 49 > Z = 23), but the full Hall
+      condition held there.
+  - Strategy note: M is the cleanest universal target found so far. A proof would have to explain why a carried element
+    always finds its last missing unit among the dead tokens of its own sub-sums. The obstacle is clusters of generators
+    whose many carried 3-sums share few sub-sums.
+
+## 2026-10-20 (morning) — (★★) refuted; twin tokens; Conjecture DEAD (dead tokens alone pay the carry)
+- **(★★) is FALSE.** The (★★)-annealer, restricted to 2h > m, found m = 75, B = {7,…,12,19,69}, h = 75:
+  |R| + p = 13 > 12 (W = 501). The G4/D3 count is too thin when every element of B is below h. The P18 depth-four
+  residual is still covered by the Hall form M′ (0 failures), but no two-term count closes it.
+- **Twin tokens (PROVED, all S).** A carried v = u + g_b has the dead token (v, b, k) in each forced degree k. The token
+  (u, b, k) has the SAME target, so it is dead too, and (u, b) determines v.
+  - So every carried unit whose sub-sum u = v − g_b is uncarried (or carried with smaller carry) and in pool gets an
+    injective fresh dead token.
+  - At P18 depth four this reproduces π and ρ. The residual R is exactly where all twins leave the pool (sub-pair
+    residues ≥ h).
+  - At high depth the unit set without a fresh twin (Δ) is 40–60% of T_c, so twins are a mechanism, not a proof.
+- **New conjecture DEAD:** W ≥ Λ − O, where Λ = Σ_{z∈Ap} Σ_b μ_b(z) (μ_b = maximal multiplicity of g_b in z) and
+  O = Σ o(z).
+  - Equivalently: the dead power tokens alone are ≥ e·T_c, or (e−1)ℓ ≥ Λ + T_c.
+  - Λ − O is exactly the number of alive-but-unused tokens (collisions). So DEAD says "Wilf pays for every collision
+    token".
+  - Exhaustive: all S of genus ≤ 34 (≈ 100M), 0 failures. Equality for e ≥ 3 only in the Wilf-equality family
+    ⟨m, km+1, …, km+m−1⟩.
+  - For staircase S (every Apéry element factors uniquely, e.g. every e ≤ 3) Λ = O, so DEAD is exactly Wilf. It is a
+    strengthening only through non-unique factorization.
+  - Near-sharp: shifted intervals ⟨m, m+s, …, m+s+d⟩ with s ≈ d ≈ m/3 have (Λ−O)/W → 1 (0.971 at m = 120) while
+    W − (Λ − O) ≈ e. So DEAD cannot be strengthened by a constant factor; this family is where to attack it.
+- Local versions all FAIL: per-direction, per-chain, base-carry, reflection through the maximal Apéry elements
+  (matching and flow forms), and monotonicity along the semigroup tree. In the symmetric case the reflection
+  γ ↦ F + o(z)m − γ proves the per-direction bound ℓ − Λ_b ≥ T_c for every b.
+- Reading: DEAD is the most robust universal inequality found so far that sits strictly above Wilf. A proof must count
+  slots globally. The extremal interval family has huge collision counts, nearly all paid; it is the test bed.
+- Next:
+  - Prove DEAD on the interval family exactly (the W − (Λ−O) ≈ e margin should come from an explicit formula).
+  - Look for an exact identity for #slots − T_c generalising the e = 2 reflection identity.
+  - Anneal around the interval family for a failure.

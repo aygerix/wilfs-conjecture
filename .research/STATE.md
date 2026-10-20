@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20 small hours: order–level identity + power tokens, W = U − e·T_c for ALL S (0g); P18 depth four e ≤ 6 certified; Conjecture M; next: prove M's open classes)
+# STATE.md — handoff (updated 2026-10-20 morning: Conjecture DEAD W ≥ Λ − O, exhaustive genus ≤ 34 (0h); (★★) FALSE; twin tokens; next: DEAD on the extremal interval family)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,6 +8,19 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0h. **NEWEST (2026-10-20 morning): Conjecture DEAD — a strengthening of Wilf (PROOFS "Twin tokens and Conjecture DEAD").**
+    - DEAD: W ≥ Λ − O, i.e. (e−1)ℓ ≥ Λ + T_c, i.e. the DEAD power tokens alone are ≥ e·T_c.
+      Here Λ = Σ_{z∈Ap} Σ_b μ_b(z) (maximal g_b-multiplicity) and Λ − O = # collision (alive unused) tokens.
+    - 0 failures on EVERY S of genus ≤ 34 (≈ 100M, E322). Equality only on the Wilf-equality family.
+    - PROVED: the equivalences; DEAD ⟺ Wilf on staircase S (unique factorization in Ap; all e ≤ 3); DEAD for
+      symmetric S; Lemma RAY (λ ≤ L); Lemma TW (twin tokens).
+    - Near-sharp family: ⟨m, a..a+d⟩ with a ≈ 4m/3, d ≈ m/3: (Λ−O)/W → 1, margin ≈ e + 3.
+    - FALSE: all local refinements tried (per-direction, per-chain, base-carry, reflection matching/flow, tree
+      monotonicity). Also (★★) for the P18 residual (E321; −1 at m = 75).
+    - **Next precise task:**
+      (a) an exact formula for W − (Λ − O) on the interval family (find what pays the collisions there);
+      (b) look for an exact identity for #slots − T_c generalising the e = 2 reflection identity;
+      (c) anD annealers (fejer ~/wilf/p29/aD*.txt) — check for W/(Λ−O) < 1.
 0g. **NEWEST (2026-10-20 small hours): Wilf in "carry" form, for every numerical semigroup (PROOFS "Order–level identity",
     "Power tokens").**
     - PROVED: W = U − e·T_c. U counts the unused power tokens of the condensed-Macaulay injection on gr(R/t^m R);

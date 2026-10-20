@@ -3787,3 +3787,110 @@ H4 order-4 elements; y0 = |3A ∩ [0,h)| uncarried residues < h; U_k = unused de
   - For the latter, the overflow tokens (u_s, x, 3), s + x ≥ m + h, of a parent pair element u_s number
     |B ∩ [m − s + h, m)|, while the triples through u_s number at most |B ∩ [m − s, m − s + h)|. A Hall argument has to
     use the covering of [h, m) to rule out B clustering in such windows.
+- **Lemma PI (all carried pairs; PROVED 2026-10-20).** P18 depth four. For a carried pair v with chosen representation
+  {b ≤ b′} (b + b′ = m + r), put π(v) = (g_b, b′, 3) if b′ ≥ h, and π(v) = (g_b, b′, 4) if b′ < h.
+  - π(v) is a dead token with uncarried first coordinate g_b, inside v, and π is injective.
+  - Case b′ ≥ h: the target 3m + b + 2b′ has b + 2b′ = m + r + b′. Either it is ≥ 2m (level ≥ 5), or its residue
+    r + b′ ≥ h sits at level 4. Neither is an Apéry element.
+  - Case b′ < h: then b < h, so the degree-4 token is in the pool. Its target 4m + b + 3b′ has b + 3b′ ≥ m + 2b′ > m, so
+    it has level ≥ 5.
+  - Injectivity: the token determines (b, b′), hence the representation, hence v.
+- So Conjecture M at depth four reduces to the **residual class R**: carried triples {b1 ≤ b2 ≤ b3} with b1 + b2 ≥ h.
+  - Every other carried element is matched injectively and disjointly: pairs by π (generator first coordinates), triples
+    with b1 + b2 < h by ρ = (u_{12}, b3, 4) (pair first coordinates).
+  - **Conjecture M′ (CONJ):** R can be matched inside into the unused tokens and spares not in im π ∪ im ρ.
+  - Data (E320, mres.py): π and ρ are always unused and distinct (0 failures). Residual Hall has 0 failures (exh e ≤ 5;
+    random e = 9, 12); max |R| = 14.
+  - The residual matching uses almost only first coordinate 0, the tokens (0, x, k), k = 2, 3, 4, with a few generator
+    and pair tokens in core-like S.
+  - Obstacle to a pure count: in the core regime |R| ≈ h − e can reach about e(e−1), so tokens determined by ≤ 2
+    elements must be spread over triples. The natural per-pair charge (each triple to the overflow tokens of its largest
+    sub-pair) fails exactly when B has more elements in [m − s, m − s + h) than in [m − s + h, m).
+
+## Conjecture M (inside matching of the carry deficit), every numerical semigroup (lead, 2026-10-20; checks E321)
+Setting: any S with multiplicity m and depth q. Use the Apéry orders, levels and carries t = level − order. Power tokens
+(u, b, k), 2 ≤ k ≤ top(u), with top(u) = q if r(u) < h and q − 1 otherwise; chosen representations via parent pointers.
+"Used" and "unused" are as in Lemma PT.
+- Supply:
+  - each unused token with uncarried first coordinate has capacity 1;
+  - each carried u has spare(u) = #unused(u) − (e−1)·t(u) ≥ 0 (own-dead-token lemma).
+- Demand: each carried v needs t(v).
+- By W = U − e·T_c (PROVED), **total supply − total demand = W exactly**, so Wilf ⟺ supply ≥ demand.
+- **Conjecture M:** there is a flow meeting every demand t(v) using only supply inside v. That means unused tokens whose
+  first coordinate is an uncarried proper sub-sum of v's chosen representation, together with spares of carried proper
+  sub-sums or of v itself. M ⟹ Wilf, and M is a local strengthening of it.
+  - Data (E321):
+    - P18: 0 failures, depths 2–37 (`matchq.py`, about 11k S).
+    - Narrow form (first coordinates only 0 and the generators of v): 0 failures for P18 depth ≤ 12.
+    - General S, generators in (m, 4m): 0 failures, depths 2–12 (`matchq.py` 5k S; C tool `genM.c`, max-flow, with the
+      self-check supply − demand = W).
+    - For e = 2 every S has W = 0, so the flow must be perfect, and it is.
+  - Why it is plausible: the forced dead tokens of a carried element already pay e − 1 of each e units of carry. The
+    remaining unit is found among the overflow and collision tokens of its own sub-sums.
+  - Expected failure mode (to test): a large cluster of generators whose carried 3-sums outnumber the dead tokens of all
+    its sub-sums. In P18 depth four the zero-token-only version (R3) already fails (third regime, e = 14: |R| = 49 > 23),
+    yet the full residual Hall condition held there.
+
+## (★★) for the P18 depth-four residual — FALSE (2026-10-20; E321)
+- Statement: |R| + p ≤ (a+1)·#{x ∈ B : 3x ≥ h} + #{(b, x) ∈ B² : b + 2x ≥ m + h}.
+- What is PROVED: W ≥ slack(★★). The G4 tokens (u, x, 4) with u ∈ {0} ∪ {g_b : b < h}, 3x ≥ h, and the D3 tokens
+  (g_b, x, 3) with b + 2x ≥ m + h are dead, distinct, uncarried, disjoint from im ρ, and contain im π.
+- Counterexample: m = 75, B = {7, 8, 9, 10, 11, 12, 19, 69}, h = 75 (c = 4m). Here a = 8, |R| = 5, p = 8, the G4 count is
+  9 and D3 = 3, so slack = −1, while W = 501.
+
+## Twin tokens and Conjecture DEAD, every numerical semigroup (lead, 2026-10-20; checks E322)
+Setting as in "Power tokens".
+- Notation:
+  - top(u) = q if r(u) < h, else q − 1.
+  - L_u = top(u) − x(u), the number of left elements in u's residue class; ℓ = Σ_u L_u.
+  - λ(u, b) = max{j ≥ 0 : u + j·g_b ∈ Ap}, and μ_b(z) = max{j : z − j·g_b ∈ S}.
+  - Λ = Σ_{u∈Ap} Σ_b λ(u, b) = Σ_{z∈Ap} Σ_b μ_b(z), by double counting the pairs u, u + j·g_b ∈ Ap. O = Σ_z o(z).
+- **Lemma RAY (PROVED).** λ(u, b) ≤ L_u.
+  - Put j = L_u + 1. Then u + j·g_b has level ≥ x(u) + j = top(u) + 1.
+  - If r(u) < h, that level exceeds q.
+  - If r(u) ≥ h, the level is ≥ q. Equality forces every step to raise the level by exactly 1, with no wrap, so the
+    residue is ≥ r(u) ≥ h. Then the element is ≥ qm + h > max Ap.
+  - Consequence: the dead tokens on the ray (u, b) are exactly j = k − o(u) ∈ (λ(u, b), top(u) − o(u)]. The top t(u)
+    of them are u's forced dead tokens (own-dead lemma). The other s(u, b) := L_u − λ(u, b) ≥ 0 are **slots**.
+- **Identities (PROVED).**
+  - #dead pool tokens = (e−1)(c − O) − Λ.
+  - #alive unused pool tokens = Λ − O ≥ 0. (A target z receives Σ_b μ_b(z) alive tokens and uses o(z) of them;
+    generators contribute 0.)
+  - With W = U − e·T_c this gives **W − (Λ − O) = #dead − e·T_c = Σ_{u,b} s(u, b) − T_c**.
+  - Moreover Σ_u s(u, b) = ℓ − Λ_b, where Λ_b = Σ_z μ_b(z) = Σ_{j≥1} rank(x_b^j on k[S]/(t^m)). The g_b-chains in
+    Ap are the Jordan blocks of multiplication by t^{g_b}.
+- **Conjecture DEAD (CONJ; 0 failures for genus ≤ 34).** For every numerical semigroup S ≠ ℕ, **W(S) ≥ Λ − O**.
+  Equivalent forms (equivalences PROVED above):
+  - (i) the dead power tokens alone number ≥ e·T_c;
+  - (ii) (e−1)·ℓ ≥ Λ + T_c, i.e. Σ_b (ℓ − Λ_b) ≥ T_c;
+  - (iii) e·ℓ − c ≥ Σ_{z∈Ap} (Σ_b μ_b(z) − o(z)).
+  - DEAD ⟹ Wilf, since Λ ≥ O.
+- If every Apéry element has a unique factorization (staircase S; e.g. every S with e ≤ 3), then μ_b = a_b, so Λ = O
+  and **DEAD ⟺ Wilf** for that S. So DEAD adds exactly the collision count Λ − O.
+- **Symmetric S (PROVED).** μ_b(z) ≤ o(z) gives Λ ≤ (e−1)·O. Hence Λ − O ≤ (e−2)·O ≤ (e−2)·g = W.
+  - Per direction, the reflection γ = z − km ↦ y = F + o(z)·m − γ = (M − z) + (o(z) + k − 1)·m (M = F + m) is an
+    injection from high gaps (1 ≤ k ≤ t(z)) into the slots of every direction b. The slot condition holds because
+    λ(M − z, b) = μ_b(z) ≤ o(z). So ℓ − Λ_b ≥ T_c for every b.
+- Equality and sharpness (E322):
+  - For e ≥ 3, equality occurs exactly d(g) − 1 times per genus up to 34. That count matches ⟨m, km+1, …, km+m−1⟩
+    (W = 0, Λ = O).
+  - Shifted intervals ⟨m, a, …, a+d⟩ with a ≈ 4m/3 and d ≈ m/3 have (Λ − O)/W → 1 (0.971 at m = 120) with
+    W − (Λ − O) ≈ e + 3. So no inequality W ≥ (1+ε)(Λ − O) holds.
+- Local refinements — all FALSE (E322):
+  - PERB, (e−1)·min_b (ℓ − Λ_b) ≥ T_c;
+  - CHAIN, the per-g_b-chain version Σ_C s ≥ Σ_C (t − t(base));
+  - BASE, Σ_b Σ_z t(z − μ_b(z)g_b) ≤ (e−2)T_c;
+  - reflection through the maximal Apéry elements, both as a fixed-offset matching and as a flow into the slot
+    capacities;
+  - monotonicity of W − (Λ − O) along the semigroup tree.
+- **Lemma TW (twin tokens; PROVED).** Let v be carried, with carry t and forced degrees D(v). Let b ∈ supp(v)
+  (chosen representation) and u = v − g_b.
+  - For k ∈ D(v), the token (u, b, k) has the same target as (v, b, k), so it is dead.
+  - It is a slot iff k ≤ top(u) and (t(u) = 0 or k ∉ D(u)).
+  - The pair (u, b) determines v, so twins of distinct carried elements are distinct.
+  - With the chosen b, v gets min(t(v), t(v) − t(u) + top(u) − top(v)) fresh slots.
+  - At P18 depth four the twins reproduce ρ exactly, and π except on low carried pairs with b′ ≥ h. The residual R is
+    where every twin leaves the pool (all sub-pair residues ≥ h) or lands in a carried pair's forced set.
+  - In general the unit set Δ without a fresh twin is a large fraction of T_c at high depth. The slots DEAD needs come
+    from excess jumps further along the rays: s(u_i, b) = top(u_i) − x(u_L) + Σ_{j>i} ex(u_j) on a g_b-chain
+    u_0, …, u_L, where ex(v) = x(v) − x(v − g_b) − 1.
