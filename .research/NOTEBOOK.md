@@ -3691,3 +3691,16 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - (2) Find the tile property that replaces "few maximal elements".
   - (3) Handle ρ > 0, either directly at threshold c or via P̃′ ≥ nρ.
   - (4) For non-leaves: GDB (no failures in the n ≥ 2 annealing).
+
+## 2026-10-21 (late) — CORRECTION: TM = MaxCL
+- "Conjecture TM" is exactly MaxCL (2026-10-17). I re-derived it after a context loss without checking PROOFS.
+  - MaxCL ⇒ Wilf is LEAN-checked.
+  - The degree-≤2 window proof is Flat-MaxCL (LEAN).
+  - REARR is R-TOP and INJ-SUBADD is the partial-tile extension; both were already known FALSE.
+- Genuinely new from today:
+  - The TOP0 census: MaxCL at the conductor phase, top window only, on all 5,411,788 leaves of genus ≤ 30; 0 failures,
+    min slack 2.
+  - Exhaustive TM/MaxCL rechecks (E346), which agree with E58/E59.
+  - HALL-TM: the λ = 0 box transport is feasible on all tiles with n = 2 (m ≤ 14) and n = 3 (m ≤ 9).
+  - Refuted: ALL-BUT-ONE, MAJ, RANK, TOP (all S), LEAF-MIN, RISE, PSHIFT.
+- Rule for myself: before naming a "new" conjecture, grep PROOFS/STATE for its normalized form (here: "Σ_A (d+|y|)").

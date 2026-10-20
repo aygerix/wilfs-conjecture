@@ -4916,6 +4916,8 @@ satisfies Wilf.
   - Its r = 0 part is literally E ≥ 0.
 
 ## The full lex tile; leaves; Conjecture TOP0 — 2026-10-21
+(Cross-reference: Lemmas T1 and T2 are CH′ and the Tile-TOP'' bookkeeping in ray form. TOP0 is MaxCL at the conductor
+phase, restricted to the top window of a leaf. See PROOFS "MaxCL".)
 **Setting.**
 - g_1 < … < g_N are all minimal generators other than m, so N = e − 1. Right primitives are included.
 - M̂ ⊆ ℕ^N is the set of lex-least factorizations (last coordinate compared first) of the m Apéry elements. It is a
@@ -4964,7 +4966,14 @@ p < c + m ≤ (q+1)m, and ℓ ≥ q + 1 because a left generator exists. ∎
   - SUBADD-TOP is FALSE for general down-sets with ≥ n+2 maximal elements (FAILED). No failure with ≤ n+1 (E345).
   - TOP0′ alone does not give Wilf when ρ > 0: it needs P̃′ ≥ nρ in addition.
 
-## Conjecture TM (tile-max): a lattice-tiling statement that implies Wilf — 2026-10-21
+## Conjecture TM (tile-max) — 2026-10-21: IDENTICAL TO MaxCL (2026-10-17), re-derived without consulting the record
+**CORRECTION (2026-10-21, same day).** TM is exactly MaxCL (PROOFS "MaxCL (lift-free, CONJ, 2026-10-17)"), with d = n,
+r = ε and σ = −λ. Consequences:
+- MaxCL ⇒ Tile-TOP'' ⇒ Wilf is already LEAN-checked.
+- The degree-≤2 case is Flat-MaxCL (LEAN), and the window argument below is the same one.
+- The shape-only rearrangement is R-TOP (already FALSE). The partial-tile extension is already FALSE.
+Nothing in this section is new except the data (E345, E346), the TOP0 census of leaves, and the HALL-TM check at λ = 0.
+It is kept only as a cross-reference. The MaxCL line (height-3 residual, WRAP-MAX, general σ) is where work resumes.
 **Statement (Conjecture TM).** Let n, m ≥ 1, let χ: ℤ^n → ℤ/m be a surjective homomorphism, let D ⊆ ℕ^n be a down-set
 with |D| = m on which χ is injective (so D is a fundamental domain of ker χ), and let λ ∈ ℤ/m. Put
 ε(α) ∈ {0, …, m−1}, the representative of χ(α) + λ. Then

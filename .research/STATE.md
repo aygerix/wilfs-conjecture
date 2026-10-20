@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-21, latest: Conjecture TM (lattice-tile inequality) implies Wilf; main target (A00000))
+# STATE.md — handoff (updated 2026-10-21, latest: TM = MaxCL (re-derived); resume the MaxCL residual (A00000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,8 +54,15 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
-      (A00000) **NEWEST (2026-10-21): MAIN TARGET = Conjecture TM (tile-max), which implies Wilf for EVERY S
-          (PROOFS "Conjecture TM"; E345, E346).**
+      (A00000) **NEWEST (2026-10-21) — CORRECTION: "Conjecture TM" IS MaxCL (2026-10-17).** I re-derived it without
+          consulting the record (context loss). The MaxCL line (Flat-MaxCL, NO-WRAP, ONE-CUBIC, H3-D5, H3-CORE2/3/4,
+          the open height-3 residual, WRAP-MAX, H1′ refuted) is the existing body of work. Resume THERE.
+          - New this session: the TOP0 census of all 5.4M leaves (genus ≤ 30); the TM data E346; the λ = 0
+            box-transport (HALL-TM) check on all small tiles.
+          - The text below is kept for the record. Its "NEXT" items are superseded by the MaxCL residual list (STATE
+            items (0H)/(0I) and PROOFS "Height-3 MaxCL: partial results").
+          (Old text, superseded:) MAIN TARGET = Conjecture TM (tile-max), which implies Wilf for EVERY S
+          (PROOFS "Conjecture TM"; E345, E346).
           - Statement: for a down-set D ⊆ ℕ^n that is a fundamental domain of ker χ (χ: ℤ^n → ℤ/m) and an affine
             residue ε = (χ + λ) mod m, Σ_{y∈Max(D)} (|y| + n)·ε(y) ≤ (n+1)·m(m−1)/2.
           - Implication: apply it to the full lex tile M̂ (n = e − 1, λ = −c). Lemma T2 then gives

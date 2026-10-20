@@ -843,3 +843,9 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   unsupported.
 - Status: Wilf for leaves is not known to us. For leaves, W equals Eliahou's W₀. Leaves include generic e = 4
   semigroups (cf. kseth e = 4, which is computer-assisted).
+- 2026-10-21 (TM check): searched "Hellus Rechenauer Waldi Wilf tessellation lex ideal Apéry set inequality".
+  - Found again: HRW arXiv:1804.06141 (already in item 12) and Spirito, "Wilf's conjecture for numerical semigroups
+    with large second generator" (a_2 > (c+μ)/3; already in our LargeSecondGen line).
+  - No inequality over the maximal elements (socle) of the tessellating staircase, weighted by degree and residue (our
+    Conjecture TM), was found.
+  - preprints.org 202604.0551: HTTP 403, NOT checked.
