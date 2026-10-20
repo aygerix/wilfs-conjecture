@@ -4060,3 +4060,67 @@ Setting: S = ⟨m, m + B⟩, B ⊂ [1, m − 1], |B| = k, e = k + 1, A = {0} ∪
     - RESs (only incidences that land in D, plus F and P_w): −2 at m = 13, B = {3, 4, 5}.
     - LOC / LOC3 (local deficits against k(1 + a1) + P_w (+ W3)): −9 at m = 25, B = {1, 5, 6}.
     - So every waste term is needed somewhere.
+
+## Theorem LAYER3 (every numerical semigroup) and the depth-four reduction W = Q3 + Q4 (lead, 2026-10-20; checks E326)
+
+Setting: S is a numerical semigroup, m = m(S) ≥ 2, e = e(S).
+- Layers: S_j = {r ∈ [0, m) : jm + r ∈ S}, s_j = |S_j| = |S ∩ [jm, (j+1)m)|. Then S_0 = {0} ⊂ S_1 ⊂ S_2 ⊂ ….
+- New elements: N_j = S_j ∖ S_{j−1}.
+- Generator layers: G_j = {r : jm + r is a minimal generator}, k_j = |G_j|, so e = 1 + Σ_{j≥1} k_j. Note G_1 = N_1.
+
+**Theorem LAYER3 (PROVED on paper).** 3·|S ∩ [3m, 4m)| ≤ e·|S ∩ [0, 3m)|, i.e. 3·s_3 ≤ e·(s_0 + s_1 + s_2).
+Equality holds for "free" S = ⟨m, m + B⟩ (all sums of ≤ 3 elements of B distinct and < m).
+
+Proof.
+1. **Decomposition.** Let r ∈ N_j, so n = jm + r ∈ S and n − m ∉ S. Either n is a minimal generator (r ∈ G_j), or
+   n = g + s with g a minimal generator, g ≠ m, s ∈ S ∖ {0}.
+   - s ≠ m, and s − m ∉ S; otherwise n − m ∈ S.
+   - Write g = a′m + x with x ∈ G_{a′}, and s = am + u with a ≥ 1 and u ∈ N_a.
+   - Then r = x + u with j = a + a′ (if x + u < m), or r = x + u − m with j = a + a′ + 1 (if x + u ≥ m).
+2. **The new elements of layers 2 and 3.**
+   - N_2 = G_2 ⊔ U2, with U2 ⊂ (G_1 + G_1)_{<m}. The union is disjoint because a pair sum is never a minimal generator.
+     So |U2| =: u2 ≤ P_u, where P_u, P_w count the multisets {x, y} ⊂ G_1 with x + y < m, resp. ≥ m;
+     P_u + P_w = k_1(k_1 + 1)/2.
+   - N_3 ⊂ G_3 ∪ T_G ∪ T_U ∪ R, where:
+     - T_G = (G_1 + G_2)_{<m}, so |T_G| ≤ k_1 k_2;
+     - R = (G_1 + G_1)_{≥m} − m, so |R| ≤ P_w;
+     - T_U = ((G_1 + U2)_{<m}) ∖ (S_2 ∪ T_G).
+3. **The bound for T_U.** Each t ∈ T_U is x + y + z with x, y, z ∈ G_1.
+   - Every pair sum is < m and lies in U2. If x + z ∈ S_1, then t ∈ G_1 + G_1 ⊂ S_2. A pair sum is never in G_2.
+   - The incidence count and deficit count of Theorem Q3 apply verbatim: 3|T_U| ≤ k_1·u2 + 2P_u.
+4. **Arithmetic.** Use 3s_3 = 3s_2 + 3|N_3|, s_1 = 1 + k_1 and s_2 = 1 + k_1 + k_2 + u2.
+   - The P18 part:
+     3(1 + k_1 + u2) + k_1 u2 + 2P_u + 3P_w ≤ (1 + k_1)(3 + 2k_1 + u2).
+     Indeed, the difference is 2k_1(k_1+1) − 2u2 − 2P_u − 3P_w ≥ 2k_1(k_1+1) − 4(P_u + P_w) = 0.
+   - The remaining terms on the left are 3k_2 + 3k_3 + 3k_1k_2 (from s_2, G_3 and T_G).
+   - The remaining terms on the right are at least (1 + k_1)k_2 + (k_2 + k_3)(3 + 2k_1) ≥ 3k_2 + 3k_1k_2 + 3k_3. ∎
+
+Remarks.
+- The statement has the form of Eliahou's "condensed Macaulay" j·h_j ≤ h_1·Σ_{i<j} h_i for standard graded algebras
+  (JEMS 2018, Thm 5.11). But the layers s_j are not such a Hilbert function: wrapped sums skip a layer.
+- The analogue LAYER(j) for j ≥ 4 is FALSE in general. Example: P18, ⟨52, 80, 81⟩, LAYER(7) slack −3. LAYER(4) fails at
+  ⟨35, 54, 55⟩. These are large-genus e = 3 cases. LAYER(j) has 0 failures for all j ≤ 9 at genus ≤ 36.
+- For j ≥ depth q, LAYER(j) follows from Wilf.
+
+**Identity (PROVED; every S of depth four, 3m < c ≤ 4m, h := c − 3m).**
+- The layer facts: ℓ = s_0 + s_1 + s_2 + L3 with L3 = |S_3 ∩ [0, h)|; s_3 = m − d4, where d4 = #{w ∈ Ap(S, m) : w ≥ 4m}
+  (these residues are all < h); and h = L3 + d4.
+- Hence W = Q3 + Q4, where:
+  - Q3 := e(s_0 + s_1 + s_2) − 3s_3 ≥ 0 (Theorem LAYER3);
+  - Q4 := (e − 1)·L3 − 4·d4 = (e − 1)h − (e + 3)·d4.
+
+**Corollary LAYER3-W (PROVED).** Every numerical semigroup with 3m < c ≤ 4m and (e + 3)·d4 ≤ (e − 1)·(c − 3m) satisfies
+Wilf. In words: Wilf holds unless more than a fraction (e − 1)/(e + 3) of the residues below h have Kunz coordinate 4.
+
+**Depth-four coverage.** Three proved results together: LAYER3-W, Wilf for c ≤ 3m + e (DEPTH4-EH, kernel-checked), and
+Wilf for 3e ≥ m (Eliahou).
+- They leave exactly 1 of 1,690,641 depth-four S of genus ≤ 30 uncovered: ⟨13, 16, 17, 19⟩.
+- They leave 7 of 11,400,681 at genus ≤ 34, all with e ∈ {4, 5} and all generated below 2m:
+  ⟨13,16,17,19⟩, ⟨13,18,19,22⟩, ⟨13,18,20,24⟩, ⟨15,17,21,22⟩, ⟨15,19,20,22⟩, ⟨16,19,22,23,24⟩, ⟨16,20,21,23,24⟩.
+  (A census, not a proof.)
+- Depth four with fixed e has m ≤ C(e + 3, 4), so it is a finite family for each e. P18 depth four for e ≤ 6 is already
+  certified by complete enumeration (E319).
+- Structural consequence: a depth-four counterexample must have h > e, e < m/3 and L3 < 4h/(e − 1). Almost every residue
+  below h has Kunz coordinate 4.
+- Literature (dated search 2026-10-20, web + LITERATURE.md): no statement of LAYER3 or LAYER3-W was found. The nearest
+  are Eliahou's Macaulay-based q = 3 proof and his condensed Macaulay inequality. Novelty UNVERIFIED beyond that search.
