@@ -3947,3 +3947,52 @@ Setting as in "Power tokens".
   slack −2, XWILF slack 6, DEAD slack 33. Confirmed by an independent brute-force script (`verify_xd.py`), which also
   re-confirms the DEAD identity slots − T_c = W − (Λ − O) there.
 - XRAY, g ≤ Σ_b Σ_u x(λ(u,b)·g_b) (single-direction partners only), is FALSE (885/1837 random S).
+
+### P18 depth four through DEAD: slot counts by first coordinate (lead, 2026-10-20; checks E324)
+- Setting: P18 depth four, k = e − 1, a = |B ∩ [1, h)|. Slots of the level ≤ 2 elements:
+  - of 0: Z = Σ_x (4 − λ(0, x));
+  - of the generators: G = Σ_{b,x} (L_b − λ(g_b, x)), with L_b = 3 (b < h) or 2 (b ≥ h);
+  - of the uncarried pairs: P = Σ_u Σ_x (L_u − λ(u, x)).
+- These are disjoint sets of slots, and ρ injects the triples with a sub-pair < h into pair slots. Hence each of the
+  following implies DEAD at P18 depth four, hence **Wilf for P18 depth four**:
+  - S2: p + q ≤ G;
+  - S3: p + q ≤ Z + G;
+  - S5: p + q ≤ G + P;
+  - ZG: p + |R| ≤ Z + G;
+  - ZGP: p + q ≤ Z + G + P.
+  No matching is needed: DEAD is a count.
+- **Exact form of S2 (PROVED identity):**
+  - G = k² + a·k + D1 − N2 − N3, with D1 = #{(b, x) : g_b + g_x ∉ Ap} and N_j = #{(b, x) : g_b + j·g_x ∈ Ap}.
+  - So S2 ⟺ k² + a·k + D1 ≥ N2 + N3 + p + q.
+  - N3 only counts b < h, since b + 3x < h is needed.
+- Data (E324):
+  - exhaustive e = 4 (m ≤ 50) and e = 5 (m ≤ 36): min slack S2 2, 3; S3 5, 9; S5 4, 11; ZG 6, 9; ZGP 8, 17;
+  - random e = 9, 15: min S2 49, 222.
+  - Annealing on G/(p+q) (p + q ≥ 10): best 1.56 at e = 20 (q ≈ 0.72k², G ≈ 1.42k²); larger m running.
+  - FALSE: P2 (p + q ≤ P; −9, −14) and S4 (generator slots of dead pairs only).
+- Heuristic risk: q can be ~k³ in principle, but carried triples need wraps, and the covering of [h, m) at level ≤ 3
+  limits wrapped structure. Free (Sidon-like) B with 4·max B < m has no wraps at all, so T_c = 0.
+- **Theorem BIG (PROVED 2026-10-20; P18 depth four with B ⊂ (m/2, m)).** Let S = ⟨m, m + B⟩ with B ⊂ (m/2, m) and
+  3m < c ≤ 4m. Then G ≥ k² ≥ T_c, hence DEAD and Wilf hold (W ≥ Λ − O + k² − T_c).
+  - Proof:
+    1. Every pair sum lies in (m, 2m), so g_b + g_x = 3m + (b + x − m) has level 3. There are no level-two elements.
+    2. Every triple sum lies in (3m/2, 3m). Level 4 occurs only for sums < 2m, with residue in (m/2, m). So every
+       level-four residue lies in (m/2, h).
+    3. Every residue r ∈ (0, m/2] is not in B and not of level 4, so it has level 3. That level holds only wrapped
+       pairs, so r ∈ B + B − m. Hence ⌊m/2⌋ ≤ |B + B| ≤ k(k+1)/2, so m ≤ k(k+1) + 1.
+    4. The nonzero non-generator Apéry elements are wrapped pairs (level 3, order 2) and triples (level 4, order 3).
+       Four-fold sums have level ≥ 6. So each is carried once and T_c = m − 1 − k ≤ k².
+    5. Each ordered pair (b, x) has a dead generator slot. If b ≥ h, g_b + 2g_x has b + 2x > m + h, so it is not
+       Apéry (L_b = 2). If b < h, g_b + 3g_x has b + 3x > 2m, so it has level ≥ 5 (L_b = 3). Hence G ≥ k².
+- **Decomposition (PROVED identity).** G = k² − F_full + E, where:
+  - F_full = #{(b, x) : λ(g_b, x) = L_b} counts the rays with no slot;
+  - E = Σ (L_b − λ − 1)^+ counts the extra slots.
+  - So S2 ⟺ T_c + F_full ≤ k² + E.
+- **Conjectures TF / TFZ.**
+  - TF: T_c + F_full ≤ k². Fails once in the data, at k = 3: m = 15, B = {7, 9, 10}, h = 14, −1. Exhaustive k = 4:
+    min 0. Random k = 9: min 48.
+  - TFZ: T_c + F_full ≤ k² + Z. 0 failures (min 2, 4, 67).
+  - TFZ ⟹ S3 ⟹ DEAD ⟹ Wilf at P18 depth four. P18 depth four is certified for e ≤ 6, so TF for k ≥ 6 would
+    suffice.
+  - Proof idea: inject carried elements and full rays into B × B. Full rays map to themselves and carried pairs to
+    their π pair (non-full, injective). Open: carried triples.

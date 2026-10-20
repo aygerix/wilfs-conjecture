@@ -3454,3 +3454,11 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - XDEAD is FALSE (genus 64, −2).
   - DEAD survives the 2-basis regime with room (m ≤ k² + k). Its sharp family remains the shifted intervals.
   - Moral: strengthenings that drop the conductor lose exactly the room additive bases need. DEAD keeps it.
+- (afternoon) **P18 depth four via DEAD.**
+  - DEAD there is a pure count of slots against p + q. The slots of the GENERATORS alone already exceed p + q on every
+    S tested (S2; exhaustive e ≤ 5, random e = 9, 15, annealing at e ≈ 20 with ratio ≥ 1.56).
+  - S2 is equivalent to k² + a·k + D1 ≥ N2 + N3 + p + q, an inequality about pairs (b, x) and the Apéry membership of
+    g_b + j·g_x, j = 1, 2, 3.
+  - If S2 (or S3 = with the slots of 0) is proved, Wilf for P18 depth four follows with no matching argument: π handles
+    pairs inside G, and the count does the rest.
+  - The (★★) failure is explained: it counted only overflow-dead tokens, not collision-dead ones.
