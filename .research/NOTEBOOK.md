@@ -3212,3 +3212,16 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Random/annealing search cannot make dense short-cube cores (max |Y| = 9 at m ≤ 100). Next: build dense cores
   explicitly. Choose h and a B_3 A-core in [h/2, 2h/3), then choose B fillers to force depth four at exactly that h
   without E generators.
+
+## 2026-10-20 (small hours) — P18 at depth four: truncated Macaulay chain
+- Truncation trick: {(j, s) : s ≥ L} is a monomial ideal of the cone algebra. So Eliahou's condensed Macaulay applies to
+  the sumsets cut below any threshold L (Lemma TCM). The truncation below h at level 4 is the right tool for the
+  height-4 residues under h.
+- P18-CHAIN (proved): W ≥ E1 + E2 + E3 − U1 + b·y0 − (e−4)δ − P_hi + 4ν, where the E's are Macaulay slacks and U1 counts
+  the carried cubes. It is exact on the B_3 carried simplex, where it reads W = e(e−1) − U1, and window filling closes it.
+- CHAIN-CONJ (the remaining inequality) has 0 failures with growing slack (6, 17, 31 for k = 3, 4, 5). It is false
+  without the covering condition [h, m) ⊂ T_3, so window filling must enter any proof.
+- Also tonight: the window identity, the translator lemma, WIN and MATCH4 (all-depth-four, earlier entry). In every
+  formulation the residual is the same: carried 3-sums at height four, and co-level-0 elements in [c, c + h/2).
+- Next: prove U1 ≤ E2 + E3 (+ E1 + b·y0) from window filling. First case: all-A (B ⊂ (0, h)) with 2h ≤ m. There
+  U1 = |X_3 ∩ [m, 3h)|, and W_1 = [h, 3h/2) must be covered by pairs and by cubes that have a low face.

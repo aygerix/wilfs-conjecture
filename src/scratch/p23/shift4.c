@@ -15,6 +15,8 @@ static long long maxWinEx = -(1LL<<60), maxShiftEx = -(1LL<<60);
 static uint64_t c0pos, c0posNlo; static long long maxMinC0 = -1;
 static uint64_t noLopt, noLoptS, matchFail; static long long maxNoL = 0;
 static uint64_t fV1, fV2; static long long maxV1 = -(1LL<<60), maxV2 = -(1LL<<60);
+static uint64_t fWF, fCR, withC0, fWF2, fCNT, noTrans; static long long maxCNT = -(1LL<<60);
+static long long minWF = 1LL<<60, maxCR = -(1LL<<60), minWF2 = 1LL<<60;
 /* bipartite matching: cubes without a Lambda-option -> Z-sources (capacity -K) */
 static int madj[4096][64], mdeg[4096], cap[4096], used[4096], owner[4096][8], nown[4096], seen_[4096];
 static int aug(int y){ for (int j = 0; j < mdeg[y]; j++){ int x = madj[y][j]; if (seen_[x]) continue; seen_[x] = 1;
@@ -44,6 +46,34 @@ static void check(int m, long long *w, long long *n, int d, int c) {
   }
   long long W = (long long)e * (c - g) - c;
   if (W != Lam + Z + Nlo - RAhi) badId++;
+  { /* window-filling form: W1 = residues [h, h+ceil(h/2)) mod m, W2 = rest of Hw */
+    long long hh = (h + 1) / 2; long long best = 1LL << 60, best2 = 1LL << 60;
+    static int inW1[4096], inHw[4096], isgen[4096];
+    for (int i = 0; i < m; i++){ inW1[i] = ((i - h) % m + m) % m < hh; inHw[i] = ((i - h) % m + m) % m < h; isgen[i] = 0; }
+    for (int a = 0; a < d; a++) isgen[n[a] % m] = 1;
+    long long Zc1 = 0, C0 = 0, C0E = 0, NW2 = 0, genOut = 0;
+    for (int i = 0; i < m; i++){ if (inW1[i]){ if (K[i] <= -1) Zc1++; else if (K[i] == 0 && lam[i] == 0){ C0++; if (isgen[i]) C0E++; } }
+      else if (inHw[i] && K[i] <= 0) NW2++;
+      if (!inHw[i] && K[i] <= 0 && (i == 0 || isgen[i])) genOut++; }
+    if (C0 > 0) withC0++;
+    for (int a = 0; a < d; a++){ long long tau = n[a] % m; long long dt = tau < m - tau ? tau : m - tau; if (2 * dt < h) continue;
+      long long IL = 0, I2 = 0, Il = 0;
+      for (int i = 0; i < m; i++){ if (!inW1[i] || K[i] != 0 || lam[i] == 0) continue;
+        if (top[i][a]) { IL++; continue; } int j = (int)((i + tau) % m); if (inHw[j]) { if (inW1[j]) { printf("WF LOGIC m=%d\n", m); exit(1); } I2++; } else Il++; }
+      long long slack = (Lam - IL) + (Z - Zc1) + (Nlo - Il) + (NW2 - I2) + (hh - (h - hh)) - C0;
+      if (slack < best) best = slack;
+      long long slack2 = (Z - Zc1) + (Nlo - Il) + (NW2 - I2) + (hh - (h - hh)) - C0; if (slack2 < best2) best2 = slack2; }
+    { /* CNT: C0(W1) <= #{v not in W1, K<=0, no predecessor in W1} + (Z - Zc1) + delta */
+      long long np = 0;
+      for (int i = 0; i < m; i++){ if (inW1[i] || K[i] > 0) continue; long long x = w[i]; int hasP = 0;
+        for (int a = 0; a < d && !hasP; a++) if (INS(x - n[a])){ int j = (int)(((x - n[a]) % m)); if (inW1[j] && w[j] == x - n[a]) hasP = 1; }
+        if (!hasP) np++; }
+      long long cnt = C0 - np - (Z - Zc1) - (hh - (h - hh)); if (cnt > 0) fCNT++; if (cnt > maxCNT){ maxCNT = cnt; printf("CNTrec %lld C0=%lld np=%lld Zx=%lld W=%lld m=%d c=%d h=%lld gens=", cnt, C0, np, Z - Zc1, W, m, c, h); for (int a = 0; a < d; a++) printf("%lld,", n[a]); printf("\n"); fflush(stdout); } }
+    if (best2 >= (1LL << 59)) noTrans++;
+    if (best2 < (1LL << 59)){ if (best2 < 0){ fWF2++; static int pr2 = 0; if (pr2++ < 6){ printf("WF2neg %lld W=%lld Lam=%lld m=%d c=%d h=%lld C0=%lld gens=", best2, W, Lam, m, c, h, C0); for (int a = 0; a < d; a++) printf("%lld,", n[a]); printf("\n"); } } if (best2 < minWF2) minWF2 = best2; }
+    if (best < (1LL << 59)){ if (best < 0) fWF++; if (best < minWF) minWF = best; }
+    long long cr = (C0 - C0E) - genOut; if (cr > 0) fCR++; if (cr > maxCR){ maxCR = cr; printf("CRrec C0-E - (1+gensOut) = %lld C0=%lld C0E=%lld genOut=%lld W=%lld m=%d c=%d h=%lld gens=", cr, C0, C0E, genOut, W, m, c, h); for (int a = 0; a < d; a++) printf("%lld,", n[a]); printf("\n"); fflush(stdout); }
+  }
   if (RAhi == 0) return;
   withR++;
   { long long L2 = (long long)d * (m - a0) - sumU; long long v1 = RAhi - L2, v2 = RAhi - tauB - Z;
@@ -113,7 +143,7 @@ int main(int argc, char **argv) {
       for (int a = 0; a < k; a++) n[a] = m + B[a];
       check(m, w, n, k, (int)(M - m + 1)); }
   } else { G = atoi(argv[1]); int gens[1] = {1}; visit(0, -1, 1, gens, 1, 0); }
-  printf("q=4 S: %llu; identity failures %llu; with RAhi>0: %llu; c0<=h/2: %llu; WIN failures %llu (max ex %lld); SHIFT failures %llu (max ex %lld); minC0>0: %llu, minC0>Nlo: %llu, max minC0 %lld; S with cubes lacking Lambda-option %llu (cubes %llu), MATCH failures %llu; V1 (RAhi<=L2) fails %llu max %lld; V2 (RAhi<=tauB+Z) fails %llu max %lld\n",
-    (unsigned long long)tot, (unsigned long long)badId, (unsigned long long)withR, (unsigned long long)c0low, (unsigned long long)failWin, maxWinEx, (unsigned long long)failShift, maxShiftEx, (unsigned long long)c0pos, (unsigned long long)c0posNlo, maxMinC0, (unsigned long long)noLoptS, (unsigned long long)noLopt, (unsigned long long)matchFail, (unsigned long long)fV1, maxV1, (unsigned long long)fV2, maxV2);
+  printf("q=4 S: %llu; identity failures %llu; with RAhi>0: %llu; c0<=h/2: %llu; WIN failures %llu (max ex %lld); SHIFT failures %llu (max ex %lld); minC0>0: %llu, minC0>Nlo: %llu, max minC0 %lld; S with cubes lacking Lambda-option %llu (cubes %llu), MATCH failures %llu; V1 (RAhi<=L2) fails %llu max %lld; V2 (RAhi<=tauB+Z) fails %llu max %lld; WF slack<0 (all translators bad or slack) %llu, min WF slack %lld; S with C0>0 %llu; crude C0'<=1+gensOut fails %llu max %lld; WF without Lam fails %llu min %lld; no valid translator %llu; CNT fails %llu max %lld\n",
+    (unsigned long long)tot, (unsigned long long)badId, (unsigned long long)withR, (unsigned long long)c0low, (unsigned long long)failWin, maxWinEx, (unsigned long long)failShift, maxShiftEx, (unsigned long long)c0pos, (unsigned long long)c0posNlo, maxMinC0, (unsigned long long)noLoptS, (unsigned long long)noLopt, (unsigned long long)matchFail, (unsigned long long)fV1, maxV1, (unsigned long long)fV2, maxV2, (unsigned long long)fWF, minWF, (unsigned long long)withC0, (unsigned long long)fCR, maxCR, (unsigned long long)fWF2, minWF2, (unsigned long long)noTrans, (unsigned long long)fCNT, maxCNT);
   return 0;
 }
