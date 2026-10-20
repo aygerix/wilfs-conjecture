@@ -3505,3 +3505,19 @@ Setting: S = ⟨m, m + B⟩, B ⊂ [1, m−1], 3m < c = 3m + h ≤ 4m, A = {0} �
   - π1 = |((Pset_hi − m) ∩ W_1) ∖ 2A| (window cells covered only by high carried pairs).
   It is EXACT at the sharp example (8 − 6 − 8 + 3 + 3 = 0). Open: P_hi + 2π1 can exceed (a+1)(b+1) when b ≫ a. Then
   δ_hi, extra, E1 or σ must pay.
+- **Split into two first-order statements (PROVED identity; both halves CONJ).** From W = V + σ:
+  **W = (T + E1) + (σ − P_hi) + 2δ + 3δ_hi + 3·extra**, all of δ, δ_hi, extra ≥ 0. So P18 depth-four Wilf follows from
+  - **Conjecture TB4 (top band at depth four):** h + 3N4 ≤ e·y0 + E1, equivalently h + 3N4 + 2|2B ∖ A| ≤ e(y0 + e − 1);
+  - **Conjecture SIG1 (shadow surplus):** σ ≥ P_hi, i.e. 3|Q + A| + E3f ≥ (e+2)|Q| + P_hi for Q = Dset ∪ Pset_hi.
+  - Data:
+    - TB4: min 1, at ⟨20,24,25,27,33⟩ with h = 4, a covered case. Among uncovered S the min is 3. T alone dips to −1 (a = 0).
+    - SIG1: min 0, only with P_hi = 0. When P_hi > 0, σ − (2a+1)P_hi ≥ 4, so the free-shadow surplus 2a·P_hi is realized.
+    - Both: 0 failures on all of E313 and under annealing (`annV2` modes 5, 6, 7).
+  - TB4 is NOT a consequence of local covering conditions (E314):
+    - It fails under the window condition W_1 ⊂ 3A ∪ (Pset_hi − m) ∪ (m + 4A_{<h}) alone: worst −13 at m = 31,
+      A = {0,25,26,28,30}, h = 20.
+    - It still fails with the defining gap and the low covering [0,h) ⊂ 4A ∪ (3A − m) added: worst −4 at m = 39,
+      A = {0,12,13,16,18,37}, h = 10.
+    - It needs the covering of [h, m) as well. In both failures a = 0: all of B lies above h.
+  - Window form: since h ≤ 2·#(window coverers) − 3[h odd], TB4 ⟸ 2(β1 + |(2B∖A) ∩ W_1| + t3w + π′ + e″) + 3N4 ≤
+    e·y0 + E1 + 3[h odd]. In the core this is 4|2B ∩ W_1| ≤ … and holds by |2B| ≤ C(e,2).

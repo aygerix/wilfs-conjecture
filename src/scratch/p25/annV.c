@@ -1,7 +1,8 @@
 /* Annealer for the residual V of P18 depth four (lead, 2026-10-20). S = <m, m+B>, B c [1, m-1], 3m < c <= 4m, h = c - 3m.
  * V = E1 + T + 2 delta - P_hi + 3 delta_hi + 3 extra,  T = e*y0 - 3N4 - h,  extra = tau + omega - |Q + A|,
  * Q = Dset u Pset_hi.  mode 0: min V; mode 1: min V over S not covered by (h<=e, e(e+1)>=2m, (e-1)^2>=2m, 3e>=m);
- * mode 2: min (V - E1) ; mode 3: min T + 3 delta_hi - P_hi ; mode 4: min W (sanity).
+ * mode 2: min (V - E1) ; mode 3: min T + 3 delta_hi - P_hi ; mode 4: min W (sanity);
+ * mode 5: min TB4 = T + E1 ; mode 6: min SIG1 = sigma - P_hi, sigma = 3|Q+A| - (e+2)|Q| + E3f ; mode 7: TB4 on uncovered S only.
  * usage: ./annV mode seed mlo mhi kmin kmax iters restarts */
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +32,7 @@ static double evalS(St *s){
   for (int x = 0; x < L; x++) if (X1[x]) for (int i = 0; i < e; i++) if (x + Al[i] < L) X2[x + Al[i]] = 1;
   for (int x = 0; x < L; x++) if (X2[x]) for (int i = 0; i < e; i++) if (x + Al[i] < L) X3[x + Al[i]] = 1;
   for (int x = 0; x < L; x++) if (X3[x]) for (int i = 0; i < e; i++) if (x + Al[i] < L) X4[x + Al[i]] = 1;
-  int n2 = 0; for (int x = 0; x < L; x++) n2 += X2[x];
+  int n2 = 0, n3 = 0; for (int x = 0; x < L; x++){ n2 += X2[x]; n3 += X3[x]; }
   long long E1 = (long long)e * (e + 1) - 2 * n2;
   int y0 = 0, N4 = 0; for (int x = 0; x < h; x++){ y0 += X3[x]; N4 += (X4[x] && !X3[x]); }
   int tau = 0, omega = 0, delta = 0, Phi = 0, dhi = 0, nQA = 0;
@@ -41,9 +42,11 @@ static double evalS(St *s){
   for (int s = 0; s < L; s++) nQA += QA[s];
   long long extra = tau + omega - nQA, T = (long long)e * y0 - 3 * N4 - h;
   long long V = E1 + T + 2 * delta - Phi + 3 * dhi + 3 * extra, W = (long long)e * (c - g) - c;
+  long long E3f = (long long)(e + 2) * n2 - 3LL * n3, sigma = 3LL * nQA - (long long)(e + 2) * (delta + Phi) + E3f;
   int known = (h <= e) || ((long long)e * (e + 1) >= 2 * m) || ((long long)(e - 1) * (e - 1) >= 2 * m) || (3 * e >= m);
-  info[0] = h; info[1] = e; info[2] = W; info[3] = V; info[4] = T; info[5] = delta; info[6] = Phi; info[7] = dhi; info[8] = extra; info[9] = E1; info[10] = y0; info[11] = N4; info[12] = known;
-  switch (mode){ case 0: return V; case 1: return known ? 1e9 : V; case 2: return V - E1; case 3: return T + 3 * dhi - Phi; default: return W; }
+  info[0] = h; info[1] = e; info[2] = W; info[3] = V; info[4] = T; info[5] = delta; info[6] = Phi; info[7] = dhi; info[8] = extra; info[9] = E1; info[10] = y0; info[11] = N4; info[12] = known; info[13] = sigma;
+  switch (mode){ case 0: return V; case 1: return known ? 1e9 : V; case 2: return V - E1; case 3: return T + 3 * dhi - Phi;
+    case 5: return T + E1; case 6: return sigma - Phi; case 7: return known ? 1e9 : T + E1; default: return W; }
 }
 int main(int argc, char **argv){
   mode = atoi(argv[1]); srand(atoi(argv[2])); int mlo = atoi(argv[3]), mhi = atoi(argv[4]), kmin = atoi(argv[5]), kmax = atoi(argv[6]); long iters = atol(argv[7]); int R = atoi(argv[8]);
@@ -67,7 +70,7 @@ int main(int argc, char **argv){
       double g2 = evalS(&t); if (g2 >= 1e9) continue;
       if (g2 <= f || urand() < exp((f - g2) / T)){ s = t; f = g2; }
       if (f < best){ best = f; evalS(&s);
-        printf("mode %d best %.0f m=%d e=%lld h=%lld W=%lld V=%lld T=%lld delta=%lld Phi=%lld dhi=%lld extra=%lld E1=%lld y0=%lld N4=%lld known=%lld B=", mode, best, s.m, info[1], info[0], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12]);
+        printf("mode %d best %.0f m=%d e=%lld h=%lld W=%lld V=%lld T=%lld delta=%lld Phi=%lld dhi=%lld extra=%lld E1=%lld y0=%lld N4=%lld known=%lld sigma=%lld B=", mode, best, s.m, info[1], info[0], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12], info[13]);
         int tmp[64]; memcpy(tmp, s.B, sizeof(int) * s.k); for (int a = 0; a < s.k; a++) for (int b2 = a + 1; b2 < s.k; b2++) if (tmp[b2] < tmp[a]){ int x = tmp[a]; tmp[a] = tmp[b2]; tmp[b2] = x; }
         for (int a = 0; a < s.k; a++) printf("%d,", tmp[a]); printf("\n"); fflush(stdout); }
       T *= 0.99995; if (T < 0.05) T = 0.05;
