@@ -3047,3 +3047,36 @@ Wilf for c ∈ ((q−1)m, (q−1)m + e] at every depth.
 - At depth ≥ 5 the bound K ≤ 1 is FALSE: UF cubics with K = 2 exist (first at q = 5, e.g. ⟨11,18,21,30,31,34,37,38⟩;
   K = 3 at q = 7, ⟨8,14,15⟩). There the proof must pay K ≥ 2 values. The stronger W ≥ e − h + Λ + Z FAILS (3 S at
   q = 7, genus ≤ 26), but W ≥ e − h holds on all 1,950,367 S (e ≥ 3) of genus ≤ 26.
+
+### Conjecture T1 (lead, 2026-10-20) — the K-sum bound at every shift. CONJ; 0 failures (E294)
+**Setting.** m = multiplicity, Ap = Ap(S, m), P' = minimal generators other than m, d = |P'|, e = d + 1,
+ν_a(x) = max{k : x − k n_a ∈ S}. For an integer p ∈ [1, m] let C_p(y) = #{z ∈ (0, y] : z ≡ p (mod m)} =
+⌊(y − p)/m⌋ + 1 (y ≥ 0), and
+    K_p(x) = C_p(x) − Σ_{a ∈ P'} ν_a(x)·(C_p(x) − C_p(x − n_a))    (x ∈ Ap).
+With M = max Ap = qm + μ and p* = μ + 1 = ((c − 1) mod m) + 1, one has C_{p*}(v) = q − λ(v) and
+C_{p*}(v − n_a) − C_{p*}(v) = λ(v − n_a) − λ(v), so K_{p*} is the K of the K-ID.
+**Conjecture T1.** For every S and every p ∈ [1, m]: Σ_{x ∈ Ap} K_p(x) ≤ m − e.
+**Implications (PROVED from the K-ID W = ρ + Λ − Σ_v K(v)).** T1 at p* is equivalent to W ≥ e − h + Λ, h = c − (q−1)m.
+Hence T1 ⇒ GEN-EH, and T1 ⇒ (Wilf holds whenever h ≤ e + Λ). Under T1, a Wilf counterexample needs Λ < h − e < m − e.
+**Equivalent forms (identities, PROVED).** Put J(x) = Σ_{a : x + n_a ∉ Ap}(ν_a(x) + 1) − e, top_a(x) = top of the a-chain of x.
+- (Abel) Σ_x K_p(x) = e Σ_x C_p(x) − Σ_a Σ_x C_p(top_a(x)); and Σ_x J(x)g(x) = Σ_a Σ_x g(top_a(x)) − e Σ_x g(x) for any g.
+- (J-form) T1(p) ⟺ Σ_{x ∈ Ap\{0}} J(x)·⌊(x − p)/m⌋ ≥ 0. Here Σ_{x≠0} J(x) = e − m < 0, so T1 says J correlates with level.
+- (moment identity) Σ_{x ∈ Ap} J(x)·x = E := Σ_x (Σ_a ν_a(x) n_a − x) ≥ 0.
+- (Kunz form) with k(x) = ⌊x/m⌋: T1(p) ⟺ Σ_x J(x)k(x) ≥ S_p := Σ_{x ≠ 0, x mod m < p} J(x). T1(p+1) slack = T1(p) slack − J(w_p).
+- (gap form) Σ_{x≠0} ⌊(x−p)/m⌋ = #{gaps ≥ p}; T1(p) ⟺ Σ_a Σ_x [L(top_a x) − L(x)] ≥ d + #{gaps ≥ p}, L(y) = ⌊(y−p)/m⌋.
+- (residue form) T1(p) ⟺ Σ_{x≠0} J(x)·((x − p) mod m) ≤ (m − e)p + E.
+- (UF case: Ap = {Σ f_a n_a : f ∈ F}, F ⊂ ℕ^d an order ideal) T1(p) ⟺ Σ_{f ∈ F\0} J(f)⌊(Σ_a f_a r_a − p)/m⌋ ≥ 0
+  (r_a = n_a mod m); the k_a cancel because Σ_f J(f) f_b = 0. Only the residues and the shape of F enter.
+**Proved cases.**
+- q ≤ 4 at p = p*: K ≤ 1 on decomposables and K = 0 on {0} ∪ P' (the pointwise bound of DepthFour.lean; for J ≥ 3 the
+  drops are ≥ 1, for J ≤ 2 the floor inequality). Lean: `three_mul_add_embDim_le` is T1(p*) with Λ dropped, at q = 4.
+- e = 2, every p, and every down-set {0, n, …, jn} (T1-DOWN below). Proof: Σ_{i ≤ j} K_p(in) = 2Σ_{i<j} C(in) − (j−1)C(jn),
+  and C(u) + C(v) ≤ C(u + v) + 1 (floor inequality, uses 1 ≤ p ≤ m); pair i with j − i. ∎
+**Facts found while testing.**
+- Residue bijectivity is essential: the UF form fails for order ideals whose residues do not cover ℤ_m (E294).
+- The combinatorial UF form (no Kunz/realizability condition) holds for every order ideal with bijective residues, d = 2
+  (m ≤ 16) and d = 3 (m ≤ 11).
+- Pointwise K_p ≤ 1 is false (K up to 4). Deficits are paid inside down-sets:
+  **Conjecture T1-DOWN.** For every down-set D of (Ap, ≤_S): Σ_{x ∈ D, x decomposable}(K_p(x) − 1) ≤ 0.
+  T1-DOWN ⟺ the deficits (K − 1)⁺ can be matched to credits (1 − K)⁺ of decomposables below them (Hall). Cover-only
+  matching FAILS (⟨7,10,32⟩, p* = 2: credit at 30 must pay both 40 and 50).

@@ -3089,3 +3089,15 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Every E generator carries Λ_E = ℓ − 4. The depth-four core should therefore be A ∪ B (∪ few C) generators with
   B_3-like A offsets in (h/2, h).
 - Codex P14 launched on UF-RELAY (close c ≤ 4m).
+
+## 2026-10-20 — Conjecture T1: the K-sum is at most m − e at every shift (implies GEN-EH; reduces Wilf to Λ < h − e)
+- Lean: c > 3m ⇒ e·ℓ ≥ 3m + e is kernel-checked (DepthFour.lean, standard axioms). Wilf for 3m < c ≤ 3m + e.
+- New: W ≥ e − h + Λ (i.e. Σ_v K(v) ≤ m − e) holds on all of genus ≤ 31, at every depth, although K reaches 4. So the
+  Z-free form survives where the Z-form fails. Under it, Wilf can fail only if Λ < h − e.
+- Shift-invariance: K is K_{p*} for the window phase p* = (F mod m) + 1. Replacing p* by any p ∈ [1, m] keeps the bound
+  (genus ≤ 28, every p). So T1 is a statement about (Ap, generators) alone, with no conductor in it.
+- Clean equivalent: Σ_{x≠0} J(x)⌊(x−p)/m⌋ ≥ 0 with J(x) = Σ_{a: x+n_a∉Ap}(ν_a(x)+1) − e, and the moment identity
+  Σ_x J(x)x = E. In the UF case only residues and the shape of the exponent ideal enter; residue bijectivity is essential.
+- e = 2 is proved (pairing i ↔ j − i with C(u) + C(v) ≤ C(u+v) + 1); q ≤ 4 at p* is the DepthFour pointwise bound.
+- Hereditary strengthening T1-DOWN (every down-set of the Apéry poset) survives all tests; cover-only relays fail.
+- Next: prove T1-DOWN by building down-sets one element at a time; the e = 2 pairing is the template.
