@@ -3258,3 +3258,8 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Next: test whether value-truncated order-Macaulay (all thresholds tm, tm + h) plus level/residue bookkeeping
   implies depth-four Wilf, as an LP over the counts n[order][level][residue side]. A dual certificate would be a
   coupled payment proof. If the LP fails, its optimum shows the missing arithmetic constraint.
+- LP test (E310): order-Macaulay at every value truncation, level superadditivity and carry bounds still allow
+  W = −87 at e = 4 (fake near-perfect simplex). Counting is not enough. The proof must use additive structure mod m:
+  that h-fold sums collide, and that high residues force carries. This is the CHAIN-CONJ / window-filling ingredient
+  in another form. Direction confirmed: attack CHAIN-CONJ (P18, depth four) as additive combinatorics, starting with
+  all-A and 2h ≤ m.
