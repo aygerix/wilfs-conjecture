@@ -3894,3 +3894,56 @@ Setting as in "Power tokens".
   - In general the unit set Δ without a fresh twin is a large fraction of T_c at high depth. The slots DEAD needs come
     from excess jumps further along the rays: s(u_i, b) = top(u_i) − x(u_L) + Σ_{j>i} ex(u_j) on a g_b-chain
     u_0, …, u_L, where ex(v) = x(v) − x(v − g_b) − 1.
+
+### DEAD: slot intervals, the degree-graded family DOWN, and the inside matching MD (lead, 2026-10-20; checks E322)
+- **Interval picture (PROVED; restates Lemma RAY).** For u ∈ Ap put α(u) = top(u) − t(u) = o(u) + L_u, and for each
+  direction b put A_b(u) = o(u) + λ(u, b) ≤ α(u).
+  - The b-slots of u are the tokens of degrees k ∈ (A_b(u), α(u)].
+  - u's forced dead tokens and its carry units are the degrees (α(u), top(u)].
+  - Let u′ = u + g_b ∈ Ap with o(u′) = o(u) + 1. Then A_b(u′) = A_b(u), and (u, b, k), (u′, b, k) have the same target.
+    So on a g_b-chain with unit order steps, all degree-k tokens share one target. They are dead iff k > A_b, and each is
+    a slot or forced according as k ≤ α or not.
+- **DEAD for c ≤ 2m (PROVED, elementary).** With c = m + h:
+  - [h, m) ⊂ A (the level-one residues). Level-two Apéry elements have residue < h; they are pairs P (order 2) or
+    generators G2 (carry 1). With a = |A ∩ [1, h)|, ℓ = 2 + a and e − 1 = a + (m − h) + |G2|.
+  - Collisions come only from pairs of A_low, so Λ − O ≤ a² + a − 2|P|. With |P| + |G2| = h − 1 − a this gives
+    **W − (Λ − O) ≥ (m − h)(1 + a) + a·|G2| ≥ 0.**
+- **Reflection is degree-monotone (PROVED).** Let M ≥_S v be a maximal Apéry element and u = M − v. Then
+  L_v ≥ x(u) ≥ o(u) and L_u ≥ x(v), because v + (x(u) − 1)m ≤ M − m < c.
+  - Hence, if λ(u, b) ≤ o(v), the b-slots of u at degrees o(u) + o(v) + i (1 ≤ i ≤ t(v)) exist. Each lies at or
+    below the degree o(v) + L_v + i of v's i-th carry unit.
+  - Failures of reflection are therefore only the direction condition and collisions. Example: maximal carried
+    elements all reflect to u = 0.
+- **Conjecture DOWN (CONJ; 0 failures for genus ≤ 33).** For every K:
+  #{slots of degree ≤ K} ≥ #{carry units of degree ≤ K}.
+  - K = q is DEAD.
+  - By nestedness, DOWN ⟺ there is an injection from carry units to slots that never raises the degree.
+  - The per-degree and from-above versions are FALSE (E322). Twins are degree-preserving.
+  - Analogy: PGW (prefix Wilf) is the level-graded analogue for gaps versus left elements.
+- **Conjecture MD (CONJ; 0 failures for genus ≤ 19 and on random S).** Each carry unit (v, k) can be matched injectively
+  to a slot (u, b, k′) with u a sub-sum of v's chosen factorization (u = 0 and u = v allowed) and k′ ≤ k.
+  - TMD: the same after first fixing one fresh twin per unit; also 0 failures.
+  - MD ⟹ DOWN ⟹ DEAD ⟹ Wilf.
+  - This is a purely "descent" (inside) statement; the classical FGH reflection is not used.
+  - In matchings found by search, leftover units mostly take the element's OWN lower slots (v, b, k′ ≤ α(v)). Elements
+    with L_v = 0 (no left element in their class) take slots of v − g_b in other directions.
+
+### Conductor-free versions: XWILF (CONJ, fragile) and XDEAD (FALSE) (lead, 2026-10-20; checks E322)
+- **General reflection lemma (PROVED).** If u + w = v ∈ Ap, then L_u ≥ x(w), because u + (x(w) − 1)m ≤ v − m < c.
+  So X(u) := max{x(w) : u + w ∈ Ap} ≤ L_u, and ℓ ≥ Σ_u X(u).
+- **XWILF:** (e−1)·Σ_{u∈Ap} X(u) ≥ g. Equivalently e·g ≤ (e−1)·Ĉ with Ĉ = Σ_u max_{u+w∈Ap}(x(u) + x(w)) ≤ c. Wilf
+  itself is e·g ≤ (e−1)·c, so XWILF replaces the conductor by an Apéry-poset surrogate. XWILF ⟹ Wilf.
+  - PROVED when type ≤ e − 1. In the down-set D(M) of a maximal M, u ↦ M − u gives Σ_{D(M)} X ≥ Σ_{D(M)} x; then
+    cover Ap by the t sets D(M). This is FGH in X-form, and it covers every e ≤ 3.
+  - No cover by reflections can do better: each maximal M lies only in D(M), so 0 gets load t.
+  - Data: every S of genus ≤ 32, 0 failures. Equality also OUTSIDE the Wilf-equality family: ⟨9, 14, 15, 17⟩ (type 5,
+    XW = 0, W = 6).
+  - Fragility. In the "all pairs wrap" regime S = ⟨m, m + R⟩, R ⊂ (m/2, m), {0} ∪ R ∪ (R + R − m) = ℤ/m, XWILF reads
+    3(m − 1 − k) ≤ k² + 2k, i.e. m ≲ k²/3. That is a restricted 2-basis (postage-stamp, h = 2) bound. Known 2-bases reach
+    about (2/7)k², and the best upper bound known is about 0.48k². So XWILF would imply a new additive-basis bound
+    (UNVERIFIED citations, from memory). Wilf (m ≲ 2k²/3) and DEAD (m ≤ k² + k) are comfortable there.
+  - Exhaustive in that regime: k ≤ 5 (m ≤ 40), k = 6, 7 (covering sets): 0 XWILF failures.
+- **XDEAD: Σ_{u,b} (X(u) − λ(u, b)) ≥ T_c — FALSE.** Counterexample ⟨27, 41, 42, 43, 46, 49, 52, 53⟩ (genus 64): XDEAD
+  slack −2, XWILF slack 6, DEAD slack 33. Confirmed by an independent brute-force script (`verify_xd.py`), which also
+  re-confirms the DEAD identity slots − T_c = W − (Λ − O) there.
+- XRAY, g ≤ Σ_b Σ_u x(λ(u,b)·g_b) (single-direction partners only), is FALSE (885/1837 random S).

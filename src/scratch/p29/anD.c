@@ -2,7 +2,8 @@
  * State: m and a set G of generators in (m, HI*m); S = <m, G>.  Computes Ap(S,m), the minimal generators, orders o(w),
  * mu_b(w) = max{j: w - j g_b in S}, Lambda = sum mu, O = sum o, W = e(c-g) - c.
  * mode 0: minimise W/(Lambda-O) over Lambda - O >= 5 (failure iff < 1);  mode 1: minimise D = W - (Lambda - O) over
- * Lambda - O >= 5;  mode 2: mode 0 restricted to P18 (all minimal generators < 2m).
+ * Lambda - O >= 5;  mode 2: mode 0 restricted to P18 (all minimal generators < 2m);  mode 3: P18 depth four (3m < c <= 4m),
+ * minimise D/e^2;  mode 4: P18 depth four, minimise D.
  * usage: ./anD mode seed mlo mhi kmin kmax HI iters restarts */
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +32,8 @@ static double evalS(St *s){
   for (int r = 1; r < m; r++){ int dec = 0; for (int r2 = 1; r2 < m && !dec; r2++){ long long u = w[r] - w[r2]; if (u > 0 && u >= w[u % m] && (u % m) != 0) dec = 1; }
     if (!dec){ if (nmg >= KX - 1) return 1e18; mg[nmg++] = (int)w[r]; } }
   int e = nmg + 1;
-  if (mode == 2) for (int i = 0; i < nmg; i++) if (mg[i] >= 2 * m) return 1e18;
+  if (mode == 2 || mode >= 3) for (int i = 0; i < nmg; i++) if (mg[i] >= 2 * m) return 1e18;
+  if (mode >= 3 && !(3 * m < c && c <= 4 * m)) return 1e18;
   /* orders by increasing w */
   static int idx[MX], o[MX];
   for (int i = 0; i < m; i++) idx[i] = i;
@@ -43,6 +45,12 @@ static double evalS(St *s){
     for (int b = 0; b < nmg; b++){ int j = 0; while (INS(v - (long long)(j + 1) * mg[b])) j++; Lam += j; } }
   long long W = (long long)e * (c - g) - c, nu = Lam - O;
   info[0] = e; info[1] = c; info[2] = g; info[3] = W; info[4] = nu; info[5] = W - nu;
+  long long SX = 0; for (int r = 0; r < m; r++){ long long X = 0; for (int r2 = 0; r2 < m; r2++){ long long z = w[r] + w[r2]; if (z >= w[z % m] && !(z - m >= 0 && z - m >= w[(z - m) % m]) && w[r2] / m > X) X = w[r2] / m; } SX += X; }
+  long long xw = (long long)(e - 1) * SX - g; info[6] = xw; info[7] = SX;
+  if (mode == 5) return (double)xw / (double)e;
+  if (mode == 6) return (double)xw / (double)g;
+  if (mode == 3) return (double)(W - nu) / ((double)e * e);
+  if (mode == 4) return (double)(W - nu);
   if (nu < 5) return 1e18;
   if (mode == 1) return (double)(W - nu);
   return (double)W / (double)nu;
@@ -71,7 +79,7 @@ int main(int argc, char **argv){
       double g2 = evalS(&t); if (g2 >= 1e17) continue;
       if (g2 <= f || urand() < exp((f - g2) / T)){ s = t; f = g2; }
       if (f < best){ best = f; evalS(&s);
-        printf("mode %d best %.5f m=%d e=%lld c=%lld g=%lld W=%lld nu=%lld D=%lld mingens=", mode, best, s.m, info[0], info[1], info[2], info[3], info[4], info[5]);
+        printf("mode %d best %.5f m=%d e=%lld c=%lld g=%lld W=%lld nu=%lld D=%lld XW=%lld SX=%lld mingens=", mode, best, s.m, info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7]);
         int tmp[KX]; memcpy(tmp, mg, sizeof(int) * nmg); for (int a = 0; a < nmg; a++) for (int b = a + 1; b < nmg; b++) if (tmp[b] < tmp[a]){ int x = tmp[a]; tmp[a] = tmp[b]; tmp[b] = x; }
         for (int a = 0; a < nmg; a++) printf("%d,", tmp[a]); printf("\n"); fflush(stdout); }
       T *= 0.99997; if (T < 0.002) T = 0.002;

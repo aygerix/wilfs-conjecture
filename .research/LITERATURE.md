@@ -673,3 +673,12 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - Nothing addresses depth four (3m < c ≤ 4m) for generators below 2m, the window B ⊂ [h/2, h), or untruncated-Macaulay
   payment of carried pairs. Theorem CORE4 appears new relative to these. Not checked against every paper in the field.
 
+
+## 2026-10-20 — search for Conjecture DEAD (W ≥ Λ − O; collisions of factorizations in Ap)
+- Three standard web searches: Wilf + factorizations/"unique expression"/Apéry; Wilf + Jordan type/nilpotent
+  multiplication; Wilf + staircase/Kunz nilsemigroup. Hits were only the known background: Sammartano (2ν ≥ m),
+  Eliahou (c ≤ 3m, 3e ≥ m), Bruns–García-Sánchez–O'Neill–Wilburne (m ≤ 18 via Kunz faces, Apéry posets), Spirito
+  (large second generator), Dhayni, and the Epoch problem page.
+- NO statement bounding W from below by a factorization/collision count was found. Status of DEAD: ours, unverified
+  novelty (a search, not a proof of novelty). Closest known structure: Brower–McDonough–O'Neill (staircase =
+  Apéry set of unique expression = Kunz-fan chambers; LIT_CL.md §2.1). There DEAD reduces to Wilf.

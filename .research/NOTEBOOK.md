@@ -3437,3 +3437,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Prove DEAD on the interval family exactly (the W − (Λ−O) ≈ e margin should come from an explicit formula).
   - Look for an exact identity for #slots − T_c generalising the e = 2 reflection identity.
   - Anneal around the interval family for a failure.
+- (later, morning) **DEAD refines to DOWN and MD.**
+  - Grading slots and carry units by token degree, the slots dominate the units cumulatively from below (DOWN): every
+    S of genus ≤ 33, 0 failures.
+  - Better still, the matching can be taken INSIDE each element's factorization box and degree-non-increasing (MD):
+    genus ≤ 19 exhaustive, 0 failures. This is a pure descent statement; no pseudo-Frobenius reflection is needed.
+  - The twins are its degree-preserving part. DEAD for c ≤ 2m has a two-line proof.
+  - Each Apéry element u carries an interval picture: b-slots (A_b(u), α(u)] below its carry units (α(u), top(u)].
+    A proof of MD has to explain why elements with L_v = 0 (top layer, all carry, no own slots) always find enough slots
+    in their sub-sums.
+- (later) **Conductor-free variants.**
+  - L_u ≥ X(u) = max{x(w) : u + w ∈ Ap} for every Apéry element. This is the reflection lemma without maximal elements.
+  - XWILF ((e−1)ΣX ≥ g, i.e. Wilf with c replaced by an Apéry surrogate Ĉ ≤ c) holds for genus ≤ 32 and is proved for
+    type ≤ e − 1. But in the all-pairs-wrap (2-basis) regime it is equivalent to a restricted postage-stamp bound
+    m ≲ k²/3, which is open in additive combinatorics. So it is a poor proof target.
+  - XDEAD is FALSE (genus 64, −2).
+  - DEAD survives the 2-basis regime with room (m ≤ k² + k). Its sharp family remains the shifted intervals.
+  - Moral: strengthenings that drop the conductor lose exactly the room additive bases need. DEAD keeps it.
