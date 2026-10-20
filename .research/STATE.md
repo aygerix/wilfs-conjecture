@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20 late: conjecture gate + FAILED.md; Q3-SPLIT (PROVED); necessity audit of who pays the tail (0j))
+# STATE.md — handoff (updated 2026-10-20, latest: DEPTH FOUR IS SETTLED (external, kernel-checked by us); priorities moved to c > 4m (0k))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -7,7 +7,70 @@ Frame:
 - Known theorems settle c ≤ 3m (Eliahou), 3e ≥ m (Eliahou) and the very deep regime (VOL-MINK).
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
+- (2026-10-20, latest) c ≤ 4m is now settled too (external Lean proof, kernel-checked by us; item 0k). Every unproved S
+  has c > 4m, 3e < m, m ≥ 19, g > 100, and is not very deep.
 Lines, in order of cost to decide:
+0k. **NEWEST (2026-10-20, latest): Wilf for c ≤ 4m is SETTLED: external proof, kernel-checked by us (LITERATURE
+    "conjectures.io c ≤ 4m proof: our audit").** Depth four is no longer a target. Do not spend resources on it.
+    - Check: the unmodified proof body compiled against OUR definitions; Lean v4.35.0-rc2 + Mathlib v4.35.0-rc2; axioms
+      propext, Classical.choice, Quot.sound. Reproduce: lean/external/conjio_d4/assemble.py, fejer ~/wilf/ext/cc35.
+    - Mechanism (depth four):
+      - W = W₀ + p(ℓ − 4);
+      - pruning of late primitives;
+      - about fifteen counting slices;
+      - the 23/13 reduction of the residual (W₀ < 0) to cores ⟨A⟩ ∪ [c, ∞);
+      - for cores: exact ID2, then an anchor high y (minimizing rank + |D(y)|), a translation shell and two injections
+        (PAYMENT) that pay the carried triples with three wrapped parents.
+    - **Superseded as routes to Wilf** (true statements stay true; no further work):
+      - GW-26 and GW-26c…i;
+      - CORE4, Theorem A0, RED-A, RED-A2, R2;
+      - the P18 e ≤ 6 certificate (E319); NS = ∅;
+      - CARRY-ID and its consequences; DEPTH4-EH as a Wilf statement;
+      - C1/C2, CE-DIRECTIONS′, LAM4, UF-RELAY, T1 at q ≤ 4;
+      - H3-CORE*, BAD-NARROW;
+      - STAR, SIG, TB4, TB4-LOC, LM, K1, K7, L1, L2, Z1, Z12, DK, J, Conjecture M at depth four, the P18 depth-four
+        token program;
+      - codex P16's target. On codex's return, do NOT resume P16 as a depth-four task.
+    - **Kept (depth-independent or every S; checked for overlap with the external proof):**
+      - LAYER3 (every S, every depth; not in the external proof, no prior statement found by web search) and the
+        identities LAYER3-W / LAYER3-ALL;
+      - Q3-SPLIT;
+      - the order–level identity and power tokens W = U − e·T_c (every depth);
+      - DEAD (observation);
+      - CH′;
+      - τ-criterion (LEAN; no pseudo-Frobenius argument in the external proof);
+      - Flat-MaxCL (LEAN), LargeSecondGen (LEAN);
+      - e·ℓ ≥ 3m + e for every S with c > 3m (LEAN, DepthFour.lean; a depth-free inequality, not superseded);
+      - GEN-EH (CONJ, every depth); VOL-MINK.
+    - **Depth-free content extracted (PROOFS "Depth-q window bookkeeping"; E336):**
+      - Pruning of late primitives works at every depth with c > 3m.
+      - The anchor theorem at ρ = 0 is a layer-4 inequality for every P18 set with an offset ≥ m/2, at ANY depth:
+        Q_4 ≥ −D_5 − h_4. Kernel-checked as `an_anchor_bound`; 0 failures, 12,722 sets of depth ≥ 5.
+      - Depth-q window identity (PROVED; 0 mismatches on 3,000 models):
+        W₀ = ρ + Σ_t (q+1−t)d_t + Σ_carried c(u).
+        With K ≥ q − 1 the only negative class is the top-level carried positions, cost −q each. So depth q has
+        exactly the depth-four shape. What is missing is the regrouping (a parent-incidence identity with multi-wraps)
+        and an anchor shell for whatever stays negative.
+      - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
+        genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
+    - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A) Uniform anchor mechanism for P18 cores at depth q (DKM Problem 1.8 for depth ≥ 5, plus truncations):
+          - (i) compute, at q = 5 with K ≥ 4, the top-level carried positions with their canonical representations
+            (once-wrapped 4-sums, twice-wrapped 3-sums);
+          - (ii) find the depth-5 analogue of Lemma 6_ρ, i.e. how carried positions at level 4 (cost K − 4 each) and
+            at level 3 (2K − 3) are parents of top-level ones;
+          - (iii) identify the class still negative after regrouping;
+          - (iv) test the shell: translate Y_{q−1} ∩ I by an anchor.
+          Gate each step. The goal is a statement uniform in q.
+      (B) General S at depth ≥ 5:
+          - Wilf ⟸ W₀ ≥ 0, so the residual is the Eliahou semigroups (W₀ < 0), which are rare. Bacher lists 17,064
+            with c ≤ 320 (conditional on his Conjecture 20); Delgado's S(p) have unbounded depth.
+          - Build depth ≥ 5 Eliahou examples that are not cores (they have level-≥ 2 primitives). Measure whether a
+            q-analogue of Theorem A (λ(d_S − d_T) ≤ W₀(S) − W₀(T°) on W₀ < 0) holds, and with which λ.
+      (C) Depth-free layer inequalities, used only inside exact identities (FAILED.md pattern A). Do NOT pose
+          last-window bounds such as (e−1)L_4 ≥ G_4 + 5D_5 + h_4 as targets.
+    - Literature: conjectures.io has no visible c ≤ 5m, full-Wilf or Problem 1.8 item (catalog listing truncated). Its
+      e = 4 item (source22) was withdrawn as already solved. Re-check the platform before every new sub-target.
 0j. **NEWEST (2026-10-20 late): external review → conjecture gate; Q3-SPLIT; necessity audit (PROOFS "Exact six-component
     split", E335).**
     - Process. Every new sufficient inequality must pass the gate in FAILED.md (necessity audit, adversarial/scaling

@@ -3532,3 +3532,24 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   with it.
 - Open and being falsified now: P18 at depth ≥ 5 shows tail positivity (e−1)L ≥ G + 3D4 at genus ≤ 34 (antail
   annealers). This is a small-genus-only pattern, so not yet a target.
+
+## 2026-10-20 (latest) — c ≤ 4m settled externally and kernel-checked by us; research moves to c > 4m
+- The conjectures.io proof of Wilf for c ≤ 4m (Main.lean, 22,763 lines) compiles against our own definitions. Lean
+  v4.35.0-rc2 + Mathlib v4.35.0-rc2, standard axioms only (LITERATURE; lean/external/conjio_d4).
+- Two side findings about the check itself:
+  - the stale "sorry" header is harmless;
+  - three Mathlib notations (`≤m`, `≤r`, `→g`) change how the proof text tokenizes if all of Mathlib is imported.
+- Mechanism:
+  - the Eliahou split W = W₀ + p(ℓ − 4);
+  - pruning, plus slices;
+  - the 23/13 reduction of W₀ < 0 to cores;
+  - for cores, an exact identity (ID2) whose only negative class is carried triples with three wrapped parents, paid
+    by an anchor-translation shell and two injections.
+- Our depth-four program is superseded (STATE 0k lists what is kept).
+- New mathematics today:
+  - (1) The depth-q window identity W₀ = ρ + Σ(q+1−t)d_t + Σ c(u) (PROVED). With K ≥ q − 1 only top-level carried
+    positions are negative, so depth q has exactly the depth-four shape.
+  - (2) The anchor theorem gives a layer-4 inequality Q_4 ≥ −D_5 − h_4 for P18 sets at every depth.
+  - (3) The core transfer is not monotone in general (fails at every depth).
+- Question for the next cycle: is there a depth-5 analogue of Lemma 6_ρ (parent incidences with multi-wraps) that
+  leaves a single negative class?

@@ -4400,3 +4400,59 @@ Question: which components of Q3 are ever needed to keep W ≥ 0? Ablation over 
   carried pairs of ≈ √h large generators. This should break Z12 at d ≳ 26 (e ≈ 140), and Z1 later. There, overshoot
   incidences and extra representations pay, i.e. terms that Z1 and Z12 discard. Hence they are recorded as
   observations only.
+
+## Depth-q window bookkeeping for P18 cores; the depth-free content of the depth-four theorem (lead, 2026-10-20; checks E336)
+Setting (window model, as in the external depth-four proof):
+- m > ρ ≥ 0, N = m − ρ, offsets O ⊂ [1, N) with |O| = K (strip-free), q ≥ 2, and
+  T = ⟨m, m + b : b ∈ O⟩ ∪ [qm − ρ, ∞).
+- Position u ∈ [0, m) carries the element km + u − ρ. λ(u) is the least level of an element of ⟨m, m + O⟩ at u.
+  λ_Y(u) is the least t with u − ρ ∈ t·O′ (O′ = O ∪ {0}, sums in ℕ) and u ≥ ρ; λ_Y(u) = ∞ if there is none.
+- h_t = #{u : λ_Y(u) = t}, so h_0 = 1 and h_1 = K. d_t = (K + t − 1)h_{t−1} − t·h_t.
+- ℓ = Σ_u (q − λ(u))_+, d = #{u : λ(u) ≤ q}, W₀ = (K + 1)ℓ − q·d + ρ, p = m − d. Then W(T) = W₀ + p(ℓ − q)
+  (Eliahou; this is the identity W = W₀ + p_q(|L| − q)).
+
+**Identity (PROVED).** W₀ = ρ + Σ_{t=2}^{q} (q + 1 − t)·d_t + Σ_{u : λ(u) < λ_Y(u), λ(u) ≤ q} c(u), where
+- c(u) = (K + 1)(λ_Y(u) − λ(u)) if λ_Y(u) ≤ q;
+- c(u) = (K + 1)(q − λ(u)) − q if λ_Y(u) > q.
+
+Proof.
+- If every λ = λ_Y, then ℓ = Σ_{t<q}(q − t)h_t and d = Σ_{t≤q} h_t. Comparing coefficients of h_s:
+  - for 2 ≤ s ≤ q − 1, (q − s)(K + s) − (q + 1 − s)s = (K + 1)(q − s) − q;
+  - for s = q, −q;
+  - the h_0 and h_1 terms agree, using h_0 = 1 and h_1 = K.
+  This gives W₀ = ρ + Σ (q + 1 − t)d_t.
+- A carried position (λ < λ_Y) changes ℓ by (min(λ_Y, q) − λ) and d by [λ_Y > q]. ∎
+
+Remarks.
+- d_t ≥ 0 is truncated Macaulay for the unwrapped multicomplex: an order ideal of monomials, Eliahou JEMS 2018
+  Thm 5.11 / condensed Macaulay.
+- The only negative costs are carried positions with λ_Y > q and (K + 1)(q − λ) < q. When K ≥ q − 1 these are
+  exactly the **top-level carried positions** (λ = q, λ_Y > q), each costing −q.
+- At q = 4 this is the external ID2 before regrouping: W₀ = ρ + 3d₂ + 2d₃ + d₄ + (K − 3)|Ẑ| + 4|Ẑ ∩ Y₄| − 4|Q|.
+  The external proof then regroups with Lemma 6_ρ, Σ_q w(q) + A = (K + 2)|Ẑ|, so that only Q₃ (carried triples
+  whose three parent pairs are all wrapped) stays negative. Q₃ is then paid by the anchor shell and the two
+  injections.
+- At depth q the same three steps would be needed:
+  - (i) a parent-incidence identity for the top-level carried positions. These are (q − 1)-sums wrapped once,
+    (q − 2)-sums wrapped twice, and so on, so it must handle multi-wraps;
+  - (ii) the class left negative after regrouping;
+  - (iii) an anchor shell for that class.
+  None of this exists yet. The depth-four regrouping uses that a once-wrapped 3-sum has exactly three parent pairs.
+- Check: E336 (`src/scratch/p32/carryq.py`). 0 mismatches on 3,000 random models, q = 4–7, random ρ, K ≤ 9. Every
+  d_t ≥ 0. With K ≥ q − 1 the only negative class is λ = q.
+
+**Corollary (depth-free layer-4 inequality; from the external anchor theorem, kernel-checked: see LITERATURE).**
+- Let S = ⟨m, m + B⟩ with B ⊂ [1, m), some 2b ≥ m, and N_k = |S ∩ [km, (k + 1)m)|, at any depth.
+- Then e·(N_0 + N_1 + N_2 + N_3) − 5N_4 + m + h_4 ≥ coll + 2d₃'' + d₄ ≥ 0, where e = |B| + 1 and
+  h_4 = |4B′ ∩ [0, m)| − |3B′ ∩ [0, m)|.
+- Equivalently Q_4 ≥ −D_5 − h_4, where Q_j := e·Σ_{k<j}N_k − j·N_j and D_5 = m − N_4.
+- Proof. Apply `st_A29A` / `an_anchor_bound` to the model (m, 0, B). Every b < m is a window offset at ρ = 0, and
+  that model is the truncation S ∪ [4m, ∞). Its ℓ = Σ_{k<4} N_k and d = N_4. All generators are below 2m, so each
+  element of S ∩ [4m, 5m) is a sum of two elements below 4m.
+- Compare LAYER(4) (Q_4 ≥ 0), which is FALSE (⟨35,54,55⟩, slack −1), and LAYER3 (Q_3 ≥ 0, every S, PROVED).
+- With W = Q_j + (e − 1)L_j − G_j − j·D_{j+1} for every j with jm ≤ c, where L_j, G_j count elements and gaps in
+  [jm, c), the corollary gives, for P18 with a high offset at depth ≥ 5:
+  W ≥ (e − 1)L_4 − G_4 − 5D_5 − h_4.
+  This is a last-window type bound. By FAILED.md pattern A it is not a proof target.
+- Check: E336 (`anchor_layer4.py`). 0 failures on 17,864 random sets with a high offset, 12,722 of them of depth ≥ 5.
+  The minimum of the left side was 5; LAYER(4) failed 49 times on the same sample.

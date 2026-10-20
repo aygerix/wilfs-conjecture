@@ -682,3 +682,120 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - NO statement bounding W from below by a factorization/collision count was found. Status of DEAD: ours, unverified
   novelty (a search, not a proof of novelty). Closest known structure: Brower–McDonough–O'Neill (staircase =
   Apéry set of unique expression = Kunz-fan chambers; LIT_CL.md §2.1). There DEAD reduces to Wilf.
+
+### Found by the user 2026-10-20: conjectures.io, Lean proof of Wilf for c ≤ 4m (NOT yet verified by us)
+- URL: https://conjectures.io/results/fd12daa7-2b0e-460f-a805-f9ba6d9fede4 (solution page …/solution; source download
+  …/solution/download, Main.lean, ≈1.1 MB, 22,763 lines). Problem page /problems/math30catalog-source23, citing arXiv
+  1703.01761.
+- Claim: "Every proper numerical semigroup with conductor c at most four times its multiplicity satisfies c ≤ e·L."
+  Solver "Elias".
+  - Status shown: Lean verification Passed (kernel only; Nanoda not run). Review Approved. Verified 10 Oct, certified
+    14 Oct 2026.
+  - Policy shown: no imports, no axiom declarations, no sorry, no native_decide. Axioms: propext, Quot.sound,
+    Classical.choice.
+- Review text: "the universal depth-four case is closed by the general core/window/strip argument".
+- Discrepancy to resolve:
+  - The displayed file header says "Incomplete challenge 23" and "Each `sorry` below is an open blueprint node".
+  - The verifier reports no sorry.
+  - Only the first 500 lines are viewable: Kaplan c ≤ 2m and Apéry infrastructure.
+- If confirmed, this settles depth four for ALL S, superseding our P18 depth-four program (A0, CARRY-ID, SIG). Per
+  [status = verification], it counts only after our own audit: statement and definitions match, kernel check on fejer,
+  no sorry/axioms.
+- Why our searches missed it: we searched arXiv, the web, GitHub and Preprints.org. We never queried proof/bounty
+  platforms. Memory rule updated.
+
+### conjectures.io c ≤ 4m proof: our audit (2026-10-20, lead)
+**Statement checked.** For every numerical semigroup S with c(S) ≤ 4·m(S): c ≤ e·ℓ, with c = least c such that
+[c, ∞) ⊆ S, m = least positive element, e = number of minimal generators, ℓ = |S ∩ [0, c)|.
+
+**How we checked it.**
+- Source: Main.lean, 22,763 lines, SHA-256 b1bdde55…986447 (the same as the page). Task bundle: manifest target
+  `Math30Catalog.source23`, formal-conjectures commit 4b69a7dc, toolchain v4.35.0-rc2, permitted axioms propext,
+  Quot.sound, Classical.choice.
+- The statement file `FormalConjectures/ResearchTargets/Math30.lean` at 4b69a7dc is not public. So we did not rely
+  on it. We wrote our own definitions with the API names the proof uses, and proved every API lemma ourselves:
+  - `conductor` via Nat.find;
+  - `multiplicity`;
+  - `IsPrimitive x := x ∈ S ∧ 0 < x ∧ ∀ a b ∈ S, x = a + b → a = 0 ∨ b = 0`;
+  - `primitiveElements`, `leftElements`;
+  - `SatisfiesWilf := conductor ≤ embeddingDimension * leftCount`;
+  - `closure_primitives`, `primitive_lt`, and a test fixture `{0} ∪ [m, ∞)`.
+  We then replaced `fcTypeOfName% "Math30Catalog.source23"` with our own statement and compiled the unmodified proof
+  body under Lean v4.35.0-rc2 + Mathlib tag v4.35.0-rc2 (fejer ~/wilf/ext/cc35, files ConjCheckPreamble.lean and
+  ConjCheck.lean).
+- Static scan: no `sorry`, `axiom`, `set_option`, `native_decide`, `unsafe`, `macro`/`elab`/`syntax`, or `#eval`.
+  There are two `decide +kernel` certificates (qpa_*). The header line "Each `sorry` below is an open blueprint node"
+  is stale.
+- A first build on our v4.33.1/Mathlib 0df444a project failed on renamed lemmas (`dite_eq_left`, `ite_eq_left`,
+  `Finset.sum_le_sum_of_injOn`) and one heartbeat timeout. Toolchain drift, not a gap.
+- **Result:** **PASS (2026-10-20).** 0 errors, exit status 0, 6 min 45 s, 10.8 GB. `#print axioms wilf_conductor_le_four_mul_multiplicity` (our elementary restatement, ∀ S, c ≤ 4m → c ≤ |primitiveElements|·|leftElements|) = [propext, Classical.choice, Quot.sound]. The same holds for `an_anchor_bound` and `t11_reduce_to_pruned`.
+  - Checked file: SHA-256 bdf6937b…; our preamble: ac011f0d…. Both are reproducible with `lean/external/conjio_d4/assemble.py`.
+  - The exact toolchain still needed one fix. Three Mathlib notations glue to identifiers in the proof text and change its tokenization when imported: `≤m` and `≤r` (Matroid minors), `→g` (SimpleGraph.Maps). For example `x≤m3_value` lexes as `≤m` + `3_value`. The original build imported only a subset of Mathlib. We dropped the 364 modules that import those files and did not edit the proof text.
+  - **Verdict: Wilf's conjecture holds for every numerical semigroup with c ≤ 4m.** It is kernel-checked under our own definitions with standard axioms. We read the architecture (below); we did not referee every lemma by hand. The kernel check is the guarantee.
+
+**Proof architecture** (dispatch in `target`; names are Lean declarations):
+1. q ≤ 2: Kaplan. q = 3: Eliahou, formalized through a truncated Macaulay bound for the 3-fold sumset (`W23_M3`,
+   multicomplex shadows and compression).
+2. q = 4, preparation:
+   - Write c = 4m − ρ, n = number of left primitives, d = |D ∩ [c, c+m)|, p = m − d. Then W = W₀ + p(ℓ − 4), with
+     W₀ = nℓ − 4d + ρ (the Eliahou number).
+   - Pruning (`t11_*`). A late left primitive g has g ≥ c − m and g + a ≥ c + m for every left primitive a ≠ m. It can
+     be deleted: c, m unchanged, ℓ drops by 1, e does not rise. Wilf of the child implies Wilf with slack e. So
+     only late-pruned S remain.
+   - About fifteen quantitative slices close the regimes where W₀ ≥ 0 can be forced by counting. Each ends in a
+     polynomial certificate (q4_low/high/lowhalf, gen_*, core_band24, core_quarter).
+3. Residual = Eliahou-type S (W₀ < 0 possible), reduced to a **generalized core** T° = ⟨A⟩ ∪ [c, ∞), where A = P(S) ∩
+   [m, 2m).
+   - Theorem A (`cr_thmA`): if W₀(S) < 0 and S has a level-2 ordinary or level-3 primitive, then
+     23(d_S − d_T) ≤ 13(W₀(S) − W₀(T°)).
+   - Since d + p = m on both sides, 13W₀ + 23p does not decrease from T° to S. So CORE°: 13W₀(T°) + 23p(T°) ≥ 0
+     implies Wilf for S (ℓ ≥ 6).
+4. Cores, in the window model (m, ρ, B): T = ⟨m, m + b : b ∈ B⟩ ∪ [4m − ρ, ∞), window N = m − ρ = c − 3m. Positions are
+   u = x + ρ mod m, with levels.
+   - Y_t = unwrapped ≤ t-sums of window offsets.
+   - Ẑ = carried pairs (once-wrapped 2-sums not in Y₃).
+   - Q = carried triples (once-wrapped 3-sums new at level 4), split as Q_j by w(q) = the number of wrapped parent
+     pairs of the canonical cubic β_q.
+   - **ID2** (exact, every strip-free model): W₀ = ρ + |Ẑ| + Σ − |Q₃|, with
+     Σ = |Q₁| + A + 2|Q₀| + 6(P_w − |Ẑ|) + 6(P_u − h₂) + 4|Ẑ ∩ Y₄| + 2·d₃'' + d₄ ≥ 0, where A = weight of unused
+     incidences (z, i), z ∈ Ẑ. The only negative term is Q₃ (carried triples all of whose parent pairs are wrapped).
+   - Lemma 6_ρ: Σ_q w(q) + A = (K + 2)|Ẑ|.
+   - **Anchor.** "Highs" are offsets b with 2b ≥ N. The anchor y is a high minimizing rank(y) + |D(y)|, where
+     D(y) = {v : v + y < N} (BAL-LEFT / BAL-RIGHT / COL-RANK).
+   - **Shell.** With I = [0, N − y) and J = [y, m), translation by y injects Y₃ ∩ I into J. So
+     |Q₃| + |F| ≤ |R| + |P| + ρ + |Ẑ| + |N40| + |Q₀| + |Q₁ ∩ I| + #holes, where P = Q₂ ∩ I, R = Q₃ ∩ [0, y),
+     F = J ∖ (Q₃ ∪ (y + Y₃ ∩ I)).
+   - **PAYMENT** (two injections built from the anchor: a lower-cubic map on R, a prefix-edge map on P):
+     |P| + |R| ≤ A + |F| + |Q₁ ∖ I|.
+   - Adding these, with #holes = p and |N40| ≤ h₄, gives the **anchor theorem** (`an_anchor_bound`, `st_A29A` with
+     strips): for every model with a high window offset, with no residual hypothesis and no conductor condition,
+     W₀ + p ≥ coll + 2d₃'' + d₄ − h₄.
+   - Under the residual hypotheses, d₄ ≥ h₄ (`wm_quartic`), so CORE₁: W₀ + p ≥ 0.
+   - Strip offsets (b ≥ N) are handled by Theorem A29-A (`st_*`).
+
+**What this settles, and what it does not.**
+- Settled (kernel-checked by us): Wilf for every S with c ≤ 4m.
+- The architecture is depth-four specific:
+  - W₀ uses q = 4;
+  - the model has levels ≤ 4 and only once-wrapped sums. At depth ≥ 5, twice-wrapped triples and carried
+    quadruples enter;
+  - λ = 23/13 comes from a depth-four fibre bound (CL_{23/13});
+  - the slices are depth-four certificates.
+- Depth-free ingredients:
+  - the split W = W₀ + p(ℓ − q) (Eliahou, known);
+  - pruning of late primitives;
+  - the anchor theorem read as a statement about the first four layers. With ρ = 0, every P18 set
+    S = ⟨m, m + B⟩, B ⊂ [1, m), with some 2b ≥ m, at any depth, satisfies e·|S ∩ [0, 4m)| − 5N₄ + m + h₄ ≥ 0, where
+    N₄ = |S ∩ [4m, 5m)|. Equivalently Q₄ ≥ −D₅ − h₄, with Q₄ = e·Σ_{k<4}N_k − 4N₄. Our check E336: 0 failures on
+    17,864 sets, 12,722 of depth ≥ 5. Plain LAYER(4) (Q₄ ≥ 0) fails 49 times on the same sample.
+- The core reduction is not a general monotonicity. W(S) ≥ W(⟨A⟩ ∪ [c, ∞)) fails at every depth 3…15, already at
+  genus ≤ 16 (E336). It needs W₀(S) < 0 and the residual hypotheses.
+
+**Novelty of our results against this proof:**
+- It contains no pseudo-Frobenius argument, so the τ-criterion is independent of it.
+- It has no statement of LAYER3 for general S. Its d₃'' ≥ 0 is a Macaulay inequality inside the core model. LAYER3
+  for every S at every depth (3|S ∩ [3m, 4m)| ≤ e·|S ∩ [0, 3m)|) remains ours. Web search (2026-10-20, two extended
+  queries) found no prior statement.
+- Search of conjectures.io (2026-10-20): its only Wilf items are source23 (c ≤ 4m, solved) and source22 (e = 4,
+  withdrawn as already solved). No c ≤ 5m, full-Wilf or Problem 1.8 item was visible; the catalog listing was
+  truncated, so this is not exhaustive.

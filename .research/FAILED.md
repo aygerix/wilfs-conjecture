@@ -51,11 +51,19 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | Z12 without any window covering | m = 47, B = {10,12,13}, h = 20, slack −2 (E335) |
 | Small-part inequality (core regime) | STATE 0f |
 
+## Pattern E — reductions that are only conditional
+| Statement | Counterexample |
+|---|---|
+| Core transfer W(S) ≥ W(⟨A⟩ ∪ [c, ∞)), A = generators in [m, 2m) (any depth) | ⟨8,10,12,14,17⟩ (q = 3, −22); ⟨8,10,12,14,21⟩ (q = 4, −28); every depth 3…15 at genus ≤ 24 (E336). The external depth-four reduction needs W₀(S) < 0 and residual hypotheses |
+
 ## Pattern D — false side claims
 - "Every S with e ≤ 3 has unique Apéry factorizations." FALSE: in ⟨5,6,9⟩, 18 = 6+6+6 = 9+9 ∈ Ap(S,5), Λ − O = 2.
   Corrected in PROOFS.md.
 
 ## Live conjectures — audit status (P18 depth four unless stated)
+**2026-10-20: depth four (c ≤ 4m) is settled by the external Lean proof, kernel-checked by us (LITERATURE).** Every
+depth-four entry below (TB4, TB4-LOC, LM, K1, K7, L1, L2, Z1, Z12, SIG) is MOOT. Keep them only as records. DEAD, DOWN
+and MD are statements about every S and remain observations.
 | Conjecture | Discards | Status |
 |---|---|---|
 | DEAD (all S) | nothing; it is a strengthening of Wilf by Λ − O | observation; 0 failures, genus ≤ 34 |
