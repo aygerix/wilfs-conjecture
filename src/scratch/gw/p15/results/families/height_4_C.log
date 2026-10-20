@@ -1,0 +1,5 @@
+VERIFIED m=27 e=15 M=190 c=164 genus=134 pstar=2 ell=30 Lambda=276 W=286
+AP 0 190 164 138 139 140 141 169 170 171 172 92 93 94 176 177 178 179 180 46 47 183 184 185 186 187 188
+SHIFT p=1 sumK=15 bound=12 excess=3
+SHIFT p=2 sumK=15 bound=12 excess=3 TRUE
+SHIFT p=3 sumK=15 bound=12 excess=3

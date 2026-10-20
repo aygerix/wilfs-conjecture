@@ -1,0 +1,10 @@
+GENS 14 22 23 57 61 62 63
+AP 0 57 44 45 46 61 62 63 22 23 66 67 68 69
+M=69 c=56 pstar=14 ell=13 W=35
+T1FAIL p=1 sumK=8 bound=7
+T1FAIL p=2 sumK=8 bound=7
+GENS 14 22 23 61 62 63 71
+AP 0 71 44 45 46 61 62 63 22 23 66 67 68 69
+M=71 c=58 pstar=2 ell=14 W=40
+T1FAIL p=1 sumK=8 bound=7
+T1FAIL p=2 sumK=8 bound=7

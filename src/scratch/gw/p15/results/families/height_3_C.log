@@ -1,0 +1,5 @@
+VERIFIED m=17 e=10 M=86 c=70 genus=56 pstar=2 ell=14 Lambda=63 W=70
+AP 0 86 70 54 55 56 74 75 76 77 27 28 80 81 82 83 84
+SHIFT p=1 sumK=8 bound=7 excess=1
+SHIFT p=2 sumK=8 bound=7 excess=1 TRUE
+SHIFT p=3 sumK=8 bound=7 excess=1

@@ -27,6 +27,10 @@ Lines, in order of cost to decide:
       "Depth four: blocked-extension bound"; E298). C1 has 0 failures at genus ≤ 31 and on ⟨m, m+B⟩ up to m = 300. The B_3-simplex
       model gives W = ρ − C(k+1, 3), so C2 = Wilf there. **codex P16 RUNNING** (PID 75688, waiter b98zekqfk, log
       $SP/codex/p16_log.txt; report src/scratch/gw/p16/P16_REPORT.md): falsify C1/C2 near simplices, prove C2 / depth-four Wilf.
+    - **codex UNAVAILABLE until 2026-10-25 14:57** (usage limit hit during P16). P15 is complete (§9 written; report committed).
+      P16 left only search code (src/scratch/gw/p16/: uncommitted; fejer ~/wilf/p16/search{61,127}.log: no C1/C2 or Wilf
+      counterexample, best C1/R ≈ 7.1). On return: resume P16 (depth four) and, if it succeeds, P17 = depth-five transfer
+      (Proposition Q5). Until then the lead works alone (no other subagents, per the codex-only rule).
     - **Next (lead), earlier entry:** the depth-four closure is the live frontier target, Wilf for 3m < c ≤ 4m. With DEPTH4-EH its
       residual is exactly the LOW case Λ + Z < h − e at q = 4. Mechanism to test: Σ_{x ∈ Ap, x < c} τ(x) ≤ Λ, where τ(x) =
       #{a : x + n_a ∉ Ap}. So LOW forces Ap ∩ [0, c) to be nearly closed under adding generators.

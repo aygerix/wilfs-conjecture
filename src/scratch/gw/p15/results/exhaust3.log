@@ -1,0 +1,13 @@
+FIRST m=13 N=10 r=9,9,10 p=5 sumK=8 dec=7 D=(0,0,0),(0,0,1),(0,0,2),(0,0,3),(1,0,0),(1,0,1),(1,0,2),(2,0,0),(2,0,1),(3,0,0)
+SUMMARY m=2 shapes=4 injective=4 shifts=8 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=3 shapes=10 injective=32 shifts=96 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=4 shapes=23 injective=116 shifts=464 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=5 shapes=47 injective=440 shifts=2200 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=6 shapes=95 injective=822 shifts=4932 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=7 shapes=181 injective=2748 shifts=19236 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=8 shapes=341 injective=4558 shifts=36464 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=9 shapes=623 injective=10362 shifts=93258 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=10 shapes=1123 injective=16382 shifts=163820 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=11 shapes=1982 injective=41150 shifts=452650 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=12 shapes=3461 injective=46280 shifts=555360 badshifts=0 minN=999 maxexcess=0
+SUMMARY m=13 shapes=5946 injective=123696 shifts=1608048 badshifts=17 minN=10 maxexcess=1
