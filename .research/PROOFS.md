@@ -4963,3 +4963,37 @@ p < c + m ≤ (q+1)m, and ℓ ≥ q + 1 because a left generator exists. ∎
   - So TOP0′ follows from SUBADD-TOP for the down-set ↓U.
   - SUBADD-TOP is FALSE for general down-sets with ≥ n+2 maximal elements (FAILED). No failure with ≤ n+1 (E345).
   - TOP0′ alone does not give Wilf when ρ > 0: it needs P̃′ ≥ nρ in addition.
+
+## Conjecture TM (tile-max): a lattice-tiling statement that implies Wilf — 2026-10-21
+**Statement (Conjecture TM).** Let n, m ≥ 1, let χ: ℤ^n → ℤ/m be a surjective homomorphism, let D ⊆ ℕ^n be a down-set
+with |D| = m on which χ is injective (so D is a fundamental domain of ker χ), and let λ ∈ ℤ/m. Put
+ε(α) ∈ {0, …, m−1}, the representative of χ(α) + λ. Then
+  Σ_{y ∈ Max(D)} (|y| + n)·ε(y) ≤ (n+1)·m(m−1)/2,
+where Max(D) is the set of componentwise-maximal elements and |y| = Σ y_i.
+- Equivalent forms (ε is a bijection D → {0..m−1}):
+  - Σ_{Max}(|y| − 1)ε(y) ≤ (n+1)Σ_{D∖Max} ε;
+  - Σ_{(β,i): end_i(β) ∈ Max} ε(end_i β) ≤ (n+1)Σ_D ε.
+
+**Theorem (TM ⇒ Wilf).** If TM holds for the full lex tile M̂ of S (n = N = e − 1, χ = φ mod m, λ = −c), then
+W(S) ≥ P̂ + (1/m)Σ_{y∈Max(M̂), φ(y)<c} (|y| + N)·ε(y) ≥ 0.
+*Proof.*
+- Lemma T2: mW = (N+1)m(m−1)/2 + mP̂ − Σ_{y∈Ŷ}(|y| + N)(φ(y) − c).
+- For y ∈ Ŷ we have φ(y) − c = ε(y), and Ŷ ⊆ Max(M̂), because y + e_i has φ ≥ c + g_i > c + m − 1 = max Ap.
+- Since ε ≥ 0 on Max ∖ Ŷ, TM gives Σ_{Ŷ}(|y| + N)ε(y) ≤ (N+1)m(m−1)/2 − Σ_{Max∖Ŷ}(|y| + N)ε(y). ∎
+- The restriction to Ŷ with λ = −c is TOPH ⟺ W ≥ P̂ ⟺ Λ ≤ Ĝ, where Ĝ = e·Σ_{w∈Ap, w<c}{(w−c)/m}.
+- The restriction to leaves is TOP0.
+
+**Status (E346).**
+- Exhaustive, every down-set tile, every χ, every λ:
+  - n = 2: m ≤ 13 with all λ, m ≤ 16 with λ = 0;
+  - n = 3: m ≤ 8 with all λ, m ≤ 10 with λ = 0.
+- Annealed: lex tiles of random S with every unit u and every λ (all affine relabellings).
+  - Max ratio LHS/RHS: 1 at m ≤ 5 (equality); 0.962 for m ∈ [15, 50]; 0.939 for m ∈ [25, 60].
+- Equality cases are sporadic and small:
+  - chains (n = 1, χ = id, λ = 0), i.e. two-generated S;
+  - Δ_1 = {0, e_1, …, e_n} (m = n+1, λ = 0), i.e. the family T_{m,k};
+  - {0, e_1, …, e_{n−1}, e_n, 2e_n} (m = n+2, λ = 1).
+- Not implied by anything weaker:
+  - the shape-only version (residues replaced by the rearrangement bound) fails for n = 3 by ≤ 4%;
+  - RISE (dropping Σ(n − |I(β)|)ε) fails;
+  - λ = 0 plus P̂′ ≥ Nρ fails (PSHIFT, 41/2,165).

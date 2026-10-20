@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20, latest: DEPTH FOUR IS SETTLED (external, kernel-checked by us); priorities moved to c > 4m (0k))
+# STATE.md — handoff (updated 2026-10-21, latest: Conjecture TM (lattice-tile inequality) implies Wilf; main target (A00000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,28 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000) **NEWEST (2026-10-21): MAIN TARGET = Conjecture TM (tile-max), which implies Wilf for EVERY S
+          (PROOFS "Conjecture TM"; E345, E346).**
+          - Statement: for a down-set D ⊆ ℕ^n that is a fundamental domain of ker χ (χ: ℤ^n → ℤ/m) and an affine
+            residue ε = (χ + λ) mod m, Σ_{y∈Max(D)} (|y| + n)·ε(y) ≤ (n+1)·m(m−1)/2.
+          - Implication: apply it to the full lex tile M̂ (n = e − 1, λ = −c). Lemma T2 then gives
+            W ≥ P̂ ≥ 0. Proved.
+          - Evidence:
+            - exhaustive over all tiles for n = 2 (m ≤ 13–16) and n = 3 (m ≤ 8–10);
+            - annealing over all units and shifts, ratio ≤ 0.96 for m ≥ 15;
+            - the semigroup instance TOPH ⟺ W ≥ P̂.
+          - Sub-cases:
+            - leaves (r = 0): TOP0, 0 failures on all 5.4M leaves of genus ≤ 30;
+            - λ = 0: ε is subadditive and box pairing works (HALL-TOP holds for ρ = 0).
+          - Known NOT sufficient (FAILED): shape-only REARR (fails by ≤ 6.5% even for m > 3e), RISE, PSHIFT, LOAD,
+            INJ-SUBADD, and generic SUBADD-TOP (fails for ≥ n+2 maximal elements).
+          - So the proof must use the residues of the maximal elements, not just the tile shape.
+          - NEXT:
+            - (1) Prove TM when |Max(D)| ≤ n+1. Generic SUBADD-TOP held there for λ = 0.
+            - (2) Find the tile-specific inequality for many maximal elements. Candidate: a Hall transport inside the
+              boxes of maximal elements, using that Max ⊆ the socle of the tile.
+            - (3) Handle λ ≠ 0, where the pairing sums wrap.
+            - (4) Gate further: exhaustive n = 4, random non-coherent tiles.
       (A0000) **NEWEST (2026-10-21): Theorem P0-WILF PROVED (PROOFS "Ray identity, one-step difference body, and Theorem
           P0-WILF"; E344).**
           - Statement: every S whose canonical Apéry down-set M has no ray ending below c (P̃ = 0) satisfies Wilf, at
