@@ -3,7 +3,8 @@
  * (S_3 + B)_{<m} u ((S_2 + B)_{>=m} - m)), h = 1 + max D4.  U2 = S_2 - S_1, N3 = S_3 - S_2.
  * STAR = P_w + J_ge + k h - (k+4) d4,  J_ge = #{(s,b) in U2 x B : s + b >= m},  P_w = #{x <= y in B : x + y >= m}.
  * W = 2k^2 + 2k + (k-2) d2 + k L3 - 3 d3 - 4 d4 (identity).  mode 0: min STAR; 1: min STAR/k; 2: min W; 3: min W/k;
- * 4: min STAR/(k h) over h >= 10; 5: min STAR/d4 over d4 >= 10.
+ * 4: min STAR/(k h) over h >= 10; 5: min STAR/d4 over d4 >= 10;
+ * 6: min Q4/(k h) over h > e, 3e < m (Q4 = k L3 - 4 d4; LAYER3-W covers Q4 >= 0); 7: min W over Q4 < 0, h > e, 3e < m.
  * usage: ./anT mode seed mlo mhi kmin kmax iters restarts */
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,7 +40,9 @@ static double evalS(St *s){
   info[0] = h; info[1] = W; info[2] = STAR; info[3] = d2; info[4] = d3; info[5] = d4; info[6] = L3; info[7] = Jge; info[8] = Pw;
   switch (mode){ case 0: return STAR; case 1: return (double)STAR / k; case 2: return W; case 3: return (double)W / k;
     case 4: return (h >= 10) ? (double)STAR / ((double)k * h) : 1e18;
-    default: return (d4 >= 10) ? (double)STAR / d4 : 1e18; }
+    case 5: return (d4 >= 10) ? (double)STAR / d4 : 1e18;
+    case 6: return (h > k + 1 && 3 * (k + 1) < m) ? (double)(kk * L3 - 4 * d4) / ((double)k * h) : 1e18;
+    default: return (h > k + 1 && 3 * (k + 1) < m && kk * L3 - 4 * d4 < 0) ? (double)W : 1e18; }
 }
 int main(int argc, char **argv){
   mode = atoi(argv[1]); srand(atoi(argv[2])); int mlo = atoi(argv[3]), mhi = atoi(argv[4]), kmin = atoi(argv[5]), kmax = atoi(argv[6]);

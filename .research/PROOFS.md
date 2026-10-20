@@ -4124,3 +4124,21 @@ Wilf for 3e ≥ m (Eliahou).
   below h has Kunz coordinate 4.
 - Literature (dated search 2026-10-20, web + LITERATURE.md): no statement of LAYER3 or LAYER3-W was found. The nearest
   are Eliahou's Macaulay-based q = 3 proof and his condensed Macaulay inequality. Novelty UNVERIFIED beyond that search.
+
+### Conjectures DK = LASTWIN and HD1 (lead, 2026-10-20; checks E327)
+- **LASTWIN (CONJ; 0 failures).** For every numerical semigroup of depth q = ⌈c/m⌉ ≥ 2, with h = c − (q−1)m:
+  h ≤ e·|S ∩ [(q−1)m, c)|. Equivalently d_q ≤ (e − 1)·L_{q−1}, where d_q = #{residues of Kunz level q} (all < h) and
+  L_{q−1} = |S ∩ [(q−1)m, c)|. This is Wilf restricted to the last, partial, window.
+  - Data: tree to genus 30, every depth 2…21 (14.4M S): 0 failures, min slack 0.
+  - Equality example: ⟨9, 37, …, 44⟩ (all generators in layer 4).
+  - Depth two: PROVED (elementary). Gaps of the window are new generators or unwrapped pairs of generators below m + h.
+  - At depth four the name is DK. Combined with the identity, W = Q3 − 3·d4 + DKslack, DKslack = (e − 1)L3 − d4.
+- **COV (FALSE).** "Every level-four residue is a generator translate of a residue of S_3 ∩ [0, h)." It fails for 138,918
+  of 642,239 depth-four S of genus ≤ 28. Example: m = 18, c = 56, d4 = 1. So DK is a counting statement, not a covering.
+- **HD1 (CONJ; 0 failures; P18 depth four).** Let H_D be the set of r ∈ D with no parent in X = S_3 ∩ [0, h). This means
+  r − b ∉ N3 for all b ≤ r, and r + m − b ∉ U2 ∩ [0, h) for all b > r.
+  - Every representation r + m = x + y + z then has all three pair sums in U2 ∩ [h, m).
+  - Claim: |H_D| ≤ k(1 + |B ∩ [0, h)|).
+  - HD1 ⟹ DK. Proof: the other level-four residues inject into X × B through their parent incidence. The k(1 + a1)
+    incidences from 0 and from B ∩ [0, h) never land in D.
+  - Theorem A0 (PROVED earlier) settles B ∩ [0, h) = ∅ for Wilf. There, [h, 2h) must be covered by B and by wrapped pairs.

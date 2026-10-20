@@ -29,7 +29,9 @@ def check(gens):
 a3only = []
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if a[0] == "j3": a3only.append(1); a = a[1:]; random.seed(int(a[-1])); n = bad = 0; mn = None; byj = {}
+    if a[0] == "j3": a3only.append(1); a = a[1:]
+    emin = 0
+    if a[0].startswith("emin"): emin = int(a[0][4:]); a = a[1:]; random.seed(int(a[-1])); n = bad = 0; mn = None; byj = {}
     if a[0] == "p18":
         kmin, kmax, mlo, mhi, N = map(int, a[1:6])
         gen = lambda: (lambda m: [m] + [m + b for b in random.sample(range(1, m), random.randint(kmin, min(kmax, m - 1)))])(random.randint(mlo, mhi))
@@ -38,7 +40,7 @@ if __name__ == "__main__":
         gen = lambda: (lambda m: [m] + random.sample(range(m + 1, hi * m), random.randint(nmin, nmax)))(random.randint(mlo, mhi))
     for _ in range(N):
         r = check(gen())
-        if r is None: continue
+        if r is None or r["e"] < emin: continue
         n += 1; sl, j = r["worst"]; bad += sl < 0
         b = byj.setdefault(j, [0, 0]); b[0] += 1; b[1] += sl < 0
         if mn is None or sl < mn["worst"][0]: mn = r

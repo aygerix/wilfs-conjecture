@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20 morning: Conjecture DEAD W ≥ Λ − O, exhaustive genus ≤ 34 (0h); (★★) FALSE; twin tokens; next: DEAD on the extremal interval family)
+# STATE.md — handoff (updated 2026-10-20 night: Theorem LAYER3 for every S (PROVED); depth four W = Q3 + Q4; LAYER3-W; conjectures STAR, DK/LASTWIN, HD1 (0i))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,6 +8,32 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0i. **NEWEST (2026-10-20 night): layer method (PROOFS "Theorem LAYER3", "P18 depth four: layer form").**
+    - PROVED on paper, for every numerical semigroup:
+      - LAYER3: 3·|S ∩ [3m, 4m)| ≤ e·|S ∩ [0, 3m)|. Sharp on free P18 sets.
+      - At depth four, W = Q3 + Q4 exactly, with Q3 = e|S∩[0,3m)| − 3|S∩[3m,4m)| ≥ 0 and Q4 = (e−1)h − (e+3)d4.
+        Here d4 = #{Kunz coordinates = 4}.
+      - Corollary LAYER3-W: Wilf if (e+3)d4 ≤ (e−1)(c − 3m).
+    - Coverage census, using LAYER3-W, c ≤ 3m + e (kernel-checked) and 3e ≥ m (Eliahou): only 7 of the 11.4M depth-four
+      S of genus ≤ 34 remain uncovered. All are P18 with e ∈ {4, 5} (E326). Annealing finds uncovered P18 S at e = 11,
+      m = 122, h = 27, with W = 443.
+    - P18 refinements, PROVED: W = STAR + G_T + (G_R − P_w), all G terms ≥ 0. So STAR ⟹ Wilf.
+    - S2/S3/TFZ (slot counts at 0 and at the generators) are FALSE at large e (sym construction, E325).
+    - LAYER(j) for j ≥ 4 is FALSE, even for e = 4, 5 (P18, m ≈ 100). LAYER(j ≤ 9) has 0 failures at genus ≤ 36.
+    - Conjectures, all with 0 failures:
+      - STAR: 4d4 ≤ k·L3 + J_≥ + P_w (P18 depth four).
+      - DK = LASTWIN: h ≤ e·|S ∩ [(q−1)m, c)| for every S at every depth q ("Wilf for the last window"). 0 failures on
+        the tree to genus 30, all depths.
+      - HD1: |H_D| ≤ k(1 + |B ∩ [0, h)|) (P18). Here H_D = level-four residues all of whose parents are high pairs.
+        HD1 ⟹ DK at P18 depth four.
+    - Structure: Wilf at depth four ⟺ Q3 + (DK slack) ≥ 3·d4. The free model gives Q3 = 3d4 exactly. So the exchange is:
+      the Macaulay slack of layer three must compensate any DK shortfall, and vice versa. In BIG, DK pays. In near-free
+      S, Q3 pays.
+    - **Next precise tasks:**
+      (a) prove HD1, hence DK at P18 depth four, using the covering of [h, 2h) (as in Theorem A0, which settles a = 0);
+      (b) prove STAR in the uncovered regime d4 > (e−1)h/(e+3), where X = S_3 ∩ [0, h) is sparse;
+      (c) extend LAYER3-W beyond P18 ingredients: a general-S STAR;
+      (d) Lean, after 2026-10-25: Theorem LAYER3 and Corollary LAYER3-W (finite combinatorics; high leverage).
 0h. **NEWEST (2026-10-20 morning): Conjecture DEAD — a strengthening of Wilf (PROOFS "Twin tokens and Conjecture DEAD").**
     - DEAD: W ≥ Λ − O, i.e. (e−1)ℓ ≥ Λ + T_c, i.e. the DEAD power tokens alone are ≥ e·T_c.
       Here Λ = Σ_{z∈Ap} Σ_b μ_b(z) (maximal g_b-multiplicity) and Λ − O = # collision (alive unused) tokens.
