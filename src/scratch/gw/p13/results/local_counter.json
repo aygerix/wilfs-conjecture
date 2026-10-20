@@ -1,0 +1,196 @@
+{
+  "summary": {
+    "m": 8,
+    "e": 4,
+    "M": 33,
+    "q": 4,
+    "h": 2,
+    "c": 26,
+    "W": 26,
+    "ell": 13,
+    "C2": 28,
+    "need": 56,
+    "Bc": 220,
+    "E": 44,
+    "Eu": 11,
+    "Delta": -136,
+    "Ltop": 20,
+    "CU_slack": 175,
+    "PLUS_slack": 176,
+    "POOR_slack": 176,
+    "Ucrit": 2,
+    "TOP_strong_slack": 18,
+    "TOP_count_slack": 21,
+    "critical_types": {
+      "(2, 1, (2, 2))": 2
+    },
+    "Z": 2,
+    "R_A": 0,
+    "R_out": 2,
+    "rho": 6,
+    "MF_Acentral": 0,
+    "UF_Acentral": 0,
+    "Wilf_count_slack": 24,
+    "MF": 2,
+    "C_U": 2,
+    "overlap_payment_slack": 22
+  },
+  "generators": [
+    8,
+    10,
+    11,
+    12
+  ],
+  "apery_by_residue": [
+    0,
+    33,
+    10,
+    11,
+    12,
+    21,
+    22,
+    23
+  ],
+  "rows": [
+    {
+      "v": 0,
+      "lam": 4,
+      "s": 1,
+      "depth": {},
+      "E": 0,
+      "Eu": 0,
+      "P": 0,
+      "L1": 0,
+      "g": 0,
+      "K": 0,
+      "UF": true,
+      "critical": false,
+      "kind": ""
+    },
+    {
+      "v": 10,
+      "lam": 2,
+      "s": 7,
+      "depth": {
+        "10": 1
+      },
+      "E": 0,
+      "Eu": 0,
+      "P": -6,
+      "L1": 2,
+      "g": -6,
+      "K": 0,
+      "UF": true,
+      "critical": false,
+      "kind": ""
+    },
+    {
+      "v": 11,
+      "lam": 2,
+      "s": 6,
+      "depth": {
+        "11": 1
+      },
+      "E": 0,
+      "Eu": 0,
+      "P": -5,
+      "L1": 2,
+      "g": -5,
+      "K": 0,
+      "UF": true,
+      "critical": false,
+      "kind": ""
+    },
+    {
+      "v": 12,
+      "lam": 2,
+      "s": 5,
+      "depth": {
+        "12": 1
+      },
+      "E": 0,
+      "Eu": 0,
+      "P": -4,
+      "L1": 2,
+      "g": -4,
+      "K": 0,
+      "UF": true,
+      "critical": false,
+      "kind": ""
+    },
+    {
+      "v": 21,
+      "lam": 1,
+      "s": 4,
+      "depth": {
+        "10": 1,
+        "11": 1
+      },
+      "E": 0,
+      "Eu": 0,
+      "P": 5,
+      "L1": 2,
+      "g": 5,
+      "K": 1,
+      "UF": true,
+      "critical": true,
+      "kind": "(2, 1, (2, 2))"
+    },
+    {
+      "v": 22,
+      "lam": 1,
+      "s": 3,
+      "depth": {
+        "10": 1,
+        "11": 2,
+        "12": 1
+      },
+      "E": 22,
+      "Eu": 11,
+      "P": 12,
+      "L1": 4,
+      "g": -10,
+      "K": -1,
+      "UF": false,
+      "critical": false,
+      "kind": ""
+    },
+    {
+      "v": 23,
+      "lam": 1,
+      "s": 2,
+      "depth": {
+        "11": 1,
+        "12": 1
+      },
+      "E": 0,
+      "Eu": 0,
+      "P": 7,
+      "L1": 2,
+      "g": 7,
+      "K": 1,
+      "UF": true,
+      "critical": true,
+      "kind": "(2, 1, (2, 2))"
+    },
+    {
+      "v": 33,
+      "lam": 0,
+      "s": 0,
+      "depth": {
+        "10": 1,
+        "11": 3,
+        "12": 1
+      },
+      "E": 22,
+      "Eu": 0,
+      "P": 15,
+      "L1": 5,
+      "g": -7,
+      "K": -1,
+      "UF": false,
+      "critical": false,
+      "kind": ""
+    }
+  ]
+}

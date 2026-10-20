@@ -2986,5 +2986,53 @@ Source: src/scratch/gw/p11/P11_REPORT.md (code, results and checksums in p11/). 
   - the W formula holds at every k;
   - CHAIN-U ratio ≈ 2.0–2.1 throughout.
   Codex's symbolic certificate (gw/p12/certificate.py) has not been re-derived by the lead.
-- Codex also proves: adding r generators just above m gives counterexamples with M ≥ 4n_1 for k ≥ 100(r+1). So no
-  threshold M ≥ κ·n_1 rescues REST.
+- Codex also proves: adding r generators just above m gives counterexamples with M ≥ 4n_1 for k ≥ 100(r+1).
+  Scope (corrected by codex P13): these families have M/n_1 → 21/5, so they rule out every threshold M ≥ κ·n_1 with
+  κ < 21/5 (in particular κ = 4), not every fixed κ.
+
+## Codex P13 (depth four, 3m < c ≤ 4m): K-identity, MF-UNIT, critical classification — RECEIVED 2026-10-19; core VERIFIED by the lead
+Source: src/scratch/gw/p13/P13_REPORT.md (code and results in p13/). Notation: M = 4m + h − 1, c = 3m + h, 1 ≤ h ≤ m,
+ρ = m − h, λ(v) = ⌊(M − v)/m⌋, s(v) = (M − v) mod m, L1(v) = Σ_a depth_a(v)(λ(v − n_a) − λ(v)), Λ = Σ_{w,a} λ(top_a(w)).
+Unit classes by co-level: A (m < n < m + h, λ = 3), B (λ = 2), C (λ = 1), E (c ≤ n ≤ M, λ = 0). UF/MF = one/several
+factorizations over the non-m generators.
+- **K-ID (PROVED, every depth; lead re-derived).** For any S with q = ⌈c/m⌉ and ρ = qm − c, put K(v) = q − λ(v) − L1(v).
+  Then W = ρ + Λ − Σ_{v∈Ap} K(v). (Proof: Σ_v L1 = dℓ − Λ by telescoping each chain; Σ λ = ℓ.) K(0) = 0 and K = 0 at
+  every primitive.
+  - For UF v with factorization x of degree j, K(v) = (j−1)κ(x) − Σ_a x_a κ(x − e_a), where
+    κ(y) = ⌊(Σ_a y_a s(n_a) − (|y|−1)s(0))/m⌋. This is the tile carry of WINDOW-H at the phase s(0) = M mod m (lead).
+- **Theorem A (PROVED; lead re-derived every case).** At depth four K(v) ≤ 1 for every v ≠ 0, and every MF value has
+  K ≤ −1 (MF-UNIT: λ + L1 ≥ 5, via disjoint remainders of degree ≥ 2 and the pair co-level table). K = 1 exactly at UF
+  values of three types: a BB pair of co-level 1, a BC pair, or a cubic of co-level 0 all of whose pair divisors have
+  co-level 1 (factors in A ∪ B).
+- **Short arc (PROVED; lead re-derived).** Every critical value other than a pure-A cubic has s(v) < ρ, so R_out ≤ ρ.
+- **Theorem B / Corollary C / Theorem C2 / Theorem D (PROVED; lead re-derived).** With R = #{K = 1}, Z = Σ(−K)⁺,
+  C_U = Σ_{MF} max(1, λ + |U| − 4), F_M = #MF, p_A = #pair faces of critical pure-A cubics, a = #A:
+  W = ρ + Λ − R + Z; W ≥ Λ + C_U + p_A − R_A; 3R_A ≤ (a+2)p_A; F_M + R_A + p_A ≤ m − 1 − d. Hence Wilf when
+  R_A ≤ Λ + C_U + p_A, when 2(a+2)F_M ≥ (a−1)(m − e), or when m(R − Λ) ≤ ρ(m + h − 1)/2 (then also WILF+ = CHAIN-POOR).
+- **Lead independent check (E292, src/scratch/p21/d4_check.c, own code).** Every statement above asserted on all
+  4,408,415 depth-four semigroups of genus ≤ 32, on all 97,433 depth-four level-1 intervals with m ≤ 150, and on random
+  Sidon-type A-offset families: 0 failures.
+- Preserved failures (codex): E_U(v) ≥ P(v) per MF value fails at ⟨8,10,11,12⟩ (v = 33: E_U = 0, P = 15); MF-UNIT is
+  sharp (two units per MF value fail there); T_{m,4} gives equality in all three criteria for every m.
+- Open (codex's next lemma): UF-RELAY, R_A ≤ Λ + C_U + p_A, on the residual α ≥ 6, 19 ≤ a < 10·C(α+1,2), 3e < m,
+  m ≥ 211. It would close c ≤ 4m.
+
+### Corollary DEPTH4-EH (lead, 2026-10-19) — PROVED from Theorem A and K-ID
+**Statement.** If 3m < c ≤ 4m, then W(S) ≥ e − (c − 3m) + Λ + Z. In particular **Wilf holds whenever c ≤ 3m + e.**
+**Proof.** By Theorem A, Σ_v K(v) = R − Z with R the number of K = 1 values. Critical values are decomposable, and 0 and
+the d primitives have K = 0, so R ≤ m − 1 − d. Then W = ρ + Λ − R + Z ≥ (m − h) − (m − 1 − d) + Λ + Z = e − h + Λ + Z. ∎
+- Tight: W = e − h at m = 10, c = 32, ⟨10, 32..39, 41⟩ (W = 8, h = 2, Λ = Z = 0).
+- Exact arc form (PROVED the same way, using the short arc and s ≤ m − 1 − ⌈h/2⌉ for critical pure-A cubics, from
+  T = t_a + t_b + t_c ≥ ⌈3h/2⌉): W = Λ + Z + N_low − ⌊h/2⌋, N_low = #{v : K(v) ≤ 0, s(v) ≤ m − 1 − ⌈h/2⌉}.
+- Per E-generator, Λ_E = ℓ − 4 exactly (its chains are {0, n_E} and singletons). So any E generator gives Λ ≥ ℓ − 4.
+- Checks (E292): the bound, the arc identity and Λ_E = ℓ − 4 have 0 failures at genus ≤ 28 (642,239 depth-four S).
+- Literature (dated search 2026-10-19, LITERATURE): no statement of Wilf for c ≤ 3m + e was found; Eliahou's q ≤ 3 is
+  the nearest. Novelty UNVERIFIED beyond that search.
+- With Eliahou (3e ≥ m), every depth-four counterexample needs e < min(m/3, c − 3m).
+
+### Conjecture GEN-EH (lead, 2026-10-19) — CONJ; 0 failures at genus ≤ 26 (E293)
+For every S with q = ⌈c/m⌉ ≥ 2: W(S) ≥ e − (c − (q−1)m). Equivalently Σ_v K(v)⁺ ≤ (m − 1 − d) + Λ + Z. It would give
+Wilf for c ∈ ((q−1)m, (q−1)m + e] at every depth.
+- At depth ≥ 5 the bound K ≤ 1 is FALSE: UF cubics with K = 2 exist (first at q = 5, e.g. ⟨11,18,21,30,31,34,37,38⟩;
+  K = 3 at q = 7, ⟨8,14,15⟩). There the proof must pay K ≥ 2 values. The stronger W ≥ e − h + Λ + Z FAILS (3 S at
+  q = 7, genus ≤ 26), but W ≥ e − h holds on all 1,950,367 S (e ≥ 3) of genus ≤ 26.

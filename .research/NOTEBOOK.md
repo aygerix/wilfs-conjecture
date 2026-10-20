@@ -3072,3 +3072,20 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
       CHAIN-U ⟺ m·W ≥ Σ_{v∈Ap} min(E(v), Π(v)).
   So CHAIN-U is Wilf with a nonnegative penalty, supported on elements with several factorizations, capped by their
   power content. (Derivation: B_chain = dmℓ + dC2 − Σ_a n_a Q_a, Q_a = Σ_v depth_a(v), and Σ_a n_a Q_a = Σ_v n·∨Z(v).)
+
+## 2026-10-19 (latest+++++++++++++) — depth four: Wilf for c ≤ 3m + e; the K-identity at every depth
+- Codex P13's Theorem A (K ≤ 1 at depth four, MF ⇒ K ≤ −1) has an immediate corollary: critical values are
+  decomposable, so R ≤ m − 1 − d and W ≥ e − (c − 3m) + Λ + Z. **Wilf for c ≤ 3m + e** (PROOFS "DEPTH4-EH").
+  This is the first proved band above Eliahou's c ≤ 3m that is uniform in m and e. A depth-four counterexample needs
+  c − 3m > e + Λ + Z.
+- The same count at any depth turns Wilf into Σ_{v decomposable}(K(v) − 1) ≤ Λ + (e − h), h = c − (q−1)m.
+  GEN-EH drops the (e − h) term: Σ_dec(K − 1) ≤ Λ. It holds on all of genus ≤ 31, at every depth, although K reaches 4.
+- Where K ≥ 2 at depth five, the culprits are UF cubics whose triple sum carries while no pair sum does. Their pair
+  faces then have K = 0. This is the same configuration as P13's critical pure-A cubics, whose faces have K = −1.
+  So UF-RELAY (depth four) and GEN-EH (depth five) share one core: many UF cubics on few faces, paid by missing
+  upper extensions (Λ).
+- Exact arc form at depth four: W = Λ + Z + N_low − ⌊h/2⌋. All critical values sit in the low arc of s-values,
+  which has m − ⌈h/2⌉ slots.
+- Every E generator carries Λ_E = ℓ − 4. The depth-four core should therefore be A ∪ B (∪ few C) generators with
+  B_3-like A offsets in (h/2, h).
+- Codex P14 launched on UF-RELAY (close c ≤ 4m).

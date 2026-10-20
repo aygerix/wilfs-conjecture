@@ -8,8 +8,17 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0c. **NEW (2026-10-19, latest): Wilf for c ≤ 3m + e (DEPTH4-EH, PROVED; from codex P13 Theorem A, lead-verified E292).**
+    - At depth four, W = ρ + Λ − R + Z with K ≤ 1. Codex P13 is VERIFIED (hand + own code, genus ≤ 32).
+    - Open: UF-RELAY R_A ≤ Λ + C_U + p_A closes c ≤ 4m. Codex P14 is RUNNING on it (log $SP/codex/p14_log.txt,
+      waiter bxaonrulc, report src/scratch/gw/p14/P14_REPORT.md).
+    - GEN-EH (W ≥ e − (c − (q−1)m), every depth) is CONJ, 0 failures on genus ≤ 31. Its depth-five core has the same
+      shape as UF-RELAY.
 0a. **NEW THEOREM, LEAN-CHECKED (2026-10-19):** Wilf for every S with 3n_1 ≥ c + m (lean/Wilf/LargeSecondGen.lean).
     It is unconditional, whereas Spirito 1710.09245 needs m ≤ quadratic(e).
+0b. **Problem 1.8 landscape (E291, 2026-10-19):** for ⟨m, m+B*⟩ with q ≥ 4, min e·ℓ/c is 1.2 (k = 3, exhaustive
+    m ≤ 60). The extremal sets are digital, ⟨a², a²+1, a²+a, a²+a+1⟩, with ratio (4/3)(2a−1)/(2a). They are NO-WRAP,
+    hence LEAN-covered. Open: a "carries only help" mechanism in P18.
 0. **UPDATE (2026-10-19, latest): overlap-credited chains (E290); codex P13 launched.**
    - Exact: E = B − B_chain = Σ_v (n·∨Z(v) − v), the factorization join excess.
    - Local balance: P(v) − E(v) = v − m·L1(v).

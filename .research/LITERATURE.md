@@ -654,3 +654,13 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - Addendum (same date): Spirito's arXiv abstract was checked directly. The hypothesis is the strict
   a_2 > (c(S)+μ(S))/3, and Wilf is concluded "when the multiplicity is bounded by a quadratic function of the embedding
   dimension". Our Lean theorem `wilf_of_conductor_add_mult_le_three_mul` (3n_1 ≥ c + m ⇒ Wilf) removes that bound.
+
+### Search 2026-10-19 (latest), before recording DEPTH4-EH (Wilf for c ≤ 3m + e)
+- Queries: web, "Wilf conjecture conductor 3m embedding dimension c ≤ 3m + e / depth four / c ≤ 4m" (standard and
+  extended), "Wilf's conjecture depth four conductor at most four times multiplicity 2025 2026".
+- Hits are known: Eliahou JEMS (q ≤ 3), Sammartano 1111.1863, Dhayni 1610.08726, Spirito 1710.09245, Delgado
+  1910.12377 (trimming the tree; cites 3e ≥ m), Eliahou–Fromentin 2006.01480 (≤ 12 left elements), Marashdeh 2608.12531,
+  Yang–Zhang Preprints 202604.0551.
+- Tôledo, UFG master's thesis (2022), "A conjectura de Wilf do ponto de vista da profundidade…": exposition of
+  Eliahou's q ≤ 3. Abstract and front matter read; no depth-four theorem.
+- No statement of Wilf for c ≤ 3m + e, or of any depth-four band, was found. Absence of a hit is not proof of novelty.

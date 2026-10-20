@@ -1,0 +1,7 @@
+NO_START chain=0
+NO_START chain=1
+NO_START chain=2
+NO_START chain=3
+NO_START chain=4
+NO_START chain=5
+DONE mode=1 objective=0 starts=0 evals=0 bulk_fail=0 high_fail=0

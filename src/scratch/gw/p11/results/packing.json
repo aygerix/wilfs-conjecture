@@ -1,0 +1,132 @@
+[
+  {
+    "name": "planted11",
+    "n": 33,
+    "s": 3968,
+    "ex": 1451,
+    "heavy": 1,
+    "sfmax": 11,
+    "signed": 8674,
+    "SM_slack": "251129/2"
+  },
+  {
+    "name": "planted16",
+    "n": 48,
+    "s": 12835,
+    "ex": 4259,
+    "heavy": 1,
+    "sfmax": 16,
+    "signed": 27337,
+    "SM_slack": "310960"
+  },
+  {
+    "name": "n9_extremizer",
+    "n": 9,
+    "s": 76,
+    "ex": 19,
+    "heavy": 0,
+    "sfmax": 3,
+    "signed": 194,
+    "SM_slack": "5792"
+  },
+  {
+    "name": "random_3",
+    "n": 3,
+    "s": 20,
+    "ex": 0,
+    "heavy": 0,
+    "sfmax": 1,
+    "signed": 12,
+    "SM_slack": "558"
+  },
+  {
+    "name": "random_5",
+    "n": 5,
+    "s": 270,
+    "ex": 0,
+    "heavy": 0,
+    "sfmax": 1,
+    "signed": 55,
+    "SM_slack": "1560"
+  },
+  {
+    "name": "random_10",
+    "n": 10,
+    "s": 3575,
+    "ex": 1,
+    "heavy": 0,
+    "sfmax": 1,
+    "signed": 456,
+    "SM_slack": "6311"
+  },
+  {
+    "name": "random_15",
+    "n": 15,
+    "s": 12679,
+    "ex": 6,
+    "heavy": 0,
+    "sfmax": 2,
+    "signed": 1553,
+    "SM_slack": "14363"
+  },
+  {
+    "name": "random_20",
+    "n": 20,
+    "s": 28930,
+    "ex": 10,
+    "heavy": 0,
+    "sfmax": 2,
+    "signed": 3740,
+    "SM_slack": "25510"
+  },
+  {
+    "name": "random_30",
+    "n": 30,
+    "s": 106871,
+    "ex": 42,
+    "heavy": 0,
+    "sfmax": 2,
+    "signed": 12738,
+    "SM_slack": "58158"
+  },
+  {
+    "name": "random_40",
+    "n": 40,
+    "s": 250287,
+    "ex": 97,
+    "heavy": 0,
+    "sfmax": 3,
+    "signed": 30434,
+    "SM_slack": "104239"
+  },
+  {
+    "name": "random_50",
+    "n": 50,
+    "s": 486670,
+    "ex": 255,
+    "heavy": 0,
+    "sfmax": 2,
+    "signed": 59194,
+    "SM_slack": "166719"
+  },
+  {
+    "name": "random_64",
+    "n": 64,
+    "s": 1014025,
+    "ex": 510,
+    "heavy": 0,
+    "sfmax": 3,
+    "signed": 124840,
+    "SM_slack": "276558"
+  },
+  {
+    "name": "random_80",
+    "n": 80,
+    "s": 1985619,
+    "ex": 888,
+    "heavy": 0,
+    "sfmax": 3,
+    "signed": 245325,
+    "SM_slack": "435365"
+  }
+]

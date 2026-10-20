@@ -1,0 +1,8 @@
+{'class': 0, 'candidate': 1, 'genus': 7, 'gens': [3, 11, 13], 'c': 11, 'C2': 3, 'layers': [0, 0, 0, 0, 0]}
+{'class': 0, 'candidate': 2, 'genus': 7, 'gens': [3, 11, 13], 'c': 11, 'C2': 3, 'layers': [0, 0, 0, 0, 0]}
+{'class': 0, 'candidate': 4, 'genus': 15, 'gens': [8, 10, 13, 15], 'c': 28, 'C2': 28, 'layers': [0, -13, -61, -37, -23]}
+{'class': 0, 'candidate': 5, 'genus': 15, 'gens': [7, 9, 11], 'c': 27, 'C2': 21, 'layers': [0, 3, 0, -31, -14]}
+{'class': 1, 'candidate': 2, 'genus': 26, 'gens': [13, 15, 18, 19], 'c': 43, 'C2': 78, 'layers': [0, -130, -19, -46, -52]}
+{'class': 1, 'candidate': 4, 'genus': 25, 'gens': [11, 12, 15], 'c': 44, 'C2': 55, 'layers': [0, -12, -27, -27, -22]}
+CO_KUNZ [{'gens': [4, 9, 10], 'n': 9, 'ell': 8, 'actual': -4, 'indicator': -13, 'wrap_count': 4, 'indicator_count': 3}, {'gens': [4, 9, 10], 'n': 10, 'ell': 8, 'actual': 12, 'indicator': -18, 'wrap_count': 6, 'indicator_count': 3}, {'gens': [5, 9, 12], 'n': 9, 'ell': 7, 'actual': -1, 'indicator': -10, 'wrap_count': 3, 'indicator_count': 2}, {'gens': [5, 9, 12], 'n': 12, 'ell': 7, 'actual': 11, 'indicator': -13, 'wrap_count': 5, 'indicator_count': 3}]
+PER_DIRECTION_FAMILY {'m': 9, 'c': 36, 'e': 3, 'ell': 16, 'W': 12, 'k': 2, 'positive_direction_bulk': 24} {'m': 13, 'c': 52, 'e': 4, 'ell': 22, 'W': 36, 'k': 3, 'positive_direction_bulk': 54} {'m': 201, 'c': 804, 'e': 51, 'ell': 304, 'W': 14700, 'k': 50, 'positive_direction_bulk': 15000}
