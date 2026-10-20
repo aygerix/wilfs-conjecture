@@ -3801,3 +3801,74 @@ Evidence (E348):
   Dep ≥ (d−1)(m−1)/2 (93% of open-regime S).
 - With the true labels, DEP-CARRY has slack ≥ 0.37·m² in adversarial searches (open regime, all phases) and
   ≥ 0.87·m² on random open-regime S, versus MaxCL's near-zero minima.
+
+## 2026-10-21 (night, latest) — CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form; KAPPA-DEP refuted by a mirror identity
+
+### CR-TILE is FALSE (open regime, settled class)
+- Counterexample: S = ⟨19,39,41,50,52,53⟩ (c = 88, g = 68, ℓ = 20, e = 6, W = 32; 3e = 18 < 19, c > 4m).
+  - Independent brute-force check: crfail.py.
+  - Factorizations are unique, so all 240 monomial orders give one tile D ⊂ ℕ⁵ of height 2: 0, the five units, and
+    13 of the 15 degree-2 cells (e_1+e_4 and e_2+e_3 are missing).
+  - ω = 7 on the 13 maximal cells, ω = 1 on e_1..e_4, ω = 0 on 0 and e_5; Dep = 4.
+  - CR_DEP slack −4. PD+ slack −10 (PD+ ⇒ CR_DEP).
+- With the true labels, DEP-CARRY = 5 at the conductor phase and MaxCL holds (Flat-MaxCL, LEAN). So Wilf is safe here.
+  CR-TILE is dead as a universal statement.
+- Diagnosis: the rearrangement is structurally wrong on simplex-like tiles. On the full height-h simplex (Dep = 0, ω = d+h
+  on the C(d+h−1,h) top cells), CR_DEP needs d·|interior| ≤ m − 1, i.e. d·C(d+h−1,h−1) ≤ C(d+h,h) − 1. This is false for
+  every h ≥ 2, d ≥ 2. Near-perfect B_h tiles are therefore the generic obstruction to shape-only criteria: their residues
+  spread the maximal labels.
+
+### Phase walk (PROVED identities)
+Notation:
+- V(ρ) := ρ + Σ_x κ_ρ(x).
+- f(ρ) := Σ_t ω(t) r_ρ(t) − d·M′.
+Identities:
+- V(ρ) = (m−1)/2 − f(ρ)/m.
+- V(ρ) − V(ρ−1) = ω(z_ρ) − d, where z_ρ is the cell carrying label 0 at phase ρ.
+- The mean of V over ρ is (m−1)/2.
+Consequences:
+- DEP-CARRY(ρ) ⟺ V(ρ) ≥ −Dep. On the counterexample above, the conductor phase is the maximum of f (152 ≤ 247).
+- V ≥ 0 is exactly Tile-CL (FALSE at d = 6, E47; proved for 2-D). So **DEP-CARRY = Tile-CL with an extra m·Dep budget.**
+- FALSE: ID ("every cyclic label interval J has Σ_J(d − ω̃) ≤ (m−1)/2 + Dep", sufficient for DEP-ALL). It fails on 10 of 3,000 S
+  and on the counterexample above (16 > 13).
+- DEP-ALL (DEP-CARRY at every phase, every lattice tile):
+  - exhaustive over all tiles d = 2 (m ≤ 22), d = 3 (m ≤ 13), d = 4 (m ≤ 10): min_ρ (V+Dep) = 0 only for the unit simplex;
+  - every printed minimizer has V = 0 (Tile-CL tight), so the minimum equals Dep.
+
+### Inversion and axis-overflow forms (PROVED identities)
+- From the Tile-CL inversion identity (night 11): V(σ) = N(σ) − κ₀, where:
+  - N(σ) = #{(x,a) : x strictly below its a-top t, r_σ(x) > r_σ(t)} (column inversions);
+  - κ₀ = (Σ_a Σ_{a-cols C} S_a(|C|) − M′)/m with S_a(L) = Σ_{k<L}⟨kδ_a⟩.
+  - Checked at every phase on 300 S, 0 mismatches (invcheck.py).
+  - Hence **DEP-CARRY(σ) ⟺ N(σ) + Dep ≥ κ₀**.
+  - Coverage picture: N(σ) is the number of arcs (r(x), r(t_a x)] of the circle ℤ/m that contain the cut at σ. Their
+    total length is M′ + mκ₀.
+- **Axis-overflow identity:** κ₀ = Σ_{x∈D} ε(x), ε(x) = ⌊Σ_a ⟨x_a δ_a⟩/m⌋ ∈ [0, |supp x| − 1].
+  - Proof: reflect inside each a-column, Σ_{k<L}⌊kδ_a/m⌋ = Σ_{x∈C}⌊x_aδ_a/m⌋. Then κ₀ = Σ_x(⌊x·δ/m⌋ − Σ_a⌊x_aδ_a/m⌋),
+    which does not depend on the lift.
+  - With the generators as lifts, ε(x) = K(x) − Σ_a K(x_a e_a) (Kunz coordinates). So κ₀ ≤ Dep reads
+    g ≤ Σ_x Σ_a K(x_a e_a) + Dep.
+- **Mirror identity:** for x ≠ 0, ε_{−δ}(x) = |supp x| − 1 − ε_δ(x). Hence κ₀(δ) + κ₀(−δ) = Σ_{x≠0}(|supp x| − 1).
+  Also f_{−δ}(ρ) = −f_δ(−ρ−1), so DEP-ALL over all tiles is the two-sided bound |f_δ(ρ)| ≤ M′ + m·Dep.
+
+### KAPPA-DEP (κ₀ ≤ Dep, i.e. N ≥ 0 suffices) is FALSE
+- Statement: κ₀ ≤ Dep. It is phase-free and label-free, and it implies DEP-ALL.
+- Evidence it had: 3,000 random S (open-regime margin ≥ 0.4m) and 22,088 small tiles; 2-D is trivial (ε ≤ 1, and
+  #off-axis cells ≤ Dep for rectangles and L-shapes, by direct computation).
+- The mirror identity predicts the failure: on the near-B₂ tile above, Σ(|supp| − 1) = 8 = 2·Dep while κ₀(δ) = 3, so
+  κ₀(−δ) = 5 > 4.
+- The mirror is a factorization tile: S = ⟨19,35,37,43,45,61⟩ (c = 104, e = 6, W = 136, open regime), with
+  κ₀ = 5 > Dep = 4. DEP-CARRY = 19 there.
+- At height ≥ 3 the mirror-aware annealers reach slack 0 (⟨25,38,40,53⟩, ⟨16,44,59,63⟩, both open), so a height-
+  restricted version would be fragile. Not patched.
+- Lesson: every residue-free or N-free relaxation so far (CR_DEP, PD+, ID, KAPPA-DEP) dies on near-B₂ tiles in ℕ⁵. The
+  column inversions N(σ) must be kept.
+
+### CR-δ (CONJ, under test)
+- Statement: for every bijection π: D → ℤ/m,
+      Σ_x Σ_a ⟨π(x) + s_a(x)⟩ ≤ (d+1)M′ + m·Dep,      s_a(x) = ⟨k_a(x)δ_a⟩.
+  Equivalently, min_π #{(x,a) : π(x) ≥ m − s_a(x)} + Dep ≥ κ₀.
+- It is DEP-CARRY with each column-consistent top label r(t_a x) = ⟨r(x) + s_a(x)⟩ replaced by a virtual top label for
+  each incidence. It keeps δ only through the window sizes, and it is a min-cost assignment problem, so it has an LP dual.
+- Evidence: 0 failures on 2,000 random S (crdelta.py). Slack 2, 4, 12, 5 on the four hard tiles above (true-label
+  slack 5, 5, 18, 6).

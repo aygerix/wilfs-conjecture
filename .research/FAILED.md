@@ -63,6 +63,11 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 ## Pattern C — a relaxation that removes the structure doing the work
 | Statement | Counterexample |
 |---|---|
+| CR-TILE (CR_DEP on every lattice tile: Σ_i i·ω_(i) + m·Dep ≥ (d−1)C(m,2); shape-only rearrangement of DEP-CARRY) | ⟨19,39,41,50,52,53⟩ (c = 88, open regime): unique height-2 tile in ℕ⁵, slack −4 (E349). Structural: the full height-h simplex needs d·C(d+h−1,h−1) ≤ C(d+h,h) − 1, false for h ≥ 2 |
+| PD+ (pair/Hamming form, ⇒ CR_DEP) | same tile, slack −10 (E349) |
+| ID (cyclic label-interval discrepancy Σ_J(d − ω̃) ≤ (m−1)/2 + Dep, sufficient for DEP-ALL) | 10/3,000 S; the same tile (16 > 13) (E349) |
+| KAPPA-DEP (κ₀ ≤ Dep, i.e. column inversions not needed) | ⟨19,35,37,43,45,61⟩ (c = 104, open regime, the δ ↦ −δ mirror of the CR-TILE counterexample): κ₀ = 5 > Dep = 4 (E349). Forced by the mirror identity κ₀(δ) + κ₀(−δ) = Σ(\|supp\| − 1). Slack 0 also at height 3 (⟨25,38,40,53⟩, ⟨16,44,59,63⟩) |
+| SC1′ (Hasse-edge bound for Dep), PD (per-direction split of CR_DEP) | SC1′: 156/3,000 S, worst in d = 2; PD: fails at the simplex (E349) |
 | TB4 with only the half window [h, 3h′) | E314 |
 | RANK (replace the depth δ(z) of a ray end by its rank in the φ-order) | 2,586 of 2,738 random S fail, e.g. ⟨12,17,19,20⟩ (c = 48), −15 (E345). The gaps between φ-values matter |
 | Z12 without any window covering | m = 47, B = {10,12,13}, h = 20, slack −2 (E335) |

@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-21 night, latest: Wilf ⟸ CR-TILE, a shape-only lattice-tile inequality (A000000))
+# STATE.md — handoff (updated 2026-10-21 night, latest: CR-TILE FALSE; DEP-CARRY ⟺ N(σ) + Dep ≥ κ₀ = Σ axis overflows (A0000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,28 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000) **NEWEST (2026-10-21, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
+          (NOTEBOOK "CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form"; FAILED Pattern C; E349.)
+          - CR-TILE is FALSE: ⟨19,39,41,50,52,53⟩ (c = 88, 3e < m, c > 4m), a height-2 near-B₂ tile in ℕ⁵, slack −4. That
+            S is in the settled class (Flat-MaxCL, LEAN). Shape-only rearrangement fails on every near-simplex of height
+            ≥ 2, so do not resume CR-TILE, PD+ or ID.
+          - Exact (PROVED, checked):
+            - V(σ) = N(σ) − κ₀, with N(σ) the column inversions;
+            - κ₀ = Σ_x ⌊Σ_a⟨x_aδ_a⟩/m⌋, the axis overflows (= Σ_x [K(x) − Σ_a K(x_a e_a)] in Kunz coordinates);
+            - mirror: κ₀(δ) + κ₀(−δ) = Σ_x(|supp x| − 1)⁺, and f_{−δ}(ρ) = −f_δ(−ρ−1).
+            So DEP-CARRY(σ) ⟺ N(σ) + Dep ≥ κ₀, and DEP-ALL is two-sided.
+          - KAPPA-DEP (κ₀ ≤ Dep) is FALSE (the mirror ⟨19,35,37,43,45,61⟩). Column inversions must be used.
+          - Surviving targets (0 failures so far):
+            - DEP-ALL (all lattice tiles, all phases): exhaustive d ≤ 4 small m, plus all random S;
+            - CR-δ (assignment relaxation: for every bijection π, Σ_{x,a}⟨π(x) + s_a(x)⟩ ≤ (d+1)M′ + m·Dep).
+          - NEXT:
+            1. Find the inversion mechanism. Candidates:
+               (a) an LP-dual certificate for CR-δ;
+               (b) an Euler-defect / second-difference decomposition of Σ_x(x·∇K − K) that generalizes Flat-MaxCL's
+                   top-window confinement of wraps (new; nothing in the record);
+               (c) the two-sided mirror structure.
+            2. Run CR-δ adversarially (annealer, exhaustive small tiles, mirrors).
+            3. Keep the height-3 MaxCL and P0/GDB lines as the other two active lines.
       (A000000) **NEWEST (2026-10-21, night): Wilf reduced to a SHAPE-ONLY inequality on lattice tiles (CR-TILE).**
           (NOTEBOOK "DEP-CARRY and the shape-only reduction CR_DEP"; E348.)
           - PROVED: for any factorization tile D of S, mW ≥ (d+1)M' + m·Dep − Σ_t ω(t) r(t) (CH′ plus the sharp
