@@ -3225,3 +3225,21 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   formulation the residual is the same: carried 3-sums at height four, and co-level-0 elements in [c, c + h/2).
 - Next: prove U1 ≤ E2 + E3 (+ E1 + b·y0) from window filling. First case: all-A (B ⊂ (0, h)) with 2h ≤ m. There
   U1 = |X_3 ∩ [m, 3h)|, and W_1 = [h, 3h/2) must be covered by pairs and by cubes that have a low face.
+
+## 2026-10-20 (morning) — top-band growth; advisor review of P18-CHAIN
+- New inequality TOPBAND, e·|S ∩ [(q−1)m, c)| ≥ c − (q−1)m. It holds at every depth (genus ≤ 34) and is never tight
+  for x ≥ 2. The sharper TB2, (e−1)x + 1 ≥ h, is tight along e = 2 and along x = 1 with e = h. Kunz form: the residues at
+  the maximal Kunz coordinate are at most (e−2)·(the others below the Frobenius residue) + 1. It generalizes "type ≤ 2
+  when e = 3" to a top-band type bound at every e.
+- The full-window version FWG, |S ∩ [a+m, a+2m)| ≤ (e−1)|S ∩ [a, a+m)| + 1, is trivial: one injection proves it for
+  every a. TB2 is FWG cut to the first h residues, and there the injection breaks on wrap decompositions. Covering and
+  Hall forms are both false, so any proof must count globally. Level generalization RC′: 0 failures (20M instances).
+- The suffix family SUF(j) is equivalent to Wilf + TOPBAND, so it is not a new strengthening.
+- Leverage check: TB2 controls only the top bracket of W, while the lower bracket can be −21, and in P18 TCM is
+  stronger. Filed as a structural side result (PROOFS "Top-band growth"); not a route by itself.
+- Advisor (2026-10-20): P18-CHAIN is real progress and independently re-tested (30,298 S, no failures). But WIN, MATCH4
+  and CHAIN-CONJ are one obstruction (unpaid carried cubes sharing faces), not three routes, and U1 ≤ E2 + E3 alone is
+  insufficient: ⟨11,15,18,20,21⟩ has E2 + E3 − U1 = 23 while the other chain terms give −4 (lead recomputation; advisor
+  said −2). Direction: (i) CHAIN-CONJ with the coverage conditions as the achievable theorem, coupling the deficits
+  U1, P_hi and δ jointly; (ii) for full Wilf, a quantitative reason, valid at every depth, why face-sharing cannot
+  outrun compensation. No more equivalent charging identities.

@@ -3309,3 +3309,42 @@ Setting: S = ⟨m, m + B⟩ with B ⊂ [1, m − 1] (all generators below 2m, th
     m ≤ 160: ≥ 90. Even U1 ≤ E2 + E3 alone never failed. The tightest cases are all-A with h close to m (c ≈ 4m).
 - The obstruction is the same in every formulation (K-ID window form, P13 arc form, this chain): carried 3-sums landing
   at height four, paid only through window filling [h, 3h/2) ⊂ T_3.
+
+## Top-band growth: window lemma FWG (PROVED) and conjectures TOPBAND / TB2 / RC′ (every depth)
+Notation: q = ⌈c/m⌉, α = (q−1)m, h = c − α ∈ [1, m], x = |S ∩ [α, c)|. Kunz coordinates k_i (w_i = k_i m + i);
+T_l = {i : k_i ≤ l}; P′ = minimal generators other than m, |P′| = e − 1.
+- **Lemma FWG (window growth; PROVED, elementary).** For every integer a ≥ 0:
+  |S ∩ [a+m, a+2m)| ≤ (e−1)·|S ∩ [a, a+m)| + 1.
+  - Proof: [a+m, a+2m) holds exactly one multiple of m. Every other z ∈ S in that window has a factorization using some
+    p ∈ P′, so z − p ∈ S and z − p < a + m. Let s(z) be the element of S ∩ [a, a+m) congruent to z − p (it is z − p + jm
+    for some j ≥ 0). The map z ↦ (p, s(z)) is injective, since (p, s) fixes the residue of z and the window fixes z. ∎
+  - At a = jm it reads |T_{j+1}| ≤ (e−1)|T_j| + 1.
+- **Corollary D1 (PROVED; a = c − m).** (e−1)·|S ∩ [c−m, c)| + 1 ≥ m. In particular e·|S ∩ [c−m, c)| ≥ m.
+- **Conjecture TOPBAND (CONJ).** e·x ≥ h.
+- **Conjecture TB2 (CONJ; stronger).** (e−1)·x + 1 ≥ h. Equivalently, with D = {i : k_i = q} (all of D lies in [1, h)
+  and h − 1 = max D): |D| ≤ (e−2)·|[0,h) ∖ D| + 1. Kunz form: if N residues attain the maximal Kunz coordinate and f is
+  the largest of them, then (e−1)N ≤ (e−2)(f+1) + 1.
+  - Proved cases: q = 2 (all of S ∩ (m, c) and m + [h, m) are generators; the decomposable D-elements are sums of two
+    elements of T′ ∖ 0, at most C(x, 2) of them; then (x−1)(x−2) ≥ 0 closes it); e = 2 (each Kunz level holds at most
+    one residue); e = 3 (D ⊂ PF(S) and the type is ≤ 2).
+  - Tight families: x = 1 with e = h (⟨m, 2m+1, …, 3m−1⟩-type, D = [1, h) all generators), and e = 2 for every x.
+  - TB2 = FWG restricted to the first h residues. The trivial injection fails there: a decomposition w_i = p + w_j of a
+    top element can send j into [h, m) ("wrap"). Example: Kunz vector (3,3,1,…,1), m = 10, h = 3: w_1 = 31 = 13 + 18,
+    w_2 = 32 = 13 + 19, and every decomposition wraps. So D ⊂ T′ + R (mod m) is FALSE, and so is the Hall form
+    (each generator charged at most x times by the top elements above it). Hall counterexample:
+    ⟨13,20,21,25,30,31,32,35,36,37⟩, D = {1,2,3} with only 20, 21 below them. TB2 is a counting fact, not a covering.
+- **Conjecture RC′ (CONJ; generalizes TB2 to every level).** For every level l ≥ 1 and L ∈ [1, m] such that every residue
+  in [L, m) has k ≤ l − 1: #{i < L : k_i = l} ≤ (e−2)·#{i < L : k_i ≤ l−1} + 1. (l = q, L = h gives TB2; L = m is FWG
+  at a = (l−1)m.) Window form: if [a+L, a+m) ⊂ S with a ∈ mZ, then |S ∩ [a+m, a+m+L)| ≤ (e−1)|S ∩ [a, a+L)| + 1.
+  - FALSE for a ∈ S ∖ mZ: ⟨13,14,16,18,19⟩, a = 19, L = 7 (lower window {19}, upper window [32, 39) full: 7 > 5·1 + 1).
+  - FALSE without the condition on [L, m): ⟨11,17,18,20,21⟩, l = 3, L = 6 (residues 1..5 all at level 3 via wraps,
+    n_2(6) = 1).
+- **Suffix family (PROVED equivalence).** Let SUF(j) be e·|S ∩ [jm, c)| ≥ c − jm (0 ≤ j ≤ q−1). SUF(0) is Wilf and
+  SUF(q−1) is TOPBAND. Then (SUF(j) for all j) ⟺ Wilf ∧ TOPBAND. Proof: ℓ_j = |S ∩ [jm, (j+1)m)| is nondecreasing for
+  j ≤ q−2, and SUF(j) − SUF(j+1) = eℓ_j − m. Let j* be the first j with eℓ_j ≥ m. For j ≥ j* every later band term is
+  ≥ 0, so SUF(j) ≥ TOPBAND. For j < j* the dropped terms are negative, so SUF(j) ≥ W. ∎ So the family adds nothing beyond
+  TOPBAND.
+- **Leverage (honest).** W = [e·|S ∩ [0, α)| − α] + [e·x − h]. TB2 makes the second bracket ≥ x − 1, but the first can be
+  negative (to −21 in P18 at depth four, E303), so TB2 alone does not give Wilf. In P18 it is much weaker than TCM
+  (4·n_4 against (e−2)·x). It is a structural inequality valid at every depth, and its proof is open.
+- Data: E305.
