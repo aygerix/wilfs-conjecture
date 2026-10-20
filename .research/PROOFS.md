@@ -4591,3 +4591,100 @@ multiplicities κ). By ID-q, ANCHOR gives E + r ≥ Σ_{λ_x ≤ q−2} (q − �
 **Why this matters.** CORE₁ is a depth-independent inequality, stronger than Wilf, that the depth-four proof
 establishes on its core models. ID-q turns it into a single deficit-payment problem: wraps not refunded by crossing
 parents must be paid by ρ, excess crossings, unused top incidences and holes.
+
+### Exact reformulations of CORE₁: c ≤ nℓ + (q+1)r, the degree form, and the position form (lead, 2026-10-20; PROVED; checks E339)
+Setting and notation as in "ID-q for every numerical semigroup": n = K + 1 left primitives, r right primitives,
+q = ⌈c/m⌉, ρ = qm − c. Reached positions x (λ_x ≤ q), degree t_x, wraps j_x = λ_x − t_x, unused weight u(x).
+Write J = Σ_x j_x and s_x = λ_x·m + x − ρ (the least element of ⟨A⟩ at x).
+
+**(R1) CORE₁ ⟺ c ≤ n·ℓ + (q + 1)·r.** This is E + r = nℓ − q(m − r) + ρ + r = nℓ + (q+1)r − c. Compare Wilf,
+c ≤ nℓ + r·ℓ: in CORE₁ each right primitive is worth q + 1 instead of ℓ ≥ q + 1.
+
+**(R2) Degree form (every S).** E = ρ + Σ_x (q − t_x)·u(x) − (K + 1)·J.
+- Proof: telescope with potential q − t over used incidences (each in-weight is t_y by divisor closure). This gives
+  Σ_x (q − t_x)u(x) = (K + 1)Σ_x (q − t_x) − q·d. Then use ℓ = Σ_x (q − λ_x) = Σ_x (q − t_x) − J. ∎
+- Equivalently, by a second telescoping with potential j (κ = j_y − j_x on a used incidence):
+  Σ_y (c_y − j_y) = Σ_x j_x·(u(x) − K − 1). So ID-q and (R2) are the same identity.
+- Each wrap costs K + 1, paid by unused incidences weighted by q − degree. CORE₁ ⟺
+  (K + 1)·J ≤ ρ + r + Σ_x (q − t_x)·u(x).
+- **Top-level positions pay for themselves.** If λ_x = q, all K + t_x incidences are unused and q − t_x = j_x, so the
+  term is j_x(K + t_x) ≥ (K + 1)j_x. The whole cost sits at wrapped positions below the top whose incidences are used.
+- This is the E-analogue of the power-token identity W = U − e·T_c.
+
+**(R3) Position form (every S).** m·(E + r) = (m + ρ)r + Σ_{unused (x,i), λ_x<q} w·(c − s_x) + (K + 1)·Σ_{λ_x<q} x
+− Σ_{λ_x = q} (t_x − 1)·x.
+- Proof: telescope with potential c − s, which drops by g_i on a used incidence. This gives
+  Σ_unused w(c − s_x) = K·c·d − (K + 1)·Σ_x s_x. Then substitute s_x. ∎
+- Equivalently (the "centre-of-mass identity"): m·Σ_y (j_y − c_y) = Σ_unused w·x − (K + 1)·Σ_reached y + ρ·d.
+- No wraps appear. CORE₁ becomes a first-moment inequality: Σ_{top}(t_x − 1)x ≤ (m + ρ)r + (K + 1)Σ_{λ<q} x + (lower
+  unused incidences weighted by their distance to c).
+- In the free unwrapped model (positions linear in the degree, ρ = 0) it holds with equality before r is added. Wraps
+  move positions down, which lowers the (K + 1)Σ_{λ<q} x term.
+- These are exact rewritings, not new inequalities. Any proof of CORE₁ needs an inequality that uses the injectivity of
+  positions mod m (the space constraint) or their order (translation by an anchor), as the depth-four shell does.
+
+**(R4) CORE₁ for all truncations ("layer CORE₁").** For a P18 model (m, ρ, B) and every j ≥ 1:
+  (j + 1)·N_j ≤ (K + 1)·Σ_{k<j} N_k + m + ρ, with N_k = #{x : λ_x ≤ k}.
+- For S = ⟨m, m + B⟩ this reads, with τ = jm − ρ (any τ ≥ 1, j = ⌈τ/m⌉):
+  τ ≤ e·|S ∩ [0, τ)| + (j + 1)·|[τ, τ + m) ∖ S|   (SW_τ).
+  SW_c is Wilf. SW_τ is CORE₁ of the truncation S ∪ [τ, ∞) when τ − 1 ∉ S and τ > 2m. So it is implied by CORE₁ and is
+  not a new target.
+- Check (E339): 0 negative values over all j ≤ q, on 2,943 random models (strips allowed, q ≤ 14).
+
+**Correction (to STATE A0/A00).** "Strip-free q ≤ 5 has only j ≤ 1" is FALSE at q = 5. A twice-wrapped triple
+(ρ + a + b + c ≥ 2m, level 5) occurs whenever m ≥ 2ρ + 3 allows it: 5,452 of 16,227 exhaustive true-depth models
+(m ≤ 22, K ≤ 5). The j ≤ 1 form N − |U| ≤ 2p + U_top + C is exact only for strip-free q ≤ 4, which is settled. In the
+j ≤ 1 world, C = K|U| − u(U) (unused weight at unwrapped positions), so CORE₁ ⟺
+N + (q − 1)|U_q| ≤ (K + 1)|U_{<q}| + 2r + Σ_{x∈U, λ<q}(q − 1 − λ_x)u(x) + Σ_{x∈Wr}(q − λ_x)u(x).
+
+**Component audit at q = 5, strip-free (E339; exhaustive m ≤ 22, K ≤ 5, and 4,979 random models).**
+- Dropping one hole term from the j ≤ 1 form fails (2 cases).
+- Dropping ρ from ANCHOR fails once: (m, ρ, B) = (19, 5, {7, 8}), slack −2.
+- Wrapped-in-window bounds without U_top fail.
+
+### Conjecture T1 (pool-free deficit bound) — FALSE; Conjecture WR1 (the wrapped region pays for itself) (lead, 2026-10-20; checks E340)
+**T1 (FALSE).** Σ_y (j_y − c_y) ≤ ρ + r. Equivalently:
+- E + r ≥ P, the whole ID-q pool;
+- the column form Σ_x Σ_i y(top_i(x)) ≤ (K + 1)·Σ_x y_x + (m + ρ)r;
+- Σ_{α∈M} (1 + j_α − c_α) ≤ m + ρ.
+
+Evidence before the refutation: 0 failures, minimum slack 0, on every S of genus ≤ 30 (14.4M), e = 3 exhaustive
+(800,568), e = 4 random (277,368), random general S, Delgado and Fromentin truncations (pool 0 there), and 20,000
+random injective multiset ideals.
+
+Refutation (true-depth annealer, then two independent codes):
+- ⟨66, 67, 71, 72, 98, 103, 128⟩: c = 326, q = 5, ρ = 4, r = 0, J − C = 6, T1 = −2. CORE₁ = E = 451.
+- ⟨61, 62, 63, 67, 88, 89, 112⟩: q = 5, T1 = −1.
+- ⟨64, 65, 69, 75, 95, 100⟩: q = 6, T1 = −1.
+- Mechanism: small offsets {1, 5, 6} collide (1 + 5 = 6). The collisions create a large pool at low levels, and that
+  pool is what pays the slight excess of wraps.
+- T0 (J − C ≤ ρ) fails already at ⟨14,22,23⟩₅₆.
+
+Lessons:
+- No pool-free deficit bound holds. Some unused incidences are needed.
+- A statement that is tight on census data (minimum 0 everywhere) needs an adversarial search before it is trusted.
+
+Two exact forms found on the way (both PROVED; used below):
+- **Cut form.** J − C = Σ_{k≥1} μ(U_k), where μ(α) = K + 1 − u(α) and U_k = {α ∈ M : σ_α ≥ km}. Here M is the
+  canonical family and σ_α = ρ + α·b. The measure μ has total mass |M| and Σ_α μ(α)σ_α = ρ|M|.
+- **Per-element form.** j_α − c_α = Σ φ_α(δ) over δ ≡ σ_α (mod m), 0 ≤ δ ≤ σ_α − m, with
+  φ_α(δ) = 1 − #{copies b ∈ α : b > δ}. Here φ_α is non-decreasing and Σ_{0≤δ<σ_α−ρ} φ_α(δ) = 0 for each α.
+
+**Conjecture WR1 (every S; UNDER GATE).** J − C ≤ ρ + r + P_W, where P_W = Σ_{x wrapped} (q − λ_x)u(x).
+- Equivalently, in degree form: (K + 1)J ≤ ρ + r + Σ_{x wrapped}(q − t_x)u(x).
+- Equivalently: Σ_{x∈W} f(x) + ρ + r + Σ_{crossing edges U→W} w·(q + 1 − t_y) ≥ 0, where W is the wrapped region,
+  U the unwrapped region, and f(x) = (K + 1)(q − λ_x) − q. So the wrapped positions' Eliahou deficit is paid by ρ, the
+  holes, and the crossing edges that feed W.
+- WR1 + (unwrapped pool PU ≥ 0) ⟹ CORE₁ ⟹ Wilf.
+- Necessity audit:
+  - WR1 discards only the unwrapped pool PU. In the negative-Eliahou families PU = 0, so there it is CORE₁.
+  - Dropping ρ (WR0) fails, 444 times in the exhaustive run.
+  - Dropping all of P_W is T1, which is FALSE.
+- At q = 4, strip-free, WR1 reads |Q₃| ≤ ρ + r + |Ẑ| + |Q₁| + 2|Q₀| + A (+ strip terms). The external anchor theorem
+  (shell + PAYMENT) proves this plus an extra +|N40| on the right. So WR1 at q = 4 is slightly stronger than the
+  kernel-checked bound.
+- Status:
+  - 0 failures on exhaustive true-depth models, q = 5 and 6, m ≤ 20, K ≤ 5, strips allowed (92,257), and on random
+    models.
+  - Survives the T1 counterexamples with margins 130 to 182.
+  - True-depth annealers at q = 5–7 are running (E340).

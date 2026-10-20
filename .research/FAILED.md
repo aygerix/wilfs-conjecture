@@ -44,6 +44,8 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | XDEAD (conductor-free DEAD) | PROOFS "DEAD" section |
 | Q3 ≥ 4h − (k+4) | ⟨27,28,32,35⟩, Q3 = 3 (E332) |
 
+| T1 (every S): Σ_y (j_y − c_y) ≤ ρ + r, i.e. E + r ≥ P (the whole ID-q pool); also T1′ (holes below ρ dropped), T0 (≤ ρ), and the combinatorial version for arbitrary injective multiset ideals | ⟨66,67,71,72,98,103,128⟩: c = 326, q = 5, ρ = 4, r = 0, J − C = 6, T1 = −2; also ⟨61,62,63,67,88,89,112⟩ (−1) and ⟨64,65,69,75,95,100⟩ (q = 6, −1). Two codes agree (E340). T0 already fails at ⟨14,22,23⟩₅₆ (J − C = 1, ρ = 0). T1 had 0 failures and min slack 0 on all of genus ≤ 30, e = 3 exhaustive, e = 4 random and the negative-Eliahou families: tight statements need annealing, not census | the pool P (unused incidences); E + r = 451 there |
+
 ## Pattern C — a relaxation that removes the structure doing the work
 | Statement | Counterexample |
 |---|---|
@@ -75,6 +77,7 @@ and MD are statements about every S and remain observations.
 | SIG := Q4 + σ_T ≥ 0 | 3(P_w − p) + 2(P_u − u2) + P_w | under falsification (E335): necessity ablation shows σ_T is the essential payer at e = 4 |
 | ANCHOR (every S): DEF ≤ ρ + EXC + U_top + r | the pool of weight ≥ 2 and r(\|L\| − q − 1) | gate steps 1–3 passed (E337, E338); proof attempt open. Not a piece of a positive quantity demanded locally: it is the full deficit of the exact identity ID-q against all weight-1 credits |
 | CORE₁ (every S): E + r ≥ 0 | r(\|L\| − q − 1) only | 0 failures (E338), extremal families have growing margins |
+| WR1 (every S): J − C ≤ ρ + r + P_W, with P_W = Σ over wrapped x of (q − λ_x)u(x) | the pool of unwrapped positions | 0 failures: exhaustive q = 5, 6, m ≤ 20, strips (92,257 models), random; survives the T1 counterexamples (margins 130–182). Annealers running (E340) |
 
 ## Corrections log
 - 2026-10-20: I first wrote "CORE₁ is implied by Wilf". It is the reverse: CORE₁ implies Wilf (W = E + r(|L| − q)).

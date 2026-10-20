@@ -63,8 +63,19 @@ Lines, in order of cost to decide:
             every known negative-Eliahou family (Fromentin, EF B₃, Delgado; margins grow, = p − 1 on Delgado-type),
             and B₄ blocks (density argument).
           - Literature: no statement of E + r ≥ 0 found.
-          - **First precise task:** prove ANCHOR, starting with j ≤ 1 (strip-free P18, q ≤ 5): N − |U| ≤ 2p + U_top + C.
-            Then high generators (κ ≥ 2) and multi-wraps.
+          - CORE₁ ⟺ c ≤ nℓ + (q+1)r. Degree form: CORE₁ ⟺ (K+1)·J ≤ ρ + r + Σ_x (q − t_x)u(x); top-level wrapped
+            positions pay for themselves, so the cost sits at wrapped positions below the top (PROOFS "Exact
+            reformulations of CORE₁"; E339).
+          - (2026-10-20, later) Pool-free bound T1 (J − C ≤ ρ + r, i.e. E + r ≥ P) is FALSE: ⟨66,67,71,72,98,103,128⟩,
+            T1 = −2, found by annealing after 0 census failures (FAILED.md). Surviving sharpest candidate:
+            **T2: J − C ≤ ρ + r + Σ_{wrapped x, λ_x = q−1} u(x)** (implies ANCHOR and WR1, hence CORE₁). 0 failures on
+            genus ≤ 30 and on the T1 counterexamples (margins ≥ 66); annealers at q = 5–7 running (E340). WR1 (wrapped
+            pool, all levels): 0 failures on genus ≤ 30 and e = 3 exhaustive.
+          - The depth-four shell, read from the Lean source (PROOFS "Conjecture T1 … WR1"): |J| = |I| + ρ, translates of
+            unwrapped (q−1)-sums in I fill J; deficits in J are paid by ρ + |I ∖ Y_{q−1}|. At depth ≥ 5 deficits can lie
+            below the top level and inside the translate, so a level-graded shell is needed.
+          - **First precise task:** prove CORE₁ at q = 5 (j ≤ 2). A proof needs an inequality from the space constraint
+            (injectivity mod m) or the order (anchor translation); identities alone are exhausted.
       (A0) **NEW, main target (PROOFS "Identity ID-q", "Conjecture ANCHOR-q"; E337).**
           - ID-q (PROVED, every depth, every P18 model, strips allowed):
             W₀ = ρ + Σ_x (q − λ_x)·u(x) + Σ_y (c_y − j_y). Wraps are refunded by crossing parent incidences.
@@ -74,7 +85,7 @@ Lines, in order of cost to decide:
             m = 200, K = 30. On perfect-Sidon models ANCHOR-q ⟺ CORE₁. CORE₁ is STRONGER than Wilf (correction):
             dense B₄-type offsets in [m/3, m/2) at q = 5 could break it (PROOFS back-of-envelope; E338 tests this).
           - Proof route: generalize the external shell + PAYMENT (EXT1), deficits at all levels.
-          - Strip-free q ≤ 5 (only j ≤ 1) is equivalent to N − |U| ≤ 2p + U_top + C, where U = unwrapped canonical
+          - [CORRECTED 2026-10-20: q = 5 has twice-wrapped triples; j ≤ 1 holds only for strip-free q ≤ 4 (settled). See PROOFS "Exact reformulations of CORE₁".] Strip-free q ≤ 4 is equivalent to N − |U| ≤ 2p + U_top + C, where U = unwrapped canonical
             positions with λ ≤ q and C = used crossing incidence weight. This is a sumset lower bound (missing window
             slots are paid by crossing incidences, holes and unused top incidences).
           - First precise task: prove it at q = 5 strip-free, starting from the translation by an anchor high offset.
