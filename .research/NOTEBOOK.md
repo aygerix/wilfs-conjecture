@@ -3480,3 +3480,25 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - wrapped U2-incidences into S_3;
   - outgoing wraps of N3 ∩ [0, h).
   Local accounting fails (LOC −9), so a global count is needed.
+
+## 2026-10-20 (late night) — STAR and J refuted; the carry identity CARRY-ID
+- STAR FALSE (annealer aT0_41): m = 47, B = {5,…,9,12,16,17}. The four carried triples 3·16, …, 3·17 have only 6 parent
+  incidences, because of their repeated summands. W = 205 is paid by AP collisions.
+- J FALSE: ⟨21,23,33,35,38,39⟩, h = 2. J charges carried pairs with residue ≥ h to E2 alone. Lesson: a carried pair
+  x + y = m + u with u + y ≥ h owns an unused repeat entry (y, x).
+- NEW exact identity (PROOFS "CARRY-ID"): W = 2δ2 − p − q + sl_A + sl_B. Unwrapped triples T and carried triples C share
+  one incidence pool (U2 ∪ (m + CP_lo)) × B and one repeat pool of k(k+1) entries. Wilf ⟺ every unit of carry is paid by
+  pair redundancy (×2), an unused incidence or entry, or an unused degree-4 token.
+- Two self-payments PROVED:
+  - (i) carried pairs with u + y ≥ h, so all of them when 2h ≤ m;
+  - (ii) carried triples with a representation that has a pair sum < h (wrapped token).
+- Residual: q_res (carried triples whose representations all have only large pair sums) and p_res (needs 2h > m).
+  Conjectures L1, L2, K7 hold everywhere tested.
+- Mechanism behind the margins: in the free model with no overshoot, Wilf needs a B_3-like part to tile its whole
+  sumset range [m, m + h) with distinct sums. That is a Rohrbach-type impossibility, so covering forces collisions and
+  collisions pay. A quantitative "covering ⟹ redundancy" lemma is the missing ingredient. Known Rohrbach constants are
+  tiny, so it must exploit the factor k on the token side.
+- Dead ends this cycle: LAYER_j(n) for windows n ≠ m (fails); crude Q3 ≥ 4h − (k+4) (fails on 4-sum-heavy S, where
+  Macaulay tokens pay).
+- P18 depth four, e = 6 certificate: the min W over h > e is far above the overall min, which sits at h ≤ 6.
+  So the uncovered regime has large margins (e.g. W = 54 at m = 39, h = 15).

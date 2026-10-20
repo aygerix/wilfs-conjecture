@@ -65,6 +65,11 @@ int main(int argc, char **argv){
   for (int i = 0; i < k; i++) for (int j = i; j < k; j++) if (B[i] + B[j] >= m) Pw++;
   long long STAR = Pw + Jge + kk * L3 - 4 * d4, Wq = 2 * kk * kk + 2 * kk + (kk - 2) * d2 + kk * L3 - 3 * d3 - 4 * d4;
   printf("d2=%lld d3=%lld d4=%lld L3=%lld Jge=%lld Pw=%lld STAR=%lld Wformula_ok=%d\n", d2, d3, d4, L3, Jge, Pw, STAR, Wq == W);
+  { long long H2 = 0, H4 = 0, qQ = 0;  /* Conjecture J = E2 + (e-1)y - 4H4 - q - 3qQ - p (PROOFS "split W = J + sigma") */
+    for (int r = 1; r < m; r++){ if (od[r] == 2) H2++; if (lv[r] == 4 && od[r] == 4) H4++;
+      if (lv[r] == 4 && od[r] == 3){ int g2 = 0; for (int i = 0; i < k && !g2; i++) if (B[i] <= r && lv[r - B[i]] == 3 && od[r - B[i]] == 2) g2 = 1; qQ += g2; } }
+    long long E2 = e * (e - 1) - 2 * H2, J = E2 + (e - 1) * L3 - 4 * H4 - q - 3 * qQ - p;
+    printf("J=%lld E2=%lld H2=%lld H4=%lld qQ=%lld y=%lld\n", J, E2, H2, H4, qQ, L3); }
   printf("m=%d k=%d fill=%d h=%d c=%lld g=%lld W=%lld | p=%lld q=%lld Tc=%lld | Z=%lld G=%lld Ful=%lld Ext=%lld | S2=%lld S3=%lld TFZ=%lld | Lam-O=%lld DEAD=W-(Lam-O)=%lld\n",
     m, k, fill, h, c, g, W, p, q, p + q, Z, G, Ful, Ext, G - p - q, Z + G - p - q, kk * kk + Z - p - q - Ful, Lam - O, W - (Lam - O));
   return 0;

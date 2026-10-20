@@ -4188,3 +4188,90 @@ Wilf for 3e ≥ m (Eliahou).
   - Heuristic: at P18 depth four, P < 0 needs level-four residues beyond the triple count. Those are unwrapped 4-sums,
     whose four parents lie in X = S_3 ∩ [0, h); this pays T. A deficient tail (T < 0) needs carried triples outnumbering
     k·|S_2 ∩ [0, h)| plus waste, and then pair/triple collisions make P large.
+
+## P18 depth four: STAR and J are FALSE; the carry identity CARRY-ID (PROVED) and its self-payments (lead, 2026-10-20; checks E331–E332)
+
+Setting: P18 depth four as in "P18 depth four: layer form", with S = ⟨m, m + B⟩, |B| = k, h = c − 3m, A = {0} ∪ B.
+
+**Refutations (both verified by two independent codes, E331).**
+- **STAR is FALSE.** m = 47, B = {5, 6, 7, 8, 9, 12, 16, 17} (e = 9, h = 5, W = 205):
+  - P_w = 0, J_≥ = 6, k·L3 = 8, d4 = 4, so STAR = 6 + 8 − 16 = −2.
+  - The four level-four residues 1..4 are the carried triples 3·16, 2·16 + 17, 16 + 2·17, 3·17. Repeated summands
+    leave them only 6 parent incidences.
+  - W is paid by G_T, i.e. collisions of the AP {5, …, 9}.
+- **Conjecture J is FALSE** (PROOFS "Depth four: the split W = J + σ"). m = 21, B = {2, 12, 14, 17, 18}, i.e. ⟨21, 23, 33, 35, 38, 39⟩
+  (e = 6, h = 2, W = 43):
+  - J = E2 + (e−1)y − 4H4 − q − 3q_Q − p = 4 + 5 − 0 − 1 − 0 − 9 = −1.
+  - J charges the nine carried pairs, all with residue ≥ h, to E2 alone.
+  - h ≤ e here, so Wilf is covered by DEPTH4-EH. "J for h > e" has no counterexample known, but the mechanism generalises.
+
+**Notation.**
+- T = (3A ∩ [0, m)) ∖ S_2 (new unwrapped triples).
+- CP = N3 ∖ T (carried pairs: level 3, order 2), with p = |CP| and p_lo = |CP ∩ [0, h)|. So d3 = |T| + p.
+- C = level-four residues not in 4A (carried triples; r + m ∈ 3B, r < h), q = |C|. H4 = level-four residues in 4A.
+  So d4 = H4 + q. Also y = L3.
+- δ2 = C(k+1, 2) − d2 − p ≥ 0 (pair redundancy: U2 ∪ CP are residues of distinct pair multisets).
+- **Incidence pool** I = (U2 ∪ (m + CP_lo)) × B, |I| = k(d2 + p_lo).
+- **Repeat pool** Δ = ordered pairs (x, z) ∈ B², x ≠ z, together with two copies of each x ∈ B; |Δ| = k(k + 1).
+- For each t ∈ T (value t) and each r ∈ C (value m + r), fix one representation as a sum of three elements of B, with
+  distinct summands when one exists.
+  - It uses its pair-incidences (pair sum, third summand): 3, 2 (for 2x + z: (2x, z), (x + z, x)) or 1 (for 3x: (2x, x)).
+  - It uses its repeat entries: (x, z) for 2x + z, both copies of x for 3x.
+- sl_A := |I| + |Δ| − 3(|T| + q), and sl_A = incU + incC + defU (unused U2-incidences, unused CP-incidences, unused repeat
+  entries).
+- sl_B := k(y − p_lo) − 4·H4.
+
+**Lemma (pools; PROVED).** Every used incidence lies in I. Distinct (value, incidence) choices give distinct incidences,
+and distinct repeat entries. Hence sl_A ≥ 0. Also sl_B ≥ 0.
+- Proof.
+  1. T case. For t ∈ T, pair sums are < m and in U2: a pair sum in A puts t in 2A ⊂ S_2.
+  2. C case, pair sum s < m. Then s ∈ U2. If s ∈ A, then (m+x) + (m+y) = m + (m + s) ∈ m + S, so 3m + r ∈ S, contradicting
+     r ∉ S_3.
+  3. C case, pair sum s ≥ m. Let u = s − m = r − z < h.
+     - u ∉ S_2: otherwise 3m + u = m + (2m + u) ∈ m + S, so again 3m + r ∈ S.
+     - u ∉ T: otherwise 3m + u is a sum of three generators, so r ∈ 4A, contradicting r ∈ C.
+     So u ∈ CP_lo.
+  4. An incidence (s, b) determines its value s + b. T-values are < m and C-values are ≥ m. Inside one representation the
+     listed incidences are distinct. Repeat entries determine their value (2x + z, resp. 3x).
+  5. sl_B ≥ 0 is the condensed-Macaulay token count restricted to uncarried sources in X. An order-four element 4m + r
+     (r < h) uses the tokens (w − j(m + b), b), whose sources have residue < h and level = order ≤ 3. The only carried
+     elements of S_3 are the carried pairs. ∎
+
+**Identity CARRY-ID (PROVED; exact).** For every P18 S of depth four:
+
+    W = 2·δ2 − p − q + sl_A + sl_B.
+
+Hence **Wilf ⟺ p + q ≤ 2δ2 + sl_A + sl_B**. The total carry T_c = p + q must be paid, one unit each, by:
+- twice the pair redundancy;
+- unused triple incidences and repeat entries;
+- unused degree-four tokens from uncarried sources below h.
+
+Proof: substitute d3 = |T| + p, d4 = H4 + q, 3|T| = |I| + |Δ| − 3q − sl_A and 4H4 = k(y − p_lo) − sl_B into
+W = 2k² + 2k + (k − 2)d2 + k·L3 − 3d3 − 4d4. ∎
+
+**Self-payments (PROVED).**
+- (i) **Carried pairs.** Let u ∈ CP have a pair representation x + y = m + u (x ≤ y) with u + y ≥ h. Then the repeat entry
+  (y, x) (both copies of x if x = y) is unused: its value 2y + x = m + u + y ≥ m + h is neither a T-value nor a C-value.
+  Distinct u give distinct entries. If p_res counts the carried pairs with u + y < h for every representation, then
+  p_res > 0 forces m ≤ x + y ≤ 2y < 2h. **So p_res = 0 whenever 2h ≤ m.**
+- (ii) **Carried triples.** Let r ∈ C have a representation x + y + z = m + r with a pair sum s = x + y < h.
+  - Then s ∈ U2 ∩ [0, h) is an uncarried source in X.
+  - Its token (s, z) has target (2m + s) + 2(m + z) = 5m + r + z, of level ≥ 5, so it is unused (counted in sl_B).
+  - s + z = m + r, so distinct r give distinct tokens.
+  - q_res counts the carried triples all of whose representations have all three pair sums ≥ h.
+- Exact residual form: W = 2δ2 + incU + incC + (defU − n_i) + (sl_B − n_ii) − p_res − q_res, where n_i + p_res = p,
+  n_ii + q_res = q, and both brackets are ≥ 0.
+- **Corollary (PROVED).** P18 depth four with 2h ≤ m and q_res = 0 satisfies Wilf, indeed W ≥ 2δ2 + sl_A.
+
+**Conjectures (0 failures; E332).**
+- **L1:** q_res ≤ incU + incC (unused incidences pay the carried triples with only large pair sums). Minimum slack is 0 at
+  m = 17, B = {2, 9, 11}; there the four residual triples 10, 12, 14, 16 are paid exactly by incidences landing on the
+  old residue 13 and on the carried-pair residues 3, 5.
+- **L2:** q_res + p_res ≤ incU + incC + 2δ2. **L2 ⟹ P18 depth-four Wilf; for 2h ≤ m, L1 ⟹ Wilf.**
+- **K7:** p + q ≤ defU + sl_B (stronger than Wilf, since it drops 2δ2 + incU + incC). Minimum slack is 6, 13, 21 for
+  e = 4, 5, 6.
+- FALSE (E332):
+  - L6, pure q_res ≤ incU: m = 13, B = {5, 7, 11}.
+  - K5, p ≤ defU: m = 17, B = {2, 9, 11}.
+  - K6 (defU + incC ≥ p + q), L3 (incU ≥ q_res), L5 (incC ≥ grown q_res).
+  - "Wrap/high tokens pay all carries" (C3) fails at the DK counterexample: 22 − 35 − 24 < 0.
