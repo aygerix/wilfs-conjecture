@@ -8,6 +8,13 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0d. **NEWEST (2026-10-20): Conjecture T1 / Lemma U (PROOFS).** T1: Σ_x K_p(x) ≤ m − e at every shift p. It gives
+    W ≥ e − h + Λ at every depth, hence GEN-EH and Wilf whenever ρ + Λ ≥ m − e. Lemma U is a combinatorial
+    statement (order ideals in ℕ^d with injective residues mod m); Lemma U ⇒ T1-DOWN ⇒ T1 is PROVED (lex-max factorizations).
+    - d = 1 is proved.
+    - Evidence: genus ≤ 31 (p*), genus ≤ 28 (all p), and all injective ideals with d = 2, m ≤ 11 and d = 3, m ≤ 9.
+    - Residual for Wilf: LOW = {ρ + Λ < m − e}. It has 37 S at genus ≤ 31, all at q ≤ 4.
+    - codex P15 = Lemma U (launched 2026-10-20). Lead: the LOW class.
 0c. **NEW (2026-10-19, latest): Wilf for c ≤ 3m + e (DEPTH4-EH, PROVED; from codex P13 Theorem A, lead-verified E292).**
     - **LEAN (kernel-checked, standard axioms): c > 3m ⇒ e·ℓ ≥ 3m + e**, hence Wilf for 3m < c ≤ 3m + e
       (lean/Wilf/DepthFour.lean, `wilf_of_conductor_le_three_mul_add_embDim`). Elementary proof in PROOFS.

@@ -1,0 +1,8 @@
+SUMMARY n=1 graphs=2 max(T-E-M(fn)+Eb)=0
+SUMMARY n=2 graphs=8 max(T-E-M(fn)+Eb)=0
+FALSE_GLOBAL n=3 mask=11 E=3 T=4
+SUMMARY n=3 graphs=64 max(T-E-M(fn)+Eb)=0
+SUMMARY n=4 graphs=1024 max(T-E-M(fn)+Eb)=0
+SUMMARY n=5 graphs=32768 max(T-E-M(fn)+Eb)=0
+SUMMARY n=6 graphs=2097152 max(T-E-M(fn)+Eb)=0
+TOTAL graphs=2131018 failures=0

@@ -3101,3 +3101,16 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - e = 2 is proved (pairing i ↔ j − i with C(u) + C(v) ≤ C(u+v) + 1); q ≤ 4 at p* is the DepthFour pointwise bound.
 - Hereditary strengthening T1-DOWN (every down-set of the Apéry poset) survives all tests; cover-only relays fail.
 - Next: prove T1-DOWN by building down-sets one element at a time; the e = 2 pairing is the template.
+
+## 2026-10-20 — codex P14 returned (UF-RELAY partial; quadratic-fiber lemma at every depth)
+- QUAD-FIBER (every depth; lead re-derived): an Apéry value v with a quadratic factorization has K(v) ≤ 1, with
+  1 − K(v) ≥ Σ_{pairs}(λ(n_i)+λ(n_j)−λ(v)−q+1) + (r_2(v)−1)(q−1−λ(v)). Proof: distinct quadratic factorizations have
+  disjoint supports, and λ(n_i)+λ(n_j) ≥ q+λ(v)−1 by the floor inequality. So T1 deficits sit only on values with no
+  quadratic factorization.
+- Depth four (codex, proved there, not re-checked line by line by the lead): UF-RELAY holds if a ≤ 3(γ+η)+1 (C/E counts),
+  or if every high-pair graph component is a pseudoforest; QUAD-CORRIDOR h ≤ e + B_CE + (γ+η)H2 + QDef + 2F_no2 ⇒ Wilf.
+  The single-E shortcut R_A ≤ ℓ−4+C_U+p_A is false (codex witness m = 532; not a Wilf failure).
+- Remaining depth-four gap (codex): dense high-pair components, DENSE-RELAY; it needs Apéry realizability.
+- Lead decision: P15 = Lemma U (the combinatorial core of T1). T1 gives W ≥ e − h + Λ at every depth, so the depth-four
+  problem becomes the LOW class ρ + Λ < m − e. LOW is tiny: 37 of 23,663,048 S at genus ≤ 31, none at q ≥ 5 there,
+  all with W ≥ 2; level-k additive-basis constructions put LOW at q = 2k only while 2k·(#top pairs) < m − e.
