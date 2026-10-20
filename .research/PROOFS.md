@@ -3203,3 +3203,26 @@ distinct pair face gives one credit, so R_B ≤ p_B + Λ suffices (p_B = #distin
   C(k+1, 3)), where only Λ can pay. A **cubic relay lemma** paying R − p from Λ would give Wilf for c ≤ 4m (with C2) *and*
   for 4m < c ≤ 4m + e.
 
+### Depth four: face-blocking payment, CE-DIRECTIONS′, and the shape of the residual (lead, 2026-10-20)
+Notation of codex P14 §1–2 (q = 4; A, B, C, E classes; R_A = UF critical pure-A cubics; p_A = #distinct faces; R_out ≤ ρ (P13);
+faces are UF with K = −1 (P14 §2.1)).
+- **Face-blocking bound (PROVED).** Λ ≥ Σ_{p ∈ F} τ(p), F = set of faces, τ(p) = #{a : p + n_a ∉ Ap}. Each pair (p, a) with p an
+  a-top below c is its own term (ν_a(p) + 1)λ(p) ≥ 1 of Λ. Every generator n ≥ 2m blocks every face, since
+  p + n ≥ (2m + h) + 2m > M.
+- **Charging form (PROVED).** W ≥ Σ_{p∈F}(1 + τ(p) − load(p)), where load(p) = Σ_{critical x with face p} 1/f(x) and f(x) =
+  #distinct faces of x ∈ {1, 2, 3}. Also load(p) ≤ (u+1)/3 for p = n_i + n_j (i ≠ j), load(p) ≤ (u+1)/2 for p = 2n_i, with
+  u = #critical cubics above p. This is only a reorganisation of DEC-ID with Z ≥ |F| and R − R_A ≤ ρ. Checked on all
+  2,733,043 depth-four S of genus ≤ 31 (every link asserted, 0 failures; E300).
+- **CE-DIRECTIONS′ (PROVED; small extension of codex P14 §2.3).** With g′ = #{minimal generators ≥ 2m} (C, E and the B
+  generators in [2m, 2m+h)): Λ ≥ g′·p_A, so P14's argument (3R_A ≤ (a+2)p_A) gives **a ≤ 3g′ + 1 ⇒ Wilf at depth four.**
+  (P14 had g = γ + η; the B generators in [2m, 2m+h) also block every face.) The lead's cruder FACE-BIG
+  (g′ ≥ (d−1)/3 ⇒ Wilf) is subsumed.
+- **Shape of the remaining depth-four case.** A depth-four counterexample has a ≥ 3g′ + 2 and fails CE-DIRECTIONS, so most
+  generators lie below 2m. Yang–Zhang Cor 4.2 (e(η+2) ≥ 2m ⇒ Wilf, η = |S ∩ (m, 2m)|) forces η < √(2m), so
+  e ≤ η + g′ + 1 ≲ (4/3)√(2m). It is a small-e, nearly-P18 regime: the YZ staircase ℓ ≥ 4 + 2η + η_ρ falls short of 4m/e
+  by a constant factor only. In pure P18 at depth four (g′ = 0) the open window is (24m)^{1/4} ≲ k < √(2m), with W = W_0
+  (Eliahou) there.
+- FACE-WILF (R ≤ ρ + Σ_F τ + Z, conjecture; sufficient for Wilf): 0 failures on 586 structured excess-regime S
+  (363 with R_A > p_A). Filler annealing around dense high-A B_3 cores (m = 61, 101) gives min slack per excess cubic
+  20.7 and 36.4 (E300). The truncation-tail construction always adds E primitives, so this probes η > 0 only.
+

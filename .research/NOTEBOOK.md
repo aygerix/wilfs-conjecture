@@ -3176,3 +3176,14 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Correction (same night): Proposition Q5 and the relay transfer duplicate codex P14 §8.1–8.2 (depth-five classification and
   D5-PAY), which I had not re-read. My derivation is an independent verification, not a new result. Lesson: re-read the
   latest codex report in full before deriving in its area.
+
+## 2026-10-20 (late night) — codex out until 2026-10-25; depth-four face blocking; residual is small-e and nearly P18
+- codex hit its usage limit during P16 (only search code; no report). P15 is complete and committed.
+- Depth four: Λ ≥ Σ_faces τ (each blocked direction at a co-level-1 face is its own Λ term). The lead's FACE-BIG turned
+  out to be subsumed by P14 CE-DIRECTIONS. The surviving extension is CE-DIRECTIONS′, which counts B generators in
+  [2m, 2m+h) as face-blockers: a ≤ 3g′ + 1 ⇒ Wilf.
+- With Yang–Zhang Cor 4.2 this pins the depth-four residual: η < √(2m), e ≲ (4/3)√(2m), most generators below 2m. In pure
+  P18 the window is (24m)^{1/4} ≲ k < √(2m). In that window the YZ staircase ℓ ≥ 4 + 2η is short of 4m/e by a constant factor,
+  and data (E291) shows the true ℓ is about 1.2× the need.
+- Next: a sharper lower bound for ℓ in the nearly-P18 small-e regime at depth four. Count co-level-2 and co-level-1 elements
+  through sumset growth of the A/B offsets (Kneser/Plünnecke at fixed small depth) rather than the linear staircase.
