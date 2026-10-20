@@ -3147,3 +3147,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   (genus 31) because the census does not reach B_3-type cores; these need m ≥ 13 together with large Apéry elements.
   Annealing finds the failures in seconds. **Rule: every new K-type conjecture gets annealed at m ≤ 200 before it is
   recorded as plausible.**
+
+## 2026-10-20 (evening) — depth four: blocked extensions pay; the B_3-simplex model; codex P16 launched
+- With T1 dead at q ≥ 5, I went back to the depth-four closure (Wilf for 3m < c ≤ 4m, open in the literature). At q = 4,
+  K ≤ 1 pointwise, and W = (e − h + Λ + Z) + (m − e − R).
+- New lower bound (Lemma B, PROVED): Λ + Z ≥ L2 = (blocked upward extensions below c) + (over-supported elements). It is
+  exact bookkeeping: lines are counted by tops and by bottoms; co-level-0 elements are tops in every direction.
+- C1: R ≤ ρ + L2 has 0 failures at genus ≤ 31 and on ⟨m, m+B⟩ up to m = 300, with slack growing in m. But the B_3-simplex model
+  shows that C1 overshoots Wilf by C(k+1, 2) on near-perfect simplices. The safer conjecture is C2: R ≤ ρ + Στ + Z, which in
+  the model is exactly Wilf.
+- Model: for a perfect depth-four B_3 simplex, W = ρ − C(k+1, 3). Depth-four Wilf at its core is therefore an additive
+  statement: 3·max B ≤ 2m − 1 − C(k+1, 3). Interval packing of the 3-sums yields it up to k + 1. Perfect simplices do not
+  exist for k ≤ 4.
+- codex P16 = depth four, falsify C1/C2 near simplices, then prove C2 or Wilf in the P14 residual; also finish P15 §9.
+- Lead next: a line distinct from codex. Candidates: (a) the model inequality as a pure additive-combinatorics lemma
+  (near-perfect B_3 bases); (b) GEN-EH at q = 5, i.e. Wilf for 4m < c ≤ 4m + e, the next band.

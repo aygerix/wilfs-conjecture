@@ -3143,3 +3143,30 @@ J(x) = Σ_{a : x + n_a ∉ Ap}(ν_a(x) + 1) − e and S_p = Σ_{0 < i < p} J(w_i
 **Data (E296).** B* ≥ 0 and max(B_h, B_1) ≥ 0 on all 23,663,048 S (e ≥ 3) of genus ≤ 31. So T1(p*) ∧ T1(1) ⇒ Wilf
 in that range; B_1 < 0 in 66 S, B_h < 0 in 37 (LOW), never both. A crude sufficient condition (Λ ≥ h − e or
 Σ_{x ∈ Ap ∩ [qm, M]}(|ν(x)| + d) ≤ dh) fails once (⟨9,14,15,17⟩).
+
+### Depth four: blocked-extension bound L2 (PROVED), conjectures C1/C2, and the B_3-simplex model (lead, 2026-10-20)
+Setting q = 4: M = 4m + h − 1, c = 3m + h, ρ = m − h, λ(v) = ⌊(M − v)/m⌋, d = e − 1, K as in the K-ID (K ≤ 1 pointwise, P13),
+R = #{K = 1}, Z = Σ(−K)⁺. τ(y) = #{a ∈ P' : y + n_a ∉ Ap}, U(v) = {a ∈ P' : v − n_a ∈ S}, α_0 = #Ap ∩ [c, M].
+DEC-ID (P14 §2.1): W = ρ + Λ + Z − R = (e − h + Λ + Z) + (m − e − R).
+**Lemma B (PROVED).**
+- (B1) Λ ≥ Σ_{y ∈ Ap, y < c} τ(y): an a-top y < c contributes (ν_a(y) + 1)λ(y) ≥ 1.
+- (B2) Σ_{y ∈ Ap} τ(y) = Σ_{v ∈ Ap}(d − |U(v)|). The a-lines of Ap are counted once by their tops and once by their bottoms
+  (x is an a-bottom iff x − n_a ∉ S); Ap is closed under S-divisors, so lines stay in Ap. Every v ≥ c is a top in all d
+  directions (v + n_a > c + m − 1 = M), so Σ_{y<c} τ(y) = d(m − α_0) − Σ_v |U(v)|.
+- (B3) For a ∈ U(v): ν_a(v) ≥ 1 and λ(v − n_a) − λ(v) ≥ 1 (n_a > m), so K(v) ≤ 4 − λ(v) − |U(v)| and Z ≥ Σ_v (λ + |U| − 4)⁺.
+- Hence **Λ + Z ≥ L2 := Σ_{y<c} τ(y) + Σ_v (λ(v) + |U(v)| − 4)⁺ = d(m − α_0) − Σ_v min(|U(v)|, 4 − λ(v)).**
+**Conjecture C2.** At q = 4: R ≤ ρ + Σ_{y ∈ Ap, y < c} τ(y) + Z. **Conjecture C1 (stronger):** R ≤ ρ + L2.
+Each implies Wilf at q = 4, by DEC-ID and (B1). C1 ⟺ L2 + (m − e − R) ≥ h − e.
+**Data (E298).** C1: 0 failures on all 2,733,043 depth-four S (e ≥ 3) of genus ≤ 31. On ⟨m, m+B⟩: exhaustive |B| = 3, m ≤ 34;
+exhaustive |B| = 4, m ≤ 40; random to m = 300. Min slack 4, 10, 24, 305. L2 ≥ h − e alone is false (genus ≤ 31: 26 S, all e ≤ 4;
+annealing: ⟨41,42,46,50,51⟩, e = 5, L2 = 27 < 36, with R = 0). Λ + Z < h − e occurs once at genus ≤ 31 (⟨9,19,21,22⟩, R = 0)
+and, under annealing, only at m ≤ 25.
+**B_3-simplex model (PROVED computation).** Suppose Ap = {0} ∪ (m + B) ∪ (2m + 2B) ∪ (3m + 3B) with B a k-set, m = C(k+3, 3),
+pair sums at co-level 1 and cube sums at co-level 0. Then Λ = 0 (every line tops out at a cube), every pair has K = −1
+(two drops of 2), and every cube has K = 1. So Z = C(k+1, 2), R = C(k+2, 3) and **W = ρ − C(k+1, 3)**. Also
+ℓ = 4 + 3k + C(k+1, 2), and m = C(k+3, 3) is a direct check. In the model, C2 ⟺ Wilf and C1 ⟺ ρ ≥ C(k+2, 3).
+Every cube lies in [c, M], so #cubes ≤ m. Wilf in the model ⟺ 3·max B ≤ 2m − 1 − C(k+1, 3). Interval packing of the C(k+2, 3)
+distinct 3-sums in [3 min B, 3 max B], with 2 min B ≥ h, yields this up to an error of k + 1.
+No such simplex exists for k ≤ 4 (exhaustive, src/scratch/p22/simplex4.py). Real depth-four extremal configurations
+are near-simplices plus fillers (codex P14 residual); C1 is suspect there.
+

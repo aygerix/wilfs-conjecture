@@ -23,7 +23,11 @@ Lines, in order of cost to decide:
     - Lesson: anneal every new K-type conjecture at m ≤ 200 before trusting the genus census.
     - codex P15: report written but the process died before its §9 (computational record). Resume it with the next
       task and ask it to finish §9.
-    - **Next (lead):** the depth-four closure is the live frontier target, Wilf for 3m < c ≤ 4m. With DEPTH4-EH its
+    - **2026-10-20 evening:** Lemma B (Λ + Z ≥ L2, blocked extensions; PROVED) and conjectures C1/C2 (PROOFS
+      "Depth four: blocked-extension bound"; E298). C1 has 0 failures at genus ≤ 31 and on ⟨m, m+B⟩ up to m = 300. The B_3-simplex
+      model gives W = ρ − C(k+1, 3), so C2 = Wilf there. **codex P16 RUNNING** (PID 75688, waiter b98zekqfk, log
+      $SP/codex/p16_log.txt; report src/scratch/gw/p16/P16_REPORT.md): falsify C1/C2 near simplices, prove C2 / depth-four Wilf.
+    - **Next (lead), earlier entry:** the depth-four closure is the live frontier target, Wilf for 3m < c ≤ 4m. With DEPTH4-EH its
       residual is exactly the LOW case Λ + Z < h − e at q = 4. Mechanism to test: Σ_{x ∈ Ap, x < c} τ(x) ≤ Λ, where τ(x) =
       #{a : x + n_a ∉ Ap}. So LOW forces Ap ∩ [0, c) to be nearly closed under adding generators.
 0c. **NEW (2026-10-19, latest): Wilf for c ≤ 3m + e (DEPTH4-EH, PROVED; from codex P13 Theorem A, lead-verified E292).**
