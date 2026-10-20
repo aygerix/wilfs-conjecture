@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-20 night: Theorem LAYER3 for every S (PROVED); depth four W = Q3 + Q4; LAYER3-W; conjectures STAR, DK/LASTWIN, HD1 (0i))
+# STATE.md — handoff (updated 2026-10-20 late: conjecture gate + FAILED.md; Q3-SPLIT (PROVED); necessity audit of who pays the tail (0j))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,6 +8,27 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
+0j. **NEWEST (2026-10-20 late): external review → conjecture gate; Q3-SPLIT; necessity audit (PROOFS "Exact six-component
+    split", E335).**
+    - Process. Every new sufficient inequality must pass the gate in FAILED.md (necessity audit, adversarial/scaling
+      falsification, equality tests, proof deadline). Observations get no stronger descendants. Before proposing a
+      conjecture, check it against FAILED.md.
+    - PROVED: Q3-SPLIT, Q3 = σ_T + 3(P_w − |A_R|) + 2(P_u − u2) + P_w + Γ_23 + Γ_4, with every term ≥ 0 (every S).
+    - OBSERVED (audit, genus ≤ 34 tree + P18 exhaustive/annealing):
+      - The pair-redundancy terms are never needed for e ≥ 3.
+      - Depth four needs σ_T, Γ_23 and Γ_4. Depth ≥ 5 needs only Γ_23 and Γ_4.
+      - P18 depth four is paid by σ_T alone, with σ_T ≥ 3.42·(−Q4) in annealing.
+    - Z1 and Z12 (token-window, 2h ≤ m) are observations only: a scaling estimate predicts failure at large e.
+      CT, O3, Z5, Z8 are FALSE.
+    - Corrected: e ≤ 3 ⟹ unique Apéry factorization is FALSE (⟨5,6,9⟩).
+    - **Next precise tasks:**
+      (a) Read the antail annealers (fejer ~/wilf/p31/atail_*.txt). They test whether P18 at depth ≥ 5 has tail
+          (e−1)L ≥ G + 3D4 beyond genus 34. If it survives: gate it (equality cases, scaling). Only then look for a
+          mechanism. Wilf for P18 is DKM Problem 1.8; depth ≤ 3 is Eliahou.
+      (b) P18 depth four: one focused attempt at a global count for the 4th unit of carried triples (Q4 + σ_T ≥ 0). It
+          uses the half-window covering, which is necessary on fakes. Deadline: one session; then observation.
+      (c) General S: why do generators in layers ≥ 2 pay the tail? Γ_4 = k_{≥4}·s012 is their share of e·ℓ below 3m.
+          Try an exact identity for W that charges each high generator against the gaps it creates above 3m.
 0i. **NEWEST (2026-10-20 night): layer method (PROOFS "Theorem LAYER3", "P18 depth four: layer form").**
     - PROVED on paper, for every numerical semigroup:
       - LAYER3: 3·|S ∩ [3m, 4m)| ≤ e·|S ∩ [0, 3m)|. Sharp on free P18 sets.
@@ -37,7 +58,7 @@ Lines, in order of cost to decide:
     - DEAD: W ≥ Λ − O, i.e. (e−1)ℓ ≥ Λ + T_c, i.e. the DEAD power tokens alone are ≥ e·T_c.
       Here Λ = Σ_{z∈Ap} Σ_b μ_b(z) (maximal g_b-multiplicity) and Λ − O = # collision (alive unused) tokens.
     - 0 failures on EVERY S of genus ≤ 34 (≈ 100M, E322). Equality only on the Wilf-equality family.
-    - PROVED: the equivalences; DEAD ⟺ Wilf on staircase S (unique factorization in Ap; all e ≤ 3); DEAD for
+    - PROVED: the equivalences; DEAD ⟺ Wilf on staircase S (unique factorization in Ap; NOT all e ≤ 3: ⟨5,6,9⟩ has Λ − O = 2); DEAD for
       symmetric S; Lemma RAY (λ ≤ L); Lemma TW (twin tokens).
     - Near-sharp family: ⟨m, a..a+d⟩ with a ≈ 4m/3, d ≈ m/3: (Λ−O)/W → 1, margin ≈ e + 3.
     - FALSE: all local refinements tried (per-direction, per-chain, base-carry, reflection matching/flow, tree

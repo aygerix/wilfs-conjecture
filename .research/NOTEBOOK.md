@@ -3502,3 +3502,33 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   Macaulay tokens pay).
 - P18 depth four, e = 6 certificate: the min W over h > e is far above the overall min, which sits at h ≤ 6.
   So the uncovered regime has large margins (e.g. W = 54 at m = 39, h = 15).
+
+## 2026-10-20 (later) — external review; conjecture gate; necessity audit of the LAYER3 surplus
+- Review (user-relayed):
+  - LAYER3 and CARRY-ID were independently re-checked. STAR is false.
+  - Main criticism, accepted: we repeatedly conjectured that a convenient piece of a globally nonnegative quantity is
+    itself nonnegative. A gate now applies before any proof effort (FAILED.md, memory "conjecture-gating"):
+    necessity audit, adversarial/scaling falsification, equality tests, proof deadline. A failed-mechanism registry
+    is kept in FAILED.md.
+- Correction: e ≤ 3 does NOT give unique Apéry factorizations. ⟨5,6,9⟩: 18 = 6+6+6 = 9+9 ∈ Ap, Λ − O = 2.
+  PROOFS and STATE fixed.
+- Earlier today (pre-gate), I committed the same mistake and caught it:
+  - The regime 2h ≤ m reduces to Z1 (q ≤ OVF + p_hi), and further to Z12 (|3A ∩ [h,2h)| ≤ y0 + OVF).
+  - Both have 0 failures on everything run.
+  - A scaling estimate breaks them: a B3-Sidon block in (h/2, 2h/3) plus carried-pair coverage of [h, 3h/2), at
+    e ≈ 80–300. There the discarded overshoot incidences and extra representations pay.
+  - Now recorded as observations only.
+- PROVED: Q3-SPLIT. For every S, Q3 = σ_T + 3(P_w − |A_R|) + 2(P_u − u2) + P_w + Γ_23 + Γ_4, all terms ≥ 0, read off
+  the LAYER3 proof.
+- Necessity audit (ablation over all 63 subsets; Q3-SPLIT and the tail identity asserted on 104.5M tree nodes):
+  - Depth four: pair redundancy is never needed. σ_T, Γ_23 and Γ_4 are each needed.
+  - Depth ≥ 5 with e ≥ 3: σ_T and the pair terms are jointly dispensable (genus ≤ 34). Γ_23 and Γ_4 are needed.
+  - P18 depth four: σ_T alone pays, by a factor ≥ 3.42 over the deficit in annealing.
+- Lesson: the payer depends on the regime.
+  - P18 depth four: unwrapped-triple incidence slack, i.e. the old "covering ⟹ redundancy" ingredient.
+  - Elsewhere: the generators sitting in layers ≥ 2 (Γ_4 = k_{≥4}·s012 is exactly their share of e·ℓ below 3m).
+- The P18 depth-four mechanism needs a 4th unit per carried triple, and it comes jointly from four slack classes. No
+  single-class lemma can work. It needs at least the half-window covering: it fails on fakes without it and holds
+  with it.
+- Open and being falsified now: P18 at depth ≥ 5 shows tail positivity (e−1)L ≥ G + 3D4 at genus ≤ 34 (antail
+  annealers). This is a small-genus-only pattern, so not yet a target.

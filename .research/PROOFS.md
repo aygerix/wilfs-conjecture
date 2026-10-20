@@ -3865,8 +3865,11 @@ Setting as in "Power tokens".
   - (ii) (e−1)·ℓ ≥ Λ + T_c, i.e. Σ_b (ℓ − Λ_b) ≥ T_c;
   - (iii) e·ℓ − c ≥ Σ_{z∈Ap} (Σ_b μ_b(z) − o(z)).
   - DEAD ⟹ Wilf, since Λ ≥ O.
-- If every Apéry element has a unique factorization (staircase S; e.g. every S with e ≤ 3), then μ_b = a_b, so Λ = O
+- If every Apéry element has a unique factorization (staircase S), then μ_b = a_b, so Λ = O
   and **DEAD ⟺ Wilf** for that S. So DEAD adds exactly the collision count Λ − O.
+  - Correction (2026-10-20): e ≤ 3 does NOT imply unique Apéry factorizations. In S = ⟨5, 6, 9⟩, 18 ∈ Ap(S, 5)
+    (13 ∉ S) and 18 = 6+6+6 = 9+9, so μ_6(18) + μ_9(18) − o(18) = 3 + 2 − 3 and Λ − O = 2 (lead-verified).
+    DEAD ⟺ Wilf is established only for staircase S, not for all e ≤ 3.
 - **Symmetric S (PROVED).** μ_b(z) ≤ o(z) gives Λ ≤ (e−1)·O. Hence Λ − O ≤ (e−2)·O ≤ (e−2)·g = W.
   - Per direction, the reflection γ = z − km ↦ y = F + o(z)·m − γ = (M − z) + (o(z) + k − 1)·m (M = F + m) is an
     injection from high gaps (1 ≤ k ≤ t(z)) into the slots of every direction b. The slot condition holds because
@@ -4332,3 +4335,68 @@ Then h + 3N4 ≤ e·y0 + E1 (TB4).
 - Only the first window is required, not the covering of [2h, m). With the half window [h, 3h′) in place of (W),
   TB4 FAILS (E314).
 - With RED-A and Theorem A0, TB4-LOC implies P18 depth-four Wilf.
+
+### Exact six-component split of the LAYER3 surplus, and a necessity audit of who pays the tail (lead, 2026-10-20; checks E335)
+Setting: every numerical semigroup, notation of "Theorem LAYER3". k1, k2, k3 = generator counts in layers 1, 2, 3;
+k4p = generator count in layers ≥ 4; P_u, P_w = multisets {x, y} ⊂ G_1 with x + y < m, resp. ≥ m;
+U2 = N_2 ∖ G_2, u2 = |U2|; T_G = (G_1 + G_2)_{<m}; T_U = ((G_1 + U2)_{<m}) ∖ (S_2 ∪ T_G); R = (G_1 + G_1)_{≥m} − m;
+s012 = s_0 + s_1 + s_2 = 3 + 2k1 + k2 + u2.
+
+**Proposition Q3-SPLIT (PROVED).** Put A_G = N_3 ∩ T_G and A_R = N_3 ∖ (G_3 ∪ A_G ∪ T_U). Then
+N_3 = G_3 ⊔ A_G ⊔ T_U ⊔ A_R with A_R ⊂ R, and
+
+    Q3 = σ_T + 3(P_w − |A_R|) + 2(P_u − u2) + P_w + Γ_23 + Γ_4,
+
+where every term is ≥ 0:
+- σ_T = k1·u2 + 2P_u − 3|T_U| (the incidence/deficit slack of LAYER3 step 3);
+- Γ_4 = k4p·s012;
+- Γ_23 = (1 + k1)k2 + (k2 + k3)·s012 − 3k2 − 3k3 − 3|A_G| ≥ k2 + 2k1k3, since |A_G| ≤ k1k2.
+- Proof:
+  - T_U ⊂ N_3, and N_3 ⊂ G_3 ∪ T_G ∪ T_U ∪ R (LAYER3, steps 1–2). So the four sets are disjoint by construction, and
+    A_R ⊂ R gives |A_R| ≤ P_w.
+  - Expand e = 1 + k1 + k2 + k3 + k4p in Q3 = e·s012 − 3(s_2 + |N_3|), with s_2 = 1 + k1 + k2 + u2.
+  - The P18 part (1 + k1)(3 + 2k1 + u2) − 3(1 + k1 + u2) − 3|T_U| − 3|A_R| equals
+    σ_T + 3(P_w − |A_R|) + 2(P_u − u2) + P_w, using k1(k1 + 1) = 2(P_u + P_w). ∎
+- Asserted (split and nonnegativity) on every S of genus ≤ 34 with c > 3m (E335).
+- For P18 at depth four this reads W = Q4 + σ_T + [3(P_w − p) + 2(P_u − u2) + P_w], with Q4 = k·L3 − 4d4.
+
+**Necessity audit (OBSERVED, E335).** For c > 3m, W = Q3 + Q_tail with Q_tail = (e−1)L − G − 3D4 (Identity of E329).
+Question: which components of Q3 are ever needed to keep W ≥ 0? Ablation over all 63 subsets of the six components:
+- Depth four, every S of genus ≤ 32 (4,408,418 S):
+  - the three pair-redundancy terms 3(P_w − |A_R|) + 2(P_u − u2) + P_w can be dropped together: 0 failures;
+  - σ_T, Γ_23 and Γ_4 are each individually essential. Dropping one fails, e.g. ⟨13,16,17,18⟩ (σ_T, −3),
+    ⟨12,18,31,…,35⟩ (Γ_23, −10), ⟨9,37,…,44⟩ (Γ_4, −24).
+- Depths 5–60, e ≥ 3, genus ≤ 34 (2,190,813 S): pair redundancy and σ_T are both dispensable (0 failures). Γ_23
+  (19 failures) and Γ_4 (827 failures) are essential. With e = 2, all of Q3 is needed (W = 0, e.g. ⟨4,7⟩).
+- P18 depth four (k2 = k3 = k4p = 0, so only σ_T can pay), exhaustive e = 4, 5, 6 (m ≤ 40, 30, 24) and random e = 10:
+  dropping σ_T fails (46 and 13 times at e = 5, 6), while dropping the pair terms never does.
+  - Annealing (e ≤ 15, m ≤ 220): the needed σ_T ≥ 3.42·(−Q4) whenever Q4 < 0. In DK, σ_T = 2874 vs −Q4 = 118; in
+    STAR, 179 vs 8.
+  - On P18 fakes (B arbitrary, every residue below h of level ≤ 4, h − 1 of level 4), Q4 + σ_T ≥ 0 FAILS without
+    covering above h (m = 40, B = {13,15,16}, h = 9: −2). It held (0 failures) when only the half window
+    [h, h + ⌈h/2⌉) is at level ≤ 3.
+  - It does not hold for general S: 801 failures at genus ≤ 22, e.g. ⟨6,25,…,29⟩ where Γ_4 pays.
+- Reading: the tail deficit is paid by
+  - (a) the unwrapped-triple incidence slack σ_T, for P18 at depth four;
+  - (b) the generators sitting in layers ≥ 2 (Γ_23, Γ_4), otherwise.
+  Wrapped/unwrapped pair redundancy is never needed for e ≥ 3 on these data. These are diagnostics for where a proof
+  mechanism must live, not proof targets (FAILED.md, gate rule 4).
+- P18 depth four, mechanism status of Q4 + σ_T ≥ 0 (equivalently 4d4 + 3|T| ≤ k(L3 + u2) + 2P_u):
+  - every level-4 residue already owns disjoint units equal to its value: 4 tokens for a 4-sum, 3 pair-row incidences
+    for a carried triple;
+  - carried triples with a pair sum < h get a 4th unit free, because rows below h appear in both k·L3 and k·u2;
+  - the residual 4th units come jointly from four classes: overflow tokens, overshoot incidences, extra
+    representations of carried triples, and incidences landing on old residues. In the Sidon-type scaling family the
+    extra representations pay. So no single-class lemma can work (cf. Z1, Z12, O1, O3, CT in FAILED.md).
+  - No proof yet.
+
+**Token-window observations, regime 2h ≤ m (OBSERVED; NOT proof targets).**
+- PROVED: W ≥ sl_B − q + p_hi + 2δ2 + incU + incC, and sl_B ≥ OVF := #{(t, b) ∈ (3A ∩ [0, h)) × B : t + b ≥ h}.
+  Also h = |3A ∩ [h, 2h)| + |CP ∩ [h, 2h)| exactly.
+- Z1: q ≤ OVF + p_hi. Z12: |3A ∩ [h, 2h)| ≤ |3A ∩ [0, h)| + OVF. Z12 ⟹ Z1 ⟹ Wilf for 2h ≤ m.
+  - Both have 0 failures (exh e ≤ 6, random e ≤ 13, annealing; Z12 also on 700k half-window fakes).
+  - Z12 FAILS with no window covering (m = 47, B = {10,12,13}, h = 20).
+- Scaling estimate (not a construction): take a B3-Sidon block D ⊂ (h/2, 2h/3) of size d, and cover the half window by
+  carried pairs of ≈ √h large generators. This should break Z12 at d ≳ 26 (e ≈ 140), and Z1 later. There, overshoot
+  incidences and extra representations pay, i.e. terms that Z1 and Z12 discard. Hence they are recorded as
+  observations only.
