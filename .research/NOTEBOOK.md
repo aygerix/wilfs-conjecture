@@ -3704,3 +3704,55 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - HALL-TM: the λ = 0 box transport is feasible on all tiles with n = 2 (m ≤ 14) and n = 3 (m ≤ 9).
   - Refuted: ALL-BUT-ONE, MAJ, RANK, TOP (all S), LEAF-MIN, RISE, PSHIFT.
 - Rule for myself: before naming a "new" conjecture, grep PROOFS/STATE for its normalized form (here: "Σ_A (d+|y|)").
+
+## 2026-10-21 (night) — MaxCL at σ = φ(0): residue-dependent box transport (HALL-TM), the carry formula, level suffixes
+
+Setting: a tile (D, δ), δ_b = ⟨p_b⟩ ∈ [1, m−1], σ = φ(0), so r(x) = ⟨x·δ⟩, r(0) = 0, r subadditive on D.
+MaxCL at this phase gives Wilf for every S with m | c (open in the literature beyond 4e ≥ m and g ≤ 120).
+
+### HALL-TM (CONJ; a strict strengthening of MaxCL(0))
+For every set Y of maximal cells: Σ_{y∈Y} (|y| − 1) r(y) ≤ (d+1) Σ_{z ∈ ↓Y ∖ Y, z ≠ 0} r(z).
+(Equivalently, a transport exists in which each maximal y draws (|y|−1) r(y) only from non-maximal cells of its box,
+each cell supplying ≤ (d+1) r(z).) It is residue-dependent, unlike the refuted Load Lemma.
+- It holds on the Load-Lemma counterexample ⟨39,71,72,77⟩ for every unit relabeling u·δ: max λ* = 0.899 (u = 19).
+- Exact λ* = max_Y demand/supply on all tiles (E347): d = 2, m ≤ 13: max 7/9 (m = 5), → 2/3; always attained at Y = Max.
+  d = 3, m ≤ 9: max 7/8 at m = 9, D = Δ_2 ∖ {e_1+e_2}, δ = (1,3,4) (a no-wrap postage-stamp basis, Y = Max).
+  At d = 3, m = 8 a proper subset is worse than Y = Max (3/4 versus MaxCL ratio 0.625): Y = {2e_3, e_2+e_3, 2e_2}, a
+  planar Δ_2 face supplied only by e_2, e_3. So HALL-TM is genuinely stronger than MaxCL(0).
+- Adversarial semigroup tiles (annealing over S and units): best λ* 0.903 (⟨19,24,25,30⟩, u = 8), 0.889 (m ≥ 20).
+- At other phases HALL-TM is false already for one cell: r(0) = 1, r(e_a) = 0 gives r(2e_a) = m − 1 > (d+1)·1.
+- Height ≤ 2 is trivial (r(e_a+e_b) ≤ r_a + r_b and deg ≤ d+1). Single y is trivial: (|y|−1) ≤ |B(y)| − 2 and the
+  box identity 2Σ_{0<z<y} r(z) = (|B(y)| − 2) r(y) + m·W(y), W(y) = #{z ∈ (0,y) : r(z) + r(y−z) ≥ m}.
+
+### The carry formula (PROVED, elementary)
+For x ∈ D put K̃(x) = ⌊x·δ/m⌋ and h(x) = Σ_{b : δ_b > r(x)} x_b. Then the step x − e_b → x wraps iff δ_b > r(x), and
+    (d+1)M' − Σ_A (d+|y|) r(y) = Λ_nm + m·Σ_{x∈D} κ(x),      κ(x) := h(x) − K̃(x) = [Σ_b x_b r(x−e_b) − (|x|−1) r(x)]/m,
+where Λ_nm = Σ_{non-maximal column tops t} |C_t|·r(t). (Proof: r(x−e_b) = r(x) − δ_b + m·[δ_b > r(x)]; the coefficient
+of r(z) in Σ_x Σ_b x_b r(x−e_b) − (|x|−1) r(x) is ψ(z) − |z| + 1, which is −(|z|−1) on maximal cells and
+(d+1) − Σ_{b blocked}(z_b+1) on non-maximal ones; the blocked terms are Λ_nm.) This is the σ = 0 case of the known
+carry/WINDOW-H identities, but with the carry in closed form.
+Consequences:
+- −(|x| − 2) ≤ κ(x) ≤ |x| − 1; κ ≥ 0 for |x| ≤ 2 (Flat at σ = 0 is immediate).
+- κ(x) ≥ 1 for every x ≠ 0 with r(x) < min_{b∈supp x} δ_b. By completeness every label below min δ is such a cell.
+- κ(x) ≥ 0 whenever r(x) < (m + j − 1)/(|x| − j), j = K̃(x). So negative carries sit only on cells of large label.
+- Height 3: κ(pair) = wrap indicator; κ(cubic) = 2K̃ − (number of wrapping faces, with multiplicity); the bad cubics
+  (κ = −1) are the level-1 triangles of the wrap graph δ_a + δ_b ≥ m (BAD-TWO type D at the origin).
+- Semigroups with c = qm: W = Σ_x κ(x) + Σ_{all column tops t} |C_t|·(q − K(t)), K = Kunz coordinate (exact).
+
+### Level form and the suffix phenomenon (data, E347)
+With U_j = {x : x·δ ≥ jm} and γ_j = Σ_b |B_b(U_j)| − |U_j|: MaxCL(0) ⟺ Σ_j γ_j + Λ_nm/m ≥ 0, and
+Σ_{i≥j} γ_i = Σ_{x : K̃(x) ≥ j} (h(x) − K̃(x) + j − 1).
+- Negative γ_j occur only at the LOWEST levels (patterns (−,−,+,+,+)); 8/3,000 instances have a negative level above a
+  positive one.
+- **SUF2 (CONJ):** Σ_{i≥j} γ_i ≥ 0 for every j ≥ 2. 0 failures: 3,000 lex Apéry tiles × units; all tiles d = 2,
+  m ≤ 16 and d = 3, m ≤ 11, all δ. For the column it is (m/p)(j−1)(p−j) + ceiling gains.
+- FALSE: the level-1 split LOW1 (γ_1 + Λ_nm/m ≥ 0): the column of length 7 in ℕ² (unused direction), δ = (1,4):
+  γ = (−3, 1, 5), Λ_nm/m = 18/7. So level 1 must also be paid by the higher levels. FALSE: SUF2 at j = 1 (Tile-CL at
+  σ = 0, E47 tile ⟨14,22,23,57,61,62,63⟩, u = 1: γ = (−1), Λ_nm/m = 52/7).
+- Column check: γ_j = 2⌈jm/p⌉ − m and γ_j + γ_{p−j} ≥ 0; the general pairing γ_j + γ_{J+1−j} ≥ 0 is FALSE (421/3,000).
+- Who pays (E347 (vi)): write B = Σ_{κ<0}|κ|, P = Σ_{κ>0} κ, L = Λ_nm/m, so MaxCL(0) ⟺ P + L ≥ B. On 2,560 random
+  instances with B > 0: min P/B = 1.000 and min (P+L)/B = 1.30 (e = 3). So Tile-CL(0) (P ≥ B) fails only on
+  spike-like structures (E47: a Δ_3 core in ℕ² plus 4 spikes; H-SF: short spikes), where L is large: each spike adds
+  Σ_{N} r to Λ_nm.
+- Direction form: P − B = Σ_b (S_b − δ_b X_b/m) + (m−1)/2 with X_b = Σ_D x_b and S_b = Σ_{r(x)<δ_b} x_b (the b-mass in
+  the label window [0, δ_b), where exactly the b-wraps land). A spike b contributes −δ_b/m.
