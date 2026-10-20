@@ -3162,3 +3162,14 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - codex P16 = depth four, falsify C1/C2 near simplices, then prove C2 or Wilf in the P14 residual; also finish P15 §9.
 - Lead next: a line distinct from codex. Candidates: (a) the model inequality as a pure additive-combinatorics lemma
   (near-perfect B_3 bases); (b) GEN-EH at q = 5, i.e. Wilf for 4m < c ≤ 4m + e, the next band.
+
+## 2026-10-20 (night) — GEN-EH line: the depth-five K-classification; one cubic relay governs depths four and five
+- GEN-EH ⟺ e(ℓ − q) ≥ (q − 1)(m − e): e times the number of left elements that are not multiples of m is at least (q − 1)
+  times the number of decomposable Apéry elements. It is incomparable with Wilf; jointly they say eℓ ≥ (q−1)m + max(h, e).
+  Annealing and structured families: robust, with slack growing in m. The free simplex is the extremal shape (eℓ = qm exactly).
+- Proposition Q5 (PROVED, checked at genus ≤ 31): at q = 5 the only K = 2 values are UF "critical B-cubics" (factors in
+  [m+h, 2m), faces at co-level 1 with K = 0). It mirrors depth four (critical A-cubics with K = 1). GEN-EH at q = 5 is
+  therefore exactly the P14 relay one level up; the pseudoforest and squarefree-5 relays transfer.
+- Strategic consequence: one "cubic relay lemma" (pay R − p from Λ when the face graph is dense) would close both
+  Wilf for c ≤ 4m and Wilf for 4m < c ≤ 4m + e. codex P16 is attacking the depth-four instance. If it finds the mechanism,
+  send the depth-five transfer next (P17).

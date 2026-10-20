@@ -3170,3 +3170,31 @@ distinct 3-sums in [3 min B, 3 max B], with 2 min B ≥ h, yields this up to an 
 No such simplex exists for k ≤ 4 (exhaustive, src/scratch/p22/simplex4.py). Real depth-four extremal configurations
 are near-simplices plus fillers (codex P14 residual); C1 is suspect there.
 
+### Depth five: K-classification and the shifted cubic relay (lead, 2026-10-20) — PROVED; transfer of P14's graph lemmas
+Setting q = 5: c = 4m + h, M = 5m + h − 1, λ(n) = j ⟺ n ∈ [(4−j)m + h, (5−j)m + h − 1]. GEN-EH (W ≥ e − h) ⟺
+Σ_{v decomposable}(1 − K(v)) + Λ ≥ 0, since W = ρ + Λ − ΣK and K = 0 at 0 and at generators.
+**Proposition Q5 (PROVED).** At q = 5, K(v) ≤ 2 for every v ∈ Ap. K(v) = 2 iff v is a *critical B-cubic*: λ(v) = 0,
+Σ_a ν_a(v) = 3, every drop λ(v − n_a) − λ(v) (a ∈ U(v)) equals 1, and every generator dividing v lies in [m + h, 2m).
+Such v is UF (ν(v) is its unique factorization). Its pair faces lie in Ap at co-level 1 and have K = 0.
+- Proof: for decomposable v, K = 5 − λ − Σ_a ν_a Δ_a with Δ_a ≥ 1 and Σν ≥ 2. K ≥ 2 forces λ ≤ 1.
+  - λ = 1 needs a pair with drops (1, 1). Both factors are then at co-level 2, i.e. ≥ 2m + h, so the sum is ≥ 4m + 2h > 4m + h − 1. Impossible.
+  - λ = 0 with Σν = 2: drops (1,1) or (1,2) put the factors at co-level ≥ 1 and ≥ 2. The sum is ≥ 5m + 2h > M. For v = 2n_i
+    the contribution is 2Δ_i = 2λ(n_i) ≥ 4. So λ = 0 needs Σν = 3 with all drops 1, which gives K = 2. Σν ≥ 4 gives K ≤ 1.
+  - Each pair face v − n_a has co-level 1. A factor n_k = v − (face) lies in (0, 2m). Pair sums are ≥ 3m + h, so each
+    factor is > m + h.
+  - Every factorization f satisfies f ≤ ν, and a length-2 factorization is too small (< 4m). So f = ν: UF. The faces are
+    UF, and K(face) = 5 − 1 − (2 + 2) = 0. ∎
+- Data (E299): all 456,221 S (e ≥ 3) with q = 5 of genus ≤ 31 contain 10,051 K = 2 values; 0 violations of the
+  classification or of the face statement.
+**Corollary Q5-RELAY.** At q = 5, GEN-EH ⟺ R_B ≤ Σ_{v dec, K ≤ 0}(1 − K(v)) + Λ, where R_B = #critical B-cubics. Each
+distinct pair face gives one credit, so R_B ≤ p_B + Λ suffices (p_B = #distinct faces).
+- This is the depth-four UF-RELAY shape (codex P14) shifted up one level: A/h becomes B/(m+h); "low" means 2t < m + h, where n = m + t.
+- P14's GRAPH-ID, PSEUDO-RELAY and GRAPH-MAC transfer verbatim. Their inputs are only UF critical cubics, distinct
+  Apéry faces, and the rule that no critical cubic has two low factor copies.
+- Hence: **if every component of the critical-B-cubic face graph is a pseudoforest (or the cubics are squarefree in
+  ≤ 5 directions), then GEN-EH holds at q = 5, and Wilf holds whenever 4m < c ≤ 4m + e.**
+  (Pending: an independent re-check of the P14 graph lemma statements in this setting.)
+- The obstruction at depth five is the same as at depth four: dense face graphs (B_3 cores, codex P15 U3-SHARP, excess
+  C(k+1, 3)), where only Λ can pay. A **cubic relay lemma** paying R − p from Λ would give Wilf for c ≤ 4m (with C2) *and*
+  for 4m < c ≤ 4m + e.
+
