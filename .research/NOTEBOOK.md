@@ -3173,3 +3173,6 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Strategic consequence: one "cubic relay lemma" (pay R − p from Λ when the face graph is dense) would close both
   Wilf for c ≤ 4m and Wilf for 4m < c ≤ 4m + e. codex P16 is attacking the depth-four instance. If it finds the mechanism,
   send the depth-five transfer next (P17).
+- Correction (same night): Proposition Q5 and the relay transfer duplicate codex P14 §8.1–8.2 (depth-five classification and
+  D5-PAY), which I had not re-read. My derivation is an independent verification, not a new result. Lesson: re-read the
+  latest codex report in full before deriving in its area.

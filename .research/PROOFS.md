@@ -3171,6 +3171,11 @@ No such simplex exists for k ≤ 4 (exhaustive, src/scratch/p22/simplex4.py). Re
 are near-simplices plus fillers (codex P14 residual); C1 is suspect there.
 
 ### Depth five: K-classification and the shifted cubic relay (lead, 2026-10-20) — PROVED; transfer of P14's graph lemmas
+**ATTRIBUTION CORRECTION (same day):** this is NOT new. codex P14 §8.1 (src/scratch/gw/p14/P14_REPORT.md, 2026-10-19)
+already proves the complete depth-five classification (K ≤ 2; MF ⇒ K ≤ 0; K = 2 only at UF co-level-0 cubics with
+co-level-1 faces and factors in (m+h, 2m); s(v) < ⌊(m−h)/2⌋). P14 §8.2 gives the GEN-EH payment
+D5-PAY: W ≥ e − h + Λ + p_5 + F_M − β. The lead's derivation below is an independent re-derivation of §8.1 and serves as
+its verification; the census check E299 is new data for it.
 Setting q = 5: c = 4m + h, M = 5m + h − 1, λ(n) = j ⟺ n ∈ [(4−j)m + h, (5−j)m + h − 1]. GEN-EH (W ≥ e − h) ⟺
 Σ_{v decomposable}(1 − K(v)) + Λ ≥ 0, since W = ρ + Λ − ΣK and K = 0 at 0 and at generators.
 **Proposition Q5 (PROVED).** At q = 5, K(v) ≤ 2 for every v ∈ Ap. K(v) = 2 iff v is a *critical B-cubic*: λ(v) = 0,
