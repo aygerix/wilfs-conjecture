@@ -4829,3 +4829,88 @@ A_k = {α ∈ ℕⁿ : |α| ≤ k}.
   - Each collision pair costs at most splits(μ)·splits(ν) elements of H.
   - The collisions themselves raise X by Σ_U f ≥ n·u_h, through the factor x = c/m ≥ h − 1.
 - For h ≤ 4, the regime q ≤ 4 is covered by the depth-four theorem (LITERATURE).
+
+## Ray identity, one-step difference body, and Theorem P0-WILF — PROVED 2026-10-21 (paper; checks E344)
+**Setting (every S with c > m).**
+- Left generators m < γ_1 < … < γ_n < c, with Γ = (γ_i) and n ≥ 1. Write φ(α) = α·Γ.
+- M ⊆ ℕⁿ is the set of lexicographically least Γ-factorizations of the Apéry elements of ⟨m, Γ⟩ (w.r.t. m) that are
+  < c + m.
+  - M is a down-set. If β ≤ α ∈ M, then φ(β) is an Apéry element, and a lex-smaller factorization of it would give
+    one of φ(α).
+  - z ↦ φ(z) mod m is injective on M.
+  - |M| = d = m − r.
+- Put x_α = (c − φ(α))/m and κ_α = ⌈x_α⌉. Then k = Σ_{α∈M, φ(α)<c} κ_α and κ_0 = q.
+- M_< = M ∩ {φ < c} and Y = M ∩ {φ ≥ c} (the top). For y ∈ Y, θ_y = (φ(y) − c)/m ∈ [0, 1).
+- Rays: for β ∈ M, the i-ray {β + t e_i} ∩ M is an initial segment. Its last point is end_i(β). Since γ_i > m, every
+  y ∈ Y is the end of all its rays, and every lower neighbour of y lies in M_<.
+
+**Ray identity (PROVED, every S).** E = ρr/m + G + P̃ − Λ, and hence W = ρr/m + G + P̃ − Λ + r(k − q), where
+- G = ℓ Σ_{α∈M_<}(κ_α − x_α) ≥ 0 (ceiling gains);
+- P̃ = (1/m) Σ_{z∈M_<} Σ_{i: z+e_i∉M} (z_i + 1)(c − φ(z)) ≥ 0 (rays ending below c);
+- Λ = Σ_{y∈Y} (|y| − 1)θ_y ≥ 0 (top loss).
+
+*Proof.*
+- E = ℓk − qd + ρ and ℓk = G + (ℓ/m)Σ_{M_<}(c − φ).
+- For a down-set, Σ_{α∈M} α_i = Σ_{β∈M} ℓ_i(β), where ℓ_i(β) = #{t ≥ 1 : β + te_i ∈ M}. Hence
+  Ξ := ncd − (n+1)Σ_M φ = Σ_{β∈M} Σ_i [c − φ(end_i(β))].
+- Group the rays by their end z. The point z is the end of the i-rays from z − te_i (0 ≤ t ≤ z_i), for every i with
+  z + e_i ∉ M.
+  - For z ∈ Y, every i qualifies, so Ξ receives −(|z| + n)(φ(z) − c).
+  - For z ∈ M_<, Ξ receives m times its P̃-term.
+- Then ℓΣ_{M_<}(c − φ) = cd + Ξ + ℓΣ_Y(φ − c), and the Y-terms combine to −Σ_Y(|z| − 1)(φ(z) − c).
+- Finally d(c − qm)/m + ρ = ρr/m. ∎
+- Checked exactly, with Fractions, on 3,000 random S plus all S of E344.
+- This is the ray form of the position identity R3 (PROOFS "Exact reformulations of CORE₁"). Only the top elements of
+  degree ≥ 2 are a loss.
+
+**One-step difference body (PROVED, every S).** Let M_1 = {β ∈ M : β + e_i ∈ M for all i} (the interior). Then
+  r ≥ R_gen := Σ_{z ∈ M∖M_1} (deg⁻_{M_1}(z) − 1), where deg⁻_{M_1}(z) = #{i : z_i ≥ 1, z − e_i ∈ M_1}.
+
+*Proof.*
+- Injectivity: M_1 + Δ_1 ⊆ M and M is injective mod m. So, as in CF-WILF Lemma 2, z ↦ φ(z) mod m is injective on
+  M_1 − Δ_1. Hence m ≥ |M_1 − Δ_1| = |M_1| + Σ_i |F_i(M_1)|, where F_i(M_1) = {β ∈ M_1 : β_i = 0}. The points β − e_i
+  with β_i = 0 are new and pairwise distinct.
+- Counting: every i-ray of M_1 starting on F_i(M_1) leaves M_1 at a point z ∈ M ∖ M_1 with z − e_i ∈ M_1, and this
+  is a bijection onto the pairs (z, i). So Σ_i |F_i(M_1)| = Σ_{z∈M∖M_1} deg⁻_{M_1}(z).
+- Subtract |M| = |M_1| + |M ∖ M_1|. ∎
+
+**Theorem P0-WILF.** Suppose P̃ = 0, that is, M_< + e_i ⊆ M for every i (no ray of M ends below c). If c ≥ 4m, then
+W(S) ≥ 0. Together with the depth-four theorem (c ≤ 4m; LITERATURE, kernel-checked by us), every S with P̃ = 0
+satisfies Wilf.
+
+*Proof.*
+- (a) Structure. M_1 = M_< and M ∖ M_1 = Y. Every lower neighbour of y ∈ Y lies in M_<, so deg⁻_{M_1}(y) = |supp y|.
+  - The one-step difference body gives r ≥ R := Σ_{y∈Y}(|supp y| − 1).
+  - If n ≥ 2, then R ≥ 1: the 1-ray from e_2 ∈ M_< ends at some e_2 + je_1 ∈ Y.
+- (b) Bijection. (β, i) with β ∈ M_< and β_i ≥ 1 ↔ (y, t) with y the end of the i-ray from β and t = y_i − β_i,
+  where 1 ≤ t ≤ y_i − 1. Hence Σ_{y∈Y}(|y| − 1) = Σ_{β∈M_<} |supp β| + R.
+- (c) Exits. Count the pairs (β, i) with β ∈ M_<, i ∈ [n], weighted by |supp(end_i(β))| − 1.
+  - Grouped by β, the weight is ≥ (n − 1)|supp β|: the end adds coordinate i to the support when i ∉ supp β.
+  - Grouped by y, the weight is Σ_Y |y|(|supp y| − 1) ≤ D·R, where D = max_{y∈Y}|y| ≥ 2.
+  - So (n − 1) Σ_{M_<} |supp β| ≤ D·R.
+- (d) Depth of the chain. Let y* ∈ Y have |y*| = D, and take a saturated chain 0 ⋖ β_1 ⋖ … ⋖ β_{D−1} ⋖ y*. All
+  β_t ∈ M_<.
+  - Along an up-step inside M_<, x drops by γ_i/m > 1, so κ drops by ≥ 1. Hence κ_{β_t} ≥ D − t.
+  - The other n − 1 unit vectors are in M_< and off the chain. So
+    k − q = Σ_{M_<∖0} κ ≥ D(D−1)/2 + (|M_<| − D) ≥ D(D−1)/2 + n − 1.
+  - Therefore k − q − 1 ≥ D/(n − 1) when n ≥ 3, and when n = 2 with D ≥ 3.
+  - Case n = 2, D = 2. Then M_< = {0, e_1, e_2}, 2γ_1 ≥ c and γ_1 + γ_2 < c + m. So γ_i < c/2 + m and
+    x_{e_i} > c/(2m) − 1 ≥ 1, which gives κ_{e_i} ≥ 2 and k − q − 1 ≥ 3 > D. This is the only use of c ≥ 4m.
+- (e) n ≥ 2. Since P̃ = 0, G ≥ 0 and r ≥ R:
+  W ≥ R(k − q) − Λ ≥ R(k − q) − Σ_Y(|y| − 1) = R(k − q − 1) − Σ_{M_<}|supp β| ≥ R·D/(n−1) − Σ_{M_<}|supp β| ≥ 0,
+  using (b), (c) and (d).
+- (f) n = 1. M_< = {0, e, …, (a−1)e} and Y = {ae}.
+  - If r = 0, then S = ⟨m, γ_1⟩ and W = 0.
+  - If r ≥ 1, then W ≥ (k − q) − (a − 1)θ ≥ Σ_{t=1}^{a−1} κ_{te} − (a − 1) ≥ 0. ∎
+
+**Remarks.**
+- Every collision-free h-regular S has P̃ = 0, since M = Δ_h and M_< = Δ_{h−1}. So P0-WILF contains CF-WILF for
+  c ≥ 4m, with a shorter proof.
+- P̃ = 0 holds for 388 of the 390 negative-Eliahou Delgado truncations ⟨μ, γ, γ+1⟩ ∪ [pμ, ∞) with p ≤ 12, μ ≤ 60
+  (E344).
+- The class is defined for every S. It asks for the gap {φ ∈ [c + m − γ_n, c)} ∩ ⟨Γ⟩ = ∅ and for no collision
+  inside M_< + Δ_1.
+- Open: the general case P̃ > 0. The ray identity and the one-step DB hold for every S.
+  - Conjecture GDB: W with r replaced by max(R_gen, [r ≥ 1]) is > −1. 0 failures on 6,000 random S with q ≥ 2 and
+    q ≥ 5 (E344).
+  - Its r = 0 part is literally E ≥ 0.

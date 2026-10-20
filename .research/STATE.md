@@ -54,6 +54,20 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000) **NEWEST (2026-10-21): Theorem P0-WILF PROVED (PROOFS "Ray identity, one-step difference body, and Theorem
+          P0-WILF"; E344).**
+          - Statement: every S whose canonical Apéry down-set M has no ray ending below c (P̃ = 0) satisfies Wilf, at
+            every depth (c ≤ 4m by the external theorem).
+          - The class contains CF-WILF's class and 388 of 390 negative-Eliahou Delgado truncations.
+          - Tools (every S):
+            - Ray identity W = ρr/m + G + P̃ − Λ + r(k − q). Only the top elements of degree ≥ 2 are a loss
+              (Λ = Σ_Y(|y|−1)θ_y).
+            - One-step difference body r ≥ R_gen = Σ_{z∈M∖M_1}(deg⁻_{M_1}(z) − 1).
+          - **MAIN TARGET NOW: the general case P̃ > 0.**
+            - Conjecture GDB: W(r := max(R_gen, [r ≥ 1])) > −1. 0 failures on 6,000 random S.
+            - The obstacles are early ray ends: long jumps over [c, c+m), and collisions. The proof must make P̃ pay for
+              the boundary elements below c, which break the bijection and the exit count.
+            - The r = 0 part of GDB is literally E ≥ 0.
       (A000) **NEWEST (2026-10-20 late): Theorem CF-WILF PROVED (PROOFS; E341).**
           - Every collision-free h-regular S satisfies Wilf (Bacher's class). The proof is elementary and needs no
             hypothesis on r; it supersedes Bacher's Thm 3.5.

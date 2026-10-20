@@ -3634,3 +3634,28 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     centroid inequality for knapsack down-sets: (n+1)Σ_M φ ≤ nT|M| when φ < T on M. Unproved; the cube argument loses
     Σγ(n−1)/(2(n+1)).
 
+## 2026-10-21 — Ray identity; one-step difference body; Theorem P0-WILF
+- **Ray identity (PROVED, every S).**
+  - E = ρr/m + G + P̃ − Λ:
+    - G: ceiling gains;
+    - P̃: rays of the canonical down-set M ending below c;
+    - Λ = Σ_{y∈top}(|y| − 1)θ_y: top loss.
+  - It is the ray form of R3. The one new reading: only top elements of degree ≥ 2 lose, by at most |y| − 1 each.
+- **One-step difference body (PROVED, every S).** M_1 = interior, so M_1 + Δ_1 ⊆ M. Then m ≥ |M_1 − Δ_1|, and the
+  ray-exit bijection gives r ≥ R_gen = Σ_{boundary z}(deg⁻_{M_1}(z) − 1).
+- **PROVED: P0-WILF.** P̃ = 0 and c ≥ 4m ⇒ W ≥ 0.
+  - Ingredients:
+    - r ≥ R = Σ_Y(|supp y| − 1);
+    - Σ_Y(|y| − 1) = Σ_{M_<}|supp β| + R (bijection);
+    - exit count (n−1)Σ_{M_<}|supp β| ≤ D·R;
+    - chain bound k − q − 1 ≥ D/(n−1).
+  - Every step asserted on 10,000 S with P̃ = 0 and c > 4m (E344).
+  - It contains CF-WILF (c ≥ 4m) and almost all negative-Eliahou semigroups seen so far.
+- Empirics: E < 0 essentially forces P̃ = 0 (388/390 Delgado). Negative Eliahou numbers live where every Apéry ray
+  reaches the top, which is exactly where the difference body is strong.
+- Next:
+  - (1) The general case P̃ > 0, via Conjecture GDB (0 failures on 6,000 random S). Run the gate: annealing against
+    GDB, and the scaling families (Sidon / B_h blocks with a few collisions, long-jump bands).
+  - (2) Prove GDB first for collision-free S with long jumps only, then add collisions.
+  - (3) Prepare the exact statement of P0-WILF for the Lean agent (codex available 2026-10-25).
+

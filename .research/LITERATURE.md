@@ -822,3 +822,8 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   geometric form of Lemma 2.
 - Status of our Theorem CF-WILF (PROOFS): new as far as this search shows. It removes the hypothesis r ≥ ℓ from
   Bacher's Thm 3.5 and needs neither Thm 3.3 nor Conj 2.6.
+- 2026-10-21: no literature statement found for the class "no Apéry ray ends below c" (P̃ = 0) or for the ray identity
+  in this form. The ray identity is equivalent to our own R3 (position form of ID-q). The external c ≤ 4m proof
+  (conjectures.io) uses pruning and shells, not this class. Status of P0-WILF: new as far as our searches show; not
+  separately searched beyond the 2026-10-20 Bacher/B_h search.
+
