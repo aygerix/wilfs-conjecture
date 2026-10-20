@@ -3229,3 +3229,42 @@ faces are UF with K = −1 (P14 §2.1)).
   the number of decomposable Apéry elements with K ≤ 0. So "DEPTH4-EH suffices" is a strengthening of Wilf. It fails only
   at small m in all data (⟨9,19,21,22⟩, ⟨25,26,30,31⟩, annealing m ≤ 25). In pure P18 at depth four it holds on every S of
   E301 (k = 4, m ≤ 44; k = 5, m ≤ 34), except ⟨25,26,30,31⟩ (k = 3).
+
+### Depth four: window identity, translator lemma, WIN and MATCH4 (lead, 2026-10-20)
+Setting q = 4 as above. Hw = residues [h, 2h) mod m (|Hw| = h); W_1 = residues [h, h + ⌈h/2⌉), W_2 = the rest of Hw.
+Y = {v ∈ Ap : K(v) = 1, residue in Hw}; N_< = #{v ∈ Ap : K(v) ≤ 0, residue ∉ Hw}.
+- **Window identity (PROVED).** W = Λ + Z + N_< − |Y|. Every element of Y is a pure-A critical cubic with residue in W_2,
+  and W_1 holds no critical value.
+  - Proof: s(v) = (M − v) mod m = (h − 1 − r) mod m, so s(v) ≥ ρ ⟺ r ∈ Hw. By the short arc (P13), every critical value
+    other than a pure-A cubic lies outside Hw. A pure-A critical cubic has three pair faces of offset sum ≥ h, so its
+    offset sum is ≥ 3h/2 and its residue lies in W_2.
+  - Count Hw: h = |Y| + #{K ≤ 0 in Hw}. Then N_< = m − R − h + |Y|, and DEC-ID W = ρ + Λ + Z − R gives the identity.
+  - Corollaries: Y = ∅ ⇒ Wilf. Wilf ⟺ |Y| ≤ Λ + Z + N_<.
+- **Translator lemma (PROVED).** Let y ∈ Y and t ∈ P', and let x be the residue of v_y − n_t. Then exactly one holds:
+  (a) t is a factor of v_y, and w_x = v_y − n_t is a face (UF, K = −1);
+  (b) t is not a factor, w_x is a t-top, and λ(w_x) ≥ 1. This is a *Λ-option*; the pair (x, t) is its own term
+      (ν_t + 1)λ ≥ 1 of Λ;
+  (c) t is not a factor and λ(w_x) = 0.
+  - Proof: if w_x + n_t ∈ Ap, it has residue y, so it equals v_y; then n_t divides v_y, and UF makes t a factor.
+  - Consequences: Λ ≥ Σ_{y∈Y} #{Λ-options of y}, since distinct (y, t) give distinct (x, t). For any single t,
+    |Y| ≤ #{y : x_t(y) has K ≤ −1} + #{y : Λ-option at t} + C0(t), where C0(t) = #{y : λ(w_{x_t(y)}) = 0, K ≥ 0}.
+  - If the least factor offset c_0 of the cubes in Y exceeds h/2, then t = n_{c_0} maps every source into W_1.
+- **Window-filling form (PROVED).** Take t ∈ P' whose offset τ = n_t mod m avoids (−h/2, h/2) mod m.
+  - Every K = 0 element of W_1 with λ ≥ 1 is then either a t-top (a Λ term) or has t-successor in Ap. That successor is
+    non-critical (only faces extend to critical cubics) and lies in W_2 or outside Hw.
+  - Hence W ≥ (Λ − Λ_t(W_1)) + (Z − Z_c(W_1)) + (N_< − N_<^img) − C0(W_1). Here C0(W_1) = #{v ∈ Ap ∩ [c, c + ⌈h/2⌉) : K(v) = 0}.
+  - So the only obstruction is the co-level-0, K = 0 elements in the bottom half of the co-level-0 window. These are
+    E generators (each pays Λ_E = ℓ − 4 in its own direction), carried BB pairs, and cubics with exactly one low face.
+- **Conjecture WIN (CONJ).** At q = 4, |Y| ≤ Λ + Z. Equivalently **W ≥ N_<**. It implies Wilf at depth four.
+  - At h = m (c = 4m) we have N_< = 0, so WIN at c = 4m IS Wilf at c = 4m. WIN therefore contains the open m | c slice and
+    is not an easy strengthening.
+  - In the perfect A-simplex model, WIN holds by window filling: W_1 holds only faces, so |Y| ≤ |W_2| ≤ |W_1| ≤ Z.
+- **Conjecture MATCH4 (CONJ, implies WIN).** Assign each y ∈ Y either a Λ-option or a distinct K ≤ −1 source x_t(y),
+  where a source x can serve −K(w_x) cubes. MATCH4 says such an assignment always exists (a Hall condition on the
+  cubes without Λ-options). In P18, y lacks Λ-options iff 3m + s − b ∉ S for every non-factor offset b > s − h, where
+  s is the offset sum of y. Equivalently, v_y + m has no non-factor divisor with cofactor below c.
+- Data (E303): WIN, MATCH4 and the identity have 0 failures on all 18,284,363 depth-four S (e ≥ 3) of genus ≤ 35, on every
+  truncation family of E302 with k = 4 and m = 23..34, and on random P18. The census never has |Y| > 1 with small Λ. The
+  dense-core regime (P14 residual, m ≥ 211) is not reached by any of these, so WIN is untested exactly where it matters.
+  The stronger explicit V1, |Y| ≤ L2 (Lemma B), also has 0 failures at genus ≤ 35 (max −1). But L2 = 0 in a perfect
+  A-simplex, so V1 would forbid short cubes there; V1 is therefore suspect in the extremal regime.

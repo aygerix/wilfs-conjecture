@@ -3197,3 +3197,18 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   or near-perfect B_3 cores need a modulus far above C(k+3,3), since no 5-element B_3 set mod m exists for m ≤ 60. The
   missing residues must then be filled, and fillers at or above 2m block every face. Candidate structural lemma: a lower
   bound for the B_3 modulus forces filler count ≥ c_k·(core excess).
+
+## 2026-10-20 (night) — depth four: window identity and translator lemma; WIN and MATCH4
+- Exact: W = Λ + Z + N_< − |Y|, where Y = the critical values with residue in [h, 2h). By the short arc these are exactly
+  the short pure-A cubics, and they lie in the upper half W_2 of that window; the lower half W_1 holds no critical value.
+  So depth-four Wilf is |Y| ≤ Λ + Z + N_<.
+- Translator lemma: translating a short cubic down by any generator n_t lands either on a face (Z), a t-top below the
+  conductor (its own Λ term), or a co-level-0 element (no credit). Λ-options of different cubics never collide.
+- WIN (|Y| ≤ Λ + Z ⟺ W ≥ N_<) and the matching form MATCH4: 0 failures on all 18.3M depth-four S of genus ≤ 35 and ~30M
+  truncated near-simplex S. Caveat: at c = 4m WIN is exactly Wilf (N_< = 0), so it contains the open m | c slice.
+- The window-filling bound reduces depth-four Wilf to one obstruction: co-level-0, K = 0 elements in [c, c + h/2)
+  (carried BB pairs, cubics with one low face; E generators pay for themselves). In the free 4-simplex these are the
+  quartics, and the bound is lossy there.
+- Random/annealing search cannot make dense short-cube cores (max |Y| = 9 at m ≤ 100). Next: build dense cores
+  explicitly. Choose h and a B_3 A-core in [h/2, 2h/3), then choose B fillers to force depth four at exactly that h
+  without E generators.
