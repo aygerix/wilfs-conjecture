@@ -3080,3 +3080,27 @@ Hence T1 ⇒ GEN-EH, and T1 ⇒ (Wilf holds whenever h ≤ e + Λ). Under T1, a 
   **Conjecture T1-DOWN.** For every down-set D of (Ap, ≤_S): Σ_{x ∈ D, x decomposable}(K_p(x) − 1) ≤ 0.
   T1-DOWN ⟺ the deficits (K − 1)⁺ can be matched to credits (1 − K)⁺ of decomposables below them (Hall). Cover-only
   matching FAILS (⟨7,10,32⟩, p* = 2: credit at 30 must pay both 40 and 50).
+
+### Lemma U (lead, 2026-10-20) — combinatorial core of T1. CONJ for d ≥ 2; PROVED for d = 1; reduction PROVED
+**Statement.** Let m ≥ 2, d ≥ 1, r ∈ [1, m−1]^d, p ∈ [1, m], C(y) = #{z ∈ (0, y] : z ≡ p (mod m)}. For f ∈ ℕ^d put
+R(f) = Σ_a f_a r_a and K(f) = C(R(f)) − Σ_a f_a·(C(R(f)) − C(R(f) − r_a)) (terms with f_a = 0 vanish). Let D ⊂ ℕ^d be a
+finite order ideal on which R is injective mod m. Then Σ_{f ∈ D} K(f) ≤ #{f ∈ D : |f| ≥ 2}.
+(K(0) = K(e_a) = 0, so the claim is Σ_{f ∈ D, |f| ≥ 2}(K(f) − 1) ≤ 0.)
+**Reduction (PROVED): Lemma U ⇒ T1-DOWN ⇒ T1 for every numerical semigroup.** Let f(x) be the lexicographically largest
+factorization of x ∈ Ap over P'. (i) {f(x) : x ∈ D} is an order ideal for every down-set D of (Ap, ≤_S): if g ≤ f(x) and
+y = Σ g_a n_a had a lex-larger factorization g′, then g′ + (f(x) − g) would be a lex-larger factorization of x. And y ≤_S x
+gives y ∈ D. (ii) R(f(x)) ≡ x (mod m), so R is injective on f(D). (iii) C(y + km) = C(y) + k, so with n_a = k_a m + r_a,
+K_p(x) computed with f(x) in place of ν(x) equals K(f(x)) of Lemma U (the k_a cancel). (iv) ν_a(x) ≥ f_a(x) and
+C(x) − C(x − n_a) ≥ 0 give K_p(x) ≤ K(f(x)). (v) f(n_a) = e_a and f(0) = 0, so the decomposables correspond. ∎
+**d = 1 (PROVED).** D = {0, …, t}: Σ_s K(s) = 2Σ_{0<s<t} C(sr) − (t−1)C(tr) ≤ t − 1 because C(u) + C(v) ≤ C(u+v) + 1.
+(No injectivity is needed for d = 1.)
+**Evidence (E295).** All order ideals with injective residues: d = 2, m ≤ 11 (every size); d = 3, m ≤ 9; 0 failures.
+Injectivity is essential: dropping it, the claim fails (m = 3, D = {|f| ≤ 3}, r = (2, 2), p = 1, slack −1; with
+|D| ≤ m it still fails at m = 10, r = (6, 6)).
+**Equivalent forms.** (a) Cut form: Q(z) = #{f ∈ D : R(f) ≥ z} − Σ_a Σ_{a-lines ℓ of D straddling z} #{f ∈ ℓ : R(f) < z}.
+Q(0+) = #dec(D), Q jumps by J(f) at R(f), ∫_0^∞ Q = 0, and Lemma U ⟺ Σ_{z ∈ p+mℤ, z>0} Q(z) ≤ Q(0+): every m-periodic
+sampling of Q sums to at most its initial value. (b) Carry form: with c(u, v) = C(u+v) − C(u) − C(v) ∈ {−1, 0, 1},
+Lemma U ⟺ Σ_f γ(f) − Σ_{a,f} β_a(f) ≤ #dec(D), where γ(f) = C(R(f)) − Σ_a C(f_a r_a) (axis-decomposition carries) and
+β_a(f) = c(R(f), j_a(f) r_a) (climb carries to the a-top, j_a(f) = steps from f to its a-top in D).
+**Stronger forms seen in data (CONJ).** TAIL: for every y > m, Σ_{z ≡ p, z ≥ y} Q(z) ≤ 0 on real Apéry sets (genus ≤ 18,
+every p); sampled Q is not monotone (MONO fails), so TAIL is not a monotonicity statement.

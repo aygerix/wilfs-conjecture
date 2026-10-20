@@ -40,19 +40,20 @@ def check(F, r, m):
         sl = rhs2 - 2 * lhs
         if worst is None or sl < worst[0]: worst = (sl, p)
     return worst
-d = int(sys.argv[1]); M = int(sys.argv[2])
-gen = ideals2 if d == 2 else plane_partitions
-for m in range(3, M + 1):
-    tested = 0; fails = 0; minsl = None
-    for F in gen(m):
-        if d == 3 and any(max(f[a] for f in F) == 0 for a in range(3)): continue
-        if d == 2 and any(max(f[a] for f in F) == 0 for a in range(2)): continue
-        for r in itertools.product(range(1, m), repeat=d):
-            w = check(F, r, m)
-            if w is None: continue
-            tested += 1
-            if w[0] < 0:
-                fails += 1
-                if fails <= 3: print("FAIL m=%d F=%s r=%s slack2=%d p=%d" % (m, sorted(F), r, w[0], w[1]))
-            if minsl is None or w[0] < minsl[0]: minsl = (w[0], w[1], sorted(F), r)
-    print("d=%d m=%d: tested %d, fails %d, min 2*slack %s" % (d, m, tested, fails, minsl[:2] if minsl else None), flush=True)
+if __name__ == '__main__':
+  d = int(sys.argv[1]); M = int(sys.argv[2])
+  gen = ideals2 if d == 2 else plane_partitions
+  for m in range(3, M + 1):
+      tested = 0; fails = 0; minsl = None
+      for F in gen(m):
+          if d == 3 and any(max(f[a] for f in F) == 0 for a in range(3)): continue
+          if d == 2 and any(max(f[a] for f in F) == 0 for a in range(2)): continue
+          for r in itertools.product(range(1, m), repeat=d):
+              w = check(F, r, m)
+              if w is None: continue
+              tested += 1
+              if w[0] < 0:
+                  fails += 1
+                  if fails <= 3: print("FAIL m=%d F=%s r=%s slack2=%d p=%d" % (m, sorted(F), r, w[0], w[1]))
+              if minsl is None or w[0] < minsl[0]: minsl = (w[0], w[1], sorted(F), r)
+      print("d=%d m=%d: tested %d, fails %d, min 2*slack %s" % (d, m, tested, fails, minsl[:2] if minsl else None), flush=True)
