@@ -664,3 +664,12 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - Tôledo, UFG master's thesis (2022), "A conjectura de Wilf do ponto de vista da profundidade…": exposition of
   Eliahou's q ≤ 3. Abstract and front matter read; no depth-four theorem.
 - No statement of Wilf for c ≤ 3m + e, or of any depth-four band, was found. Absence of a hit is not proof of novelty.
+
+### Search 2026-10-20 (afternoon), before making the P18 depth-four core regime / all-A case a sub-target
+- Web: "Wilf conjecture numerical semigroups conductor at most 4m depth four generators less than 2m"; "arXiv 2026 Wilf
+  conjecture maximal primitive 2m Delgado Kumar Marion problem". Hits: DKM 2501.04417 (Problem 1.8 still stated open),
+  Delgado–Kumar 2512.23891 (max primitive ≤ 60), Yang–Zhang Preprints 202604.0551 (item 46), near-misses 1710.03623,
+  Dhayni 1610.08726, divsets HAL-04234167. All already listed.
+- Nothing addresses depth four (3m < c ≤ 4m) for generators below 2m, the window B ⊂ [h/2, h), or untruncated-Macaulay
+  payment of carried pairs. Theorem CORE4 appears new relative to these. Not checked against every paper in the field.
+

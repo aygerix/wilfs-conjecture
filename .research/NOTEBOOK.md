@@ -3269,3 +3269,23 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   coupling the advisor asked for, in the all-A case. Core regime B ⊂ [h/2, h): FREE-A reduces to
   h ≤ e² − (e−3)δ + 3Ω, and window filling gives h ≤ e(e−1) + 2. So δ = 0 is proved there and δ ≥ 1 is open.
   The stronger FA2 is tight already at m = 15 and is set aside as fragile.
+
+## 2026-10-20 (afternoon) — the core regime is proved for every δ (Theorem CORE4)
+- **New mechanism.** In the core regime B ⊂ [h/2, h), a carried pair b1 + b2 = m + a with a ∈ B forces the whole
+  translate b1 + b2 + B into 3B above m + h. Those 3-sums are needed nowhere: they are not used to cover [h, m+h), and
+  they do not count in ℓ. Untruncated Macaulay (E3f) charges for them; the truncated chain at L = m + h does not see
+  them, which is why every truncated formulation stalled at δ ≥ 2.
+- **How the payments couple.**
+  - The count τ ≥ |B′ + B| ≥ k(2e − k − 1)/2 − E1/2 is paid jointly out of the collision slack E1. The window bound
+    supplies 2E1, so ½E1 is left over.
+  - The carried pair m ∈ 2B is paid by κ = e (all of A + m is then in 2B ∪ 3B).
+  - Result: W ≥ e − 2 in the whole core regime, with δ arbitrary.
+- **Lesson.** FREE-A (W ≥ E1 + E3) is stronger than needed in the core. It gives up τ, so it is no longer the target.
+  The right split is W = (window part) + (carried part), with the carried part D = 3τ + 3κ − eδ.
+- **Next: all-A with small elements (some b < h/2).**
+  - Exact identity: W = E1 + E3f + e·y0 − eδ + 3τ + 3ω − 3N4 − h.
+  - The window [h, 3h′) now also contains 3-sums with a small part. The proof splits into two inequalities, each of which
+    held with min 0 on all data (E312):
+    - Z = e(y0 − e) + 2(|2A_{<h}| − e) + e − 2|(3A∖2A) ∩ W_1| − 3N4 − 2e″ + 3[h odd] ≥ 0;
+    - D = 3τ + 3ω − eδ ≥ 0.
+  - Z ≥ 0 and D ≥ 0 together give W ≥ 2E1 + E3f + 2ρ ≥ 0 for all-A.

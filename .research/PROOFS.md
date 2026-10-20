@@ -3405,3 +3405,50 @@ H4b = residues r < h of Kunz level 4 with r ∉ 4A, Ω = U1 − P_lo − |H4b| �
   where e′ = |(A+m) ∩ [h, 3h/2)| ≤ |A ∩ [0, 3h/2 − m)| ≤ 1 (since m ≥ h and B ≥ h/2) and δ′ = |(A+m) ∩ [h,3h/2) ∩ 2B|.
   Hence h ≤ e(e−1) + 2(e′ − δ′) ≤ e(e−1) + 2. So FREE-A holds in the core regime whenever δ = 0 (then e² ≥ e(e−1) + 2 for
   e ≥ 2). The case δ ≥ 1 remains (needs (e−3)δ ≤ e − 2 + 3Ω + window slack).
+  - [2026-10-20, later] Wilf in the whole core regime is now PROVED by Theorem CORE4 below, which does not go through
+    FREE-A. FREE-A itself in the core regime with δ ≥ 1 is still open, and no longer needed.
+
+## Theorem CORE4 (P18 depth four, core regime B ⊂ [⌈h/2⌉, h)) — PROVED 2026-10-20 (paper; checks E312)
+Setting: m ≥ 2, B ⊂ [1, m−1], S = ⟨m, m + B⟩ a numerical semigroup, 3m < c = 3m + h ≤ 4m, A = {0} ∪ B, e = |A|,
+h′ = ⌈h/2⌉, and **B ⊂ [h′, h)**. Integer sumsets: 2B, 3B, 2A = {0} ∪ B ∪ 2B, 3A = 2A ∪ 3B.
+- Notation:
+  - X = [h, m + h); W_1 = [h, 3h′); D = 2B ∩ (A + m), δ = |D| (carried pairs whose residue lies in A);
+  - κ = |(A + m) ∩ (2B ∪ 3B)| ≥ δ; τ = |3B ∩ [m + h, ∞)|;
+  - E1 = e(e+1) − 2|2A| = e² − e − 2|2B| ≥ 0; E3f = (e−1)|2A| − 3|3A ∖ 2A| ≥ 0 (TCM with L > 3h, i.e. Eliahou's condensed
+    Macaulay inequality untruncated);
+  - e′ = |(A + m) ∩ W_1|, ρ2 = |2B ∖ W_1|, δ1 = |D ∩ W_1|.
+- **Statement.** W(S) = e·ℓ − c ≥ e − 2e′ + 3·[h odd] ≥ e − 2. More precisely
+  W ≥ e − 2e′ + 3·[h odd] + E3f + 2ρ2 + 2δ1 + ½E1 (and + 2E1 when no carried pair has residue in B).
+- **Step 1 (shape).** 2B ⊂ [2h′, 2h − 2] ⊂ [h, 2h − 2] and 3B ⊂ [3h′, 3h − 3]. Hence 3A ∩ [0, h) = A, and 2B < m + h.
+- **Step 2 (coverage; exact).** For a residue r ∈ [h, m), r + 3m ∈ S iff r ∈ 3A, since r + m > 2h − 2 ≥ max 2A.
+  For r ∈ [0, h), r + 4m ∈ S iff r ∈ 4A ∩ [0,h) = A or r + m ∈ 3A. Both must hold because c = 3m + h.
+  So X ⊂ 2B ∪ 3B ∪ (A + m), and X contains all three sets except 3B ∩ [m+h, ∞). Counting X:
+  m = |2B| + |3B ∖ 2B| − τ + e − κ.
+- **Step 3 (ℓ; exact).** S ∩ [0, c) = {0} ∪ (m + A) ∪ (2m + 2A) ∪ (3m + A). The only overlaps are 2m + D = 3m + (D − m),
+  so ℓ = 3e + 1 + |2B| − δ.
+- **Step 4 (identity).** Substitute 3|3B ∖ 2B| = (e−1)(e + |2B|) − E3f into W = e·ℓ − 3m − h:
+  **W = e² + E1 + E3f − eδ + 3τ + 3κ − h** (exact).
+- **Step 5 (window).** For h ≥ 2, W_1 ⊂ X, and W_1 misses 3B, so W_1 ⊂ 2B ∪ (A + m).
+  Since |W_1| = h/2 (h even) or (h+3)/2 (h odd): h ≤ 2|2B ∩ W_1| + 2e′ − 2δ1 − 3[h odd] = e² − e − E1 − 2ρ2 + 2e′ − 2δ1 − 3[h odd].
+  - e′ ≤ 1 for h even (only m + 0 can lie in W_1, since m + b ≥ h + h′).
+  - e′ ≤ 2 for h odd, with equality only if m = h and h′ ∈ B.
+- **Step 6 (paying the carried pairs).** Write δ = δ_0 + k, with δ_0 = [m ∈ 2B] ≤ 1 and B′ = {s − m : s ∈ D, s ≠ m} ⊂ B, k = |B′|.
+  - If m ∈ 2B, say m = b1 + b2, then m + b = b1 + b2 + b ∈ 3B, so κ = e.
+  - For s ∈ D with s − m ∈ B and b ∈ B: s + b ∈ 3B and s + b ≥ m + 2h′ ≥ m + h. So τ ≥ |B′ + B|.
+  - B′ + B is the image of the C(e,2) − C(e−k,2) = k(2e − k − 1)/2 multisets {x, y} ⊂ B meeting B′. Its deficiency is at
+    most that of all of 2B, which is C(e,2) − |2B| = E1/2. So τ ≥ k(2e − k − 1)/2 − E1/2.
+  - Hence, with k ≤ e − 1 and κ ≥ δ:
+    - k = 0: 3τ + 3κ − eδ ≥ 0 (δ = 0), or ≥ 3e − e = 2e (δ = δ_0 = 1).
+    - k ≥ 1, δ_0 = 0: 3τ + 3κ − eδ + (3/2)E1 ≥ (3/2)k(2e−k−1) − (e−3)k = k(2e + 3/2 − 3k/2) ≥ k(e+6)/2 > 0.
+    - k ≥ 1, δ_0 = 1: 3τ + 3κ − eδ + (3/2)E1 ≥ (3/2)k(2e−k−1) + 3e − e(k+1) ≥ 2e + ke/2 > 0.
+- **Step 7.** Steps 4 and 5 give W ≥ e − 2e′ + 3[h odd] + 2E1 + E3f + 2ρ2 + 2δ1 + (3τ + 3κ − eδ). Step 6 bounds the last
+  term from below by −(3/2)E1 (k ≥ 1) or 0 (k = 0). The bound on e′ in Step 5 finishes the proof. ∎
+- Dependencies: Lemma TCM (Eliahou JEMS 2018 Thm 5.11) with L > 3h, only for E3f ≥ 0; everything else is counting.
+- Why it matters: this is the near-simplex (B_3) regime, where every earlier P18 bound was tight or failed. The carried
+  pairs (δ) are paid by the carried 3-sums they force above m + h (τ), which is exactly the term the truncated chain
+  (truncation at L = m + h) cannot see. It is the first complete payment of the face-sharing deficit in a nontrivial
+  depth-four family.
+- Coverage by known criteria: most core S are not covered by h ≤ e (DEPTH4-EH), e(e+1) ≥ 2m (Yang–Zhang),
+  (e−1)² ≥ 2m (DKM) or 3e ≥ m (Eliahou). Examples: ⟨15,22,24,25⟩ (W = 17) and ⟨22,31,32,34,35⟩ (W = 36) (E311/E312).
+- Lean: not yet formalized. Statement and proof are elementary apart from TCM. Good first candidate for the Lean agent.
+
