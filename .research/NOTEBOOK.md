@@ -3600,3 +3600,37 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
       mod m. Then r ≥ |A − A′| − |M| for all down-sets with A + A′ ⊆ M (DB for every S). Wilf would follow from
       Λ(M) ≤ a·DB(M) + (collision gains).
 
+## 2026-10-20 (night) — the split (A)+(B) and its refutation; integer certificate for regular S
+- **Identities (every S).**
+  - E = nc − ℓg + qr, with n = ℓ − 1 and g the genus. This is Selmer plus k = c − g.
+  - Hence for r = 0, W = E = nk − g.
+  - Wilf ⟺ avg Ap(S, m) ≤ (1 − 1/e)c + (m−1)/2. This is the Kunz/Selmer centroid form of Wilf, nothing new.
+- **Tested split.** Wilf ⟸ (A) [r = 0 ⇒ E ≥ 0] ∧ (B) [r ≥ 1 ⇒ E + (k−q) ≥ 0]. (B) is exactly "W ≥ 0 with r replaced
+  by 1".
+  - (B) had slack ×8 on all 46,862 negative-Eliahou Delgado truncations. P18 annealing found no failure.
+  - **(B) is FALSE** (E343). Collision-free 3-regular S with Γ ⊂ (3m/2, 5m/3) and c = 4m has E = −(n³ − n)/6 and
+    k − q = 3n + C(n+1, 2). Smallest case n = 7: ⟨798, 1205, …, 1329⟩ ∪ [3192, ∞), (B) = −7.
+  - Lesson: right primitives beyond the first are genuinely needed. Wilf needs r ≥ |E|/(k−q) ≈ n/3 there. CORE₁ needs
+    r ≥ n³/6, and the difference body gives n(n²−1)/3.
+  - So CORE₁ survives this family asymptotically with factor 2. It also survives dense n = 2 packings up to h = 14,
+    where min E ≈ −h²/9 and r ≈ h²/4.
+- **Regular S with collisions** (E342). Integer certificate BND_int = (ℓ+r)Σ_{1≤t<h} d_tκ_t − q(d−ℓ) + ρ, where
+  κ_t = ⌊(x(h−t)−t)/h⌋ + 1.
+  - It certifies W ≥ 0 everywhere except 4 small tiles (r = 0, m ≤ 17, q ≤ 5).
+  - Proof structure found. BND_int is linear in the normalized profile v_t = d_t/N_t. v is nonincreasing, by the NMP
+    of Lemma CENTROID, with v_1 = 1. So BND_int is a convex combination of its values at step profiles M = Δ_T.
+    - For T < h: BND(Δ_T) ≥ nC(n+T, T)[x(h−T) − T]/h ≥ 0, since x > h − 1. This is the continuous bound; floors only
+      help.
+    - For T = h (the CF vertex): it needs r ≳ 1–2, which the difference body supplies.
+  - Open: the coupling between the CF weight λ_h = d_h/N_h and r when M is a near-tile, i.e. r small with few
+    collisions. Tiles (r = 0) are the hard core.
+  - Note: the r = 0 h-regular case is Wilf for S generated below its conductor, which includes e = 4 instances.
+- Next (three lines):
+  - (1) T2/WR1/CORE₁ remain the strongest live statements. Annealers show no failure, and CORE₁ survives every scaling
+    family tried. The structural fact for an all-S proof: the canonical down-set M is always injective mod m, so
+    r ≥ |A − A′| − |M| whenever A + A′ ⊆ M (DB for every S).
+  - (2) REG-WILF via step decomposition plus DB coupling for near-tiles.
+  - (3) Extend CF-WILF beyond regularity (collision-free S with generators at several heights). This needs a discrete
+    centroid inequality for knapsack down-sets: (n+1)Σ_M φ ≤ nT|M| when φ < T on M. Unproved; the cube argument loses
+    Σγ(n−1)/(2(n+1)).
+
