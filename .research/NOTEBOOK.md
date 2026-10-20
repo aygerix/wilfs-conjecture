@@ -3553,3 +3553,8 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - (3) The core transfer is not monotone in general (fails at every depth).
 - Question for the next cycle: is there a depth-5 analogue of Lemma 6_ρ (parent incidences with multi-wraps) that
   leaves a single negative class?
+- (later) ID-q holds for EVERY numerical semigroup: high generators cross several times, and holes are the right
+  primitives. That gives a depth-independent candidate stronger than Wilf, **CORE₁: E(S) + r(S) ≥ 0**, with mechanism
+  ANCHOR (DEF ≤ ρ + EXC + U_top + r). Evidence: 0 failures on 14.4M S (genus ≤ 30), e = 3/4 to m = 60/120, and
+  every known negative-Eliahou family, whose margins grow with depth (= p − 1 on Delgado-type truncations).
+  Correction: CORE₁ ⟹ Wilf, not the converse (fixed in the records). Next: prove ANCHOR for j ≤ 1.

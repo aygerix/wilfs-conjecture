@@ -54,13 +54,25 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00) **NEWEST, main target (PROOFS "ID-q for every numerical semigroup; Conjectures ANCHOR and CORE₁"; E338).**
+          - ID-q holds for EVERY S (PROVED): crossing multiplicities κ = ⌊(x + b)/m⌋ for high generators, and the
+            holes p are the right primitives r.
+          - Conjecture CORE₁: E(S) + r(S) ≥ 0, i.e. W ≥ r(|L| − q − 1). It implies Wilf at every depth.
+          - Conjecture ANCHOR (the mechanism): DEF ≤ ρ + EXC + U_top + r.
+          - 0 failures: genus ≤ 30 (14.4M), e = 3 exhaustive to m = 60, e = 4 random to m = 120, the WQ counterexamples,
+            every known negative-Eliahou family (Fromentin, EF B₃, Delgado; margins grow, = p − 1 on Delgado-type),
+            and B₄ blocks (density argument).
+          - Literature: no statement of E + r ≥ 0 found.
+          - **First precise task:** prove ANCHOR, starting with j ≤ 1 (strip-free P18, q ≤ 5): N − |U| ≤ 2p + U_top + C.
+            Then high generators (κ ≥ 2) and multi-wraps.
       (A0) **NEW, main target (PROOFS "Identity ID-q", "Conjecture ANCHOR-q"; E337).**
           - ID-q (PROVED, every depth, every P18 model, strips allowed):
             W₀ = ρ + Σ_x (q − λ_x)·u(x) + Σ_y (c_y − j_y). Wraps are refunded by crossing parent incidences.
           - Conjecture ANCHOR-q: DEF ≤ ρ + EXC + U_top + p. It implies CORE₁ at every depth, hence Wilf for every S
             with all minimal generators below 2m (DKM Problem 1.8 in full).
           - Gate so far: 0 failures. Exhaustive for m ≤ 30, K ≤ 5, q = 5–7, and every B for m ≤ 18. Random up to
-            m = 200, K = 30. On perfect-Sidon models ANCHOR-q ⟺ CORE₁ (implied by Wilf).
+            m = 200, K = 30. On perfect-Sidon models ANCHOR-q ⟺ CORE₁. CORE₁ is STRONGER than Wilf (correction):
+            dense B₄-type offsets in [m/3, m/2) at q = 5 could break it (PROOFS back-of-envelope; E338 tests this).
           - Proof route: generalize the external shell + PAYMENT (EXT1), deficits at all levels.
           - Strip-free q ≤ 5 (only j ≤ 1) is equivalent to N − |U| ≤ 2p + U_top + C, where U = unwrapped canonical
             positions with λ ≤ q and C = used crossing incidence weight. This is a sumset lower bound (missing window

@@ -73,3 +73,10 @@ and MD are statements about every S and remain observations.
 | L1, L2 | sl_B, defU (L1) | observations |
 | Z1, Z12 (2h ≤ m) | p_lo, N4, 2δ2, incU, incC, defU | observations. Scaling estimate: a B3-Sidon block in (h/2, 2h/3) of size d ≳ 13–26, with carried pairs covering the half window, should break them at e ≈ 80–300, where incU pays. Not proof targets |
 | SIG := Q4 + σ_T ≥ 0 | 3(P_w − p) + 2(P_u − u2) + P_w | under falsification (E335): necessity ablation shows σ_T is the essential payer at e = 4 |
+| ANCHOR (every S): DEF ≤ ρ + EXC + U_top + r | the pool of weight ≥ 2 and r(\|L\| − q − 1) | gate steps 1–3 passed (E337, E338); proof attempt open. Not a piece of a positive quantity demanded locally: it is the full deficit of the exact identity ID-q against all weight-1 credits |
+| CORE₁ (every S): E + r ≥ 0 | r(\|L\| − q − 1) only | 0 failures (E338), extremal families have growing margins |
+
+## Corrections log
+- 2026-10-20: I first wrote "CORE₁ is implied by Wilf". It is the reverse: CORE₁ implies Wilf (W = E + r(|L| − q)).
+  Corrected in PROOFS/STATE the same day.
+

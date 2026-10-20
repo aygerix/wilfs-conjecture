@@ -4507,15 +4507,22 @@ For every P18 model as above:
 
   DEF ≤ ρ + EXC + U_top + p,   with U_top = Σ_{λ_x = q−1} u(x) (the weight-1 pool) and p = #{x : λ_x > q}.
 
-- With ID-q, ANCHOR-q gives W₀ + p ≥ Σ_{λ_x ≤ q−2} (q − λ_x)u(x) ≥ 0, i.e. CORE₁. That gives Wilf for every pure P18
-  semigroup (p = 0, W = W₀): all of DKM Problem 1.8. It also gives CORE₁ for every generalized core at every depth.
+- With ID-q, ANCHOR-q gives W₀ + p ≥ Σ_{λ_x ≤ q−2} (q − λ_x)u(x) ≥ 0, i.e. CORE₁ (W₀ + p ≥ 0). CORE₁ implies Wilf
+  for the model (W = W₀ + p(ℓ − q), ℓ ≥ q + 1); it is STRONGER than Wilf. That would give Wilf for every pure P18
+  semigroup (p = 0, W = W₀), i.e. all of DKM Problem 1.8, and CORE₁ for every generalized core at every depth.
 - **Necessity audit.** ANCHOR-q discards only the pool of weight ≥ 2 (levels ≤ q − 2).
   - At q = 4 the external anchor theorem gives DEF ≤ ρ + EXC + A + 4|Ẑ ∩ Y₄| + h₄ + p. That is ANCHOR-4 with h₄ in
     place of the weight-1 pool of M₃; the latter is ≥ d₄ ≥ h₄ under the external residual hypotheses.
-  - On perfect-Sidon models (every incidence below level q − 1 used), the discarded pool is 0. There ANCHOR-q ⟺
-    CORE₁, which is implied by Wilf for T. Examples: the Eliahou–Fromentin B₃ family (q = 4, W₀ = −C(n,3)) and its
-    q = 5 analogue (offsets in [m/3, m/2), B₄ mod m).
-  - So a counterexample needs the lower pool to be the payer.
+  - On perfect-Sidon models (every incidence below level q − 1 used), the discarded pool is 0, and there
+    ANCHOR-q ⟺ CORE₁.
+  - CORRECTION (same day). CORE₁ (W₀ + p ≥ 0) is STRONGER than Wilf, not implied by it: W = W₀ + p(ℓ − q) with
+    ℓ − q ≥ 1. So Sidon-type models are the adversarial family. Examples: the Eliahou–Fromentin B₃ family (q = 4,
+    W₀ = −C(n,3), covered by the external theorem) and its q = 5 analogue (offsets in [m/3, m/2), dense 4-fold sums).
+  - Back-of-envelope (ρ = 0, q = 5, offsets in [m/3, m/2); level 3 is empty):
+    W₀ + p = (K+1)(5 + 4K + 3h₂ + T₃) − 6(1 + K + h₂ + T₃ + T₄) + m, where h₂ = |2O|, T₃ / T₄ count the new
+    3- / 4-sum positions. A B₄-type set needs 2m/3 ≳ T₄/δ, with δ the 4-sum density in its range. CORE₁ then fails
+    for δ above about 0.75 (K = 3), 0.83 (K = 5), 0.84 (K = 10); it cannot fail for K ≥ 20 (δ > 1 needed).
+    Whether such dense configurations exist is the decisive gate question (E338).
 - **Equality cases seen.**
   - m = 16, ρ = 5, B = {1,2,11,14}, q = 6: the 5 deficit positions are exactly [m − ρ, m), so DEF = ρ.
   - m = 26, ρ = 0, B = {2,3,10,17}, q = 6: DEF = EXC = 2.
@@ -4534,3 +4541,53 @@ For every P18 model as above:
   proof attempt, generalizing the external shell + PAYMENT. A deficit at depth q can sit at levels below q (for
   example, once-wrapped triples at level 4 with all sub-pairs wrapped, at q = 5), so the shell must handle every
   level.
+
+### ID-q for every numerical semigroup; Conjectures ANCHOR and CORE₁ (lead, 2026-10-20; checks E338)
+**ID-q holds for every numerical semigroup S** (PROVED, same proof). Let S have multiplicity m and conductor c > m.
+Put q = ⌈c/m⌉ and ρ = qm − c. Let g_1, …, g_K be the left primitives other than m, with offsets b_i = g_i − m of
+any size.
+- Adding g_i to the element at position x raises the level by 1 + κ with κ = ⌊(x + b_i)/m⌋ ≥ 0, possibly several
+  crossings at once.
+- With c_y = Σ_i κ_i(y)·β_y(i) (the crossing multiplicity of y's canonical parent incidences), the telescoping proof
+  gives verbatim:
+  E(S) = W₀(S) = ρ + Σ_x (q − λ_x)·u(x) + Σ_y (c_y − j_y).
+- Here p = #{x : λ_x > q} = r(S) is the number of right primitives. Positions beyond level q are exactly the
+  elements of [c, c + m) that are not sums of left primitives.
+- Check: asserted (with p = r) on all 14,396,307 S of genus ≤ 30 and on every S below. 0 mismatches.
+
+**Conjecture CORE₁ (every S with c > m):** E(S) + r(S) ≥ 0. Equivalently W(S) ≥ r(S)·(|L| − q − 1).
+- It implies Wilf, since W = E + r(|L| − q) and |L| ≥ q + 1 unless S ∩ [0, c) = {0, m, …, (q−1)m}. It is strictly
+  stronger.
+- Equality: e = 2 (E = W = 0, r = 0).
+- Literature (2026-10-20): no statement of E + r ≥ 0 or E ≥ −r found. Checked by web search, Bacher 2604.25051
+  (whose Conj 2.6 "r < ℓ ⇒ E ≥ 0" is different) and Delgado 1608.01353.
+
+**Conjecture ANCHOR (every S with c > m):** DEF ≤ ρ + EXC + U_top + r, with DEF, EXC, U_top as in ID-q (crossing
+multiplicities κ). By ID-q, ANCHOR gives E + r ≥ Σ_{λ_x ≤ q−2} (q − λ_x)u(x) ≥ 0, i.e. CORE₁.
+
+**Gate status.**
+- (1) Necessity. CORE₁ discards only r(|L| − q − 1). ANCHOR also discards the pool of weight ≥ 2.
+- (2) Falsification, 0 failures in all of the following:
+  - every S of genus ≤ 30 (14,396,307 S, depths 2–30);
+  - e = 3 exhaustive: m ≤ 60 with generators < 5m (481,764 S); m ≤ 36 with generators < 12m (800,118 S; depths
+    to 62);
+  - e = 4 random, m ≤ 120 (277,368 S); general random S (18,808);
+  - WQ's counterexamples ⟨15,22,24,25⟩ and ⟨100,125,236,287⟩: ANCHOR slack 17 and 52;
+  - the P18 depth-four DK and STAR models;
+  - exhaustive P18 models at q = 5–7 (E337);
+  - optimizers on P18 truncations at q = 4, 5, 6: min E + r = 7, 19, 16.
+- (3) Extremal families. CORE₁ held everywhere:
+  - the Fromentin W₀ = −1 examples: E + r = 3, 5, 6, 6, 7;
+  - ⟨30,44,48,49⟩₁₁₈: 8;
+  - Eliahou–Fromentin B₃ family: margin ≥ K + 1 by the position count, attained at ⟨14,22,23⟩₅₆ (= 3);
+  - minimal-span B₄ sets at q = 5: E + r = 24, 68, 178, 423 for K = 3–6. B₄ densities 0.71, 0.57, 0.42, 0.31 are
+    far below the ≈ 0.84 that failure needs;
+  - Delgado-type ⟨μ, γ, γ+1⟩_{pμ}, p ≤ 32, μ ≤ 300: the minimum over E < 0 is exactly p − 1 for every even
+    p ≤ 26 (and larger for odd p). Delgado's E = −383 example ⟨4505,8798,8816⟩₄₀₉₈₆₇ has r = 3,329 (computed
+    from E = kℓ + qr − c).
+- (4) A proof attempt is open. The depth-four case of ANCHOR for strip-free cores is essentially the kernel-checked
+  external anchor theorem.
+
+**Why this matters.** CORE₁ is a depth-independent inequality, stronger than Wilf, that the depth-four proof
+establishes on its core models. ID-q turns it into a single deficit-payment problem: wraps not refunded by crossing
+parents must be paid by ρ, excess crossings, unused top incidences and holes.
