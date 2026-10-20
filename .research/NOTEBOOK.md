@@ -3054,3 +3054,21 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Strategic consequence: on multiplicity-free Apéry sets these criteria are Wilf itself (E = 0, chains = tile
   columns). So "chains + overlap" reduces to the tile-column core and does not bypass it. The current core targets
   are height-3 MaxCL (codex P6–P8 residual) and the tile programme.
+
+## 2026-10-19 (latest++++++++++++) — Problem 1.8 (generators < 2m): the tight cases are NO-WRAP; one exact identity
+- **P18 tightness landscape (E291).**
+  - Exhaustive ⟨m, m+B*⟩, k = |B*| = 3, 4, m ≤ 60: min e·ℓ/c is 1.200 at q = 4 (k = 3: ⟨25,26,30,31⟩) and 1.341 at q = 4
+    (k = 4). It grows with q.
+  - Random scans, m ∈ [61, 301]: min 1.27 (k = 3), 1.56 (k = 4), 1.71 (k = 5), 1.89 (k = 6) over q ≥ 4.
+  - The extremal sets are digital: B = {0,1} + {0,a} with m = a², i.e. ⟨a², a²+1, a²+a, a²+a+1⟩ (ratios 1.200, 1.238,
+    1.267 at a = 5, 7, 10). Each residue i < m is represented by i itself, so they are NO-WRAP and Wilf is LEAN
+    (`wilf_of_apery_noWrap`).
+  - So within P18 the Wilf-tight region q ≥ 4 is the carry-free one, already proved. Carries raise the ratio in every
+    sample. Open: a monotonicity mechanism ("carries only help") that would make this a proof.
+- **Finite reduction (PROVED, elementary).** In P18, R_t ⊆ tB mod m and u_q = m, so m ≤ |qB| ≤ C(k+q, k). For fixed
+  (k, q), Problem 1.8 is a finite check. Combined with the deep-regime theorems this does not close any k ≥ 2, since
+  band bounds grow like kq² and C(k+q,k) like q^k/k!.
+- **CHAIN-U in penalty form (PROVED identity).** With Π(v) = Σ_a (depth_a(v) − 1)⁺·n_a and E(v) = n·∨Z(v) − v,
+      CHAIN-U ⟺ m·W ≥ Σ_{v∈Ap} min(E(v), Π(v)).
+  So CHAIN-U is Wilf with a nonnegative penalty, supported on elements with several factorizations, capped by their
+  power content. (Derivation: B_chain = dmℓ + dC2 − Σ_a n_a Q_a, Q_a = Σ_v depth_a(v), and Σ_a n_a Q_a = Σ_v n·∨Z(v).)
