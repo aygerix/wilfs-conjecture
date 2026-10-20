@@ -3049,6 +3049,13 @@ Wilf for c ∈ ((q−1)m, (q−1)m + e] at every depth.
   q = 7, genus ≤ 26), but W ≥ e − h holds on all 1,950,367 S (e ≥ 3) of genus ≤ 26.
 
 ### Conjecture T1 (lead, 2026-10-20) — the K-sum bound at every shift. CONJ; 0 failures (E294)
+**STATUS 2026-10-20: T1 is FALSE, including at the true shift (codex P15; lead-verified, E297).** S = ⟨13,22,23,50,51,60⟩
+(m = 13, e = 6, c = 57, g = 41, q = 5, p* = 5): Σ_Ap K_{p*} = 8 > 7 = m − e, so W = 39 < 40 = e − h + Λ. Ap is UF (binary
+cubic simplex in 22, 23 plus primitive spikes 50, 51, 60). Unbounded families with excess C(H−1, 2) at the true shift
+(T1-H, q = 2H − 1, e = (m+3)/2) and C(k+1, 3) at depth five (B_3 cores) are PROVED in src/scratch/gw/p15/P15_REPORT.md
+and checked for H ≤ 5. The lead's annealing finds independent failures with e = 5, 6 (⟨71,73,89,182,439⟩, p = 1, excess 4).
+None of them is a Wilf counterexample (W ≥ 27), and GEN-EH (W ≥ e − h) is not refuted. No failure is known for e ≤ 4.
+T1 holds at q ≤ 4 at p* (pointwise K ≤ 1). Every consequence below that assumes T1 at p* for q ≥ 5 is void.
 **Setting.** m = multiplicity, Ap = Ap(S, m), P' = minimal generators other than m, d = |P'|, e = d + 1,
 ν_a(x) = max{k : x − k n_a ∈ S}. For an integer p ∈ [1, m] let C_p(y) = #{z ∈ (0, y] : z ≡ p (mod m)} =
 ⌊(y − p)/m⌋ + 1 (y ≥ 0), and
@@ -3078,10 +3085,21 @@ Hence T1 ⇒ GEN-EH, and T1 ⇒ (Wilf holds whenever h ≤ e + Λ). Under T1, a 
   (m ≤ 16) and d = 3 (m ≤ 11).
 - Pointwise K_p ≤ 1 is false (K up to 4). Deficits are paid inside down-sets:
   **Conjecture T1-DOWN.** For every down-set D of (Ap, ≤_S): Σ_{x ∈ D, x decomposable}(K_p(x) − 1) ≤ 0.
+  **T1-DOWN is REFUTED (external review 2026-10-20; lead-verified, E296).** S = ⟨20,33,36⟩ (genus 112), p = 6,
+  D = {0,33,36,66,69,72,99,102,105,108,144} (a down-set of Ap; lex-max shape with column heights (5,3,2,1)):
+  Σ_D K_6 = 9 > 8 = #dec(D). Same D in ⟨20,33,36,147⟩ (e = 4): 9 > 8. T1 holds on both full Apéry sets
+  (Σ_Ap K_6 = 7 and 4; max_p Σ_Ap K_p = 10 against m − e = 17 and 16). The earlier evidence (genus ≤ 25) was too small.
   T1-DOWN ⟺ the deficits (K − 1)⁺ can be matched to credits (1 − K)⁺ of decomposables below them (Hall). Cover-only
   matching FAILS (⟨7,10,32⟩, p* = 2: credit at 30 must pay both 40 and 50).
 
 ### Lemma U (lead, 2026-10-20) — combinatorial core of T1. CONJ for d ≥ 2; PROVED for d = 1; reduction PROVED
+**STATUS 2026-10-20: REFUTED for d ≥ 2 (external review; lead-verified, E296).** m = 83, r = (19, 18), p = 2, D the
+order ideal with column heights (9,9,8,7,5,5,2,1) (46 cells, R injective mod 83): Σ_D K = 44 > 43 = #{|f| ≥ 2}.
+**The full-tile repair U-FULL (|D| = m, R bijective) is also REFUTED (lead, E296):** the lex-max factorization ideal of
+S = ⟨23,25,59,61,124⟩ (generator order 25, 61, 59, 124) is an order ideal with bijective residues and
+Σ_D K_2 − #dec = +1 (d = 4). T1 itself holds there with slack 6 (Ap is not UF). Consequence: no proof of T1 can pass
+through a single factorization ideal; the gain from ν ≥ f (the term E ≥ 0 below) is needed. The reduction below remains
+correct as an implication but its hypothesis is false.
 **Statement.** Let m ≥ 2, d ≥ 1, r ∈ [1, m−1]^d, p ∈ [1, m], C(y) = #{z ∈ (0, y] : z ≡ p (mod m)}. For f ∈ ℕ^d put
 R(f) = Σ_a f_a r_a and K(f) = C(R(f)) − Σ_a f_a·(C(R(f)) − C(R(f) − r_a)) (terms with f_a = 0 vanish). Let D ⊂ ℕ^d be a
 finite order ideal on which R is injective mod m. Then Σ_{f ∈ D} K(f) ≤ #{f ∈ D : |f| ≥ 2}.
@@ -3104,3 +3122,24 @@ Lemma U ⟺ Σ_f γ(f) − Σ_{a,f} β_a(f) ≤ #dec(D), where γ(f) = C(R(f)) �
 β_a(f) = c(R(f), j_a(f) r_a) (climb carries to the a-top, j_a(f) = steps from f to its a-top in D).
 **Stronger forms seen in data (CONJ).** TAIL: for every y > m, Σ_{z ≡ p, z ≥ y} Q(z) ≤ 0 on real Apéry sets (genus ≤ 18,
 every p); sampled Q is not monotone (MONO fails), so TAIL is not a monotonicity statement.
+
+### T1 and Wilf in residue and walk form — identities PROVED 2026-10-20 (lead; asserted numerically, E296)
+(The identities I1–I5 are unconditional. I6 is conditional on T1, which is now known to be FALSE for q ≥ 5; the B*, B_1 data stay as facts.)
+Notation as in Conjecture T1; res(y) ∈ [0, m−1] is y mod m; w_i is the Apéry element with w_i ≡ i; k(y) = ⌊y/m⌋;
+E = Σ_{x ∈ Ap}(Σ_a ν_a(x) n_a − x) ≥ 0 (E ≥ 0 because every factorization f of x has f ≤ ν(x)); slack(p) = (m − e) − Σ_Ap K_p.
+J(x) = Σ_{a : x + n_a ∉ Ap}(ν_a(x) + 1) − e and S_p = Σ_{0 < i < p} J(w_i) for p ∈ [1, m] (S_1 = 0, S_m = e − m).
+- (I1, top-residue identity) m·slack(p) = E + mp + e·m(m − 3)/2 − Σ_{a ∈ P'} Σ_{x ∈ Ap} res(top_a(x) − p).
+  Proof: C_p(y) = (y − p − res(y − p))/m + 1 for y ≥ 0; insert into the Abel form Σ K_p = e Σ_x C_p(x) − Σ_a Σ_x C_p(top_a x),
+  use Σ_a Σ_x top_a(x) − e Σ_x x = E (line reversal: Σ_x j_a(x) = Σ_x ν_a(x) on each a-line) and Σ_x res(x − p) = m(m−1)/2. ∎
+- (I2, mean slack) (1/m) Σ_{p=1}^{m} slack(p) = m − e + E/m. (Sum I1 over p; Σ_p res(y − p) = m(m−1)/2.) So T1 holds
+  on average over shifts for every S; the conjecture is about how the slack is distributed over p.
+- (I3, walk form) slack(p) = ΣJk − S_p (the J-form), so ΣJk = mean_p S_p + m − e + E/m and
+  **T1(p) ⟺ S_p − mean_p S_p ≤ m − e + E/m.** Also S_p = T_{<p} − e(p − 1), T_{<p} = #{(a, y) : res(top_a(y)) ∈ [1, p−1]}.
+- (I4, Wilf walk identity) **W(S) = ρ + Λ + E/m + mean_p S_p − S_{p*}**, i.e. Wilf ⟺ S_{p*} − mean_p S_p ≤ ρ + Λ + E/m.
+  (From the K-ID W = ρ + Λ − Σ K_{p*} and I3.) T1(p*) is the same walk bound with m − e in place of ρ + Λ.
+- (I5) T1(1) ⟺ Σ_a Σ_{x ∈ Ap}(k(top_a x) − k(x)) ≥ g. (At p = 1 the residue terms of I1 collapse: top_a(x) ≢ 0.)
+- (I6, all shifts) Under T1 at every p, W ≥ B* := e − h + Λ + Ω with Ω = max_p S_p − S_{p*} ≥ 0. Under T1(p*) and T1(1),
+  W ≥ max(B_h, B_1) with B_h = e − h + Λ and B_1 = B_h − S_{p*}. Both identities follow from W = e − h + Λ + ΣJk − S_{p*}.
+**Data (E296).** B* ≥ 0 and max(B_h, B_1) ≥ 0 on all 23,663,048 S (e ≥ 3) of genus ≤ 31. So T1(p*) ∧ T1(1) ⇒ Wilf
+in that range; B_1 < 0 in 66 S, B_h < 0 in 37 (LOW), never both. A crude sufficient condition (Λ ≥ h − e or
+Σ_{x ∈ Ap ∩ [qm, M]}(|ν(x)| + d) ≤ dh) fails once (⟨9,14,15,17⟩).

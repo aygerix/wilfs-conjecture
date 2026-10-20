@@ -3114,3 +3114,36 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
 - Lead decision: P15 = Lemma U (the combinatorial core of T1). T1 gives W ≥ e − h + Λ at every depth, so the depth-four
   problem becomes the LOW class ρ + Λ < m − e. LOW is tiny: 37 of 23,663,048 S at genus ≤ 31, none at q ≥ 5 there,
   all with W ≥ 2; level-k additive-basis constructions put LOW at q = 2k only while 2k·(#top pairs) < m − e.
+
+## 2026-10-20 — External review: Lemma U and T1-DOWN are false; U-FULL is false too; T1 stands (walk form)
+- The external review's two counterexamples are correct (E296, recomputed from the definitions). Lemma U fails at
+  m = 83 (46-cell injective ideal, 44 > 43), and T1-DOWN fails on the real semigroup ⟨20,33,36⟩ at p = 6 (9 > 8 on an
+  11-element down-set). Our tests were too small: d = 2 only up to m = 11, and T1-DOWN only up to genus 25 (this S has genus 112).
+  The compensation happens outside the down-set: T1 on the full Apéry set has slack 7–10 there.
+- The natural repair, U-FULL (full tiles only), is also false. The lex-max ideal of ⟨23,25,59,61,124⟩ has excess +1 at
+  p = 2. The annealing search found it in 20 s. The true T1 has slack 6 there. Any T1 proof must use ν (all
+  factorizations) and not a single factorization ideal; the E ≥ 0 term carries the difference.
+- New identities (PROOFS "residue and walk form"):
+  - The T1 slack, averaged over all m shifts, is exactly m − e + E/m (I2). T1 is a statement about how a fixed total
+    slack is spread over p.
+  - In walk form, T1(p) ⟺ S_p − mean S ≤ m − e + E/m (I3), and Wilf itself ⟺ S_{p*} − mean S ≤ ρ + Λ + E/m (I4).
+    Here S_p = Σ_{i<p} J(w_i) is the walk of top-loads minus e along residues.
+  - Extremal pattern: the box with r = (B, 1) is tight at p = 1. Its walk is a deep V: it descends at rate 2, then the top
+    B residues carry all the 1-tops.
+- Next: an adversarial search for T1 at m up to 200 (t1adv, 4 jobs on fejer). Then a proof attempt of the walk bound
+  that uses ν, starting from I4 directly (Wilf, not T1), since I4 is an exact reformulation of Wilf itself.
+
+## 2026-10-20 (later) — codex P15 returned: T1 itself is FALSE at the true shift; the K-sum line needs Λ
+- The codex P15 report was written before its process died; its closing summary and computational record (§9) are
+  missing. Every claim in it that I checked reproduces (E297): ⟨13,22,23,50,51,60⟩ has Σ K_{p*} = 8 > 7 = m − e (genus 41,
+  above our genus-31 census), and the families give excess C(H−1, 2) and C(k+1, 3).
+- The mechanism is codex's Section 2. Take m = 13, r = (9, 10), p = 5. The four binary cubics have residues 1..4, and
+  their three pairs have residues 5..7. At the threshold p the cubics' C-value equals that of their faces, so every cubic
+  has K = 2, while the faces have K = 0. Four deficits face three credits. Injectivity, completeness of residues and real
+  realizability do not prevent this.
+- What survives: T1 at q ≤ 4 (pointwise); the exact identities I1–I5; GEN-EH (unrefuted); Wilf in all examples, with Λ far
+  above the excess.
+- Lesson recorded: three successive "ΣK ≤ m − e"-type statements were global-looking. Each failed beyond the census range
+  (genus 31) because the census does not reach B_3-type cores; these need m ≥ 13 together with large Apéry elements.
+  Annealing finds the failures in seconds. **Rule: every new K-type conjecture gets annealed at m ≤ 200 before it is
+  recorded as plausible.**

@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-19, latest; codex P7 DONE: H1′ is FALSE (Sidon family, lead-verified); every pure-counting form of MaxCL is dead; next: P8 choice below)
+# STATE.md — handoff (updated 2026-10-20; T1/Lemma U line DEAD (codex P15 + external review, lead-verified); next: depth-four LOW closure, item 0d)
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -8,13 +8,24 @@ Frame:
 - So every unproved S has c > 3m, 3e < m and is not very deep. The goal is a lower bound on B in that window, uniform
   in e.
 Lines, in order of cost to decide:
-0d. **NEWEST (2026-10-20): Conjecture T1 / Lemma U (PROOFS).** T1: Σ_x K_p(x) ≤ m − e at every shift p. It gives
-    W ≥ e − h + Λ at every depth, hence GEN-EH and Wilf whenever ρ + Λ ≥ m − e. Lemma U is a combinatorial
-    statement (order ideals in ℕ^d with injective residues mod m); Lemma U ⇒ T1-DOWN ⇒ T1 is PROVED (lex-max factorizations).
-    - d = 1 is proved.
-    - Evidence: genus ≤ 31 (p*), genus ≤ 28 (all p), and all injective ideals with d = 2, m ≤ 11 and d = 3, m ≤ 9.
-    - Residual for Wilf: LOW = {ρ + Λ < m − e}. It has 37 S at genus ≤ 31, all at q ≤ 4.
-    - codex P15 = Lemma U (launched 2026-10-20). Lead: the LOW class.
+0d. **NEWEST (2026-10-20): the T1 / Lemma U line is DEAD (PROOFS "Conjecture T1", "Lemma U"; E296, E297).**
+    - Refuted, all lead-verified:
+      - Lemma U (review: m = 83; codex: m = 13, r = (9,10), p = 5, the binary cubic simplex);
+      - U-FULL (lead: ⟨23,25,59,61,124⟩);
+      - T1-DOWN (review: ⟨20,33,36⟩; codex: ⟨14,22,23⟩, e = 3);
+      - TAIL;
+      - **T1 itself at the true shift** (codex: ⟨13,22,23,50,51,60⟩, q = 5; unbounded families; lead annealing: e = 5, 6).
+    - Survives:
+      - T1 at q ≤ 4 (pointwise K ≤ 1; DepthFour.lean);
+      - GEN-EH (unrefuted);
+      - the exact identities I1–I5 (Wilf ⟺ S_{p*} − mean S ≤ ρ + Λ + E/m);
+      - no T1 or U-FULL failure is known with e ≤ 4 (annealing to m = 40, d ≤ 3).
+    - Lesson: anneal every new K-type conjecture at m ≤ 200 before trusting the genus census.
+    - codex P15: report written but the process died before its §9 (computational record). Resume it with the next
+      task and ask it to finish §9.
+    - **Next (lead):** the depth-four closure is the live frontier target, Wilf for 3m < c ≤ 4m. With DEPTH4-EH its
+      residual is exactly the LOW case Λ + Z < h − e at q = 4. Mechanism to test: Σ_{x ∈ Ap, x < c} τ(x) ≤ Λ, where τ(x) =
+      #{a : x + n_a ∉ Ap}. So LOW forces Ap ∩ [0, c) to be nearly closed under adding generators.
 0c. **NEW (2026-10-19, latest): Wilf for c ≤ 3m + e (DEPTH4-EH, PROVED; from codex P13 Theorem A, lead-verified E292).**
     - **LEAN (kernel-checked, standard axioms): c > 3m ⇒ e·ℓ ≥ 3m + e**, hence Wilf for 3m < c ≤ 3m + e
       (lean/Wilf/DepthFour.lean, `wilf_of_conductor_le_three_mul_add_embDim`). Elementary proof in PROOFS.
