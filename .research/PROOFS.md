@@ -4175,3 +4175,16 @@ Wilf for 3e ≥ m (Eliahou).
   - near-tightness of LAYER3: Q3 < G + 3·D4 − (e − 1)L.
   The last condition means the Macaulay-type layer-three bound is almost an equality, which happens only near "free"
   (B_3-like) configurations of the layer-one generators.
+- **Prefix/tail form (identity; E330).** For c > 3m, W = P + T, where P = e·|S ∩ [0, 3m)| − 3m (prefix Wilf) and
+  T = e·|S ∩ [3m, c)| − (c − 3m) (tail Wilf).
+  - LAYER3 is the statement P ≥ −3·D4.
+  - At P18 depth four: P = Q3 − 3d4 = 3δ3 − (e−3)δ2, where δ2 = C(e,2) − d2 and δ3 = C(e+1,3) − d3 − d4 (pair and
+    triple redundancy), and T = (e−1)L3 − d4 (the DK slack). The free model has P = 0, so there Wilf ⟺ T ≥ 0.
+  - Census (genus ≤ 30, e ≥ 3, every depth ≥ 4):
+    - T < 0 never occurs. It does occur at larger genus: the DK counterexample has T = −13 and P = 3027.
+    - P < 0 occurs: 34 S at depth four, more at greater depth. In every case T ≥ 1.67·(−P). Minimum ratios: 2.33 at
+      depth 4 (⟨9,19,21,22⟩), 2.0 at depth 5, 1.67 at depth 6 (⟨7,23,24,43⟩).
+  - So, empirically, the prefix and the tail are never deficient together.
+  - Heuristic: at P18 depth four, P < 0 needs level-four residues beyond the triple count. Those are unwrapped 4-sums,
+    whose four parents lie in X = S_3 ∩ [0, h); this pays T. A deficient tail (T < 0) needs carried triples outnumbering
+    k·|S_2 ∩ [0, h)| plus waste, and then pair/triple collisions make P large.
