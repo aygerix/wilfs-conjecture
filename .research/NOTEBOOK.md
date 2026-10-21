@@ -3982,3 +3982,43 @@ Consequences:
       N ≥ μ = Σsupp − Dep. Here N(σ_c) ≥ ? against μ = 2.
 - **Computation note.** With δ free, Gurobi is useless at d = 11: it cannot find the sum covers. With δ fixed (from
   the literature) and the lifts as integer variables, the model is small and exact.
+
+### 2026-10-20 (night, later): case B at m is rescued by other generators; CONJ CASEB-ALL; minimum W in the d = 11 slice is 722
+- **Level form of CH′ (exact; a rewriting of known identities, cf. PROOFS line ~2131 and ID-q).** For every S, every
+  minimal generator n and every factorization tile D_n of Ap(S, n):
+  - W = N_n(σ_c) − κ₀,n + Σ_{x∈D_n} om_n(x)·μ_n(x) and ℓ = Σ_x μ_n(x), with μ_n(x) = ⌈(c − w(x))/n⌉⁺ (the number of
+    elements of S below c in the class of w(x));
+  - om_n(x) is the total length of the columns topped at x.
+  Case A uses only Σ om·μ ≥ Dep. Each maximal cell below c adds at least |y| + d more.
+- **CASEB-ALL (CONJ, 2026-10-20).** For every numerical semigroup S, either
+  - (i) some minimal generator n has Σsupp_n ≤ Dep′_n (then SUPP-WILF at n, L4′, gives Wilf), or
+  - (ii) the lex tile of Ap(S, m) has height ≤ 2 (then Flat-MaxCL, LEAN, gives Wilf).
+  With L4′ and Flat-MaxCL it implies Wilf. It is weaker than L7, which was refuted.
+- **Evidence (E354).**
+  - Every height-3 case-B semigroup found is in case A at every generator n ≠ m, with Dep′_n − Σsupp_n between 72
+    and 985. This covers the 24 affine images of Haanpää's ℤ/63 cover (μ-maximizing lifts) and the W-minimizing one.
+  - S in case B at EVERY n do exist, but all have height 2 at m:
+    - ⟨13,14,16,18,19⟩ (W = 4; the full SUPP bound equals W at every n);
+    - ⟨30,63,69,71,72,76,86,91⟩ (c = 138, open regime);
+    - ⟨19,39,41,50,52,53⟩.
+    At n ≠ m their tiles have heights 3–7. So "case B ⇒ flat" fails at n ≠ m, and CASEB-ALL needs its height clause
+    at m only.
+  - Mechanism: at a generator n ≫ m the m-columns of Ap(S, n) are long (0, m, 2m, … all lie in Ap(S, n) below n), so
+    non-maximal tops, and with them Dep′_n, dominate.
+  - Danger zone: a height-3 case-B tile at m with small lifts (generators < 4m), which might stay near-flat at every
+    n. For Haanpää's δ every cubic shares a residue with a 2-sum (A + A = ℤ/63), and generators in (m, 2m) are then
+    impossible.
+- **Minimum W in the slice (minw_fix.py, Gurobi, proved optimal within the model).** Haanpää's δ for ℤ/63; height-3
+  case-B lex tile; unique factorizations; lifts ≤ 6. The minimum is W = 722, at
+  ⟨63,239,295,379,381,386,390,396,400,405,407,408⟩ (c = 754). Within this slice Wilf has very large slack.
+- **Equal-lift flat semigroups on near-perfect covers (exact formula; coverW.py).**
+  - Setting: S = ⟨m, km + δ_a⟩ with k ≥ 2 and a flat Apéry tile (the pairs chosen by minimal value).
+  - Formula: W = 2k·k_miss + d(ρ* + 1) − (d+1)κ̃, where k_miss = C(d+2,2) − m, κ̃ is the number of chosen pairs with
+    δ_a + δ_b ≥ m (loops included), and ρ* is the largest such residue.
+  - Since the carrying residues are distinct and nonzero, W ≥ 2k·k_miss + d − κ̃. So W < 0 would need cover density
+    above about 80% with every carrying pair-sum packed at low residues, which is incompatible with covering.
+  - Brute-force minima over all affine images and k ∈ {2,3,4}: W = 12, 41, 59, 56, 69, 154, 107 for
+    d = 5, 7, 8, 9, 10, 11, 12. All are in the open regime (c/m ≈ 4.0–4.6, 3e < m), and none has W < 0.
+- **Min-W model caveat.** minw_fix.py requires unique factorizations (strict domination), so it excludes equal-lift
+  semigroups whose cover collisions become ties. Its minima (flat 669, height-3 722 at d = 11) are minima of that
+  slice only.

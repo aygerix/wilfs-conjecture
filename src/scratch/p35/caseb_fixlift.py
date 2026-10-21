@@ -4,13 +4,15 @@ For FIXED m, delta: choose the tile D (cells = multisets of size <= 3 of generat
 <= 4 outside D is strictly dominated by the D-cell x of its residue: (y - x).k + j(x,y) >= 1, j = ((y-x).delta)/m.
 Strict domination on all y of size <= 4 covers the outer boundary of D, so D is the (unique-factorization) Apery tile.
 Maximizes mu = Sigma_supp - Dep subject to mu >= MINMU (default 1).  Prints S; verify independently with lifts.py.
-Usage: python3 caseb_fixlift.py m d1,..,dd K [TL] [MINMU] [OUTJSON]"""
+Usage: python3 caseb_fixlift.py m d1,..,dd K [TL] [MINMU] [OUTJSON] [H3MIN]
+  H3MIN: minimum number of cubic cells (default 1); -1 forbids cubic cells (flat tiles)."""
 import sys, json, itertools
 import gurobipy as gp
 from gurobipy import GRB
 m = int(sys.argv[1]); delta = [int(t) for t in sys.argv[2].split(',')]; d = len(delta); K = int(sys.argv[3])
 TL = int(sys.argv[4]) if len(sys.argv) > 4 else 600; MINMU = int(sys.argv[5]) if len(sys.argv) > 5 else 1
-OUT = sys.argv[6] if len(sys.argv) > 6 else None
+OUT = sys.argv[6] if len(sys.argv) > 6 and sys.argv[6] != '-' else None
+H3MIN = int(sys.argv[7]) if len(sys.argv) > 7 else 1
 cells = {s: list(itertools.combinations_with_replacement(range(d), s)) for s in range(5)}
 res = lambda c: sum(delta[i] for i in c) % m
 val = lambda c: sum(delta[i] for i in c)
@@ -32,7 +34,8 @@ for r in range(m):
     inD = [X[c] for c in byres[r] if len(c) in (2, 3)]
     if r in taken: mdl.addConstr(gp.quicksum(inD) == 0)
     else: mdl.addConstr(gp.quicksum(inD) == 1)
-mdl.addConstr(gp.quicksum(X[t] for t in cells[3]) >= 1)
+if H3MIN >= 0: mdl.addConstr(gp.quicksum(X[t] for t in cells[3]) >= H3MIN)
+else: mdl.addConstr(gp.quicksum(X[t] for t in cells[3]) == 0)
 cnt = lambda c, a: sum(1 for i in c if i == a)
 for r in range(m):
     L = byres[r]
