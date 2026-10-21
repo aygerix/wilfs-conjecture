@@ -6634,3 +6634,26 @@ Then n₂ = Σ_{c∈M₁} hit(c). Let Q1′ := {c ∈ M₁ : hit(c) = 0} and ov 
 - The crude forms Δ₃ ≥ 2n₃ and Δ₃ ≥ 2L₃ are FALSE (FAILED.md "N3"). Δ₃ ≥ L₃ + t holds at e ≤ 7 with ratio ≤ 0.61.
 - Sub-route: ZT1 ⟸ Q1R (|Q1′| ≤ N_< + ov; min slack 11, 13, 16 at e = 5–7). Q1N (|Q1′| ≤ N_<) has slack 8, 7, 7, 4 and
   is too lossy.
+
+**Conjecture K2 (CONJ; CHECKED, exhaustive residual e ≤ 8).** On the Q5 residual, K₂ ≥ 2t, where K₂ := #{3-multisets of
+A with sum ≥ 2m}.
+- Min K₂ − 2t is 0 at e = 5, 7 and 8, so equality occurs.
+- The tight cases have t = 1, K₂ = 2 and 3a_max = 2m + 1, 2a_max + a_{max−1} = 2m. Examples: m = 52,
+  A = [4,20,23,28,31,34,35]; m = 46, A = [3,15,18,25,27,30,31].
+- Use for Q3T:
+  - Δ₃ ≥ 4M₂ + Σ_{y ∈ K∖R} w_D(y), where R is the set of reps of M₂′ and w_D(y) is the weighted number of standard
+    parents of y.
+  - If no large square is missing, then w_D = 3 on K, and K2 gives Δ₃ ≥ 3(K₂ − t) ≥ 3t.
+  - The weighted form "missing wrap slots ≥ 2t" is FALSE (38 S at e = 7–8, min −6; e = 7: m = 34,
+    A = [3,15,18,27,30,31]), because missing large squares lower w_D. Their 4M₂ has to be used.
+- **Fact (PROVED), the step behind K2 when t = 1.** If t = 1 (so M₂′ = {r} and r < μ by M2-DOWN), then for every
+  a ∈ A the class r − a + m has σ = σ_r − a exactly.
+  - Proof: DOWN gives σ ≥ σ_r − a; σ < 2m since the class is not in M₂′; and 2m + r − a is the only value in
+    [2m + r − a, 2m) congruent to r − a. ∎
+  - Hence, if some σ_r − a with a ∉ parts(y_r) is a square value x, then x + e_a is a second cube ≥ 2m in class r.
+
+**Refined target QE.** By SPLIT, W = Δ₃ + (e·z + t − m) + [(e−1)(r+1) − (e+1)t] and e·z + t − m = N_< + n₃ + ov − |Q1′|.
+So Wilf on Q5 follows from Δ₃ ≥ |Q1′| + E⁺ with E := (e+1)t − (e−1)(r+1). This is weaker than Q3T, since E ≤ 2t.
+- E > 0 needs t > (e−1)(r+1)/(e+1), so |I ∩ [0, r]| < 2(r+1)/(e+1). In particular μ > (e+1)/2 or r < μ.
+- For μ ≤ (e+1)/2, E ≤ 0 is PROVED: |T ∩ [0, r]| ≥ ⌈(r+1)/μ⌉, and r + 1 − t ≥ |T ∩ [0, r]|. The target is then only
+  Δ₃ ≥ |Q1′| (data: |Q1′|/Δ₃ ≤ 0.1).
