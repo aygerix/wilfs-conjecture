@@ -66,6 +66,12 @@ Lines, in order of cost to decide:
             RT ≥ q·lead − K∞.
           - Γ-CAP3 + exchange law: at height ≤ 3, Γ ≤ e(|P|+2d+3)/3 − m, and −Σπ_pairs ≥ Γ − (e² − m). So a
             tile-split certificate needs (q−1)Γ_cap + ρ ≥ m − e².
+          - H3-UNIF (2026-10-21 early): the explicit full-pair height-3 signed certificate
+            W ≥ q·M₃ − C(e,3) + ρ − Σ_{C∩W_ρ}Λ_z (regular case). It attains the Γ-CAP3 bound (iii) exactly
+            (C(d+3,3) − C(d+1,3) = e²). Wrap-window risk: at ρ = m − 2 and q = 5, RT ≥ 0 needs θ_d ≤ θ*(d)
+            = 0.806/0.779/0.756/0.719/0.692 (d = 6/7/8/10/12), → 1/2.
+          - Proposition TX: the exact-τ certificate equals W − e·max{σ·Z : z·σ ≤ μ_z}. It is Wilf's
+            real-perturbation shadow (TX = W generically), so it is NOT a reduction.
           **(b) Refuted.** ASYM-RT (FAILED Pattern C; ⟨13,17,27,29⟩).
           **(c) Open, with evidence.**
           - **CONJ RT-NONNEG** (e ≥ 3, c > 4m ⇒ RT ≥ 0; with depth four ⇒ WILF). 0 negatives in E362–E367:
@@ -77,7 +83,8 @@ Lines, in order of cost to decide:
             - all extremal full-pair height-3 covers d ≤ 6.
             Proof deadline 2026-10-22.
           - **CONJ THIN3**: a Sidon-with-0 basis of order 3 of ℤ/m has m ≤ (4/5)C(d+3,3). Exhaustive maxima
-            θ = 0.750/0.686/0.714 (d = 3/4/5); d = 6 ≥ 0.655 (scan incomplete above 58).
+            θ = 0.750/0.686/0.714 (d = 3/4/5); d = 6: 0.655 (hill-climb finds nothing above 55); d = 7 ≥ 0.642
+            (hill-climb, m = 77). RT on all of them (26,749 S at d = 6; 338 at d = 7): min 55 and 113.
           - Observed: lead = Γ-CAP3 cap on every height-3 minimizer. The optimal dual is "anti-split pairs (total
             −e(|P|−d)/3), over-split cubics".
           **(d) Reproduce.** fejer ~/wilf/p36 (scripts in src/scratch/p36): kunz_face, facernd, kunz_cert_milp (runRT.sh,
