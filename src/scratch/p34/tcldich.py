@@ -5,6 +5,8 @@ Together with the trivial V = N - kappa0 >= -kappa0 >= -Sigma_supp this gives DE
 import sys, random, math
 sys.path.insert(0, '.')
 from tile import build
+def HGT(m, G):
+    R = build(m, G); return max(sum(x) for x in R[2])
 def stats(m, D, delta):
     N = len(delta); Ds = set(D); up = lambda x, b: tuple(x[t] + (t == b) for t in range(N))
     om = {x: 0 for x in D}
@@ -51,16 +53,27 @@ if __name__ == '__main__':
             best = None
             for sg in ((1, -1) if MIR else (1,)):
                 v, dep, ss = stats(m, list(M), [(sg * g) % m for g in gens])
-                if dep >= ss: continue
-                sc = v / m + 0.5 * (dep / ss)     # prefer small Dep/Ssupp too
+                sc = (dep - ss + 1) / m if dep >= ss else v / m - 1.0   # descend to case B, then minimize V there
                 if best is None or sc < best[0]: best = (sc, v, dep, ss, sg)
-            if best is None: return None
             return best + (c, gens)
         for rs in range(NR):
             v = None
-            for _ in range(3000):
+            for _ in range(20000):
                 m = rnd.randint(MMIN, MMAX); k = rnd.randint(DMIN, max(DMIN, min(EMAX - 1, (m // 3 - 2) if OPEN else m - 1)))
-                G = sorted(rnd.sample(range(m + 1, rnd.choice([2, 3, 5]) * m + 2), min(k, m)))
+                u = rnd.random()
+                if u < 0.4:     # postage-stamp start: small residues, all generators in (m, 2m)
+                    G = sorted(m + x for x in rnd.sample(range(1, max(k + 1, m // rnd.choice([2, 3, 4, 6]))), k))
+                elif u < 0.7:   # near-Sidon start: residues with few coincident pair sums, lifted to (m, 3m)
+                    R = []
+                    for _t in range(200):
+                        if len(R) == k: break
+                        x = rnd.randrange(1, m)
+                        sums = {(a + b) % m for a in R for b in R} | set(R) | {0}
+                        if x not in sums and all((x + a) % m not in sums for a in R) and (2 * x) % m not in sums: R.append(x)
+                    G = sorted(x + rnd.choice([1, 1, 2]) * m for x in R)
+                else:
+                    G = sorted(rnd.sample(range(m + 1, rnd.choice([2, 3, 5]) * m + 2), min(k, m)))
+                if len(G) < 2: continue
                 v = value(m, G)
                 if v is not None: break
             if v is None: continue
@@ -76,7 +89,7 @@ if __name__ == '__main__':
                 if v2 is None: continue
                 if v2[0] <= v[0] or rnd.random() < math.exp((v[0] - v2[0]) / T):
                     cur, v = (m, v2[-1]), v2
-                    if top is None or v[1] < top:
-                        top = v[1]; print("best minV %d Dep %d Ssupp %d sign %d m=%d c=%d e=%d gens=%s" % (v[1], v[2], v[3], v[4], m, v[5], len(v[6]) + 1, v[6]), flush=True)
+                    if top is None or v[0] < top:
+                        top = v[0]; print("best score %.4f caseB %d minV %d Dep %d Ssupp %d sign %d m=%d c=%d e=%d h=%d gens=%s" % (v[0], v[2] < v[3], v[1], v[2], v[3], v[4], m, v[5], len(v[6]) + 1, HGT(m, v[6]), v[6]), flush=True)
                 T = max(0.001, T * 0.995)
             if rs % 20 == 0: print("restart", rs, "best", top, flush=True)

@@ -1,4 +1,4 @@
-# STATE.md — handoff (updated 2026-10-21 night, latest: SUPP-WILF PROVED — W ≥ Dep − Σ(|supp|−1)⁺; residual = simplex-like tiles (A00000000))
+# STATE.md — handoff (2026-10-21 night, PAUSED by user: SUPP-WILF PROVED; residual = case B (Dep < Σsupp), CONJ CASEB-FLAT (A00000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,15 +54,34 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
-      (A00000000) **NEWEST: SUPP-WILF PROVED (PROOFS "SUPP-WILF").** For every S and every factorization tile D:
-          W ≥ Dep − κ₀ + N ≥ Dep − Σ_{x∈D}(|supp x| − 1)⁺. So Wilf holds whenever Σsupp ≤ Dep, a condition on
-          the shape of D only. This covers all 3,000 random S tested and every known Tile-CL failure.
-          - Residual: simplex-like Apéry sets (Dep < Σsupp), e.g. near-perfect B_h bases.
-          - NEXT:
-            (1) gate TCL-DICHOTOMY (Tile-CL whenever Dep < Σsupp) with annealers (tcldich.py ann);
-            (2) describe the structure of the regime Dep < Σsupp (few non-maximal tops, high support);
-            (3) prove Tile-CL or DEP-ALL there, using inversions N (at least 6 at every phase on the near-B₂ mirror);
-            (4) Lean queue: SUPP-WILF. It is short: CH′, the sharp bounds, the inversion identity, column reflection.
+      (A00000000) **NEWEST — PAUSED HERE (user request, 2026-10-21 night). SUPP-WILF PROVED (PROOFS "SUPP-WILF").**
+          **(a) Proved.**
+          - For every S and every factorization tile D:
+            W ≥ Dep − κ₀ + N ≥ Dep − Σ_{x∈D}(|supp x| − 1)⁺ = m − 1 + Q − Σ_{y∈A}|y|.
+            So Wilf holds whenever Σsupp ≤ Dep, a condition on the shape of D only.
+          - The same chain works with Ap(S,n) for every minimal generator n (multin.py; Dep′_n restricted to witnesses
+            g_a ≥ n or r(t) ≥ n − g_a).
+          - Exact identities: V = N − κ₀; κ₀ = Σ axis overflows; mirror κ₀(δ) + κ₀(−δ) = Σsupp; phase walk.
+          **(b) Refuted this session (FAILED Pattern C):** CR-TILE (CR_DEP), PD+, ID, KAPPA-DEP.
+          **(c) Conjectures and gaps.**
+          - **CASEB-FLAT** (case-B tiles have height ≤ 2). Together with SUPP-WILF and Flat-MaxCL it gives Wilf.
+            Evidence (E350):
+            - no case-B tile for d = 3 (m ≤ 14) or d = 4 (m ≤ 11);
+            - all ⟨m, m+δ⟩: d = 5 (m ≤ 24) only m = 19 (height 2); d = 6 (m ≤ 23) none;
+            - annealers at height ≥ 3: none.
+            Threat: near-perfect modular order-2 bases at large d (margin ≥ d).
+          - TCL-DICHOTOMY (Tile-CL in case B) and DEP-ALL: open, 0 failures.
+          - CR-δ: open, 0 failures.
+          **(d) Reproduce.** fejer ~/wilf/p34, scripts in src/scratch/p34 (E349, E350). No jobs are running.
+          **(e) Three active approaches, in priority order.**
+            1. Prove CASEB-FLAT. Use the one-step difference body (Σ_∂(deg⁻_I − 1) ≤ 0) and the case-A form
+               Σ_{z≠0}(α(z) − 1) ≤ Q. Show that a height-≥3 cell forces enough non-maximal tops. First settle the
+               threat: the best size of order-2 bases of ℤ/m (literature) versus the margin bound C(d,2) − 3k.
+            2. If CASEB-FLAT fails: extend Flat-MaxCL to near-B₂ tiles with a few height-3 cells, or use the full
+               bound W ≥ Dep − κ₀ + N with inversions (N ≥ 4–20 on all case-B S seen).
+            3. Lean: formalize SUPP-WILF (short; codex from 2026-10-25), then CASEB-FLAT's statement.
+          **(f) First precise task next session.** Literature check on minimal order-2 additive bases of ℤ/m (constant c
+            in |A| ~ c√m). Then run cbexh.py on d = 6 m = 24..28 and on d = 7, 8 near C(d+2,2), targeted at margin ≥ d.
       (A0000000) **NEWEST (2026-10-21, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
           (NOTEBOOK "CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form"; FAILED Pattern C; E349.)
           - CR-TILE is FALSE: ⟨19,39,41,50,52,53⟩ (c = 88, 3e < m, c > 4m), a height-2 near-B₂ tile in ℕ⁵, slack −4. That

@@ -3887,3 +3887,32 @@ Consequences:
   - **CONJ TCL-DICHOTOMY**: Dep < Σsupp ⇒ min_σ V ≥ 0.
   - It is at least as strong as DEP-ALL on that regime.
   - Gate: annealer tcldich.py running (fejer, logs tdx_*).
+
+### The residual after SUPP-WILF: case B is rare and, so far, only of height 2 (CONJ CASEB-FLAT)
+- **Semigroup form of SUPP-WILF (exact rewriting).**
+  - Σ_b |F_b| = d|A| + Q, where |F_b| is the number of b-columns and Q = #{(t,b) : t a b-top, t ∉ A}.
+  - So Dep − Σsupp = m − 1 + Q − Σ_{y∈A}|y|, and **W ≥ m − 1 + Q − Σ_{y∈A}|y|**.
+  - Equivalently, W ≥ e·m − 1 − (e−1)|A| − Σ_{w∈Ap}|supp w| − Σ_{y∈A}|y| (supports and lengths of the chosen
+    factorizations).
+  - Case A ⟺ Σ_{z≠0}(α(z) − 1) ≤ Q, where α(z) = #{b ∈ supp z : t_b(z) ∈ A}.
+- **Census of case B (Dep < Σsupp):**
+  - no lattice tile at all for d = 3 (m ≤ 14) or d = 4 (m ≤ 11) (casebx.py, exhaustive);
+  - over all S = ⟨m, m+δ⟩ (cbexh.py, exhaustive): d = 5, m = 14..24 gives case B only at m = 19 (6 S, height 2,
+    margin 4, e.g. ⟨19,21,22,26,27,29⟩); d = 6, m = 18..23 none; d = 7, m = 24 none in 200,000 random δ;
+  - other known case-B S: ⟨13,14,16,18,19⟩ (height 2, d = 4, not open), ⟨19,39,41,50,52,53⟩ and its mirror;
+  - annealers aimed at case B at height ≥ 3 (caseb.py, tcldich.py two-stage; d ≤ 12, m ≤ 120, both signs) found
+    none; the closest points are equalities Dep = Σsupp, all d = 3 postage-stamp tiles: ⟨16,17,20,21⟩,
+    ⟨25,26,30,31⟩, ⟨49,51,56,58⟩, ⟨25,47,68,69,76⟩.
+- **CONJ CASEB-FLAT:** every lattice tile with Dep < Σsupp has height ≤ 2.
+  - With SUPP-WILF and Flat-MaxCL (LEAN) it would prove Wilf for every numerical semigroup.
+  - Mechanism candidates:
+    - the one-step difference body Σ_{z∈∂}(deg⁻_I(z) − 1) ≤ 0 forbids height-≥3 near-simplices (|I − Δ₁| ≈ d³/2 > m);
+    - each height-3 cell placed on a near-B₂ tile costs about d − 1 of case-B margin.
+  - Threat: if modular order-2 bases with |A| < √(3m) exist for large d, near-B₂ tiles could have margin ≥ d, and a
+    few height-3 cells would keep them in case B. The only case-B margin seen so far is 4 = d − 1 at d = 5.
+- **Other minimal generators (multin.py).** CH′ and the SUPP bound hold with Ap(S,n) for every minimal generator n. A
+  non-maximal top counts in Dep′_n only if it has a witness g_a ≥ n, or r(t) ≥ n − g_a.
+  - On the mirror ⟨19,35,37,43,45,61⟩, n = 35 is in case A (margin 24).
+  - On ⟨19,39,41,50,52,53⟩ every n is in case B.
+  - On ⟨13,14,16,18,19⟩ the bound Dep′ − κ₀ + N equals W = 4 for every n.
+
