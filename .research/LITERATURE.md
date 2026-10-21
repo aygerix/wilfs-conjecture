@@ -1,5 +1,22 @@
 # LITERATURE.md — what is PROVED about Wilf's conjecture (as of 2026-10-17; e = 4 corrections 2026-10-18)
 
+> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
+> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
+>   - Work that cannot reach that goal is a side project.
+>   - Side projects are forbidden unless the user explicitly approves them.
+> - **Scope line.** Before starting any target, computation or proof attempt, write:
+>   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
+>   If the answer is "none", do not start. Ask the user.
+> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
+>   the user at that moment and wait for approval.
+> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
+>   real money.
+> - **The violation behind this rule.** On 2026-10-21, about 13 hours (04:30–17:30 EDT) of tokens and fejer compute
+>   went into Q5 instead of the ordered backward Gurobi strategy.
+>   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3.
+>   - No reduction connects Q5 to all S.
+>   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
+
 Scope: bounded literature check (Phase 0). Goal: exact hypotheses of every known result, the
 standard tools, the known-false strengthenings, and the precise uncovered region.
 

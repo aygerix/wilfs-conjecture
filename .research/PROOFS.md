@@ -1,5 +1,22 @@
 # PROOFS.md — precise statements, proofs, dependency graph, status
 
+> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
+> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
+>   - Work that cannot reach that goal is a side project.
+>   - Side projects are forbidden unless the user explicitly approves them.
+> - **Scope line.** Before starting any target, computation or proof attempt, write:
+>   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
+>   If the answer is "none", do not start. Ask the user.
+> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
+>   the user at that moment and wait for approval.
+> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
+>   real money.
+> - **The violation behind this rule.** On 2026-10-21, about 13 hours (04:30–17:30 EDT) of tokens and fejer compute
+>   went into Q5 instead of the ordered backward Gurobi strategy.
+>   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3.
+>   - No reduction connects Q5 to all S.
+>   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
+
 Status legend: PROVED (on paper, here) | CHECKED (exact computation, stated range) | CONJ | FALSE | LEAN (kernel-checked)
 
 Notation. S ≠ ℕ numerical semigroup, multiplicity m ≥ 2, conductor c, F = c−1, genus g, n = ell = c − g,
@@ -5684,7 +5701,7 @@ Equality holds in the first inequality when e(S′) = e(S) and the argmax residu
 - Novelty: unchecked. Related framework: BGOW 2020, Wilf on faces of the Kunz polyhedron and the "Wilf game" (LITERATURE
   §2.5); Zhai's CH′. Literature check pending before any claim.
 
-### q = 5, height ≤ 3: the level budget and the level-1 count (2026-10-21, later)
+### q = 5, height ≤ 3: the level budget and the level-1 count (2026-10-21, later) [SCOPE: Q5 only; no reduction to all S]
 Let q = 5, so c = 5m − ρ = 4m + r + 1 and max Ap = w_r = 5m + r.
 
 **Lemma LEVEL-BUDGET (PROVED).** Every Apéry element w_s = m k_s + s satisfies k_s ≤ 5, and k_s = 5 only for s ≤ r.
@@ -6462,7 +6479,7 @@ This is the induction-based half of the split (MU-LO′ for μ ≤ e, A1 for μ 
   - By Hall this is equivalent to the V-local inequalities Σ_{s: supp x_s ⊆ V} dem(s) ≤ Σ_{squares meeting V} cap,
     for every V ⊆ A.
 
-### ZW: Wilf on Q5 from the covering set alone (2026-10-21, E387)
+### ZW: Wilf on Q5 from the covering set alone (2026-10-21, E387) [SCOPE: Q5 only; no reduction to all S; NOT a target]
 Notation: z := #{s : σ_s < m} = |3A′ ∩ [0, m)|.
 
 **Lemma ZW-RED (PROVED).** On Q5, W(S) ≥ Δ₃ + e·z − c_U ≥ Δ₃ + e·z − 2m.
@@ -6536,7 +6553,7 @@ h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
 - In case (b) with disjoint supports no collision is forced. Example: e = 8, m = 54, 33+33+41 → 18+44+52. There the
   collision 7+33+41 = 29+52 comes from the level-2 relation 18+44 = 29+33.
 
-### The height split of W on Q5: W = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)t] (2026-10-21, E388)
+### The height split of W on Q5: W = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)t] (2026-10-21, E388) [SCOPE: Q5 only; no reduction to all S; NOT a target]
 Notation (S ∈ Q5): for a class c ∈ [0, m) put η(c) := ⌊σ_c/m⌋ ∈ {0, 1, 2}.
 - Z := {c : η = 0} (so z = |Z|), M₁ := {c : η = 1}, M₂′ := {c : η = 2}, t := |M₂′|.
 - max σ = 2m + r, and r is itself the class of max σ (Lemma C>M). U = {x : x ≥ σ_{x mod m}}.
