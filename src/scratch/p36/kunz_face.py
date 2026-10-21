@@ -11,6 +11,8 @@ Relaxations: minimize the Wilf functional  Wf(y) = e(q + sum_s y_s) - qm + rho  
   UA   RT plus y_g = mu_g exactly for every minimal generator g (generator sizes);
   AM   UA plus Apery minimality on non-tight pairs: y_i + y_j - y_s <= q - 1 + tau_ij;
   FX   exact face at fixed q: tight pairs y_i + y_j - y_s = q + tau_ij, non-tight <= q - 1 + tau_ij, generators free;
+  RT2  RT with the one-cell upper window: y_i + y_j - y_s <= q + eps+_s, eps+_s = [r_s <= m - rho - 2]
+       (tau = +1 needs r_i + r_j = m + rho + r_s <= 2m - 2);  UA2 = RT2 + generator levels;
   TX   tight equalities only (FX without the non-tight constraints): the best signed certificate with EXACT tau
        (tau is determined by the residues and r), i.e. max_pi q*Gamma + rho + sum pi*tau  s.t. L - beta <= e.
 Each value is a lower bound for W (the true mu is feasible), and by LP duality value >= 0 IS a certificate (the dual
@@ -49,7 +51,7 @@ def face(G, verbose=False):
             assert mu[i] + mu[j] - mu[s] == q - J + tau and tau in (-1, 0, 1)
             pairs.append((i, j, s, J, tau))
     out = {}
-    for name in ('R', 'RT', 'UA', 'AM', 'FX', 'TX'):
+    for name in ('R', 'RT', 'UA', 'AM', 'FX', 'TX', 'RT2', 'UA2'):
         M = gp.Model(); M.Params.OutputFlag = 0; M.Params.Threads = 2
         y = M.addVars(range(1, m), lb=0)
         for (i, j, s, J, tau) in pairs:
@@ -58,9 +60,10 @@ def face(G, verbose=False):
                 if name in ('FX', 'TX'): M.addConstr(lhs == q + tau)
                 else:
                     M.addConstr(lhs >= q - (1 if rp[s] >= m - rho else 0))
-                    if name != 'R': M.addConstr(lhs <= q + 1)
+                    if name in ('RT2', 'UA2'): M.addConstr(lhs <= q + (1 if rp[s] <= m - rho - 2 else 0))
+                    elif name != 'R': M.addConstr(lhs <= q + 1)
             elif name in ('AM', 'FX'): M.addConstr(lhs <= q - 1 + tau)
-        if name in ('UA', 'AM'):
+        if name in ('UA', 'AM', 'UA2'):
             for g in gens: M.addConstr(y[g] == mu[g])
         M.setObjective(e * (q + gp.quicksum(y.values())) - q * m + rho, GRB.MINIMIZE); M.optimize()
         out[name] = M.ObjVal if M.Status == GRB.OPTIMAL else None
@@ -71,9 +74,9 @@ def face(G, verbose=False):
     for s in sorted(range(1, m), key=lambda x: w[x]):
         hgt[s] = 1 if s in gens else max(hgt[i] + hgt[j] for (i, j, t, J, tau) in pairs if t == s and J == 0)
     out.update(e=e, c=c, r=r, h=max(hgt))
-    print("m=%d e=%d c=%d q=%d rho=%d r=%d h=%d W=%d | R=%s RT=%s UA=%s AM=%s FX=%s TX=%s | gens=%s" % (
+    print("m=%d e=%d c=%d q=%d rho=%d r=%d h=%d W=%d | R=%s RT=%s RT2=%s UA=%s UA2=%s AM=%s FX=%s TX=%s | gens=%s" % (
         m, e, c, q, rho, r, max(hgt), W,
-        *[('%.3f' % out[n]) if out[n] is not None else 'inf' for n in ('R', 'RT', 'UA', 'AM', 'FX', 'TX')],
+        *[('%.3f' % out[n]) if out[n] is not None else 'inf' for n in ('R', 'RT', 'RT2', 'UA', 'UA2', 'AM', 'FX', 'TX')],
         sorted(w[g] for g in gens)), flush=True)
     if verbose and 'R_y_gens' in out: print("   R optimum on generators (y, true mu):", out['R_y_gens'], flush=True)
     return W, out

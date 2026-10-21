@@ -4129,3 +4129,20 @@ Consequences:
   - CONJ RT-NONNEG (e ≥ 3, c > 4m ⇒ RT ≥ 0). It implies Wilf with depth four.
   - Its height-3 core: CONJ THIN3, a Sidon-with-0 basis of order 3 of ℤ/m has m ≤ (4/5)C(d+3,3).
   - Also needed: an explicit dual attaining the Γ-CAP3 cap with cost ≈ C(e,3) + (Λ−1)·|C ∩ W_ρ|.
+
+### 2026-10-21: the RT barrier is genuine; one-cell τ-window repairs it (RT2); exact UA dual
+- **Reviewed by the advisor** (pushed commits 8c5a3d2…b282713). Advice: compare RT and UA; THIN3 needs d ≥ 2 (d = 2 max
+  m = 8 = (4/5)·10, tight); THIN3 does not by itself imply RT ≥ 0; stop TX.
+- **Proved.**
+  - FAKE3: explicit primal fakes under graded height ≤ 3. They bound every signed certificate (weak duality), including
+    signed cubic weights.
+    - RT equals the BASE fake on ⟨37,75,…⟩ and the WINDOW fake on the d = 6 minimizers.
+    - So the θ → 1/2 window threshold is a real RT barrier.
+  - τ-WINDOW: τ = +1 forces r_s ≤ m − ρ − 2, which gives RT2.
+    - The window fake needs τ = +1 on window pairs, which positions forbid.
+    - RT2 lifts 55 → 90 and 63 → 98 with no generator levels.
+  - UA-DUAL: generators are priced at μ_g. UA contains the unit truncation U.
+- **Observed.** On the d = 5, 6, 7 cover families, min RT2 = min UA = min UA2 (59, 90, 169). On individual S, UA > RT2 in
+  2,371 of 6,923 cases.
+- **New question.** RT2-NONNEG. Its height-3 thresholds are 3/4 (full window) and 4/5 (small window) asymptotically, with
+  exact finite forms in PROOFS. Data θ_8 ≥ 0.612.

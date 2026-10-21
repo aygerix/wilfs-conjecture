@@ -5443,3 +5443,74 @@ r_x = (x − r − 1) mod m, so τ depends only on residues and the conductor re
   - RT-NONNEG: strongest and cheapest; at risk only via THIN3 at large d.
   - Then UA-NONNEG.
   - Then TX-NONNEG, which is essentially Wilf.
+
+### RT barriers are real; the one-cell upper window RT2; the exact UA dual (2026-10-21)
+**Lemma τ-WINDOW (PROVED).** Every tight pair (i, j → s) satisfies:
+- τ = −1 ⟹ r_s ≥ m − ρ (s ∈ W_ρ; this was already used in RT);
+- τ = +1 ⟹ r_s ≤ m − ρ − 2.
+- Proof: τ = (r_i + r_j − r_s − ρ)/m with 0 ≤ r_i, r_j ≤ m − 1. τ = −1 needs r_i + r_j = r_s + ρ − m ≥ 0. τ = +1 needs
+  r_i + r_j = m + ρ + r_s ≤ 2m − 2. ∎
+- So each tight relation is determined up to one unit by the position of its sum cell alone:
+  - τ ∈ {−1, 0} on W_ρ;
+  - τ = 0 at r_s = m − ρ − 1;
+  - τ ∈ {0, 1} for r_s ≤ m − ρ − 2.
+- Positions depend only on the residue and the conductor residue r (r_s = (s − r − 1) mod m), so this is level-free.
+- Define ε⁺_s = [r_s ≤ m − ρ − 2] and
+    RT2 = min{e(q + Σy) − qm + ρ : y ≥ 0, q − ε_s ≤ y_i + y_j − y_s ≤ q + ε⁺_s on tight pairs}.
+  Then R ≤ RT ≤ RT2 ≤ UA2 ≤ W and RT2 ≤ TX.
+- Its dual is CERT± with the anti-split cost refined to ε⁺_{s_p}: anti-splitting into a cell with r_s ≥ m − ρ − 1 is free.
+- UA2 = RT2 + (y_g = μ_g on generators).
+
+**Proposition FAKE3 (PROVED): explicit primal fakes, hence upper bounds for EVERY signed certificate.**
+- Weak duality: a feasible y bounds every certificate, whatever the signs of the pair and cubic weights. This covers the
+  advisor's point about signed cubic weights.
+- Hypothesis H (graded height ≤ 3):
+  - every Apéry element is a sum of ≤ 3 minimal generators;
+  - all factorizations of each Apéry element have the same length h(s);
+  - hence every tight pair has h(i) + h(j) = h(s).
+  - Unique factorization is NOT required. Write P, C for the height-2 and height-3 elements; d = e − 1.
+- (a) BASE: y = (2q+1)/3 on generators, (q−1)/3 on P, 0 on C is RT-feasible. Hence
+    RT ≤ e(q + (2q+1)d/3 + (q−1)|P|/3) − qm + ρ = (q − 1)Γ_cap + ρ − (m − e²),   Γ_cap = e(|P| + 2d + 3)/3 − m.
+  - It is RT2-feasible as soon as ε⁺_p = 1 for every p ∈ P.
+  - Check: generator pairs give 2u − v = q + 1; (p, generator) pairs give u + v = q.
+- (b) WINDOW (q ≥ 3): y = 2q/3 on generators, q/3 − δ_p on p ∈ P, 0 on C is RT-feasible.
+  - Here δ_p = 1 iff every height-3 element above p lies in W_ρ (vacuously if there is none).
+  - Hence RT ≤ e(q + 2qd/3 + Σ_p (q/3 − δ_p)) − qm + ρ.
+  - It is NOT RT2-feasible once some p has δ_p = 1 and ε⁺_p = 0, since it needs τ_p = +1.
+- (c) RT2-WINDOW (q ≥ 2): if every element of P ∪ C lies in W_ρ, then y = (2q−1)/3 on generators, (q−2)/3 on P, 0 on C
+  is RT2-feasible (2u − v = q, u + v = q − 1). Hence
+    RT2 ≤ (q − 1)Γ_cap + ρ − (m − e²) − e(2d + |P|)/3.
+  - Proof by the two displayed constraint checks. No tested S yet has all of P ∪ C in W_ρ, so (c) has not been checked
+    against an instance.
+- Attained (rtobs3.py, E369):
+  - RT = BASE on ⟨37,75,78,80,88,89⟩ (84) and ⟨16,17,20,21⟩ (5.333);
+  - RT = WINDOW on the two d = 6 cover minimizers (55, 63);
+  - RT = min(BASE, WINDOW) on 22 of the 33 graded height-3 S among 326 d = 6 cover semigroups.
+- **So the RT barriers are genuine, not artefacts of H3-UNIF:**
+  - small window: θ ≲ 4/5 at q = 5;
+  - full window: θ → 1/2 (H3-UNIF and (b) coincide there).
+  - An S with graded height 3, q = 5, all of P ∪ C in W_ρ, and density above θ*(d) would make RT < 0. No such S is
+    known; the densest covers have θ_d = 0.655, ≥ 0.642, ≥ 0.612 for d = 6, 7, 8.
+- **RT2 removes the full-window fake.** Its full-window bound (c) needs only θ ≲ 3/4 asymptotically. At ρ = m − 2, q = 5
+  the threshold is m ≤ (4T + e² − 2 − e(2d + C(d+1,2))/3)/4 with T = C(d+3,3): θ ≤ 0.911, 0.896, 0.864, 0.815 for
+  d = 6, 7, 10, 20.
+  - The small-window base barrier (a) still applies to RT2: θ ≲ 4/5, exactly 5m ≤ 4T + e² + ρ at q = 5.
+  - Observed on 326 d = 6 cover S: min RT 55, min RT2 = min UA = min UA2 = 90. RT2 ≥ UA on 237 of them.
+
+**Proposition UA-DUAL (PROVED, LP duality).**
+    UA = max_π  qΓ(π) + ρ − Σ_{π_p>0} π_p ε_{s_p} − Σ_{π_p<0} |π_p| + Σ_{g generator} (e − L_g(π))·μ_g
+subject to L_x − β_x ≤ e for every NON-generator x. UA2 is the same with anti-split cost ε⁺_{s_p}.
+- Generators are priced at μ_g instead of capped at load e.
+- π = 0 gives exactly the unit truncation U = e(q + Σ_g μ_g) − c. So UA contains both U and RT.
+- The window fake (b) is UA-feasible iff μ_g = 2q/3 for every generator. Generator sizes alone therefore do not exclude
+  it in that case; τ-WINDOW does.
+- Comparison for the target choice:
+  - RT2 is level-free, with explicit fakes and duals. Its height-3 barrier is θ ≲ 3/4 (full window) and 4/5 (small
+    window).
+  - UA2 = RT2 + generator levels is weaker as a claim and has larger margins, e.g. d = 7: RT2 175, UA2 191. A uniform
+    proof of it needs control of the generator levels.
+
+**CONJ RT2-NONNEG** (supersedes RT-NONNEG as the level-free target): e ≥ 3 and c > 4m ⇒ RT2 ≥ 0.
+- Fallback: CONJ UA2-NONNEG.
+- RT-NONNEG is kept but deprioritized: its full-window barrier is proved (FAKE3(b)), and only the cover densities keep
+  it alive.

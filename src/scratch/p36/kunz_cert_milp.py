@@ -7,7 +7,7 @@ minimal generator g_s = 1 iff no tight pair sums to s; e = 1 + sum g_s fixed; co
 s != r), so c = m k_r + r - m + 1, q = k_r, rho = m - r - 1 and the positions r_s = (s - r - 1) mod m are constants.
 Relaxation part (objective R or RT): continuous y_s >= 0; for each tight pair (t_ij = 1, s = i + j mod m):
     y_i + y_j - y_s >= k_r - [r_s >= m - rho]      (R and RT),      y_i + y_j - y_s <= k_r + 1      (RT only).
-Objective:  W = (e-1)c - e*sum k   (obj W),   or   e(k_r + sum y) - k_r m + rho   (obj R / RT / TX; = min over S of
+Objective:  W = (e-1)c - e*sum k   (obj W),   or   e(k_r + sum y) - k_r m + rho   (obj R/RT/RT2/UA/UA2/TX; = min over S of
 the relaxation value, a lower bound for W).  TX: tight pairs y_i + y_j - y_s = k_r + tau_ij exactly, tau_ij =
 (r_i + r_j - r_s - rho)/m with r_x = (x - r - 1) mod m (kunz_face.py TX).
 Optional domain restrictions: --open (c >= 4m+1, 3e < m), --h3 (every Apery element is a sum of <= 3 generators and at
@@ -73,7 +73,13 @@ def solve(r):
                 M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.EQUAL, tau)
                 continue
             M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.GREATER_EQUAL, -eps)
-            if args.obj == 'RT': M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.LESS_EQUAL, 1)
+            if args.obj in ('RT', 'UA'): M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.LESS_EQUAL, 1)
+            if args.obj in ('RT2', 'UA2'):   # one-cell upper window: tau = +1 needs r_s <= m - rho - 2
+                epsp = 1 if (s - r - 1) % m <= m - rho - 2 else 0
+                M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.LESS_EQUAL, epsp)
+        if args.obj in ('UA', 'UA2'):   # generator levels exact: y_s = mu_s = k_r - k_s - [s > r] when s is a generator
+            for s in range(1, m):
+                M.addGenConstrIndicator(g[s], True, y[s] - k[r] + k[s], GRB.EQUAL, -(1 if s > r else 0))
         M.setObjective(e * (k[r] + gp.quicksum(y.values())) - k[r] * m + rho, GRB.MINIMIZE)
     t0 = time.time(); M.optimize(); dt = time.time() - t0
     st = {GRB.OPTIMAL: 'OPTIMAL', GRB.INFEASIBLE: 'INFEASIBLE', GRB.TIME_LIMIT: 'TIME_LIMIT'}.get(M.Status, str(M.Status))

@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-20 late night: backward strategy; signed certificates CERT±/RT PROVED as LP duals; Γ-CAP3 PROVED; CONJ RT-NONNEG ⇒ Wilf; height 3 reduces to CONJ THIN3; see (A000000000000))
+# STATE.md — handoff (2026-10-21: RT barriers proved genuine (FAKE3); level-free RT2 via τ-WINDOW; UA dual exact; main target CONJ RT2-NONNEG; see (A0000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,29 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000000000) **NEWEST (2026-10-21; advisor review of the pushed commits; steps 1 and 3 of the revised plan).**
+          **(a) Proved (PROOFS "RT barriers are real; the one-cell upper window RT2; the exact UA dual").**
+          - τ-WINDOW: τ = +1 forces r_s ≤ m − ρ − 2. This gives the level-free RT2 (R ≤ RT ≤ RT2 ≤ UA2 ≤ W).
+          - FAKE3: explicit primal fakes under graded height ≤ 3 (no unique factorization needed). They bound EVERY signed
+            certificate:
+            - BASE: RT ≤ (q−1)Γ_cap + ρ − (m − e²);
+            - WINDOW: kills RT in the full wrap window;
+            - RT2-WINDOW: RT2 ≤ base − e(2d+|P|)/3.
+            RT attains min(BASE, WINDOW) on 284 of 423 graded cover S. So the RT barriers (θ ≲ 4/5, and → 1/2 in the
+            window) are genuine.
+          - UA-DUAL: generators are priced at μ_g; π = 0 gives U. The window fake is UA-feasible iff every μ_g = 2q/3.
+          **(c) Open.**
+          - **CONJ RT2-NONNEG** (main level-free target; full-window barrier θ ≲ 3/4, small-window 4/5). Evidence:
+            min RT2 = 59/90/169 on the d = 5/6/7 cover families (= UA = UA2 there); open MILP so far min 5.
+          - CONJ UA2-NONNEG is the fallback.
+          - RT-NONNEG is deprioritized.
+          - Cover densities θ_d: 0.8 (d = 2, advisor + us), 0.75, 0.686, 0.714, 0.655, ≥ 0.642, ≥ 0.612 (d = 8).
+          **(e) Next.**
+            1. Gate RT2-NONNEG adversarially: RT2/UA2 open MILP (running); anneal on RT2; covers at ρ ≈ m − 2.
+            2. Derive the exact finite height-3 inequality for RT2 (both windows, intermediate ρ, non-full P). Then decide
+               whether THIN3 with the RT2 thresholds closes height 3.
+            3. Find the explicit UA2 dual at height 3 in terms of generator levels, and the unbalanced-level stress test
+               (MILP objective UA2 with small generators).
       (A000000000000) **NEWEST (2026-10-20 late night; user's strategy: work backwards from a hypothetical counterexample
           with Gurobi, optimize the split weights, extract dual obstructions).**
           **(a) Proved (PROOFS "Signed certificates and the Kunz-face relaxations").**
