@@ -422,7 +422,7 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
     credits Kliem–Stump with extending BGOW to **m ≤ 19**, so our small range is m ≤ 19.
   - arXiv:2604.25653 (2026-04): a geometric procedure for Apéry sets in e = 4. It is not a Wilf proof.
   - preprints202604.0551 (prereview, 2026): a first-Kunz-layer bound claimed to imply Wilf under an inequality. Not
-    checked.
+    checked [later READ in full 2026-10-19: item 46].
 
 18. **Search before making "HCR / the height functional for 4-D tiles (e = 5)" the focus, 2026-10-18 (late night).**
     - Web, extended: "Wilf conjecture numerical semigroups embedding dimension five". Found only known items:
@@ -495,7 +495,8 @@ web search for an e = 5 proof (2026); web search for GitHub or Lean repositories
 - Queries: web (arXiv/preprints) "Wilf conjecture conductor 4m Apéry", "Wilf second generator large Apéry length",
   2026 items. Found: Spirito 1710.09245 (#24; needs n_1 > (c+m)/3, e ≥ 10, m ≤ (8/25)e² + …); Eliahou–Fromentin
   1710.03623 (#30; the c = 4m B₃ near-miss family, W ≥ 9 proved for it); Eliahou divsets (#22; m | c, 4e ≥ m);
-  preprints.org 202604.0551 (abstract only: m | c and e(3η+4) ≥ 4m with η = #S∩(m,2m); not read).
+  preprints.org 202604.0551 (abstract only: m | c and e(3η+4) ≥ 4m with η = #S∩(m,2m); not read) [later READ in full
+  2026-10-19: item 46].
 - None states the GW-25 class result.
   - CORRECTION (same day): GW-25 has r = 0, so it does not contain the Eliahou–Fromentin near-misses (#30), which
     need r > 0.
@@ -848,7 +849,7 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
     with large second generator" (a_2 > (c+μ)/3; already in our LargeSecondGen line).
   - No inequality over the maximal elements (socle) of the tessellating staircase, weighted by degree and residue (our
     Conjecture TM), was found.
-  - preprints.org 202604.0551: HTTP 403, NOT checked.
+  - preprints.org 202604.0551: HTTP 403, NOT checked [already READ in full 2026-10-19 via the user's link: item 46].
 
 ## 2026-10-21 (night) search: DEP-CARRY / CR_DEP (column-top rearrangement on the factorization tile)
 - Queries: "Wilf conjecture numerical semigroup Apéry set factorization down-set lattice tile inequality" (extended);
@@ -876,7 +877,7 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
 - Web (extended + standard): "Wilf's conjecture numerical semigroups arXiv 2026"; preprints.org Wilf 2026; "Apéry maximal
   elements support factorizations pseudo-Frobenius bound". Hits:
   - 2208.14090, 2104.03793, 1903.04342, 2608.12531, 2103.16723, 1610.08726, 2306.09876, 2310.07742;
-  - preprints.org 202604.0551 (first-Kunz-layer criterion e(η+2) ≥ 2m; abstract only);
+  - preprints.org 202604.0551 (first-Kunz-layer criterion e(η+2) ≥ 2m; abstract only here, READ in full: item 46);
   - 1111.2779, 1703.01761, Spirito, 1710.09245.
   All were already listed. The closest in spirit is the m − e = 5 paper's Apéry lemma (non-minimal Apéry elements
   bounded by a binomial in α). It is a near-maximal-embedding-dimension count, not a support criterion.
@@ -954,19 +955,19 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
     m ≤ 18) and the m = 19 follow-up ([Springer s00454-021-00344-x](https://link.springer.com/article/10.1007/s00454-021-00344-x)).
   - [Delgado–Eliahou–Fromentin 2310.07742](https://arxiv.org/abs/2310.07742) (g ≤ 100).
   - [Marashdeh 2608.12531](https://arxiv.org/abs/2608.12531) (type bound and a reduction).
-  - **New to us: Yang–Zhang, "Wilf's Conjecture from the First Kunz Layer", Preprints.org 202604.0551 (8 Apr 2026, not
-    peer-reviewed; [abstract](https://prereview.org/preprints/doi-10.20944-preprints202604.0551.v1); full text returned
-    HTTP 403, NOT READ).**
-    - Abstract: with η = |S ∩ (m, 2m)| and c = qm − ρ, |L| ≥ q + (q − 2)η + η_ρ, where η_ρ = |S ∩ (m, 2m − ρ)|.
-    - Hence Wilf if e(η + 2) ≥ 2m, or (η + 1)(η + 2) ≥ 2m.
-    - If m | c: e(3η + 4) ≥ 4m.
-    - It also gives a cumulative-layer formula and interval-generated families.
+  - Yang–Zhang, "Wilf's Conjecture from the First Kunz Layer", Preprints.org 202604.0551: **ALREADY READ — item 46,
+    read in full 2026-10-19 from the user's link, proofs re-derived, (a) and (b) checked exhaustively to genus ≤ 34
+    (E272; PROOFS "LK+YZ").**
+    - CORRECTION 2026-10-20: this entry first called it "new to us, full text NOT READ (HTTP 403)". That was wrong. The
+      check grepped LITERATURE.md for Spirito only, not for Yang/Zhang/202604.0551. Pointed out by the user, who notes
+      the paper has been re-found about eight times.
 - Comparison with our statements:
-  - Yang–Zhang truncate to the classes with Apéry element in (m, 2m). Our unit truncation U truncates to the classes of
-    the minimal generators, of any size.
-  - HALF (all generators ≤ (c+m−1)/2 ⇒ W ≥ q(C(e+1,2) − m) − …) is in the same spirit. We have not checked it against
-    their full text.
+  - Yang–Zhang item 46(a) is the exact level formula ℓ = q + Σ_t Θ_t + Θ_{q−1,ρ}. It is our ℓ = Σ_x μ_x counted by levels
+    instead of by classes. Their staircase (b) truncates to the classes with Kunz coordinate 1, i.e. Apéry element in
+    (m, 2m). Our unit truncation U truncates instead to the classes of the minimal generators, of any size. Their
+    proofs use only the monotonicity Θ_{t+1} ≥ Θ_t, never the pair Kunz relations or the wrap window used in FLAT-U.
+  - HALF (all generators ≤ (c+m−1)/2 ⇒ W ≥ q(C(e+1,2) − m) − …) is not among item 46 (a)–(f). Their criteria need many
+    elements in (m, 2m) (e(η+2) ≥ 2m). HALF instead bounds every generator by (c+m−1)/2 and needs m ≲ C(e+1,2).
   - No hit has the exact split identity, Theorem CERT, FLAT-U or H3-HALL. FLAT-U (Apéry height ≤ 2 ⇒ Wilf, via the
     pair Kunz relations and the ρ-cell wrap window) re-proves our LEAN corollary of Flat-MaxCL. Its novelty against
     Eliahou-type and Kunz-face arguments is UNVERIFIED; the Kunz-face method of BGOW is computational and per face.
-  - Status per our rule: Yang–Zhang is judged only by its abstract until read.
