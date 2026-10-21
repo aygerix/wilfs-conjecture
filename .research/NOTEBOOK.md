@@ -4146,3 +4146,7 @@ Consequences:
   2,371 of 6,923 cases.
 - **New question.** RT2-NONNEG. Its height-3 thresholds are 3/4 (full window) and 4/5 (small window) asymptotically, with
   exact finite forms in PROOFS. Data θ_8 ≥ 0.612.
+- (2026-10-21, later) **Caveat on "positions suffice".** On the open-regime MILP minimizers (small m, heights 4–5) RT2 barely
+  improves RT (5 → 7, 8 → 12, 8 → 11.6) while UA2 gives 9, 16, 23 (E370). The coincidence min RT2 = min UA at height 3 is
+  a property of those (mostly equal-level) cover families, not a general fact. RT2-NONNEG's thinnest known margins are at
+  heights 4–5, so that is where its adversarial testing should go next; e = 3 is a known theorem and can be excluded.
