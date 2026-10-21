@@ -55,6 +55,31 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000000000000000) **NEWEST (2026-10-21, 14:00; first A1/C* attempt, E383).**
+          - **Pivot.** The descent needs only DESC := W(S) − W(T) ≥ 0, since W(T) ≥ 0 by induction on multiplicity.
+            - DESC = PAY2 + ρ·ℓ(T), with ρ = e − e(T) (PROVED, PROOFS "Identity DESC").
+            - Equivalently DESC = Δ₃ + (e−1)u′ + ρ|U ∩ [0,c(T))| − e(T)·h_lo − h_hi.
+            - A low NE element costs e(T) ≤ min(e, μ), not e.
+          - **A1/C* gate fails at the scaling step.** The worst A1 ratio (e·h_lo + h_hi)/Δ₃ is 0.353, 0.413, 0.490, 0.633
+            at e = 5–8, and 0.443 at e = 10 (annealing, h_lo = 14). Not proof targets (FAILED.md).
+          - **A1-eT** (Δ₃ + ρ|U∩[0,c(T))| ≥ e(T)h_lo + h_hi, which implies DESC):
+            - worst ratio 0.000, 0.016, 0.137, 0.173 at e = 5–8; min slack 36, 47, 88, 119;
+            - min DESC = 55, 47, 96, 128;
+            - ρ ≥ 1 on all but 0, 0, 10, 287 residual S. Where ρ = 0, h_lo ≤ 3 and the A1 ratio is ≤ 0.154.
+          - Proved: Lemma SUPP. For s ∈ NE, |z − min(y, z)| ≥ 4; k_s = 4 forces disjoint supports.
+          - Refuted: TGT, i.e. column tops paying the class they land in (FAILED.md).
+          - Observed:
+            - Q5 forces a large Δ₃ even when U = T (min 20, 36 at e = 5, 6; Q5 empty for m > 25, 40).
+            - T∖U is a union of μ-runs; R1 (Ap(T,μ) ⊂ U) fails on only 114 S at e = 7.
+          - Running (fejer):
+            - q5annE (A1-eT/DESC objective) at e = 10, 12;
+            - q5annA1, q5annA1r at e = 12, 14;
+            - q5annj (j ≥ 2 hard stop) at e = 9–15. No J2 and no failure so far.
+          - Next:
+            1. Gate A1-eT at e ≥ 10 (q5annE).
+            2. Mechanism for ρ ≥ 1 on the residual (m ∈ 2A ∪ 3A, i.e. class-0 wraps; collisions a′ = a + a″).
+            3. A per-μ-run proof of A1-eT: on each μ-run, cost e(T) ≤ #residues mod μ hit by minimal generators.
+            4. Lean audit of NE-LEVELS / OUT / NE2-ONLY / ID-NE / SUPP / DESC (after codex returns, 2026-10-25).
       (A000000000000000000) **NEWEST (2026-10-21, late morning; advisor review of c3272d3/2b9402d: prove PAY2).**
           - Proved (PROOFS "PAY2: tile structure of the residual"):
             - NE-LEVELS (NE ⟺ least T-length ≥ 4; NE2 has j = 1; NE3 forces NE2);
@@ -70,11 +95,13 @@ Lines, in order of cost to decide:
             - NE2-ONLY covers 9 / 17 / 28 / 37% of the residual at e = 5–8;
             - annealing at e = 9–15: 0 failures so far.
           - Refuted: PAY2-H2, PAY2-B1 (FAILED.md).
-          - Next:
-            1. Prove C*: explain why EQ column tops pay e + π per NE3 class below max τ. Extremal shape: T∖U = {4μ, …, Kμ}.
-               Try the 3-truncated T-tile D^EQ = D_T ∩ {level ≤ 3} and its boundary to the NE up-set.
-            2. Prove j ≤ 1 on Q5 (partial: j = 2 forces least T-length ≥ 7 and τ_s ≤ r).
-            3. q5ann at e = 9–13 (annealer validated: finds the exact e = 6 minimum; weaker at e = 7).
+          - Next (advisor review of e41d94f + user "go", 2026-10-21 afternoon):
+            1. Prove A1 (Δ₃ ≥ e·#NE_lo + #NE_hi), then C*. Start from the extremal shape T∖U = {4μ, …, Kμ}. Tools: the
+               EQ down-set D^EQ (= 3-truncated T-tile), its boundary to the NE up-set, and the column-top form.
+            2. q5ann with a hard stop on j ≥ 2 (rerun e = 9–15 with the same seeds).
+            3. Targeted slice: ≥ 2 NE3 classes below max τ, min A1 and C* (exhaustive e ≤ 8).
+            4. Lean audit of NE-LEVELS, OUT, NE2-ONLY, ID-NE.
+            5. j ≤ 1 on Q5 (partial: j = 2 forces least T-length ≥ 7 and τ_s ≤ r).
       (A00000000000000000) **NEWEST (2026-10-21, TRUNC₃ checkpoint; advisor's ADVISOR.md order).**
           - Proved (PROOFS "TRUNC₃: the low regime…", "TRUNC₃ split by U = T and U ≠ T", "The residual through T"):
             - DOWN, LOW-AGREE, KAPLAN-U (downward closure suffices), TRUNC-LOW (c ≤ 4·min A), WILF-CONTENT;

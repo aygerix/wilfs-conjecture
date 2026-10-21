@@ -6151,6 +6151,17 @@ Proof.
 - Proof: h_{s′} = 3 and σ_{s′} = σ_s + a_i = τ_s + m + a_i.
 - τ_s + a_i ∈ T lies in class s′, so τ_{s′} ≤ σ_{s′} − m and j_{s′} ≥ 1. ∎
 
+**Lemma SUPP (PROVED).** Let s ∈ NE, y := x_s, and let z be a least-length T-factorization of τ_s. Then
+|z − min(y, z)| ≥ 4, where min is taken componentwise. In particular, if k_s = 4 then y and z have disjoint supports.
+- Proof: put g = min(y, z), p = y − g and q = z − g. Then σ(p) − σ(q) = σ(y) − σ(z) = j_s·m ≥ m.
+- Suppose |q| ≤ 3. As a sub-factorization of z:
+  - σ(q) is T-Apéry, since otherwise τ_s − m ∈ T;
+  - q has least length, since otherwise z is not least.
+  So its class t has k_t = |q| ≤ 3. By NE-LEVELS (a), (b), t is EQ with σ_t = σ(q).
+- p ≤ y ∈ D and D is a down-set, so p = x_{t′} with σ(p) = σ_{t′}. Here t′ is the class of σ(p) ≡ σ(q), so t′ = t.
+- Hence σ(p) = σ_t = σ(q), contradicting σ(p) − σ(q) ≥ m. ∎
+- Example: if τ_s = 4μ with z = 4e_μ, then σ_s = 4μ + m is a sum of two residues, neither of them μ.
+
 **Lemma NE2-ONLY (PROVED).** If NE3 = ∅, then Δ₃ ≥ (e + 1)·|T∖U|. Hence RESID-PAY and PAY2 hold, and W(S) ≥ W(T).
 - Proof: by OUT, out(x_s) = ∅ for s ∈ NE2, so P(x_s) = e + 1.
 - By (d), h = Σ_s j_s = |NE2|.
@@ -6182,14 +6193,52 @@ Proof.
 
 - Proof: ID-NE, together with (e−1)δc ≥ (e−1)|Ab| (ABOVE). ∎
 
-**Conjecture C* (CONJ; CHECKED E382): Peq + |NE2| ≥ cost*.** A pure tile statement: the EQ column tops pay for the
-level-3 NE classes.
+**Conjecture C* (CONJ; CHECKED E382): Peq + |NE2| ≥ cost*.** A joint tile-and-residue statement: the EQ column tops
+pay for the level-3 NE classes. The EQ/NE labels depend on T's arithmetic, so this is not a pure down-set theorem
+(advisor's correction).
+
+**Conjecture A1 (CONJ; CHECKED E382), the parallel target.** Δ₃ ≥ e·h_lo + h_hi, where h_lo (resp. h_hi) counts
+T∖U below c(T) (resp. in [c(T), c(U))).
+- A1 ⟹ PAY2, since PAY2 = A1-slack + (e−1)u′ with u′ = |U ∩ [c(T), c(U))| ≥ 0.
+- With j = 1, T∖U = {τ_s : s ∈ NE}. So A1 reads
+
+      Σ_{x∈D} P(x) ≥ e·#{s ∈ NE : τ_s < c(T)} + #{s ∈ NE : τ_s ≥ c(T)}.
+
+  An NE class costs e or 1 according to where its T-element sits relative to the old conductor.
+- NE2-ONLY is the case NE3 = ∅, with the stronger cost e + 1 for every class.
+- Minimum slack 22, 29, 51, 55 at e = 5–8. That is larger than C*'s (22, 29, 42, 37) in the worst case.
 - 0 failures on every residual S at e = 5, 6, 7, 8. Minimum slack 22, 29, 42, 37 (e = 8: ⟨54,57,77,90,96,97,102,107⟩).
 - Observed j_s ≤ 1 for every class (no j = 2 at e ≤ 8). If that holds, cost* = Σ_{Ab}(1 + π) + Σ_{NE3∖Ab}(e + π).
+- Scaling (E383): max over the residual of (e·h_lo + h_hi)/Δ₃ is 0.353, 0.413, 0.490, 0.633 at e = 5–8. The
+  ratio annealer finds 0.443 at e = 10 (h_lo = 14). So A1, and C* which implies it when j ≤ 1, is expected to fail
+  near e ≈ 10–12. Not a proof target; superseded by A1-eT/DESC below.
+- Charging every column top to the class it lands in fails (TGT, FAILED.md).
 - Ablations (FAILED.md):
   - NE2 classes paying for themselves (H2: Σ_{NE2} P ≥ e|NE2|) fails 1 / 93 / 2,903 times (e = 6 / 7 / 8).
   - δc ≥ Σ_{NE3} j (B1) fails 27 / 1,155 / 39,827 times.
   - Peq + |NE2| ≥ Σ_{NE3}(j + π) (B2) holds, with minimum 22, 29, 53, 72.
+
+**Identity DESC (PROVED).** On the Q5 residual put ρ := e − e(T), the number of elements of A ∪ {m} that are not
+minimal generators of T, and u′ := |U ∩ [c(T), c(U))|. Then
+
+    W(S) − W(T) = PAY2 + ρ·ℓ(T) = Δ₃ + (e−1)·u′ + ρ·|U ∩ [0, c(T))| − e(T)·h_lo − h_hi.
+
+- Proof:
+  - W(S) − W_e(T) = PAY2 and W_e(T) − W(T) = (e − e(T))·ℓ(T).
+  - T∖U ⊂ [0, c(U)), and [c(T), c(U)) ⊂ T. So δc = h_hi + u′ and h = h_lo + h_hi, for any j.
+  - U ⊂ T gives ℓ(T) = h_lo + |U ∩ [0, c(T))|.
+  - Substitute into PAY2 = Δ₃ + (e−1)δc − e·h; note e − ρ = e(T). ∎
+- Use: W(T) ≥ 0 by induction on multiplicity (m(T) = μ < m), so DESC := W(S) − W(T) ≥ 0 is all the descent needs.
+  PAY2 is the special case that ignores ρ.
+- e(T) ≤ m(T) = μ, because minimal generators other than μ have distinct nonzero residues mod μ. So a low NE
+  element costs at most min(e, μ) in DESC, against e in PAY2/A1.
+
+**Conjecture A1-eT (CONJ; CHECKED e ≤ 7, E383).** Δ₃ + ρ·|U ∩ [0, c(T))| ≥ e(T)·h_lo + h_hi.
+- It implies DESC, the difference being (e−1)u′ ≥ 0.
+- Exhaustive e = 5–8: min slack 36, 47, 88, 119. Max of (e(T)h_lo + h_hi − ρ|U ∩ [0,c(T))|)/Δ₃ is 0.000, 0.016,
+  0.137, 0.173, against 0.353, 0.413, 0.490, 0.633 for A1.
+- min DESC = 55, 47, 96, 128 (PAY2: 35, 29, 55, 78).
+- ρ ≥ 1 on every residual S at e ≤ 6, and on all but 10 / 287 at e = 7 / 8. Where ρ = 0: h_lo ≤ 3 and A1 ratio ≤ 0.154.
 
 **Counting form of PAY2 (PROVED).** Let n₂ (resp. n₂^EQ) be the number of classes at tile level 2 (resp. EQ classes at
 level 2, i.e. k_s = 2). Then:

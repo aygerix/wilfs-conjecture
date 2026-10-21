@@ -20,7 +20,8 @@
 #include <string.h>
 #define MAXM 160
 static int m, d, e, part, np; static long nsplit;
-static long nNE2only, nH1only;
+static int hardflag; static long nTgtFail, nTgtNEclasses, nTgtSfail, minTgtSlack = 1L << 40, nTgtA1fail; static int tgA[16]; static long nMult, nRay, nRayA1min = 1L << 40, nNotMultA1min = 1L << 40; static int rayflag;
+static long nNE2only, nH1only, nHard, minHardA1 = 1L << 40, minHardC = 1L << 40; static int hA1[16], hC[16];
 static long nC, minC = 1L << 40, nj2any; static int cA[16];
 static long nB1, nB2, nIDNE, nNE3above, nNE3all, minB1 = 1L << 40, minB2 = 1L << 40; static int b1A[16], b2A[16];
 static long nA1, nA2, nlo0, minA1 = 1L << 40, minA2 = 1L << 40; static int a1A[16], a2A[16];
@@ -83,6 +84,13 @@ static void body(const int *a){
   long WT = (cT > 0) ? (long)eT * ellT - cT : 0, dc = (m + r + 1) - cT;
   long p2 = D3 + (long)(e - 1) * dc - (long)e * h;
   if (W - WT != p2 + (long)(e - eT) * ellT){ fprintf(stderr, "combined identity FAILS m=%d\n", m); exit(16); }
+  hardflag = 0;
+  { /* shape of T \ U: all NE tau multiples of mu = min A?  exactly the ray {4mu, ..., K mu}? */
+    int mu = a[0]; for (int b = 1; b < d; b++) if (a[b] < mu) mu = a[b];
+    int allmult = 1, K = 0, cnt = 0;
+    for (int x = 0; x < m; x++) if (tau[x] < sg[x]){ cnt++; if (tau[x] % mu) allmult = 0; else if (tau[x] / mu > K) K = tau[x] / mu; }
+    rayflag = 0; if (allmult){ nMult++; if (K >= 4 && cnt == K - 3) { int ok2 = 1; for (int k = 4; k <= K; k++){ int x = (k * mu) % m; if (!(tau[x] == k * mu && tau[x] < sg[x])) ok2 = 0; } if (ok2){ nRay++; rayflag = 1; if (getenv("RAYK") && K >= atoi(getenv("RAYK"))){ printf("RAYEX K=%d mu=%d ", K, mu); pr(a); printf("\n"); } } } }
+    else rayflag = -1; }
   { /* tile analysis */
     static int X[MAXM][16]; for (int b = 0; b < d; b++) X[0][b] = 0;
     for (int it = 1; it < m; it++){ int x = order[it], have = 0; int best[16];
@@ -109,9 +117,24 @@ static void body(const int *a){
     if (H2 < 0) vH2++; if (H3 < 0) vH3++;
     if (H2 < minH2){ minH2 = H2; memcpy(h2A, a, sizeof(int) * d); } if (H3 < minH3){ minH3 = H3; memcpy(h3A, a, sizeof(int) * d); }
     if (H3 != p2){ fprintf(stderr, "H3 != PAY2 ?\n"); exit(24); }
+    { /* TARGET charging: assign each column top (x, i) to the class of sigma(x) + a_i; R(t) = total P assigned to t.
+         Test: every NE class t has R(t) >= cost(t), cost = e if tau_t < c_T (low), 1 if high (j = 1 assumed; j >= 2 -> cost e*j). */
+      static long R[MAXM]; for (int t = 0; t < m; t++) R[t] = 0;
+      long Rsum = 0;
+      for (int s2 = 0; s2 < m; s2++) for (int i = 0; i < d; i++){
+        int t = (sg[s2] + a[i]) % m; int same = 1; for (int q = 0; q < d; q++) if (X[t][q] != X[s2][q] + (q == i)) same = 0;
+        if (!same && hmx[s2] < 3){ long c0 = (long)(X[s2][i] + 1) * (3 - hmx[s2]); R[t] += c0; Rsum += c0; } }
+      if (Rsum != D3){ fprintf(stderr, "target sum != Delta3\n"); exit(27); }
+      int bad = 0; long slackS = 0;
+      for (int t = 0; t < m; t++){ int jt = (sg[t] - tau[t]) / m; if (jt < 1) continue; nTgtNEclasses++;
+        long cost = 0; for (int q = 0; q < jt; q++) cost += (tau[t] + q * m < cT) ? e : 1;
+        if (R[t] < cost){ nTgtFail++; bad = 1; } slackS += R[t] - cost; }
+      if (bad) nTgtSfail++;
+      if (slackS < minTgtSlack){ minTgtSlack = slackS; memcpy(tgA, a, sizeof(int) * d); }
+    }
     { /* ID-NE: PAY2 = Peq + |NE2| + (e-1) dc - sum_{y in NE3} (e j_y + pi(y)), pi(y) = sum_{i: y - e_i in NE2} y_i.
          B1: dc >= sum_{NE3} j;  B2: Peq + |NE2| >= sum_{NE3} (j_y + pi(y)).  (B1 & B2 => PAY2.) */
-      static int cls[MAXM * 4]; long cost = 0, pisum = 0, jsum3 = 0, cstar = 0; int maxtau = 0;
+      static int cls[MAXM * 4]; long cost = 0, pisum = 0, jsum3 = 0, cstar = 0; int maxtau = 0, nbelow = 0;
       for (int s2 = 0; s2 < m; s2++) if (tau[s2] > maxtau) maxtau = tau[s2];
       for (int s2 = 0; s2 < m; s2++){ int js = (sg[s2] - tau[s2]) / m; if (!(js >= 1 && hmx[s2] == 3)) continue;
         long pi = 0;
@@ -119,12 +142,14 @@ static void body(const int *a){
           int same = 1; for (int q = 0; q < d; q++) if (X[t][q] != X[s2][q] - (q == i)) same = 0;
           if (same && jt >= 1 && hmx[t] == 2) pi += X[s2][i]; }
         cost += (long)e * js + pi; pisum += pi; jsum3 += js; nNE3all++; if (sg[s2] > maxtau) nNE3above++;
-        cstar += (sg[s2] > maxtau) ? (long)e * (js - 1) + 1 + pi : (long)e * js + pi; if (js >= 2) nj2any++; }
+        cstar += (sg[s2] > maxtau) ? (long)e * (js - 1) + 1 + pi : (long)e * js + pi; if (js >= 2) nj2any++;
+        if (sg[s2] <= maxtau) nbelow++; }
       (void)cls;
       if (Peq + nNE2 + (long)(e - 1) * dc - cost != p2) nIDNE++;
       long B1 = dc - jsum3, B2 = Peq + nNE2 - (jsum3 + pisum);
       if (B1 < 0) nB1++; if (B2 < 0) nB2++;
-      { long C = Peq + nNE2 - cstar; if (C < 0) nC++; if (C < minC){ minC = C; memcpy(cA, a, sizeof(int) * d); } }   /* C*: Peq + |NE2| >= cstar */
+      { long C = Peq + nNE2 - cstar; if (C < 0) nC++; if (C < minC){ minC = C; memcpy(cA, a, sizeof(int) * d); }   /* C*: Peq + |NE2| >= cstar */
+        if (nbelow >= 2){ nHard++; if (C < minHardC){ minHardC = C; memcpy(hC, a, sizeof(int) * d); } hardflag = 1; } }
       if (B1 < minB1){ minB1 = B1; memcpy(b1A, a, sizeof(int) * d); } if (B2 < minB2){ minB2 = B2; memcpy(b2A, a, sizeof(int) * d); } }
     { /* split T \ U at c(T): h_lo below, h_hi in [c_T, c_U); u' = |U n [c_T, c_U)|; dc = h_hi + u' */
       long hlo = 0, hhi = 0, up = 0; int cU = m + r + 1;
@@ -134,7 +159,14 @@ static void body(const int *a){
       long A1 = D3 - hhi - (long)e * hlo, A2 = D3 - (long)e * hlo;          /* A1: Delta3 >= h_hi + e h_lo;  A2: Delta3 >= e h_lo */
       if (A1 < 0) nA1++; if (A2 < 0) nA2++; if (hlo == 0) nlo0++;
       if (A1 < minA1){ minA1 = A1; memcpy(a1A, a, sizeof(int) * d); } if (A2 < minA2){ minA2 = A2; memcpy(a2A, a, sizeof(int) * d); }
-      if (getenv("Q5VERB")) printf("SPLIT hlo=%ld hhi=%ld u'=%ld\n", hlo, hhi, up); }
+      if (hardflag && A1 < minHardA1){ minHardA1 = A1; memcpy(hA1, a, sizeof(int) * d); }
+      if (rayflag == 1 && A1 < nRayA1min) nRayA1min = A1; if (rayflag == -1 && A1 < nNotMultA1min) nNotMultA1min = A1;
+      if (getenv("Q5VERB")) printf("SPLIT hlo=%ld hhi=%ld u'=%ld\n", hlo, hhi, up);
+      if (getenv("Q5DUMP")){ int n2eq = 0, n3eq = 0; for (int s2 = 0; s2 < m; s2++) if (sg[s2] == tau[s2]){ if (hmx[s2] == 2) n2eq++; if (hmx[s2] == 3) n3eq++; }
+        long DEQ = 2L * d * (d + 1) + (long)(d - 2) * n2eq - 3L * n3eq;
+        if (DEQ != D3 - (long)(d - 2) * nNE2 + 3L * nNE3){ fprintf(stderr, "DEQ identity FAILS\n"); exit(28); }
+        printf("DUMP %d %d %ld %ld %ld %ld %ld %d %d %ld %d %d %d %d", m, e, D3, DEQ, h, hlo, hhi, nNE2, nNE3, dc, n2eq, n3eq, cT, r);
+        for (int b = 0; b < d; b++) printf(" %d", a[b]); printf("\n"); } }
     if (getenv("Q5VERB")){ long outc = 0, nout = 0; for (int s2 = 0; s2 < m; s2++){ int js = (sg[s2] - tau[s2]) / m; if (js >= 1 && hmx[s2] == 2)
           for (int i = 0; i < d; i++){ int t = (sg[s2] + a[i]) % m; int same = 1; for (int q = 0; q < d; q++) if (X[t][q] != X[s2][q] + (q == i)) same = 0; if (same){ nout++; outc += X[s2][i] + 1; } } }
       printf("RES "); pr(a); printf(" e=%d r=%d NE2=%d NE3=%d out=%ld outcost=%ld Peq=%ld Pne2=%ld dc=%ld (e-1)dc=%ld D3=%ld PAY2=%ld cT=%d maxtau=%d\n", e, r, nNE2, nNE3, nout, outc, Peq, Pne2, dc, (long)(e - 1) * dc, D3, p2, cT, cT + m - 1); }
@@ -177,7 +209,12 @@ int main(int argc, char **argv){
     nA1 = nA2 = nlo0 = 0; minA1 = minA2 = 1L << 40;
     printf(" | IDNEfail=%ld B1fail=%ld minB1=%ld at ", nIDNE, nB1, minB1); pr(b1A); printf(" B2fail=%ld minB2=%ld at ", nB2, minB2); pr(b2A);
     printf(" NE3above=%ld/%ld Cfail=%ld minC=%ld at ", nNE3above, nNE3all, nC, minC); pr(cA); printf(" j2any=%ld", nj2any);
-    printf(" NE2only=%ld h1=%ld", nNE2only, nH1only);
+    printf(" NE2only=%ld h1=%ld hard(>=2 NE3 below max tau)=%ld", nNE2only, nH1only, nHard);
+    printf(" TGT: NEclasses=%ld classfail=%ld Sfail=%ld minNEslack=%ld at ", nTgtNEclasses, nTgtFail, nTgtSfail, minTgtSlack); pr(tgA);
+    nTgtNEclasses = nTgtFail = nTgtSfail = 0; minTgtSlack = 1L << 40;
+    if (nHard){ printf(" hardminA1=%ld at ", minHardA1); pr(hA1); printf(" hardminC=%ld at ", minHardC); pr(hC); }
+    nHard = 0; minHardA1 = minHardC = 1L << 40;
+    printf(" allNEmultofmu=%ld ray=%ld rayminA1=%ld notmultminA1=%ld", nMult, nRay, nRayA1min, nNotMultA1min); nMult = nRay = 0; nRayA1min = nNotMultA1min = 1L << 40;
     nC = nj2any = 0; minC = 1L << 40; nNE2only = nH1only = 0;
     nIDNE = nB1 = nB2 = nNE3above = nNE3all = 0; minB1 = minB2 = 1L << 40;
     printf("\n"); fflush(stdout); nNE2tot = nNE3tot = nj2 = vH1 = vH2 = vH3 = 0; minH2 = minH3 = 1L << 40;

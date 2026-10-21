@@ -6,7 +6,8 @@
  *   not in Q5:       rejected
  * Moves: replace one residue (uniform, or +-1..3); simulated annealing with temperature T0 -> 0.
  * usage: ./q5ann d mlo mhi restarts steps seed [T0]
- * Prints per m: tries, Q5 starts, residual states visited, PAY2 failures, min PAY2 with S and (h, dc, Delta3). */
+ * Prints per m: tries, Q5 starts, residual states visited, PAY2 failures, min PAY2 with S and (h, dc, Delta3).
+ * Hard stop: any class with j_s = (sigma_s - tau_s)/m >= 2 is printed ("J2 FOUND") and the program exits with code 30. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,7 +46,9 @@ static Ev eval(const int *a){
   for (int x = 0; x < m; x++){ tau[x] = 1 << 29; dn[x] = 0; } tau[0] = 0;
   for (int it = 0; it < m; it++){ int u = -1; for (int x = 0; x < m; x++) if (!dn[x] && (u < 0 || tau[x] < tau[u])) u = x;
     dn[u] = 1; for (int b = 0; b < d; b++){ int vv = tau[u] + a[b], t = vv % m; if (vv < tau[t]) tau[t] = vv; } }
-  int maxtau = 0; for (int x = 0; x < m; x++){ if (tau[x] < sg[x]){ v.res = 1; v.h += (sg[x] - tau[x]) / m; } if (tau[x] > maxtau) maxtau = tau[x]; }
+  int maxtau = 0; for (int x = 0; x < m; x++){ if (tau[x] < sg[x]){ v.res = 1; v.h += (sg[x] - tau[x]) / m;
+      if ((sg[x] - tau[x]) / m >= 2){ printf("J2 FOUND class %d sigma=%d tau=%d h=%d at <%d", x, sg[x], tau[x], hmx[x], m); for (int q = 0; q < d; q++) printf(",%d", m + a[q]); printf(">\n"); fflush(stdout); exit(30); } }
+    if (tau[x] > maxtau) maxtau = tau[x]; }
   v.dc = (long)mxs - maxtau;
   v.p2 = v.D3 + (long)(e - 1) * v.dc - (long)e * v.h;
   return v;

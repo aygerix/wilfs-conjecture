@@ -4283,3 +4283,83 @@ Consequences:
   - In the extremal S, T∖U = {4μ, …, Kμ}.
 - **Refuted:** PAY2-H2 (NE2 classes pay for themselves) and PAY2-B1 (δc ≥ Σ_{NE3} j).
 - **Open (precise):** C*, i.e. why the EQ column tops pay e + π for each level-3 NE class below max τ.
+
+### 2026-10-21 (afternoon): advisor review of e41d94f; plan A1 → C*
+- **Advisor:** NE2-ONLY is the first real PAY2 theorem.
+  - With U = T it settles 19,658,451 of the 19,827,271 Q5 semigroups at e = 8 (99.15%), as induction steps; 168,820
+    remain.
+  - ID-NE pins the obstruction on the NE3 classes.
+  - Corrections: C* is a joint tile-and-residue inequality, not a pure down-set statement.
+  - A1 deserves equal priority.
+  - Watch for j ≥ 2.
+  - Formal audit of the short lemmas.
+  - Next session theoretical: C* vs A1, no larger enumerations.
+- **Advisor's spot checks (independent):**
+  - ⟨42,45,56,64,67,69,80⟩: PAY2 155, C* slack 47.
+  - ⟨62,65,80,95,110,116,118,119⟩: 78 / 78 (δc = 0, so C* slack = PAY2).
+  - ⟨54,57,77,90,96,97,102,107⟩: 205 / 37.
+- **Lead's take:**
+  - Agreed. A1 goes first: larger worst-case slack, and the per-class reading cost e if τ_s < c(T), else 1.
+  - No proved statement depends on j ≤ 1. ID-NE, the C* reduction and the counting form carry general j; NE2 has
+    j = 1 by proof.
+  - The q5ann runs did not check j: add a hard stop (halt and report on the first j ≥ 2) and rerun with the same
+    seeds.
+  - Lean audit of NE-LEVELS / OUT / NE2-ONLY / ID-NE after the first A1/C* attempt. The risk is in the definitions
+    (Q5, the lex max-length tile).
+- **Order (user: go):**
+  1. A1 then C*, starting from the extremal shape T∖U = {4μ, …, Kμ}.
+  2. q5ann with the j-check.
+  3. Targeted slice: residual S with ≥ 2 NE3 classes below max τ (exhaustive e ≤ 8 data), min A1 and C*.
+  4. Lean audit.
+
+### 2026-10-21 (13:00): first A1 attempt. Landing-class charging fails; A1 has a scaling warning
+- **Refuted (TGT, FAILED.md):** let each column top (x, i) of D pay the class of σ(x) + a_i. Then an NE class t should
+  receive R(t) ≥ cost(t), with cost e if τ_t < c(T) and 1 otherwise. This fails on most NE classes:
+  - e = 5: 49 of 72 classes;
+  - e = 6: 908 of 1,477;
+  - e = 7: 21,059 of 33,952.
+  It fails even summed over the NE classes of one S (min −12, −23, −45). The column tops that pay land in EQ classes,
+  mostly as wraps (peq.py: e.g. ⟨47,51,66,70,73,82,84⟩ has Peq 83 = 46 wrap + 34 collision + 3 into NE).
+- **New lemma SUPP (PROVED, PROOFS).** For s ∈ NE with U-vector y = x_s and a least-length T-factorization z of τ_s:
+  |z − min(y, z)| ≥ 4. So k_s = 4 forces disjoint supports. In the ray this means 4μ + m is a sum of two residues
+  ≠ μ.
+- **Ray shape.** In the extremal S, A = {μ} ∪ B with μ small (3–5) and B large. NE = classes of 4μ, …, Kμ. The low
+  ones are the multiples of μ below c(T).
+- **Q5 itself forces a large Δ₃.** This holds even when U = T: min Δ₃ = 20 at e = 5 and 36 at e = 6, and Q5 is empty
+  for m > 25 and m > 40 respectively (E383).
+  - On the residual, min Δ₃ = 34, 36, 82 at e = 5, 6, 7, essentially flat in h.
+  - h_lo stays ≤ 2, 4, 7.
+  - So A1 holds with a uniform margin: max(e·h_lo + h_hi) < min Δ₃ at each e ≤ 7. This is not a mechanism.
+- **Scaling warning for A1 (and so C*, which implies it when j ≤ 1).** max over the residual of (e·h_lo + h_hi)/Δ₃
+  is 0.353, 0.413, 0.490 at e = 5, 6, 7. The linear trend reaches 1 near e ≈ 14.
+  - Heuristic family: μ = 3, B carrying additive "digit" structure so that 3A′ contains the long progression
+    m + 3k, and c(T) large. That gives h_lo ~ m/3 while Δ₃ ≤ e(2e + 1 + C(d+1, 2)) − 3m. Unverified: Q5's height
+    ≤ 3 and q = 5 may exclude it.
+  - Per conjecture gating, A1/C* are not proof targets until a scaling test passes.
+- **Running (fejer):**
+  - q5annA1 (annealing on the A1 slack) at e = 10, 12, 14;
+  - the e = 8 per-S dump (ratio trend);
+  - q5annj (j ≥ 2 hard stop) at e = 9–15. No j = 2 and no PAY2 failure so far (d = 8, 9 past the Q5 range).
+
+### 2026-10-21 (13:25): reframing. The induction step is W(S) ≥ W(T), and e(T) < e almost always on the residual
+- **Exact identity (PROVED; asserted per S by dumpan8).** Put ρ := e − e(T) (the number of elements of A ∪ {m} that
+  are not minimal generators of T) and u′ = |U ∩ [c(T), c(U))|. Then
+
+      DESC := W(S) − W(T) = PAY2 + ρ·ℓ(T) = Δ₃ + (e−1)·u′ + ρ·|U ∩ [0, c(T))| − e(T)·h_lo − h_hi,
+
+  using ℓ(T) = h_lo + |U ∩ [0, c(T))|. With W(T) ≥ 0 by induction on multiplicity, DESC ≥ 0 is all the step needs.
+  PAY2 (and A1, C*) charge e per low NE element; DESC charges only e(T) ≤ min(e, μ).
+- **Data (exhaustive e = 5, 6, 7):**
+  - ρ ≥ 1 on every residual S at e = 5, 6, and on all but 10 of 10,663 at e = 7. Histogram of ρ at e = 7:
+    0:10, 1:403, 2:2,023, 3:3,196, 4:3,635, 5:1,396.
+  - m ∈ ⟨A⟩ (m redundant in T) on 100%, 95%, 90%. Usually m is a sum of 2 or 3 residues, which is a wrap in class 0
+    at tile level 2 or 3.
+  - min DESC = 55, 47, 96 (PAY2: 35, 29, 55).
+  - A1-eT (Δ₃ + ρ|U ∩ [0, c(T))| ≥ e(T)h_lo + h_hi, which implies DESC): min slack 36, 47, 88; max ratio
+    (e(T)h_lo + h_hi − ρ|U∩[0,c(T))|)/Δ₃ = 0.000, 0.016, 0.137. Compare A1's 0.353, 0.413, 0.490.
+  - On the 10 S with ρ = 0 (μ ∈ {7, 9}): A1 ratio ≤ 0.087, PAY2 ≥ 96.
+- **Shape (peq.py).** Even with μ ≥ e (μ = 7, 9), T∖U is a union of μ-rays: {4μ, 5μ, …} and {b + 3μ, b + 4μ, …}.
+  The NE T-factorizations are μ-heavy, of the form (k, 0, …) or (k, 1, 0, …).
+- **Consequence for the plan.** A1/C* are stronger than needed, and their worst ratio grows with e. The defensible
+  target is DESC, or A1-eT. Next: gate A1-eT at e = 8 and in the annealers; then look for the mechanism that
+  makes ρ ≥ 1 on the residual (m ∈ 2A or 3A, i.e. a class-0 wrap), and why low NE elements cost only e(T).
