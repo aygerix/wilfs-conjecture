@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-20 night: L7 = CASEB-FLAT-S REFUTED at d = 11 (open-regime height-3 case-B S, W = 1278); Wilf ⇐ SUPP-WILF + L7′ (case B ⇒ N + Dep ≥ κ₀); see (A000000000))
+# STATE.md — handoff (2026-10-20 night: L7 REFUTED; SUPP-WILF+ PROVED (W ≥ Dep − Σsupp + (d+1)|A_<|); open link = CASEB-WINDOW (case B + height ≥ 3 ⇒ (d+1)|A_<| ≥ μ); see (A0000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,35 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000000) **NEWEST (2026-10-20 night, later).**
+          **(a) Proved.**
+          - SUPP-WILF (case A ⇒ Wilf). L4′ (any minimal generator). L6 (height-2 margin identity).
+          - The height-≤3 closed form for μ (NOTEBOOK).
+          - **SUPP-WILF+** (PROOFS): W = N − κ₀ + Σ_x om(x)μ_x (exact), hence W ≥ Dep − Σsupp + (d+1)|A_<|, where A_< is
+            the set of maximal Apéry cells below c and |A_<| = #(S ∩ [c−m, c)) − |D∖A|.
+          **(b) Refuted.** L7 = CASEB-FLAT-S (FAILED Pattern D; examples/caseb_height3_counterexample.md).
+          **(c) Open, with evidence.**
+          - CASEB-WINDOW (case B + height ≥ 3 ⇒ (d+1)|A_<| ≥ μ): 99 height-3 case-B S, all with |A_<| ≥ 18 and μ ≤ 2.
+          - CASEB-ALL (case A at some generator, or height ≤ 2 at m): 0 failures, including small lifts {2,3}.
+          - L7′, TCL-DICHOTOMY, MaxCL: 0 failures on every case-B S.
+          - Either of CASEB-WINDOW or CASEB-ALL, with proved pieces and Flat-MaxCL (LEAN), gives Wilf.
+          **(d) Reproduce.** fejer ~/wilf/p35 (scripts in src/scratch/p35; E352–E356). A long near-cover search runs
+            (nearcover 64 12 …, nc64_long.txt; mine, killable). kunz_milp m = 20 (pid 1232798) is not mine.
+          **(e) Three active approaches.**
+            1. Prove CASEB-WINDOW by the four-branch concentration program:
+               - (I) a cubic cell t forces every maximal pair with value ≤ w(t) − m below c, so pairs on generators of
+                 rank ≤ those of t are in A_<;
+               - (II) generators spread wider than m: pairs well below the top pair are in A_<;
+               - (III) generators within one window [G, G + m) with G ≥ 3m: every pair is below the cubic cell, so all
+                 maximal pairs are in A_<;
+               - (IV) residual: generators within one window, lifts ≤ 2 (finite; data: lifts {1,2} give no height-3 case B
+                 on Haanpää's covers).
+               Each branch needs a quantitative count against μ ≤ μ_flat − (cubic costs). Relation: branch III/IV is the
+               mixed-h analogue of h-regular (CF-WILF proved, REG-WILF open).
+            2. CASEB-ALL via a generator n ≫ m (long m-columns make Dep′_n dominate).
+            3. Lean: SUPP-WILF and SUPP-WILF+ (codex from 2026-10-25).
+          **(f) First task next session.** Write branch (III) rigorously: generators in [G, G + m), G ≥ 3m and a cubic
+            Apéry cell ⇒ A_< ⊇ all maximal pairs ⇒ (d+1)|A_<| ≥ μ. Then attack (II) quantitatively.
       (A000000000) **NEWEST (2026-10-20 night, resumed by user "continue proving Wilf; use Gurobi for larger models").**
           - **L7 = CASEB-FLAT-S is FALSE**: ⟨63,239,282,295,318,333,379,386,390,400,405,407⟩ (examples/
             caseb_height3_counterexample.md; FAILED Pattern D; E353). It is true for all height-≤3 tiles with d ≤ 5
