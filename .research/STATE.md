@@ -55,6 +55,16 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000000000000000) **NEWEST (2026-10-21, 15:45; E385).**
+          - **Qa ≥ 0 and P1 ≥ 0 are FALSE** (FAILED.md "QA / P1"; PROOFS "Remark QA-FALSE"). Example: e = 11,
+            m = 85, A = [3,46,47,50,52,58,59,65,76,83], P1 = Qa = −1, W = 677.
+            - These are family F0: A = {μ} ∪ B with B ⊂ [c_T, m), where P1 = 4e − c_T.
+            - Exhaustive e ≤ 8 had min Qa = 4 and min P1 = 5; the failure starts at e = 11.
+          - So the split W = P1 + Qb (cut at c_T) is dead. Keep MU-LO (ratio 0.10–0.12 on the F0 examples) and TRUNC₃.
+          - q5annMU d = 6–8 (E385 d): 0 MU-LO failures, but the annealer under-reaches the exhaustive extremes.
+            d = 9, 11 still running on fejer (mu_*_d9.txt, mu_M_d11.txt).
+          - f0ann (μ = 4, 5) still running (f0_mu4.txt, f0_mu5.txt).
+          - **Next:** the NE3 payment inside MU-LO (C* / MISS3 mechanism). F0 is a test bed with fully explicit T.
       (A00000000000000000000) **NEWEST (2026-10-21, 15:00; D6 attempt part 1, E384).**
           - **μ-split (PROVED, PROOFS "Identity W-μ").** On Q5,
             W(S) = Δ₃ − μh_lo^μ − h_hi + (e−1)u′ + (e−μ)U_μ + eU′ + θ.

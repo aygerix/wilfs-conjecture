@@ -4434,3 +4434,24 @@ Consequences:
   lists the collisions forced between consecutive run elements. Its case (3,3) with disjoint supports forces nothing
   locally.
 - Next: the ray case of MURUN/MU-LO.
+
+### 2026-10-21 (15:45): the halves of W-μ fail separately; family F0
+- W-μ reads W = P1 + Qb, with:
+  - P1 = e·|U ∩ [0, c_T)| − c_T = Qa + θ = W_e(T) − e·h_lo;
+  - Qb = Δ₃ + (e−1)u′ − h_hi.
+  The cut is at c_T.
+- Exhaustively at e ≤ 8 both halves are positive: min P1 = 5, min Qb = 113 at e = 8.
+- **Both "T-fat" statements are FALSE** at e = 11:
+  - Qa ≥ 0 (μ ≤ e) and P1 ≥ 0 fail at m = 85, A = [3,46,47,50,52,58,59,65,76,83], with P1 = Qa = −1 and W = 677.
+- The counterexamples come from **family F0**:
+  - A = {μ} ∪ B with B ⊂ [c_T, m) ∖ μℕ, so T = μℕ ∪ [c_T, ∞) and U ∩ [0, c_T) = {0, μ, 2μ, 3μ};
+  - hence P1 = 4e − c_T.
+  - The necessary condition for Q5 ([m, m+c_T) minus four points inside 3A′) forces c_T ≤ m/2 + μ + 2.
+  - Covering [c_T, 2c_T) ∖ μℕ by B + {0, μ, 2μ} forces |B| ≳ (μ−1)c_T/(3μ), i.e. c_T ≲ 4.5e for μ = 3. This leaves room
+    beyond 4e, and the annealer f0ann.c finds it.
+- Lesson: in F0 the deficit below c_T is paid by (e−1)u′ above c_T. TRUNC₃ = P1 + (e−1)u′ − h_hi and MU-LO keep that
+  term; the c_T cut does not.
+- Re-derived and already in PROOFS (no new content):
+  - the 4-sub-sum argument, i.e. NE-LEVELS (f);
+  - the child argument "x ∈ NE2, a ∈ A ⇒ x + a ∈ NE or a missing cube", i.e. Lemma OUT and the column-top form.
+- So the open core stays the NE3 payment: C*, MISS3, D6 / MU-LO.

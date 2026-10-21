@@ -6363,6 +6363,26 @@ and this needs no induction on multiplicity.
 - min (Δ₃ − μh_lo^μ − h_hi) = 22, 41, 57, 91.
 The extremal shape is the pure ray T∖U = {4μ, …, Kμ} with μ ≈ e (e = 8: m = 61, A = [8,21,37,44,47,49,50]).
 
+**Remark QA-FALSE (the two halves of W-μ are not separately nonnegative).** Write W(S) = Qa + Qb + θ = P1 + Qb with
+- Qa := (e−μ)U_μ + e·U′ − μ·h_lo^μ;
+- P1 := Qa + θ = e·|U ∩ [0, c_T)| − c_T = W_e(T) − e·h_lo;
+- Qb := Δ₃ + (e−1)u′ − h_hi.
+Then:
+- On the exhaustive residual (e = 5–8), min P1 = 6, 6, 5, 5 (all μ) and min Qa = 5, 6, 4, 4 (μ ≤ e). Also
+  min Qb = 40, 35, 82, 113 (all μ) and min (Δ₃ − h_hi) = 30, 35, 81, 113.
+- Nevertheless **Qa ≥ 0 and P1 ≥ 0 are FALSE** (FAILED.md, E385). Example: e = 11, μ = 3, m = 85,
+  A = [3,46,47,50,52,58,59,65,76,83]. There:
+  - c_T = 45, U ∩ [0, c_T) = {0, 3, 6, 9}, and P1 = Qa = −1;
+  - W = 677, Δ₃ = 460, Qb = 678, h = 33 (h_lo^μ = 11, h_hi = 22);
+  - checked by two independent programs (verifyF0.py, by brute-force factorization lengths; rayU0.evalS).
+- The counterexamples lie in **family F0**: A = {μ} ∪ B with B ⊂ [c_T, m) ∖ μℕ ⊇ the non-multiples of μ in [c_T, c_T+μ).
+  - There T = μℕ ∪ [c_T, ∞) and U ∩ [0, c_T) = {0, μ, 2μ, 3μ}, so P1 = 4e − c_T.
+  - Annealing over B (f0ann.c) shows min |B| growing by about 1 per 4.5 units of c_T: c_T = 33, 44, 45, 47, 50 are reached
+    with e = 9, 11, 11, 11, 12.
+- The deficit is paid by (e−1)u′ (240 in the example), which is TRUNC₃'s term above c_T. So TRUNC₃ and MU-LO are the
+  right granularity; the cut at c_T is not.
+- MU-LO on these examples: ratio (μh_lo^μ + h_hi)/Δ₃ = 0.120, 0.124, 0.102.
+
 **Conjecture MURUN (CONJ; CHECKED e ≤ 8).** Δ₃ ≥ μ·R₀ + h, where R₀ := |μℕ ∩ (T∖U)|. It implies MU-LO, since
 h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
 - max (μR₀ + h)/Δ₃ = 0.706, 0.571, 0.638, 0.704 at e = 5–8, over all μ (μ ≤ e: 0.706, 0.571, 0.593, 0.535).
