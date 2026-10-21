@@ -55,6 +55,19 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000000000000000000) **NEWEST (2026-10-21, 17:25; E389).**
+          - **Single target: Q3T, Δ₃ ≥ |Q3| + t on the Q5 residual.** Q3 is the set of level-3 classes whose rep has
+            all pairwise sums ≥ m; it contains M₂′.
+            - Identity SPLIT-Q3 (PROVED): W = (Δ₃ − |Q3| − t) + N_< + n₃ + ov + (e−1)(r+1−t), every other term a
+              count. So Q3T ⟹ Wilf on Q5, for every μ and with no induction.
+            - Exhaustive: max (|Q3| + t)/Δ₃ = 0.29, 0.30, 0.38, 0.39 at e = 5–8 (μ ≤ e: flat at 0.27–0.29). Min slack
+              24, 29, 57, 81.
+            - Fails on U = T (ratio 1.08), so the proof must use RES-SMALL / DOM.
+          - Refuted: Δ₃ ≥ 2n₃ and Δ₃ ≥ 2L₃ (e = 6). The pairwise-sum restriction is needed.
+          - Next: prove Q3T. The payer is the missing children of large squares, about half of whose slots must be
+            empty. A child (x, l) is missing iff σ(x) − m + a_l ∈ U. Use the ladders of U-CLOSE and the residual's
+            μ < m/4.
+          - Running: q5annTR4 OBJT=4 at e = 8, 10, 12, 14 (q3t_e*.txt); q5annQ3 e = 14; q5annTR OBJT=2/3 e = 12.
       (A00000000000000000000000) **NEWEST (2026-10-21, 17:05; E387–E388).**
           - **Identity SPLIT (PROVED, exact on all of Q5).** With t = #{σ_s ≥ 2m} and max σ = 2m + r:
 

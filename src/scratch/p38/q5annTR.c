@@ -2,7 +2,8 @@
  *   2m + r = max sigma).  ZT1: e z >= m - t.  TR: (e+1) t <= (e-1)(r+1).  The split is asserted (exit 15).
  *   env OBJT=1: maximize ((e+1)t - (e-1)(r+1))/(r+1) over all Q5 states (RESONLY=1: residual only);
  *   OBJT=2: minimize e z + t - m over all Q5 states (RESONLY=1: residual only); OBJT=3: maximize E/D3, E := (e+1)t - (e-1)(r+1)
- *   (TR-Delta: E <= D3).  Prints MAXED (max E/D3).  Prints TR FAILS / ZT1 FAILS, MAXTR, MINZT1.
+ *   (TR-Delta: E <= D3).  Prints MAXED (max E/D3).  OBJT=4: maximize (Q3v + t)/D3 (Conjecture Q3T: D3 >= |Q3| + t, with the rep-free
+ *   Q3v = #{level-3 classes, m <= sigma < 2m, sigma - a not a small value of height <= 2, all a} + t).  Prints Q3T FAILS, MAXQ3T.  Prints TR FAILS / ZT1 FAILS, MAXTR, MINZT1.
  * q5annQ3 (p38, 2026-10-21): q5annZW + the ZT-RED / Q' quantities.
  *   Q' = #{large classes s (sigma_s >= m) with sigma_s - a not a small standard value for every a in A};
  *   ZT-RED (PROVED): W >= D3 + e z - c_U + e|T cap [0, c_U - m)|  (checked: exit 14 if violated);
@@ -33,7 +34,7 @@
 #define MAXM 400
 #define BIG 1000000L
 static int m, d, e;
-typedef struct { int inQ5, res; long p2, h, dc, D3, W, a1, hlo, hhi, eT, lT, aeT, desc, mu, hlomu, Umu, Up, up, Qa, Qb, mulo, cU, z, qp, n3, L3, tc, t, rr; } Ev;
+typedef struct { int inQ5, res; long p2, h, dc, D3, W, a1, hlo, hhi, eT, lT, aeT, desc, mu, hlomu, Umu, Up, up, Qa, Qb, mulo, cU, z, qp, n3, L3, tc, t, rr, q3v; } Ev;
 static Ev eval(const int *a){
   Ev v; memset(&v, 0, sizeof v);
   static int w[MAXM], done[MAXM], order[MAXM], hmx[MAXM], sg[MAXM], tau[MAXM], dn[MAXM]; int G[32], lim = 6 * m;
@@ -88,6 +89,9 @@ static Ev eval(const int *a){
         if (sg[x] >= m){ int hit = 0; for (int q = 0; q < d && !hit; q++){ int vv = sg[x] - a[q]; if (vv >= 0 && vv < m && sg[vv] == vv) hit = 1; } if (!hit) qp++; } }
       for (int y = 0; y < cU - m; y++) if (inT[y]) tc++;
       v.qp = qp; v.n3 = n3; v.L3 = L3; v.tc = tc;
+      { long q3 = 0; for (int x = 0; x < m; x++){ if (hmx[x] != 3 || sg[x] < m || sg[x] >= 2 * m) continue; int hit = 0;
+          for (int q = 0; q < d && !hit; q++){ int vv = sg[x] - a[q]; if (vv >= 0 && vv < m && sg[vv] == vv && hmx[vv] <= 2) hit = 1; } if (!hit) q3++; }
+        v.q3v = q3; }
       { long tt = 0; for (int x = 0; x < m; x++) if (sg[x] >= 2 * m) tt++; v.t = tt; v.rr = r;
         if (v.W != v.D3 + ((long)e * v.z - (m - tt)) + ((long)(e - 1) * (r + 1) - (long)(e + 1) * tt)){ fprintf(stderr, "split mismatch\n"); exit(15); } }
       if (v.W < v.D3 + (long)e * v.z - cU + (long)e * tc){ fprintf(stderr, "ZT-RED violated\n"); exit(14); } } v.hlomu = hm; v.Umu = Um; v.Up = Upr; v.up = upr;
@@ -105,6 +109,7 @@ static int OBJW;   /* env OBJW=1: minimize W(S) itself on residual states */
 static int OBJH; static int OBJM; static int OBJQ; static int OBJC; static int OBJZ; static int OBJ3; static int MULE; static int OBJT; static int RESONLY;   /* env OBJH=1: minimize Delta3 / |T\\U| (candidate D6: Delta3 >= 6|T\\U|) */
 static double obj(const Ev *v){ if (OBJT){ if (RESONLY && !v->res) return (double)(BIG + v->D3);
       if (OBJT == 1) return -1000.0 * (double)((long)(e + 1) * v->t - (long)(e - 1) * (v->rr + 1)) / (double)(v->rr + 1);
+      if (OBJT == 4) return v->D3 > 0 ? -1000.0 * (double)(v->q3v + 2 * v->t) / (double)v->D3 : -1e9;
       if (OBJT == 3) return v->D3 > 0 ? -1000.0 * (double)((long)(e + 1) * v->t - (long)(e - 1) * (v->rr + 1)) / (double)v->D3 : -1e9;
       return (double)((long)e * v->z + v->t - m); }
   if (OBJ3){ if (v->res && (!MULE || v->mu <= e)) return v->D3 > 0 ? -1000.0 * (double)v->qp / (double)v->D3 : -1e9; return (double)(BIG + v->D3); }
@@ -123,7 +128,7 @@ int main(int argc, char **argv){
   d = atoi(argv[1]); int mlo = atoi(argv[2]), mhi = atoi(argv[3]), restarts = atoi(argv[4]), steps = atoi(argv[5]);
   rs ^= (unsigned long long)atoll(argv[6]) * 2654435761ULL; double T0 = argc > 7 ? atof(argv[7]) : 8.0; e = d + 1;
   if (mhi >= MAXM || d > 30){ fprintf(stderr, "bad parameters\n"); return 1; }
-  long gfail = 0; long gmin = 1L << 40; int gA[32] = {0}, gm = 0; int MU = getenv("MU") ? atoi(getenv("MU")) : 0; OBJR = getenv("OBJR") != NULL; OBJE = getenv("OBJE") != NULL; OBJW = getenv("OBJW") != NULL; OBJH = getenv("OBJH") != NULL; OBJM = getenv("OBJM") != NULL; OBJQ = getenv("OBJQ") != NULL; OBJC = getenv("OBJC") != NULL; OBJZ = getenv("OBJZ") ? atoi(getenv("OBJZ")) : 0; OBJ3 = getenv("OBJ3") != NULL; MULE = getenv("MULE") != NULL; OBJT = getenv("OBJT") ? atoi(getenv("OBJT")) : 0; RESONLY = getenv("RESONLY") != NULL; double maxtr[2] = {-1e9, -1e9}; long minzt[2] = {1L << 40, 1L << 40}; int trA[2][32] = {{0}}, trm[2] = {0, 0}, ztA[2][32] = {{0}}, ztm[2] = {0, 0}; long trt[2] = {0, 0}, trr[2] = {0, 0}; double maxed[2] = {-1e9, -1e9}; int edA[2][32] = {{0}}, edm[2] = {0, 0}; double maxq[2] = {0, 0}, maxn3 = 0, maxl3 = 0; int qA[2][32] = {{0}}, qm[2] = {0, 0}, n3A[32] = {0}, n3m = 0; long qD3[2] = {0, 0}, qqp[2] = {0, 0}, n3D3 = 0, n3n = 0; double maxzw[2] = {-1e9, -1e9}; int zwA[2][32] = {{0}}, zwm[2] = {0, 0}; long zwD3[2] = {0, 0}, zwz[2] = {0, 0}, zwcU[2] = {0, 0}; double maxcu[2] = {0, 0}; int cuA[2][32] = {{0}}, cum[2] = {0, 0}; long cuD3[2] = {0, 0}, cucU[2] = {0, 0}, cumu[2] = {0, 0}; double maxmr = 0; int mrA[32] = {0}, mrm = 0; long mrD3 = 0, mrhm = 0, mrhh = 0; long minQa = 1L << 40; int qaA[32] = {0}, qam = 0; double minDh = 1e18; int dhA[32] = {0}, dhm = 0; long dhD3 = 0, dhh = 0; int BLO = getenv("BLO") ? atoi(getenv("BLO")) : 0; long minW = 1L << 40; int wA[32] = {0}, wm = 0; long minaeT = 1L << 40, mindesc = 1L << 40; int aeA[32] = {0}, aem = 0; double maxrat = 0; int ratA[32] = {0}, ratm = 0; long ratD3 = 0, rathlo = 0, rathhi = 0;
+  long gfail = 0; long gmin = 1L << 40; int gA[32] = {0}, gm = 0; int MU = getenv("MU") ? atoi(getenv("MU")) : 0; OBJR = getenv("OBJR") != NULL; OBJE = getenv("OBJE") != NULL; OBJW = getenv("OBJW") != NULL; OBJH = getenv("OBJH") != NULL; OBJM = getenv("OBJM") != NULL; OBJQ = getenv("OBJQ") != NULL; OBJC = getenv("OBJC") != NULL; OBJZ = getenv("OBJZ") ? atoi(getenv("OBJZ")) : 0; OBJ3 = getenv("OBJ3") != NULL; MULE = getenv("MULE") != NULL; OBJT = getenv("OBJT") ? atoi(getenv("OBJT")) : 0; RESONLY = getenv("RESONLY") != NULL; double maxtr[2] = {-1e9, -1e9}; long minzt[2] = {1L << 40, 1L << 40}; int trA[2][32] = {{0}}, trm[2] = {0, 0}, ztA[2][32] = {{0}}, ztm[2] = {0, 0}; long trt[2] = {0, 0}, trr[2] = {0, 0}; double maxed[2] = {-1e9, -1e9}, maxq3t[2] = {-1e9, -1e9}; int q3tA[2][32] = {{0}}, q3tm[2] = {0, 0}; long q3tD[2] = {0, 0}, q3tq[2] = {0, 0}, q3tt[2] = {0, 0}; int edA[2][32] = {{0}}, edm[2] = {0, 0}; double maxq[2] = {0, 0}, maxn3 = 0, maxl3 = 0; int qA[2][32] = {{0}}, qm[2] = {0, 0}, n3A[32] = {0}, n3m = 0; long qD3[2] = {0, 0}, qqp[2] = {0, 0}, n3D3 = 0, n3n = 0; double maxzw[2] = {-1e9, -1e9}; int zwA[2][32] = {{0}}, zwm[2] = {0, 0}; long zwD3[2] = {0, 0}, zwz[2] = {0, 0}, zwcU[2] = {0, 0}; double maxcu[2] = {0, 0}; int cuA[2][32] = {{0}}, cum[2] = {0, 0}; long cuD3[2] = {0, 0}, cucU[2] = {0, 0}, cumu[2] = {0, 0}; double maxmr = 0; int mrA[32] = {0}, mrm = 0; long mrD3 = 0, mrhm = 0, mrhh = 0; long minQa = 1L << 40; int qaA[32] = {0}, qam = 0; double minDh = 1e18; int dhA[32] = {0}, dhm = 0; long dhD3 = 0, dhh = 0; int BLO = getenv("BLO") ? atoi(getenv("BLO")) : 0; long minW = 1L << 40; int wA[32] = {0}, wm = 0; long minaeT = 1L << 40, mindesc = 1L << 40; int aeA[32] = {0}, aem = 0; double maxrat = 0; int ratA[32] = {0}, ratm = 0; long ratD3 = 0, rathlo = 0, rathhi = 0;
   for (m = mlo; m <= mhi; m++){
     if (m - 1 < d) continue;
     long tries = 0, starts = 0, resvisits = 0, fails = 0, minp = 1L << 40; int minA[32] = {0}; Ev minv; memset(&minv, 0, sizeof minv);
@@ -151,6 +156,8 @@ int main(int argc, char **argv){
           if (tr > maxtr[R]){ maxtr[R] = tr; memcpy(trA[R], b, sizeof trA[R]); qsort(trA[R], d, sizeof(int), cmpint); trm[R] = m; trt[R] = nv.t; trr[R] = nv.rr; }
           { double ed = nv.D3 > 0 ? (double)((long)(e + 1) * nv.t - (long)(e - 1) * (nv.rr + 1)) / nv.D3 : 1e9; if (ed > maxed[R]){ maxed[R] = ed; memcpy(edA[R], b, sizeof edA[R]); qsort(edA[R], d, sizeof(int), cmpint); edm[R] = m; }
             if (ed > 1.0){ int sq[32]; memcpy(sq, b, sizeof sq); qsort(sq, d, sizeof(int), cmpint); printf("TRD FAILS res=%d t=%ld r=%ld D3=%ld at <%d", R, nv.t, nv.rr, nv.D3, m); for (int q = 0; q < d; q++) printf(",%d", m + sq[q]); printf(">\n"); fflush(stdout); } }
+          { double qr = nv.D3 > 0 ? (double)(nv.q3v + 2 * nv.t) / nv.D3 : 1e9; if (qr > maxq3t[R]){ maxq3t[R] = qr; memcpy(q3tA[R], b, sizeof q3tA[R]); qsort(q3tA[R], d, sizeof(int), cmpint); q3tm[R] = m; q3tD[R] = nv.D3; q3tq[R] = nv.q3v; q3tt[R] = nv.t; }
+            if (R && qr > 1.0){ int sq[32]; memcpy(sq, b, sizeof sq); qsort(sq, d, sizeof(int), cmpint); printf("Q3T FAILS D3=%ld q3v=%ld t=%ld W=%ld at <%d", nv.D3, nv.q3v, nv.t, nv.W, m); for (int q = 0; q < d; q++) printf(",%d", m + sq[q]); printf(">\n"); fflush(stdout); } }
           if (zt < minzt[R]){ minzt[R] = zt; memcpy(ztA[R], b, sizeof ztA[R]); qsort(ztA[R], d, sizeof(int), cmpint); ztm[R] = m; }
           if (zt < 0){ int sq[32]; memcpy(sq, b, sizeof sq); qsort(sq, d, sizeof(int), cmpint); printf("%s FAILS res=%d t=%ld r=%ld z=%ld D3=%ld W=%ld at <%d", "ZT1", R, nv.t, nv.rr, nv.z, nv.D3, nv.W, m); for (int q = 0; q < d; q++) printf(",%d", m + sq[q]); printf(">\n"); fflush(stdout); } }
         if (nv.res){ int K = nv.mu <= e ? 0 : 1;
@@ -193,6 +200,7 @@ int main(int argc, char **argv){
   for (int R = 0; R < 2; R++){ printf("MAXCU %s d=%d ratio=%.4f D3=%ld cU=%ld mu=%ld at <%d", R ? "residual" : "U=T", d, maxcu[R], cuD3[R], cucU[R], cumu[R], cum[R]); for (int q = 0; q < d; q++) printf(",%d", cum[R] + cuA[R][q]); printf(">\n"); }
   for (int K = 0; K < 2; K++){ printf("MAXQ3 %s d=%d ratio=%.4f D3=%ld qp=%ld at <%d", K ? "mu>e" : "mu<=e", d, maxq[K], qD3[K], qqp[K], qm[K]); for (int q = 0; q < d; q++) printf(",%d", qm[K] + qA[K][q]); printf(">\n"); }
   for (int R = 0; R < 2; R++){ printf("MAXTR %s d=%d ((e+1)t-(e-1)(r+1))/(r+1)=%.4f t=%ld r=%ld at <%d", R ? "residual" : "U=T", d, maxtr[R], trt[R], trr[R], trm[R]); for (int q = 0; q < d; q++) printf(",%d", trm[R] + trA[R][q]); printf(">\n");
+    printf("MAXQ3T %s d=%d (Q3v+2t)/D3=%.4f D3=%ld Q3v-t=%ld t=%ld at <%d", R ? "residual" : "U=T", d, maxq3t[R], q3tD[R], q3tq[R], q3tt[R], q3tm[R]); for (int q = 0; q < d; q++) printf(",%d", q3tm[R] + q3tA[R][q]); printf(">\n");
     printf("MAXED %s d=%d E/D3=%.4f at <%d", R ? "residual" : "U=T", d, maxed[R], edm[R]); for (int q = 0; q < d; q++) printf(",%d", edm[R] + edA[R][q]); printf(">\n");
     printf("MINZT1 %s d=%d min(e z + t - m)=%ld at <%d", R ? "residual" : "U=T", d, minzt[R], ztm[R]); for (int q = 0; q < d; q++) printf(",%d", ztm[R] + ztA[R][q]); printf(">\n"); }
   printf("MAXN3 d=%d ratio=%.4f D3=%ld n3=%ld at <%d", d, maxn3, n3D3, n3n, n3m); for (int q = 0; q < d; q++) printf(",%d", n3m + n3A[q]); printf("> MAXL3 ratio=%.4f\n", maxl3);

@@ -6610,3 +6610,27 @@ E := (e+1)t − (e−1)(r+1).
 - Q2 = M₂′ on every S. |Q1| ≤ 9, and min (N − |Q1|) = 19, 25, 32, 36.
 - Payment of Q′ is not local: 3P(x) ≥ c(x) per standard square fails on 16 / 454 and 88 / 10,663 S. Globally the large
   squares' missing children P_L pay |Q′| with ratio ≤ 0.29.
+
+**Identity SPLIT-Q3 (PROVED; asserted by q3t.py on all 280,326 residual S, e = 5–8, with W from the Apéry set).**
+Let D be the tile and D_s its small part (σ < m, so |D_s| = z). Classify the (e−1)z pairs (x, l) ∈ D_s × [1, e−1]:
+- N_<: σ(x) + a_l < m;
+- n₂: x + e_l ∈ D, which forces σ ∈ [m, 2m);
+- n₃: the rest.
+For c ∈ M₁ put hit(c) := #{distinct parts l of rep(c) with a_l > c}, i.e. the parts whose removal leaves a small monomial.
+Then n₂ = Σ_{c∈M₁} hit(c). Let Q1′ := {c ∈ M₁ : hit(c) = 0} and ov := Σ_{c∈M₁} (hit(c) − 1)⁺. Then:
+- e·z + t − m = N_< + n₃ + ov − |Q1′|;
+- **W = (Δ₃ − |Q3| − t) + N_< + n₃ + ov + (e−1)(r + 1 − t)**, where Q3 := Q1′ ⊔ M₂′ is the set of level-3 classes whose
+  rep has all three pairwise sums ≥ m. (Every M₂′ rep has this property: a part < m and value ≥ 2m.)
+
+**Conjecture Q3T (CONJ; CHECKED, exhaustive residual e ≤ 8).** On the Q5 residual, Δ₃ ≥ |Q3| + t. Equivalently
+
+    3n₃ + |Q3| + t ≤ 2e(e − 1) + (e − 3)·n₂.
+
+- By SPLIT-Q3, **Q3T ⟹ Wilf on Q5, for every μ and with no induction.**
+- Data: max (|Q3| + t)/Δ₃ = 0.294, 0.300, 0.376, 0.390 at e = 5–8 (μ ≤ e: 0.294, 0.267, 0.289, 0.284). Min slack
+  24, 29, 57, 81. e = 8 extremum: m = 64, A = [15,29,43,58,59,61,63], Δ₃ = 136, |Q3| = 27, t = 26.
+- It fails on U = T: the annealer found ratio 1.08 at e = 6, ⟨40,65,67,72,73,78⟩. So a proof must use the residual
+  (RES-SMALL, DOM). U = T is covered by PAY2 = (Δ₃ ≥ 0) and induction.
+- The crude forms Δ₃ ≥ 2n₃ and Δ₃ ≥ 2L₃ are FALSE (FAILED.md "N3"). Δ₃ ≥ L₃ + t holds at e ≤ 7 with ratio ≤ 0.61.
+- Sub-route: ZT1 ⟸ Q1R (|Q1′| ≤ N_< + ov; min slack 11, 13, 16 at e = 5–7). Q1N (|Q1′| ≤ N_<) has slack 8, 7, 7, 4 and
+  is too lossy.
