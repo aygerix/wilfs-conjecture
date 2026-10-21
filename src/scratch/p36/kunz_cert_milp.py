@@ -10,7 +10,8 @@ Relaxation part (objective R or RT): continuous y_s >= 0; for each tight pair (t
 Objective:  W = (e-1)c - e*sum k   (obj W),   or   e(k_r + sum y) - k_r m + rho   (obj R/RT/RT2/UA/UA2/TX; = min over S of
 the relaxation value, a lower bound for W).  TX: tight pairs y_i + y_j - y_s = k_r + tau_ij exactly, tau_ij =
 (r_i + r_j - r_s - rho)/m with r_x = (x - r - 1) mod m (kunz_face.py TX).
-Optional domain restrictions: --open (c >= 4m+1, 3e < m), --h3 (every Apery element is a sum of <= 3 generators and at
+Optional domain restrictions: --h4 (Apery height >= 4, i.e. some tight pair has two non-generator parts),
+--open (c >= 4m+1, 3e < m), --h3 (every Apery element is a sum of <= 3 generators and at
 least one is not a sum of <= 2), --dense (m > e^2).
 Every solution is decoded, re-verified from its Apery set, and its relaxation values recomputed by kunz_face.face.
 usage: /usr/bin/python3 kunz_cert_milp.py m e OBJ [--K K] [--open] [--h3] [--dense] [--tl s] [--threads n] [--rlist ..]"""
@@ -24,7 +25,7 @@ ap.add_argument("m", type=int); ap.add_argument("e", type=int); ap.add_argument(
 ap.add_argument("--K", type=int, default=30); ap.add_argument("--open", action="store_true")
 ap.add_argument("--h3", action="store_true"); ap.add_argument("--dense", action="store_true")
 ap.add_argument("--tl", type=float, default=300); ap.add_argument("--threads", type=int, default=2)
-ap.add_argument("--rlist", default="")
+ap.add_argument("--rlist", default=""); ap.add_argument("--h4", action="store_true")
 args = ap.parse_args(); m, e = args.m, args.e
 if args.dense: assert m > e * e
 pairs = [(i, j) for i in range(1, m) for j in range(i, m) if (i + j) % m]
@@ -61,6 +62,11 @@ def solve(r):
             for p in to[s]: M.addConstr(N2[s] <= 1 - u[p])
             M.addConstr(N2[s] <= 1 - g[s])
         M.addConstr(gp.quicksum(N2.values()) >= 1)
+    if args.h4:   # height >= 4  <=>  some tight pair (i, j) with both parts non-generators
+        zz = M.addVars(pairs, vtype=GRB.BINARY)
+        for (i, j) in pairs:
+            M.addConstr(zz[i, j] <= t[i, j]); M.addConstr(zz[i, j] <= 1 - g[i]); M.addConstr(zz[i, j] <= 1 - g[j])
+        M.addConstr(gp.quicksum(zz.values()) >= 1)
     if args.obj == 'W':
         M.setObjective((e - 1) * c - e * gp.quicksum(k.values()), GRB.MINIMIZE)
     else:
@@ -93,6 +99,7 @@ def solve(r):
         assert out['e'] == e and out['r'] == r, (out['e'], out['r'])
         if args.open: assert out['c'] >= 4 * m + 1
         if args.h3: assert out['h'] == 3
+        if args.h4: assert out['h'] >= 4
         if args.obj == 'W': assert abs(M.ObjVal - W) < 1e-6, (M.ObjVal, W)
         elif args.obj in out: assert out[args.obj] <= M.ObjVal + 1e-6, (M.ObjVal, out[args.obj])
     print(line, flush=True)

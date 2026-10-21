@@ -5514,3 +5514,60 @@ subject to L_x − β_x ≤ e for every NON-generator x. UA2 is the same with an
 - Fallback: CONJ UA2-NONNEG.
 - RT-NONNEG is kept but deprioritized: its full-window barrier is proved (FAKE3(b)), and only the cover densities keep
   it alive.
+
+### Exact τ formula, part types (RT3), corrections, and the two-mechanism picture (2026-10-21, later)
+**Lemma τ-FORMULA (PROVED).** Let r be the conductor residue (w_r = max Ap). For a pair of nonzero residues i, j with
+s = i + j mod m ≠ 0,
+    τ_ij = [i + j > m] + [s > r] − [i > r] − [j > r],     and r_x < ρ ⟺ x > r  (r_x = ρ only for x = 0).
+- Proof: μ_x = k_r − k_x − [x > r] for x ≠ 0, and the Kunz relation k_i + k_j + [i+j>m] = k_s + J give
+  μ_i + μ_j − μ_s = q − J + ([i+j>m] + [s>r] − [i>r] − [j>r]).
+- Positions: r_x = (x + ρ) mod m, since c ≡ −ρ. So r_x < ρ iff x + ρ ≥ m iff x > r = m − ρ − 1. ∎
+- Asserted on every tight pair by rtexact.py.
+
+**Lemma TYPE (PROVED).** τ = −1 forces both parts LOW (r_i, r_j < ρ, i.e. i, j > r). τ = +1 forces both parts HIGH
+(r_i, r_j > ρ, i.e. i, j ≤ r).
+- Proof: τ = −1 needs r_i + r_j = r_s + ρ − m ≤ ρ − 1. τ = +1 needs r_i + r_j = m + ρ + r_s ≥ m + ρ. ∎
+- RT3 = RT2 with the lower allowance ε only on LL relations and the upper allowance ε⁺ only on HH relations. UA3 =
+  RT3 + generator levels. So R ≤ RT ≤ RT2 ≤ RT3 ≤ TX ≤ W and RT3 ≤ UA3 ≤ W.
+- RT3's dual is CERT± with costs only on monochromatic relations: positive weights on LL relations into W_ρ, negative
+  weights on HH relations into low cells. The coloring is x ↦ [x > r].
+
+**Correction to "RT2 removes the full-window fake".** The 3/4 threshold applies only when all of P ∪ C lies in W_ρ.
+- FAKE3(b) is RT2-feasible whenever every height-2 element with δ_p = 1 has a low position (ε⁺_p = 1).
+- RT2 attains it on 14 of 33 graded d = 6 cover S and 3 of 7 at d = 7. Certified exactly: ⟨55,71,78,79,93,97,99⟩,
+  RT2 = 137 = (b).
+- So in the configuration "pairs low, cubics in the window", RT2 has the same barrier θ*(d) → 1/2 as RT.
+- Lemma TYPE kills (b) there. (b) needs τ = +1 on generator pairs (both generators HIGH) and τ = −1 on the cubic splits
+  above them (the generator part LOW). A generator in both is impossible.
+- Effect: RT3 = 172 vs RT2 = 137 on that S; 111 vs 90 on ⟨55,76,77,81,83,91,94⟩.
+
+**Correction to Proposition TX ("TX = W generically").** This held on the tested shallow S (q ≤ 6). Deep S have TX ≪ W,
+because the real level perturbation of Proposition TX(b) is large there. Certified exactly (rtexact.py):
+- ⟨25,26,60,80,90,95⟩ (q = 7): TX = 35, UA = 221, W = 245;
+- ⟨25,59,60,76,93,102⟩ (q = 13): TX = 116, UA3 = 546 = W;
+- ⟨30,35,68,73⟩ (q = 10): TX = 118, UA3 = 110, W = 218.
+So TX is not "Wilf in disguise" at depth. It ignores the generator levels, which block those perturbations.
+
+**Two mechanisms (observed, E371).**
+- (i) Shallow S (q = 5–6, near-simplex tiles, heights 3–5): the missing information is positional (part types / exact τ).
+  - ⟨20,23,39,45⟩: RT2 21 → RT3 59;
+  - ⟨15,21,29,32⟩: RT2 7 → RT3 29 = W;
+  - ⟨13,17,27,36⟩: RT2 12 → RT3 20 = W.
+- (ii) Deep S (q ≥ 7): positional information is exhausted (RT2 = RT3 = TX) and only the generator levels close the gap
+  (UA ≈ W).
+- UA3 combines both: min UA3/W ≈ 0.50 on the m = 20–30 annealing set, against RT2/W 0.132 and UA2/W 0.296.
+
+**Height-3 status (exact).**
+- (1) Exact reduction (PROVED). Under H (graded height ≤ 3), substitute y = 2q/3 + α (generators), q/3 + β (height 2),
+  γ (height 3). Then
+    RT2 = q·Γ_cap + ρ − e·K_q,   K_q = −min{Σα + Σβ + Σγ : α_a + α_b − β_p ∈ [−ε_p, ε⁺_p] (A),
+          β_p + α_c − γ_z ∈ [−ε_z, ε⁺_z] (B), α ≥ −2q/3, β ≥ −q/3, γ ≥ 0}.
+  - K_q ≥ 0 (α = β = γ = 0 is feasible) and is nondecreasing in q. So RT2 ≤ qΓ_cap + ρ, and RT2 ≥ 0 ⟺ e·K_q ≤
+    qΓ_cap + ρ.
+  - The same holds for RT and RT3 with their intervals.
+- (2) Conditional theorem (PROVED, an instance of CERT± with RT2 costs). With all pairs present, unique factorization
+  and a regular cubic weighting (H3-UNIF):
+    W ≥ RT2 ≥ q·M₃ + ρ − Σ_{p: r_p ≤ m−ρ−2} (e − X_p) − Σ_{z ∈ C∩W_ρ} Λ_z.
+- (3) Barriers (PROVED): FAKE3(a), (b), (c).
+- (4) What needs a packing theorem: for RT2, θ_d ≤ θ*(d) (→ 1/2) in the configuration of (b); unproved. For RT3, (b) is
+  excluded, and its own height-3 barrier is not yet derived. No unconditional height-3 theorem yet.

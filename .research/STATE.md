@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21: RT barriers proved genuine (FAKE3); level-free RT2 via τ-WINDOW; UA dual exact; main target CONJ RT2-NONNEG; see (A0000000000000))
+# STATE.md — handoff (2026-10-21 later: τ-FORMULA, TYPE ⇒ RT3; corrections (RT2 keeps the 1/2 barrier; TX ≪ W at depth); two mechanisms; lead candidate UA3-NONNEG; see (A00000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,20 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000000000) **NEWEST (2026-10-21, later; advisor's step 1 (heights 4–5) and step 2 (height 3)).**
+          - Proved: τ-FORMULA; TYPE (RT3); the exact height-3 reduction RT2 = qΓ_cap + ρ − eK_q.
+          - Corrections (NOTEBOOK):
+            - RT2 keeps the θ → 1/2 barrier in the configuration "pairs low, cubics in the window";
+            - TX ≪ W at depth.
+          - Two mechanisms: shallow S need part types (RT3); deep S need generator levels (UA). Lead candidate: CONJ
+            UA3-NONNEG (e ≥ 3, c > 4m ⇒ UA3 ≥ 0). RT2-NONNEG and RT3-NONNEG are kept and still untested to failure.
+          - Exact certification tool: rtexact.py.
+          - Running on fejer: runh4.sh (MILP, e ≥ 4, h ≥ 4, open; slow, at m = 13), runa2.sh (anneal ladder m ≤ 60),
+            runcovs.sh (d = 9, 10).
+          - Next:
+            1. Height-3 barrier for RT3 (and UA3) by FAKE3-type fakes respecting TYPE.
+            2. Anneal on UA3 and on UA3/W.
+            3. A parameter-uniform dual for UA3: generators priced at μ_g, costs on monochromatic relations.
       (A0000000000000) **NEWEST (2026-10-21; advisor review of the pushed commits; steps 1 and 3 of the revised plan).**
           **(a) Proved (PROOFS "RT barriers are real; the one-cell upper window RT2; the exact UA dual").**
           - τ-WINDOW: τ = +1 forces r_s ≤ m − ρ − 2. This gives the level-free RT2 (R ≤ RT ≤ RT2 ≤ UA2 ≤ W).

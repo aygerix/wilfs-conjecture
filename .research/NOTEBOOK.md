@@ -4150,3 +4150,29 @@ Consequences:
   improves RT (5 → 7, 8 → 12, 8 → 11.6) while UA2 gives 9, 16, 23 (E370). The coincidence min RT2 = min UA at height 3 is
   a property of those (mostly equal-level) cover families, not a general fact. RT2-NONNEG's thinnest known margins are at
   heights 4–5, so that is where its adversarial testing should go next; e = 3 is a known theorem and can be excluded.
+
+### 2026-10-21 (later): heights 4–6, part types (RT3), and two mechanisms
+- **Corrections (preserved).**
+  - "RT2's full-window barrier is 3/4" holds only when all of P ∪ C ⊆ W_ρ. With pairs low and cubics in the window,
+    RT's window fake is RT2-feasible and attained (certified: ⟨55,71,78,79,93,97,99⟩, RT2 = 137). So RT2 keeps the
+    θ → 1/2 barrier.
+  - "TX = W generically" holds only for shallow S. Deep S have TX ≪ W (⟨25,26,60,80,90,95⟩: TX 35, W 245).
+- **Proved.**
+  - τ-FORMULA: τ = [i+j>m] + [s>r] − [i>r] − [j>r].
+  - TYPE: τ = ±1 forces both parts on the same side of r. This gives RT3; its costs fall only on monochromatic
+    relations.
+  - Exact height-3 reduction RT2 = qΓ_cap + ρ − eK_q.
+- **Exactly certified values** (rtexact.py; R omitted; RT/RT2/RT3/UA/UA2/UA3/TX/W):
+  - ⟨55,76,77,81,83,91,94⟩ 55/90/111/90/90/111/167/167
+  - ⟨55,71,78,79,93,97,99⟩ 130/137/172/172/214/214/228/228
+  - ⟨77,105,111,125,132,136,141,144⟩ 517/3/215/255/199/231/279/279/279
+  - ⟨15,21,29,32⟩ 5/7/29/5/9/29/29/29
+  - ⟨13,17,27,36⟩ 8/12/20/8/16/20/20/20
+  - ⟨20,23,39,45⟩ 19/21/59/19/21/71/59/71
+  - ⟨25,26,60,80,90,95⟩ 35/35/35/221/221/221/35/245
+  - ⟨25,59,60,76,93,102⟩ 72/72/72/501/534/546/116/546
+  - ⟨25,26,31,58⟩ 35/35/55/35/35/55/79/111
+  - ⟨30,35,68,73⟩ 76/80/84/88/94/110/118/218
+  - ⟨37,75,78,80,88,89⟩ 84/84/84/102/102/102/102/102
+- **Two mechanisms.** Shallow: positional (part types). Deep: generator levels. UA3 combines both. Single-lemma candidate:
+  UA3-NONNEG.
