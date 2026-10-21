@@ -33,7 +33,9 @@ A proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup. Nothing
     messages in the transcript (`~/.claude/projects/<project>/<session>.jsonl`).
 
 ## Current research directive
-NONE ACTIVE (2026-10-21, 17:50 EDT). Waiting for the user.
+NONE ACTIVE (2026-10-21, 18:10 EDT). Waiting for the user.
+PROPOSED: `.research/PLAN.md` (ANCHOR for all S with c > 4m, 3e < m; C enumeration, Gurobi only in step C3). Not
+approved yet. Nothing starts until the user says go.
 
 For reference, the last research directions the user gave or approved:
 - 2026-10-20 23:13 EDT. Backward strategy: an exact Kunz MILP in Gurobi minimizing W; the height-3 obstruction first;
