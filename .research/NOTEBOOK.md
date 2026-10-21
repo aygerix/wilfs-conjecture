@@ -4455,3 +4455,19 @@ Consequences:
   - the 4-sub-sum argument, i.e. NE-LEVELS (f);
   - the child argument "x ∈ NE2, a ∈ A ⇒ x + a ∈ NE or a missing cube", i.e. Lemma OUT and the column-top form.
 - So the open core stays the NE3 payment: C*, MISS3, D6 / MU-LO.
+
+### 2026-10-21 (16:20): what pays MU-LO; MU-LO′, H1/H2, CU; the pure ray
+- Δ₃ = 3(C(e+2,3) − m) − e·M₂ (trivial). So MU-LO is an upper bound on m, and its extremum is paid by the generic waste
+  of a small m (133 of Δ₃ = 153 comes from EQ squares), not by collisions forced along the ray. Local charging rules fail
+  for this reason: R = 1 fails, while R = 2 ("squares sharing a variable with the rep") saturates. By Hall, R = 2 is a
+  family of V-local MU-LO inequalities.
+- W-μ minus only (e−μ)U_μ + θ is MU-LO′: Δ₃ + eU′ + (e−1)u′ ≥ μh_lo^μ + h_hi, with ratio ≤ 0.15 at e ≤ 8 (a 6–7×
+  margin). Two payers: Δ₃ when T is μ-sparse below c_T (F0, U′ = 0, MU-LO ratio ≤ 0.2), and e·U′ when T is μ-rich.
+  - Halves: H1 (Δ₃/2 + eU′ ≥ μh_lo^μ; 0.26) and H2 (Δ₃/2 + (e−1)u′ ≥ h_hi; 0.09). Together they give Wilf for μ ≤ e
+    with no induction.
+- Pure ray (75% of the residual at e = 7): W = Δ₃ + P1 + β with β ≥ −1 (PROVED). So only the T-sparse case P1 ≤ 0 needs
+  Δ₃, and there Δ₃ is huge.
+- CU (Δ₃ ≥ c_U − 3μ) implies MU-LO and contains no NE terms; ratio ≤ 0.86. Its extremal ladder family peaks at k = 2.
+- A residual S always has a 4-sum below m (RES-SMALL), so top-heavy A (A ⊆ (m/2, m)) is never residual.
+- Next: a proof of H2 or D2 (Δ₃ ≥ 2h) via the μ-runs above c_T. For the T-sparse case of H1, a "sparse T ⇒ many
+  wrapping slots" count, where WC alone covers the demand at e ≤ 7.

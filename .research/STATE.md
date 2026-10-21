@@ -55,6 +55,21 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000000000000000000) **NEWEST (2026-10-21, 16:20; E386).**
+          - Targets now (PROOFS "Robust forms of MU-LO"):
+            - **MU-LO′** (μ ≤ e, no induction): Δ₃ + eU′ + (e−1)u′ ≥ μh_lo^μ + h_hi; ratio ≤ 0.15 at e ≤ 8.
+            - Its halves **H1** (Δ₃/2 + eU′ ≥ μh_lo^μ; 0.26) and **H2** (Δ₃/2 + (e−1)u′ ≥ h_hi; 0.09).
+            - **CU** (Δ₃ ≥ c_U − 3μ; implies MU-LO; 0.86).
+            - **A1 for μ > e** (0.50 at e = 8), used with induction.
+          - Proved:
+            - Δ₃-MULT;
+            - RES-SMALL (every residual S has a 4-sum below m);
+            - RAY-W (pure ray: W = Δ₃ + P1 + β with β ≥ −1, so only T-sparse pure rays need Δ₃).
+          - Mechanism: MU-LO is paid by generic waste (EQ squares), not by ray-local collisions. R = 2 flow saturates
+            (V-local inequalities); R = 1 fails.
+          - **Next:** prove H2 or D2 (Δ₃ ≥ 2h) through the μ-runs above c_T. For the T-sparse case of H1, a wrap-slot count:
+            WC = slots (x, b) whose cube wraps onto U, with WC ≤ Δ₃; WC alone covers the demand at e ≤ 7.
+          - Still running on fejer: q5annCU d = 8, 10 (cu_d8.txt, cu_d10.txt) and the MU-LO annealers (muX_*, mu_M_d9/d11).
       (A000000000000000000000) **NEWEST (2026-10-21, 15:45; E385).**
           - **Qa ≥ 0 and P1 ≥ 0 are FALSE** (FAILED.md "QA / P1"; PROOFS "Remark QA-FALSE"). Example: e = 11,
             m = 85, A = [3,46,47,50,52,58,59,65,76,83], P1 = Qa = −1, W = 677.

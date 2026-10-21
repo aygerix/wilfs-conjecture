@@ -6383,6 +6383,85 @@ Then:
   right granularity; the cut at c_T is not.
 - MU-LO on these examples: ratio (μh_lo^μ + h_hi)/Δ₃ = 0.120, 0.124, 0.102.
 
+### Robust forms of MU-LO; the pure ray; what pays (2026-10-21, E386)
+**Identity Δ₃-MULT (PROVED).** Δ₃ = 3·(C(e+2,3) − m) − e·M₂.
+- Proof: Δ₃ = 3M₃ − (e−3)M₂, and M₂ + M₃ = C(e+2,3) − m (each class has one standard monomial of degree ≤ 3). ∎
+- So MU-LO is the multiplicity bound m + (e·M₂ + μh_lo^μ + h_hi)/3 ≤ C(e+2,3).
+- In the e = 8 MU-LO extremum (m = 61, A = [8,21,37,44,47,49,50]), Δ₃ = 153 splits as 4M₂ = 12 plus 141 from
+  standard squares; 133 of the 141 come from EQ squares.
+  - The local collisions that RUN-PAIR forces along the ray give only about 9.
+  - So MU-LO is paid by the generic waste of a small m, not by NE-specific collisions.
+
+**Lemma RES-SMALL (PROVED).** On the Q5 residual, some NE2 class has τ = v < m with v + m ∈ 2A; hence 4μ ≤ v < m.
+- Proof: NE-LEVELS (f) gives NE2 ≠ ∅. For s ∈ NE2, σ_s = τ_s + m is a 2-sum < 2m, so τ_s < m.
+- k_s ≥ 4 gives τ_s ≥ 4μ. ∎
+- Consequence: if A ⊆ (m/2, m) then U = T, because every 4-sum is ≥ 2m. Random searches in that regime (tophalf.py,
+  e = 6–10) found only U = T, as predicted.
+
+**Lemma RAY-W (PROVED).** Suppose T∖U = {jμ : 4 ≤ j ≤ K} (the pure ray). Put ℓ_μ = ⌈c_T/μ⌉ and θ = μℓ_μ − c_T. Then
+
+    W(S) = Δ₃ + P1 + β,   with β := (e−1)u′ − h_hi ≥ −1,
+
+where β = −1 only if t := K − ℓ_μ + 1 = 1 and θ = 0.
+- Proof:
+  - If K ≤ ℓ_μ − 1, then c_U = c_T and u′ = h_hi = 0.
+  - Otherwise c_U = Kμ + 1, h_hi = t and u′ = (t−1)(μ−1) + θ. Then β ≥ (e−1)(t−1) − t ≥ 0 for t ≥ 2 and e ≥ 3, and
+    β = (e−1)θ − 1 for t = 1. ∎
+- So pure-ray Wilf (8,044 of the 10,663 residual S at e = 7) needs only Δ₃ + P1 ≥ 1:
+  - immediate when P1 ≥ 1 (T-rich; no induction);
+  - in the T-sparse case P1 ≤ 0 it needs Δ₃ ≥ |P1| + 1.
+- In F0 (P1 < 0 from e = 11) one has Δ₃ ≈ e³/2 against |P1| ≤ 12.
+
+**Conjecture MU-LO′ (CONJ; CHECKED e ≤ 8).** For μ ≤ e:
+
+    Δ₃ + e·U′ + (e−1)·u′ ≥ μ·h_lo^μ + h_hi.
+
+- This is W-μ with only (e−μ)U_μ + θ ≥ 0 discarded, so it implies Wilf for μ ≤ e with no induction.
+- Data:
+  - max ratio = 0.128, 0.152, 0.150, 0.144 at e = 5–8;
+  - min slack = 53, 87, 128, 177.
+  For comparison, MU-LO has ratio 0.35–0.39.
+- The U′ = 0 slice is easy for Δ₃ alone: MU-LO ratio ≤ 0.200, 0.154, 0.168, 0.138.
+- The hard MU-LO cases have large U′ (e = 8 extremum of MU-LO′: m = 52, A = [7,24,31,40,44,47,51], U′ = 29).
+- **Two payers:**
+  - collisions Δ₃, when T is μ-sparse below c_T (F0);
+  - T-density e·U′, when T has many non-multiples of μ below c_T.
+  A proof has to interpolate between them.
+
+**Conjectures H1, H2 (CONJ; CHECKED e ≤ 8, μ ≤ e).** H1 and H2 together imply MU-LO′:
+- H1: Δ₃/2 + e·U′ ≥ μ·h_lo^μ. Max ratio 0.175, 0.231, 0.232, 0.262 (slowly rising).
+  - The e = 8 extremum is F0-like: m = 59, A = [4,33,37,39,42,47,54], U′ = 2.
+  - In F0 at e = 11–15 the MU-LO ratio is ≤ 0.12.
+- H2: Δ₃/2 + (e−1)·u′ ≥ h_hi. Max ratio 0.120, 0.092, 0.090, 0.089.
+  - H2 follows from D2 (Δ₃ ≥ 2h), whose margin is 3.4× at e = 8.
+- The interval form LOC (|I| − e|U ∩ I| ≤ Δ₃/2 for every interval I ⊆ [0, c_U)) contains H1/H2-type cuts.
+  - But its maximizer is the initial gap [1, μ) (max ratio 0.118, 0.222, 0.151, 0.172), which is irrelevant to Wilf.
+  - So only the two cuts [0, c_T) and [c_T, c_U) are kept.
+
+**Conjecture CU (CONJ; CHECKED on the residual, e ≤ 8).** Δ₃ ≥ c_U − 3μ.
+- CU implies MU-LO for μ ≤ e, since μh_lo^μ + h_hi ≤ c_U − 3μ. It has no NE or T terms.
+- Max ratio (c_U − 3μ)/Δ₃ = 0.618, 0.759, 0.855, 0.802 at e = 5–8 (residual). The q5annCU annealer (all Q5) found
+  0.852 on U = T at e = 7.
+- Extremal family L_k: A = {3} ∪ {3 + 15j : 1 ≤ j ≤ k} ∪ {m−8, m−6, m−5}, m = 15k + 17.
+  - Ratio 0.759, 0.855, 0.802, 0.716, 0.634, 0.563, 0.505, 0.456 for k = 1–8 (famL.py); it peaks at k = 2 because Δ₃
+    grows quadratically and c_U linearly.
+- C1 (Δ₃ ≥ (c_T − 3μ)⁺ + h_hi) has the same maxima.
+- Risk: by Δ₃-MULT, CU can fail only if m ≳ 0.6·C(e+2,3) with c_U ≈ 2m.
+
+**Observation A1 for μ > e.** Δ₃ ≥ e·h_lo + h_hi restricted to μ > e:
+- max ratio 0.317, 0.308, 0.500 at e = 6, 7, 8;
+- e = 8 extremum: m = 62, A = [12,13,36,46,48,56,57].
+This is the induction-based half of the split (MU-LO′ for μ ≤ e, A1 for μ > e).
+
+**Charging flows (flowdiv.py).**
+- Supply: P(x) on standard squares and 4 per missing square (exactly Δ₃).
+- Demand: μ per NE multiple of μ below c_T (μ ≤ e), e per NE below c_T (μ > e), 1 per NE above c_T.
+- R = 1 (an NE3 class draws only from the square divisors of its rep) fails: 1 / 22 and 29 / 454 at e = 5, 6.
+  - Typical failure: the NE2 class 21² spends its P = e on itself while its NE3 child 5 + 21² needs μ more.
+- R = 2 (any square sharing a variable with the rep) saturates on every residual S at e ≤ 8 (269,663 at e = 8).
+  - By Hall this is equivalent to the V-local inequalities Σ_{s: supp x_s ⊆ V} dem(s) ≤ Σ_{squares meeting V} cap,
+    for every V ⊆ A.
+
 **Conjecture MURUN (CONJ; CHECKED e ≤ 8).** Δ₃ ≥ μ·R₀ + h, where R₀ := |μℕ ∩ (T∖U)|. It implies MU-LO, since
 h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
 - max (μR₀ + h)/Δ₃ = 0.706, 0.571, 0.638, 0.704 at e = 5–8, over all μ (μ ≤ e: 0.706, 0.571, 0.593, 0.535).
