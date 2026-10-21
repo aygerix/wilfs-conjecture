@@ -5702,8 +5702,19 @@ where every summand is ≥ 0: generator terms are ≥ 3, pair terms ≥ 1, cubic
   - μ_s = 5 − k_s − [s > r] (Lemma K at q = 5) and μ_0 = 5.
   - With level-1 generators, k_s = h + carries for any factorization of length h. Carries are ≤ 1 for pairs and
     ≤ 2 for cubics, and the latter = 2 only if s ≤ r (Lemma LEVEL-BUDGET). ∎
-- Full pairs (Sidon-with-0 covers): the condition reads θ ≤ 3(d+5)/(4(d+3)) − O(1/T), i.e. 1.0, 0.964, 0.938, 0.917
-  for d = 3–6 and → 3/4. That exceeds every density found (0.75, 0.686, 0.714, 0.655).
+- Full pairs (Sidon-with-0 covers): the condition reads exactly θ ≤ 3(d+5)/(4(d+3)) − (r+1)/(4T).
+  - CORRECTION (advisor, 2026-10-21): an earlier version wrote "− O(1/T)". That is wrong, since r can be as large as
+    m − 1, so the correction is up to ≈ θ/4.
+  - Uniform in r (using r + 1 ≤ m): θ ≤ 3(d+5)/(5(d+3)), i.e. 0.80, 0.771, 0.75, 0.733, 0.709 for d = 3–6, 8, → 3/5.
+  - Found densities 0.75, 0.686, 0.714, 0.655, ≥ 0.612 (d = 3–6, 8) are still below. The asymptotic margin at 3/5
+    is thin.
+- The r-uniform worst case discards the conductor-position credits. Taking r ≈ m makes c ≈ 5m, and the count then
+  assumes every generator and pair cell is LOW.
+  - But LOW residues are exactly the interval {r+1, …, m−1} of length ρ.
+  - Generators and pairs crammed into a short top interval cannot generate a cover, since their sumsets span ≤ 6ρ
+    residues.
+  - So either ρ is large (c = 4m + r + 1 small, threshold → 3/4) or most cells are HIGH (credits [s ≤ r] large). An
+    r-aware version of the count should interpolate between the two (next task).
 - The bound is lossy only on the cubic terms. A failure of the condition needs almost every cubic cell to have μ_z = 0,
   i.e. almost all cubics in the top layer [c, c+m). That is the BASE-family profile.
 - Checked (q5lev1.py, E376): all unit rescalings of the dense covers d = 3–7 with all levels 1, plus 30000 random
