@@ -4446,7 +4446,7 @@ Consequences:
 - The counterexamples come from **family F0**:
   - A = {μ} ∪ B with B ⊂ [c_T, m) ∖ μℕ, so T = μℕ ∪ [c_T, ∞) and U ∩ [0, c_T) = {0, μ, 2μ, 3μ};
   - hence P1 = 4e − c_T.
-  - The necessary condition for Q5 ([m, m+c_T) minus four points inside 3A′) forces c_T ≤ m/2 + μ + 2.
+  - In the pure-ray case, the necessary condition for Q5 ([m, m+c_T) minus four points inside 3A′) forces c_T ≤ m/2 + μ + 2.
   - Covering [c_T, 2c_T) ∖ μℕ by B + {0, μ, 2μ} forces |B| ≳ (μ−1)c_T/(3μ), i.e. c_T ≲ 4.5e for μ = 3. This leaves room
     beyond 4e, and the annealer f0ann.c finds it.
 - Lesson: in F0 the deficit below c_T is paid by (e−1)u′ above c_T. TRUNC₃ = P1 + (e−1)u′ − h_hi and MU-LO keep that
@@ -4471,3 +4471,21 @@ Consequences:
 - A residual S always has a 4-sum below m (RES-SMALL), so top-heavy A (A ⊆ (m/2, m)) is never residual.
 - Next: a proof of H2 or D2 (Δ₃ ≥ 2h) via the μ-runs above c_T. For the T-sparse case of H1, a "sparse T ⇒ many
   wrapping slots" count, where WC alone covers the demand at e ≤ 7.
+
+### 2026-10-21 (16:45): ZW, a statement about the covering set alone
+- Lemma C>M gives ℓ(U) ≥ z := #{s : σ_s < m}, so Wilf on Q5 follows from **ZW: Δ₃ + e·z ≥ c_U**, and from
+  **ZW2: Δ₃ + e·z ≥ 2m** (c_U ≤ 2m). Neither involves T or NE.
+  - ZW2 per class: Σ_s φ(s) ≥ 0, with φ = 4e−5, 3e−5, 2e−5 (level 2 small), e−5 (level 2 large, level 3 small),
+    −5 (level 3 large).
+- Exhaustive: ZW and ZW2 never fail at e ≤ 8.
+  - ZW2 min slack 30, 32, 68, 82 (all μ) and 30, 55, 87, 132 (μ ≤ e).
+  - e·z ≥ c_U alone holds on 201,570 of 201,577 S at e = 8 with μ ≤ e.
+  - Z1 (e·z ≥ m) holds with slack ≥ 18.
+- Pair identity (PROVED, asserted on the dumps): e·z − m = N_< + N_ns + Ov − |Q′|. Hence ZW ⟺ Δ₃ + N_< + N_ns + Ov ≥
+  (c_U − m) + |Q′|. Δ₃ ≥ |Q′| always (slack ≥ 29); the real deficit is c_U − m.
+- **DOM (PROVED).** Every 4-sum v ∈ [m, 2m) has σ_{v−m} ∈ {v − m, v}; every 4-sum v < m is small or NE2. This is
+  what kills the threatening regime (small μ, Sidon-like B in the top half): those S fail height ≤ 3.
+- Caveat: Z1 must use the residual (RES-SMALL), since top-half A (U = T) has z = e.
+- Correction: the 15:45 claim "b + 3μ ∈ B ∪ (B + μ) ∪ 2B" was wrong; the correct statement is DOM. The F0 bounds stand
+  (they need only the pure-ray covering).
+- Next: a charging proof of ZW2 that pays the −5 of each large level-3 class from DOM-forced collisions.

@@ -6462,6 +6462,55 @@ This is the induction-based half of the split (MU-LO′ for μ ≤ e, A1 for μ 
   - By Hall this is equivalent to the V-local inequalities Σ_{s: supp x_s ⊆ V} dem(s) ≤ Σ_{squares meeting V} cap,
     for every V ⊆ A.
 
+### ZW: Wilf on Q5 from the covering set alone (2026-10-21, E387)
+Notation: z := #{s : σ_s < m} = |3A′ ∩ [0, m)|.
+
+**Lemma ZW-RED (PROVED).** On Q5, W(S) ≥ Δ₃ + e·z − c_U ≥ Δ₃ + e·z − 2m.
+- Proof: ID-U gives W = Δ₃ + e·ℓ(U) − c_U, and Lemma C>M gives ℓ(U) = z + r + 1 − t ≥ z. Also c_U = m + r + 1 ≤ 2m. ∎
+- So Wilf on all of Q5, residual or not, needs no induction given:
+  - **Conjecture ZW:** Δ₃ + e·z ≥ c_U;
+  - or **Conjecture ZW2:** Δ₃ + e·z ≥ 2m.
+- ZW discards only e·|U ∩ [m, c_U)|.
+
+**Identity PAIR (PROVED; asserted by zwid.py on every residual S, e ≤ 7).** Let Z be the small classes and map
+Z × A → ℕ by (t, a) ↦ σ_t + a. Put:
+- N_< := #pairs with value < m;
+- N_ns := #pairs with value v ≥ m but v ≠ σ_{v mod m};
+- for each large class s (σ_s ≥ m), hit(s) := #pairs with value σ_s; Ov := Σ_s (hit(s) − 1)⁺;
+- Q′ := large classes with hit(s) = 0.
+Then e·z − m = N_< + N_ns + Ov − |Q′|. Hence ZW ⟺ Δ₃ + N_< + N_ns + Ov ≥ (c_U − m) + |Q′|.
+- Proof: count the (e−1)·z pairs by where they land. ∎
+
+**Lemma DOM (PROVED).** Let v be a sum of four elements of A.
+- If m ≤ v < 2m, then σ_{v−m} ∈ {v − m, v}: either v − m ∈ Z, or v is itself a ≤3-sum standard in its class.
+- If v < m, then v ∈ Z, or σ_v = v + m with h_v = 2 (NE2).
+- Proof: 4m + v ∈ S lies in class v mod m, so w ≤ 4m + v. Height ≤ 3 forbids equality. Hence h·m + σ < 4m + v with
+  h ≤ 3. Here σ = v + m (≥ 2m) needs h = 3 and gives equality, and σ ≥ 3m is impossible. ∎
+- For v ≥ 2m there is no constraint, since 4m + v ≥ 6m > max w.
+
+**Per-class form of ZW2 (PROVED).** Δ₃ + e·z − 2m = Σ_s φ(s), with
+- φ = 4e − 5 (level 0) and 3e − 5 (level 1);
+- φ = 2e − 5 (level 2, σ < m);
+- φ = e − 5 (level 2 with σ ≥ m, or level 3 with σ < m);
+- φ = −5 (level 3 with σ ≥ m).
+So ZW2 says 5·L₃ ≤ 3e² − 4e + (2e−5)·S₂ + (e−5)·(L₂ + S₃), with S/L = small/large and the index = level.
+Checked by zw2cls.py.
+
+**Data (E387, exhaustive residual).**
+- ZW: 0 failures at e ≤ 8.
+  - Max (c_U − e·z)/Δ₃ over all μ: −0.118, 0.033, 0.202, 0.299 (rising). The extremals have μ ≈ 2e > e.
+  - Restricted to μ ≤ e: −0.118, −0.100, 0.031, 0.053. e·z ≥ c_U alone fails on only 0, 0, 2, 7 of these S.
+- ZW2: 0 failures. Min slack 30, 32, 68, 82 (all μ) and 30, 55, 87, 132 (μ ≤ e).
+- Z1 (e·z ≥ m): 0 failures, min slack 18, 18, 22, 18.
+- Pieces of PAIR (μ ≤ e):
+  - Δ₃ ≥ |Q′| always (slack ≥ 29, 46, 70);
+  - N_< + Ov ≥ (c_U − m) + |Q′| fails 0, 2, 26 times.
+  So the deficit c_U − m needs N_ns or Δ₃.
+- The threatening regime (A = {μ} ∪ B, B Sidon-like in (m/2, m), m ~ e³) is excluded by DOM. zwthreat.py found
+  323 non-Q5 hits against 5 residual Q5 hits, all with ZW slack ≥ 334.
+- Z1 cannot hold on non-residual Q5 for large e (A ⊂ (m/2, m) gives z = e), so a proof must use the residual
+  (RES-SMALL).
+
 **Conjecture MURUN (CONJ; CHECKED e ≤ 8).** Δ₃ ≥ μ·R₀ + h, where R₀ := |μℕ ∩ (T∖U)|. It implies MU-LO, since
 h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
 - max (μR₀ + h)/Δ₃ = 0.706, 0.571, 0.638, 0.704 at e = 5–8, over all μ (μ ≤ e: 0.706, 0.571, 0.593, 0.535).
