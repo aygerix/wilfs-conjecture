@@ -6657,3 +6657,19 @@ So Wilf on Q5 follows from Δ₃ ≥ |Q1′| + E⁺ with E := (e+1)t − (e−1)
 - E > 0 needs t > (e−1)(r+1)/(e+1), so |I ∩ [0, r]| < 2(r+1)/(e+1). In particular μ > (e+1)/2 or r < μ.
 - For μ ≤ (e+1)/2, E ≤ 0 is PROVED: |T ∩ [0, r]| ≥ ⌈(r+1)/μ⌉, and r + 1 − t ≥ |T ∩ [0, r]|. The target is then only
   Δ₃ ≥ |Q1′| (data: |Q1′|/Δ₃ ≤ 0.1).
+
+**Charging form of Q3T (CHECKED; sibflow.py).** Demand is 1 per Q1′ class and 2 per M₂′ class, a total of |Q3| + t.
+Supply is the missing slots (x, l) of standard squares (capacity x_l + 1) and the missing squares (capacity 4); the total
+supply is Δ₃.
+- **SIB3** lets a Q3 class with rep y draw from slots of any square x with supp x ∩ supp y ≠ ∅, and from missing squares
+  meeting supp y. It saturates on every residual S at e = 5, 6, 7 (22 / 454 / 10,663). e = 8 is running.
+- By Hall, SIB3 ⟺ the **V-local Q3T inequalities**: for every V ⊆ [d],
+
+      Σ_{s ∈ Q3, supp y_s ⊆ V} dem(s) ≤ Σ_{std squares x meeting V} P(x) + 4·#{missing squares meeting V}.
+
+  V = [d] is Q3T itself.
+- Narrower rules fail:
+  - SIB (only slots of the parents of y): 7 / 454 and 41 / 10,663;
+  - SIB2 (SIB + missing squares meeting y): 1 / 454 (m = 40, A = [9,14,23,25,38]) and 1 / 10,663.
+- Class-local payment fails badly (classmate.py). Most Q3 classes contain no other cube monomial with a standard parent:
+  7,712 / 10,663 S at e = 7 have such a class. Δ₃ pays Q3 through other classes.
