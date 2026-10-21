@@ -5726,3 +5726,20 @@ where every summand is ≥ 0: generator terms are ≥ 3, pair terms ≥ 1, cubic
     principle).
 - Novelty: unchecked. This is an elementary left-element count in the spirit of Eliahou's c ≤ 3m argument.
   Literature check pending.
+
+**Lemma LEVEL1-THRESHOLD (PROVED; CHECKED).** Let every minimal generator other than m lie in (m, 2m); any depth q. For
+each residue s, take any factorization of w_s, of length h_s and with integer residue sum σ_s (so w_s = h_s m + σ_s). Then
+    μ_s = q − h_s − #{j ≥ 0 : σ_s > jm + r},       ℓ = qm − H − Σ_{j≥0} N(jm + r),
+where H = Σ_s h_s and N(t) = #{s : σ_s > t}.
+- Proof: k_s = h_s + ⌊σ_s/m⌋ and s = σ_s mod m. Also ⌊σ/m⌋ + [σ mod m > r] = #{j ≥ 0 : σ > jm + r}, checked on each
+  interval [jm, jm + r] and (jm + r, (j+1)m). Then apply μ_s = q − k_s − [s > r]. ∎
+- Checked on 20000 random S generated in (m, 2m), with depths q = 2–13 (lev1id.py).
+- At q = 5 and height ≤ 3: N(2m + r) = 0, since a cell beyond that threshold would exceed max Ap. So the advisor's credits
+  are exactly the cells whose residue sum stays below r or below m + r.
+  - His top-layer criterion for cubics, a + b + c ≥ m + r + 1, is the second threshold.
+- Corollary (graded, height ≤ 3, q = 5; via CH′, eH ≤ 3(e−1)m):
+    N(r) + N(m + r) ≤ (2 − 1/e)·m − (r+1)/e   ⟹   Wilf.
+  This is a sufficient condition and is lossy wherever CH′ is. Untested; the next C-enumeration target.
+- All-LOW generators (PROVED): if every generator residue is > r, then generators lie in the interval {r+1, …, m−1} of
+  length ρ. So A ∪ 2A ∪ 3A covers at most 6ρ − 3 residues. At height ≤ 3 this forces ρ ≥ (m+2)/6, i.e. c ≤ 5m − (m+2)/6.
+  This is the first case of "the credits cannot all be small": c ≈ 5m and all generators LOW are incompatible.
