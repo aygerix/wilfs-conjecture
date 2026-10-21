@@ -69,22 +69,26 @@ static double urand(void){ return (rnd() >> 11) * (1.0 / 9007199254740992.0); }
 static int cmpint(const void *x, const void *y){ return *(const int *)x - *(const int *)y; }
 static int OBJR;   /* env OBJR=1: maximize the A1 ratio (e h_lo + h_hi)/Delta3 instead of minimizing the slack */
 static int OBJE;   /* env OBJE=1: minimize the A1-eT slack (A1 slack otherwise) */
+static int OBJW;   /* env OBJW=1: minimize W(S) itself on residual states */
+static int OBJH;   /* env OBJH=1: minimize Delta3 / |T\\U| (candidate D6: Delta3 >= 6|T\\U|) */
 static double obj(const Ev *v){ if (!v->res) return (double)(BIG + v->D3);
   if (OBJR) return -1000.0 * (double)(OBJE ? v->D3 - v->aeT : v->D3 - v->a1) / (double)(v->D3 > 0 ? v->D3 : 1);
+  if (OBJW) return (double)v->W;
+  if (OBJH) return 1000.0 * (double)v->D3 / (double)(v->h > 0 ? v->h : 1);
   return OBJE ? (double)v->aeT : (double)v->a1; }
 int main(int argc, char **argv){
   if (argc < 7){ fprintf(stderr, "usage: ./q5ann d mlo mhi restarts steps seed [T0]\n"); return 1; }
   d = atoi(argv[1]); int mlo = atoi(argv[2]), mhi = atoi(argv[3]), restarts = atoi(argv[4]), steps = atoi(argv[5]);
   rs ^= (unsigned long long)atoll(argv[6]) * 2654435761ULL; double T0 = argc > 7 ? atof(argv[7]) : 8.0; e = d + 1;
   if (mhi >= MAXM || d > 30){ fprintf(stderr, "bad parameters\n"); return 1; }
-  long gfail = 0; long gmin = 1L << 40; int gA[32] = {0}, gm = 0; int MU = getenv("MU") ? atoi(getenv("MU")) : 0; OBJR = getenv("OBJR") != NULL; OBJE = getenv("OBJE") != NULL; long minaeT = 1L << 40, mindesc = 1L << 40; int aeA[32] = {0}, aem = 0; double maxrat = 0; int ratA[32] = {0}, ratm = 0; long ratD3 = 0, rathlo = 0, rathhi = 0;
+  long gfail = 0; long gmin = 1L << 40; int gA[32] = {0}, gm = 0; int MU = getenv("MU") ? atoi(getenv("MU")) : 0; OBJR = getenv("OBJR") != NULL; OBJE = getenv("OBJE") != NULL; OBJW = getenv("OBJW") != NULL; OBJH = getenv("OBJH") != NULL; double minDh = 1e18; int dhA[32] = {0}, dhm = 0; long dhD3 = 0, dhh = 0; int BLO = getenv("BLO") ? atoi(getenv("BLO")) : 0; long minW = 1L << 40; int wA[32] = {0}, wm = 0; long minaeT = 1L << 40, mindesc = 1L << 40; int aeA[32] = {0}, aem = 0; double maxrat = 0; int ratA[32] = {0}, ratm = 0; long ratD3 = 0, rathlo = 0, rathhi = 0;
   for (m = mlo; m <= mhi; m++){
     if (m - 1 < d) continue;
     long tries = 0, starts = 0, resvisits = 0, fails = 0, minp = 1L << 40; int minA[32] = {0}; Ev minv; memset(&minv, 0, sizeof minv);
     for (int rr = 0; rr < restarts; rr++){
       int a[32]; Ev cur; int ok = 0;
       for (int t = 0; t < 20000 && !ok; t++){ tries++;
-        char used[MAXM] = {0}; for (int i = 0; i < d; i++){ int x; if (i == 0 && MU){ x = MU; } else { do x = (MU ? MU + 1 + rnd() % (m - 1 - MU) : 1 + rnd() % (m - 1)); while (used[x]); } used[x] = 1; a[i] = x; }
+        char used[MAXM] = {0}; for (int i = 0; i < d; i++){ int x; if (i == 0 && MU){ x = MU; } else { do x = (MU ? MU + 1 + rnd() % (m - 1 - MU) : 1 + rnd() % (m - 1)); while (used[x] || (MU && x * 100 < BLO * m)); } used[x] = 1; a[i] = x; }
         cur = eval(a); if (cur.inQ5) ok = 1; }
       if (!ok) continue;
       starts++;
@@ -92,7 +96,7 @@ int main(int argc, char **argv){
         double Tt = T0 * (1.0 - (double)st / steps);
         int b[32]; memcpy(b, a, sizeof b); int i = MU ? 1 + rnd() % (d - 1) : rnd() % d, x, tr = 0;
         do { x = (rnd() & 1) ? 1 + rnd() % (m - 1) : b[i] + (int)(rnd() % 7) - 3; tr++; } while ((x < 1 || x > m - 1) && tr < 50);
-        if (x < 1 || x > m - 1 || (MU && x <= MU)) continue;
+        if (x < 1 || x > m - 1 || (MU && x <= MU) || (MU && x * 100 < BLO * m)) continue;
         int dup = 0; for (int j = 0; j < d; j++) if (j != i && b[j] == x) dup = 1; if (dup) continue;
         b[i] = x; Ev nv = eval(b); if (!nv.inQ5) continue;
         if (nv.res){ resvisits++; if (nv.a1 < 0){ int s3[32]; memcpy(s3, b, sizeof s3); qsort(s3, d, sizeof(int), cmpint);
@@ -102,6 +106,10 @@ int main(int argc, char **argv){
           if (nv.D3 > 0 && (double)(nv.D3 - nv.a1) / nv.D3 > maxrat){ maxrat = (double)(nv.D3 - nv.a1) / nv.D3; memcpy(ratA, b, sizeof ratA); qsort(ratA, d, sizeof(int), cmpint); ratm = m; ratD3 = nv.D3; rathlo = nv.hlo; rathhi = nv.hhi; }
           if (nv.aeT < 0 || nv.desc < 0){ int s4[32]; memcpy(s4, b, sizeof s4); qsort(s4, d, sizeof(int), cmpint);
             printf("%s FAILS aeT=%ld desc=%ld at <%d", nv.desc < 0 ? "DESC" : "A1eT", nv.aeT, nv.desc, m); for (int q = 0; q < d; q++) printf(",%d", m + s4[q]); printf(">\n"); fflush(stdout); }
+          if (nv.h > 0 && (double)nv.D3 / nv.h < minDh){ minDh = (double)nv.D3 / nv.h; memcpy(dhA, b, sizeof dhA); qsort(dhA, d, sizeof(int), cmpint); dhm = m; dhD3 = nv.D3; dhh = nv.h; }
+          if (nv.D3 < 6 * nv.h){ int s6[32]; memcpy(s6, b, sizeof s6); qsort(s6, d, sizeof(int), cmpint); printf("D6 FAILS D3=%ld h=%ld at <%d", nv.D3, nv.h, m); for (int q = 0; q < d; q++) printf(",%d", m + s6[q]); printf(">\n"); fflush(stdout); }
+          if (nv.W < minW){ minW = nv.W; memcpy(wA, b, sizeof wA); qsort(wA, d, sizeof(int), cmpint); wm = m; }
+          if (nv.W < 0){ int s5[32]; memcpy(s5, b, sizeof s5); qsort(s5, d, sizeof(int), cmpint); printf("WILF FAILS W=%ld at <%d", nv.W, m); for (int q = 0; q < d; q++) printf(",%d", m + s5[q]); printf(">\n"); fflush(stdout); }
           if (nv.aeT < minaeT){ minaeT = nv.aeT; memcpy(aeA, b, sizeof aeA); qsort(aeA, d, sizeof(int), cmpint); aem = m; } if (nv.desc < mindesc) mindesc = nv.desc;
           if (nv.a1 < minp){ minp = nv.a1; memcpy(minA, b, sizeof minA); qsort(minA, d, sizeof(int), cmpint); minv = nv; } }
         double dlt = obj(&nv) - obj(&cur);
@@ -114,6 +122,8 @@ int main(int argc, char **argv){
     gfail += fails; printf("\n"); fflush(stdout);
   }
   printf("MAXRATIO d=%d ratio=%.4f D3=%ld hlo=%ld hhi=%ld at <%d", d, maxrat, ratD3, rathlo, rathhi, ratm); for (int q = 0; q < d; q++) printf(",%d", ratm + ratA[q]); printf(">\n");
+  printf("MINDH d=%d min D3/h=%.4f (D3=%ld h=%ld) at <%d", d, minDh, dhD3, dhh, dhm); for (int q = 0; q < d; q++) printf(",%d", dhm + dhA[q]); printf(">\n");
+  printf("MINW d=%d minW(residual)=%ld at <%d", d, minW, wm); for (int q = 0; q < d; q++) printf(",%d", wm + wA[q]); printf(">\n");
   printf("MINAET d=%d minA1eT=%ld minDESC=%ld at <%d", d, minaeT, mindesc, aem); for (int q = 0; q < d; q++) printf(",%d", aem + aeA[q]); printf(">\n");
   printf("GLOBAL d=%d PAY2fail=%ld minA1=%ld at <%d", d, gfail, gmin, gm); for (int q = 0; q < d; q++) printf(",%d", gm + gA[q]); printf(">\n");
   return 0;

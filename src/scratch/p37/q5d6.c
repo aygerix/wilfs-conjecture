@@ -20,7 +20,7 @@
 #include <string.h>
 #define MAXM 160
 static int m, d, e, part, np; static long nsplit;
-static int hardflag; static long nTgtFail, nTgtNEclasses, nTgtSfail, minTgtSlack = 1L << 40, nTgtA1fail; static int tgA[16]; static long nMult, nRay, nRayA1min = 1L << 40, nNotMultA1min = 1L << 40; static int rayflag;
+static double maxCTr = 0, maxCr = 0; static int cTrA[16], cRA[16]; static long nCT = 0, minCT = 1L << 40, minCTx = 1L << 40, nDESCfail = 0, minDESC = 1L << 40; static int cTA[16], cTxA[16], dA[16]; static int hardflag; static long nTgtFail, nTgtNEclasses, nTgtSfail, minTgtSlack = 1L << 40, nTgtA1fail; static int tgA[16]; static long nMult, nRay, nRayA1min = 1L << 40, nNotMultA1min = 1L << 40; static int rayflag;
 static long nNE2only, nH1only, nHard, minHardA1 = 1L << 40, minHardC = 1L << 40; static int hA1[16], hC[16];
 static long nC, minC = 1L << 40, nj2any; static int cA[16];
 static long nB1, nB2, nIDNE, nNE3above, nNE3all, minB1 = 1L << 40, minB2 = 1L << 40; static int b1A[16], b2A[16];
@@ -148,6 +148,15 @@ static void body(const int *a){
       if (Peq + nNE2 + (long)(e - 1) * dc - cost != p2) nIDNE++;
       long B1 = dc - jsum3, B2 = Peq + nNE2 - (jsum3 + pisum);
       if (B1 < 0) nB1++; if (B2 < 0) nB2++;
+      { /* C*-eT: Peq + |NE2| >= sum_{NE3 below}(e_T j + pi) + sum_{NE3 above}(e_T (j-1) + 1 + pi); implies DESC = W(S) - W(T) >= 0 */
+        long cT2 = 0; for (int s2 = 0; s2 < m; s2++){ int js = (sg[s2] - tau[s2]) / m; if (!(js >= 1 && hmx[s2] == 3)) continue;
+          long pi = 0; for (int i = 0; i < d; i++) if (X[s2][i] >= 1){ int t = ((sg[s2] - a[i]) % m + m) % m; int jt = (sg[t] - tau[t]) / m;
+            int same = 1; for (int q = 0; q < d; q++) if (X[t][q] != X[s2][q] - (q == i)) same = 0; if (same && jt >= 1 && hmx[t] == 2) pi += X[s2][i]; }
+          cT2 += (sg[s2] > maxtau) ? (long)eT * (js - 1) + 1 + pi : (long)eT * js + pi; }
+        long CT = Peq + nNE2 - cT2; if (CT < 0) nCT++; if (CT < minCT){ minCT = CT; memcpy(cTA, a, sizeof(int) * d); }
+        if (Peq + nNE2 > 0){ double rt = (double)cT2 / (Peq + nNE2), rc = (double)cstar / (Peq + nNE2);
+          if (rt > maxCTr){ maxCTr = rt; memcpy(cTrA, a, sizeof(int) * d); } if (rc > maxCr){ maxCr = rc; memcpy(cRA, a, sizeof(int) * d); } }
+        long desc = W - WT; if (desc < 0) nDESCfail++; if (desc < minDESC){ minDESC = desc; memcpy(dA, a, sizeof(int) * d); } }
       { long C = Peq + nNE2 - cstar; if (C < 0) nC++; if (C < minC){ minC = C; memcpy(cA, a, sizeof(int) * d); }   /* C*: Peq + |NE2| >= cstar */
         if (nbelow >= 2){ nHard++; if (C < minHardC){ minHardC = C; memcpy(hC, a, sizeof(int) * d); } hardflag = 1; } }
       if (B1 < minB1){ minB1 = B1; memcpy(b1A, a, sizeof(int) * d); } if (B2 < minB2){ minB2 = B2; memcpy(b2A, a, sizeof(int) * d); } }
@@ -210,6 +219,9 @@ int main(int argc, char **argv){
     printf(" | IDNEfail=%ld B1fail=%ld minB1=%ld at ", nIDNE, nB1, minB1); pr(b1A); printf(" B2fail=%ld minB2=%ld at ", nB2, minB2); pr(b2A);
     printf(" NE3above=%ld/%ld Cfail=%ld minC=%ld at ", nNE3above, nNE3all, nC, minC); pr(cA); printf(" j2any=%ld", nj2any);
     printf(" NE2only=%ld h1=%ld hard(>=2 NE3 below max tau)=%ld", nNE2only, nH1only, nHard);
+    printf(" CstarT: fail=%ld min=%ld at ", nCT, minCT); pr(cTA); printf(" DESC: fail=%ld min=%ld at ", nDESCfail, minDESC); pr(dA);
+    printf(" ratio cost/(Peq+|NE2|): C* max=%.4f at ", maxCr); pr(cRA); printf(" CstarT max=%.4f at ", maxCTr); pr(cTrA);
+    nCT = nDESCfail = 0; minCT = minDESC = 1L << 40; maxCTr = maxCr = 0;
     printf(" TGT: NEclasses=%ld classfail=%ld Sfail=%ld minNEslack=%ld at ", nTgtNEclasses, nTgtFail, nTgtSfail, minTgtSlack); pr(tgA);
     nTgtNEclasses = nTgtFail = nTgtSfail = 0; minTgtSlack = 1L << 40;
     if (nHard){ printf(" hardminA1=%ld at ", minHardA1); pr(hA1); printf(" hardminC=%ld at ", minHardC); pr(hC); }

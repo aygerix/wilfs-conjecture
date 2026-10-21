@@ -1012,3 +1012,16 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   - 1111.2779, 1111.1863.
 - None compares S with the residue semigroup T, or states e(ℓ(S) − ℓ(T)) ≥ c(S) − c(T). No match for PAY2 or for
   TRUNC₃^≠. Novelty is unclaimed: the search is shallow, and the statement is internal to our residue-descent program.
+
+### Search 2026-10-21 (14:07 EDT): before gating D6 / A1-eT (Q5 residual)
+- Queries (web):
+  - "Wilf conjecture ⟨m, m+a_1, …⟩ shifted generators W(S) ≥ W(T) descent embedding dimension";
+  - "Rohrbach problem thin basis of order 3 lower bound collisions arithmetic progression".
+- Results:
+  - Only the known general results: Sammartano 1111.1863, Dhayni 1610.08726 (Apéry-set lemma relating m − ν to
+    non-minimal Apéry elements), Spirito 1710.09245.
+  - Thin-basis literature: Cassels, Raikov–Stöhr, Blomer, Nathanson 0905.3144.
+- No statement comparing W(⟨m, m+A⟩) with W(⟨m, A⟩). No bound on the collision count of a 3-fold sumset containing
+  a long AP with the constant needed for D6.
+- Thin bases of order 3 force a constant fraction of collisions, but that constant is far below what D6 needs. So
+  D6 is not available off the shelf.

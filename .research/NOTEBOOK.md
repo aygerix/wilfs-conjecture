@@ -4363,3 +4363,51 @@ Consequences:
 - **Consequence for the plan.** A1/C* are stronger than needed, and their worst ratio grows with e. The defensible
   target is DESC, or A1-eT. Next: gate A1-eT at e = 8 and in the annealers; then look for the mechanism that
   makes ρ ≥ 1 on the residual (m ∈ 2A or 3A, i.e. a class-0 wrap), and why low NE elements cost only e(T).
+
+### 2026-10-21 (14:00): C*-eT and D6
+- **C*-eT** (C* with the per-class cost e replaced by e(T); implies DESC when j ≤ 1). Exhaustive e = 5, 6, 7:
+  - 0 failures; min slack 22, 29, 50;
+  - worst cost/credit ratio 0.233, 0.302, 0.320, against C*'s 0.267, 0.377, 0.432;
+  - min DESC re-asserted per S: 55, 47, 96;
+  - e = 8 running.
+- **D6 (CONJ): Δ₃ ≥ 6·|T∖U| on the Q5 residual.**
+  - min Δ₃/h = 6.67, 6.30, 6.53, 6.86 at e = 5–8 (exhaustive). It is flat in e and grows with μ: at e = 8 it is
+    6.87, 6.86, 6.95 for μ = 3, 4, 5, ≥ 9.38 for μ ≥ 6, and ≥ 11.5 for μ ≥ 8.
+  - Since e(T) ≤ μ, D6 gives A1-eT (hence DESC) whenever μ ≤ 6, about two thirds of the residual.
+  - Heuristic: thin bases of order 3 cannot avoid a constant fraction of collisions, so a universal constant is
+    plausible; 6 itself is not explained.
+  - Annealing gate (q5annH, minimize Δ₃/h) at e = 7 (calibration), 10, 12: running.
+- Stopped the A1-objective annealers, since A1 is dropped. Partial results: e = 12 min A1 slack 295 (m ≤ 150), e = 14
+  min 421 (m ≤ 173), 0 failures.
+
+### 2026-10-21 (14:04): j ≤ 1 proved (Lemma J1); NE3-PRED
+- **J1 (PROVED).** On Q5 every class has j_s ≤ 1. This was the advisor's open worry; the hard stop can never fire.
+  - Take a j = 2 class s of least T-length k. For a ∈ supp of a least T-factorization of τ_s, the class t of
+    τ_s − a has k_t = k − 1, and w_t + (m + a) = (λ_t + 1)m + τ_s ∈ S, so λ_t ≥ 4.
+  - λ_t = 4 would give w_s a factorization of length h_t + 1. Height ≤ 3 then forces h_t ≤ 2, hence λ_t ≤ 3.
+  - So λ_t = 5, i.e. j_t = 2 at smaller T-length, a contradiction.
+  - Hence T∖U = {τ_s : s ∈ NE}, h = |NE|, and every "j" in ID-NE / C* / the counting form is 1.
+- **NE3-PRED (PROVED), same technique.** An NE3 class's T-predecessors are NE. Each NE2 predecessor t, along
+  direction i, either feeds the NE3 rep (used out-edge, in π) or yields a level-3 collision with it (an unused slot
+  at y_t).
+- The technique (split a least T-factorization, add Apéry elements of S, compare with w_s, use height ≤ 3) is the
+  natural tool for further structural lemmas on the residual.
+
+### 2026-10-21 (14:15): reformulations of DESC (no new mechanism yet)
+- **Shift by 3m.** For x = τ_s + jm ∈ T, x + 3m ∈ S unless s ∈ NE3 and j = 0. EQ level-2 classes with σ_s ≥ m add
+  elements w_s ∈ [3m, c(S)) outside T + 3m. So
+  - |S ∩ [3m, c(S))| = ℓ(T) + δc − |NE3| + n₂^{EQ,≥m};
+  - |S ∩ [0, 3m)| = 2e + 1 + n₂^{<m};
+  - this reproduces DESC = Δ₃ − e·h + (e−1)δc + ρℓ(T) exactly (consistency check).
+  - The window [3m, c(S)) of S is T's [0, c(U)) minus the NE3 τ's. The deficit is concentrated in the depth-3
+    quantity e·|S ∩ [0,3m)| − 3m.
+- **D6 in T-tile terms.** D6 ⟺ Δ^EQ + (e−9)|NE2| ≥ 9|NE3|, with Δ^EQ = 4M₂^T + B₂^T. Each NE3 rep is a missing
+  level-3 vector of the T-tile of T-weight 3 − π. So D6 says, roughly, that the T-tile misses about two further
+  level-3 vectors per NE3 class (M₃^T ≳ 3|NE3|). Fitting the U-tile into L≤3 only forces M₃^T ≥ |NE3|. The extra
+  must come from relations forced by the long T-chains, a Freiman-type statement.
+- Literature (LITERATURE.md, 14:07): thin-basis results give only a small constant fraction of collisions; not
+  enough for D6.
+- **MISS3 (observed, m3t.py).** Let M₃^T be the number of level-3 vectors outside the T-tile (non-standard). On every
+  residual S with NE3 ≠ ∅: (M₃^T − |NE3|)/|NE3| ≥ 3.5, 2.875, 3.17, 3.17 at e = 5–8. So M₃^T ≥ 3.875·|NE3|
+  throughout (minimizer ⟨31,35,48,50,54,61⟩: M₃^T = 31, |NE3| = 8). This is the combinatorial core of D6; a proof
+  would have to produce about three further level-3 relations per NE3 class.

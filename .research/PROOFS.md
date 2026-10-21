@@ -6240,6 +6240,20 @@ minimal generators of T, and u′ := |U ∩ [c(T), c(U))|. Then
 - min DESC = 55, 47, 96, 128 (PAY2: 35, 29, 55, 78).
 - ρ ≥ 1 on every residual S at e ≤ 6, and on all but 10 / 287 at e = 7 / 8. Where ρ = 0: h_lo ≤ 3 and A1 ratio ≤ 0.154.
 
+**Conjecture C*-eT (CONJ; CHECKED e ≤ 7, E383).** Peq + |NE2| ≥ Σ_{NE3∖Ab} (e(T) + π(y)) + Σ_{NE3∩Ab} (1 + π(y)).
+- This is C* with the per-class cost e replaced by e(T).
+- C*-eT ⟹ DESC. By ID-NE, ABOVE and J1, DESC ≥ (C*-eT slack) + ρ·(#NE2 below + |U ∩ [0, c(T))|)
+  + (e−1)(#NE2 above + u′), since ρ·ℓ(T) ≥ ρ·h_lo and every NE3 below contributes τ_y < c(T) to h_lo.
+- Exhaustive e = 5, 6, 7: 0 failures; min slack 22, 29, 50; worst ratio cost/(Peq + |NE2|) is 0.233, 0.302, 0.320
+  (C*: 0.267, 0.377, 0.432).
+
+**Conjecture D6 (CONJ; CHECKED e ≤ 8, E383).** On the Q5 residual, Δ₃ ≥ 6·|T∖U| = 6·|NE|.
+- Exhaustive e = 5–8: min Δ₃/|NE| = 6.67, 6.30, 6.53, 6.86, flat in e.
+- The minimum grows with μ = min A: at e = 8 it is ≥ 9.38 for μ ≥ 6 and ≥ 11.5 for μ ≥ 8.
+- D6 ⟹ A1-eT, hence DESC, whenever e(T) ≤ 6, in particular whenever μ ≤ 6, because then
+  e(T)·h_lo + h_hi ≤ 6·h ≤ Δ₃.
+- Equivalent local form (by the column-top form and OUT): Peq + (e − 5)|NE2| ≥ Σ_{NE3} (6 + π(y)).
+
 **Counting form of PAY2 (PROVED).** Let n₂ (resp. n₂^EQ) be the number of classes at tile level 2 (resp. EQ classes at
 level 2, i.e. k_s = 2). Then:
 
@@ -6262,8 +6276,33 @@ So PAY2 ⟺ 3m ≤ e·(2e + 1 + n₂^EQ − Σ_{NE3} j) + (e−1)·δc.
   - So each NE2 class costs 3, and each NE3 class costs e + 3, against the CH′ slack of the 3-truncated T-tile and
     the conductor gain.
 
-**Lemma J-BOUND (partial; PROVED).** On Q5, a class with j_s = 2 has τ_s ≤ r and least T-length k_s ≥ 7. (Observed:
-j_s ≤ 1 always, e ≤ 8.)
+**Lemma J1 (PROVED; supersedes J-BOUND).** On Q5, j_s ≤ 1 for every class s. Hence T∖U = {τ_s : s ∈ NE},
+h = |T∖U| = |NE|, and λ_s := h_s + j_s ∈ {3, 4} for s ∈ NE (3 for NE2, 4 for NE3).
+- Proof:
+  - j_s ≥ 3 is impossible, because σ_s ≤ max σ = 2m + r < 3m. Suppose some class has j_s = 2, and choose one with
+    least T-length k := k_s. Then σ_s ≥ 2m, so h_s = 3 and λ_s = 5, i.e. w_s = 5m + τ_s. Also k ≥ 4 (NE-LEVELS (a)).
+  - Let z be a least-length T-factorization of τ_s, pick i with z_i ≥ 1, and let t be the class of σ(z − e_i).
+    Then z − e_i is a least-length T-factorization of the T-Apéry element τ_t = τ_s − a_i, so k_t = k − 1.
+  - The element w_t + (m + a_i) = (λ_t + 1)m + τ_s lies in S and in class s. Since w_s is least in S in its class,
+    λ_t ≥ 4.
+  - Suppose λ_t = 4. Then w_s = w_t + (m + a_i). A max-length factorization of w_t has h_t generators m + a with
+    Σ a = σ_t, so w_s has a factorization of length h_t + 1. Height ≤ 3 gives h_t ≤ 2. Then j_t ≤ 1 (EQ, or
+    NE-LEVELS (d)), so λ_t ≤ 3, a contradiction.
+  - So λ_t ≥ 5. Since h_t ≤ 3 and j_t ≤ 2, this forces h_t = 3 and j_t = 2. But k_t = k − 1 < k contradicts the
+    choice of s. ∎
+- Consequences: wherever j appears it may be set to 1. In ID-NE and C*, cost* = Σ_{Ab}(1 + π) + Σ_{NE3∖Ab}(e + π).
+  In the counting form, Σ_{NE3} j = |NE3|. The q5ann J2 hard stop (E383f) can never fire.
+
+**Lemma NE3-PRED (PROVED).** Let s ∈ NE3, let z be a least-length T-factorization of τ_s, take i with z_i ≥ 1, and let
+t be the class of τ_s − a_i. Then t ∈ NE. If t ∈ NE2, the vector y_t + e_i (y_t := x_t) is a max-length factorization
+of w_s. So either y_t + e_i = x_s (the out-edge (y_t, i) is used and counts in π(x_s)), or y_t + e_i ∉ D is a
+level-3 collision with x_s (an unused slot at y_t, worth (y_t)_i + 1 in P(y_t)).
+- Proof: k_t = k_s − 1 ≥ 4 (NE-LEVELS (e)), so t ∈ NE by NE-LEVELS (a).
+- If t ∈ NE2, then by J1 λ_t = 3 and λ_s = 4. So w_t + (m + a_i) = 4m + τ_s = w_s, and y_t + e_i has σ(y_t + e_i) =
+  σ_t + a_i = τ_s + m = σ_s with |y_t + e_i| = 3 = h_s. ∎
+
+**Lemma J-BOUND (partial; PROVED; superseded by J1 above).** On Q5, a class with j_s = 2 has τ_s ≤ r and least
+T-length k_s ≥ 7.
 - Proof:
   - j_s = 2 forces σ_s ≥ 2m, so h_s = 3 and w_s = 5m + τ_s ≤ max w = 5m + r.
   - By NE-LEVELS (c), k_s ≥ λ_s + 1 = 6.
