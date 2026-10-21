@@ -1,4 +1,4 @@
-r"""KAPPA-DEP (lead, 2026-10-21): for a lattice tile (D, delta),  sum_a sum_{a-cols C} S_a(|C|) <= M' + m Dep,
+r"""KAPPA-DEP (lead, 2026-10-20): for a lattice tile (D, delta),  sum_a sum_{a-cols C} S_a(|C|) <= M' + m Dep,
 S_a(L) = sum_{k<L} <k delta_a>.  Slack (integer) = Dep - kappa0.  Implies DEP-CARRY at every phase (N >= 0).
 Modes: one m g1..gk | ann NR IT SEED MMIN MMAX EMAX OPEN [HMIN MIRROR] | tiles4 MMIN MMAX (all 4-D down-sets, all delta)"""
 import sys, random, math, itertools

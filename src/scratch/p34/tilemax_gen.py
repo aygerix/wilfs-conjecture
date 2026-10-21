@@ -1,4 +1,4 @@
-"""TILE-MAX on ALL down-set tiles (lead, 2026-10-21). D down-set in N^n (n = 2: partitions, n = 3: plane partitions)
+"""TILE-MAX on ALL down-set tiles (lead, 2026-10-20). D down-set in N^n (n = 2: partitions, n = 3: plane partitions)
 with |D| = m, b in (Z/m)^n, eps(a) = a.b mod m injective on D. Test
     sum_{y in Max(D)} (|y|-1) eps(y) <= (n+1) sum_{D \\ Max(D)} eps.
 Usage: python tilemax_gen.py N MMIN MMAX"""

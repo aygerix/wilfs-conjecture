@@ -1,4 +1,4 @@
-r"""CR-delta (lead, 2026-10-21): delta-dependent rearrangement relaxation of DEP-CARRY via the inversion form.
+r"""CR-delta (lead, 2026-10-20): delta-dependent rearrangement relaxation of DEP-CARRY via the inversion form.
 Exact (PROVED): V(sigma) = N(sigma) - kappa0, N = #{(x,a): x below its a-top at distance k, r(x) >= m - <k delta_a>},
 kappa0 = (sum_{(x,a)} <k_a(x) delta_a> - M')/m.  DEP-CARRY <=> N(sigma) + Dep >= kappa0.
 CR-delta: min over ALL bijections pi: D -> Z/m of sum_{(x,a)} [pi(x) >= m - s_a(x)]  + Dep >= kappa0.

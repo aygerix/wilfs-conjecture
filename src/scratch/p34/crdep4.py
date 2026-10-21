@@ -1,4 +1,4 @@
-r"""CR_DEP on all down-sets of N^4 (lead, 2026-10-21): enumerate 4-D down-sets of size m as chains of 3-D down-sets
+r"""CR_DEP on all down-sets of N^4 (lead, 2026-10-20): enumerate 4-D down-sets of size m as chains of 3-D down-sets
 (layers x_1 = 0, 1, ...), compute CR_DEP; for each failure decide whether it is a lattice tile (injective labeling
 search, randomized then exhaustive).  Usage: python crdep4.py MMIN MMAX"""
 import sys, itertools, random

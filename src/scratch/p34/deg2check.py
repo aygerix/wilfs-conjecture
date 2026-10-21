@@ -1,4 +1,4 @@
-"""Check of Theorem DEG2-WILF (lead, 2026-10-21). For S with every Apery element a sum of <= 2 minimal generators:
+"""Check of Theorem DEG2-WILF (lead, 2026-10-20). For S with every Apery element a sum of <= 2 minimal generators:
 build the GRADED (degree, then lex) standard tile D (degree <= 2), verify: D is a down-set, injective; Lemma T2
 identity; TM2 bound RHS - LHS >= lambda (n - |I|) >= 0 with lambda = (-c) mod m; W >= Phat; W >= 0.
 Generators: random large-second-generator S and random S filtered by the degree condition.

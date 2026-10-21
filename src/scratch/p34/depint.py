@@ -1,4 +1,4 @@
-r"""Candidate lattice-tile inequalities for Dep (lead, 2026-10-21): i = |interior|, a = |A|, b = |bd \ A|.
+r"""Candidate lattice-tile inequalities for Dep (lead, 2026-10-20): i = |interior|, a = |A|, b = |bd \ A|.
  H1: Dep >= (d-1)(i-1);   H2: Dep >= d(i-1) - (number of maximal cells of height >= 2)... (reported, not asserted);
  also the minimum of Dep/((d-1)(i-1)) and the SC1 slack.  Usage: python depint.py sg NS SEED MMIN MMAX | tiles N MMIN MMAX"""
 import sys, random, itertools

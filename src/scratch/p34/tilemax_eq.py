@@ -1,4 +1,4 @@
-"""List equality cases of TILE-MAX-AFF (slack 0) among all down-set tiles (lead, 2026-10-21).
+"""List equality cases of TILE-MAX-AFF (slack 0) among all down-set tiles (lead, 2026-10-20).
 Usage: python tilemax_eq.py N MMIN MMAX"""
 import sys, itertools
 sys.path.insert(0, '.')

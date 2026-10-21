@@ -1,4 +1,4 @@
-"""TILE-MAX-REARR (shape only) (lead, 2026-10-21). For every down-set D (|D| = m) that is a tile for SOME b
+"""TILE-MAX-REARR (shape only) (lead, 2026-10-20). For every down-set D (|D| = m) that is a tile for SOME b
 (a.b mod m injective on D), with weights w(y) = |y| + n over Max(D) sorted decreasingly:
     sum_k w_(k) (m - k) <= (n+1) m (m-1)/2.
 Also reports the best constant ratio for TILE-MAX itself, max over b of LHS / ((n+1) m(m-1)/2).

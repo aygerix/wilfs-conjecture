@@ -1,4 +1,4 @@
-"""Variants of TOP0' on leaves (lead, 2026-10-21). eps = phi mod m (bijection M -> Z/m), threshold qm.
+"""Variants of TOP0' on leaves (lead, 2026-10-20). eps = phi mod m (bijection M -> Z/m), threshold qm.
   TOP0'   : sum_{y in M, phi(y) >= qm} (|y|-1) eps(y) <= (n+1) sum_{rest} eps
   TILEMAX : the same with ALL componentwise-maximal elements of M on the left (gamma-free, stronger)
   TOP0    : threshold c (census-verified)

@@ -1,4 +1,4 @@
-r"""DEP-ALL extremals (lead, 2026-10-21): over all lattice tiles (D, delta) of N^d (all down-sets of size m, all
+r"""DEP-ALL extremals (lead, 2026-10-20): over all lattice tiles (D, delta) of N^d (all down-sets of size m, all
 delta in [1,m)^d with x -> x.delta mod m bijective) and every phase rho: min of V(rho) + Dep, where
 V(rho) = (m-1)/2 - f(rho)/m, f(rho) = sum_t omega(t) r_rho(t) - d M'.  DEP-ALL claims V + Dep >= 0.
 Reports per (d, m): #tiles, min V+Dep, #(tile,phase) at the min, the first minimizers, #equality (V+Dep=0).

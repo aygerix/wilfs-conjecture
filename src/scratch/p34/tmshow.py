@@ -1,4 +1,4 @@
-"""Show the TM structure for one lex tile with relabelling (u, lambda) (lead, 2026-10-21).
+"""Show the TM structure for one lex tile with relabelling (u, lambda) (lead, 2026-10-20).
 Usage: python tmshow.py m u lam g1 g2 ..."""
 import sys
 sys.path.insert(0, '.')

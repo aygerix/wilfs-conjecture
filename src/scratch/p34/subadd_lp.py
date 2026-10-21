@@ -1,4 +1,4 @@
-"""SUBADD-TOP via LP (lead, 2026-10-21). For a finite down-set D in N^n with maximal elements Z, maximize
+"""SUBADD-TOP via LP (lead, 2026-10-20). For a finite down-set D in N^n with maximal elements Z, maximize
     sum_{y in Z} (|y|-1) eps(y) - (n+1) sum_{b in D \\ Z} eps(b)
 over eps >= 0, eps(0) = 0, eps(b+g) <= eps(b) + eps(g) (b, g, b+g in D, b, g != 0), sum eps = 1.
 Optimum > 0 refutes SUBADD-TOP for D. Usage: python subadd_lp.py N SIZEMIN SIZEMAX [NRANDOM SEED]"""

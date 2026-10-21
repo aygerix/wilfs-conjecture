@@ -1,4 +1,4 @@
-"""MAJ(v) test (lead, 2026-10-21). For the lex tile Mhat (N = e-1 directions) and 1 <= v <= m:
+"""MAJ(v) test (lead, 2026-10-20). For the lex tile Mhat (N = e-1 directions) and 1 <= v <= m:
    MAJ(v):  sum_{z in Mhat, phi(z) > c+m-1-v} (|z| + N)  <=  (N-1) v + m.
 MAJ(v) for all v implies CH' (Wilf) by a Hall/layer-cake argument. Also reports the exact deficit form
    D := sum_{v=1}^m [cnt_v - (N-1)v - m]_+  vs  slack beyond m of early ends  E := sum_early (delta - m).

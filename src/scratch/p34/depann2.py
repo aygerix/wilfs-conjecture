@@ -1,4 +1,4 @@
-r"""Annealer for DEP-CARRY in the open regime (lead, 2026-10-21): S with e >= EMIN, 3e < m, c > 4m.  Score =
+r"""Annealer for DEP-CARRY in the open regime (lead, 2026-10-20): S with e >= EMIN, 3e < m, c > 4m.  Score =
 min over phases (u = 1 and 2 random units) of (V + Dep)/m, and separately at the conductor phase (mode 'cond').
 Usage: python depann2.py NR IT SEED MMIN MMAX EMIN [cond]"""
 import sys, random, math

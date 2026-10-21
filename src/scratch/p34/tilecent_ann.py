@@ -1,4 +1,4 @@
-"""Annealer for TILE-CENTROID on NON-minimal down-set tiles (lead, 2026-10-21).
+"""Annealer for TILE-CENTROID on NON-minimal down-set tiles (lead, 2026-10-20).
 Take the lex Apery tile M' of S' = <m, gens'> (N = e'-1 directions). For a unit u mod m and lifts k_i >= 1,
 gamma_i = (u*gens'_i mod m) + k_i*m gives the same lattice L, so M' is a down-set tile of L_gamma (usually NOT
 phi_gamma-minimal). Slack := N max phi - (N-1)(m-1)/2 - (N+1) mean phi  (= W(S') when u = 1, k_i = floor(gens'_i/m)).

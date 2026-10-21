@@ -1,4 +1,4 @@
-r"""Annealer for S1 / DEP-CARRY on lex Apery tiles (lead, 2026-10-21). Score = min over phases s and units u (u = 1
+r"""Annealer for S1 / DEP-CARRY on lex Apery tiles (lead, 2026-10-20). Score = min over phases s and units u (u = 1
 plus 2 random units) of V + BD (S1) where V = s + sum kappa_s; DEP-CARRY uses Dep >= BD.  Minimizes the score
 normalized by m (score < 0 refutes S1).  Usage: python depann.py NR IT SEED MMIN MMAX"""
 import sys, random, math

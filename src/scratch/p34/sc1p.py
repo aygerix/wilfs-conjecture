@@ -1,4 +1,4 @@
-r"""SC1' (lead, 2026-10-21): C(|bd|,2) + d C(|A|,2) + m (d|N| - E) >= (d-1) C(m,2), where N = non-maximal cells,
+r"""SC1' (lead, 2026-10-20): C(|bd|,2) + d C(|A|,2) + m (d|N| - E) >= (d-1) C(m,2), where N = non-maximal cells,
 E = sum_x |supp x| (Hasse edges); d|N| - E <= Dep is proved.  Also SC1'' with all levels: sum_{k} C(n_k^A,2) for maximal
 weights plus C(|bd|,2) - C(|A|,2) at level 1.  Reports failures in the open regime (3e < m) and overall.
 Usage: python sc1p.py NS SEED MMIN MMAX"""

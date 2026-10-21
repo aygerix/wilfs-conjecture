@@ -1,4 +1,4 @@
-r"""Annealer for CR-delta (lead, 2026-10-21), mirror-aware: score = min over delta, -delta of CR-delta slack / m
+r"""Annealer for CR-delta (lead, 2026-10-20), mirror-aware: score = min over delta, -delta of CR-delta slack / m
 (negative refutes CR-delta).  Also reports the true-label DEP-ALL slack.  Usage: python crdelta_ann.py NR IT SEED MMIN MMAX EMAX OPEN HMIN"""
 import sys, random, math
 sys.path.insert(0, '.')

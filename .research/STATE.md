@@ -1,5 +1,6 @@
 # STATE.md — handoff (2026-10-20 night, latest: split-certificate identity PROVED; FLAT-U = short proof of L5; level-free certificates fail only for simplex-dense height-3 tiles (m > e²); see (A00000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
+(Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
 Frame:
@@ -133,7 +134,7 @@ Lines, in order of cost to decide:
                 L7′, TCL-DICHOTOMY and the size of κ₀;
             (2) proof attempts for L7′: a bound of κ₀ in case B (carries of a near-perfect cover), or MaxCL for
                 height 2 + cubics (F1).
-      (A00000000) **NEWEST — PAUSED HERE (user request, 2026-10-21 night). SUPP-WILF PROVED (PROOFS "SUPP-WILF").**
+      (A00000000) **NEWEST — PAUSED HERE (user request, 2026-10-20 night). SUPP-WILF PROVED (PROOFS "SUPP-WILF").**
           **(a) Proved.**
           - For every S and every factorization tile D:
             W ≥ Dep − κ₀ + N ≥ Dep − Σ_{x∈D}(|supp x| − 1)⁺ = m − 1 + Q − Σ_{y∈A}|y|.
@@ -178,7 +179,7 @@ Lines, in order of cost to decide:
                Haanpää's constructions. Lift them to semigroups, add height-3 cells, and look for case B at height ≥ 3.
             2. In parallel on paper: try to prove that a height-3 cell in case B forces Apéry-minimality violations of
                the lifts (the ingredient that lattice tiles lack).
-      (A0000000) **NEWEST (2026-10-21, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
+      (A0000000) **NEWEST (2026-10-20, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
           (NOTEBOOK "CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form"; FAILED Pattern C; E349.)
           - CR-TILE is FALSE: ⟨19,39,41,50,52,53⟩ (c = 88, 3e < m, c > 4m), a height-2 near-B₂ tile in ℕ⁵, slack −4. That
             S is in the settled class (Flat-MaxCL, LEAN). Shape-only rearrangement fails on every near-simplex of height
@@ -200,7 +201,7 @@ Lines, in order of cost to decide:
                (c) the two-sided mirror structure.
             2. Run CR-δ adversarially (annealer, exhaustive small tiles, mirrors).
             3. Keep the height-3 MaxCL and P0/GDB lines as the other two active lines.
-      (A000000) **NEWEST (2026-10-21, night): Wilf reduced to a SHAPE-ONLY inequality on lattice tiles (CR-TILE).**
+      (A000000) **NEWEST (2026-10-20, night): Wilf reduced to a SHAPE-ONLY inequality on lattice tiles (CR-TILE).**
           (NOTEBOOK "DEP-CARRY and the shape-only reduction CR_DEP"; E348.)
           - PROVED: for any factorization tile D of S, mW ≥ (d+1)M' + m·Dep − Σ_t ω(t) r(t) (CH′ plus the sharp
             bounds w − c ≤ r on maximal tops, w − c ≤ r − m on non-maximal tops), hence by rearrangement
@@ -218,7 +219,7 @@ Lines, in order of cost to decide:
           - NEXT: (1) prove CR-TILE for d = 3 with the cylinder lemma (gives Wilf for e = 4); (2) find the
             lattice-tile inequality behind H1/SC1 in general d; (3) keep the CR_DEP annealers ca_1..3 running
             (fejer ~/wilf/p34) and record their minima.
-      (A00000) **NEWEST (2026-10-21) — CORRECTION: "Conjecture TM" IS MaxCL (2026-10-17).** I re-derived it without
+      (A00000) **NEWEST (2026-10-20) — CORRECTION: "Conjecture TM" IS MaxCL (2026-10-17).** I re-derived it without
           consulting the record (context loss). The MaxCL line (Flat-MaxCL, NO-WRAP, ONE-CUBIC, H3-D5, H3-CORE2/3/4,
           the open height-3 residual, WRAP-MAX, H1′ refuted) is the existing body of work. Resume THERE.
           - New this session: the TOP0 census of all 5.4M leaves (genus ≤ 30); the TM data E346; the λ = 0
@@ -247,7 +248,7 @@ Lines, in order of cost to decide:
               boxes of maximal elements, using that Max ⊆ the socle of the tile.
             - (3) Handle λ ≠ 0, where the pairing sums wrap.
             - (4) Gate further: exhaustive n = 4, random non-coherent tiles.
-      (A0000) **NEWEST (2026-10-21): Theorem P0-WILF PROVED (PROOFS "Ray identity, one-step difference body, and Theorem
+      (A0000) **NEWEST (2026-10-20): Theorem P0-WILF PROVED (PROOFS "Ray identity, one-step difference body, and Theorem
           P0-WILF"; E344).**
           - Statement: every S whose canonical Apéry down-set M has no ray ending below c (P̃ = 0) satisfies Wilf, at
             every depth (c ≤ 4m by the external theorem).

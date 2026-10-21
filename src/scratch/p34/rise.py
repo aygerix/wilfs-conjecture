@@ -1,4 +1,4 @@
-"""RISE test on all down-set tiles (lead, 2026-10-21):
+"""RISE test on all down-set tiles (lead, 2026-10-20):
    sum_{y in Max} sum_i sum_{t=1}^{y_i} [eps(y) - eps(y - t e_i)] <= C(m,2)       (sufficient for TILE-MAX-AFF)
 eps = (a.b + shift) mod m.  Usage: python rise.py N MMIN MMAX"""
 import sys, itertools

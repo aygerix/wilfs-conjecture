@@ -1,4 +1,4 @@
-r"""Independent check of a CR_DEP failure (lead, 2026-10-21): S = <m, gens>. Brute-force S, c, g, ell, e, W; then for
+r"""Independent check of a CR_DEP failure (lead, 2026-10-20): S = <m, gens>. Brute-force S, c, g, ell, e, W; then for
 every monomial order (lex over every permutation of the generators, and graded variants) the factorization tile of
 Ap(S,m), CR_DEP slack, DEP-CARRY at the conductor phase, and MaxCL. Usage: python crfail.py m g1 ... gk"""
 import sys, itertools

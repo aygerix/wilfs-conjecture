@@ -1,4 +1,4 @@
-r"""Case B from near-maximal cyclic sum covers (lead, 2026-10-21). Literature (Haanpaa, JIS 7 (2004), Table): the largest
+r"""Case B from near-maximal cyclic sum covers (lead, 2026-10-20). Literature (Haanpaa, JIS 7 (2004), Table): the largest
 cyclic group with a k-element sum cover (A + A = Z_n) is n'(k) = 3,5,9,13,19,21,30,35,43,51,63,67 for k = 2..13.  A
 height-2 tile is such a cover A = {0} U delta (k = d+1), with case-B margin C(d,2) - 3 k_mixed - 2 k_loop.  This script
 enumerates delta (d = k-1 elements with 1 in delta; this is WLOG only for delta containing a unit mod m, after scaling)

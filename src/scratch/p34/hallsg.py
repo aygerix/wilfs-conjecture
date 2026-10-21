@@ -1,4 +1,4 @@
-r"""HALL-TM on lex Apery tiles of numerical semigroups (lead, 2026-10-21). Tile M^ (N = e-1 directions incl. right
+r"""HALL-TM on lex Apery tiles of numerical semigroups (lead, 2026-10-20). Tile M^ (N = e-1 directions incl. right
 primitives), positions eps(a) = (u * phi(a)) mod m for a unit u (so eps(0) = 0; u = 1 is the m | c phase).
 HALL-TM: for every set Y of maximal cells, sum_Y (|y|-1) eps(y) <= (N+1) sum_{z in down(Y) \ Y} eps(z).
 lam* = max_Y demand/supply (exact via bisection on scaled max-flow); lam* > 1 refutes HALL-TM; Y = Max gives MaxCL.

@@ -4830,7 +4830,7 @@ A_k = {α ∈ ℕⁿ : |α| ≤ k}.
   - The collisions themselves raise X by Σ_U f ≥ n·u_h, through the factor x = c/m ≥ h − 1.
 - For h ≤ 4, the regime q ≤ 4 is covered by the depth-four theorem (LITERATURE).
 
-## Ray identity, one-step difference body, and Theorem P0-WILF — PROVED 2026-10-21 (paper; checks E344)
+## Ray identity, one-step difference body, and Theorem P0-WILF — PROVED 2026-10-20 (paper; checks E344)
 **Setting (every S with c > m).**
 - Left generators m < γ_1 < … < γ_n < c, with Γ = (γ_i) and n ≥ 1. Write φ(α) = α·Γ.
 - M ⊆ ℕⁿ is the set of lexicographically least Γ-factorizations of the Apéry elements of ⟨m, Γ⟩ (w.r.t. m) that are
@@ -4915,7 +4915,7 @@ satisfies Wilf.
     q ≥ 5 (E344).
   - Its r = 0 part is literally E ≥ 0.
 
-## The full lex tile; leaves; Conjecture TOP0 — 2026-10-21
+## The full lex tile; leaves; Conjecture TOP0 — 2026-10-20
 (Cross-reference: Lemmas T1 and T2 are CH′ and the Tile-TOP'' bookkeeping in ray form. TOP0 is MaxCL at the conductor
 phase, restricted to the top window of a leaf. See PROOFS "MaxCL".)
 **Setting.**
@@ -4966,8 +4966,8 @@ p < c + m ≤ (q+1)m, and ℓ ≥ q + 1 because a left generator exists. ∎
   - SUBADD-TOP is FALSE for general down-sets with ≥ n+2 maximal elements (FAILED). No failure with ≤ n+1 (E345).
   - TOP0′ alone does not give Wilf when ρ > 0: it needs P̃′ ≥ nρ in addition.
 
-## Conjecture TM (tile-max) — 2026-10-21: IDENTICAL TO MaxCL (2026-10-17), re-derived without consulting the record
-**CORRECTION (2026-10-21, same day).** TM is exactly MaxCL (PROOFS "MaxCL (lift-free, CONJ, 2026-10-17)"), with d = n,
+## Conjecture TM (tile-max) — 2026-10-20: IDENTICAL TO MaxCL (2026-10-17), re-derived without consulting the record
+**CORRECTION (2026-10-20, same day).** TM is exactly MaxCL (PROOFS "MaxCL (lift-free, CONJ, 2026-10-17)"), with d = n,
 r = ε and σ = −λ. Consequences:
 - MaxCL ⇒ Tile-TOP'' ⇒ Wilf is already LEAN-checked.
 - The degree-≤2 case is Flat-MaxCL (LEAN), and the window argument below is the same one.
@@ -5007,7 +5007,7 @@ W(S) ≥ P̂ + (1/m)Σ_{y∈Max(M̂), φ(y)<c} (|y| + N)·ε(y) ≥ 0.
   - RISE (dropping Σ(n − |I(β)|)ε) fails;
   - λ = 0 plus P̂′ ≥ Nρ fails (PSHIFT, 41/2,165).
 
-### SUPP-WILF: W ≥ Dep − κ₀ + N ≥ Dep − Σ_x(|supp x| − 1)⁺ for every S — PROVED 2026-10-21 (paper; elementary)
+### SUPP-WILF: W ≥ Dep − κ₀ + N ≥ Dep − Σ_x(|supp x| − 1)⁺ for every S — PROVED 2026-10-20 (paper; elementary)
 **Setting.**
 - S is a numerical semigroup with multiplicity m and minimal generators m < g_1 < … < g_d (d = e − 1 ≥ 1).
 - c is the conductor, ℓ = c − g, W = e·ℓ − c, M′ = m(m−1)/2.
@@ -5066,7 +5066,7 @@ Corollaries:
   - ⟨27,43,56,68,72,87,119⟩: 50 ≥ 11.
 - Residual for Wilf after SUPP-WILF: S all of whose factorization tiles have κ₀ > Dep, i.e. a simplex-like Apéry set.
   - CONJ TCL-DICHOTOMY: Tile-CL holds whenever Dep < Σsupp. It would close DEP-ALL, and with it Wilf.
-- Novelty: web searches (2026-10-21) found no comparable support or column-top criterion. Zhai 1111.2779 has CH′ in crude
+- Novelty: web searches (2026-10-20) found no comparable support or column-top criterion. Zhai 1111.2779 has CH′ in crude
   form; Marashdeh 2608.12531 has a different identity.
 
 ## Dependency chain to full Wilf via SUPP-WILF — status of every link (2026-10-20)

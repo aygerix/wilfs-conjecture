@@ -1,4 +1,4 @@
-"""Ray mass at maximal elements (lead, 2026-10-21). For the full lex tile M^ of random S (N = e-1):
+"""Ray mass at maximal elements (lead, 2026-10-20). For the full lex tile M^ of random S (N = e-1):
 R = sum_{y in Max} (|y| + N); crude TM holds if R <= (N+1) m / 2; shape-only REARR: sum_k w_(k)(m-k) <= (N+1) C(m,2).
 Reports both ratios, split by m >= 3e vs m < 3e. Usage: python rcount.py NS SEED MMAX"""
 import sys, random

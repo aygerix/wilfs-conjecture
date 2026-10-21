@@ -1,4 +1,4 @@
-"""Annealer for ALL-BUT-ONE (lead, 2026-10-21): minimize the second-smallest normalized per-direction depth
+"""Annealer for ALL-BUT-ONE (lead, 2026-10-20): minimize the second-smallest normalized per-direction depth
 B^i / (m(m-1)/2) over S (any depth unless CMIN given). Value < 1 refutes ALL-BUT-ONE.
 Usage: python perdir_ann.py NR IT SEED MMAX DEPTHMIN"""
 import sys, random, math

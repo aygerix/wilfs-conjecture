@@ -1,4 +1,4 @@
-r"""Per-direction form PD of CR_DEP (lead, 2026-10-21): sum_b n(lambda^b) + m Dep >= (d-1) C(m,2), where lambda^b is
+r"""Per-direction form PD of CR_DEP (lead, 2026-10-20): sum_b n(lambda^b) + m Dep >= (d-1) C(m,2), where lambda^b is
 the partition of m into b-column lengths and n(lambda) = sum_i (i-1) lambda_i (= sum over pairs of b-columns of the
 shorter length).  PD implies CR_DEP (min(sum, sum) >= sum of mins).  Also the per-direction split PD_b:
 n(lambda^b) + m Dep_b >= (d-1) C(m,2) / d.  Usage: python pdtest.py NS SEED MMIN MMAX"""

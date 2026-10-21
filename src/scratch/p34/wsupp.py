@@ -1,4 +1,4 @@
-r"""Check the PROVED bound W >= Dep - kappa0 + N(sigma_c) >= Dep - Sigma_supp (lead, 2026-10-21) on random S with an
+r"""Check the PROVED bound W >= Dep - kappa0 + N(sigma_c) >= Dep - Sigma_supp (lead, 2026-10-20) on random S with an
 independent brute-force W, and report coverage of the shape criterion Sigma_supp <= Dep (and kappa0 <= Dep) by regime.
 Usage: python wsupp.py NS SEED MMIN MMAX"""
 import sys, random

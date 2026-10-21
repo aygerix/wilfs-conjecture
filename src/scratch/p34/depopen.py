@@ -1,4 +1,4 @@
-r"""DEP-CARRY / S1 normalized slack in the open Wilf regime (lead, 2026-10-21): random S with 3e < m, c > 4m.
+r"""DEP-CARRY / S1 normalized slack in the open Wilf regime (lead, 2026-10-20): random S with 3e < m, c > 4m.
 DEP slack (label units) = m (V + Dep), S1 slack = m (V + BD), V = s + sum kappa_s.  Reports min over S of
 min_{phases, units} (V+Dep)/m and (V+BD)/m, and the values at the conductor phase.  Usage: python depopen.py NS SEED MMIN MMAX"""
 import sys, random

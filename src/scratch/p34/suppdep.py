@@ -1,4 +1,4 @@
-r"""Mirror consequence of KAPPA-DEP (lead, 2026-10-21): kappa0(delta) + kappa0(-delta) = sum_{x != 0}(|supp x| - 1)
+r"""Mirror consequence of KAPPA-DEP (lead, 2026-10-20): kappa0(delta) + kappa0(-delta) = sum_{x != 0}(|supp x| - 1)
 (exact), so KAPPA-DEP for both delta and -delta forces SUPP2: sum_x (|supp x| - 1)^+ <= 2 Dep (shape only).
 Reports SUPP2 failures by tile height on random S, and the KAPPA-DEP status of (D, delta), (D, -delta).
 Usage: python suppdep.py NS SEED MMIN MMAX"""

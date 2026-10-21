@@ -1,5 +1,5 @@
 """Annealer for TILE-MAX-AFF on lex Apery tiles of random S (full tile, N = e-1 directions incl. right primitives)
-(lead, 2026-10-21). For the tile M^ and every unit u mod m and shift s, eps(a) = (u * phi(a) + s) mod m (all such
+(lead, 2026-10-20). For the tile M^ and every unit u mod m and shift s, eps(a) = (u * phi(a) + s) mod m (all such
 eps are the affine mod-linear bijections compatible with the lattice). Value = max_{u,s} LHS / ((N+1) m(m-1)/2),
 LHS = sum_{y in Max(M^)} (|y| + N) eps(y).  Value > 1 refutes TILE-MAX-AFF.  (u = 1, s = rho restricted to the
 top window is TOPH, i.e. Wilf.)  Usage: python tilemax_ann.py NR IT SEED MMAX [MMIN]"""

@@ -1,4 +1,4 @@
-r"""Who pays the negative carries at sigma = phi(0) (lead, 2026-10-21). For lex Apery tiles of random S and units u:
+r"""Who pays the negative carries at sigma = phi(0) (lead, 2026-10-20). For lex Apery tiles of random S and units u:
 B = sum of |kappa| over cells with kappa < 0, P = sum of positive kappa, L = Lnm/m.  MaxCL(0): P + L >= B.
 Reports min (P+L)/B, min P/B, and the share of L.  kappa(x) = sum_{b: delta_b > r(x)} x_b - floor(x.delta/m).
 Usage: python badpay.py NS SEED MMIN MMAX"""

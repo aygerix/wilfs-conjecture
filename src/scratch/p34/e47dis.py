@@ -1,4 +1,4 @@
-r"""Dissect a Tile-CL failure (lead, 2026-10-21): for S = <m, gens>, list V(rho) at every phase, and at the worst phase
+r"""Dissect a Tile-CL failure (lead, 2026-10-20): for S = <m, gens>, list V(rho) at every phase, and at the worst phase
 the cells, labels, omega, tops, the inversions N and the overflow cells.  Usage: python e47dis.py m g1 .. gk"""
 import sys
 sys.path.insert(0, '.')

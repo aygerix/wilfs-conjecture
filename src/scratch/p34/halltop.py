@@ -1,4 +1,4 @@
-r"""HALL-TOP test on leaves (r = 0) (lead, 2026-10-21).
+r"""HALL-TOP test on leaves (r = 0) (lead, 2026-10-20).
 Leaf S = <m, Gamma>, lex tile M (n = e-1 dirs), Y = Apery elements >= c, h(y) = phi(y) - c, eps(b) = (phi(b) - c) mod m.
 TOP0 (aggregate): sum_Y (|y|-1) h(y) <= (n+1) sum_{M \ Y} eps.
 HALL-TOP (local): a transport exists: y needs (|y|-1) h(y), may draw only from b in B(y) \ {0, y}, each b supplies

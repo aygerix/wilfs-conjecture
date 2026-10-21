@@ -1,4 +1,4 @@
-r"""Exhaustive census of case B (Dep < Sigma_supp) over all lattice tiles (lead, 2026-10-21): d = 3 (all down-sets of
+r"""Exhaustive census of case B (Dep < Sigma_supp) over all lattice tiles (lead, 2026-10-20): d = 3 (all down-sets of
 size m, all delta) and d = 4 (chains).  Case B depends on the shape only; for each case-B shape that is a tile, report
 its height and Tile-CL min V over all delta and phases.  Usage: python casebx.py d MMIN MMAX"""
 import sys, itertools

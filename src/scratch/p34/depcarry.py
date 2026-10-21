@@ -1,4 +1,4 @@
-r"""DEP-CARRY for every S (lead, 2026-10-21). Lex tile D over all generators except m, delta = gens mod m,
+r"""DEP-CARRY for every S (lead, 2026-10-20). Lex tile D over all generators except m, delta = gens mod m,
 rho0 = (-c) mod m, K(x) = floor((rho0 + x.delta)/m), r(x) = (rho0 + x.delta) mod m = (w(x) - c) mod m,
 kappa(x) = sum_{b: delta_b > r(x)} x_b - K(x).  Exact identity (CH' rewritten):
     W = rho0 + sum_x kappa(x) + sum_{column tops t} |C_t| j(t),   j(t) = (r(t) - w(t) + c)/m >= 0,

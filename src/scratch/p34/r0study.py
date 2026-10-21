@@ -1,4 +1,4 @@
-"""r = 0 study (lead, 2026-10-21): S = <m, Gamma> with every minimal generator < c (no right primitives).
+"""r = 0 study (lead, 2026-10-20): S = <m, Gamma> with every minimal generator < c (no right primitives).
 Then the canonical down-set M tiles Z^n by L = ker(phi mod m) and Wilf reads
     Xi_T := n T m - (n+1) sum_M phi  >=  m((n-1)m + n + 1)/2,   T = c + m = max_M phi + 1,
 equivalently W = (n+1)k - c >= 0.  Knapsack centroid gives Xi_T >= n m only.

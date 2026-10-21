@@ -1,4 +1,4 @@
-r"""kappa0 vs Dep and min-phase inversions (lead, 2026-10-21). DEP-CARRY <=> N(sigma) + Dep >= kappa0 (inversion form).
+r"""kappa0 vs Dep and min-phase inversions (lead, 2026-10-20). DEP-CARRY <=> N(sigma) + Dep >= kappa0 (inversion form).
 Checks kappa0 = sum_x [floor(x.delta/m) - sum_a floor(k_a(x) delta_a/m)] and reports: TRIV (kappa0 <= Dep) rate,
 distribution of (kappa0 - Dep)/m and of (N_cond - (kappa0 - Dep))/m at the conductor phase, open regime separately.
 Usage: python k0stat.py NS SEED MMIN MMAX"""

@@ -1,4 +1,4 @@
-"""TOPH / TM on a truncated semigroup S = <m, G> u [c, inf) (lead, 2026-10-21).
+"""TOPH / TM on a truncated semigroup S = <m, G> u [c, inf) (lead, 2026-10-20).
 Full lex tile: left generators G (minimal) then right primitives (Apery elements of S in [c, c+m) not generated).
 Reports W, Phat, TOPH slack m(W - Phat) = (N+1)m(m-1)/2 - sum_{Yhat}(|y|+N)(phi-c), and the TM slack at lambda = -c.
 Usage: python tophtrunc.py m c g1 g2 ..."""

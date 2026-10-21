@@ -1,4 +1,4 @@
-"""Lex tile of a numerical semigroup (lead, 2026-10-21).
+"""Lex tile of a numerical semigroup (lead, 2026-10-20).
 S given by m and any generating list; minimal generators g_1 < ... < g_N (all except m, INCLUDING right primitives).
 Mhat = lex-least (compare last coordinate first) factorizations of the m Apery elements: a down-set tiling Z^N.
 Checks the residue identity (every S):

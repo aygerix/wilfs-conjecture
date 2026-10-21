@@ -1,4 +1,4 @@
-r"""PD+ (lead, 2026-10-21): sum over cell pairs of (Hamming distance - 1) <= m Dep + sum over pairs of maximal cells of
+r"""PD+ (lead, 2026-10-20): sum over cell pairs of (Hamming distance - 1) <= m Dep + sum over pairs of maximal cells of
 (min(|s|,|t|) - |s ^ t|), s ^ t = coordinatewise min.  PD+ implies CR_DEP (min of sums >= sum of per-direction mins,
 exact on maximal pairs).  Tests: random S, all 3-D tiles, all 4-D down-sets.  Usage: python pdplus.py sg NS SEED MMIN MMAX | tiles N MMIN MMAX"""
 import sys, random, itertools

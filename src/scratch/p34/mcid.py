@@ -1,4 +1,4 @@
-r"""Carry identity for Wilf when m | c (lead, 2026-10-21). Lex tile D (all generators except m), delta = gens mod m,
+r"""Carry identity for Wilf when m | c (lead, 2026-10-20). Lex tile D (all generators except m), delta = gens mod m,
 kappa(x) = sum_{b: delta_b > r(x)} x_b - floor(x.delta/m), K = Kunz coordinate floor(w/m), q = c/m. Claim (exact):
     W = sum_x kappa(x) + sum_{all column tops t (every direction)} |C_t| (q - K(t)).
 Also reports DEP-CARRY: sum kappa + Dep >= 0 (Dep = sum over non-maximal tops of |C|), and DEP0: sum kappa >= 0 when

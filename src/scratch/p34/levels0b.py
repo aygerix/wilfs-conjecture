@@ -1,4 +1,4 @@
-r"""Values of gamma_j (levels0.py) and tests of candidate pairings (lead, 2026-10-21):
+r"""Values of gamma_j (levels0.py) and tests of candidate pairings (lead, 2026-10-20):
 PAIR: gamma_j + gamma_{J+1-j} >= 0;  PREFIX-SUFFIX: suffix sums sum_{i>=j} gamma_i >= 0 for every j.
 Usage: python levels0b.py NS SEED MMAX"""
 import sys, random

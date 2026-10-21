@@ -1,4 +1,4 @@
-r"""SUPP-WILF with the Apery set of any minimal generator n (lead, 2026-10-21).  For n in the minimal generators, tile
+r"""SUPP-WILF with the Apery set of any minimal generator n (lead, 2026-10-20).  For n in the minimal generators, tile
 D_n ⊂ N^{e-1} (lex-least factorizations over the other generators), labels r = (w - c) mod n, and
     nW = e*N' - sum_{(x,b)} (w(t_b x) - c)  (exact, N' = n(n-1)/2),
     w(t) - c <= r(t) always;  <= r(t) - n if t has a witness a (t + e_a in D) with g_a >= n or r(t) >= n - g_a.

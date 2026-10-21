@@ -1,4 +1,4 @@
-r"""Coarse sufficient conditions for CR_DEP (lead, 2026-10-21), using n_k >= |A| for k <= d+1, n_1 = |boundary|:
+r"""Coarse sufficient conditions for CR_DEP (lead, 2026-10-20), using n_k >= |A| for k <= d+1, n_1 = |boundary|:
  SC1: C(|bd|,2) + d C(|A|,2) + m Dep >= (d-1) C(m,2);
  SC2: C(|bd|,2) + sum_{k>=2} C(#{y in A: d+|y| >= k}, 2) + m Dep >= (d-1) C(m,2)  (only maximal weights beyond k = 1).
 Tested on lex tiles of random S (open regime and all) and on all 3-D tiles.  Usage: python crsc.py sg NS SEED MMIN MMAX | tiles MMIN MMAX"""

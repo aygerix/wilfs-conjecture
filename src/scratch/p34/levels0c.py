@@ -1,4 +1,4 @@
-r"""Exhaustive small tiles at sigma = phi(0) (lead, 2026-10-21): for every down-set D in N^N (N = 2, 3) of size m and
+r"""Exhaustive small tiles at sigma = phi(0) (lead, 2026-10-20): for every down-set D in N^N (N = 2, 3) of size m and
 every p with injective labels, gamma_j (levels0.py).  Tests SUF2: sum_{i>=j} gamma_i >= 0 for all j >= 2;
 LOW1: gamma_1 + Lnm/m >= 0;  MaxCL(0): sum gamma + Lnm/m >= 0; and the cell identity
 sum_j gamma_j = sum_x (h(x) - K(x)), h(x) = sum_{b: delta_b > r(x)} x_b.   Usage: python levels0c.py N MMIN MMAX"""

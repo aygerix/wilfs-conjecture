@@ -1,4 +1,4 @@
-"""RANK version of CH' (lead, 2026-10-21). For the lex tile Mhat (or any down-set tile) with the linear order by phi,
+"""RANK version of CH' (lead, 2026-10-20). For the lex tile Mhat (or any down-set tile) with the linear order by phi,
 rank(z) = #{z' in Mhat : phi(z') > phi(z)},  w(z) = sum_{i : z+e_i not in Mhat} (z_i + 1).
 RANK:  sum_z w(z) rank(z) >= (N-1) m (m-1)/2.   (delta(z) >= rank(z), so RANK => CH' => Wilf.)
 Usage: python rankv.py rnd NS SEED MMAX DMIN | python rankv.py ann NR IT SEED MMAX MMIN"""

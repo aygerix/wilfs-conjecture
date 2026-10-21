@@ -1,4 +1,4 @@
-r"""Annealer for PD+ (lead, 2026-10-21) over S = <m, gens>; score = PD+ slack / m^2 (negative refutes PD+).
+r"""Annealer for PD+ (lead, 2026-10-20) over S = <m, gens>; score = PD+ slack / m^2 (negative refutes PD+).
 OPEN=1 restricts to 3e < m.  Usage: python pdplus_ann.py NR IT SEED MMIN MMAX EMAX OPEN"""
 import sys, random, math
 sys.path.insert(0, '.')

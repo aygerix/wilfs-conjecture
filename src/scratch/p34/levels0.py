@@ -1,4 +1,4 @@
-r"""Level form of MaxCL at sigma = phi(0) (lead, 2026-10-21). For a tile (D, delta), v(x) = x.delta (canonical lift,
+r"""Level form of MaxCL at sigma = phi(0) (lead, 2026-10-20). For a tile (D, delta), v(x) = x.delta (canonical lift,
 delta_a = <p_a> in [1, m-1]), U_j = {x : v(x) >= j m}, gamma_j = sum_b |B_b(U_j)| - |U_j| (B_b = cells outside U whose
 b-column meets U), Lnm = sum over non-maximal column tops t of |C| r(t).  MaxCL(0) <=> sum_j gamma_j + Lnm/m >= 0.
 Reports the sign pattern of gamma_j on lex Apery tiles of random S (all units u).  Usage: python levels0.py NS SEED MMAX"""

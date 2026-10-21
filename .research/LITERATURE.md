@@ -823,13 +823,13 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   geometric form of Lemma 2.
 - Status of our Theorem CF-WILF (PROOFS): new as far as this search shows. It removes the hypothesis r ≥ ℓ from
   Bacher's Thm 3.5 and needs neither Thm 3.3 nor Conj 2.6.
-- 2026-10-21: no literature statement found for the class "no Apéry ray ends below c" (P̃ = 0) or for the ray identity
+- 2026-10-20: no literature statement found for the class "no Apéry ray ends below c" (P̃ = 0) or for the ray identity
   in this form. The ray identity is equivalent to our own R3 (position form of ID-q). The external c ≤ 4m proof
   (conjectures.io) uses pruning and shells, not this class. Status of P0-WILF: new as far as our searches show; not
   separately searched beyond the 2026-10-20 Bacher/B_h search.
 
 
-## 2026-10-21 search: Wilf for leaves of the semigroup tree (r = 0, S = ⟨L(S)⟩)
+## 2026-10-20 search: Wilf for leaves of the semigroup tree (r = 0, S = ⟨L(S)⟩)
 - Queries: web (extended) "Wilf conjecture leaves of the semigroup tree"; "Wilf reduces to leaves".
   - Read: Delgado arXiv:1910.12377 (Trimming), §5–6.
   - Read via agent: Chappelon–Ramírez Alfonsín–Stamate arXiv:2507.15006, §4.1.
@@ -844,21 +844,21 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   unsupported.
 - Status: Wilf for leaves is not known to us. For leaves, W equals Eliahou's W₀. Leaves include generic e = 4
   semigroups (cf. kseth e = 4, which is computer-assisted).
-- 2026-10-21 (TM check): searched "Hellus Rechenauer Waldi Wilf tessellation lex ideal Apéry set inequality".
+- 2026-10-20 (TM check): searched "Hellus Rechenauer Waldi Wilf tessellation lex ideal Apéry set inequality".
   - Found again: HRW arXiv:1804.06141 (already in item 12) and Spirito, "Wilf's conjecture for numerical semigroups
     with large second generator" (a_2 > (c+μ)/3; already in our LargeSecondGen line).
   - No inequality over the maximal elements (socle) of the tessellating staircase, weighted by degree and residue (our
     Conjecture TM), was found.
   - preprints.org 202604.0551: HTTP 403, NOT checked [already READ in full 2026-10-19 via the user's link: item 46].
 
-## 2026-10-21 (night) search: DEP-CARRY / CR_DEP (column-top rearrangement on the factorization tile)
+## 2026-10-20 (night) search: DEP-CARRY / CR_DEP (column-top rearrangement on the factorization tile)
 - Queries: "Wilf conjecture numerical semigroup Apéry set factorization down-set lattice tile inequality" (extended);
   "Wilf conjecture Gröbner / standard monomials Apéry set maximal embedding arXiv 2025 2026 proof".
 - Hits: Dobbs–Matthews 1610.08726, BGOW 1903.04342, Sammartano 1710.09245, graph approach 1909.03699, Marashdeh
   2608.12531 (item 10), Delgado–Kumar 2512.23891 (max primitive ≤ 60), DKM 2501.04417, Yang–Zhang preprints.org
   202604.0551, Wilf and Macaulay (EMS). All already listed. No statement of a rearrangement bound over column-top weights
   of a factorization tile, or of the sharp non-maximal-top bound w − c ≤ r − m, was found.
-- 2026-10-21 (night, latest) search before recording SUPP-WILF (W ≥ Dep − κ₀ + N ≥ Dep − Σ(|supp|−1)⁺): two web searches
+- 2026-10-20 (night, latest) search before recording SUPP-WILF (W ≥ Dep − κ₀ + N ≥ Dep − Σ(|supp|−1)⁺): two web searches
   (extended + standard) on Apéry-set factorization support / column-top / Kunz-coordinate sufficient conditions. Hits:
   1610.08726, 1710.09245, 1909.03699, 1111.1863, 1903.04342, 2608.12531 (#35), 1703.01761, PJM 2018 (Dhayni),
   Math. Z. 2023, 1710.03623, 2012.01358, preprints.org 202604.0551. All already listed; none states a support or

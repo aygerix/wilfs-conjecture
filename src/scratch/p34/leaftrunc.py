@@ -1,4 +1,4 @@
-"""Truncations of a leaf (lead, 2026-10-21). Every S with gcd(L(S)) = 1 is S_c = T u [c, inf) for the leaf
+"""Truncations of a leaf (lead, 2026-10-20). Every S with gcd(L(S)) = 1 is S_c = T u [c, inf) for the leaf
 T = <L(S)> (Delgado Remark 5.15: leaves are exactly S = <L(S)>, i.e. r = 0) and c = c(S).
 Test LEAF-MIN: W(S_c) >= W(T) for every valid truncation level c (c - 1 not in T, m < c <= c(T)).
 Usage: python leaftrunc.py NS SEED MMAX"""

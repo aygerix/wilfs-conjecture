@@ -1,4 +1,4 @@
-r"""Near-B2 (height-2) factorization tiles (lead, 2026-10-21): S = <m, g_1..g_d> with g_b = delta_b + k_b m.
+r"""Near-B2 (height-2) factorization tiles (lead, 2026-10-20): S = <m, g_1..g_d> with g_b = delta_b + k_b m.
 For random near-Sidon delta mod m (all degree<=2 sums of distinct residue), lifts k_b in {1..K}, report tiles of
 height 2: CR_DEP slack, DEP-CARRY value rho0 + sum kappa + Dep (conductor phase and min over phases), MaxCL
 slack (Lambda form: rho0 m + kappa m + Lam_nm), W, open-regime flag.  Usage: python b2fam.py NS SEED DMIN DMAX K"""

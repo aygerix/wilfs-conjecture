@@ -1,4 +1,4 @@
-r"""Open-regime statistics for DEP-CARRY (lead, 2026-10-21): how often the crude bound Dep >= (d-1)(m-1)/2 already
+r"""Open-regime statistics for DEP-CARRY (lead, 2026-10-20): how often the crude bound Dep >= (d-1)(m-1)/2 already
 gives DEP-CARRY, and the profile of the remaining S (type, height, Dep ratio, slack).  Usage: python depstat.py NS SEED MMIN MMAX"""
 import sys, random
 sys.path.insert(0, '.')

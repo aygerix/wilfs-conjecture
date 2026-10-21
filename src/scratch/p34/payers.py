@@ -1,4 +1,4 @@
-"""Who pays the top loss? (lead, 2026-10-21). Ray identity W = rho r/m + G + Pt - Lam + r(k-q) on random S (c > DMIN*m,
+"""Who pays the top loss? (lead, 2026-10-20). Ray identity W = rho r/m + G + Pt - Lam + r(k-q) on random S (c > DMIN*m,
 n >= 2 left generators). Reports the fraction with Lam > G, Lam > G + Pt, and the r = 0 subclass. Also the box bound
 G_box := (n+1) * sum_{beta in B(omega), phi(beta) < c} theta'(beta) (omega = factorization of F+m when in M).
 Usage: python payers.py NS SEED MMAX DMIN"""

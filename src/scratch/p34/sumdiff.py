@@ -1,4 +1,4 @@
-r"""Sum-difference conditions versus CR_DEP (lead, 2026-10-21). For a lattice tile D and any finite Delta subset N^d,
+r"""Sum-difference conditions versus CR_DEP (lead, 2026-10-20). For a lattice tile D and any finite Delta subset N^d,
 E = {x in D : x + Delta subset D} gives an injective labeling on E - Delta, so |E - Delta| <= m (SD(Delta)).
 For every CR_DEP-failing down-set D (N = 2, 3), search Delta over all sub-down-sets of D (and their translates are
 irrelevant) for a violated SD(Delta).  Usage: python sumdiff.py N MMIN MMAX"""

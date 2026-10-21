@@ -1,4 +1,4 @@
-r"""How negative can Tile-CL get? (lead, 2026-10-21). Annealer minimizing min_sigma V(sigma) (V = Tile-CL slack/m,
+r"""How negative can Tile-CL get? (lead, 2026-10-20). Annealer minimizing min_sigma V(sigma) (V = Tile-CL slack/m,
 V = (m-1)/2 - f/m), reporting Dep, |B| (non-maximal boundary cells), #spikes, and the ratio -V/Dep.
 SCORE: 'V' minimizes min V / m; 'R' maximizes -min V / Dep.  Usage: python tcldef.py NR IT SEED MMIN MMAX DMIN EMAX OPEN SCORE"""
 import sys, random, math

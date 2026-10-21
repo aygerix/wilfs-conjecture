@@ -1,4 +1,4 @@
-"""INJ-SUBADD test (lead, 2026-10-21): for down-sets E in N^n (n = 2, 3; all of size k) and chi(a) = a.b mod m
+"""INJ-SUBADD test (lead, 2026-10-20): for down-sets E in N^n (n = 2, 3; all of size k) and chi(a) = a.b mod m
 injective on E (any m >= k), lambda in LAMS, eps = (chi + lambda) mod m:
     sum_{y in Max(E)} (|y|-1) eps(y) <= (n+1) sum_{E \\ Max(E)} eps.
 (lambda = 0 with E = ↓Z inside a tile is Hall's condition for the box transport.) Usage: python injsub.py N KMIN KMAX MEXTRA [aff]"""

@@ -1,4 +1,4 @@
-r"""Assert every step of  CH' => DEP bound => CR_DEP  on random S (lead, 2026-10-21):
+r"""Assert every step of  CH' => DEP bound => CR_DEP  on random S (lead, 2026-10-20):
  (1) m W = (d+1)M' - sum_b sum_{b-cols} |C| (w(top) - c)                      [CH', exact]
  (2) w(t) - c <= r(t) on maximal tops, <= r(t) - m on non-maximal tops        [hence mW >= (d+1)M' - sum omega rt]
  (3) sum_t omega(t) r(t) <= sum_i omega_(i) (m-1-i)                            [rearrangement]

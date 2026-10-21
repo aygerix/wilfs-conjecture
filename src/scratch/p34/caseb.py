@@ -1,4 +1,4 @@
-r"""Search for case-B tiles (Dep < Sigma_supp, i.e. Sigma_A |y| > m - 1 + Q) of height >= HMIN (lead, 2026-10-21).
+r"""Search for case-B tiles (Dep < Sigma_supp, i.e. Sigma_A |y| > m - 1 + Q) of height >= HMIN (lead, 2026-10-20).
 Anneal over residue sets delta (|delta| = d) with S = <m, m+delta_1, .., m+delta_d> (all generators in (m, 2m), so the
 tile is close to the min-length representation tile), and also over lifts in (m, 3m) (LIFT=1).  Score = (Dep - Ssupp)/m.
 Reports Tile-CL (min V) at both signs for every case-B hit.  Usage: python caseb.py NR IT SEED DMIN DMAX MMIN MMAX HMIN LIFT"""

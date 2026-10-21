@@ -1,4 +1,4 @@
-r"""CR_DEP: shape-only (residue-free) sufficient condition for DEP-CARRY (lead, 2026-10-21).
+r"""CR_DEP: shape-only (residue-free) sufficient condition for DEP-CARRY (lead, 2026-10-20).
 Every boundary cell t (a column top in some direction) gets weight w(t) = sum over directions b in which t is a b-top
 of |C_b(t)| (= d + |t| when t is maximal); total weight d m.  DEP-CARRY reads sum_t w(t) r(t) <= (d+1)M' + m Dep, and
 rearrangement over injective labels gives the sufficient condition

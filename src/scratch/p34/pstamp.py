@@ -1,4 +1,4 @@
-r"""Mirrors of postage-stamp tiles (lead, 2026-10-21). S = <m, m+delta_1, .., m+delta_d> with small delta: the tile is
+r"""Mirrors of postage-stamp tiles (lead, 2026-10-20). S = <m, m+delta_1, .., m+delta_d> with small delta: the tile is
 no-wrap at phase 0 when m <= postage-stamp range + 1.  DEP-ALL on the mirror (D, -delta) <=> max_sigma V_delta(sigma)
 <= m - 1 + Dep.  Scans all delta with 1 = delta_1 < .. < delta_d <= AMAX and m in [M0, range+1]; reports the minimum of
 the mirror slack (m - 1 + Dep - max V) and of the direct slack (min V + Dep), and whether the mirror is a factorization tile.

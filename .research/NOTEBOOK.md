@@ -3634,7 +3634,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
     centroid inequality for knapsack down-sets: (n+1)Σ_M φ ≤ nT|M| when φ < T on M. Unproved; the cube argument loses
     Σγ(n−1)/(2(n+1)).
 
-## 2026-10-21 — Ray identity; one-step difference body; Theorem P0-WILF
+## 2026-10-20 — Ray identity; one-step difference body; Theorem P0-WILF
 - **Ray identity (PROVED, every S).**
   - E = ρr/m + G + P̃ − Λ:
     - G: ceiling gains;
@@ -3660,7 +3660,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - (3) Prepare the exact statement of P0-WILF for the Lean agent (codex available 2026-10-25).
 
 
-## 2026-10-21 (later) — Leaves (r = 0) as the core; Conjecture TOP0; the full lex tile
+## 2026-10-20 (later) — Leaves (r = 0) as the core; Conjecture TOP0; the full lex tile
 - **UCG refuted** (it dropped G). Two-generated S have W = 0 with Λ paid entirely by G (E345).
 - **Full lex tile M̂ ⊆ ℕ^N, N = e − 1** (all minimal generators except m, right primitives included).
   - It is a down-set tile of L = ker(φ mod m); the tiling is known (HRW 2018).
@@ -3692,7 +3692,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - (3) Handle ρ > 0, either directly at threshold c or via P̃′ ≥ nρ.
   - (4) For non-leaves: GDB (no failures in the n ≥ 2 annealing).
 
-## 2026-10-21 (late) — CORRECTION: TM = MaxCL
+## 2026-10-20 (late) — CORRECTION: TM = MaxCL
 - "Conjecture TM" is exactly MaxCL (2026-10-17). I re-derived it after a context loss without checking PROOFS.
   - MaxCL ⇒ Wilf is LEAN-checked.
   - The degree-≤2 window proof is Flat-MaxCL (LEAN).
@@ -3705,7 +3705,7 @@ CORRECTION"). New here: the G-ID cell identity for all degrees, the location dat
   - Refuted: ALL-BUT-ONE, MAJ, RANK, TOP (all S), LEAF-MIN, RISE, PSHIFT.
 - Rule for myself: before naming a "new" conjecture, grep PROOFS/STATE for its normalized form (here: "Σ_A (d+|y|)").
 
-## 2026-10-21 (night) — MaxCL at σ = φ(0): residue-dependent box transport (HALL-TM), the carry formula, level suffixes
+## 2026-10-20 (night) — MaxCL at σ = φ(0): residue-dependent box transport (HALL-TM), the carry formula, level suffixes
 
 Setting: a tile (D, δ), δ_b = ⟨p_b⟩ ∈ [1, m−1], σ = φ(0), so r(x) = ⟨x·δ⟩, r(0) = 0, r subadditive on D.
 MaxCL at this phase gives Wilf for every S with m | c (open in the literature beyond 4e ≥ m and g ≤ 120).
@@ -3757,7 +3757,7 @@ With U_j = {x : x·δ ≥ jm} and γ_j = Σ_b |B_b(U_j)| − |U_j|: MaxCL(0) ⟺
 - Direction form: P − B = Σ_b (S_b − δ_b X_b/m) + (m−1)/2 with X_b = Σ_D x_b and S_b = Σ_{r(x)<δ_b} x_b (the b-mass in
   the label window [0, δ_b), where exactly the b-wraps land). A spike b contributes −δ_b/m.
 
-## 2026-10-21 (night, later) — DEP-CARRY and the shape-only reduction CR_DEP: Wilf ⟸ an inequality on tile shapes
+## 2026-10-20 (night, later) — DEP-CARRY and the shape-only reduction CR_DEP: Wilf ⟸ an inequality on tile shapes
 
 ### The sharp tile-only form of CH′ (PROVED)
 Setting: S, m, a factorization tile D ⊂ ℕ^d of Ap(S,m) over the generators n_1..n_d other than m (lex tile or any
@@ -3802,7 +3802,7 @@ Evidence (E348):
 - With the true labels, DEP-CARRY has slack ≥ 0.37·m² in adversarial searches (open regime, all phases) and
   ≥ 0.87·m² on random open-regime S, versus MaxCL's near-zero minima.
 
-## 2026-10-21 (night, latest) — CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form; KAPPA-DEP refuted by a mirror identity
+## 2026-10-20 (night, latest) — CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form; KAPPA-DEP refuted by a mirror identity
 
 ### CR-TILE is FALSE (open regime, settled class)
 - Counterexample: S = ⟨19,39,41,50,52,53⟩ (c = 88, g = 68, ℓ = 20, e = 6, W = 32; 3e = 18 < 19, c > 4m).
@@ -4089,3 +4089,12 @@ Consequences:
   2. For simplex-dense tiles: prove UNIT-CERT from CENTROID (X(M) ≥ 0) plus the wrap window, replacing h-regularity.
   3. Height ≥ 4: cells of height ≥ 4 split into parts of height ≥ 2, whose capacity is e + β. Here the unit bottleneck
      disappears, so the obstruction should be confined to height-3 layers. Test this.
+
+### 2026-10-20 — date correction
+- Every entry dated "2026-10-21" (101 occurrences in .research/ and src/scratch/p34, 81 files) was written on 2026-10-20.
+  The git commit dates, all 2026-10-20 EDT, are authoritative. All were relabelled 2026-10-20; the old labels remain in
+  git history (commits before cc4ecea).
+- Ordering inside 2026-10-20 follows the commit times: P0-WILF 14:53, TM = MaxCL 16:57, CR-TILE 18:10–18:58,
+  SUPP-WILF 19:24, L7 refuted 21:43, SUPP-WILF+ 22:06, split certificates 23:02.
+- The project timezone is the laptop's (EDT). fejer's clock is UTC and runs 4 hours ahead, so fejer file timestamps
+  after 20:00 EDT show the next day.

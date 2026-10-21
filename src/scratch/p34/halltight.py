@@ -1,4 +1,4 @@
-"""Exact HALL-TM ratios on all small tiles at sigma = phi(0) (lead, 2026-10-21): lam*(D,p) = max over Y subset Max of
+"""Exact HALL-TM ratios on all small tiles at sigma = phi(0) (lead, 2026-10-20): lam*(D,p) = max over Y subset Max of
 sum_Y (|y|-1) r(y) / ((N+1) sum_{down(Y) minus Y minus 0} r). Reports max lam*, max MaxCL ratio (Y = Max), and the
 instances where the worst Y is a proper subset.  Usage: python halltight.py N MMIN MMAX"""
 import sys, itertools

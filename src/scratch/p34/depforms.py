@@ -1,4 +1,4 @@
-r"""Strength ladder for DEP-CARRY (lead, 2026-10-21). At every phase s (rho0 = s), tile (D, delta):
+r"""Strength ladder for DEP-CARRY (lead, 2026-10-20). At every phase s (rho0 = s), tile (D, delta):
   V = rho0 + sum_x kappa_s(x).  Bonuses:  Dep (non-maximal-top incidences, DEP-CARRY),
   BD = |boundary \ Max| (non-maximal cells blocked in some direction),  RA = sum_{y in Max} (deg^-_{N1}(y) - 1),
   N1 = interior {x : x + e_b in D for all b}.  Proved: Dep >= BD >= RA (tile difference body).

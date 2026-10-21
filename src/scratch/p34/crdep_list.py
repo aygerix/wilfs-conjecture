@@ -1,4 +1,4 @@
-r"""CR_DEP and CR (MaxCL crude rearrangement) on given S (lead, 2026-10-21); lex tile.  Prints normalized slacks
+r"""CR_DEP and CR (MaxCL crude rearrangement) on given S (lead, 2026-10-20); lex tile.  Prints normalized slacks
 (slack / m^2) and the values Dep, |boundary|, |A|.  Usage: python crdep_list.py 'm g1 g2 ...' ..."""
 import sys
 sys.path.insert(0, '.')

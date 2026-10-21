@@ -1,4 +1,4 @@
-r"""Phase walk of DEP-CARRY (lead, 2026-10-21). Label weights om~(lam) = omega(r^{-1}(lam)) at phase 0, f(rho) =
+r"""Phase walk of DEP-CARRY (lead, 2026-10-20). Label weights om~(lam) = omega(r^{-1}(lam)) at phase 0, f(rho) =
 sum_t omega(t) r_rho(t) - d M'. Exact: f(rho) - f(rho-1) = m (d - om~(-rho)), sum_rho f = 0.  DEP-CARRY at phase rho
 <=> f(rho) <= M' + m Dep.  Sufficient (ID): for every cyclic label interval J, sum_J (d - om~) <= (m-1)/2 + Dep.
 Reports per S: DEP at conductor phase, DEP at every phase (max f), ID margin.  Usage: python idisc.py NS SEED MMIN MMAX"""

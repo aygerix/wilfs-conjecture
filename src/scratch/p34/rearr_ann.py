@@ -1,4 +1,4 @@
-"""Annealer for shape-only REARR on lex tiles of S = <m, G> with m > 3e (lead, 2026-10-21).
+"""Annealer for shape-only REARR on lex tiles of S = <m, G> with m > 3e (lead, 2026-10-20).
 REARR: sum_k w_(k) (m-k) <= (N+1) C(m,2), w = |y| + N over Max(M^) sorted decreasingly (N = e-1).
 REARR for all S with m > 3e + TM-implication + Eliahou (e >= m/3) would give Wilf. Maximizes the ratio.
 Usage: python rearr_ann.py NR IT SEED MMIN MMAX"""

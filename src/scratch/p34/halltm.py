@@ -1,4 +1,4 @@
-"""HALL-TM (lead, 2026-10-21): box transport for TM on all down-set tiles. Each maximal y demands (|y|-1) eps(y)
+"""HALL-TM (lead, 2026-10-20): box transport for TM on all down-set tiles. Each maximal y demands (|y|-1) eps(y)
 units of "pair credit"; a point b in B(y) minus {0, y} offers capacity (n+1) eps(b) shared by all y >= b; the transport
 is valid when lambda = 0 (pairs sum >= eps(y)); checked by max-flow. Usage: python halltm.py N MMIN MMAX"""
 import sys, itertools

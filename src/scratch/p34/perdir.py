@@ -1,4 +1,4 @@
-"""Per-direction ray-end depths (lead, 2026-10-21). For the lex tile Mhat of S and direction i,
+"""Per-direction ray-end depths (lead, 2026-10-20). For the lex tile Mhat of S and direction i,
 B^i = sum_{beta in Mhat} (c + m - 1 - phi(end_i(beta))).  CH': Wilf <=> sum_i B^i >= (N-1) m (m-1)/2.
 Test ALL-BUT-ONE: #{i : B^i < m(m-1)/2} <= 1.  Usage: python perdir.py NS SEED MMAX"""
 import sys, random

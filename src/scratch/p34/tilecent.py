@@ -1,4 +1,4 @@
-"""TILE-CENTROID test (lead, 2026-10-21). Drop Apery-minimality: M any down-set in N^N that is a complete residue
+"""TILE-CENTROID test (lead, 2026-10-20). Drop Apery-minimality: M any down-set in N^N that is a complete residue
 system for phi mod m (phi = sum gamma_i a_i, gamma_i > m). Test
     (N+1) sum_M phi <= m [ N max_M phi - (N-1)(m-1)/2 ]      (for the lex Apery tile this is exactly Wilf).
 Enumerates all down-sets of size m in N^2 (partitions) or N^3 (plane partitions), gamma_i in (m, GMAX*m].

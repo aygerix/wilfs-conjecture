@@ -1,4 +1,4 @@
-r"""Which down-sets fail CR_DEP? (lead, 2026-10-21). For all down-sets D in N^N of size m: CR_DEP slack, the one-step
+r"""Which down-sets fail CR_DEP? (lead, 2026-10-20). For all down-sets D in N^N of size m: CR_DEP slack, the one-step
 difference-body condition DB1: |N1| + sum_b |F_b(N1)| <= m (N1 = interior), the two-step DB2: |N2 - Delta_2| <= m
 (N2 = {x : x + Delta_2 subset D}), and whether D is a lattice tile (some injective labeling).  Usage: python crdep_db.py N MMIN MMAX"""
 import sys, itertools

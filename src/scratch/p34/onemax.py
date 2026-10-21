@@ -1,4 +1,4 @@
-r"""ONE-MAX-TOP (lead, 2026-10-21): in a lattice tile, does every interior cell x != 0 have at most one direction c
+r"""ONE-MAX-TOP (lead, 2026-10-20): in a lattice tile, does every interior cell x != 0 have at most one direction c
 whose column top top_c(x) is maximal?  (It implies H1: Dep >= (d-1)(i-1).)  Also tests the variant for all
 non-maximal cells x != 0.  Usage: python onemax.py sg NS SEED MMIN MMAX | tiles N MMIN MMAX"""
 import sys, random, itertools

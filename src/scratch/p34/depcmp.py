@@ -1,4 +1,4 @@
-r"""Compare MaxCL, DEP-CARRY and S1 slacks (lead, 2026-10-21) at every phase on given semigroup tiles (lex tile, all
+r"""Compare MaxCL, DEP-CARRY and S1 slacks (lead, 2026-10-20) at every phase on given semigroup tiles (lex tile, all
 units u): MaxCL slack = (d+1)M' - sum_A T r;  DEP slack = MaxCL slack + sum_{nonmax tops} |C|(m - r) - Lnm... i.e.
 DEP slack = (d+1)M' - sum_{tops} |C| rt with rt = r on maximal tops, r - m on non-maximal tops;  S1 slack = (d+1)M'
 + m*BD - sum_{tops} |C| r.  Prints min over phases/units of each, normalized by m^2.  Usage: python depcmp.py m g1 g2 ..."""

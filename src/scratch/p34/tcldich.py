@@ -1,4 +1,4 @@
-r"""TCL-DICHOTOMY (lead, 2026-10-21): if Dep < Sigma_supp := sum_x (|supp x| - 1)^+ then Tile-CL holds (min_sigma V >= 0).
+r"""TCL-DICHOTOMY (lead, 2026-10-20): if Dep < Sigma_supp := sum_x (|supp x| - 1)^+ then Tile-CL holds (min_sigma V >= 0).
 Together with the trivial V = N - kappa0 >= -kappa0 >= -Sigma_supp this gives DEP-ALL.  Modes:
  'list m g..' | 'rnd NS SEED MMIN MMAX' | 'ann NR IT SEED MMIN MMAX DMIN EMAX OPEN MIRROR' (minimize min V over tiles with
  Dep < Sigma_supp; MIRROR=1 also scores (D, -delta))."""

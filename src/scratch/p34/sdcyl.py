@@ -1,6 +1,6 @@
 r"""Do the proved tile properties SD (|E_Delta - Delta| <= m for every sub-down-set Delta) and CYL (cylinder lemma (b):
 for every nonempty tau, #{minimal non-elements q : supp q >= tau} <= |D cap {x_tau = 0}|) exclude every CR_DEP-failing
-down-set?  (lead, 2026-10-21).  Usage: python sdcyl.py N MMIN MMAX"""
+down-set?  (lead, 2026-10-20).  Usage: python sdcyl.py N MMIN MMAX"""
 import sys, itertools
 sys.path.insert(0, '.')
 from subadd_lp import downsets

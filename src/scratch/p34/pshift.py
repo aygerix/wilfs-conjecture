@@ -1,4 +1,4 @@
-"""Threshold shift test (lead, 2026-10-21). Full lex tile M^ (N = e-1). With threshold T = qm (c = qm - rho):
+"""Threshold shift test (lead, 2026-10-20). Full lex tile M^ (N = e-1). With threshold T = qm (c = qm - rho):
 W = W' - N rho, W' = (N+1)(m-1)/2 + P' - sum_{phi(y) >= qm} (|y|+N)(phi(y)-qm)/m,
 P' = (1/m) sum_{z: phi(z) < qm} sum_{i: z+e_i not in M^} (z_i+1)(qm - phi(z)).
 Tests PSHIFT: P' >= N rho, and also checks the identity. Usage: python pshift.py NS SEED MMAX"""

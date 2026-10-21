@@ -1,4 +1,4 @@
-r"""Annealer for CR_DEP on lex Apery tiles (lead, 2026-10-21). Minimizes CR_DEP slack / m^2 (negative refutes
+r"""Annealer for CR_DEP on lex Apery tiles (lead, 2026-10-20). Minimizes CR_DEP slack / m^2 (negative refutes
 CR-TILE for factorization tiles). OPEN=1 restricts to 3e < m.  Usage: python crdep_ann.py NR IT SEED MMIN MMAX EMAX OPEN"""
 import sys, random, math
 sys.path.insert(0, '.')

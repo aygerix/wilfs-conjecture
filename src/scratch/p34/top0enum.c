@@ -1,4 +1,4 @@
-/* TOP0 census (lead, 2026-10-21). Enumerate all numerical semigroups of genus <= GMAX by the Frobenius tree
+/* TOP0 census (lead, 2026-10-20). Enumerate all numerical semigroups of genus <= GMAX by the Frobenius tree
  * (children remove a minimal generator > F). Leaves of the tree are exactly the S with no right primitive (r = 0).
  * For each leaf with n = e - 1 >= 2, compute the lex-least factorizations (compare the last coordinate first) of the
  * Apery elements w.r.t. m and test

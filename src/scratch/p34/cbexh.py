@@ -1,4 +1,4 @@
-r"""Exhaustive case-B search over S = <m, m + delta> (lead, 2026-10-21): all d-subsets delta of [1, m) (or NS random
+r"""Exhaustive case-B search over S = <m, m + delta> (lead, 2026-10-20): all d-subsets delta of [1, m) (or NS random
 ones when NS > 0), true factorization tile via build(); records case B (Dep < Sigma_supp) by height, the largest margin
 Sigma_supp - Dep per height, and Tile-CL min V on case-B hits of height >= 3.  Usage: python cbexh.py d MMIN MMAX NS SEED"""
 import sys, itertools, random
