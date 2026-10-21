@@ -69,6 +69,7 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 ## Pattern C — a relaxation that removes the structure doing the work
 | Statement | Counterexample |
 |---|---|
+| ASYM-RT (RT(q) ≥ q·lead − K∞ with K∞ ≤ q·lead, i.e. the single dual optimal at q → ∞ certifies RT ≥ 0 at q ≥ 5) | ⟨13,17,27,29⟩ (c = 63, q = 5, open regime): lead 5.5, K∞ 34.5, asymptote −7 while RT = 9 via another dual; K∞/lead reaches 6.54 at ⟨14,17,69⟩ (E366, 2026-10-20) |
 | CR-TILE (CR_DEP on every lattice tile: Σ_i i·ω_(i) + m·Dep ≥ (d−1)C(m,2); shape-only rearrangement of DEP-CARRY) | ⟨19,39,41,50,52,53⟩ (c = 88, open regime): unique height-2 tile in ℕ⁵, slack −4 (E349). Structural: the full height-h simplex needs d·C(d+h−1,h−1) ≤ C(d+h,h) − 1, false for h ≥ 2 |
 | PD+ (pair/Hamming form, ⇒ CR_DEP) | same tile, slack −10 (E349) |
 | ID (cyclic label-interval discrepancy Σ_J(d − ω̃) ≤ (m−1)/2 + Dep, sufficient for DEP-ALL) | 10/3,000 S; the same tile (16 > 13) (E349) |

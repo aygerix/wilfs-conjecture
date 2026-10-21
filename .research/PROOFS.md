@@ -5293,3 +5293,103 @@ where deg b = Σ_{p∈P} p_b ≤ (d − 1) + 2 = e, and at most ρ pairs have τ
   m > e², the near-B₃ simplices.
 - That residual is the h-regular / REG-WILF regime, where generators have nearly equal levels. There the unit levels
   (CENTROID / REG-BND averaging) must enter.
+
+## Signed certificates and the Kunz-face relaxations R ≤ RT ≤ UA ≤ AM ≤ W (RT ≤ FX ≤ W) — 2026-10-20 (late night; checks E362–E367)
+**Setting.** As in "Split certificates", but over residues. A pair {i, j} of nonzero residues with s = i + j mod m ≠ 0 is
+TIGHT if w_i + w_j = w_s. Every split of a cell of any factorization tile is a tight pair, but with several
+factorizations there can be more tight pairs. Lemma K holds verbatim for every tight pair:
+μ_i + μ_j = q + μ_s + τ with τ ∈ {−1, 0, 1}, and τ = −1 forces ε_s := [r_s ≥ m − ρ] = 1. For a non-tight pair,
+w_i + w_j = w_s + Jm with J ≥ 1 and μ_i + μ_j − μ_s = q − J + τ. Both are asserted in src/scratch/p36/kunz_face.py.
+
+**Theorem CERT± (PROVED).** Let π_p ∈ ℝ (either sign) be weights on tight pairs, with loads
+L_x = Σ_p π_p·mult_p(x) and β_x = Σ_{p : s_p = x} π_p. If L_x ≤ e + β_x for every x ≠ 0, then
+    W ≥ q·(Σ_p π_p − (m − e)) + ρ − Σ_{π_p > 0} π_p ε_{s_p} − Σ_{π_p < 0} |π_p|.
+- Proof: Identity SPLIT is linear in the weights, so it holds for real π:
+  W = qΓ + ρ + Σπτ + Σ_x (e + β_x − L_x)μ_x. Here μ ≥ 0 and e + β − L ≥ 0. For π_p > 0 use τ_p ≥ −ε_{s_p}; for π_p < 0
+  use τ_p ≤ 1. ∎
+- k-ary splits work the same way, with τ ≤ ⌊(Σ r_parts − r_z − (k−1)ρ)/m⌋ ≤ k − 1.
+- Negative weights ("anti-splits") move load from the parts to the sum. They cost 1 each and lower Γ by 1.
+
+**Proposition RT-DUAL (PROVED, LP duality).** Let
+    RT(S) = min { e(q + Σ_{x≠0} y_x) − qm + ρ :  y ≥ 0,  q − ε_s ≤ y_i + y_j − y_s ≤ q + 1  for every tight pair }.
+(a) RT ≤ W, since y = μ is feasible with value W.
+(b) RT is the maximum of the CERT± bound over binary weights on all tight pairs. The two constraint families carry
+    π⁺ and π⁻, and the dual constraint of y_x is exactly L_x − β_x ≤ e.
+(c) Dropping the upper side gives R. R is the maximum over π ≥ 0, i.e. the robust certificate of splitlp.py on all
+    tight pairs.
+So RT ≥ 0 if and only if a signed binary certificate exists.
+- Further relaxations, all lower bounds for W (kunz_face.py):
+  - UA = RT + (y_g = μ_g on minimal generators);
+  - AM = UA + Apéry minimality on non-tight pairs (y_i + y_j − y_s ≤ q − 1 + τ);
+  - FX = the exact face at fixed q: tight pairs y_i + y_j − y_s = q + τ, non-tight ≤ q − 1 + τ.
+- Order: R ≤ RT ≤ UA ≤ AM ≤ W and RT ≤ FX ≤ W. FX ⊂ RT because τ = −1 only where ε = 1.
+
+**Proposition R-FAKE (PROVED): the dual obstruction of one-sided certificates.** If every Apéry element is a sum of at
+most 3 minimal generators, then y = q·1_{minimal generators} is R-feasible, so R ≤ q(e² − m) + ρ.
+- Proof: a tight pair with two non-generator parts sums to an element of height ≥ 4, so none exists.
+  - Two generator parts: y_i + y_j − y_s = 2q ≥ q.
+  - One generator part: q − 0 − 0 ≥ q − ε.
+  - Value: e(q + (e−1)q) − qm + ρ. ∎
+- This is the primal side of the proved obstruction m ≤ e² + ρ/q. RT cuts it whenever q ≥ 2, since 2q > q + 1.
+
+**Proposition RT-ASYM (PROVED).** Fix the tight graph, ρ and ε, and treat q as a real parameter.
+- Then q ↦ RT(q) is convex and piecewise linear. It is a maximum of affine functions over the q-independent dual
+  polytope.
+- Its final slope is
+    lead = max_dual Γ = min { e(1 + Σ_x v_x) − m : v ≥ 0, v_i + v_j − v_s = 1 on tight pairs }.
+- RT(q) ≥ q·lead − K∞ for every q, where K∞ = min{Σπ⁺ε + Σπ⁻ − ρ : Γ = lead}.
+- lead ≥ 0: write v = 1 − u. Then u is additive on tight pairs, hence linear on any tile (u(z) = z·σ), and u ≤ 1.
+  The column identity (CH′ for a linear functional) gives (d+1)Σ_D u ≤ dm, i.e. eΣu ≤ (e−1)m. ∎
+- So the leading order of RT is the continuous Wilf / CH′ depth term. The discrete part is what the q-multiplier pays.
+- FALSE shortcut (ASYM-RT, FAILED Pattern C): K∞ ≤ q·lead is not generally true at q = 5.
+  ⟨13,17,27,29⟩ (c = 63, open regime) has lead 5.5 and K∞ 34.5 (asymptote −7), while RT = 9 via another dual (E366).
+
+**Proposition Γ-CAP3 and the exchange law (PROVED).** Let D be a factorization tile of height ≤ 3, with d units, pairs P
+and cubics C, so m = 1 + d + |P| + |C|. Take any CERT± certificate supported on tile splits:
+- weights π_p on the pair splits;
+- λ ≥ 0 on the cubic splits. Signed cubic weights only add cost; the cubic constraints are slack.
+Then
+    (i)  Γ ≤ e(|P| + 2d + 3)/3 − m        (= C(d+3,3) − m = #missing cubics M₃ when every pair is present),
+    (ii) Σ_{π_p<0} |π_p| ≥ −Σ_p π_p ≥ Γ − (e² − m),
+    (iii) hence the certificate value is ≤ (q − 1)Γ + ρ − (m − e²).
+- Proof. Write Λ = Σλ and Π = Σπ_p.
+  - Summing the pair constraints Σ_b λ_{p,b} − π_p ≤ e gives Λ − Π ≤ e|P|.
+  - Summing the unit constraints Σλ(b) + Σ_p p_b π_p ≤ e gives Λ + 2Π ≤ ed.
+  - Γ = Λ + Π − (m − e). Then (1/3)(Λ − Π) + (2/3)(Λ + 2Π) = Λ + Π ≤ e(|P| + 2d)/3, which gives (i).
+  - The unit sum gives −Π ≥ Λ + Π − ed = Γ + m − e − ed = Γ + m − e², which gives (ii). ∎
+- With π ≥ 0, (ii) is the old obstruction Γ ≤ e² − m. In general every unit of Γ beyond e² − m must be bought with one
+  unit of anti-split mass.
+- Necessary condition for a tile-split certificate: (q − 1)·Γ_cap + ρ ≥ m − e².
+  - With all pairs present, m ≈ θ·C(d+3,3) and Γ_cap = (1 − θ)C(d+3,3), this reads θ ≲ (q−1)/q, which is 4/5 at q = 5.
+  - So at height 3, signed certificates reduce to a THIN-BASIS question (CONJ THIN3 below).
+- Observed (E364, E367): the LP lead equals the cap (i) exactly:
+  - ⟨37,75,78,80,88,89⟩: |P| = 14, d = 5, lead 17;
+  - every full-pair cover tested: lead = M₃ = 5, 11, 16, 18, 29 for d = 3, 4, 5, 5, 6.
+- The optimal dual there is the "anti-split pairs, over-split cubics" pattern:
+  - every pair weight negative, total −e(|P| − d)/3, which is −C(e,3) with all pairs;
+  - cubic weight total e(2|P| + d)/3;
+  - units and pairs saturated.
+
+**CONJ RT-NONNEG.** Every S with e ≥ 3 and c > 4m has RT(S) ≥ 0.
+- With the kernel-checked depth-four theorem (c ≤ 4m), RT-NONNEG implies Wilf.
+- e = 2 is excluded: there W = 0 and RT < 0 occurs.
+- It is level-free except for q, ρ and the window ε. It is stronger than UNIT-CERT, since UA ≥ RT.
+- Gating:
+  - Necessity audit: RT-NONNEG is sufficient and not necessary for Wilf. A failure would only kill this route.
+  - Falsification attempts (E362–E367), with 0 negatives among e ≥ 3:
+    - exact MILP minima of RT over genuine S (m ≤ 15, all r);
+    - annealing over residues and lifts;
+    - random S;
+    - the negative-Eliahou families, where RT = W exactly, including m = 798;
+    - Delgado S(p), Backelin, the T1 counterexamples;
+    - the extremal full-pair height-3 covers for d = 3–6.
+  - Smallest values: RT = 1 at ⟨8,11,23⟩ (c = 38 > 4m, but 3e > m); in the open regime RT = 5 at ⟨13,17,20⟩ (c = 76).
+- Proof deadline: 2026-10-22. Either prove the height-3 case (via THIN3 + the Γ-CAP3 dual), or downgrade.
+
+**CONJ THIN3 (additive combinatorics; what height 3 needs).**
+- Statement: let s_1, …, s_d ∈ ℤ/m (d ≥ 2) have {0} ∪ {s_a} ∪ {s_a + s_b} pairwise distinct (a "Sidon set with 0"), and
+  let every residue be a sum of at most 3 of the s_a. Then m ≤ θ·C(d+3,3) with θ ≤ 4/5.
+- Exhaustive maxima (nearcov.c): m_max = 15, 24, 40 for d = 3, 4, 5, so θ = 0.750, 0.686, 0.714. For d = 6 the largest
+  found is 55 (θ = 0.655), with the scan incomplete above 58.
+- Δ_h itself never tiles (simptile.py: d = 2–4, h = 2–4, m ≤ 60).
+- No external bound of this strength was found (LITERATURE search 2026-10-20 late night).

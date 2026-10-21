@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-20 night, latest: split-certificate identity PROVED; FLAT-U = short proof of L5; level-free certificates fail only for simplex-dense height-3 tiles (m > e²); see (A00000000000))
+# STATE.md — handoff (2026-10-20 late night: backward strategy; signed certificates CERT±/RT PROVED as LP duals; Γ-CAP3 PROVED; CONJ RT-NONNEG ⇒ Wilf; height 3 reduces to CONJ THIN3; see (A000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,47 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000000) **NEWEST (2026-10-20 late night; user's strategy: work backwards from a hypothetical counterexample
+          with Gurobi, optimize the split weights, extract dual obstructions).**
+          **(a) Proved (PROOFS "Signed certificates and the Kunz-face relaxations").**
+          - CERT±: real-signed split weights; anti-splits cost 1 each.
+          - RT-DUAL: RT is the best signed binary certificate on all tight pairs, and RT ≤ W.
+            Hierarchy: R ≤ RT ≤ UA ≤ AM ≤ W, RT ≤ FX ≤ W.
+          - R-FAKE: at height ≤ 3, y = q on generators gives R ≤ q(e² − m) + ρ (the dual of the one-sided obstruction).
+          - RT-ASYM: RT(q) is convex, with final slope lead = the continuous-Wilf LP (≥ 0 by CH′), and
+            RT ≥ q·lead − K∞.
+          - Γ-CAP3 + exchange law: at height ≤ 3, Γ ≤ e(|P|+2d+3)/3 − m, and −Σπ_pairs ≥ Γ − (e² − m). So a
+            tile-split certificate needs (q−1)Γ_cap + ρ ≥ m − e².
+          **(b) Refuted.** ASYM-RT (FAILED Pattern C; ⟨13,17,27,29⟩).
+          **(c) Open, with evidence.**
+          - **CONJ RT-NONNEG** (e ≥ 3, c > 4m ⇒ RT ≥ 0; with depth four ⇒ WILF). 0 negatives in E362–E367:
+            - exact MILP minima (min 1 at ⟨8,11,23⟩; open-regime min 5 at ⟨13,17,20⟩);
+            - annealing;
+            - random S;
+            - negative-Eliahou families (RT = W exactly);
+            - T1 counterexamples, Backelin, Delgado;
+            - all extremal full-pair height-3 covers d ≤ 6.
+            Proof deadline 2026-10-22.
+          - **CONJ THIN3**: a Sidon-with-0 basis of order 3 of ℤ/m has m ≤ (4/5)C(d+3,3). Exhaustive maxima
+            θ = 0.750/0.686/0.714 (d = 3/4/5); d = 6 ≥ 0.655 (scan incomplete above 58).
+          - Observed: lead = Γ-CAP3 cap on every height-3 minimizer. The optimal dual is "anti-split pairs (total
+            −e(|P|−d)/3), over-split cubics".
+          **(d) Reproduce.** fejer ~/wilf/p36 (scripts in src/scratch/p36): kunz_face, facernd, kunz_cert_milp (runRT.sh,
+            runRTopen.sh → rt_small.log, rt_open.log), rtdual, h3rnd, rtanneal (runanneal.sh → anneal.log), rtasym,
+            rtfam, simptile, nearcov.c, covfam (runcov6.sh → cov6.log).
+          **(e) Three active approaches.**
+            1. RT-NONNEG at height 3:
+               - construct the cap-attaining signed dual for every full-pair (then general-P) height-3 tile, with cost
+                 C(e,3) + (Λ−1)|C ∩ W_ρ| − ρ;
+               - prove THIN3 at θ ≤ 4/5 (difference/collision counting on Δ_3 mod m);
+               - also bound the W_ρ cost.
+            2. Gate RT-NONNEG harder: rt_open to m = 24; the --h3 --dense MILP at m = 37–45, e = 6; d = 6, 7
+               near-covers; large-ρ covers.
+            3. Lean: CERT± and Γ-CAP3 are short linear arguments, natural next formalization targets after FLAT-U
+               (codex from 2026-10-25).
+          **(f) First task next session.** Prove that the Γ-CAP3 cap is attained by an explicit dual for every
+            full-pair height-3 tile (lead = M₃, observed on every cover). Then combine it with THIN3 for a conditional
+            height-3 theorem.
       (A00000000000) **NEWEST (2026-10-20 night, latest; resumed under the goal "continue proving Wilf; Gurobi for larger models").**
           **(a) Proved (PROOFS "Split certificates"; NOTEBOOK 2026-10-20 night, latest).**
           - Lemma K: the exact Kunz relation Σμ_parts = (k−1)q + μ_z + τ. For binary splits τ ∈ {−1,0,1}, and τ = −1 only

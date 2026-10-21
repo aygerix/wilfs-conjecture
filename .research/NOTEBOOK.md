@@ -4098,3 +4098,34 @@ Consequences:
   SUPP-WILF 19:24, L7 refuted 21:43, SUPP-WILF+ 22:06, split certificates 23:02.
 - The project timezone is the laptop's (EDT). fejer's clock is UTC and runs 4 hours ahead, so fejer file timestamps
   after 20:00 EDT show the next day.
+
+### 2026-10-20 (late night): backward search — exact Kunz MILP, signed certificates (RT), Γ-CAP3; height 3 reduces to a thin-basis bound
+- **Formulations.**
+  - Exact counterexample MILP (kunz_cert_milp.py): integer Kunz coordinates, tightness indicators, exact generator
+    indicators, e and the conductor residue r fixed.
+  - Objective is W, or min over (S, y) of the relaxation RT (indicator-gated constraints).
+  - Every solution is re-verified from its Apéry set. This is a bounded search (K ≤ 12), not a proof.
+  - Relaxations R ≤ RT ≤ UA ≤ AM ≤ W, RT ≤ FX ≤ W (kunz_face.py); details in PROOFS.
+- **Proved.**
+  - CERT±: signed split weights, where anti-splits cost 1.
+  - RT-DUAL: RT is the best signed binary certificate, and RT ≤ W.
+  - R-FAKE: the one-sided dual obstruction is y = q on generators. RT kills it.
+  - RT-ASYM: RT(q) is convex in q, with final slope lead = the continuous-Wilf LP, and lead ≥ 0 by CH′.
+  - Γ-CAP3 + exchange law: at height ≤ 3, Γ ≤ e(|P|+2d+3)/3 − m, and every unit of Γ beyond e² − m needs one unit of
+    anti-split mass. So value ≤ (q−1)Γ + ρ − (m − e²).
+- **Observed.**
+  - RT ≥ 0 on everything with e ≥ 3:
+    - MILP minima (min 1, open regime min 5);
+    - annealing;
+    - near-B₃ covers;
+    - negative-Eliahou families, where RT = W exactly, also at m = 798;
+    - T1 counterexamples and Backelin.
+  - On the near-B₃ S, the optimal dual is "anti-split every pair, over-split every cubic", and lead = the Γ-CAP3 cap
+    exactly.
+  - Full-pair height-3 covers are thin: m_max/C(d+3,3) = 0.75, 0.686, 0.714 (d = 3, 4, 5; exhaustive) and ≥ 0.655
+    (d = 6, partial).
+- **Refuted.** ASYM-RT (FAILED Pattern C): the q → ∞ dual alone does not certify q = 5 (⟨13,17,27,29⟩).
+- **New questions.**
+  - CONJ RT-NONNEG (e ≥ 3, c > 4m ⇒ RT ≥ 0). It implies Wilf with depth four.
+  - Its height-3 core: CONJ THIN3, a Sidon-with-0 basis of order 3 of ℤ/m has m ≤ (4/5)C(d+3,3).
+  - Also needed: an explicit dual attaining the Γ-CAP3 cap with cost ≈ C(e,3) + (Λ−1)·|C ∩ W_ρ|.
