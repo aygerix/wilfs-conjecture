@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21 night, PAUSED by user: SUPP-WILF PROVED; residual = case B (Dep < Σsupp), CONJ CASEB-FLAT (A00000000))
+# STATE.md — handoff (2026-10-20 evening, PAUSED by user: SUPP-WILF PROVED; Wilf ⇐ CASEB-FLAT-S, the single open link; chain in PROOFS "Dependency chain to full Wilf via SUPP-WILF" (A00000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -63,8 +63,21 @@ Lines, in order of cost to decide:
             g_a ≥ n or r(t) ≥ n − g_a).
           - Exact identities: V = N − κ₀; κ₀ = Σ axis overflows; mirror κ₀(δ) + κ₀(−δ) = Σsupp; phase walk.
           **(b) Refuted this session (FAILED Pattern C):** CR-TILE (CR_DEP), PD+, ID, KAPPA-DEP.
+          **(c′) Dependency chain (2026-10-20 evening; PROOFS "Dependency chain to full Wilf via SUPP-WILF").**
+          - Links L0–L7 with status. **Wilf ⇐ L7 = CASEB-FLAT-S** (the lex tile of an open-regime S in case B has height
+            ≤ 2). Every other link is PROVED (paper) or LEAN; L4 (SUPP-WILF) is not yet formalized.
+          - New, PROVED:
+            - L4′: SUPP-WILF at any minimal generator n;
+            - L6: Σsupp − Dep = C(d,2) − 3k_mixed − 2k_loop + (d+1)z on height-2 tiles (margcheck.py);
+            - hence height-2 case B (z = 0) needs m > (d+1)(d+3)/3.
+          - Literature (LITERATURE 2026-10-20): no prior SUPP-WILF found. A height-2 tile is a cyclic sum cover, and
+            Haanpää's n′(k) shows that case B is impossible at d = 2, 6 but allowed at d = 3–5 and 7–12.
+          - sumcover.py at the extremal sizes: case B only at height 2 (d = 7, m = 30: margin 5).
+          - L7 is THREATENED at large d: if n′(k)/k² > 1/3 persists, the margin is quadratic in d while a height-3 cell
+            costs about d − 1. A proof must use more than counting (difference body, or Apéry minimality of the lifts).
           **(c) Conjectures and gaps.**
           - **CASEB-FLAT** (case-B tiles have height ≤ 2). Together with SUPP-WILF and Flat-MaxCL it gives Wilf.
+            The needed form is CASEB-FLAT-S (lex tiles of open-regime S); the lattice form is stronger (Pattern B).
             Evidence (E350):
             - no case-B tile for d = 3 (m ≤ 14) or d = 4 (m ≤ 11);
             - all ⟨m, m+δ⟩: d = 5 (m ≤ 24) only m = 19 (height 2); d = 6 (m ≤ 23) none;
@@ -80,8 +93,12 @@ Lines, in order of cost to decide:
             2. If CASEB-FLAT fails: extend Flat-MaxCL to near-B₂ tiles with a few height-3 cells, or use the full
                bound W ≥ Dep − κ₀ + N with inversions (N ≥ 4–20 on all case-B S seen).
             3. Lean: formalize SUPP-WILF (short; codex from 2026-10-25), then CASEB-FLAT's statement.
-          **(f) First precise task next session.** Literature check on minimal order-2 additive bases of ℤ/m (constant c
-            in |A| ~ c√m). Then run cbexh.py on d = 6 m = 24..28 and on d = 7, 8 near C(d+2,2), targeted at margin ≥ d.
+          **(f) First precise task next session.** (The literature check on order-2 bases is DONE, 2026-10-20.)
+            1. Test L7 where counting allows the most room. Build extremal sum covers at d = 11, m = 63 (μ ∈ [10, 25]) and
+               d = 7–10 (m = 30, 35, 43, 51). Full enumeration is too large at d = 11, so use a targeted search or
+               Haanpää's constructions. Lift them to semigroups, add height-3 cells, and look for case B at height ≥ 3.
+            2. In parallel on paper: try to prove that a height-3 cell in case B forces Apéry-minimality violations of
+               the lifts (the ingredient that lattice tiles lack).
       (A0000000) **NEWEST (2026-10-21, night, latest): CR-TILE is FALSE; the DEP-CARRY line continues in inversion form.**
           (NOTEBOOK "CR-TILE is FALSE; DEP-CARRY in inversion and axis-overflow form"; FAILED Pattern C; E349.)
           - CR-TILE is FALSE: ⟨19,39,41,50,52,53⟩ (c = 88, 3e < m, c > 4m), a height-2 near-B₂ tile in ℕ⁵, slack −4. That

@@ -862,3 +862,69 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   1610.08726, 1710.09245, 1909.03699, 1111.1863, 1903.04342, 2608.12531 (#35), 1703.01761, PJM 2018 (Dhayni),
   Math. Z. 2023, 1710.03623, 2012.01358, preprints.org 202604.0551. All already listed; none states a support or
   non-maximal-top criterion.
+
+## 2026-10-20 (evening, machine date) search: SUPP-WILF novelty; modular order-2 bases (sum covers) and CASEB-FLAT
+**A. SUPP-WILF (W ≥ Dep − κ₀ + N ≥ Dep − Σ_x(|supp x| − 1)⁺ = m − 1 + Q − Σ_{y∈A}|y|).**
+- arXiv API, query abs:wilf AND abs:semigroup, newest first (15 entries back to 2306.09876). Entries from 2026:
+  - 2609.32078 (Oracle-tree forcing, |L| = 13);
+  - 2608.12531 (Marashdeh, type bound);
+  - 2605.14775 (fixed quotient);
+  - 2604.25051 (Eliahou semigroups, Farey intervals);
+  - 2604.21948 (a_e = 2g+1).
+  All were already listed. None states a bound over factorization supports, column tops or maximal cells of an Apéry
+  factorization down-set.
+- Web (extended + standard): "Wilf's conjecture numerical semigroups arXiv 2026"; preprints.org Wilf 2026; "Apéry maximal
+  elements support factorizations pseudo-Frobenius bound". Hits:
+  - 2208.14090, 2104.03793, 1903.04342, 2608.12531, 2103.16723, 1610.08726, 2306.09876, 2310.07742;
+  - preprints.org 202604.0551 (first-Kunz-layer criterion e(η+2) ≥ 2m; abstract only);
+  - 1111.2779, 1703.01761, Spirito, 1710.09245.
+  All were already listed. The closest in spirit is the m − e = 5 paper's Apéry lemma (non-minimal Apéry elements
+  bounded by a binomial in α). It is a near-maximal-embedding-dimension count, not a support criterion.
+- GitHub (gh search code/repos "Wilf" + semigroup): nsgtree, gap-packages/numericalsgps,
+  conjectures-io/conjectures-validator, kseth/wilf-e4, bespokelabsai/conjecture-bench-old, aciderix/Graph-Systems-Exploration.
+  - The last one was read (as data): numerical_semigroups/wilf_paper.tex, "Sharp lower bounds for the Wilf number of
+    numerical semigroups with small defect", plus the THEOREM_A, THEOREM_B and CONJECTURES notes.
+    - Content: W ≥ m − 3 for m − e = 1; W ≥ 2m − 8 for m − e = 2 (m ≥ 4); W ≥ 2m − 12 for m − e = 3 (m ≥ 7); a unified
+      conjectured bound per defect d = m − e. Kunz-level case analysis.
+    - This regime (e ≥ m − 3) is inside 3e ≥ m (Eliahou), so it is not new for Wilf itself; its sharp constants are a
+      different question.
+    - No support, column-top or factorization-tile argument (grep: 0 hits for support / factori / maximal element).
+- conjectures.io:
+  - solved: "Wilf inequality … conductor at most four times multiplicity" (https://conjectures.io/results/fd12daa7-2b0e-460f-a805-f9ba6d9fede4);
+  - rejected as already solved: "… embedding dimension 4" (https://conjectures.io/results/487cb5cc-804d-4a17-963a-c938408637a5).
+  No open Wilf problem was seen in the part of /problems that was read.
+- Status: no prior statement of SUPP-WILF, of its semigroup form, or of the shape-only criterion Σsupp ≤ Dep was found.
+  Zhai 1111.2779 has CH′ in crude form. Novelty is "not found in these searches", not established.
+
+**B. Modular order-2 bases (sum covers) — the case-B question.**
+- A height-2 lattice tile in ℕ^d is the same thing as a set A = {0} ∪ δ ⊂ ℤ/m with |A| = d+1 whose sums a + a′ (a ≤ a′,
+  repetition allowed) cover ℤ/m, using only the pairs of E. Its case-B margin is μ = C(d,2) − 3k_mixed − 2k_loop (PROOFS
+  "Dependency chain", link L6). So the size of near-maximal cyclic sum covers decides how large case B can be.
+- Haanpää, "Minimum sum and difference covers of abelian groups", J. Integer Seq. 7 (2004), Article 04.2.6
+  (https://cs.uwaterloo.ca/journals/JIS/VOL7/Haanpaa/haanpaa.tex), read via a fetch agent.
+  - The largest n such that ℤ/n has a k-element sum cover (A + A = ℤ/n, repetition allowed) is
+    n′(k) = 3, 5, 9, 13, 19, 21, 30, 35, 43, 51, 63, 67 for k = 2..13 (exhaustive search).
+  - Trivially n′(k) ≤ C(k+1,2), strict for k ≥ 3. No asymptotic lower constant is stated.
+  - Ratios n′(k)/k² are 0.40–0.47 for 7 ≤ k ≤ 13 (0.53 at k = 6), above the case-B threshold ≈ 1/3 (L6).
+  - Translation invariance (A − a₀ is a cover of A + A − 2a₀) makes 0 ∈ A WLOG, matching our A = {0} ∪ δ.
+- Weltge–Zyhalko arXiv:2605.19449 (integer 2-bases, size about √n): no explicit cyclic constant usable here.
+- Bajnok, "Additive combinatorics: a menu of research problems", arXiv:1705.07444: not readable by the fetch agent;
+  NOT checked.
+- What Haanpää's table predicts, and what we checked (sumcover.py, fejer, 2026-10-20). Restriction: δ ∋ 1, which is WLOG
+  only when δ contains a unit. Two lift choices per δ.
+  - k = 5 (d = 4), m = 13: 5 covers; 5 case-B tiles, all height 2, best margin 1, e.g. ⟨13,19,22,27,28⟩ (c = 44).
+  - k = 6 (d = 5), m = 19: 5 covers; 4 case-B tiles, all height 2, margin 4, e.g. ⟨19,31,33,34,39,41⟩ (c = 64).
+  - k = 7 (d = 6), m = 21: 88 covers; no case-B tile.
+  - k = 8 (d = 7), m = 30: 2 covers; 1 case-B tile, height 2, margin 5, ⟨30,45,49,50,52,58,61,65⟩ (c = 97, not open).
+  - m = 31 (≤ 2 residues missed): 364 near-covers; no case-B tile.
+  - m = 32 (≤ 3 missed): 308; no case-B tile.
+  Every case-B tile found so far is a near-maximal sum cover of height 2. No height-≥3 case-B tile has appeared.
+- Consequence for CASEB-FLAT (recorded in PROOFS "Dependency chain", L6):
+  - If n′(k)/k² stays above 1/3 asymptotically, height-2 case-B tiles have margin of order (3·n′/k² − 1)·d², which is
+    quadratic in d.
+  - A height-3 cell costs about d − 1 of margin, so for large d a case-B tile with a few height-3 cells is not excluded
+    by counting alone.
+  - At the extremal sizes the margin is forced: k = 12 (d = 11, m = 63, 15 missing pairs) gives μ ∈ [10, 25] for EVERY
+    such cover (when no direction is isolated, z = 0); k = 13 (d = 12, m = 67, 24 missing) gives μ ≤ 18. So d = 11 is the first size worth testing. CASEB-FLAT is therefore
+    THREATENED, not supported, at large d. The counting argument cannot prove it, and a proof must use more than the
+    margin.

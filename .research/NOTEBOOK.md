@@ -3916,3 +3916,19 @@ Consequences:
   - On ⟨19,39,41,50,52,53⟩ every n is in case B.
   - On ⟨13,14,16,18,19⟩ the bound Dep′ − κ₀ + N equals W = 4 for every n.
 
+
+### 2026-10-20 (evening): height-2 case B is a near-maximal cyclic sum cover; the threat to CASEB-FLAT is quantitative
+- **L6 (PROVED; margcheck.py).** On a height-≤2 tile: Σsupp − Dep = C(d,2) − 3k_mixed − 2k_loop + (d+1)z.
+  - Here k_mixed and k_loop count the missing e_a+e_b and 2e_a, and z counts the isolated directions.
+  - With z = 0, case B forces m > (d+1)(d+3)/3.
+- **The tile is a sum cover.** A height-2 tile is a cover {0} ∪ δ of ℤ/m by pairwise sums.
+  - Haanpää's maximal cover sizes n′(k) exclude height-2 case B at d = 2 and d = 6 (n′(7) = 21 ≤ 21). They allow it at
+    d = 3–5 and 7–12.
+  - At the extremal size the margin range is forced, e.g. μ ∈ [10, 25] at d = 11, m = 63.
+- **Exhaustive cover check (E351).** Case B appears only at height 2: d = 4 margin 1, d = 5 margin 4, d = 7 margin 5.
+- **Threat, quantified.** If n′(k)/k² stays above 1/3 (0.40–0.47 observed for k ≤ 13), the height-2 margin grows like
+  (3n′/k² − 1)d² while a height-3 cell costs about d − 1. So for large d, counting cannot prove CASEB-FLAT.
+  - The proof needs a non-counting ingredient: the difference body, or Apéry minimality of the lifts.
+  - The test should start at d = 11, m = 63.
+- **Necessity audit.** Only CASEB-FLAT-S (lex tiles of open-regime S) is needed. The lattice form is stronger.
+- **Full chain with link statuses:** PROOFS "Dependency chain to full Wilf via SUPP-WILF".

@@ -5068,3 +5068,82 @@ Corollaries:
   - CONJ TCL-DICHOTOMY: Tile-CL holds whenever Dep < Σsupp. It would close DEP-ALL, and with it Wilf.
 - Novelty: web searches (2026-10-21) found no comparable support or column-top criterion. Zhai 1111.2779 has CH′ in crude
   form; Marashdeh 2608.12531 has a different identity.
+
+## Dependency chain to full Wilf via SUPP-WILF — status of every link (2026-10-20)
+**Chain.**
+- Fix S with S ≠ ℕ and let D be its lex factorization tile (`S.factDownSet` in Lean).
+- Case A (Σsupp ≤ Dep): Wilf by L4.
+- Case B (Σsupp > Dep): Wilf follows from L7 (height ≤ 2) and then L5.
+- So **Wilf ⇐ L7**, given L1–L5. L7 is the only open link. Its needed form is CASEB-FLAT-S, not the lattice form.
+  - L0 shrinks the range in which L7 is needed.
+  - L6 makes L7 quantitative.
+
+| link | statement | status |
+|---|---|---|
+| L0 | Wilf for c ≤ 4m, and for 3e ≥ m | c ≤ 4m: external proof, kernel-checked by us (STATE item 0k). 3e ≥ m: Eliahou, cited. Not used by the chain, but L7 is needed only for c > 4m, 3e < m |
+| L1 | CH′: mW = (d+1)M′ − Σ_{(x,b)}(w(t_b x) − c) for every factorization tile | PROVED (paper). Its ingredients (Selmer sum `sum_wt`, column identity `columnIdentity`) are in lean/Wilf/MaxCL.lean; CH′ in this form is not a separate Lean theorem |
+| L2 | Sharp top bounds: w(t) − c ≤ r(t), and ≤ r(t) − m for t ∉ A | PROVED (paper; SUPP-WILF step 2) |
+| L3 | Inversion and axis-overflow identities: Σ r(t_b x) = dM′ + Σ⟨k_bδ_b⟩ − mN; Σ_{(x,b)}⟨x_bδ_b⟩ = M′ + mκ₀ | PROVED (paper; steps 3–4); checked (invcheck.py, k0stat.py) |
+| L4 | **SUPP-WILF**: W ≥ Dep − κ₀ + N ≥ Dep − Σsupp = m − 1 + Q − Σ_{y∈A}|y|, for every factorization tile | PROVED (paper); checked (wsupp.py). NOT formalized; Lean queued (codex from 2026-10-25) |
+| L4′ | L1–L4 with Ap(S,n) for any minimal generator n, with Dep′_n counting a non-maximal top only if it has a witness g_a ≥ n or r(t) ≥ n − g_a | PROVED (paper, same proof; see below); checked (multin.py) |
+| L5 | **Flat-MaxCL**: a lex tile of height ≤ 2 ⇒ Wilf | LEAN (`wilf_of_factDownSet_height_le_two`, lean/Wilf/MaxCL.lean; 0 sorry; standard axioms) |
+| L6 | Height-2 margin identity: Σsupp − Dep = C(d,2) − 3k_mixed − 2k_loop + (d+1)z | PROVED (paper; below); checked (margcheck.py, 2,000 tiles) |
+| L7 | **CASEB-FLAT-S**: if S has c > 4m and 3e < m and its lex factorization tile has Dep < Σsupp, that tile has height ≤ 2 | CONJ. 0 counterexamples. THREATENED at large d (L6 + sum-cover data) |
+
+**L4′, proof.** Let D be a factorization tile for Ap(S,n), d = e − 1 directions (the generators other than n), and let
+r = ⟨w − c⟩ mod n.
+- Selmer for Ap(S,n), with the column identity, gives nW = (d+1)n(n−1)/2 − Σ_{(x,b)}(w(t_b x) − c) exactly as in L1.
+- max Ap(S,n) = F + n gives w(t) − c ≤ r(t).
+- Let t ∉ A have witness a (w(t) + g_a ∈ Ap(S,n)). Then w(t) − c ≤ n − 1 − g_a.
+  - If g_a ≥ n, this is negative, so w(t) − c ≤ r(t) − n.
+  - If g_a < n but r(t) ≥ n − g_a, then w(t) − c ≠ r(t), and again w(t) − c ≤ r(t) − n.
+- Steps 3–5 of SUPP-WILF use only the tile property mod n. ∎
+- Use. Case A at any one n (or for any one factorization tile, lex or not) gives Wilf.
+  - ⟨19,35,37,43,45,61⟩ is in case B at n = m and in case A at n = 35.
+  - ⟨19,39,41,50,52,53⟩ is in case B at every n. It has height 2, so L5 covers it.
+
+**L6, proof.** Height ≤ 2 cells are 0, the e_a, and e_a+e_b for ab ∈ E (loops aa allowed).
+- Notation. k_mixed and k_loop count the missing cells e_a+e_b (a < b) and 2e_a. Z = {a : no ab ∈ E} and z = |Z|.
+- Σsupp: only the mixed cells count, so Σsupp = C(d,2) − k_mixed.
+- Dep: tops of height-2 cells are maximal.
+  - (0,b) counts iff bb ∉ E and b ∉ Z (then t_b(0) = e_b is non-maximal).
+  - (e_a, b) with b ≠ a counts iff ab ∉ E and a ∉ Z.
+  - (e_a, a) counts iff aa ∉ E and a ∉ Z.
+  - So Dep = 2(k_loop − z) + 2k_mixed − 2C(z,2) − z(d − z) = 2k_mixed + 2k_loop − (d+1)z.
+- Subtracting gives the identity. ∎
+- With z = 0: case B ⟺ μ := C(d,2) − 3k_mixed − 2k_loop > 0.
+- A height-2 tile is a set {0} ∪ δ of size d+1 whose pairwise sums (repetition allowed) cover ℤ/m. So m = C(d+2,2) − k,
+  where k = k_mixed + k_loop.
+- Case B (z = 0) needs 3k − k_loop < C(d,2) with k_loop ≤ d, hence **m > (d+1)(d+3)/3** (PROVED, from L6).
+  - So m is about d²/3 or more: a near-maximal cyclic sum cover.
+  - With Haanpää's n′(d+1), height-2 case B (z = 0) is impossible for d = 6, since n′(7) = 21 ≤ 7·9/3 = 21. This
+    explains the empty d = 6 census.
+  - Likewise impossible for d = 2 (n′(3) = 5).
+  - Counting does not exclude it for d = 3, 4, 5 and 7 ≤ d ≤ 12. For d = 3 none was found (m ≤ 14). For d ≥ 13,
+    n′ is not known to us.
+- Data (LITERATURE 2026-10-20 B; Haanpää's n′(k), k = d+1). Every extremal cover forces the margin range:
+  - d = 4, m = 13: μ ∈ [0, 2] (observed 1);
+  - d = 5, m = 19: μ ∈ [4, 6] (observed 4);
+  - d = 7, m = 30: μ ∈ [3, 9] (observed 5);
+  - d = 11, m = 63: μ ∈ [10, 25];
+  - d = 12, m = 67: μ ≤ 18.
+  These ranges assume z = 0 and lifts that realize the height-2 tile.
+
+**Why L7 is threatened, and what a proof must use.**
+- If n′(k)/k² stays above 1/3 as k → ∞ (data: 0.40–0.47 for 7 ≤ k ≤ 13; no asymptotic constant found), then height-2
+  case-B tiles have margin about (3n′/k² − 1)d², quadratic in d.
+- Adding one height-3 cell costs about d − 1 of margin: it adds supports and removes maximality from about d tops.
+- So for large d, counting alone does not exclude case-B tiles with a few height-3 cells. A proof of L7 must use
+  something beyond the margin, e.g.:
+  - the one-step difference body Σ_{z∈∂}(deg⁻_I(z) − 1) ≤ 0 (PROOFS "Ray identity");
+  - or the Apéry minimality of the lifts, which lattice tiles lack.
+- Necessity audit: the lattice form CASEB-FLAT ("every lattice tile with Dep < Σsupp has height ≤ 2") is STRONGER than
+  L7 (Pattern B). The census of d ≤ 4 is over lattice tiles; the d ≥ 5 census is over S. Prefer L7 when proving.
+
+**Fallbacks if L7 fails** (none proved):
+- F1. MaxCL for tiles of height ≤ 2 plus h₃ height-3 cells, with h₃ bounded by the margin (extend Flat-MaxCL's
+  wrap-window argument). CONJ, not attempted.
+- F2. The full bound in case B: N ≥ κ₀ − Dep. N ≥ 4–20 on every case-B S seen. This is TCL-DICHOTOMY / DEP-ALL; open,
+  0 failures.
+- F3. Case A at some other minimal generator n (L4′), or for some non-lex factorization tile. Not a full fallback:
+  ⟨19,39,41,50,52,53⟩ is in case B at every n. Non-lex tiles are untested.
