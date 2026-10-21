@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21: TRUNC₃ split U = T / U ≠ T; target narrowed to PAY2 = relative Wilf on Q5; see (A00000000000000000))
+# STATE.md — handoff (2026-10-21: PAY2 tile structure, NE2-ONLY proved, PAY2 ⟸ C*; see (A000000000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,26 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000000000000) **NEWEST (2026-10-21, late morning; advisor review of c3272d3/2b9402d: prove PAY2).**
+          - Proved (PROOFS "PAY2: tile structure of the residual"):
+            - NE-LEVELS (NE ⟺ least T-length ≥ 4; NE2 has j = 1; NE3 forces NE2);
+            - the column-top form of Δ₃; OUT;
+            - **NE2-ONLY**: NE3 = ∅ ⟹ Δ₃ ≥ (e+1)|T∖U|, so PAY2 and W(S) ≥ W(T). In particular PAY2 holds when |T∖U| = 1,
+              or when T-Apéry elements are ≤ 4-fold sums;
+            - ID-NE (exact); ABOVE; the reduction PAY2 ⟸ C*;
+            - the counting form PAY2 ⟺ 3m ≤ e(2e+1+n₂^EQ − Σ_{NE3} j) + (e−1)δc, with D^EQ a down-set.
+          - Data (E382):
+            - q5d5 (pruned enumeration) reproduces q5d4 exactly at e = 5, 6, 7;
+            - e = 8 exhaustive gate: 269,663 residual S, PAY2 0 failures (min 78; same at δc = 0 and h ≥ 2);
+            - C* has 0 failures at e = 5–8 (min 22, 29, 42, 37);
+            - NE2-ONLY covers 9 / 17 / 28 / 37% of the residual at e = 5–8;
+            - annealing at e = 9–15: 0 failures so far.
+          - Refuted: PAY2-H2, PAY2-B1 (FAILED.md).
+          - Next:
+            1. Prove C*: explain why EQ column tops pay e + π per NE3 class below max τ. Extremal shape: T∖U = {4μ, …, Kμ}.
+               Try the 3-truncated T-tile D^EQ = D_T ∩ {level ≤ 3} and its boundary to the NE up-set.
+            2. Prove j ≤ 1 on Q5 (partial: j = 2 forces least T-length ≥ 7 and τ_s ≤ r).
+            3. q5ann at e = 9–13 (annealer validated: finds the exact e = 6 minimum; weaker at e = 7).
       (A00000000000000000) **NEWEST (2026-10-21, TRUNC₃ checkpoint; advisor's ADVISOR.md order).**
           - Proved (PROOFS "TRUNC₃: the low regime…", "TRUNC₃ split by U = T and U ≠ T", "The residual through T"):
             - DOWN, LOW-AGREE, KAPLAN-U (downward closure suffices), TRUNC-LOW (c ≤ 4·min A), WILF-CONTENT;

@@ -35,6 +35,8 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | LM degree condition, uniform discharging, per-largest-summand column split | E333; column split fails at m = 17, B = {2,9,11} | — |
 | TOP-CR (TRUNC₃ by the crude window count: \|Top₂\| + \|G₀\| ≤ N_< + (m−c)⁺, PROOFS ID-TOP) (2026-10-21) | U ≠ T: 6 failures at \|A\| = 5 and 113 at \|A\| = 6; minimum −9 at A = {16,33,34,36,38,40}, m = 41 (c = 65, ℓ = 16, Top₂ = 7, N_< = 20, G₀ = 22). U = T: 790 / 6172 failures, min −14 (topid.c, E381) | \|Π_M\| (26) and the multiplicity Ov (30); W_e(U) = 47 |
 | TOP-K1 (c > m: \|G₀\| ≤ \|Π_M\|) (2026-10-21) | U ≠ T: A = {15,32,34,36,41,43}, m = 44 (c = 70, G₀ = 24, Π_M = 23); U = T: 291 failures at \|A\| = 6, min −10 at A = {17,34,41,43,44,48}, m = 49 (E381) | K2 = N_< + Ov − \|Top₂\| (≥ 0 on every instance, min 10 at \|A\| = 6) |
+| PAY2-H2 (Q5 residual: level-2 NE classes pay for themselves, Σ_{NE2} P ≥ e·\|NE2\|; PROOFS "PAY2: tile structure") (2026-10-21) | 1 failure at e = 6, 93 at e = 7, 2,903 at e = 8; minimum −7 at ⟨42,45,56,64,67,69,80⟩ (the RESID-PAY counterexample), −9 at e = 8 (⟨54,57,70,80,83,87,100,102⟩). Also H1 ("every NE2 tile element is a top in every direction") fails on 7,647 of 10,663 residual S at e = 7 (E382) | the EQ tops Peq and (e−1)δc (ID-NE); C* holds |
+| PAY2-B1 (δc ≥ Σ_{NE3} j: the conductor pays e−1 per level-3 NE class) (2026-10-21) | 27 failures at e = 6, 1,155 at e = 7, 39,827 at e = 8; minimum −4 at ⟨38,43,60,61,62,67,70⟩, −7 at e = 8 (⟨52,61,69,86,92,93,94,100⟩). NE3 classes below max τ exist (4,189 of 17,653 at e = 7) (E382) | Peq + \|NE2\| (B2 holds, minimum 53 at e = 7) |
 
 ## Pattern B — strengthening beyond what is needed
 | Statement | Counterexample |

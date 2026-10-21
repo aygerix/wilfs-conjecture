@@ -4260,3 +4260,26 @@ Consequences:
   - The observation "open-regime ratio ≥ 1.44" (F_T).
 - **Open (precise).** For c > m and U ≠ T: inject G₀ ∪ Top₂ into the N_<, Π_M and Ov pairs. It must use T's slack
   through e·h ≤ W_e(T) + (e−1)δc.
+
+### 2026-10-21 (late morning): PAY2 — tile structure of the residual; first rigorous partial lemmas
+- **Advisor review** of c3272d3 / 2b9402d: PAY2 is the target.
+  - Next steps: a rigorous partial lemma via column charging; the e = 8 gate; adversarial cases (many missing
+    elements, small δc, small Δ₃); keep TRUNC₃ for U ≠ T, c > m as a fallback.
+  - Precision added: PAY2 ⟹ W(S) ≥ W_e(T) ≥ W(T). That is a descent step, Wilf on Q5 given Wilf below multiplicity m,
+    not an unconditional theorem. It is unconditional only where Wilf for T is known.
+- **Proved** (PROOFS "PAY2: tile structure of the residual"):
+  - NE-LEVELS: NE ⟺ least T-length ≥ 4. EQ has h = k. NE has λ ≤ k − 1 and h ∈ {2, 3}. NE2 has j = 1. NE3 has
+    k ≥ 5 and forces an NE2 class.
+  - Column-top form of Δ₃; OUT (NE2 out-edges land in NE3).
+  - NE2-ONLY: NE3 = ∅ ⟹ Δ₃ ≥ (e+1)|T∖U|. Corollaries: PAY2 when |T∖U| = 1, or when every T-Apéry element is a sum of
+    ≤ 4 residues.
+  - ID-NE: PAY2 = Peq + |NE2| + (e−1)δc − Σ_{NE3}(e·j + π).
+  - ABOVE (#classes above max τ ≤ δc); the reduction PAY2 ⟸ C*.
+  - Counting form: PAY2 ⟺ 3m ≤ e(2e + 1 + n₂^EQ − Σ_{NE3} j) + (e−1)δc. The EQ classes form a down-set; their own CH′
+    slack pays 3 per NE2 class and e + 3 per NE3 class.
+- **Observed** (E382):
+  - C* holds on every residual S at e = 5, 6, 7 (min 22, 29, 42). j ≤ 1 everywhere.
+  - NE2-ONLY covers 28% of the residual at e = 7.
+  - In the extremal S, T∖U = {4μ, …, Kμ}.
+- **Refuted:** PAY2-H2 (NE2 classes pay for themselves) and PAY2-B1 (δc ≥ Σ_{NE3} j).
+- **Open (precise):** C*, i.e. why the EQ column tops pay e + π for each level-3 NE class below max τ.

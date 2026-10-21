@@ -6091,9 +6091,12 @@ Apéry element has length ≤ 3) and q = 5.
 - It discards W(T) and (e − e(T))ℓ(T) from RD (= PAY3). It keeps the δc term that RESID-PAY dropped; RESID-PAY is FALSE
   at e = 7.
 - RD′ in general (W(S) ≥ W_e(T) for every S) is FALSE (⟨7,11,13,23⟩, not level 1). PAY2 is RD′ restricted to Q5.
-- Evidence: every residual S with e = 5, 6, 7 (22, 454 and 10,663 S; exhaustive at fixed e, all m), with the
-  combined identity asserted on each.
-  - 0 failures. Minimum Δ′_T = 35, 29, 55, at ⟨20,24,29,37,38⟩, ⟨40,49,54,63,65,78⟩, ⟨47,50,65,80,86,88,89⟩.
+- Evidence: every residual S with e = 5, 6, 7, 8 (22, 454, 10,663 and 269,663 S; exhaustive at fixed e, all m; E381,
+  E382), with the combined identity asserted on each.
+  - 0 failures. Minimum Δ′_T = 35, 29, 55, 78, at ⟨20,24,29,37,38⟩, ⟨40,49,54,63,65,78⟩, ⟨47,50,65,80,86,88,89⟩,
+    ⟨62,65,80,95,110,116,118,119⟩.
+  - At e = 8 the adversarial slices h ≥ 2 (177,037 S) and δc = 0 (137,143 S) both have minimum 78.
+  - Annealing at e = 9–15 (q5ann, not exhaustive): 0 failures.
   - The RESID-PAY counterexample ⟨42,45,56,64,67,69,80⟩ has Δ′_T = 98 + 162 − 105 = 155.
 - Obstruction to the CH′-type proof:
   - CH′-κ uses a linear level κ on a factorization down-set. Here λ_s is not linear on any down-set of
@@ -6102,3 +6105,120 @@ Apéry element has length ≤ 3) and q = 5.
     of w_s of length ≥ 4, and k < λ_s gives w_s − m ∈ S.
   - So the column bound with f = k overshoots. A proof must charge the excess k − λ_s, or the j_s, to columns of the
     max-κ tile D whose top has level < 3. Each such column contributes |C|·(3 − κ(top)) to Δ₃.
+
+### PAY2: tile structure of the residual (2026-10-21)
+**Setting.**
+- S ∈ Q5. D is the tile of lex-largest max-length factorizations: one vector x_s ∈ ℕ^d per class, a down-set. Then
+  |x_s| = h_s and σ(x_s) = σ_s.
+- τ_s, λ_s, j_s = (σ_s − τ_s)/m as above. k_s := least length of a T-factorization of τ_s over A (τ_s ∈ ⟨A⟩).
+- Classes split into EQ (j_s = 0), NE2 (j_s ≥ 1, h_s = 2) and NE3 (j_s ≥ 1, h_s = 3). h := |T∖U| = Σ_s j_s.
+
+**Lemma NE-LEVELS (PROVED).**
+- (a) s is NE ⟺ k_s ≥ 4.
+- (b) EQ ⟹ h_s = k_s.
+- (c) NE ⟹ λ_s ≤ k_s − 1.
+- (d) NE ⟹ h_s ∈ {2, 3}, and h_s = 2 ⟹ j_s = 1.
+- (e) NE3 ⟹ k_s ≥ 5.
+- (f) If NE3 ≠ ∅ then NE2 ≠ ∅, and h ≥ 2.
+
+Proof.
+- (a) σ_s = min(3A′ ∩ (s + mℤ)), by Q5 (i). If k_s ≤ 3 then τ_s ∈ 3A′, so σ_s ≤ τ_s ≤ σ_s. If k_s ≥ 4 then
+  τ_s ∉ 3A′, so σ_s ≠ τ_s.
+- (b) The D-vector x_s is a T-factorization of τ_s = σ_s of length h_s, so k_s ≤ h_s. Any T-factorization of length k
+  gives km + τ_s ∈ S in class s, so km + τ_s ≥ w_s = h_s m + τ_s.
+- (c) Let z be a T-factorization of τ_s of length k. Then km + τ_s ∈ S.
+  - If k < λ_s, then w_s − m = (km + τ_s) + (λ_s − 1 − k)m ∈ S, which is impossible.
+  - If k = λ_s, then km + τ_s = w_s is a factorization of w_s of length k ≥ 4, against height ≤ 3.
+- (d) j_s ≥ 1 gives σ_s ≥ m + τ_s > m. Also σ_s ≤ h_s(m−1), so h_s ≥ 2. If h_s = 2 then σ_s < 2m, so j_s = 1.
+- (e) λ_s = 3 + j_s ≥ 4 and (c).
+- (f) Take a least-length T-factorization z of τ_y for some y ∈ NE3, so |z| ≥ 5, and a sub-multiset z′ of size 4.
+  - σ(z′) is T-Apéry: otherwise τ_y − m ∈ T.
+  - σ(z′) has least length 4: otherwise z is not least.
+  - So its class has k = 4. By (a), (c), (d) it is NE2 (λ ≤ 3, j ≥ 1). ∎
+
+**Column-top form (PROVED).** Δ₃ = Σ_{x∈D} P(x), where
+
+    P(x) := Σ_{i : x + e_i ∉ D} (x_i + 1)(3 − |x|) ≥ 0.
+
+- Proof: CH′-κ's column identity gives Δ₃ = Σ_i Σ_{i-columns C} |C|(3 − |top C|).
+- An i-column is determined by its top t (t ∈ D, t + e_i ∉ D), and it has |C| = t_i + 1 elements, because D is a
+  down-set. ∎
+- Level-3 elements have P = 0.
+- For a level-2 element x, write out(x) := {i : x + e_i ∈ D}. Then P(x) = (e + 1) − Σ_{i∈out(x)} (x_i + 1), since
+  Σ_i (x_i + 1) = |x| + d.
+
+**Lemma OUT (PROVED).** If x = x_s with s ∈ NE2 and i ∈ out(x), then x + e_i = x_{s′} with s′ ∈ NE3.
+- Proof: h_{s′} = 3 and σ_{s′} = σ_s + a_i = τ_s + m + a_i.
+- τ_s + a_i ∈ T lies in class s′, so τ_{s′} ≤ σ_{s′} − m and j_{s′} ≥ 1. ∎
+
+**Lemma NE2-ONLY (PROVED).** If NE3 = ∅, then Δ₃ ≥ (e + 1)·|T∖U|. Hence RESID-PAY and PAY2 hold, and W(S) ≥ W(T).
+- Proof: by OUT, out(x_s) = ∅ for s ∈ NE2, so P(x_s) = e + 1.
+- By (d), h = Σ_s j_s = |NE2|.
+- So Δ₃ ≥ Σ_{NE2} P = (e + 1)h. ∎
+- **Corollary (PROVED).** PAY2 holds on Q5 when |T∖U| = 1, by (f). It also holds when every element of Ap(T, m) is a
+  sum of at most 4 elements of A, by (e).
+  - In either case W(S) ≥ W(T) + (e − e(T))ℓ(T). So Wilf for T implies Wilf for S.
+- Coverage (E382): 2 / 22, 78 / 454, 3,013 / 10,663, 100,843 / 269,663 residual S at e = 5, 6, 7, 8 have NE3 = ∅ (9%, 17%, 28%, 37%).
+
+**Identity ID-NE (PROVED; CHECKED q5d6, 0 mismatches).** With Peq := Σ_{x ∈ EQ} P(x) and
+π(y) := Σ_{i : y − e_i ∈ NE2} y_i ≤ 3 for y ∈ NE3:
+
+    PAY2 = Peq + |NE2| + (e−1)·δc − Σ_{y∈NE3} (e·j_y + π(y)).
+
+- Proof: Δ₃ = Peq + Σ_{NE2} P. Then Σ_{NE2} P = (e+1)|NE2| − Σ_{(x,i): i ∈ out(x)} (x_i + 1).
+- By OUT and the down-set property, (x, i) ↦ (x + e_i, i) is a bijection onto {(y, i) : y ∈ NE3, y − e_i ∈ NE2},
+  with x_i + 1 = y_i.
+- Finally h = |NE2| + Σ_{NE3} j_y. ∎
+- So the NE3 classes are the only cost: e·j_y + π(y) each, against the EQ tops Peq, one unit per NE2 class, and
+  (e−1)δc.
+
+**Lemma ABOVE (PROVED).** Every class with σ_s > max τ is NE, and there are at most δc of them.
+- Proof: τ_s ≤ max τ < σ_s.
+- The σ_s are distinct integers in (max τ, max σ], and that interval has δc = max σ − max τ elements. ∎
+
+**Reduction PAY2 ⟸ C* (PROVED).** Let Ab := {y ∈ NE3 : σ_y > max τ}. Then PAY2 ≥ Peq + |NE2| − cost*, where
+
+    cost* := Σ_{y ∈ Ab} (e(j_y − 1) + 1 + π(y)) + Σ_{y ∈ NE3∖Ab} (e·j_y + π(y)).
+
+- Proof: ID-NE, together with (e−1)δc ≥ (e−1)|Ab| (ABOVE). ∎
+
+**Conjecture C* (CONJ; CHECKED E382): Peq + |NE2| ≥ cost*.** A pure tile statement: the EQ column tops pay for the
+level-3 NE classes.
+- 0 failures on every residual S at e = 5, 6, 7, 8. Minimum slack 22, 29, 42, 37 (e = 8: ⟨54,57,77,90,96,97,102,107⟩).
+- Observed j_s ≤ 1 for every class (no j = 2 at e ≤ 8). If that holds, cost* = Σ_{Ab}(1 + π) + Σ_{NE3∖Ab}(e + π).
+- Ablations (FAILED.md):
+  - NE2 classes paying for themselves (H2: Σ_{NE2} P ≥ e|NE2|) fails 1 / 93 / 2,903 times (e = 6 / 7 / 8).
+  - δc ≥ Σ_{NE3} j (B1) fails 27 / 1,155 / 39,827 times.
+  - Peq + |NE2| ≥ Σ_{NE3}(j + π) (B2) holds, with minimum 22, 29, 53, 72.
+
+**Counting form of PAY2 (PROVED).** Let n₂ (resp. n₂^EQ) be the number of classes at tile level 2 (resp. EQ classes at
+level 2, i.e. k_s = 2). Then:
+
+    Δ₃ = e(2e + 1 + n₂) − 3m,
+    PAY2 = e(2e + 1 + n₂^EQ − Σ_{y∈NE3} j_y) − 3m + (e−1)·δc.
+
+So PAY2 ⟺ 3m ≤ e·(2e + 1 + n₂^EQ − Σ_{NE3} j) + (e−1)·δc.
+
+- Proof:
+  - Levels 0 and 1 hold 1 + d = e classes, every generator being its own level-1 class. So H = d + 2n₂ + 3n₃ with
+    m = e + n₂ + n₃, and Δ₃ = 3(e−1)m − eH = e(2e + 1 + n₂) − 3m.
+  - Then use n₂ = n₂^EQ + |NE2| and h = |NE2| + Σ_{NE3} j. ∎
+- CH′-κ for S is the same inequality with n₂ in place of n₂^EQ − Σ_{NE3} j and without δc. PAY2 trades the NE2 credits
+  and one level-2 credit per unit of j on NE3 for the conductor gain.
+- **EQ sub-tile (PROVED).** The EQ elements form a down-set D^EQ ⊆ D. Sub-sums of T-Apéry elements are T-Apéry, so a
+  sub-vector of an EQ vector has σ = τ.
+  - CH′-κ on D^EQ gives Δ^EQ := e(2e + 1 + n₂^EQ) − 3|D^EQ| ≥ 0.
+  - Exactly: PAY2 = Δ^EQ + (e−1)δc − 3|NE2| − Σ_{y∈NE3} (e·j_y + 3).
+  - Equivalently, Δ^EQ = Peq + 4|NE2| + Σ_{y∈NE3} (3 − π(y)) (boundary columns of D^EQ), which recovers ID-NE.
+  - So each NE2 class costs 3, and each NE3 class costs e + 3, against the CH′ slack of the 3-truncated T-tile and
+    the conductor gain.
+
+**Lemma J-BOUND (partial; PROVED).** On Q5, a class with j_s = 2 has τ_s ≤ r and least T-length k_s ≥ 7. (Observed:
+j_s ≤ 1 always, e ≤ 8.)
+- Proof:
+  - j_s = 2 forces σ_s ≥ 2m, so h_s = 3 and w_s = 5m + τ_s ≤ max w = 5m + r.
+  - By NE-LEVELS (c), k_s ≥ λ_s + 1 = 6.
+  - If k_s = 6, split a least factorization z into a 4-sub-multiset z⁴ (an NE2 class, w = 3m + σ(z⁴), with a
+    factorization of length 2) and a 2-sub-multiset (an EQ class, w = 2m + σ, a factorization of length 2).
+  - Their sum lies in S, in class s, and equals 5m + τ_s = w_s. So w_s has a factorization of length 4,
+    contradicting height ≤ 3. ∎
