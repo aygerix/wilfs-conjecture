@@ -4202,3 +4202,7 @@ Consequences:
     provided the lowered vector is Kunz-valid and keeps its max on a max-h cell.
   - The BASE family descends to its q = 4 member, which the kernel-checked depth-4 theorem covers.
   - Generic deep S are blocked by a level-1 generator. Literature check pending (BGOW Wilf game).
+- **Correction to the 2026-10-21 checkpoint report.** The smallest absolute RT2 / UA2 among genuine open-regime S with
+  height ≥ 4 is RT2 = 7, UA2 = 9 at ⟨15,21,29,32⟩ (h = 4, c = 71, W = 29; RT3 = UA3 = W).
+  - It was certified earlier (rtexact) and is the exact-MILP minimizer at m = 15, e = 4, r = 10 (h4_ua2.log).
+  - The 12 reported in the checkpoint table is the m = 13 MILP minimum, not the overall minimum.
