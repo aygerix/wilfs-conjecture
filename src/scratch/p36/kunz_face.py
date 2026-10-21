@@ -10,7 +10,9 @@ Relaxations: minimize the Wilf functional  Wf(y) = e(q + sum_s y_s) - qm + rho  
   RT   R plus the upper side y_i + y_j - y_s <= q + 1 on tight pairs;
   UA   RT plus y_g = mu_g exactly for every minimal generator g (generator sizes);
   AM   UA plus Apery minimality on non-tight pairs: y_i + y_j - y_s <= q - 1 + tau_ij;
-  FX   exact face at fixed q: tight pairs y_i + y_j - y_s = q + tau_ij, non-tight <= q - 1 + tau_ij, generators free.
+  FX   exact face at fixed q: tight pairs y_i + y_j - y_s = q + tau_ij, non-tight <= q - 1 + tau_ij, generators free;
+  TX   tight equalities only (FX without the non-tight constraints): the best signed certificate with EXACT tau
+       (tau is determined by the residues and r), i.e. max_pi q*Gamma + rho + sum pi*tau  s.t. L - beta <= e.
 Each value is a lower bound for W (the true mu is feasible), and by LP duality value >= 0 IS a certificate (the dual
 multipliers).  The script prints the values, W, and for the weakest relaxation that is >= 0 nothing; for R it prints
 the primal optimum y (the fractional 'fake semigroup' obstruction) when R < 0.
@@ -47,13 +49,13 @@ def face(G, verbose=False):
             assert mu[i] + mu[j] - mu[s] == q - J + tau and tau in (-1, 0, 1)
             pairs.append((i, j, s, J, tau))
     out = {}
-    for name in ('R', 'RT', 'UA', 'AM', 'FX'):
+    for name in ('R', 'RT', 'UA', 'AM', 'FX', 'TX'):
         M = gp.Model(); M.Params.OutputFlag = 0; M.Params.Threads = 2
         y = M.addVars(range(1, m), lb=0)
         for (i, j, s, J, tau) in pairs:
             lhs = y[i] + y[j] - y[s]
             if J == 0:
-                if name == 'FX': M.addConstr(lhs == q + tau)
+                if name in ('FX', 'TX'): M.addConstr(lhs == q + tau)
                 else:
                     M.addConstr(lhs >= q - (1 if rp[s] >= m - rho else 0))
                     if name != 'R': M.addConstr(lhs <= q + 1)
@@ -69,9 +71,9 @@ def face(G, verbose=False):
     for s in sorted(range(1, m), key=lambda x: w[x]):
         hgt[s] = 1 if s in gens else max(hgt[i] + hgt[j] for (i, j, t, J, tau) in pairs if t == s and J == 0)
     out.update(e=e, c=c, r=r, h=max(hgt))
-    print("m=%d e=%d c=%d q=%d rho=%d r=%d h=%d W=%d | R=%s RT=%s UA=%s AM=%s FX=%s | gens=%s" % (
+    print("m=%d e=%d c=%d q=%d rho=%d r=%d h=%d W=%d | R=%s RT=%s UA=%s AM=%s FX=%s TX=%s | gens=%s" % (
         m, e, c, q, rho, r, max(hgt), W,
-        *[('%.3f' % out[n]) if out[n] is not None else 'inf' for n in ('R', 'RT', 'UA', 'AM', 'FX')],
+        *[('%.3f' % out[n]) if out[n] is not None else 'inf' for n in ('R', 'RT', 'UA', 'AM', 'FX', 'TX')],
         sorted(w[g] for g in gens)), flush=True)
     if verbose and 'R_y_gens' in out: print("   R optimum on generators (y, true mu):", out['R_y_gens'], flush=True)
     return W, out

@@ -20,16 +20,17 @@ def analyse(G):
     for s in sorted(range(1, m), key=lambda x: w[x]):
         hg[s] = 1 if s in gens else max(hg[i] + hg[j] for (i, j, t) in tight if t == s)
     vals = []
-    for mode in ('RT', 'lead'):
+    for mode in ('RT', 'lead', 'TX'):
         M = gp.Model(env=env); y = M.addVars(range(1, m), lb=0)
         for (i, j, s) in tight:
-            if mode == 'RT':
+            if mode == 'TX': M.addConstr(y[i] + y[j] - y[s] == q + (rp[i] + rp[j] - rp[s] - rho) // m)
+            elif mode == 'RT':
                 M.addConstr(y[i] + y[j] - y[s] >= q - (1 if rp[s] >= m - rho else 0)); M.addConstr(y[i] + y[j] - y[s] <= q + 1)
             else: M.addConstr(y[i] + y[j] - y[s] == 1)
-        if mode == 'RT': M.setObjective(e * (q + gp.quicksum(y.values())) - q * m + rho, GRB.MINIMIZE)
+        if mode in ('RT', 'TX'): M.setObjective(e * (q + gp.quicksum(y.values())) - q * m + rho, GRB.MINIMIZE)
         else: M.setObjective(e * (1 + gp.quicksum(y.values())) - m, GRB.MINIMIZE)
         M.optimize(); vals.append(M.ObjVal if M.Status == GRB.OPTIMAL else None); M.dispose()
-    return dict(m=m, e=e, c=c, q=q, rho=rho, h=max(hg), W=W, RT=vals[0], lead=vals[1], G=sorted(G))
+    return dict(m=m, e=e, c=c, q=q, rho=rho, h=max(hg), W=W, RT=vals[0], lead=vals[1], TX=vals[2], G=sorted(G))
 if __name__ == '__main__':
     d, mmin, mmax = int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
     KL = [int(t) for t in sys.argv[4].split(',')]; NS, seed = int(sys.argv[5]), int(sys.argv[6])

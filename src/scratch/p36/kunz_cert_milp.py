@@ -7,8 +7,9 @@ minimal generator g_s = 1 iff no tight pair sums to s; e = 1 + sum g_s fixed; co
 s != r), so c = m k_r + r - m + 1, q = k_r, rho = m - r - 1 and the positions r_s = (s - r - 1) mod m are constants.
 Relaxation part (objective R or RT): continuous y_s >= 0; for each tight pair (t_ij = 1, s = i + j mod m):
     y_i + y_j - y_s >= k_r - [r_s >= m - rho]      (R and RT),      y_i + y_j - y_s <= k_r + 1      (RT only).
-Objective:  W = (e-1)c - e*sum k   (obj W),   or   e(k_r + sum y) - k_r m + rho   (obj R / RT; = min over S of the
-relaxation value, a lower bound for W).
+Objective:  W = (e-1)c - e*sum k   (obj W),   or   e(k_r + sum y) - k_r m + rho   (obj R / RT / TX; = min over S of
+the relaxation value, a lower bound for W).  TX: tight pairs y_i + y_j - y_s = k_r + tau_ij exactly, tau_ij =
+(r_i + r_j - r_s - rho)/m with r_x = (x - r - 1) mod m (kunz_face.py TX).
 Optional domain restrictions: --open (c >= 4m+1, 3e < m), --h3 (every Apery element is a sum of <= 3 generators and at
 least one is not a sum of <= 2), --dense (m > e^2).
 Every solution is decoded, re-verified from its Apery set, and its relaxation values recomputed by kunz_face.face.
@@ -66,6 +67,11 @@ def solve(r):
         y = M.addVars(range(1, m), lb=0, ub=args.K + 2)
         for (i, j) in pairs:
             s = (i + j) % m; eps = 1 if (s - r - 1) % m >= m - rho else 0
+            if args.obj == 'TX':   # exact tau from the positions r_x = (x - r - 1) mod m
+                rp = lambda x: (x - r - 1) % m
+                tau = (rp(i) + rp(j) - rp(s) - rho) // m; assert (rp(i) + rp(j) - rp(s) - rho) % m == 0
+                M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.EQUAL, tau)
+                continue
             M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.GREATER_EQUAL, -eps)
             if args.obj == 'RT': M.addGenConstrIndicator(t[i, j], True, y[i] + y[j] - y[s] - k[r], GRB.LESS_EQUAL, 1)
         M.setObjective(e * (k[r] + gp.quicksum(y.values())) - k[r] * m + rho, GRB.MINIMIZE)
