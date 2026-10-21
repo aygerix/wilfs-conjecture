@@ -4489,3 +4489,25 @@ Consequences:
 - Correction: the 15:45 claim "b + 3μ ∈ B ∪ (B + μ) ∪ 2B" was wrong; the correct statement is DOM. The F0 bounds stand
   (they need only the pure-ray covering).
 - Next: a charging proof of ZW2 that pays the −5 of each large level-3 class from DOM-forced collisions.
+
+### 2026-10-21 (17:05): the height split of W; Q′ is mostly the top layer
+- **ZT-RED (PROVED).** J1 gives m + T ⊆ U, so W ≥ Δ₃ + (e·z − m) + (e·|T ∩ [0, c_U − m)| − (c_U − m)).
+  - For μ ≤ e the last bracket is ≥ 0. So Wilf for μ ≤ e needs only Δ₃ + e·z ≥ m, and with PAIR only Δ₃ ≥ |Q′|.
+  - Max |Q′|/Δ₃ is flat at about 0.15 for μ ≤ e (e = 5–8).
+- **Q′-CLASS (PROVED).** Q′ = ℤ_m ∖ (Z + A′). The proof uses DOWN (σ_{s−a} ≥ σ_s − a on level-3 classes).
+- **M2-DOWN (PROVED).** M₂′ = {σ ≥ 2m} is closed under subtracting A. So M₂′ ∩ T = ∅ and M₂′ ⊆ Q′. The top layer is
+  never hit by Z + A.
+- **Identity SPLIT (PROVED).** W = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)t]. Both brackets are ≥ 0 on every residual
+  S at e ≤ 7.
+  - The second bracket (TR) first fails at e = 8, by 3, against Δ₃ = 158. Its tight shape is M₂′ = [1, r].
+  - Targets now:
+    - **ZT1: e·z ≥ m − t**, that is #{m ≤ σ < 2m} ≤ (e−1)·#{σ < m}. Min slack 19, 25, 32, 36.
+    - **TRΔ: E ≤ Δ₃.** Max ratio 0.019.
+  - ZT1 + TRΔ give Wilf on Q5 for every μ, without induction.
+- Refuted along the way:
+  - TR;
+  - the μ-run injection (μ-cycles without a small class).
+  - Local per-square payment of Q′ fails on a few S; the global ratio is ≤ 0.29.
+- Next:
+  - ZT1 via the pair count: |Q1| ≤ N_< + (landings on Z + m) + overlaps.
+  - TRΔ via the cubes above Λ = 2m + r, which are all missing.

@@ -6535,3 +6535,78 @@ h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
   - (c) τ_s + μ ≥ σ_{class}, so σ(x) + μ = τ_s + μ + m ≥ σ_{class} + m. ∎
 - In case (b) with disjoint supports no collision is forced. Example: e = 8, m = 54, 33+33+41 → 18+44+52. There the
   collision 7+33+41 = 29+52 comes from the level-2 relation 18+44 = 29+33.
+
+### The height split of W on Q5: W = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)t] (2026-10-21, E388)
+Notation (S ∈ Q5): for a class c ∈ [0, m) put η(c) := ⌊σ_c/m⌋ ∈ {0, 1, 2}.
+- Z := {c : η = 0} (so z = |Z|), M₁ := {c : η = 1}, M₂′ := {c : η = 2}, t := |M₂′|.
+- max σ = 2m + r, and r is itself the class of max σ (Lemma C>M). U = {x : x ≥ σ_{x mod m}}.
+
+**Lemma U-CLOSE (PROVED).** If x ∈ U, x ≥ m and a ∈ A, then x + a ∈ U.
+- Write x = σ_s + km and v := σ_s + a, a ≤4-sum in class s + a.
+- If h_s ≤ 2, v is a ≤3-sum, so σ_{s+a} ≤ v and x + a ∈ U.
+- If h_s = 3, height ≤ 3 gives w_{s+a} ≤ 3m + v, i.e. h′m + σ′ ≤ 3m + v for (h′, σ′) of class s + a.
+  - If v ≥ m: h′ = 3 gives σ′ ≤ v. For h′ ≤ 2, σ′ < 2m ≤ v + m, and σ′ ≡ v forces σ′ ≤ v.
+  - If v < m: k ≥ 1 because x ≥ m, and σ′ ≤ v + m (h′ ≥ 2) or σ′ = v (h′ ≤ 1). So v + m ∈ U and x + a ∈ U. ∎
+
+**Lemma DOWN (PROVED).** If h_s = 3 and a ∈ A, then σ_{s−a} ≥ σ_s − a.
+- Proof: u := σ_{s−a} + a is a ≤4-sum in class s.
+  - If h_{s−a} ≤ 2, u is a ≤3-sum, so u ≥ σ_s.
+  - If h_{s−a} = 3, height ≤ 3 gives 3m + σ_s = w_s ≤ 4m + u − m. ∎
+
+**Lemma M2-DOWN (PROVED).**
+- 0 ∉ M₂′ ⊆ [1, r].
+- If c ∈ M₂′ and a ∈ A with a ≤ c, then c − a ∈ M₂′.
+- Consequences: M₂′ ∩ T = ∅, and r − (T ∩ [0, r]) ⊆ M₂′, so |T ∩ [0, r]| ≤ t ≤ r + 1 − |T ∩ [0, r]|.
+- Proof: if c − a ∉ M₂′, then c − a + m ∈ U and U-CLOSE gives c + m ∈ U, so σ_c ≤ c + m. ∎
+
+**Lemma Q′-CLASS (PROVED; asserted by qsrc.py, qsplit.py on every residual S at e ≤ 7).** Q′ := {large s : σ_s − a ∉ Z
+for all a ∈ A} (Identity PAIR) equals ℤ_m ∖ (Z + A′) as a set of residues. Moreover:
+- **M₂′ ⊆ Q′.**
+- Q1 := Q′ ∖ M₂′ = Q′ ∩ M₁ consists of level-3 classes with σ ∈ [3m/2, 2m) whose rep has all three pairwise sums ≥ m.
+Proof:
+- Q′ is contained in the level-3 large classes: a large level-2 class with rep (i, j) has σ − a_i = a_j ∈ Z.
+- For a level-3 s ∈ Q′ and a ∈ A: if σ_s − a ≥ m, DOWN gives σ_{s−a} ≥ m. If σ_s − a < m, it is not in Z, and DOWN gives
+  σ_{s−a} ≥ σ_s − a + m ≥ m. Either way s − a is large, so s ∉ Z + A′. The converse is immediate.
+- M₂′ ⊆ Q′: let c ∈ M₂′ with c ≡ z′ + a, where z′ ∈ Z and a ∈ A.
+  - If z′ + a < m, then c − a = z′ ∈ Z, against M2-DOWN.
+  - If z′ + a ≥ m, then z′ + a = c + m is a ≤4-sum ≥ m in class c. U-CLOSE (case v ≥ m) gives σ_c ≤ c + m < 2m.
+- Q1: the rep of s ∈ Q′ ∩ M₁ is a cube with every σ_s − a_i ≥ m, and its pairwise sums add to 2σ_s ≥ 3m. ∎
+
+**Identity SPLIT (PROVED; asserted with W computed from the Apéry set by idq.py on all 280,326 residual S, e = 5–8).**
+
+    W(S) = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)·t]
+         = Δ₃ + (e·z + t − m) + (e−1)(r + 1 − t) − 2t.
+
+- Proof: c(S) = 4m + r + 1 and g(S) = Σ(h_s + η_s) = Σh_s + m − z + t. Substitute into W = (e−1)c − e·g and subtract
+  Δ₃ = 3(e−1)m − eΣh_s. ∎
+- With Identity PAIR and Q′-CLASS: e·z + t − m = N_< + N_ns + Ov − |Q1|.
+- r + 1 − t = |[0, r] ∖ M₂′| ≥ |T ∩ [0, r]| ≥ 1.
+
+**Lemma ZT-RED (PROVED; asserted by zttest.py).** W ≥ Δ₃ + (e·z − m) + (e·|T ∩ [0, r+1)| − (r+1)).
+- Proof: SPLIT with r + 1 − t ≥ |T ∩ [0, r]|. Equivalently, by J1, m + T ⊆ U.
+- **ZM-RED.** If μ ≤ e, then W ≥ Δ₃ + e·z − m ≥ Δ₃ − |Q′| = Δ₃ − t − |Q1|.
+
+**Conjecture ZT1 (CONJ; CHECKED, exhaustive residual e ≤ 8).** e·z ≥ m − t, i.e.
+
+    #{s : m ≤ σ_s < 2m} ≤ (e − 1)·#{s : σ_s < m}.
+
+- Pair form: every pair (z′, a) ∈ Z × A has value < 2m. It lands below m (N_<), on Z + m, or exactly on σ of an
+  M₁ class. So ZT1 ⟺ |Q1| ≤ N_< + #{pairs on Z + m} + Σ_{c∈M₁}(hit(c) − 1)⁺.
+- Data: min slack 19, 25, 32, 36 at e = 5–8 (rising). It also holds on U = T at e = 6 (annealer min 5).
+
+**Conjecture TRΔ (CONJ; CHECKED, exhaustive residual e ≤ 8).** Δ₃ + (e−1)(r + 1 − t) ≥ 2t, i.e. E ≤ Δ₃ with
+E := (e+1)t − (e−1)(r+1).
+- Max E/Δ₃ = −0.047, −0.036, 0.000, 0.019 at e = 5–8.
+- Sufficient: Δ₃ ≥ 2t. Max 2t/Δ₃ ≈ 0.37 at e = 7.
+- The pure form TR (E ≤ 0) is FALSE (FAILED.md "TR").
+
+**ZT1 + TRΔ ⟹ Wilf on Q5, for every μ and with no induction** (by SPLIT, since Δ₃ ≥ 0 is proved).
+
+**Data (E388).**
+- Max |Q′|/Δ₃ (exhaustive residual):
+  - μ ≤ e: 0.147, 0.150, 0.157, 0.143 at e = 5–8 (flat);
+  - μ > e: 0.167, 0.194, 0.209 at e = 6–8.
+- Annealing at e = 10: |Q′|/Δ₃ ≤ 0.082 (μ ≤ e).
+- Q2 = M₂′ on every S. |Q1| ≤ 9, and min (N − |Q1|) = 19, 25, 32, 36.
+- Payment of Q′ is not local: 3P(x) ≥ c(x) per standard square fails on 16 / 454 and 88 / 10,663 S. Globally the large
+  squares' missing children P_L pay |Q′| with ratio ≤ 0.29.

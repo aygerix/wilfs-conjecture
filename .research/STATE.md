@@ -55,6 +55,30 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000000000000000000) **NEWEST (2026-10-21, 17:05; E387–E388).**
+          - **Identity SPLIT (PROVED, exact on all of Q5).** With t = #{σ_s ≥ 2m} and max σ = 2m + r:
+
+                W = Δ₃ + [e·z − (m − t)] + [(e−1)(r+1) − (e+1)t].
+
+            Δ₃ ≥ 0 is already proved, so Wilf on Q5 needs only:
+            - **ZT1** (e·z ≥ m − t; min slack 19, 25, 32, 36 at e = 5–8);
+            - **TRΔ** (E := (e+1)t − (e−1)(r+1) ≤ Δ₃; max E/Δ₃ 0.019).
+            Neither needs induction or a condition on μ. TR (E ≤ 0) is FALSE at e = 8 (FAILED.md).
+          - Proved today (PROOFS "height split"):
+            - U-CLOSE;
+            - DOWN;
+            - M2-DOWN (the top layer M₂′ is A-down-closed and disjoint from T);
+            - Q′-CLASS (Q′ = ℤ_m ∖ (Z + A′) ⊇ M₂′);
+            - ZT-RED / ZM-RED (μ ≤ e: W ≥ Δ₃ + e·z − m ≥ Δ₃ − |Q′|);
+            - from E387: ZW-RED, PAIR, DOM, per-class ZW2.
+          - Superseded as targets: ZW, ZW2, MU-LO′, H1/H2. They still hold in the data, but SPLIT is sharper.
+          - **Next:**
+            - ZT1 through the pair count |Q1| ≤ N_< + (landings on Z + m) + overlaps;
+            - TRΔ through Δ₃ ≥ 2t, i.e. missing cubes forced above Λ and inside the top layer.
+          - Running on fejer:
+            - q5annQ3 e = 12, 14;
+            - q5annTR OBJT = 2 / 3 at e = 8, 10, 12 (tr2*_e*.txt, tr3r_e*.txt);
+            - q5annZW d = 10 (zw_d10.txt).
       (A0000000000000000000000) **NEWEST (2026-10-21, 16:20; E386).**
           - Targets now (PROOFS "Robust forms of MU-LO"):
             - **MU-LO′** (μ ≤ e, no induction): Δ₃ + eU′ + (e−1)u′ ≥ μh_lo^μ + h_hi; ratio ≤ 0.15 at e ≤ 8.
