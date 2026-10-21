@@ -5683,3 +5683,35 @@ Equality holds in the first inequality when e(S′) = e(S) and the argmax residu
 - So DESCENT reduces uniformly deep graded S to shallower ones, but not in general.
 - Novelty: unchecked. Related framework: BGOW 2020, Wilf on faces of the Kunz polyhedron and the "Wilf game" (LITERATURE
   §2.5); Zhai's CH′. Literature check pending before any claim.
+
+### q = 5, height ≤ 3: the level budget and the level-1 count (2026-10-21, later)
+Let q = 5, so c = 5m − ρ = 4m + r + 1 and max Ap = w_r = 5m + r.
+
+**Lemma LEVEL-BUDGET (PROVED).** Every Apéry element w_s = m k_s + s satisfies k_s ≤ 5, and k_s = 5 only for s ≤ r.
+Consequences:
+- If a generator g = m k + a has its pure cube 3g in Ap, then k = 1. (Advisor's observation: 3k ≤ k_{3g} ≤ 5.)
+- Every generator that occurs in an Apéry element of height 3 has k ≤ 3.
+- Proof: w_s ≤ w_r = 5m + r < 6m. ∎
+
+**Lemma Q5-LEVEL1 (PROVED; CHECKED).** Suppose q = 5, every Apéry element is a sum of ≤ 3 minimal generators, and every
+minimal generator other than m lies in (m, 2m). Then
+    ℓ = 5 + Σ_{g} (4 − [g>r]) + Σ_{p∈P} (3 − carry_p − [p>r]) + Σ_{z∈C} (2 − carries_z − [z>r]),
+where every summand is ≥ 0: generator terms are ≥ 3, pair terms ≥ 1, cubic terms ≥ 0. Hence ℓ ≥ 5 + 3d + |P|, and
+    e(3d + |P| + 5) ≥ 4m + r + 1   ⟹   Wilf.
+- Proof.
+  - μ_s = 5 − k_s − [s > r] (Lemma K at q = 5) and μ_0 = 5.
+  - With level-1 generators, k_s = h + carries for any factorization of length h. Carries are ≤ 1 for pairs and
+    ≤ 2 for cubics, and the latter = 2 only if s ≤ r (Lemma LEVEL-BUDGET). ∎
+- Full pairs (Sidon-with-0 covers): the condition reads θ ≤ 3(d+5)/(4(d+3)) − O(1/T), i.e. 1.0, 0.964, 0.938, 0.917
+  for d = 3–6 and → 3/4. That exceeds every density found (0.75, 0.686, 0.714, 0.655).
+- The bound is lossy only on the cubic terms. A failure of the condition needs almost every cubic cell to have μ_z = 0,
+  i.e. almost all cubics in the top layer [c, c+m). That is the BASE-family profile.
+- Checked (q5lev1.py, E376): all unit rescalings of the dense covers d = 3–7 with all levels 1, plus 30000 random
+  residue sets (m = 12–60, d = 3–8); 5680 S with q = 5, height ≤ 3, level-1 generators. The identity and the bound
+  were asserted on every S. The sufficient condition held on all 5680, so the lemma proves Wilf for each of them.
+- Remaining at q = 5, height 3:
+  - (i) level-1 configurations violating the condition (none found);
+  - (ii) generators of level 2–3, to be charged against the cubics the level budget forbids (the advisor's
+    principle).
+- Novelty: unchecked. This is an elementary left-element count in the spirit of Eliahou's c ≤ 3m argument.
+  Literature check pending.
