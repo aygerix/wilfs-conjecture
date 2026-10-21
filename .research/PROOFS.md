@@ -5171,3 +5171,45 @@ r = ⟨w − c⟩ mod n.
 - **Status of the chain:** Wilf ⇐ L4 (PROVED, paper) + L7′ (CONJ). The case-B residue is still confined to
   near-perfect sum covers: case B needs a large flat margin, i.e. m > (d+1)(d+3)/3 at height 2 (L6). The closed form
   above bounds what the height-3 cells can cost.
+
+### SUPP-WILF+ (level form): W ≥ Dep − Σsupp + Σ_{y∈A_<}(|y|+d)μ_y ≥ Dep − Σsupp + (d+1)|A_<| — PROVED 2026-10-20 (paper; checks E356)
+**Setting.** As in SUPP-WILF. For x ∈ D put μ_x = ⌈(c − w(x))/m⌉⁺, the number of elements of S below c in the class of
+w(x). Let om(x) = Σ_{b: x+e_b∉D}(x_b + 1), the total length of the columns topped at x. Let A_< = {y ∈ A : w(y) < c}.
+
+**Theorem.**
+- (i) (exact) W = N(σ_c) − κ₀ + Σ_{x∈D} om(x)·μ_x, and ℓ = Σ_{x∈D} μ_x.
+- (ii) W ≥ Dep − κ₀ + N + Σ_{y∈A_<}(|y| + d)μ_y + Σ_{t∈D∖A, om(t)>0} om(t)(μ_t − 1) ≥ Dep − Σsupp + (d+1)|A_<|.
+- (iii) Every Apéry element ≥ c is maximal, so |A_<| = #(S ∩ [c − m, c)) − |D ∖ A|. Equivalently
+  |A_<| = |A| − #(gaps in [c − m, c)).
+- Hence Wilf holds whenever Σsupp − Dep ≤ (d+1)|A_<|.
+
+**Proof.**
+- (i) Write w(t) − c = r(t) − m·μ_t. If w(t) ≥ c, then w(t) < c + m, so r(t) = w(t) − c and μ_t = 0. If w(t) < c,
+  then r(t) = w(t) − c + m⌈(c − w(t))/m⌉.
+  - So Σ_{(x,b)}(w(t_b x) − c) = Σ_{(x,b)} r(t_b x) − mΣ_t om(t)μ_t.
+  - By SUPP-WILF steps 3–5, Σ_{(x,b)} r(t_b x) = (d+1)M′ + m(κ₀ − N).
+  - Insert both into CH′.
+  - The formula for ℓ counts, for each residue, the elements w(x) + jm < c.
+- (ii) Non-maximal tops have w(t) < c (step 2), so μ_t ≥ 1 and Σ_{t∉A} om(t)μ_t ≥ Dep. Maximal y ∈ A_< have
+  om(y) = |y| + d and μ_y ≥ 1. Finally N ≥ 0 and κ₀ ≤ Σsupp.
+- (iii) If x + e_b ∈ D then w(x) ≤ c + m − 1 − g_b < c. Each residue class with w < c meets [c − m, c) exactly once.
+  ∎
+
+**Use for the chain.**
+- Case B now only has to pay its margin μ = Σsupp − Dep from the maximal Apéry elements below the conductor.
+- On every height-3 case-B semigroup found so far (99 S: the 24 μ-maximizing realizations, the small-lift ones with
+  lifts in {2,3} and {3,4}, the min-W one), |A_<| ≥ 18 while μ ≤ 2 (E356).
+- New candidate for the open link:
+  - **CASEB-WINDOW (CONJ):** if the lex tile of S is in case B and has a cell of height ≥ 3, then
+    (d+1)|A_<| ≥ Σsupp − Dep.
+  - With SUPP-WILF+ and Flat-MaxCL (height ≤ 2), it implies Wilf.
+  - It is weaker than L7′ in the regime that matters, and it is a statement about where the maximal Apéry elements
+    sit.
+- **Why it should hold (sketch, not a proof).** Suppose A_< is small. Then almost all maximal values lie in the top
+  window [c, c + m).
+  - For maximal pairs e_1 + e_y and e_y + e_z this gives g_z < g_1 + m. So the generators carried by maximal pairs lie
+    in one window of width about m.
+  - A cubic Apéry cell then has value about 3G against pair values about 2G (G the common generator size). Being
+    < c + m forces G < 3m, i.e. lifts ≤ 3.
+  - In that finite-lift regime the flat formula W = 2k·k_miss + d(ρ* + 1) − (d+1)κ̃ (equal lifts, NOTEBOOK) controls W.
+  - Making this rigorous is the next proof task.
