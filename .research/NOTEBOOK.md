@@ -4176,3 +4176,29 @@ Consequences:
   - ⟨37,75,78,80,88,89⟩ 84/84/84/102/102/102/102/102
 - **Two mechanisms.** Shallow: positional (part types). Deep: generator levels. UA3 combines both. Single-lemma candidate:
   UA3-NONNEG.
+
+### 2026-10-21 (later still): typed height 3; full window realized
+- **Proved.**
+  - FAKE3(d), the TYPE-respecting window fake, with the counting bound |Δ| ≤ C(h+1,2).
+  - BASE-SURVIVES: FAKE3(a) is RT3-feasible when all generators are HIGH. So the level-free height-3 barrier for RT3 is
+    θ ≲ 4/5 (THIN3), not 1/2.
+  - H3-TYPED: H3-UNIF with typed costs bounds RT3.
+- **Observed.** RT3H (the H3-TYPED sign pattern) equals RT3 on 430 of 568 graded height-3 cover S, with min 16.33.
+  |Δ| ≤ 2 throughout.
+- **Full-window graded S exist** at m = 15, d = 3 with q = 7, 9, 10, and RT2 = FAKE3(c) exactly there. None with q = 5.
+- **Exactly certified height 4–9 candidates (rtexact).** Values RT2 / RT3 / UA2 / UA3 / TX / W:
+  - ⟨20,23,25,39⟩ 56/3 / 134/3 / 26 / 70 / 134/3 / 70
+  - ⟨13,19,28,36⟩ 12 / 16 / 12 / 16 / 24 / 24
+  - ⟨35,36,76,119⟩ 905/7 / 1094/7 / 131 / 163 / 5457/31 / 259
+  - ⟨40,43,118,130⟩ 3436/27 / 5828/27 / 1252/9 / 260 / 5936/27 / 272
+  - ⟨35,47,73,75,92,132⟩ 104 / 143 / 146 / 188 / 403/2 / 284
+  - ⟨40,60,125,145,170,191⟩ 520 / 520 / 1966 / 1966 / 610 / 2020
+  - ⟨35,55,95,141,170⟩ 305 / 305 / 1845/2 / 955 / 305 / 1005
+  - ⟨40,136,144,163,192⟩ 690 / 700 / 1955 / 2045 / 725 / 2045
+- **BASE family and Lemma DESCENT (later).**
+  - On ⟨15,22,24,25⟩ (q = 4), ⟨15,37,39,40⟩ (q = 7) and ⟨15,52,54,55⟩ (q = 10), W equals the BASE fake exactly, and
+    every relaxation is exact. So the level-free height-3 barrier is genuine Wilf content: a packing inequality.
+  - DESCENT (lowering Apéry elements by m·t·h along an additive h ≥ 0) decreases W by ≥ t[(e−1)m h* − eH] ≥ 0 (CH′),
+    provided the lowered vector is Kunz-valid and keeps its max on a max-h cell.
+  - The BASE family descends to its q = 4 member, which the kernel-checked depth-4 theorem covers.
+  - Generic deep S are blocked by a level-1 generator. Literature check pending (BGOW Wilf game).

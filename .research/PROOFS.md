@@ -5571,3 +5571,115 @@ So TX is not "Wilf in disguise" at depth. It ignores the generator levels, which
 - (3) Barriers (PROVED): FAKE3(a), (b), (c).
 - (4) What needs a packing theorem: for RT2, θ_d ≤ θ*(d) (→ 1/2) in the configuration of (b); unproved. For RT3, (b) is
   excluded, and its own height-3 barrier is not yet derived. No unconditional height-3 theorem yet.
+
+### Height 3 under part types: what TYPE removes, what survives, the typed H3-UNIF certificate (2026-10-21, later)
+Setting: hypothesis H (graded height ≤ 3); HIGH/LOW as in Lemma TYPE (x HIGH ⟺ 1 ≤ x ≤ r ⟺ r_x > ρ).
+
+**Proposition FAKE3(d) (PROVED): the TYPE-respecting window fake.** Let q ≥ 3. Let Δ ⊆ P be the height-2 elements p
+such that:
+- every factorization p = a + b has a and b HIGH;
+- ε⁺_p = 1 and p is LOW;
+- every tight pair (p, c → z) has c LOW and z ∈ W_ρ.
+Then y = 2q/3 on generators, q/3 − [p ∈ Δ] on P and 0 on C is RT3-feasible. Hence RT3 ≤ q·Γ_cap + ρ − e|Δ|.
+- Proof: the gen-pair relations into p ∈ Δ need the upper allowance (HH, ε⁺_p = 1). The relations (p, c → z) with
+  p ∈ Δ need the lower allowance (p, c LOW, z ∈ W_ρ). Every other relation has value exactly q. ∎
+- Counting (PROVED): let h = #HIGH generators. Then |Δ| ≤ C(h+1, 2).
+  - If an all-HIGH cubic a + b + a′ is an Apéry element, then its split (a+b, a′) has a HIGH part. So a + b ∉ Δ.
+  - Hence each p ∈ Δ forces h missing all-HIGH 3-multisets, and each multiset is counted ≤ 3 times. So
+    h·|Δ| ≤ 3·#(missing all-HIGH cubic multisets).
+- Compared with (b): in RT and RT2, δ_p = 1 for EVERY pair whose cubics all lie in W_ρ. Under RT3 only these HH pairs
+  with LOW complements remain.
+- Observed (rt3cov.py, E372): |Δ| ≤ 2 on all 568 graded height-3 cover S (d = 3–7). RT3 = FAKE3(d) on 359 of them.
+
+**Proposition BASE-SURVIVES (PROVED): the small-window barrier is untouched by TYPE.** FAKE3(a) is RT3-feasible iff
+every generator occurring in a height-2 factorization is HIGH and every p ∈ P has ε⁺_p = 1.
+- Under full pairs this means: all generators HIGH and all pairs at positions ≤ m − ρ − 2.
+- Then RT3 ≤ (q − 1)Γ_cap + ρ − (m − e²).
+- Proof: FAKE3(a) uses the upper allowance only on gen-gen relations; all its (pair, gen) relations are exact. ∎
+- Attained: on dense d = 6 covers (m = 55, levels (2,1,1,1,1,1), q = 5, ρ = 1, all 6 generators HIGH),
+  RT2 = RT3 = BASE = 111, while W = 272 or 286 and UA3 = 195.
+- Consequence: for every level-free relaxation RT ⊆ RT2 ⊆ RT3, the height-3 barrier at q = 5 is
+  5m ≤ 4T + e² + ρ, i.e. θ ≲ 4/5, the CONJ THIN3 threshold.
+  - The TYPE rule moves the RT3 window barrier from θ → 1/2 (RT, RT2: FAKE3(b)) to the |Δ|-restricted FAKE3(d).
+  - So for RT3 the binding level-free height-3 obstruction is the 4/5 packing question, not the 1/2 one.
+  - Only generator levels (UA3) can beat BASE if a full-pair cover with θ > 4/5 exists at large d.
+
+**Proposition H3-TYPED (PROVED): H3-UNIF with typed costs.** Under the hypotheses of H3-UNIF (height ≤ 3, every pair
+present, tight pairs = tile splits), with λ, s, X, Λ as there and (U), (N) holding,
+    W ≥ RT3 ≥ q(2ΣΛ + Σs − e|P| − (m − e)) + ρ − Σ_{(p,c→z): p,c LOW, z∈W_ρ} λ_{z,c}
+                                               − Σ_{p=a+b: a,b HIGH, ε⁺_p=1} (e − X_p − s_p).
+- Proof: the H3-UNIF weights are a dual-feasible point of RT3. RT3 has the same dual constraints as RT, and only the
+  costs change: lo on monochromatic LOW relations into W_ρ, up on monochromatic HIGH relations with ε⁺ = 1. ∎
+- Regular case (s = 0, ΣΛ = de(e+1)/3): W ≥ q·M₃ + ρ − Σ_{HH pairs, ε⁺=1}(e − X_p) − Σ_{LL splits into W_ρ} λ_{z,c}.
+- Freedom: a window cubic costs nothing if its weight sits on a split with a HIGH part. A pair costs nothing unless both
+  its generators are HIGH.
+- Sign-pattern test (E372): RT3H, the LP restricted to this pattern, equals RT3 on 430 of 568 graded height-3 cover S.
+  - RT3H counts only anti-splits on pair relations and splits on cubic relations. On these S (full pairs, unique pair
+    factorizations by the Sidon property, tight pairs = tile splits) its dual is exactly the H3-TYPED family over all
+    admissible λ ≥ 0, s ≥ 0.
+  - Min RT3H = 16.33 > 0.
+  - Largest losses (≈ 30) occur when all generators are LOW and ρ ≈ 48 (m = 55). There the other signs, positive pair
+    splits and cubic anti-splits, are free.
+
+**Full-window realizability (E372).** The RT2-WINDOW fake FAKE3(c) needs P ∪ C ⊆ W_ρ.
+- Cells outside W_ρ are exactly the residues r+1, …, 2r+1. So the condition is "these r+1 residues are generators".
+- Scan: dense covers d = 3–8 and every unit rescaling. Of 389 residue configurations with this property, the lifts with
+  levels in {1, 2, 3}, conductor residue r and c > 4m number 4865 (fullwin.py).
+- Graded height ≤ 3 occurs only at m = 15, d = 3: ⟨15,32,33,37⟩ (q = 7), ⟨15,32,33,52⟩ (q = 9), ⟨15,47,48,52⟩ (q = 10),
+  all with ρ = 13 = m − 2.
+- On these three, RT2 = RT3 = FAKE3(c) = 5(q−2) + 3 = 28, 38, 43, exactly certified. So (c) is attained.
+- The remaining full-window lifts have height 4–6 and RT2/W ≈ 0.7–0.85.
+- No full-window graded S with q = 5 was found. At larger q the (c) bound grows like (q−2)Γ_cap, so the full-window
+  regime is not the threat.
+
+**Proposition BASE-FAMILY (PROVED identity; instances CHECKED).** Let S have graded height ≤ 3 with every pair present.
+Assume:
+- every generator is HIGH with μ_g = (2q+1)/3, so q ≡ 1 (mod 3) and k_g = (q−1)/3;
+- every pair relation has τ = +1;
+- every cubic has μ_z = 0.
+Then μ_p = (q−1)/3 for every pair, and
+    W(S) = FAKE3(a) = (q − 1)T − qm + ρ + e²,     T = C(d+3, 3).
+So Wilf for S is exactly the packing inequality qm ≤ (q−1)T + e² + ρ.
+- Proof: substitute μ into W = e(q + Σμ) − qm + ρ and use e(|P| + 2d + 3)/3 = T for full pairs. ∎
+- Instances (basefam.py, E373): the residue sets {5,6,8}, {6,7,10}, {7,9,10} mod 15 (d = 3, θ = 3/4) with uniform levels
+  k = 1, 2, 3 (q = 4, 7, 10). Examples: ⟨15,22,24,25⟩, ⟨15,37,39,40⟩, ⟨15,52,54,55⟩ with W = 17, 32, 47.
+  - On these, RT = RT2 = RT3 = UA3 = TX = W exactly (rtexact).
+  - Among 17770 graded full-pair height-3 lifts of the d = 3–5 covers, there are no other hits.
+- Meaning: the BASE barrier of every level-free relaxation is attained by Wilf itself on this family. A height-3 proof
+  must therefore contain the packing inequality there. At q = 4 it is a consequence of the kernel-checked depth-4
+  theorem; on the checked chains q = 7, 10 reduce to q = 4 by Lemma DESCENT below (W grows by 3M₃ per level).
+
+**Lemma DESCENT (PROVED on paper; CHECKED descent.py).** Let S have multiplicity m and Apéry set w. Let σ ∈ ℤ_{≥0}^{P′}
+be such that h(w_s) := σ·n is the same for every factorization n of w_s over P′.
+- Equivalently h is additive on tight pairs. Example: σ = 1 (factorization length) when S is graded.
+- Write h* = max_s h_s and H = Σ_s h_s.
+Let t ≥ 1 be an integer and w′_s = w_s − m·t·h_s. Suppose:
+- (a) w′_s > m for s ≠ 0;
+- (b) w′_i + w′_j ≥ w′_{(i+j) mod m} for all i, j;
+- (c) max_s w′_s is attained at a residue with h_s = h*.
+Then w′ is the Apéry set of the numerical semigroup S′ = ⟨m, w′⟩, e(S′) ≤ e(S), and
+    W(S) − W(S′) ≥ t·[(e−1)·m·h* − e·H] ≥ 0     (e = e(S)).
+Equality holds in the first inequality when e(S′) = e(S) and the argmax residue is unchanged.
+- Proof.
+  - (a) and (b) are the Kunz inequalities, so w′ = Ap(S′, m). Tight pairs of S stay tight, so the generators of S′
+    are among those of S.
+  - By Identity CH, m·W = (e−1)mM − eΣw − (e−2)m(m−1)/2 =: m·F_e(w), with M = max w.
+  - ∂F_e/∂e = M − Σw/m − (m−1)/2 = c − g ≥ 0. So W(S′) = F_{e(S′)}(w′) ≤ F_e(w′).
+  - F_e(w) − F_e(w′) = (e−1)(M − M′) − e·t·H. By (c), M′ = w′_{r′} with h_{r′} = h*, and w_{r′} ≤ M, so
+    M − M′ ≥ m·t·h*.
+  - The bracket is ≥ 0 by the chain identity applied to the additive functional h, with σ ≥ 0 (CH′, as in RT-ASYM).
+    Each p_a-chain contributes |C|·(h* − h(top C)) ≥ 0, and Σ_a σ_a ν_a(w) ≥ h(w). This gives
+    (d+1)·H ≤ d·m·h*. ∎
+- Corollary (BASE family).
+  - Statement: if a BASE-family S with k = (q−1)/3 satisfies (b) for t = k − 1 (σ = 1), then
+    W(S) = W(S_{q=4}) + 3(k−1)M₃ ≥ 0 by the depth-4 theorem.
+  - (a) holds since k′_g = 1. (c) holds since cubics drop by 3t and pairs by 2t.
+  - Checked on the three chains q = 10 → 7 → 4 at m = 15: W = 47 → 32 → 17 with M₃ = 5.
+  - (b) is not proved in general.
+- Scope (CHECKED, E373): among 400 random graded S with c > 4m (m = 10–30, levels 1–5):
+  - descent applies (t ≥ 1) to 129;
+  - the inequality held in all 129, with equality attained;
+  - only 4 landed at c′ ≤ 4m. The usual blocker is (a), a generator at level 1.
+- So DESCENT reduces uniformly deep graded S to shallower ones, but not in general.
+- Novelty: unchecked. Related framework: BGOW 2020, Wilf on faces of the Kunz polyhedron and the "Wilf game" (LITERATURE
+  §2.5); Zhai's CH′. Literature check pending before any claim.

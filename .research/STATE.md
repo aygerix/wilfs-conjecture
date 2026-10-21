@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21 later: τ-FORMULA, TYPE ⇒ RT3; corrections (RT2 keeps the 1/2 barrier; TX ≪ W at depth); two mechanisms; lead candidate UA3-NONNEG; see (A00000000000000))
+# STATE.md — handoff (2026-10-21 later still: typed height 3 (FAKE3(d), BASE-SURVIVES, H3-TYPED); full window realized and harmless; lead lemma UA3-NONNEG; see (A000000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,21 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000000000) **NEWEST (2026-10-21, later still; checkpoint after steps 1 and 2).**
+          - Proved: FAKE3(d) and |Δ| ≤ C(h+1,2); BASE-SURVIVES; H3-TYPED.
+          - Height-3 barriers:
+            - RT, RT2 carry the 1/2 window barrier;
+            - RT3 removes it except on Δ, leaving BASE: θ ≲ 4/5, the THIN3 threshold;
+            - generator levels (UA3) are the only level-type repair of BASE.
+          - Full-window graded S exist (m = 15, q ≥ 7); RT2 = FAKE3(c) there; harmless.
+          - Heights 4–9: 0 negatives. UA2/W minima grow with m (0.30 → 0.51 for m = 20 → 40); RT2/W does not (0.13–0.31,
+            driven by deep lifts with RT2 ≈ TX).
+          - Lead lemma: UA3-NONNEG in dual form, a typed, level-priced split certificate.
+          - Next:
+            1. Height 3: H3-TYPED plus generator prices (allow L_g > e at price μ_g; μ_g ≥ 2q/3 − 1 whenever the pure
+               cube 3g is an Apéry element, since then 3k_g ≤ k_{3g} ≤ q). Show this beats BASE and gives UA3 ≥ 0 under H.
+            2. Anneal on UA3/W at m ≥ 40.
+            3. runh4 continues (m = 15..20).
       (A00000000000000) **NEWEST (2026-10-21, later; advisor's step 1 (heights 4–5) and step 2 (height 3)).**
           - Proved: τ-FORMULA; TYPE (RT3); the exact height-3 reduction RT2 = qΓ_cap + ρ − eK_q.
           - Corrections (NOTEBOOK):
