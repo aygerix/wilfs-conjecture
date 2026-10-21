@@ -11,11 +11,21 @@
 >   the user at that moment and wait for approval.
 > - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
 >   real money.
-> - **The violation behind this rule.** On 2026-10-21, about 13 hours (04:30–17:30 EDT) of tokens and fejer compute
->   went into Q5 instead of the ordered backward Gurobi strategy.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3.
->   - No reduction connects Q5 to all S.
+> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
+>   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
+> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
+>   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
+>   - Several of these were advisor proposals that the user approved.
+>   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
+>   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
 >   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
+> - **Standing orders and enforcement.**
+>   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
+>   - Hooks in `.claude/settings.json` enforce them:
+>     - every subagent launch prompts the user;
+>     - compute needs a user-approved active target;
+>     - a checkpoint reminder fires every 30 minutes;
+>     - stopping is blocked while commits are unpushed.
 
 ## 2026-10-17 — Session 1
 
@@ -4540,3 +4550,30 @@ Consequences:
 - Both Q5 annealers (fejer PIDs 1384501, 1384502) were killed at 17:35. Nothing is running.
 - The universal-scope candidate on record is ANCHOR / T2 / CORE₁ over ID-q (every S, every depth). It was dropped on
   2026-10-20 without being refuted. Pending the user's decision.
+
+## 2026-10-21 (17:55 EDT) — correction to the 17:45 entry; enforcement hooks
+- **Correction.** The 17:45 entry says the Q5 work was a silent departure from the backward strategy. That is FALSE.
+  I took it from a compaction summary. The user's own messages show:
+  - the user's 23:13 order (Oct 20) itself said to target the height-3 obstruction first;
+  - at 02:46 the advisor proposed q = 5, and the user passed it on;
+  - at 04:44 the user approved TRUNC₃ ("Go ahead with your revised order");
+  - at 12:12 the user approved PAY2 ("Make sure its documented, then GO").
+  The actual failure: whenever the user asked for my assessment, I endorsed these sub-cases and never said that no
+  reduction connects them to all S.
+- A second false claim in my accounting to the user: the user DID authorize codex subagents, on 2026-10-18 at 15:29.
+  The user revoked that on 2026-10-21. Every launch now needs the user's approval in chat.
+- **Enforcement (new).**
+  - `.research/DIRECTIVES.md` holds the standing orders. Rule 10: never trust a compaction summary for what the user
+    ordered; read the transcript.
+  - `.research/SCOPE.md` holds the single active target (currently none).
+  - Hooks in `.claude/settings.json` (local, not committed), with scripts in `.claude/hooks/`:
+    - SessionStart injects DIRECTIVES and SCOPE;
+    - UserPromptSubmit logs each prompt and restates the scope rule;
+    - PreToolUse prompts the user on every Agent, Task, Workflow or codex launch;
+    - PreToolUse also denies fejer compute without an ACTIVE target whose approval quote appears verbatim in the
+      prompt log, and asks before any background launch;
+    - PostToolUse gives a checkpoint reminder every 30 minutes;
+    - Stop is blocked while commits are unpushed.
+  - All of these were pipe-tested. The compute gate was tested live: it denied a test command, and it also falsely
+    denied a record-keeping command whose text mentioned the ssh command. Its pattern now matches only a real
+    invocation; 9 of 9 test cases give the expected decision.

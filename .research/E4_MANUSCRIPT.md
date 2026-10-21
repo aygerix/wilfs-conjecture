@@ -11,11 +11,21 @@
 >   the user at that moment and wait for approval.
 > - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
 >   real money.
-> - **The violation behind this rule.** On 2026-10-21, about 13 hours (04:30–17:30 EDT) of tokens and fejer compute
->   went into Q5 instead of the ordered backward Gurobi strategy.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3.
->   - No reduction connects Q5 to all S.
+> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
+>   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
+> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
+>   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
+>   - Several of these were advisor proposals that the user approved.
+>   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
+>   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
 >   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
+> - **Standing orders and enforcement.**
+>   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
+>   - Hooks in `.claude/settings.json` enforce them:
+>     - every subagent launch prompts the user;
+>     - compute needs a user-approved active target;
+>     - a checkpoint reminder fires every 30 minutes;
+>     - stopping is blocked while commits are unpushed.
 
 *Self-contained manuscript. It consolidates the project record as of 2026-10-18: `.research/STATE.md` (links 1–7),
 `.research/PROOFS.md`, `.research/NOTEBOOK.md`, the two referee reports in `.research/reviews/`, `lean/`, `logs/` and
