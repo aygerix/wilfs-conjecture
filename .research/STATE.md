@@ -55,6 +55,22 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000000000000000) **NEWEST (2026-10-21, 15:00; D6 attempt part 1, E384).**
+          - **μ-split (PROVED, PROOFS "Identity W-μ").** On Q5,
+            W(S) = Δ₃ − μh_lo^μ − h_hi + (e−1)u′ + (e−μ)U_μ + eU′ + θ.
+            - For μ ≤ e this gives Wilf from **MU-LO: Δ₃ ≥ μ·h_lo^μ + h_hi**, with no induction.
+            - h_lo^μ counts only the NE multiples of μ below c(T).
+            - MU-LO: worst ratio 0.353, 0.349, 0.387, 0.366 at e = 5–8 (flat); min slack 22, 41, 57, 91.
+            - μ > e still needs the descent (A1-eT / DESC). C*-eT at e = 8: 0 failures, min 62, ratio 0.424.
+          - **D6 reformulated (PROVED equivalences):**
+            - m + 2h + (e/3)M₂ ≤ C(e+2,3);
+            - M₃ ≥ ((e−3)/3)M₂ + 2h;
+            - the T-Hilbert form 2e(e−1) + (e−3)a₂ ≥ 3a₃ + 9b₃ + (9−e)b₂.
+            Not a Macaulay consequence.
+          - **Refuted:** P43, T3, WRAPV, DIR (FAILED.md).
+          - **Observed:** WRAPM (wrapping cubes ≥ h, with equality at e = 5, 6, 7).
+          - **Proved:** RUN-PAIR (collisions forced inside μ-runs).
+          - **Next:** MU-LO / MURUN on the pure ray T∖U = {4μ, …, Kμ}, the dominant and extremal shape.
       (A0000000000000000000) **NEWEST (2026-10-21, 14:00; first A1/C* attempt, E383).**
           - **Pivot.** The descent needs only DESC := W(S) − W(T) ≥ 0, since W(T) ≥ 0 by induction on multiplicity.
             - DESC = PAY2 + ρ·ℓ(T), with ρ = e − e(T) (PROVED, PROOFS "Identity DESC").

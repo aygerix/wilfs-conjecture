@@ -4411,3 +4411,26 @@ Consequences:
   residual S with NE3 ≠ ∅: (M₃^T − |NE3|)/|NE3| ≥ 3.5, 2.875, 3.17, 3.17 at e = 5–8. So M₃^T ≥ 3.875·|NE3|
   throughout (minimizer ⟨31,35,48,50,54,61⟩: M₃^T = 31, |NE3| = 8). This is the combinatorial core of D6; a proof
   would have to produce about three further level-3 relations per NE3 class.
+
+### 2026-10-21 (15:00): D6 attempt, part 1. Counting forms, four refuted strengthenings, and the μ-split
+- **D6 is an upper bound on the multiplicity (PROVED equivalence):** m + 2h + (e/3)·M₂ ≤ C(e+2,3). Equivalently
+  M₃ ≥ ((e−3)/3)M₂ + 2h: beyond the weighted shadow bound, each NE class must force two more missing cubes. In T-Hilbert
+  terms it reads 2e(e−1) + (e−3)a₂ ≥ 3a₃ + 9b₃ + (9−e)b₂. A Macaulay-only argument cannot give this; PROOFS has an
+  O-sequence pair with Δ₃ = 0 and h = K − 3.
+- **Refuted local strengthenings (FAILED.md):**
+  - P43: 3·prim + 4M₂ ≥ 6h; worst ratio 0.711 at e = 7. The overlaps of the level-2 shadows carry part of the payment.
+  - T3: 3|G₃^T| + 4(|J₂| − b₂) ≥ 9b₃, with G₃^T the minimal cubic generators of the T-ideal; ratio 0.444.
+  - WRAPV: distinct wrap values ≥ h; 6 < 8 at e = 7.
+  - DIR: Δ₃^{(i)} ≥ h in every non-μ direction; fails at e = 6, 7. It cannot hold for large e, since Δ₃/h ≈ 6.5 is
+    flat while there are e − 2 directions.
+- **Observed WRAPM:** the number of cubes wrapping by ≥ m over their class minimum is ≥ h, with equality at e = 5, 6, 7.
+  It is the only "one wasted cube per NE class" statement that survived. No proof yet: in the equality cases the
+  wrapping cubes are the upper stars of the NE2 reps plus the cubes above 2m, with no class-by-class injection.
+- **μ-split (PROVED).** c(T) ≤ μ⌈c(T)/μ⌉ gives the exact identity W(S) = Δ₃ − μh_lo^μ − h_hi + (e−1)u′ + (e−μ)U_μ
+  + eU′ + θ. For μ ≤ e, Wilf on Q5 then follows from MU-LO: Δ₃ ≥ μ·h_lo^μ + h_hi, with no induction.
+  - Only the NE multiples of μ below c(T) cost μ; the other low NE elements are paid exactly by T's left elements.
+  - MU-LO is flat in e: worst ratio 0.353, 0.349, 0.387, 0.366 at e = 5–8.
+- **The pure ray T∖U = {4μ, …, Kμ} is the hard shape** (8,044 / 10,663 residual S at e = 7). RUN-PAIR (PROVED)
+  lists the collisions forced between consecutive run elements. Its case (3,3) with disjoint supports forces nothing
+  locally.
+- Next: the ray case of MURUN/MU-LO.

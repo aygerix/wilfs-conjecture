@@ -6310,3 +6310,80 @@ T-length k_s ≥ 7.
     factorization of length 2) and a 2-sub-multiset (an EQ class, w = 2m + σ, a factorization of length 2).
   - Their sum lies in S, in class s, and equals 5m + τ_s = w_s. So w_s has a factorization of length 4,
     contradicting height ≤ 3. ∎
+
+### D6 in counting form; the μ-split of W_e(T) and Conjecture MU-LO (2026-10-21)
+**Setting.** S ∈ Q5. D is the U-tile in L≤3 := {x ∈ ℕ^d : |x| ≤ 3}. L_k is level k, N_k = |L_k|, N₂ = d(d+1)/2,
+N₃ = d(d+1)(d+2)/6. M_k := |L_k ∖ D|. b₂ = |NE2|, b₃ = |NE3|, h = b₂ + b₃. a_k := #{classes of least T-length k}.
+For EQ classes x_s is the T-rep, so D ∩ L≤3 ∖ {NE reps} = D^EQ and a₂ = n₂ − b₂, a₃ = n₃ − b₃.
+
+**Identity D3-MISS (PROVED).** Δ₃ = 3M₃ − (e−3)M₂ = 4M₂ + B₂, with B₂ = Σ_{v ∈ L₃∖D} #{i : v − e_i ∈ D, weighted by v_i}.
+- Proof: Δ₃ = 2e(e−1) + (e−3)n₂ − 3n₃. Substitute n_k = N_k − M_k and use 2e(e−1) + (e−3)N₂ − 3N₃ = 0. The second form
+  is the column-top form: Σ_{u ∈ L₂∖D} Σ_l (u_l + 1) = (e+1)M₂. ∎
+- So CH′-κ is the weighted upper-shadow bound 3|∇X| ≥ (e+1)|X| for X = L₂ ∖ D, plus B₂ ≥ 0.
+
+**Equivalent forms of D6 (PROVED equivalences).** Each of the following is equivalent to Δ₃ ≥ 6h:
+- (M) M₃ ≥ ((e−3)/3)·M₂ + 2h;
+- (m) m + 2h + (e/3)·M₂ ≤ C(e+2, 3) (an upper bound on the multiplicity; C(e+2,3) = |L≤3|);
+- (H) 2e(e−1) + (e−3)a₂ ≥ 3a₃ + 9b₃ + (9−e)b₂ (the T-Hilbert function (1, d, a₂, a₃, a₄, …) with its tail
+  h = Σ_{k≥4} a_k split into b₂ ≥ a₄ and b₃ ≤ Σ_{k≥5} a_k);
+- (J) |J₃| ≥ 3b₃ + (e/3 − 1)(|J₂| − b₂) + 2b₂, with J = T-nonstandard monomials (|J_k| = M_k + b_k).
+- Proof: Δ₃ = e(2e + 1 + n₂) − 3m with m = e + n₂ + n₃; substitute. ∎
+- (H) is not a Macaulay consequence. The O-sequences H_T = (1, d, N₂ − 1, N₃ − (K−4), 1, …, 1) and
+  H_U = (1, d, N₂, N₃) satisfy every numerical constraint above with Δ₃ = 0 and h = K − 3. The arithmetic of the
+  U-cover (τ + m ∈ 3A′ for every T-Apéry τ of T-length ≥ 4) has to enter.
+
+**Lemma MU-SPLIT (PROVED; any numerical semigroup T of multiplicity μ, any integer e).**
+    e·ℓ(T) − c(T) = (e − μ)·ℓ_μ + e·(ℓ(T) − ℓ_μ) + θ,   ℓ_μ := ⌈c(T)/μ⌉ = |μℕ ∩ [0, c(T))|,   θ := μℓ_μ − c(T) ∈ [0, μ).
+- Proof: μℕ ⊂ T, so the multiples of μ below c(T) are left elements. ∎
+
+**Identity W-μ (PROVED; Q5).** Write c_T = c(T), and
+- h_lo^μ := |μℕ ∩ (T∖U) ∩ [0, c_T)|, h_hi := |(T∖U) ∩ [c_T, ∞)|;
+- U_μ := |μℕ ∩ U ∩ [0, c_T)|, U′ := |(U ∖ μℕ) ∩ [0, c_T)|, u′ := |U ∩ [c_T, c_U)|.
+Then
+
+    W(S) = Δ₃ − μ·h_lo^μ − h_hi + (e−1)·u′ + (e−μ)·U_μ + e·U′ + θ.
+
+- Proof: by ID-T and J1, W(S) = Δ₃ − e·h + (e−1)δc + e·ℓ(T) − c(T). Apply MU-SPLIT with ℓ_μ = h_lo^μ + U_μ and
+  ℓ(T) − ℓ_μ = (h_lo − h_lo^μ) + U′. Then use δc = h_hi + u′ and h = h_lo + h_hi. ∎
+- The NE elements below c(T) that are not multiples of μ cancel exactly: each costs e and is paid e by T's left count.
+- Equivalently W(S) = Δ₃ + W_e(U) (ID-U), split along μ.
+
+**Corollary MU-RED (PROVED).** If μ := min A ≤ e, then W(S) ≥ Δ₃ − μ·h_lo^μ − h_hi. So Wilf holds for every
+S ∈ Q5 with μ ≤ e that satisfies
+
+    MU-LO:   Δ₃ ≥ μ·h_lo^μ + h_hi,
+
+and this needs no induction on multiplicity.
+- D6 implies MU-LO when μ ≤ 6.
+- For μ > e the term (e−μ)U_μ is negative; there the descent through W(T) (A1-eT, DESC) is still needed.
+
+**Conjecture MU-LO (CONJ; CHECKED e ≤ 8, E384).** On the Q5 residual with μ ≤ e:
+- max (μh_lo^μ + h_hi)/Δ₃ = 0.353, 0.349, 0.387, 0.366 at e = 5–8 (flat), against 0.353, 0.317, 0.394, 0.500 for
+  the coarser bonus (e−μ)ℓ(T) (E383g);
+- min (Δ₃ − μh_lo^μ − h_hi) = 22, 41, 57, 91.
+The extremal shape is the pure ray T∖U = {4μ, …, Kμ} with μ ≈ e (e = 8: m = 61, A = [8,21,37,44,47,49,50]).
+
+**Conjecture MURUN (CONJ; CHECKED e ≤ 8).** Δ₃ ≥ μ·R₀ + h, where R₀ := |μℕ ∩ (T∖U)|. It implies MU-LO, since
+h_lo^μ ≤ R₀ and h_hi ≤ h − h_lo^μ.
+- max (μR₀ + h)/Δ₃ = 0.706, 0.571, 0.638, 0.704 at e = 5–8, over all μ (μ ≤ e: 0.706, 0.571, 0.593, 0.535).
+
+**Conjecture WRAPM (CONJ; CHECKED e ≤ 7).** #{v ∈ L₃ : σ(v) ≥ σ_{class(v)} + m} ≥ h.
+- Equality occurs (e = 5: m = 20, A = [3,7,14,18]; e = 6: m = 34, A = [5,7,19,26,28]; e = 7: m = 28,
+  A = [3,8,11,16,19,24]).
+- The value version (distinct wrap values ≥ h) is FALSE (FAILED.md).
+- In the e = 7 equality case every wrapping cube has σ ≥ 2m, and the count is #{v ∈ L₃ : σ(v) ≥ 2m} − 1.
+
+**Lemma RUN-PAIR (PROVED).** Let s, s′ = s + μ be NE classes with τ_{s′} = τ_s + μ, and U-reps x, x′, so that
+σ(x′) = σ(x) + μ.
+- (a) If |x| = 2, then x + e_1 is either x′ or a missing level-3 monomial with value σ(x′).
+- (b) If |x| = |x′| = 3 and j ∈ supp x ∩ supp x′, then x − e_j + e_1 is a missing level-3 monomial with value
+  σ(x′ − e_j).
+- (c) If s is the last class of its run (τ_s + μ ∈ U) and |x| = 2, then x + e_1 is a missing level-3 monomial with
+  σ ≥ σ_{class} + m.
+- Proof:
+  - (a) Both monomials have value σ(x′), and D has one element per class.
+  - (b) x − e_j has level 2, and x′ − e_j ∈ D is the class rep of value σ(x′ − e_j). If x − e_j + e_1 = x′ − e_j, then
+    x′ = x + e_1 has level 4.
+  - (c) τ_s + μ ≥ σ_{class}, so σ(x) + μ = τ_s + μ + m ≥ σ_{class} + m. ∎
+- In case (b) with disjoint supports no collision is forced. Example: e = 8, m = 54, 33+33+41 → 18+44+52. There the
+  collision 7+33+41 = 29+52 comes from the level-2 relation 18+44 = 29+33.
