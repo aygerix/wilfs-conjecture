@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21 later still: typed height 3 (FAKE3(d), BASE-SURVIVES, H3-TYPED); full window realized and harmless; lead lemma UA3-NONNEG; see (A000000000000000))
+# STATE.md — handoff (2026-10-21 morning: WINDOW false; E3 = Wilf for U = 3A′+mℕ; Lemma DESCENT-T (descent below the multiplicity); see (A0000000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,26 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A0000000000000000) **NEWEST (2026-10-21 morning).**
+          - Proved (PROOFS "Residue descent"):
+            - ID-U (exact, every S, every down-set): W(S) = Δ′ + W_e(U), U = {σ_s} + mℕ.
+            - Lemma CH′-κ.
+            - Lemma DESCENT-T: (U=T)&(ALIGN) ⟹ W(S) ≥ Δ + W(T), with T = ⟨m, g_i mod m⟩ of multiplicity min a_i < m.
+            - q = 5, height ≤ 3, level 1: U = 3A′ + mℕ, and E3 = −W_e(U) exactly.
+          - Refuted: WINDOW (⟨19,32,33,35,37⟩); RD′; local level drops; Δ′ ≥ 0 under U = T (FAILED.md).
+          - Data:
+            - E3 ≤ 0 has 0 failures (E377, E378: exhaustive m ≤ 24, d-complete m ≤ 32, dense e ≤ 7 at all m).
+            - Mixed-level E ≤ 0 is false on ≈ 50% of the K-graded S.
+            - U = T on ≈ 98% of the q = 5 class.
+          - Live conjectures:
+            - RD-U (U = T ⟹ W(S) ≥ W(T)). It generalizes NoWrap.
+            - TRUNC₃ (the q = 5 residual U ≠ T).
+            - RD (every S; thin support).
+          - Next:
+            - (1) Try to prove RD-U by adapting the NoWrap/MaxCL column form to wrapped tiles with U = T.
+            - (2) Characterize U ≠ T at q = 5: some τ_s needs ≥ 4 summands, so min A < (2m + r)/4. Prove TRUNC₃ there
+              using the small residue.
+            - (3) Measure how much of the c > 4m regime (all levels) DESCENT-T plus known criteria for T settle.
       (A000000000000000) **NEWEST (2026-10-21, later still; checkpoint after steps 1 and 2).**
           - Proved: FAKE3(d) and |Δ| ≤ C(h+1,2); BASE-SURVIVES; H3-TYPED.
           - Height-3 barriers:

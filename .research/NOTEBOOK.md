@@ -4206,3 +4206,28 @@ Consequences:
   height ≥ 4 is RT2 = 7, UA2 = 9 at ⟨15,21,29,32⟩ (h = 4, c = 71, W = 29; RT3 = UA3 = W).
   - It was certified earlier (rtexact) and is the exact-MILP minimizer at m = 15, e = 4, r = 10 (h4_ua2.log).
   - The 12 reported in the checkpoint table is the m = 13 MILP minimum, not the overall minimum.
+
+### 2026-10-21 (morning): WINDOW falls; E3 is Wilf for U = 3A′ + mℕ; DESCENT-T crosses the multiplicity
+- **Refuted.** WINDOW (e|X| ≥ m + r + 1): ⟨19,32,33,35,37⟩ gives 25 < 26 (E378, independent DP check). E3 ≤ 0 survives
+  with margin 4. The degree-4 left elements Y are needed.
+- **Observed.**
+  - E3 ≤ 0 holds on every level-1, height ≤ 3, q = 5 S tested: exhaustive m ≤ 24, d-complete m ≤ 32 (E377), and the
+    dense regime e = 4–7 at all m (E378).
+  - Mixed-level E ≤ 0 fails on about half of the K-graded S (E377). It is not the right mixed-level quantity.
+- **Proved.**
+  - Using max-length factorizations (a down-set, so CH′ holds), U := {σ_s} + mℕ equals 3A′ + mℕ. At q = 5,
+    E3 = −(e·ℓ_U − c_U) exactly: the window inequality is Wilf's inequality for this truncated sumset.
+  - In general (every S, every down-set D): W(S) = Δ′ + W_e(U) (ID-U).
+  - When U equals the residue semigroup T = ⟨m, A⟩ and the maximum is aligned, W(S) = Δ + W(T) + (e − e_T)ℓ_T
+    (DESCENT-T). This is Lemma DESCENT with its blocker (a) removed. The multiplicity drops to min A, so it is an
+    induction step on multiplicity.
+  - T = ℕ is the old NoWrap corollary.
+- **Scope.**
+  - U = T on ≈ 98% of the q = 5 level-1 class (E378), and on ≈ 74% of all S at genus ≤ 24.
+  - (U=T)&(ALIGN) on ≈ 25% of all S (E379).
+- **Open.**
+  - RD-U: U = T ⟹ W(S) ≥ W(T), without ALIGN. 0 failures, but Δ′ < 0 occurs, so the (e − e_T)ℓ_T term is
+    needed. This would generalize NoWrap.
+  - The q = 5 residual U ≠ T (Conjecture TRUNC₃).
+  - Plain RD (every S) has 0 failures, but its informative support is only ≈ 1% of S (W(T) > 0).
+- **Refuted side claims.** RD′; local level drops (low and high); Δ′ ≥ 0 under U = T (FAILED.md).

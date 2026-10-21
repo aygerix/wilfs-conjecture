@@ -5743,3 +5743,125 @@ where H = Σ_s h_s and N(t) = #{s : σ_s > t}.
 - All-LOW generators (PROVED): if every generator residue is > r, then generators lie in the interval {r+1, …, m−1} of
   length ρ. So A ∪ 2A ∪ 3A covers at most 6ρ − 3 residues. At height ≤ 3 this forces ρ ≥ (m+2)/6, i.e. c ≤ 5m − (m+2)/6.
   This is the first case of "the credits cannot all be small": c ≈ 5m and all generators LOW are incompatible.
+
+### Residue descent: the identity ID-U, Lemma DESCENT-T, and the q = 5 window as Wilf for a truncated sumset (2026-10-21)
+**Setting (every numerical semigroup S ≠ ℕ).**
+- m = multiplicity; minimal generators m, g_1, …, g_d (e = d + 1), with g_i = k_i m + a_i and 1 ≤ a_i ≤ m − 1.
+  (a_i ≠ 0, since a minimal generator ≠ m is not a multiple of m.)
+- T := ⟨m, a_1, …, a_d⟩ is a numerical semigroup, because gcd(m, a) = gcd(m, g) = 1. It contains S, has multiplicity
+  ≤ min a_i < m, and e(T) ≤ e.
+- τ_s := min(T ∩ (s + mℤ)), so {τ_s} = Ap(T, m). Selmer's formulas hold for the Apéry set w.r.t. any nonzero
+  element, so c(T) = max τ − m + 1 (= 0 iff T = ℕ) and g(T) = Σ⌊τ_s/m⌋.
+- For a factorization n ∈ ℕ^d of w_s = min(S ∩ (s + mℤ)), put κ(n) = ⟨n, k⟩ (level-weighted length) and
+  σ(n) = ⟨n, a⟩ (integer residue sum). So w_s = m·κ(n) + σ(n).
+- D: for each s choose n(s) maximizing κ, ties broken by a fixed monomial order.
+  - D is a down-set: a sub-factorization of an Apéry factorization is an Apéry factorization, and a better one would
+    lift, by additivity of κ and of the order, to a better factorization of w_s.
+  - Put κ_s = κ(n(s)), σ_s = σ(n(s)), K* = max κ_s, and U := {σ_s} + mℕ.
+- U ⊆ T, since each σ_s is a sum of a_i's. U ∩ (s + mℤ) = σ_s + mℕ, so U is cofinite with c_U = max σ − m + 1,
+  g_U = Σ⌊σ_s/m⌋, and ℓ_U = |U ∩ [0, c_U)| = c_U − g_U.
+- Note: U + U ⊆ U ⟺ U = T. (⟸ is clear. ⟹: U is then a monoid containing m and A, so U ⊇ T ⊇ U.)
+
+**Identity ID-U (PROVED, exact; every S and every factorization down-set D).**
+    W(S) = Δ′ + W_e(U),   with   Δ′ := (e−1)(max w − max σ) − e·Σ_s κ_s   and   W_e(U) := e·ℓ_U − c_U.
+- Proof: g(S) = Σ⌊w_s/m⌋ = Σκ_s + g_U and c(S) = max w − m + 1. Substitute into W = (e−1)c − e·g. ∎
+- Column form (CH′ for S minus CH′ for U on the same D):
+    m·Δ′ = Σ_i Σ_{i-columns C} |C|·[(max w − max σ) − m·κ(top C)].
+- **Lemma CH′-κ (PROVED).** (d+1)·Σ_s κ_s ≤ d·m·K*, i.e. Δ := (e−1)mK* − eΣκ_s ≥ 0.
+  - Proof: the column identity Σ_i Σ_C |C|·f(top C) = (d+1)·Σ_{x∈D} f(x) holds for every linear f on a finite down-set.
+    Take f = κ and use κ(top) ≤ K*, Σ|C| = dm. ∎
+- Δ′ = Δ − (e−1)·Gap, where Gap := mK* + max σ − max w ≥ 0. (max w ≤ mK* + max σ termwise.)
+
+**Lemma DESCENT-T (PROVED on paper; CHECKED E379).** Suppose
+- (U=T): σ_s = τ_s for every s, and
+- (ALIGN): max w = m·K* + max τ.
+Then
+    W(S) = Δ + e·ℓ(T) − c(T) = Δ + W(T) + (e − e(T))·ℓ(T) ≥ W(T).
+- Proof: Gap = 0 and U = T in ID-U, so W_e(U) = eℓ_T − c_T. Use e ≥ e(T) and ℓ_T ≥ 0. ∎
+- Relation to Lemma DESCENT (above): this is DESCENT with t = 1 along the level-weighted length κ, pushed past the
+  multiplicity.
+  - DESCENT's hypothesis (a) w′_s > m is dropped. It was recorded as "the usual blocker (a level-1 generator)".
+  - DESCENT's Kunz-validity (b) for w′ = σ becomes exactly U = T.
+  - Gradedness is replaced by the max-κ down-set.
+  - The new feature is that the multiplicity strictly drops: mult(T) ≤ min a_i < m.
+- **Variant (PROVED, from ID-U alone).** If (U=T) and Δ′ ≥ 0, then W(S) = Δ′ + W_e(T) ≥ Δ′ + W(T) ≥ W(T).
+  - (ALIGN) is a structural sufficient condition for Δ′ ≥ 0 (Δ′ = Δ there). Δ′ ≥ 0 itself is checkable.
+  - Without (ALIGN), Δ′ ≥ 0 holds on all but 7 of the 208,532 U = T semigroups at genus 24 (E379).
+- **Corollary (induction).** If Wilf holds for all numerical semigroups of multiplicity < m, it holds for every S of
+  multiplicity m with (U=T) and Δ′ ≥ 0. So a minimal-multiplicity counterexample has U ≠ T, or U = T with Δ′ < 0.
+  - Coverage (E379, genus 24, all 282,828 S): 208,529 S (≈ 74%).
+    - 153,229 of them have T = ℕ (the NoWrap case).
+    - 55,300 (≈ 20% of all S) have T ≠ ℕ. This is the new part.
+  - Genus 36 (all 109,032,500 S): 70,549,557 S (64.7%).
+    - 49,816,656 of them have T = ℕ.
+    - 20,732,901 (19.0%) have T ≠ ℕ.
+    - The share falls slowly with genus (71.8% at genus 26, 68.6% at 30, 66.5% at 33).
+- **Corollary (unconditional).** (U=T) and (ALIGN) together with any known Wilf criterion for T imply Wilf for S.
+  Examples of such criteria: mult(T) ≤ 19 (LITERATURE #26), 3e(T) ≥ mult(T) (#21), c(T) ≤ 4·mult(T)
+  (depth four, kernel-checked).
+  - Here mult(T) = least element of ⟨A⟩ ∪ {m} = min A, and c(T) = c(S) − mK*. So the class contains S of every
+    multiplicity, e.g. any (U=T)&(ALIGN) S with a generator ≡ a (mod m), a ≤ 19.
+- T = ℕ (some a_i = 1) is the NoWrap corollary (2026-10-19, Lean, lean/Wilf/NoWrap.lean), which does not even need
+  (ALIGN). So the new content is T ≠ ℕ.
+- Scope (E379, exhaustive genus ≤ 36): (U=T) holds on ≈ 74% of all S and (U=T)&(ALIGN) on ≈ 25%, with T ≠ ℕ in about
+  half of the latter. The identity was asserted on every one.
+
+**Level-1, height ≤ 3 (Problem 1.8 at height ≤ 3; PROVED).** Let all g_i ∈ (m, 2m) and let every Apéry element have all
+factorizations of length ≤ 3. Then:
+- (i) κ = length, and σ_s = min(3A′ ∩ (s + mℤ)), with A′ = A ∪ {0}. Hence U = 3A′ + mℕ.
+  - Proof: let τ ∈ jA (j ≤ 3), τ ≡ s, τ < σ_s. Then jm + τ = w_s + k′m with k′ ≥ 0, and j > h_s + k′.
+    - k′ = 0 gives a factorization of w_s longer than the maximum.
+    - k′ ≥ 1 forces j = 3, h_s = 1, k′ = 1. Then τ = a_s − m < 0. ∎
+- (ii) If q = 5, then Gap = 0 and K* = 3.
+  - w_r = 5m + r forces h_r = 3 and σ_r = 2m + r = max σ.
+  - Hence W(S) = Δ_3 + W_e(U), with c_U = m + r + 1 and ℓ_U = |X| + |Y|. So **E3 = −W_e(U)** exactly: the advisor's E3 ≤ 0 is
+    Wilf's inequality for the truncated sumset U = 3A′ + mℕ, with e = |A′|.
+  - The earlier tests used min-length or chain factorizations. Their E3 is ≥ the max-length E3, because E3 = Δ_3 − W
+    and Δ_3 decreases as H increases. So those tests also check this version.
+- (iii) If moreover U = T: W(S) ≥ Δ_3 + W(T) ≥ W(T), and c(T) = m + r + 1. This holds on 98–100% of the
+  q = 5, height ≤ 3, level-1 S at d = 3, 4 (E378).
+  - Wilf for S then follows from any known criterion for T, e.g. min A ≤ 19, or m + r + 1 ≤ 4·min A, or 3e(T) ≥ min A.
+- (iii′) **Unconditional corollary (PROVED).** Let S be level-1, height ≤ 3, q = 5, with U = T, and suppose min A ≤ 19 or
+  min A ≥ (m + r + 1)/4. Then S satisfies Wilf.
+  - Proof: T has multiplicity min A and c(T) = m + r + 1.
+    - If min A ≤ 19: Wilf is known for multiplicity ≤ 19.
+      - EXTERNAL COMPUTATIONAL DEPENDENCY, not verified by us: BGOW m ≤ 18 (#27, read) and Kliem–Stump m = 19 (#26,
+        secondary).
+      - The c ≤ 4·mult branch below is kernel-checked.
+    - Otherwise c(T) ≤ 4·mult(T), and Wilf holds by the depth-four theorem (kernel-checked).
+    - So W(T) ≥ 0, and (iii) gives W(S) ≥ 0. ∎
+  - In particular, every U = T member with m ≤ 39 is settled, since min A ≥ 20 implies min A ≥ m/2 > (m + r + 1)/4.
+  - Combined with c ≤ 4m (q ≤ 4), Problem 1.8 at height ≤ 3 is now open only on:
+    - the residual U ≠ T;
+    - U = T with 19 < min A < (m + r + 1)/4, which forces m ≥ 40.
+  - The E3-extremal family belongs here: every generator residue exceeds m/2.
+    - Minimum −E3 = e(e+1) − (m + r + 1) = 2, 4, 8, 14 for e = 4–7, at ⟨13,22,23,25⟩, ⟨19,32,33,35,37⟩,
+      ⟨25,42,43,45,47,49⟩, ⟨31,52,53,54,57,60,61⟩ (E378).
+- (iv) Residual: U ≠ T. Then some T-Apéry element needs ≥ 4 summands, so 4·min A ≤ max τ < 2m + r.
+  - Observed: every U ≠ T example has a small residue and large E3 slack (≈ 30 at m = 14–20).
+  - E3 there is Conjecture TRUNC₃ below.
+
+**Conjecture TRUNC (CONJ; CHECKED E380).** Let A ⊆ [1, m−1], A′ = A ∪ {0}, and k ≥ the least k with kA′ ≡ ℤ/m. Then
+U_k = kA′ + mℕ satisfies (|A| + 1)·ℓ(U_k) ≥ c(U_k).
+- k → ∞ gives (|A|+1)ℓ(T) ≥ c(T), which Wilf for T implies (and which is weaker than Wilf). So TRUNC is a family of
+  truncated analogues, not a reformulation of Wilf.
+- TRUNC₃ for the q = 5, height ≤ 3 residual (iv) would finish Problem 1.8 at height ≤ 3, given Wilf below multiplicity m.
+- Checked: all A with |A| = 2, 3, 4, m ≤ 40 (|A| = 2, 3: m ≤ 30), k = h … h+3. 0 failures; the minimum slack 0 is
+  attained only where U_k = ℕ.
+
+**Conjecture RD (CONJ; CHECKED E379, E380).** W(S) ≥ W(⟨m, g_1 mod m, …, g_d mod m⟩) for every S. 0 failures on every S of
+genus ≤ 36 (≈ 2.8·10⁸ S).
+- By induction on multiplicity, RD implies Wilf. So it is at least as strong as Wilf. The evidence is thin, because
+  W(T) > 0 for only ≈ 1% of S.
+- RD′ (the stronger W(S) ≥ eℓ_T − c_T) is FALSE: ⟨7,11,13,23⟩ has W = 4, eℓ_T − c_T = 6.
+- Single-generator level drops are not monotone (FALSE): low drops of ⟨m, m+1, …, 2m−1⟩, and high drops such as
+  ⟨15,18,…,29,31,32⟩ with 31 → 16 (W = 12 → 24).
+- Δ′ ≥ 0 under U = T is FALSE (7 cases at genus ≤ 24, min −6), but RD held on every one, through the (e − e_T)ℓ_T term.
+- On the residual U ≠ T, neither half of W(S) = Δ′ + W_e(U) dominates W(T) on its own.
+  - Δ′ < 0 on ≈ 2% of it.
+  - MONO* W_e(U) ≥ W(T) first fails at ⟨8,14,23,29⟩ (genus 26).
+  - RD survives, each half paying for the other's deficit. A proof of RD must couple them.
+- At q = 5, height ≤ 3, level 1, the residual needs only MONO* (Δ_3 ≥ 0 there). MONO*-Q5 is FALSE.
+  - At e = 7: ⟨34,42,53,54,56,57,67⟩ has W_e(U) = 74 < W(T) = 81 (FAILED.md). It held at e = 5, 6.
+  - E3 ≤ 0 itself survives there and on all 10,663 residual S at e = 7 (E378). So the residual must be done by
+    TRUNC₃ directly.

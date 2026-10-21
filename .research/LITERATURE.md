@@ -971,3 +971,17 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   - No hit has the exact split identity, Theorem CERT, FLAT-U or H3-HALL. FLAT-U (Apéry height ≤ 2 ⇒ Wilf, via the
     pair Kunz relations and the ρ-cell wrap window) re-proves our LEAN corollary of Flat-MaxCL. Its novelty against
     Eliahou-type and Kunz-face arguments is UNVERIFIED; the Kunz-face method of BGOW is computational and per face.
+
+### Search 2026-10-21: residue reduction T = ⟨m, g_i mod m⟩, descent below the multiplicity, truncated sumsets
+- Queries: "Wilf conjecture numerical semigroup generators reduced modulo multiplicity"; "Wilf shifted family
+  ⟨n, n+r_1, …⟩"; "Wilf induction on multiplicity, smaller multiplicity, oversemigroup"; site:conjectures.io OR
+  site:preprints.org "Wilf 2026"; GitHub `gh search repos "wilf conjecture"` (only our own private repo).
+- Found nothing that states W(S) ≥ W(⟨m, g_i mod m⟩), Lemma DESCENT-T, ID-U, or a Wilf-type inequality for truncated
+  sumsets kA′ + mℕ.
+- Results returned, all already listed:
+  - Sammartano 1111.1863, Dhayni 1610.08726, Spirito 1710.09245, Eliahou 1909.03699, BGOW 1903.04342.
+  - DKM 2501.04417 (Problem 1.8 still open in v3).
+  - Delgado–Kumar 2512.23891.
+  - Yang–Zhang Preprints 202604.0551 (item 46).
+- Closest internal relatives: NoWrap (the T = ℕ case, ours, 2026-10-19), Lemma DESCENT (ours, 2026-10-21), Zhai's CH′.
+- Status: novelty plausible but unconfirmed. Before any public claim, ask an expert (Delgado or Eliahou).
