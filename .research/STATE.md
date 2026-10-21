@@ -63,8 +63,8 @@ Lines, in order of cost to decide:
             - ID-T: W(S) = Δ′_T + W_e(T), Δ′_T = e·Δℓ − Δc;
             - families F_T (ratio → 1, U = T), F_≠ (→ 4/3, U ≠ T, c ≤ m), F_≠G (→ 5/4, U ≠ T, c ≤ m; W_e(U) = W_e(T) − 1).
           - Data (E381):
-            - TRUNC₃ unrestricted: 0 failures, exhaustive |A| = 4, 5, 6 to the covering limit (m ≤ 25, 40, 57); |A| = 7
-              running (trunc3n R, m ≤ 120).
+            - TRUNC₃ unrestricted: 0 failures, exhaustive |A| = 4, 5, 6, 7 to the covering limit (m ≤ 25, 40, 57, 81;
+              253.6M covering A at |A| = 7).
             - Residual regime (U ≠ T, c > m): min ratio ≈ 1.65 for |A| ≤ 6; extremizers have T∖U = {4μ}.
             - PAY2: 0 failures on every residual S at e = 5, 6, 7 (min 35, 29, 55).
           - Refuted (FAILED.md): TOP-CR, TOP-K1, the observation "open-regime ratio ≥ 1.44".
@@ -78,8 +78,7 @@ Lines, in order of cost to decide:
                top level < 3 (worth |C|·(3 − κ(top)) in Δ₃), or to δc. Start with the extremal shape T∖U = {4μ}.
             2. Gate PAY2 at e = 8: port the pruned DFS of trunc3n into q5d4 (the residual needs 3A′ covering, so the
                same pruning applies); also an annealer on Δ′_T.
-            3. Finish E381(h) (|A| = 7 exhaustive) and record it.
-            4. C2 (mixed levels, E380): 0 failures m = 10–17; secondary, keep queued.
+            3. C2 (mixed levels, E380): 0 failures m = 10–17; secondary, keep queued.
       (A0000000000000000) **NEWEST (2026-10-21 morning).**
           - Proved (PROOFS "Residue descent"):
             - ID-U (exact, every S, every down-set): W(S) = Δ′ + W_e(U), U = {σ_s} + mℕ.

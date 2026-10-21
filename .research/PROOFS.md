@@ -5954,8 +5954,9 @@ U_k = T, and e·ℓ(U_k) ≥ e(T)·ℓ(T) ≥ c(T) = c(U_k).
 
 **Status of TRUNC₃ (unrestricted; CHECKED, E381).**
 - 0 failures, sharp: equality at A = {m−d, …, m−1}.
-  - Exhaustive for |A| = 4, 5, 6, 7, up to the covering limit. A covering A exists only for m ≤ 25, 40, 57 (|A| = 4, 5,
-    6), and |A| = 7: see E381.
+  - Exhaustive for |A| = 4, 5, 6, 7, up to the covering limit. A covering A exists only for m ≤ 25, 40, 57, 81.
+  - At |A| = 7 the U ≠ T minimum is 1.5, at A = {7,19,32,…,36}, m = 37 (c = 32 ≤ m). This is below F_≠, so F_≠ is not the
+    U ≠ T minimizer from |A| = 7 on.
   - Hill climbing restricted to U₃ ≠ T for |A| = 8 and 10 (m ≤ 200).
 - Near-equality in the proved regime c ≤ 2μ: A = {μ, 2μ−1} ∪ [2μ+1, m−1] with m = 3μ − 2, c = 2μ − 1, ℓ = 2.
 - Minimum ratio e·ℓ/c by t = ⌈c/μ⌉ (|A| = 6, exhaustive): 1.0, 1.08, 1.17, 1.22, 1.35, 1.40, 1.53, 1.75, …
