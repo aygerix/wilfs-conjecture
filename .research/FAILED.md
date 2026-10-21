@@ -79,6 +79,7 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | Z12 without any window covering | m = 47, B = {10,12,13}, h = 20, slack −2 (E335) |
 | Small-part inequality (core regime) | STATE 0f |
 | UCG (every S, c > 4m): Σ_{y∈Y}(\|y\| − 1) ≤ R*(k − q) + P̃ with R* = max(R_gen, min(r, 1)); it drops G, ρR*/m and the θ-weights of Λ from the ray identity | two-generated S with r = 0 and W = 0: ⟨8,9⟩ (c = 56, slack −6), ⟨9,10⟩ (c = 72, −7), ⟨7,8⟩ (−5); also ⟨7,9,24⟩₃₀ (W = 6, −1/7) and the tile ⟨16,27,28,31⟩₇₈ (r = 0, −23/8). Annealers found these in minutes (E345). Who pays: the ceiling gains G pay all of Λ in the two-generated case |
+| SPLIT-CERT (2026-10-20: every S with e ≥ 3 has a split certificate — Theorem CERT with μ ≥ 0 and worst-case τ only, no level information) | ⟨37,75,78,80,88,89⟩ (residues {1,4,6,14,15}, a postage-stamp B₃ basis mod 37; c = 222 = 6m, e = 6, W = 102): best Γ = −1, also with ternary splits; likewise ⟨37,112,115,117,162,163⟩ and the {1,6,9,14,15} mod 40 family (E360). Structural: at height ≤ 3 every split has ≥ k − 1 unit parts, so Γ ≤ e² − m; certificates need m ≤ e² + ρ/q. Who pays: the unit levels μ_b (UNIT-CERT holds on all of them) |
 
 ## Pattern E — reductions that are only conditional
 | Statement | Counterexample |

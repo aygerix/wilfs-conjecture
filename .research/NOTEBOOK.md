@@ -4022,3 +4022,70 @@ Consequences:
 - **Min-W model caveat.** minw_fix.py requires unique factorizations (strict domination), so it excludes equal-lift
   semigroups whose cover collisions become ties. Its minima (flat 669, height-3 722 at d = 11) are minima of that
   slice only.
+
+### 2026-10-20 (night, continued): CASEB-WINDOW survives a Gurobi minimization; the unit truncation U ≥ 0 holds on every case-B S
+- **CASEB-WINDOW minimized (minalow_fix.py, E357).** Fixed δ (Haanpää's ℤ/63 cover and 6 affine images); lifts ≤ 6;
+  case B, ≥ 1 cubic, c > 4m; objective (d+1)|A_<| − μ. Optimal minima 214–287 (|A_<| = 18–24, μ ≤ 2). With lifts ≤ 3
+  the model is infeasible: no height-3 case-B S with c > 4m and generators < 4m for this δ. Every minimizer has exactly two
+  "low" generators (lifts 3–4) and nine at lift 6; the cube is 3·(low generator), and the A_< cells are the pairs through
+  the low generators.
+- **The L7 counterexample is in κ-case A.** κ₀ = 8 ≤ Dep = 42, so W ≥ Dep − κ₀ + N > 0 already from SUPP-WILF; case B
+  (Σsupp > Dep) overstates the residual. In the 157 case-B S below, κ₀ − Dep is mostly negative (−27…+1).
+- **Small facts (PROVED).**
+  - Level form: μ_x = q − λ(x) with λ(x) = K(x) + ⌊(x·δ + ρ)/m⌋, K(x) = Σ x_b k_b (k_b = ⌊g_b/m⌋), c = qm − ρ.
+    Hence μ_x ≥ μ_y + K(y − x) for x ≤ y in D (lift monotonicity): non-maximal tops below a cell reached by lifts ≥ k
+    carry μ ≥ k.
+  - SUPP-WILF+ with μ ≥ 1 is the same as W ≥ N − κ₀ + d·s_top − Σ_{y∈A_≥}|y|, s_top = #(S ∩ [c − m, c)) = m − |A_≥|
+    (Σ_{x: w(x)<c} om(x) = dm − Σ_{A_≥}(|y| + d)). So its residual is "top-heavy" S.
+  - Dep = 0 ⟺ D = Δ_h for some h (a down-set all of whose column tops are maximal is a full simplex: induction on layers,
+    the layer graph of Δ_k is connected).
+  - Continuous Wilf: for a finite down-set D and s ≥ 0, mean_D(x·s) ≤ (d/(d+1))·max_D(x·s). Proof: Σ_{(x,b)} t_b(x)·s =
+    (d+1)Σ_D x·s (column identity) and each t_b(x)·s ≤ max. This is the leading-order content of CH′; case B is its
+    near-equality (simplex-like D), where the discrete corrections decide.
+- **Unit truncation (PROVED, trivial).** The classes of 0 and of the minimal generators are distinct, so
+  ℓ ≥ q + Σ_b μ_b with μ_b = ⌈(c − g_b)/m⌉⁺, and W ≥ U := e·(q + Σ_b μ_b) − c.
+  - **HALF (PROVED).** If 2g_b ≤ c + m − 1 for every generator b ≠ m, then μ_b ≥ ⌊q/2⌋ (≥ (q+1)/2 if q odd and ρ = 0),
+    hence W ≥ q·(C(e+1,2) − m) + ρ − [q odd, ρ ≥ 1]·C(e,2). Wilf follows if moreover m ≤ C(e+1,2) − [q odd]C(e,2)/q.
+    Compare Spirito 1710.09245 (LITERATURE #24): there all generators are LARGE (n_1 > (c+m)/3) and m ≤ (8/25)e² + ….
+  - Sharper pair form: for a pair cell p = e_a + e_b ∈ D, μ_a + μ_b ≥ q + μ_p − [ρ + r(p) ≥ m] with r = ⟨w − c⟩. At most
+    ρ cells have ρ + r ≥ m (the Flat-MaxCL wrap window). With all loops present this gives, for flat tiles,
+    U ≥ (q − 1)·k2 + Σ_P μ_p ≥ 0 (k2 = missing pairs): a units-only proof of Wilf for flat tiles with every loop.
+  - Leading order: with v_b = μ_b/q, the Apéry constraints give y·v ≥ |y| − 1 (y ∈ D), so U ≳ q·(e(1 + τ*_D) − m), where
+    τ*_D = min{Σ v_b : y·v ≥ |y| − 1 ∀y ∈ D, v ≥ 0}. For D ⊇ all loops τ* ≥ d/2, so e(1 + τ*) ≥ C(e+1,2); a cube 3e_a
+    raises τ* by 1/6 (v_a ≥ 2/3) and costs one residue, so cubes HELP U when e ≥ 7. U fails at leading order only for
+    cubic-dense tiles (a cubed sub-simplex on k generators with (k+1)(k+2) > e).
+- **CONJ CASEB-U:** if the lex tile of S is in case B, then U ≥ 0. With SUPP-WILF (case A) it gives Wilf without
+  Flat-MaxCL. Evidence (trunc.py, E358): all 157 case-B S in our collections (hset, hsmall, fam63, smallK, the CASEB-WINDOW
+  and min-W minimizers; d = 4, 5, 11; heights 2 and 3; up to 3 generators above (c+m)/2) have U ≥ 0, min U = 4
+  (⟨13,14,16,18,19⟩, U = W). On 1,500 random open-regime S (m ≤ 70) all are in case A; U ≥ 0 on 39% of them, so U is a
+  complement to case A, not a replacement. Threat: cubic-dense case-B tiles (near-perfect 3-covers) at large d, where U
+  is below the leading order; there the truncation to height ≤ 2 (W2) is the analogue (REG-BND / CENTROID).
+
+### 2026-10-20 (night, latest): split certificates; FLAT-U is a ten-line proof of Wilf for Apéry height ≤ 2
+- **Mechanism.** The exact Kunz relation μ_x + μ_y = q + μ_{x+y} + τ (τ ∈ {−1,0,1}, τ = −1 only on the ρ cells with
+  r ≥ m − ρ) turns any weighting of splits of tile cells into the exact identity
+  W = qΓ + ρ + Σπτ + Σ_x (e + β_x − L_x)μ_x (PROOFS "Split certificates").
+  - A split certificate (loads L_x ≤ e + β_x, qΓ + ρ − worst-case losses ≥ 0) proves Wilf for that S.
+  - The flat case needs only "split every pair once": W = (e+1)Σ_P μ_p + Σ_b(e − deg b)μ_b + (ρ + Σ_P τ_p) ≥ 0.
+  - Height 3 works whenever the cubics can be charged to units with free pair slots (H3-HALL, Hall's condition).
+- **Experiment (E360).** Certificates without level information exist for every random S with e ≥ 3 (1,900 S), for all
+  167 case-B S, and for every Tile-CL / W₀ < 0 example on record.
+  - Tight case: ⟨16,17,20,21⟩ (T = 0).
+  - They FAIL for near-B₃ postage-stamp tiles with m > e², e.g. ⟨37,75,78,80,88,89⟩ (c = 6m). Every split there needs a
+    unit part, so Γ ≤ e² − m (PROVED).
+  - Unit-aware certificates (exact generator levels μ_b) certify all of these. The bound often equals W.
+- **Reading.** The obstruction to a level-free proof is exactly the simplex-dense regime: height-3 tiles with more cells
+  than e², all cubics charged to saturated units. This is where CF-WILF / REG-BND use the levels of nearly equal
+  generators.
+  - Two complementary mechanisms remain:
+    - (a) a constructive certificate (flow / Hall rebalancing) when m ≲ e²;
+    - (b) centroid averaging with unit levels when the tile is simplex-dense.
+  - A universal proof would need a structure theorem at the interface: "no level-free certificate ⇒ simplex-dense with
+    nearly equal unit levels".
+- **Next questions.**
+  1. Is there an explicit rebalancing rule that gives a certificate for every height-3 tile with m ≤ e² − O(e)?
+     The tests suggest the LP optimum is always ≥ 0 there. Candidate: under-split mixed pairs at saturated units,
+     over-split their loops, and over-split cubics outside W_ρ.
+  2. For simplex-dense tiles: prove UNIT-CERT from CENTROID (X(M) ≥ 0) plus the wrap window, replacing h-regularity.
+  3. Height ≥ 4: cells of height ≥ 4 split into parts of height ≥ 2, whose capacity is e + β. Here the unit bottleneck
+     disappears, so the obstruction should be confined to height-3 layers. Test this.

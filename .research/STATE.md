@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-20 night: L7 REFUTED; SUPP-WILF+ PROVED (W ≥ Dep − Σsupp + (d+1)|A_<|); open link = CASEB-WINDOW (case B + height ≥ 3 ⇒ (d+1)|A_<| ≥ μ); see (A0000000000))
+# STATE.md — handoff (2026-10-20 night, latest: split-certificate identity PROVED; FLAT-U = short proof of L5; level-free certificates fail only for simplex-dense height-3 tiles (m > e²); see (A00000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,43 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000000) **NEWEST (2026-10-20 night, latest; resumed under the goal "continue proving Wilf; Gurobi for larger models").**
+          **(a) Proved (PROOFS "Split certificates"; NOTEBOOK 2026-10-20 night, latest).**
+          - Lemma K: the exact Kunz relation Σμ_parts = (k−1)q + μ_z + τ. For binary splits τ ∈ {−1,0,1}, and τ = −1 only
+            on the ρ cells with r ≥ m − ρ.
+          - Identity SPLIT: W = qΓ + ρ + Σπτ + Σ(e + β − L)μ, exact for any split weights.
+          - Theorem CERT: a certificate gives Wilf.
+          - FLAT-U: a ten-line proof of chain link L5 (Apéry height ≤ 2 ⇒ Wilf), identity exact on 824 S.
+          - H3-HALL: height ≤ 3 with cubics charged to units with free pair slots ⇒ Wilf.
+          - Obstruction: at height ≤ 3, certificates need m ≤ e² + ρ/q.
+          - Also proved (NOTEBOOK): the unit truncation W ≥ U = e(q + Σ_b⌈(c−g_b)/m⌉⁺) − c; HALF; lift monotonicity
+            μ_x ≥ μ_y + K(y−x); Dep = 0 ⟺ D = Δ_h; continuous Wilf (mean ≤ d/(d+1)·max on any down-set).
+          **(b) Refuted.** SPLIT-CERT (level-free certificates for every S with e ≥ 3): ⟨37,75,78,80,88,89⟩ (FAILED
+            Pattern C).
+          **(c) Open, with evidence.**
+          - UNIT-CERT (certificates using exact generator levels): every tested S with e ≥ 3 (E360).
+          - CASEB-U (case B ⇒ U ≥ 0): 157/157 S. Gurobi minima are 183–238 over 7 δ, and the lift-free leading-order
+            margin is ≥ 15 at ℤ/63 (E358, E359, E361).
+          - CASEB-WINDOW: Gurobi minima of the slack are 214–287 over 7 δ (E357).
+          - Observation: the L7 counterexample has κ₀ = 8 ≤ Dep = 42, so it is in κ-case A. The residual of SUPP-WILF
+            proper is κ₀ > Dep + N.
+          **(d) Reproduce.** fejer ~/wilf/p35 (scripts in src/scratch/p35): minalow_fix, trunc, truncrnd, minU_fix, tau_fix,
+            flatu, splitlp (-unit, -k3), splitrnd, splitps, splitmix. No jobs of mine are running.
+          **(e) Three active approaches.**
+            1. Split certificates.
+               - Construct certificates by an explicit flow or rebalancing rule for height-3 tiles with m ≲ e². Candidate:
+                 under-split mixed pairs at saturated units, over-split their loops, and over-split cubics outside W_ρ.
+               - For simplex-dense tiles, prove UNIT-CERT from CENTROID plus the wrap window, without h-regularity.
+               - Then height ≥ 4.
+            2. Case B via the unit truncation (CASEB-U). The leading order is e(1 + τ*_D) ≥ m. The threat is cubic-dense
+               case B.
+            3. Lean: FLAT-U is very short; formalize it first (codex from 2026-10-25), then SUPP-WILF and Theorem CERT.
+          **(f) First task next session.** Write the height-3 rebalancing certificate rigorously.
+            - The statement to aim at: every height-≤3 factorization tile with m ≤ e² − (something) has a level-free
+              certificate.
+            - Test the candidate rule against splitlp's LP optimum on random height-3 tiles.
+            - Then try UNIT-CERT on the simplex-dense family (postage-stamp residues mod 37 and 40) via centroid
+              averaging.
       (A0000000000) **NEWEST (2026-10-20 night, later).**
           **(a) Proved.**
           - SUPP-WILF (case A ⇒ Wilf). L4′ (any minimal generator). L6 (height-2 margin identity).

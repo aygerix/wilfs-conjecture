@@ -937,3 +937,36 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   - None gives maximal 3-fold sum covers of Z_n or tilings by simplex-shaped down-sets. The semicross {0, e_i, …, ke_i}
     is a different shape (arms, not a simplex).
   - So no external bound for scenario (b) (dense height-3 tiles) is known to us.
+
+### 2026-10-20 (night): unit truncation, FLAT-U and split certificates — literature check
+- Searches (web, standard and extended):
+  - "Wilf conjecture" with e(e+1)/2 and embedding dimension;
+  - generators below half the Frobenius number;
+  - recent arXiv results 2025–2026;
+  - Apéry sets of sums of two generators with reduction number 2;
+  - Kunz-coordinate LP certificates.
+- Hits:
+  - [Sammartano 1111.1863](https://arxiv.org/pdf/1111.1863) (2e ≥ m, m ≤ 8).
+  - [Spirito 1710.09245](https://arxiv.org/pdf/1710.09245), #24. Its hypothesis is the opposite of HALF: all generators
+    LARGE, n_1 > (c+m)/3, with m ≤ (8/25)e² + ….
+  - [Dhayni 1610.08726](https://arxiv.org/pdf/1610.08726): Apéry criteria with sums w_1 + w_α.
+  - [Bruns–García-Sánchez–O'Neill–Wilburne 1903.04342](https://arxiv.org/pdf/1903.04342) (Kunz polyhedron, faces,
+    m ≤ 18) and the m = 19 follow-up ([Springer s00454-021-00344-x](https://link.springer.com/article/10.1007/s00454-021-00344-x)).
+  - [Delgado–Eliahou–Fromentin 2310.07742](https://arxiv.org/abs/2310.07742) (g ≤ 100).
+  - [Marashdeh 2608.12531](https://arxiv.org/abs/2608.12531) (type bound and a reduction).
+  - **New to us: Yang–Zhang, "Wilf's Conjecture from the First Kunz Layer", Preprints.org 202604.0551 (8 Apr 2026, not
+    peer-reviewed; [abstract](https://prereview.org/preprints/doi-10.20944-preprints202604.0551.v1); full text returned
+    HTTP 403, NOT READ).**
+    - Abstract: with η = |S ∩ (m, 2m)| and c = qm − ρ, |L| ≥ q + (q − 2)η + η_ρ, where η_ρ = |S ∩ (m, 2m − ρ)|.
+    - Hence Wilf if e(η + 2) ≥ 2m, or (η + 1)(η + 2) ≥ 2m.
+    - If m | c: e(3η + 4) ≥ 4m.
+    - It also gives a cumulative-layer formula and interval-generated families.
+- Comparison with our statements:
+  - Yang–Zhang truncate to the classes with Apéry element in (m, 2m). Our unit truncation U truncates to the classes of
+    the minimal generators, of any size.
+  - HALF (all generators ≤ (c+m−1)/2 ⇒ W ≥ q(C(e+1,2) − m) − …) is in the same spirit. We have not checked it against
+    their full text.
+  - No hit has the exact split identity, Theorem CERT, FLAT-U or H3-HALL. FLAT-U (Apéry height ≤ 2 ⇒ Wilf, via the
+    pair Kunz relations and the ρ-cell wrap window) re-proves our LEAN corollary of Flat-MaxCL. Its novelty against
+    Eliahou-type and Kunz-face arguments is UNVERIFIED; the Kunz-face method of BGOW is computational and per face.
+  - Status per our rule: Yang–Zhang is judged only by its abstract until read.

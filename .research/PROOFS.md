@@ -5213,3 +5213,83 @@ w(x). Let om(x) = Σ_{b: x+e_b∉D}(x_b + 1), the total length of the columns to
     < c + m forces G < 3m, i.e. lifts ≤ 3.
   - In that finite-lift regime the flat formula W = 2k·k_miss + d(ρ* + 1) − (d+1)κ̃ (equal lifts, NOTEBOOK) controls W.
   - Making this rigorous is the next proof task.
+
+## Split certificates: the exact identity SPLIT, Theorem CERT, FLAT-U (new proof of L5), H3-HALL, and the unit-capacity obstruction — PROVED 2026-10-20 (paper; checks E360)
+**Setting.**
+- S has multiplicity m and minimal generators g_1, …, g_d other than m; e = d + 1; c = qm − ρ with q = ⌈c/m⌉ and
+  0 ≤ ρ < m.
+- D is any factorization tile: a down-set with x ↦ w(x) = x·g a bijection onto Ap(S, m).
+- μ_x = ⌈(c − w(x))/m⌉⁺ and r_x = ⟨w(x) − c⟩. Then w(x) = c + r_x − mμ_x, ℓ = Σ_D μ_x, μ_0 = q and r_0 = ρ.
+- r is a bijection D → [0, m). Write W_ρ = {z ∈ D : r_z ≥ m − ρ}; it has exactly ρ cells.
+
+**Lemma K (exact Kunz relation).** Let z = x_1 + … + x_k with every x_i ∈ D ∖ {0} and k ≥ 2. Then
+    Σ_i μ_{x_i} = (k − 1)q + μ_z + τ,   τ = (Σ_i r_{x_i} − r_z − (k−1)ρ)/m ∈ ℤ,   τ ≥ −⌊(r_z + (k−1)ρ)/m⌋.
+For k = 2: τ ∈ {−1, 0, 1}, and τ = −1 forces z ∈ W_ρ.
+- Proof: substitute w = c + r − mμ into w(z) = Σ w(x_i). The bounds follow from 0 ≤ r, ρ ≤ m − 1. ∎
+
+**Identity SPLIT (exact, any weights).** Take a finite family of splits s, each s = (z_s; x_{s,1}, …, x_{s,k_s}) as in Lemma K,
+and weights π_s ≥ 0. Put
+- L_x = Σ_s π_s·#{i : x_{s,i} = x} (load);
+- β_z = Σ_{s : z_s = z} π_s;
+- Γ = Σ_s (k_s − 1)π_s − (m − e).
+Then
+    W = qΓ + ρ + Σ_s π_s τ_s + Σ_{x ∈ D∖{0}} (e + β_x − L_x)·μ_x.
+- Proof: W = eℓ − c = e(q + Σ_{x≠0} μ_x) − qm + ρ. By Lemma K,
+  Σ_x L_x μ_x = Σ_s π_s Σ_i μ_{x_{s,i}} = qΣ_s(k_s − 1)π_s + Σ_z β_z μ_z + Σ_s π_s τ_s. ∎
+
+**Theorem CERT.** Suppose weights satisfy
+- (i) L_x ≤ e + β_x for every x ≠ 0, and
+- (ii) T := qΓ + ρ − Σ_s π_s ⌊(r_{z_s} + (k_s − 1)ρ)/m⌋ ≥ 0.
+
+Then W ≥ T ≥ 0.
+- Every part of a split lies below c, since w(x) = w(z) − w(y) < c + m − m. ∎
+
+**Corollary FLAT-U (a short proof of chain link L5).** Suppose every Apéry element is 0, a minimal generator, or a sum of
+two minimal generators, and choose D of height ≤ 2 with pair cells P. Then
+    W = (e + 1)·Σ_{p∈P} μ_p + Σ_b (e − deg b)·μ_b + (ρ + Σ_{p∈P} τ_p) ≥ 0,
+where deg b = Σ_{p∈P} p_b ≤ (d − 1) + 2 = e, and at most ρ pairs have τ_p = −1.
+- Proof: split every pair e_a + e_b once into (e_a, e_b).
+  - Then Γ = |P| − (m − e) = 0, L_{e_b} = deg b ≤ e, L_p = 0 and β_p = 1.
+  - A pair with τ_p = −1 lies in W_ρ, so ρ + Σ τ_p ≥ 0. ∎
+- This replaces MaxCL ⇒ Tile-TOP'' ⇒ Wilf (LEAN `wilf_of_apery_height_le_two`) by an argument using only the classes of
+  0, the generators and the pairs.
+- It is the Flat-MaxCL mechanism (wrap events confined to a window of ρ residues) in level form.
+- Equality: ⟨13,14,16,18,19⟩ has W = 4 = Σ_b(e − deg b)μ_b.
+- Checks (flatu.py, E360): the identity is exact on all 824 flat S among 3,000 random S; Lemma K holds on all 129,471
+  binary splits of all 3,000 tiles.
+
+**Corollary H3-HALL.** Let D have height ≤ 3, with pairs P and cubics R. Suppose there is a map φ: R → [d] with
+φ(t) ∈ supp t and #φ⁻¹(b) ≤ e − deg_P(b) for every b. Then W ≥ 0.
+- Note: e − deg_P(b) = (missing mixed pairs at b) + 2·[2e_b ∉ D].
+- Proof: split pairs as in FLAT-U, and each cubic t as (e_{φ(t)}, t − e_{φ(t)}).
+  - Then Γ = 0, unit loads are deg_P(b) + #φ⁻¹(b) ≤ e, and pair loads are ≤ d < e + 1.
+  - Σ_s π_s·wloss ≤ #(W_ρ ∩ split cells) ≤ ρ. ∎
+- By Hall's theorem, the condition is: for every set B of units, #{t ∈ R : supp t ⊆ B} ≤ Σ_{b∈B}(e − deg_P(b)).
+
+**Obstruction (PROVED): certificates need m ≤ e² + ρ/q at height ≤ 3.**
+- Every split of a cell of height ≤ 3 into k parts has at least k − 1 unit parts. Units have β = 0, so (i) gives
+  L_b ≤ e.
+- Hence Σ_s (k_s − 1)π_s ≤ Σ_b L_b ≤ ed, and Γ ≤ e(e − 1) − (m − e) = e² − m.
+- With (ii), qΓ + ρ ≥ 0 forces m ≤ e² + ρ/q.
+- Witness, open regime: S = ⟨37, 75, 78, 80, 88, 89⟩ (residues {1,4,6,14,15}, a postage-stamp B₃ basis; c = 222 = 6m,
+  e = 6, m = 37 > e² = 36, W = 102). Its best Γ is −1, so there is no certificate (also with ternary splits).
+- So **"every S with e ≥ 3 has a certificate" (CONJ SPLIT-CERT, stated and tested the same evening) is FALSE**
+  (FAILED Pattern C).
+
+**Unit-aware certificates (PROVED bound; existence CONJ).**
+- Keep the unit levels μ_b exact, i.e. use the generator sizes.
+- Overloading a cell x of height ≥ 2 costs at most ū_x = (Σ_b x_b μ_b − (|x| − 1)(q − 1))⁺ ≥ μ_x. This comes from Lemma K
+  for the |x|-ary split of x into units.
+- Then W ≥ qΓ + ρ − Σ_s π_s·wloss_s + Σ_b (e − L_b)μ_b − Σ_{|x|≥2} (L_x − e − β_x)⁺ ū_x.
+- With π = 0 this is the unit truncation U (NOTEBOOK 2026-10-20), so it contains both U and Theorem CERT.
+- **CONJ UNIT-CERT:** every S with e ≥ 3 has weights making this bound ≥ 0. Evidence (E360):
+  - all 1,800 random S with e ≥ 3;
+  - all 600 mixed-lift S on the postage-stamp residues mod 37 and 40;
+  - the six certificate-free S above, where the bound often equals W exactly.
+  Gating status: necessity audit pending, since UNIT-CERT is close to the exact identity.
+
+**Where this leaves the programme.**
+- Certificates without any μ information exist for every tested S with e ≥ 3 outside one regime: height-3 tiles with
+  m > e², the near-B₃ simplices.
+- That residual is the h-regular / REG-WILF regime, where generators have nearly equal levels. There the unit levels
+  (CENTROID / REG-BND averaging) must enter.
