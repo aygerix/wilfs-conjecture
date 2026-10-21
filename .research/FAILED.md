@@ -33,6 +33,8 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | Z8 (core elements ≤ y0 + extra tokens) | m = 62, B = {8,9,11,33,35,38,40,41,45,49,50,51,52}, slack −1 (E335) | B_L tokens, p_lo |
 | Z5 (window tokens pay residual carried triples) | m = 11, B = {4,7,9,10}, h = 2 (E335) | carried pairs p_hi |
 | LM degree condition, uniform discharging, per-largest-summand column split | E333; column split fails at m = 17, B = {2,9,11} | — |
+| TOP-CR (TRUNC₃ by the crude window count: \|Top₂\| + \|G₀\| ≤ N_< + (m−c)⁺, PROOFS ID-TOP) (2026-10-21) | U ≠ T: 6 failures at \|A\| = 5 and 113 at \|A\| = 6; minimum −9 at A = {16,33,34,36,38,40}, m = 41 (c = 65, ℓ = 16, Top₂ = 7, N_< = 20, G₀ = 22). U = T: 790 / 6172 failures, min −14 (topid.c, E381) | \|Π_M\| (26) and the multiplicity Ov (30); W_e(U) = 47 |
+| TOP-K1 (c > m: \|G₀\| ≤ \|Π_M\|) (2026-10-21) | U ≠ T: A = {15,32,34,36,41,43}, m = 44 (c = 70, G₀ = 24, Π_M = 23); U = T: 291 failures at \|A\| = 6, min −10 at A = {17,34,41,43,44,48}, m = 49 (E381) | K2 = N_< + Ov − \|Top₂\| (≥ 0 on every instance, min 10 at \|A\| = 6) |
 
 ## Pattern B — strengthening beyond what is needed
 | Statement | Counterexample |
@@ -66,6 +68,7 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | Split of RD on the residual U ≠ T into Δ′ ≥ 0 and MONO* W_e(U) ≥ W(T) (every S, max-κ down-set) | Δ′ < 0 on ≈ 2% of the residual (genus 25: 2830 of 127224, min −56); MONO* fails at ⟨8,14,23,29⟩ (genus 26: W_e(U) = 9 < W(T) = 10, Δ′ = 37, W = 46) (rdexh2, E379). RD = Δ′ + W_e(U) − W(T) + … survives: each half pays for the other |
 | MONO (fixed e): W_e(U_k) ≥ W_e(T) for truncated sumsets (2026-10-21) | A = {4,9,10}, m = 13, k = 3: 15 < 16 (trunc.c); inside the q = 5 residual: A = {4,11,15,22,27}, m = 28, deficit 18 (resid.py, E380). The e(T)-version MONO* survives there |
 | MONO*-Q5: on the q = 5, height ≤ 3, level-1 residual U ≠ T, W_e(U) ≥ W(T) (2026-10-21) | ⟨34,42,53,54,56,57,67⟩ (e = 7, m = 34, r = 3): T∖U = {32} = {4·8}, c_U = c_T = 38, ℓ_U = 16, ℓ_T = 17, e(T) = 7, W_e(U) = 74 < W(T) = 81 (q5d2 mode 1 and independent monochk.py). E3 ≤ 0 still holds (W_e(U) = 74 ≥ 0): the residual needs TRUNC₃ directly, not a route through W(T). Side claim also false: T∖U ⊂ [0, m) (⟨20,23,27,34,38⟩ has 22 ∈ T∖U in the conductor class) |
+| RESID-PAY: on the q = 5, height ≤ 3, level-1 residual, Δ₃ ≥ e·|T∖U| (2026-10-21) | ⟨42,45,56,64,67,69,80⟩ (e = 7, m = 42, r = 4, A = {3,14,22,25,27,38}, T = ⟨3,14,22⟩, e(T) = 3): Δ₃ = 98 < e·h = 105 (h = 15, T∖U = {12,15,18,21,23,24,26,29,32,34,35,37,40,43,46}). The 1 failure among 10,663 residual S at e = 7 (q5d3; independent monochk.py). Who pays: (e−1)δc = 162 (c_U = 47, c_T = 20) and (e − e_T)ℓ_T = 36; W(S) − W(T) = 191, TRUNC₃ slack W_e(U) = 100. Complementary to MONO*-Q5 (δc = 0, e = e_T, h = 1, paid by Δ₃ = 115): no single payer dominates |
 
 ## Pattern D — a structure classification read off small d that fails once extremal additive objects exist
 | Statement | Counterexample | Who pays |
@@ -97,6 +100,10 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 ## Pattern D — false side claims
 - "Every S with e ≤ 3 has unique Apéry factorizations." FALSE: in ⟨5,6,9⟩, 18 = 6+6+6 = 9+9 ∈ Ap(S,5), Λ − O = 2.
   Corrected in PROOFS.md.
+- "In the open regime c(U₃) > 4·min A, TRUNC₃ holds with ratio e·ℓ/c ≥ 1.44" (an observation from |A| = 4, 5;
+  2026-10-21). FALSE as a uniform bound. Family F_T (PROOFS): A = {μ, 3μ, 5μ} ∪ [5μ+1, 6μ−2], m = 6μ − 1 has
+  U₃ = T = ⟨μ, 5μ+1, …, 6μ−1⟩ and ratio (μ+2)/μ → 1 (1.333 at |A| = 7, 1.286 at |A| = 8). The 1.44 was a small-|A|
+  effect: the padding needs about 2 elements, so the family starts at |A| = 5 with ratio 1.5.
 
 ## Live conjectures — audit status (P18 depth four unless stated)
 **2026-10-20: depth four (c ≤ 4m) is settled by the external Lean proof, kernel-checked by us (LITERATURE).** Every

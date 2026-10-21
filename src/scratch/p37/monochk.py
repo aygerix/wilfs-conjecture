@@ -23,3 +23,8 @@ for x in range(N + 1):
 r = max(ap, key=lambda s: ap[s])
 print("S=%s m=%d e=%d c=%d W=%d q=%d r=%d | U=3A'+mN: c=%d l=%d WeU=%d | T=<m,A>: c=%d l=%d e(T)=%d W(T)=%d | WeU-W(T)=%d | T\\U=%s" % (
       G, m, e, c, W, ap[r] // m, r, cU, lU, WeU, cT, lT, eT, WT, WeU - WT, [x for x in range(N + 1) if inT[x] and not U[x]]))
+# full compensation accounting (combined identity): W(S) - W(T) = Delta3 - e h + (e-1) dc + (e - e(T)) l(T)
+h = sum(1 for x in range(N + 1) if inT[x] and not U[x]); dc = cU - cT; D3 = W - WeU
+print("accounting: Delta3=%d  e*h=%d (h=%d)  (e-1)*dc=%d (dc=%d)  (e-e(T))*l(T)=%d  =>  W(S)-W(T)=%d (direct %d) | RESID-PAY Delta3-e*h=%d | TRUNC3 slack W_e(U)=%d" % (
+      D3, e * h, h, (e - 1) * dc, dc, (e - eT) * lT, D3 - e * h + (e - 1) * dc + (e - eT) * lT, W - WT, D3 - e * h, WeU))
+assert D3 - e * h + (e - 1) * dc + (e - eT) * lT == W - WT

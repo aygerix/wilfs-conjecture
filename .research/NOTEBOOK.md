@@ -4231,3 +4231,32 @@ Consequences:
   - The q = 5 residual U ≠ T (Conjecture TRUNC₃).
   - Plain RD (every S) has 0 failures, but its informative support is only ≈ 1% of S (W(T) > 0).
 - **Refuted side claims.** RD′; local level drops (low and high); Δ′ ≥ 0 under U = T (FAILED.md).
+
+### 2026-10-21 (morning, later): TRUNC₃ — low regime settled, U = T / U ≠ T split, window identity
+- **Proved** (PROOFS "TRUNC₃: the low regime is settled…" and "TRUNC₃ split by U = T and U ≠ T"):
+  - DOWN: U_k is P-downward closed.
+  - LOW-AGREE: U_k = T below (k+1)·min A.
+  - KAPLAN-U: Kaplan's c ≤ 2m argument needs only downward closure.
+  - TRUNC-LOW: TRUNC₃ holds when c ≤ 4·min A (depth-four theorem).
+  - WILF-CONTENT: on U = T, TRUNC₃ is Wilf for H3max.
+  - TARGET: the residue-descent residual needs only TRUNC₃^≠, because U = T goes by DESCENT-T and induction on
+    multiplicity.
+  - Lemma C>M: for c > m, W_e(U) = e(z − t) + (e−1)(r+1) − m.
+  - Identity ID-TOP: an exact window count, whose negative terms are G₀ (gaps below c − m) and Top₂ (top 3-sums with no
+    left 2-prefix).
+- **Observed** (E381):
+  - TRUNC₃: 0 failures, exhaustive to the covering limit for |A| = 4–7.
+  - Minimizers split cleanly:
+    - U = T: family F_T, padded Wilf-equality semigroups, ratio (d+1)/(d−1) → 1.
+    - U ≠ T: F_≠ (T = ℕ, ratio 4(d+1)/(3d)) is the exhaustive minimizer for |A| ≤ 6.
+    - U ≠ T: F_≠G (T of depth four with 4μ removed, ratio → 5/4) beats F_≠ from d = 13 on.
+  - In F_≠G, W_e(U) = W_e(T) − 1. So TRUNC₃^≠ needs T's Wilf slack, not covering alone.
+  - ID-TOP with c > m:
+    - K2 = N_< + Ov − |Top₂| ≥ 0 on every instance;
+    - K1 = |Π_M| − |G₀| fails, rarely for U ≠ T (2 instances at |A| = 6).
+- **Refuted.**
+  - RESID-PAY (e = 7, one S) and MONO*-Q5 (earlier today).
+  - The crude window bound TOP-CR and the split TOP-K1 (FAILED.md).
+  - The observation "open-regime ratio ≥ 1.44" (F_T).
+- **Open (precise).** For c > m and U ≠ T: inject G₀ ∪ Top₂ into the N_<, Π_M and Ov pairs. It must use T's slack
+  through e·h ≤ W_e(T) + (e−1)δc.

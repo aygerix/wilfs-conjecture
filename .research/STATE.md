@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-21 morning: WINDOW false; E3 = Wilf for U = 3A′+mℕ; Lemma DESCENT-T (descent below the multiplicity); see (A0000000000000000))
+# STATE.md — handoff (2026-10-21: TRUNC₃ split U = T / U ≠ T; target narrowed to PAY2 = relative Wilf on Q5; see (A00000000000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 (Date correction 2026-10-20: blocks and entries once labelled "2026-10-21" were all written on 2026-10-20 (git commit dates, EDT); relabelled. See NOTEBOOK "2026-10-20 — date correction".)
 
@@ -55,6 +55,31 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A00000000000000000) **NEWEST (2026-10-21, TRUNC₃ checkpoint; advisor's ADVISOR.md order).**
+          - Proved (PROOFS "TRUNC₃: the low regime…", "TRUNC₃ split by U = T and U ≠ T", "The residual through T"):
+            - DOWN, LOW-AGREE, KAPLAN-U (downward closure suffices), TRUNC-LOW (c ≤ 4·min A), WILF-CONTENT;
+            - TARGET: the residual needs only U ≠ T;
+            - Lemma C>M; identity ID-TOP (window count; negative terms G₀, Top₂);
+            - ID-T: W(S) = Δ′_T + W_e(T), Δ′_T = e·Δℓ − Δc;
+            - families F_T (ratio → 1, U = T), F_≠ (→ 4/3, U ≠ T, c ≤ m), F_≠G (→ 5/4, U ≠ T, c ≤ m; W_e(U) = W_e(T) − 1).
+          - Data (E381):
+            - TRUNC₃ unrestricted: 0 failures, exhaustive |A| = 4, 5, 6 to the covering limit (m ≤ 25, 40, 57); |A| = 7
+              running (trunc3n R, m ≤ 120).
+            - Residual regime (U ≠ T, c > m): min ratio ≈ 1.65 for |A| ≤ 6; extremizers have T∖U = {4μ}.
+            - PAY2: 0 failures on every residual S at e = 5, 6, 7 (min 35, 29, 55).
+          - Refuted (FAILED.md): TOP-CR, TOP-K1, the observation "open-regime ratio ≥ 1.44".
+          - Live conjectures:
+            - **PAY2 (lead)**: on Q5, e·(ℓ(S) − ℓ(T)) ≥ c(S) − c(T). With induction on multiplicity it gives Wilf on Q5,
+              using W(T) ≥ 0 only.
+            - TRUNC₃^≠ (needs T's slack; F_≠G);
+            - RD-U; RD.
+          - Next:
+            1. Prove PAY2 by a column charge on the max-κ tile D: charge each unit of h (each j_s) to columns with
+               top level < 3 (worth |C|·(3 − κ(top)) in Δ₃), or to δc. Start with the extremal shape T∖U = {4μ}.
+            2. Gate PAY2 at e = 8: port the pruned DFS of trunc3n into q5d4 (the residual needs 3A′ covering, so the
+               same pruning applies); also an annealer on Δ′_T.
+            3. Finish E381(h) (|A| = 7 exhaustive) and record it.
+            4. C2 (mixed levels, E380): 0 failures m = 10–17; secondary, keep queued.
       (A0000000000000000) **NEWEST (2026-10-21 morning).**
           - Proved (PROOFS "Residue descent"):
             - ID-U (exact, every S, every down-set): W(S) = Δ′ + W_e(U), U = {σ_s} + mℕ.

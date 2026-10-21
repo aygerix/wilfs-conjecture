@@ -5772,6 +5772,15 @@ where H = Σ_s h_s and N(t) = #{s : σ_s > t}.
     Take f = κ and use κ(top) ≤ K*, Σ|C| = dm. ∎
 - Δ′ = Δ − (e−1)·Gap, where Gap := mK* + max σ − max w ≥ 0. (max w ≤ mK* + max σ termwise.)
 
+**Combined descent identity (bookkeeping; PROVED).** For every S, the max-κ down-set D, U = U_D ⊆ T:
+    W(S) − W(T) = Δ′ − e·h + (e−1)·δc + (e − e(T))·ℓ(T),     h := |T∖U|,   δc := c(U) − c(T) ≥ 0.
+- Proof: ID-U gives W(S) = Δ′ + W_e(U).
+  - U ⊆ T with both cofinite, so g(U) − g(T) = |T∖U| = Σ_s (σ_s − τ_s)/m, and W_e(U) − W_e(T) = (e−1)δc − e·h.
+  - W_e(T) − W(T) = (e − e(T))·ℓ(T). This also holds for T = ℕ, with c = ℓ = 0. ∎
+- No new content: this is ID-U plus definitions. It is the accounting sheet for the three payers, Δ′,
+  (e−1)δc and (e − e(T))ℓ(T), against the cost e·h.
+  - Example ⟨34,42,53,54,56,57,67⟩: Δ′ = Δ_3 = 115, e·h = 7, δc = 0, e = e(T).
+
 **Lemma DESCENT-T (PROVED on paper; CHECKED E379).** Suppose
 - (U=T): σ_s = τ_s for every s, and
 - (ALIGN): max w = m·K* + max τ.
@@ -5837,6 +5846,10 @@ factorizations of length ≤ 3. Then:
   - The E3-extremal family belongs here: every generator residue exceeds m/2.
     - Minimum −E3 = e(e+1) − (m + r + 1) = 2, 4, 8, 14 for e = 4–7, at ⟨13,22,23,25⟩, ⟨19,32,33,35,37⟩,
       ⟨25,42,43,45,47,49⟩, ⟨31,52,53,54,57,60,61⟩ (E378).
+- (iv′) RESID-PAY (Δ₃ ≥ e·|T∖U|) is FALSE at e = 7: ⟨42,45,56,64,67,69,80⟩ (FAILED.md).
+  - Together with the MONO*-Q5 counterexample, this shows that no single payer in the combined identity dominates on
+    the residual.
+  - TRUNC₃ held with slack ≥ 74 on both counterexamples.
 - (iv) Residual: U ≠ T. Then some T-Apéry element needs ≥ 4 summands, so 4·min A ≤ max τ < 2m + r.
   - Observed: every U ≠ T example has a small residue and large E3 slack (≈ 30 at m = 14–20).
   - E3 there is Conjecture TRUNC₃ below.
@@ -5865,3 +5878,226 @@ genus ≤ 36 (≈ 2.8·10⁸ S).
   - At e = 7: ⟨34,42,53,54,56,57,67⟩ has W_e(U) = 74 < W(T) = 81 (FAILED.md). It held at e = 5, 6.
   - E3 ≤ 0 itself survives there and on all 10,663 residual S at e = 7 (E378). So the residual must be done by
     TRUNC₃ directly.
+
+### TRUNC₃: the low regime is settled; the open regime carries Wilf content (2026-10-21)
+**Setting.**
+- A ⊆ [1, m−1] nonempty, A′ = A ∪ {0}, P = A ∪ {m} (so |P| = e = |A| + 1), μ = min A = min P.
+- For k ≥ 1, U_k = kA′ + mℕ (kA′ = integer sums of at most k elements of A). Covering hypothesis: kA′ ≡ ℤ/m.
+- T = ⟨P⟩ = ⟨m, A⟩, a numerical semigroup of multiplicity μ.
+- c = c(U_k), ℓ = ℓ(U_k) = |U_k ∩ [0, c)|. TRUNC_k is the statement e·ℓ ≥ c.
+
+**Lemma DOWN (PROVED).** U_k is P-downward closed: every u ∈ U_k ∖ {0} can be written u = p + u′ with p ∈ P and
+u′ ∈ U_k.
+- Proof: write u = σ + jm with σ ∈ kA′.
+  - If j ≥ 1, take p = m.
+  - Otherwise σ ≠ 0; remove one A-summand, which leaves an element of (k−1)A′ ⊆ U_k. ∎
+
+**Lemma LOW-AGREE (PROVED; CHECKED lowagree.py).** U_k ∩ [0, (k+1)μ) = T ∩ [0, (k+1)μ). Hence if c(U_k) ≤ (k+1)μ,
+then U_k = T.
+- Proof:
+  - An element of T below (k+1)μ is a sum of at most k elements of P, since every element of P is ≥ μ. Of these
+    summands, j ≤ k come from A and the rest are copies of m. So the element lies in kA′ + mℕ = U_k.
+  - Conversely U_k ⊆ T.
+  - If c(U_k) ≤ (k+1)μ, every gap of U_k lies below (k+1)μ, so it is a gap of T. Hence U_k = T. ∎
+- Check: 16,242 random covering instances, with k ∈ {2,3,4}, m ≤ 70, |A| ≤ 9. U_k is built from the explicit sumset
+  and T by a membership DP.
+  - The sets agree below (k+1)μ on all 16,242.
+  - U_k = T on all 10,071 instances with c ≤ (k+1)μ.
+
+**Theorem KAPLAN-U (PROVED, self-contained; CHECKED).** Let U ⊆ ℕ satisfy:
+- 0 ∈ U, U is cofinite, and P ⊆ U with |P| = e;
+- μ = min P = min(U ∖ {0});
+- U is P-downward closed (as in Lemma DOWN).
+
+If c(U) ≤ 2μ, then e·ℓ(U) ≥ c(U). In particular TRUNC_k holds whenever c(U_k) ≤ 2·min A.
+
+Proof (Kaplan's c ≤ 2m argument, with closure replaced by downward closure). Let L = U ∩ [0, c) and P_< = P ∩ (0, c).
+- (F1) U ∩ (0, 2μ) ⊆ P.
+  - Write u = p + u′. If u′ ≠ 0, then u ≥ 2μ.
+- (F2) Every y ∈ [c, c + μ) ∖ P is the sum of two elements of P_<.
+  - Write y = p + u′ with u′ ≠ 0, so u′ ≥ μ. Then p = y − u′ < c and u′ = y − p ≤ y − μ < c.
+  - By (F1) and c ≤ 2μ, we get u′ ∈ L ∖ {0} ⊆ P.
+- So L ∖ {0} = P_<. Put k′ := |P_<| = ℓ − 1.
+- The window [c, c + μ) lies in U and has μ elements. By (F2), μ ≤ (e − k′) + k′(k′+1)/2, so e ≥ μ − k′(k′−1)/2.
+  Also e ≥ k′.
+- Case k′ = 0: then U ∩ (0, c) = ∅, so c ≤ μ ≤ e.
+- Case k′ = 1: then e ≥ μ, so eℓ = 2e ≥ 2μ ≥ c.
+- Case k′ ≥ 2:
+  - If k′(k′+1) ≥ 2μ, then eℓ ≥ k′(k′+1) ≥ 2μ ≥ c.
+  - Otherwise μ > k′(k′+1)/2, and
+    eℓ ≥ (k′+1)(μ − k′(k′−1)/2) = 2μ + (k′−1)(μ − k′(k′+1)/2) > 2μ ≥ c. ∎
+- Answer to the advisor's question "what needs closure": Kaplan's argument needs only downward closure (F2), which
+  truncated sumsets have. Upward closure (x, y ∈ U ⟹ x + y ∈ U) is not used.
+
+**Corollary TRUNC-LOW (PROVED; uses the kernel-checked depth-four theorem).** If k ≥ 3 and c(U_k) ≤ 4·min A, then
+U_k = T, and e·ℓ(U_k) ≥ e(T)·ℓ(T) ≥ c(T) = c(U_k).
+- Proof: LOW-AGREE gives U_k = T, since 4μ ≤ (k+1)μ.
+- Then c(T) ≤ 4·mult(T), and Wilf holds for T by the depth-four theorem (conjectures.io proof, kernel-checked by us).
+- Finally e ≥ e(T). ∎
+- Variant for c ≤ 3μ: the same argument with Eliahou's c ≤ 3m theorem (LITERATURE #13, read).
+
+**Consequences for the q = 5, height ≤ 3, level-1 residual (PROVED).**
+- The residual U ≠ T forces c(U) > 4·min A, by LOW-AGREE.
+- Case A (U = T) with c(T) ≤ 4·min A is settled unconditionally. This strengthens (iii′) above: the depth-four
+  branch now covers every U = T member with min A ≥ c(T)/4.
+
+**Remark WILF-CONTENT (PROVED).** In the regime c(U₃) > 4μ, TRUNC₃ contains Wilf for the following class:
+    H3max := {numerical semigroups T whose Apéry set with respect to their largest minimal generator g lies in
+               3(G ∖ {g})′, where G is the set of minimal generators}.
+- Proof: given T ∈ H3max, take m = g and A = G ∖ {g}. Every element of A is < m, and distinct elements of A are
+  distinct mod m.
+  - Then σ_s = τ_s, so U₃ = T, and e = |A| + 1 = e(T).
+  - So TRUNC₃ for this A is exactly Wilf for T. ∎
+- No known theorem covers H3max with c(T) > 4·mult(T) (search 2026-10-21, LITERATURE). The covering property alone
+  therefore cannot give TRUNC₃ in this regime without Wilf-type content at depth ≥ 5 relative to the multiplicity.
+- Here c(T) < 2g, so the depth relative to g is below 2. The difficulty is the two scales μ ≪ m.
+
+**Status of TRUNC₃ (unrestricted; CHECKED, E381).**
+- 0 failures, sharp: equality at A = {m−d, …, m−1}.
+  - Exhaustive for |A| = 4, 5, 6, 7, up to the covering limit. A covering A exists only for m ≤ 25, 40, 57 (|A| = 4, 5,
+    6), and |A| = 7: see E381.
+  - Hill climbing restricted to U₃ ≠ T for |A| = 8 and 10 (m ≤ 200).
+- Near-equality in the proved regime c ≤ 2μ: A = {μ, 2μ−1} ∪ [2μ+1, m−1] with m = 3μ − 2, c = 2μ − 1, ℓ = 2.
+- Minimum ratio e·ℓ/c by t = ⌈c/μ⌉ (|A| = 6, exhaustive): 1.0, 1.08, 1.17, 1.22, 1.35, 1.40, 1.53, 1.75, …
+- The open regime has ratio → 1 (family F_T below). A lower bound by a constant > 1 there is FALSE.
+- Open: TRUNC₃ for c(U₃) > 4·min A.
+  - If U₃ = T, it is Wilf for an H3max-type T (when e(T) = e).
+  - If U₃ ≠ T, the set is genuinely truncated: T ∖ U₃ ⊆ [4μ, c(U₃)) by LOW-AGREE.
+
+### TRUNC₃ split by U = T and U ≠ T (2026-10-21)
+**Remark TARGET (PROVED).** For the q = 5, height ≤ 3, level-1 residual, TRUNC₃ is needed only when U ≠ T.
+- If U = T, then (iii) gives W(S) ≥ Δ₃ + W(T) ≥ W(T), and mult(T) = min A < m. So Wilf for multiplicities < m gives
+  W(S) ≥ 0, with no TRUNC₃.
+- Hence the exact target is **TRUNC₃^≠**: if 3A′ covers ℤ/m and U₃ ≠ T, then e·ℓ(U₃) ≥ c(U₃).
+- By LOW-AGREE, TRUNC₃^≠ lives in the regime c(U₃) > 4μ.
+- In the residual itself c(U) = m + r + 1 > m, the case of Lemma C>M below.
+- Remark WILF-CONTENT concerns U = T only, so it does not obstruct TRUNC₃^≠. Family F_≠G below shows that the
+  covering property alone does not prove TRUNC₃^≠ either.
+
+**Family F_T (U = T; CHECKED fam*.py, μ = 4…15).**
+- Data: μ ≥ 4, A = {μ, 3μ, 5μ} ∪ [5μ+1, 6μ−2], m = 6μ − 1, so |A| = μ + 1 and e = μ + 2.
+- Then U₃ = T = ⟨μ, 5μ+1, …, 6μ−1⟩, the Wilf-equality semigroup of depth 5; 3μ and 5μ are redundant padding.
+- c = 5μ, ℓ = 5, e·ℓ − c = 10, ratio (μ+2)/μ = (d+1)/(d−1) → 1.
+- These are the open-regime minimizers found for |A| = 7, 8.
+
+**Family F_≠ (U ≠ T; CHECKED, minimizer over U ≠ T for |A| = 4, 5, 6 exhaustive, verified for d = 4…15).**
+- Data: d ≥ 4, A = {1, 3d, 3d+2, 3d+5, …, 3d+2+3(d−3)}, m = 6d − 4.
+- Then T = ℕ, U₃ ∩ [0, c) = {0, 1, 2, 3}, c = 3d, ℓ = 4.
+- So e·ℓ − c = d + 4, and the ratio is 4(d+1)/(3d) → 4/3.
+
+**Family F_≠G (U ≠ T; PROVED by hand for μ ≥ 3, CHECKED famG.py and trunc3n at μ = 7, 8, 9, 12, 16, 24).**
+- Data: μ ≥ 3, m = 5μ + 1, A = {μ, 3μ+1} ∪ [4μ+2, 5μ], e = μ + 2.
+- T = ⟨μ, 3μ+1, 4μ+2, …, 5μ−1⟩ with e(T) = μ, since 5μ = 5·μ and m = 2μ + (3μ+1) are redundant.
+- Covering: mod m, A′ = {0, μ, 3μ+1, −1, …, −(μ−1)}.
+  - x − j (x ∈ 2{0, μ, 3μ+1}, 1 ≤ j < μ) covers [1, μ−1], [μ+1, 2μ−1], [2μ+2, 3μ], [3μ+2, 4μ].
+  - (3μ+1) − j₁ − j₂ gives 2μ+1, and the block gives [4μ+2, 5μ].
+- Lifts:
+  - s + m ∈ 3A′ for every s ∈ [1, 4μ] ∖ {μ, 2μ, 3μ, 3μ+1}, e.g. 4μ + m = (3μ+1) + μ + 5μ.
+  - 4μ ∉ 3A′.
+- Hence c(U₃) = 4μ + 1, L(U₃) = {0, μ, 2μ, 3μ, 3μ+1}, T ∖ U₃ = {4μ}, c(T) = 4μ and ℓ(T) = 5, so h = δc = 1.
+- W(T) = μ, W_e(T) = μ + 10, W_e(U₃) = μ + 9 = W_e(T) − 1.
+- Ratio 5(μ+2)/(4μ+1) → 5/4 (T's own Wilf ratio). It lies below F_≠ for d = μ + 1 ≥ 13.
+- Here TRUNC₃^≠ is exactly W_e(T) ≥ 1. A proof of TRUNC₃^≠ must therefore use T's Wilf slack quantitatively, via the
+  identity TRUNC₃ ⟺ e·h ≤ W_e(T) + (e−1)δc.
+
+**Observation (the residual's regime; E381).** On U ≠ T with c(U₃) > m, the case the residual needs, the margin is
+large.
+- Exhaustive minimum ratio for |A| = 3, 4, 5, 6: 1.882, 1.667, 1.714, 1.653. Minimum slack e·ℓ − c: 15, 20, 31, 40.
+  - Minimizers: A = {4,9,10}, m = 13; {7,16,17,19}, m = 23; {12,25,26,28,30}, m = 31; {17,36,38,39,43,44}, m = 46.
+- On U = T with c > m the minimum ratio is 1.111, 1.154, 1.200, 1.333 (minimum slack 2, 4, 8, 14).
+- Both U ≠ T near-tight families, F_≠ and F_≠G, have c ≤ m.
+- Every one of these U ≠ T, c > m minimizers (and the minimum-slack ones) has T ∖ U = {4μ} and δc ∈ {0, 1}.
+  - So W_e(U) = W_e(T) − e + (e−1)δc: the slack is T's Wilf slack, and T there is far from Wilf-tight. Examples:
+    - ⟨17,36,38,39,43,44,46⟩: W(T) = 54, c(T) = 72;
+    - ⟨12,25,26,28,30,31⟩: W(T) = 36, c(T) = 48.
+  - Checked by inspect.py (independent).
+- So in the residual's regime the observed minimum of e·ℓ/c is ≈ 1.65 (|A| ≤ 6). Elsewhere families push it → 1
+  (U = T) and → 5/4 (U ≠ T, c ≤ m).
+
+**Lemma C>M (PROVED).** Suppose c = c(U₃) > m. Then:
+- max σ = 2m + r for a unique class r, and c = m + r + 1.
+- With z := |3A′ ∩ [0, m)| and t := #{s : σ_s ≥ 2m} (all such s satisfy s ≤ r):
+
+      e·ℓ(U₃) − c(U₃) = e(z − t) + (e − 1)(r + 1) − m.
+
+- So TRUNC₃ ⟺ m + e·t ≤ e·z + (e−1)(r+1).
+
+Proof.
+- Let M = max σ = c + m − 1. Then 2m ≤ M < 3m, so r := M − 2m ∈ [0, m).
+- For s > r: s + m ≥ c, so s + m ∈ U and σ_s < 2m. So every class with σ_s ≥ 2m has s ≤ r.
+- Left elements below m are the s with σ_s < m, that is 3A′ ∩ [0, m) (z of them).
+- The left elements in [m, c) are s + m with s ≤ r and σ_s < 2m (r + 1 − t of them).
+- So ℓ = z + r + 1 − t. ∎
+
+**Identity ID-TOP (PROVED; CHECKED topid.c, every covering A with |A| ≤ 6, 0 mismatches).** Setting:
+- U ⊆ ℕ cofinite with 0 ∈ U and U + m ⊆ U; A ⊆ [1, m−1]; e = |A| + 1.
+- c = c(U) ≥ 1, L = U ∩ [0, c), ℓ = |L|. The window W := [c, c + m) holds one element of each class.
+
+Pieces:
+- TypeM := {y ∈ W : y − m ∈ U}. The map y ↦ y − m is a bijection TypeM → L ∩ [c − m, c).
+- Top := W ∖ TypeM. For U = U₃, Top = {σ_s : σ_s ≥ c} ⊆ 3A′.
+- Top₁ := Top ∩ (A + L) and Top₂ := Top ∖ Top₁.
+- N_< := #{(a, x) ∈ A × L : a + x < c}.
+- Π := {(a, x) ∈ A × L : a + x ≥ c}. Then a + x < c + m always, so |Π| = (e−1)ℓ − N_<.
+- Π_M := {(a, x) ∈ Π : a + x ∈ TypeM}, and Ov := |Π ∖ Π_M| − |Top₁| ≥ 0.
+- G₀ := [0, c − m) ∖ U (empty if c ≤ m).
+
+Then
+
+    e·ℓ − c = N_< + |Π_M| + Ov + (m − c)⁺ − |G₀| − |Top₂|.
+
+Proof: m = |TypeM| + |Top₁| + |Top₂| = |L ∩ [c−m, c)| + |Π ∖ Π_M| − Ov + |Top₂|. Substitute |Π| and use
+ℓ − |L ∩ [c−m, c)| + (m − c) = (m − c)⁺ − |G₀|. ∎
+
+Remarks:
+- Compare a numerical semigroup S with multiplicity m and A its other minimal generators. Now A ⊆ (m, c+m), so
+  |Π| also loses the pairs with a + x ≥ c + m. There Top₂ = ∅: a top element y has y − m ∉ S, so y = a + x with
+  a ∈ A and x ≤ y − m < c.
+- For U₃, Top₂ ≠ ∅ is possible because min A < m. A Top₂ element is a 3-sum a₁ + a₂ + a₃ all of whose pairwise sums
+  are ≥ c, so y ≥ 3c/2. This is where the two scales μ ≪ m enter.
+- Data, c > m (the residual's case):
+  - K2 := N_< + Ov − |Top₂| ≥ 0 on every instance, U = T and U ≠ T alike. Minima 3, 7, 10 for |A| = 4, 5, 6.
+  - K1 := |Π_M| − |G₀| is negative on 11, 60, 291 U = T and 0, 0, 2 U ≠ T instances. Minimum −10 at
+    A = {17,34,41,43,44,48}, m = 49; for U ≠ T, −1 at A = {15,32,34,36,41,43}, m = 44.
+  - The crude form |Top₂| + |G₀| ≤ N_< + (m−c)⁺ fails (FAILED.md).
+  - So, with c > m, the deficit G₀ must be paid jointly by Π_M and the multiplicity Ov.
+- Open (precise obstruction): an injection, valid for c > m, of G₀ ∪ Top₂ into the pairs counted by N_< + |Π_M| + Ov.
+  The F_≠G family shows that it must use T's Wilf slack when U ≠ T.
+
+### The residual through T: relative Wilf (PAY2) (2026-10-21)
+**Setting.** Q5 is the class of S that are level 1 (all g_i ∈ (m, 2m)), have height ≤ 3 (every factorization of every
+Apéry element has length ≤ 3) and q = 5.
+- T = ⟨m, A⟩ with Ap(T, m) = {τ_s}; λ_s := (w_s − τ_s)/m ∈ ℕ.
+- On the residual, U ≠ T.
+
+**Identity ID-T (PROVED, exact; every S).** W(S) = Δ′_T + W_e(T), where
+
+    Δ′_T := (e−1)(max w − max τ) − e·Σ_s λ_s,   W_e(T) := e·ℓ(T) − c(T) = W(T) + (e − e(T))·ℓ(T).
+
+- Proof: g(S) = Σ⌊w_s/m⌋ = Σλ_s + g(T) and c(S) − c(T) = max w − max τ. Substitute into W = (e−1)c − e·g. ∎
+- Equivalent forms:
+  - Δ′_T = (e−1)Δc − e·Δg = e·Δℓ − Δc, with Δx := x(S) − x(T).
+  - On Q5, max w − max σ = 3m and λ_s = h_s + j_s, with j_s := (σ_s − τ_s)/m. So Δ′_T = Δ₃ + (e−1)δc − e·h, which is
+    the combined identity.
+
+**Conjecture PAY2 = relative Wilf on Q5 (CONJ; CHECKED E381).** Every S ∈ Q5 satisfies
+
+    e(S)·(ℓ(S) − ℓ(T)) ≥ c(S) − c(T),   i.e.   Δ′_T ≥ 0,   i.e.   Δ₃ + (e−1)·δc ≥ e·|T∖U|.
+
+- On U = T it is Δ₃ ≥ 0 (CH′-κ, PROVED). So PAY2 is open only on the residual.
+- PAY2 + induction on multiplicity ⟹ Wilf on Q5. Indeed W(S) ≥ W_e(T) ≥ W(T) ≥ 0, since mult(T) = min A < m.
+  - This needs W(T) ≥ 0 only, not T's slack. That is the advantage over TRUNC₃^≠, which needs T's slack (F_≠G).
+- It discards W(T) and (e − e(T))ℓ(T) from RD (= PAY3). It keeps the δc term that RESID-PAY dropped; RESID-PAY is FALSE
+  at e = 7.
+- RD′ in general (W(S) ≥ W_e(T) for every S) is FALSE (⟨7,11,13,23⟩, not level 1). PAY2 is RD′ restricted to Q5.
+- Evidence: every residual S with e = 5, 6, 7 (22, 454 and 10,663 S; exhaustive at fixed e, all m), with the
+  combined identity asserted on each.
+  - 0 failures. Minimum Δ′_T = 35, 29, 55, at ⟨20,24,29,37,38⟩, ⟨40,49,54,63,65,78⟩, ⟨47,50,65,80,86,88,89⟩.
+  - The RESID-PAY counterexample ⟨42,45,56,64,67,69,80⟩ has Δ′_T = 98 + 162 − 105 = 155.
+- Obstruction to the CH′-type proof:
+  - CH′-κ uses a linear level κ on a factorization down-set. Here λ_s is not linear on any down-set of
+    T-factorizations of τ_s.
+  - In Q5 a T-factorization of τ_s with U ≠ T has length k ≥ λ_s + 1 ≥ 4. Otherwise k = λ_s would give a factorization
+    of w_s of length ≥ 4, and k < λ_s gives w_s − m ∈ S.
+  - So the column bound with f = k overshoots. A proof must charge the excess k − λ_s, or the j_s, to columns of the
+    max-κ tile D whose top has level < 3. Each such column contributes |C|·(3 − κ(top)) to Δ₃.
