@@ -3924,7 +3924,8 @@ Consequences:
 - **The tile is a sum cover.** A height-2 tile is a cover {0} ∪ δ of ℤ/m by pairwise sums.
   - Haanpää's maximal cover sizes n′(k) exclude height-2 case B at d = 2 and d = 6 (n′(7) = 21 ≤ 21). They allow it at
     d = 3–5 and 7–12.
-  - At the extremal size the margin range is forced, e.g. μ ∈ [10, 25] at d = 11, m = 63.
+  - At the extremal size the margin range is forced, e.g. μ ∈ [10, 21] at d = 11, m = 63 (corrected
+    from [10, 25], which forgot k_loop ≤ d).
 - **Exhaustive cover check (E351).** Case B appears only at height 2: d = 4 margin 1, d = 5 margin 4, d = 7 margin 5.
 - **Threat, quantified.** If n′(k)/k² stays above 1/3 (0.40–0.47 observed for k ≤ 13), the height-2 margin grows like
   (3n′/k² − 1)d² while a height-3 cell costs about d − 1. So for large d, counting cannot prove CASEB-FLAT.
@@ -3932,3 +3933,52 @@ Consequences:
   - The test should start at d = 11, m = 63.
 - **Necessity audit.** Only CASEB-FLAT-S (lex tiles of open-regime S) is needed. The lattice form is stronger.
 - **Full chain with link statuses:** PROOFS "Dependency chain to full Wilf via SUPP-WILF".
+
+### 2026-10-20 (night): CASEB-FLAT holds on every height-≤3 lattice tile with d ≤ 5 (exhaustive), with exact equality at the largest tiles; the obstruction is arithmetic, not shape
+- **Exhaustive check (caseb_h3.c, E352).** Enumerated every height-≤3 lattice tile with all d units for d = 3, 4, 5 and all m.
+  - The tile counts reproduce E249 (d = 5: 7,619,640 tiles).
+  - No height-3 case-B tile exists. The best margin among height-3 tiles is exactly μ = 0, attained only at the
+    largest m with a height-3 tile: m = 16 (d = 3, e.g. δ = (1,4,5)), m = 25 (d = 4, e.g. (1,4,7,8)) and m = 40
+    (d = 5, e.g. (1,6,9,14,15)).
+  - Case B occurs only at height 2: d = 4, m = 13 (12 tiles, μ = 1) and d = 5, m = 19 (18 tiles, μ = 4).
+- **Closed form (PROVED; checked on every enumerated tile).** On a height-≤3 tile with every unit non-maximal:
+  - μ = 3|P| + 2|R| − d(d+1) − p_l − Σ_{p∈N2}(d + 2 − τ(p));
+  - equivalently μ = μ_flat(P) + Σ_{r∈R}(2 + |supp r|) − (d+2)·n2, with μ_flat(P) = C(d,2) − 3k2_m − 2k2_l;
+  - equivalently μ = 2m − (d² + 7d + 4)/2 − k2_m − 2n2 − X.
+  Here P and R are the pair and cubic cells, p_l the loops used, N2 the non-maximal pairs (n2 = |N2|), τ(p) the cubics
+  above p, k2_m and k2_l the missing mixed and loop pairs, and X = #{(p,b) : p ∈ N2, p + e_b ∉ D}.
+  - One cube 3e_a costs d − 1 against μ_flat. A cubic of support 3 costs 3d + 1.
+  - Height 2 plus one cube in case B therefore needs m > (d+2)(d+3)/3 and a 2-sum cover missing exactly one residue.
+- **General form of case B (every tile).**
+  - μ = Σ_A|y| − (m − 1) − Q, so case B ⟺ Σ_{y∈A}|y| ≥ m + Q.
+  - Equivalently, case A ⟺ (d+1)m − d|A| − Σ_D|supp| − Σ_A|y| ≥ 1.
+  - Equivalently, case B ⟺ m ≤ d|D₁| + Σ_{x∈B}(d − 2|T(x)| − Σ_{i∈T(x)} x_i), where D₁ is the interior and B the
+    non-maximal, non-interior cells.
+- **Difference bodies do not suffice (shape_db.py).** Every lattice tile satisfies |D_U − U| ≤ m for every finite
+  U ∋ 0, where D_U = {β : β + U ⊆ D}. Yet at d = 3, 18 of the 114 height-3 case-B down-sets satisfy DB_U for every
+  U ⊆ Δ₂.
+  - All 18 are Δ₂ plus 6 cubics (m = 16), and none of them is a tile.
+  - So H3-CASEA cannot be proved from shape inequalities of this kind. It needs the arithmetic of ℤ/m, e.g. the
+    character condition Σ_{x∈D} ω^{x·δ} = 0 for ω^m = 1, ω ≠ 1.
+- **Lifts.** With every generator in (m, 2m), a cubic Apéry cell can never share a residue with a pair: the pair would
+  need g_b + g_c ≥ 3g_a + m > 4m. So in that range, cubics sit only on residues outside {0} ∪ δ + {0} ∪ δ.
+
+### 2026-10-20 (night, later): CASEB-FLAT-S (chain link L7) is FALSE at d = 11; the open link becomes L7′
+- **The counterexample.** Haanpää's 12-element sum cover of ℤ/63 gives flat case-B tiles with margin up to 16. That is
+  enough to pay for a cube (cost d − 1 = 10 plus the residue it takes).
+  - Choosing the tile and the generator lifts jointly (Gurobi, strict domination) realizes a height-3 case-B lex tile
+    in the open regime: S = ⟨63,239,282,295,318,333,379,386,390,400,405,407⟩, μ = 2, W = 1278.
+  - Verified by direct membership DP and by the tile builder.
+- **Why small d misled us.** For d ≤ 5 every height-3 tile has μ ≤ 0, with equality exactly at the largest
+  height-3 tile (m = 16, 25, 40). The threat comes from the exceptionally large 2-covers: f(11,2) = 63 against the
+  threshold f(2,11) = (d+1)(d+3)/3 = 56. This was the scaling risk flagged in the gate, and it materialized.
+- **What survives.**
+  - Tile-CL holds on the counterexample at every phase (min V = 11) and MaxCL has slack ≥ 1663.
+  - The open link is now L7′: case B ⇒ N(σ_c) + Dep ≥ κ₀.
+  - Plausible routes:
+    - TCL-DICHOTOMY;
+    - MaxCL for "height 2 + few cubics" (F1), extending the wrap-window proof of Flat-MaxCL;
+    - a direct proof that the inversion count N pays the small case-B margin μ, since κ₀ ≤ Σsupp ⇒ it suffices that
+      N ≥ μ = Σsupp − Dep. Here N(σ_c) ≥ ? against μ = 2.
+- **Computation note.** With δ free, Gurobi is useless at d = 11: it cannot find the sum covers. With δ fixed (from
+  the literature) and the lifts as integer variables, the model is small and exact.

@@ -1,4 +1,4 @@
-# STATE.md — handoff (2026-10-20 evening, PAUSED by user: SUPP-WILF PROVED; Wilf ⇐ CASEB-FLAT-S, the single open link; chain in PROOFS "Dependency chain to full Wilf via SUPP-WILF" (A00000000))
+# STATE.md — handoff (2026-10-20 night: L7 = CASEB-FLAT-S REFUTED at d = 11 (open-regime height-3 case-B S, W = 1278); Wilf ⇐ SUPP-WILF + L7′ (case B ⇒ N + Dep ≥ κ₀); see (A000000000))
 (The previous handoff, night 13, is in git history: commit cb2738b and earlier.)
 
 ## PLAN TO FULL WILF (2026-10-19, lead; supersedes the 2026-10-18 directive below for direction)
@@ -54,6 +54,19 @@ Lines, in order of cost to decide:
       - The core transfer is NOT a general monotonicity. W(S) < W(⟨A⟩ ∪ [c, ∞)) at every depth 3…15, already at
         genus ≤ 16. The external reduction needs W₀(S) < 0 and residual hypotheses. W₀ < 0 never occurs at genus ≤ 24.
     - **Priorities now (target: c > 4m, i.e. every depth ≥ 5):**
+      (A000000000) **NEWEST (2026-10-20 night, resumed by user "continue proving Wilf; use Gurobi for larger models").**
+          - **L7 = CASEB-FLAT-S is FALSE**: ⟨63,239,282,295,318,333,379,386,390,400,405,407⟩ (examples/
+            caseb_height3_counterexample.md; FAILED Pattern D; E353). It is true for all height-≤3 tiles with d ≤ 5
+            (E352, exhaustive, with exact equality μ = 0 at the largest height-3 tiles).
+          - **New open link L7′** (PROOFS "Chain update"): case B ⇒ N(σ_c) + Dep ≥ κ₀. Slacks on every case-B S known:
+            65, 5, 19, 5, 4. κ₀ ≪ Σsupp in case B (8 vs 44).
+          - Tools: caseb_fix.py (exact, fixed δ), caseb_fixlift.py (tile + lifts jointly), verify_s.py, tilechecks.py,
+            nk0.py. With δ free, Gurobi fails at d = 11; seed δ from explicit extremal covers instead.
+          - Next:
+            (1) a family of height-3 case-B S (affine images u·(A − a) of Haanpää's covers; other near-covers) to test
+                L7′, TCL-DICHOTOMY and the size of κ₀;
+            (2) proof attempts for L7′: a bound of κ₀ in case B (carries of a near-perfect cover), or MaxCL for
+                height 2 + cubics (F1).
       (A00000000) **NEWEST — PAUSED HERE (user request, 2026-10-21 night). SUPP-WILF PROVED (PROOFS "SUPP-WILF").**
           **(a) Proved.**
           - For every S and every factorization tile D:
@@ -94,7 +107,7 @@ Lines, in order of cost to decide:
                bound W ≥ Dep − κ₀ + N with inversions (N ≥ 4–20 on all case-B S seen).
             3. Lean: formalize SUPP-WILF (short; codex from 2026-10-25), then CASEB-FLAT's statement.
           **(f) First precise task next session.** (The literature check on order-2 bases is DONE, 2026-10-20.)
-            1. Test L7 where counting allows the most room. Build extremal sum covers at d = 11, m = 63 (μ ∈ [10, 25]) and
+            1. Test L7 where counting allows the most room. Build extremal sum covers at d = 11, m = 63 (μ ∈ [10, 21]; corrected from [10, 25]) and
                d = 7–10 (m = 30, 35, 43, 51). Full enumeration is too large at d = 11, so use a targeted search or
                Haanpää's constructions. Lift them to semigroups, add height-3 cells, and look for case B at height ≥ 3.
             2. In parallel on paper: try to prove that a height-3 cell in case B forces Apéry-minimality violations of

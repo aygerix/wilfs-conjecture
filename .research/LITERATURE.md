@@ -924,7 +924,16 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
     quadratic in d.
   - A height-3 cell costs about d − 1 of margin, so for large d a case-B tile with a few height-3 cells is not excluded
     by counting alone.
-  - At the extremal sizes the margin is forced: k = 12 (d = 11, m = 63, 15 missing pairs) gives μ ∈ [10, 25] for EVERY
-    such cover (when no direction is isolated, z = 0); k = 13 (d = 12, m = 67, 24 missing) gives μ ≤ 18. So d = 11 is the first size worth testing. CASEB-FLAT is therefore
+  - At the extremal sizes the margin is forced: k = 12 (d = 11, m = 63, 15 missing pairs) gives μ ∈ [10, 21] for EVERY
+    such cover (when no direction is isolated, z = 0); k = 13 (d = 12, m = 67, 24 missing) gives μ ≤ 6. (Corrected the
+    same evening from [10, 25] and ≤ 18, which forgot k_loop ≤ d; PROOFS L6.) So d = 11 is the first size worth testing. CASEB-FLAT is therefore
     THREATENED, not supported, at large d. The counting argument cannot prove it, and a proof must use more than the
     margin.
+- 2026-10-20 (night) follow-up search, before the H3-CASEA work: web searches "additive basis of order 3 cyclic group
+  maximum n, 3A = Z_n" and "lattice tiling of Z^n by a simplex down-set / semicross / quasi-cross".
+  - Hits: Dukes–Hegarty–Herke, EJC 17 (2010) R79 (possible orders of a basis of Z_n); Hegarty arXiv:0906.5484;
+    OEIS A004136 (cyclic Sidon-type sums); Stein–Szabó, *Algebra and Tiling* (semicross and cross tilings);
+    Schwartz arXiv:1211.0658 (no lattice tilings by quasi-crosses).
+  - None gives maximal 3-fold sum covers of Z_n or tilings by simplex-shaped down-sets. The semicross {0, e_i, …, ke_i}
+    is a different shape (arms, not a simplex).
+  - So no external bound for scenario (b) (dense height-3 tiles) is known to us.

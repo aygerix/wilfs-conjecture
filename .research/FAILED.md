@@ -60,6 +60,12 @@ statement, smallest/clearest counterexample, and what actually pays the deficit.
 | PSHIFT (P̂′ ≥ Nρ at threshold qm, so that the λ = 0 case of TM would suffice) | ⟨11,13,14,16,18⟩ (c = 24, ρ = 9): P̂′ = 22.5 < 36; 41/2,165 (E346) |
 | INJ-SUBADD (= the FALSE "partial tiles" extension of MaxCL, PROOFS; re-found 2026-10-21): TM-type inequality on arbitrary down-sets E with an injective mod-linear ε, m ≥ \|E\| (Hall's condition for the box transport) | E = Δ_3 ⊆ ℕ², m = 16, b = (9,10), λ = 0: slack −16 (E346). It holds only inside tiles, which in 2D have ≤ 2 maximal elements |
 
+## Pattern D — a structure classification read off small d that fails once extremal additive objects exist
+| Statement | Counterexample | Who pays |
+|---|---|---|
+| CASEB-FLAT (every lattice tile with Dep < Σsupp has height ≤ 2) and its needed form CASEB-FLAT-S = chain link L7 (the lex factorization tile of an open-regime S in case B has height ≤ 2) | Lattice: Haanpää's sum cover of ℤ/63, δ = (1,3,8,12,18,22,27,29,30,43,50), best flat μ = 16, best tile with a cubic μ = 4. Semigroup (open regime): ⟨63,239,282,295,318,333,379,386,390,400,405,407⟩, c = 750, e = 12; lex tile of height 3 (3·239 = 717 ∈ Ap), Dep = 42 < Σsupp = 44 (μ = 2), W = 1278 (E353; verified by two independent computations). True for every height-≤3 tile with d ≤ 5 (exhaustive, E352), but d = 11 has the anomalously large cover f(11,2) = 63 | Tile-CL: V ≥ 11 at every phase; MaxCL slack ≥ 1663 at every phase. So TCL-DICHOTOMY survives, and the chain's open link becomes TCL-DICHOTOMY-S |
+| H3-CASEA by difference bodies (DB_U inequalities exclude height-3 case-B shapes) | d = 3: 18 down-sets (Δ₂ plus 6 cubics, m = 16) satisfy every DB_U with U ⊆ Δ₂, yet none is a tile (E352) | the arithmetic of ℤ/m (character sums) |
+
 ## Pattern C — a relaxation that removes the structure doing the work
 | Statement | Counterexample |
 |---|---|

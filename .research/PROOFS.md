@@ -5125,8 +5125,11 @@ r = ⟨w − c⟩ mod n.
   - d = 4, m = 13: μ ∈ [0, 2] (observed 1);
   - d = 5, m = 19: μ ∈ [4, 6] (observed 4);
   - d = 7, m = 30: μ ∈ [3, 9] (observed 5);
-  - d = 11, m = 63: μ ∈ [10, 25];
-  - d = 12, m = 67: μ ≤ 18.
+  - d = 11, m = 63: μ ∈ [10, 21];
+  - d = 12, m = 67: μ ≤ 6.
+  (CORRECTION 2026-10-20, same evening: first recorded as [10, 25] and ≤ 18, which forgot k_loop ≤ d.)
+  Equivalent form (z = 0): μ = 3(m − 1 − d) − d(d+1) − u_l, with u_l = d − k_loop the number of loop cells used.
+  So the largest height-2 margin at size m is 3m − (d+1)(d+3) − max(0, d − k).
   These ranges assume z = 0 and lifts that realize the height-2 tile.
 
 **Why L7 is threatened, and what a proof must use.**
@@ -5147,3 +5150,24 @@ r = ⟨w − c⟩ mod n.
   0 failures.
 - F3. Case A at some other minimal generator n (L4′), or for some non-lex factorization tile. Not a full fallback:
   ⟨19,39,41,50,52,53⟩ is in case B at every n. Non-lex tiles are untested.
+
+### Chain update (2026-10-20, night): L7 is FALSE; the open link is now L7′ (case B ⇒ the full SUPP bound is ≥ 0)
+- **L7 (CASEB-FLAT-S) is FALSE.**
+  - S = ⟨63,239,282,295,318,333,379,386,390,400,405,407⟩ (c = 750, e = 12, open regime) has a lex tile of height 3
+    (3·239 ∈ Ap), Dep = 42 < Σsupp = 44 and W = 1278.
+  - It was built from Haanpää's sum cover of ℤ/63 by choosing the tile and the lifts jointly (E353). Both computations
+    agree.
+  - The lattice form fails already for the same δ (μ = 4 with one cubic).
+  - L7 holds for every height-≤3 lattice tile with d ≤ 5 (exhaustive, E352). Records: FAILED Pattern D;
+    examples/caseb_height3_counterexample.md.
+- **L7′ (the needed statement):** if the lex tile of an open-regime S is in case B, then N(σ_c) + Dep ≥ κ₀.
+  - Here σ_c = c mod m and N is the column-inversion count at the conductor phase.
+  - Equivalently W ≥ Dep + V(σ_c) ≥ 0, i.e. Tile-CL at the conductor phase up to Dep. With L4 (case A) it gives Wilf.
+  - Sufficient for L7′:
+    - TCL-DICHOTOMY (Tile-CL at every phase in case B; 0 failures so far, including the counterexample above, V ≥ 11);
+    - MaxCL restricted to case-B tiles (slack ≥ 1663 there);
+    - DEP-ALL.
+  - Flat-MaxCL (LEAN) gives L7′ on case-B tiles of height ≤ 2.
+- **Status of the chain:** Wilf ⇐ L4 (PROVED, paper) + L7′ (CONJ). The case-B residue is still confined to
+  near-perfect sum covers: case B needs a large flat margin, i.e. m > (d+1)(d+3)/3 at height 2 (L6). The closed form
+  above bounds what the height-3 cells can cost.
