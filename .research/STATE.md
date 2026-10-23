@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 12:20 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 12:55 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,44 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E446, effective growth proved on paper and independently agent-reviewed:** for EVERY
+S with3<=e<m, put M=c+m-1, C=(e-2)m(m-1)/2 and L=m-e+1. Then
+`mW+C >= M/L^(e-1)`. Thus a hypothetical W<=0 forces
+`c+m-1 <= C*(m-e+1)^(e-1)`. This quantifies the advisor's E416 strict recession theorem
+uniformly over ALL profiles, without enumerating any. Proof: normalize primitive weights
+to maximum1; the column deficit is strictly positive by E416's simplex/residue obstruction.
+Every vertex has integer active rows of norm<=L, hence denominator<=L^(e-1), so its positive
+integer-affine objective is at least the reciprocal. A word path misses e-2 other units,
+giving |z|<=L. This also works for ANY primitive modulus a with3<=e<a, even when some p<a.
+
+For the original full multiplicity-based joint model, k=m-e composite cells give
+`sum x<=k(k+1)/2` by ordering their degrees. Hence
+`mJ >= M/L^(e-1)-C-em*k(k+1)/2`, an explicit bound on every nonpositive full-certificate
+sublevel. No integrality of the LP minimizer or finite-minimum positivity follows.
+The bound depends strongly on m,e and leaves infinitely many residual domains as m varies.
+Do NOT start a giant conductor census, fixed-multiplicity programme or cutoff optimization.
+Finite parity/Hall payment is still the next mathematical obligation; no universal Wilf proof.
+Status: paper proof, independently audited by one of the TWO Sol6.1-high agents expressly
+authorized by the user this turn; not Lean checked, no novelty claim. BOTH agents completed
+their tasks; no background research job or further agent launch is pending.
+
+**E447, source kernel shortcut stopped:** the second agent disproved the proposed map
+charging each killed scalar class to its FIRST vanishing odd multiplication edge. On the
+ALREADY recorded13/15/47 example, nine scalar classes n in H_n,4<=n<=12, all first vanish
+at45->60 by15. Parent45 survives since32 is not in S;60 dies since60-13=47. The parent
+is ODD, so this is also absent from E445's even-parent reserve. A kernel edge can have
+many scalar descendants. This refutes the specified map, not a dimension inequality for
+ALL kernels or a full weighted descendant allocation. No compute or new family target.
+Next retain BOTH directional kernels and the full descendant cost, actual values and
+global conductor/closure surplus. No sufficient finite sign emerged from that pivot.
+
+**E446 compute gate CLOSED before searching:** old mirror19/35/37/43/45/61 has height2,
+m19,e6,c104,g64,W136,Dep4,kappa5,N20,Q_full19. Flat-MaxCL already covers it. The proposed
+direct full-tile descent STOPPED in0.00seconds before any neighborhood comparisons; no new
+seed or population was substituted. Independent membership/columns and existing parity/
+advisor regressions pass. The temporary search mode was removed; only Q_full/phase fields
+remain in the C/independent support audit. Do not treat this as a negative or positive search.
 
 **E445, source-generator component proved / standalone payer stopped:** if q is the
 number of odd primitives OTHER than the least odd a, each odd Apéry value has an even
@@ -475,9 +513,27 @@ primitive/reserve budget are checked. Data: parity_credit_audit.json and
 checkpoint_445_checks.log. The old E444 algebra/reserve audit also passes; no C code,
 new sanitizer path, solver or census. run_checks.sh includes the targeted replay.
 
+**E446 implementation:** existing C `--supp-audit` and independent `support_geometry`
+now both export `Q_full=Dep+N-kappa` and `phase=N-kappa`. No new search mode is retained.
+`--support-audit data/full_tile_eligibility.jsonl OUTPUT EXE` independently replays the
+OLD mirror19 eligibility rejection; raw seed/audit and aborted-gate log are in data/.
+This checks a gate and added fields, not a new positive search. E446's all-profile
+conductor bound is a paper proof with independent agent audit, not a numerical routine.
+
 ## Current attempt and next action
 
-**Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
+**Current exact target (E444–E446):** prove the finite source value gain for EVERY S:
+`(e-1)M-e*mean >= (e-2)(a-1)/2`, using the ORIGINAL parity algebra, cyclic residue labels,
+E439 normalization and the FULL E445 unused-parent reserve. E446 now supplies an explicit
+large-conductor exclusion; it does not make the bounded finite budget nonnegative. The
+next theorem must explain that finite payment, not refine the cutoff or reconstruct more W.
+
+**Hall alternative, at its weakest useful strength:** prove Q(D)=Dep+N-kappa>=0 at the
+actual conductor phase, retaining BOTH reserves in Q=frozen+Leak+m-pool. At the full tile
+Leak=0 but m-pool remains. All-cut, pool-only and frozen extension targets are stronger
+optional diagnostics. They are not the main proof obligation. No new search is pending.
+
+**Earlier E432 stronger target (retained as optional, not current):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
 conductor phase, bound the maximum weighted Hall deficiency by m. Cell z has positive benefit
 beta(z)=1+floor(z.delta/m)+sum_(delta_j<=r(z))z_j; every proper-divisor sink u has capacity
 d+|u|. The graph uses immediate parent implications, with2m+2 nodes and O(dm) arcs. A flow
@@ -491,7 +547,7 @@ proofs, not positivity. The uniform deficiency<=m theorem remains UNKNOWN and is
 than the complete-tile support bound, itself stronger than Wilf. A negative proper cut need
 not refute Wilf. No reduction from all S to the41 diagnostic profiles is claimed.
 
-**First precise next proof task (E435):** prove, for every genuine D and every nontrivial
+**Earlier E435 stronger task (optional; preserve both E444 reserves):** for every genuine D and every nontrivial
 down-set E, the SINGLE joint inequality
 
     K(E)+L_out(E) <= C(E)+(Gamma_D(nonmax E)-F_in(E))+V_D(nonmax E).
@@ -512,7 +568,7 @@ capacity1. E437 repairs THIS collision and constructs a uniform forest exchange,
 not fund the remaining cycles and carries. All Gamma slots in the pair witness arise from
 zero actual-gap trades, so a proof cannot reinterpret them as strict positive arithmetic margins.
 
-**First unresolved proof step after E437:** use the labeled cycle relations and actual
+**Unresolved E437 stronger step (optional):** use the labeled cycle relations and actual
 conductor phase to derive or refute a GLOBAL payment of K+beta_* from C+Gamma-p_*+V.
 Here the all-alias graph has F_in+L_out edges, p_*=vertices-components tree edges are already
 paid, and beta_*=edges-p_* remains. The exact equivalence to JD is proved; its sign is NOT.
@@ -654,7 +710,9 @@ remain UNKNOWN. Advisor family/support formulas verify on paper and k2 is indepe
 checked; no family search. All general lemmas recorded as proved in E432–E444 remain
 paper-proved, not Lean checked. E445's parent injection/typed credit and arbitrary-modulus
 weighted-depth lemmas are also paper-proved; the stronger reserve-free payer is refuted
-on OLD19 and the finite sign is still UNKNOWN. No universal
+on OLD19 and the finite sign is still UNKNOWN. E446's quantitative cyclic-tile gap and
+explicit all-profile conductor/full-joint bounds are paper-proved and independently
+agent-reviewed; they leave the finite sign unproved. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

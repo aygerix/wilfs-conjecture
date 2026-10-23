@@ -1,5 +1,14 @@
 # FAILED.md — registry of failed proof mechanisms (Wilf)
 
+**E447, charge each scalar death to its first vanishing odd edge — map NOT injective
+(2026-10-23).** On the already recorded13/15/47 example, n is in H_n for4<=n<=12,
+but all nine source words(t^15)^n first vanish at45->60 by15. Parent45 survives since
+32 is not in S;60 dies since60-13=47. This is an odd-parent/even-target edge, so it is
+also absent from E445's even-parent reserve. A kernel edge can have many scalar
+descendants. Stop this map and kernel-count-only payment; no total-kernel dimension
+inequality or weighted global descendant allocation is refuted. PROOFS E447 contains
+the hand proof. No new computation or three-generator target.
+
 > Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Purpose: before a new conjecture gets proof effort, state why none of the mechanisms below undermines it. Each entry:

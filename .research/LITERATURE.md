@@ -1321,3 +1321,21 @@ is NOT imported into the all-S target. E445's source-count/deficit injection is 
 directly, without a novelty claim or an external positivity theorem. Searches covered
 Wilf/arbitrary modulus, parity modules, arXiv, GitHub and conjectures.io discovery; no
 absence/priority conclusion follows. The finite value gain remains unproved.
+
+### E446: effective growth versus known fixed-multiplicity verification (2026-10-23)
+
+Reopened primary [BGOW1903.04342](https://arxiv.org/html/1903.04342), Sections3–4 and
+Algorithm4.1. Deciding Wilf at a fixed multiplicity using finitely many Kunz faces and
+integer-feasibility tests is prior work; E446 does not claim that decidability as new.
+The new recorded deduction is an explicit conductor bound depending only on m,e, obtained
+without enumerating profiles from E416's equality obstruction and integer vertex determinants.
+
+Primary [Zhai1111.2779](https://arxiv.org/pdf/1111.2779), Lemma3/Thm1 and its final equality
+discussion, supplies the homogeneous weighted-downset inequality and the equal-weight
+simplex configuration. E416's cyclic-injectivity obstruction is credited to the advisor;
+E446 makes the positive gap quantitative by Cramer's rule and Hadamard's determinant
+bound. These linear algebra facts are used with their proofs/precise bounds in PROOFS,
+not as an external finite-correction theorem. Searches for fixed-multiplicity/conductor/
+recession bounds did not supply a source USED to pay the remaining finite minimum.
+No absence or novelty claim is made. One user-authorized Sol6.1-high agent independently
+audited the complete argument; this is not Lean verification or external peer review.

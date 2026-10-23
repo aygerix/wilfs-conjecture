@@ -1457,3 +1457,34 @@ Paper-only shortcut counterexample13/15/47 was NOT computed: 4 is in H_4 because
 I powers contain only sums of0,1, but4*15=13+47 kills its source product. It shows that
 deaths need not require an original even generator. No additional invariants or search.
 The global finite-gain sign is still unknown; stop primitive-only and selector refinement.
+
+### 2026-10-23 — E446: eligibility gate, implementation replay and paper bound
+
+The approved universal full-tile sign was targeted directly, using ONLY the OLD mirror
+<19,35,37,43,45,61> as proposed seed. The temporary pure-C descent required height>=3,
+Dep<kappa, c>4m,3e<m, maximum20 steps/60seconds. It STOPPED at eligibility,0.00seconds,
+before ANY neighborhood comparison: canonical height2. No replacement seed or census
+was launched. The temporary search mode was removed after this rejection.
+
+Final existing-C --axis-seed plus independent stdlib membership/column reconstruction gives
+m19,e6,c104,g64,W136,Dep4,support8,kappa5,N20,phase15,Q_full19. Flat-MaxCL already covers
+it. Data: full_tile_eligibility.jsonl, full_tile_eligibility_audit.json and the aborted
+full_tile_search.log. Reproduction of the ACTUAL eligibility facts, using final code:
+
+```sh
+./repair_scan --axis-seed 19 35 37 43 45 61 > /tmp/wilf-e446-seed.jsonl
+python3 verify_probe.py --support-audit /tmp/wilf-e446-seed.jsonl /tmp/wilf-e446-check.json ./repair_scan
+```
+
+The C and independent support routines now explicitly export Q_full and phase; all other
+support outputs are retained. The old three-input --parity-credit-check and --advisor-parity-check
+replays pass with these fields. Fejer gcc-O3/Python stdlib; runtime of these audit replays
+was not instrumented (launch ETA under one minute). No optimizer or profile survey ran.
+The new --support-audit fixture is included in run_checks.sh; no solver is needed for it.
+
+The substantive E446 result is a PAPER proof, not a numerical experiment: strict E416
+growth plus a normalized rational-vertex determinant bound proves
+`mW+C >= (c+m-1)/(m-e+1)^(e-1)` for ALL3<=e<m, C=(e-2)m(m-1)/2. The first of the TWO
+user-authorized Sol6.1-high agents independently audited the proof and sharpened the
+word-length denominator. Both root and reviewer also checked the joint-model loss bound
+sum x<=k(k+1)/2, k=m-e. No semigroup enumeration, finite sign or Lean claim follows.

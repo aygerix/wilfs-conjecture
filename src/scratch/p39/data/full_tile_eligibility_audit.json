@@ -1,0 +1,57 @@
+{
+  "records": [
+    {
+      "m": 19,
+      "e": 6,
+      "c": 104,
+      "g": 64,
+      "W": 136,
+      "canonical_height": 2,
+      "Dep": 4,
+      "support_sum": 8,
+      "kappa": 5,
+      "gamma_mu": 121,
+      "low_maximal": 10,
+      "G": [
+        19,
+        61,
+        43,
+        45,
+        35,
+        37
+      ],
+      "gamma": [
+        0,
+        7,
+        7,
+        7,
+        0,
+        1,
+        7,
+        1,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        1,
+        7,
+        1
+      ],
+      "inversions": 20,
+      "shape_excluded": false,
+      "residue_excluded": false,
+      "phase_support_bound": 19,
+      "phase_excluded": true,
+      "Q_full": 19,
+      "phase": 15,
+      "flat_excluded": true,
+      "weighted_budget": 113
+    }
+  ],
+  "shape_excluded": 0,
+  "baseline_order_obstructions": []
+}

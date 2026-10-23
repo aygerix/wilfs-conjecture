@@ -926,6 +926,7 @@ def support_geometry(D):
             'G':D['generators'],'gamma':gamma,'inversions':inversions,
             'shape_excluded':dep>=support,'residue_excluded':dep>=kappa,
             'phase_support_bound':dep-kappa+inversions,'phase_excluded':dep-kappa+inversions>=0,
+            'Q_full':dep-kappa+inversions,'phase':inversions-kappa,
             'flat_excluded':max(map(sum,inv))<=2,
             'weighted_budget':credit-support}
 

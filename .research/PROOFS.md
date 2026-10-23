@@ -10212,3 +10212,203 @@ The half T has no positive element below13. Thus nI below13 is exactly{0,...,n} 
 n<=4, so4 belongs to H_4. But4*15=13+47, so the corresponding odd product vanishes
 modulo t^13. This is a hand-verified refutation of a universal shortcut, not a new
 three-generator target or compute seed. No c,g,W or family-wide claim is used for it.
+
+## E446 — an explicit bound on every nonpositive sublevel, uniform over profiles
+
+2026-10-23. **Scope.** Proves Wilf for every S once the residual bounded-conductor
+domain below is proved uniformly over ALL multiplicities. Proved reduction: YES; the
+theorem below excludes every larger conductor, and the recorded e=2/e=m/complement
+theorems cover the excluded parameters. This is a quantitative reduction, NOT a proof
+of the remaining finite sign or authorization for bounded enumeration. The constants
+depend on m,e and grow quickly. No multiplicity-independent depth bound is claimed.
+
+The user's advisor supplied E416's strict equality obstruction. Here it is made effective
+by an elementary rational-vertex argument, with no profile enumeration. The first
+user-authorized Sol6.1-high agent independently audited the equality and denominator
+steps and sharpened the word-length bound. All proof status here is PAPER / independently
+agent-reviewed, not Lean checked; no novelty claim for Zhai's identity, Hadamard's bound,
+rational LP geometry, or fixed-multiplicity decidability.
+
+### 1. A quantitative cyclic-tile inequality — PROVED on paper
+
+Let D be a finite down-set in N^d containing 0 and all d unit vectors. Assume |D|=n,
+d>=2, n>d+1, and that a linear residue map D -> Z/n is bijective. Put
+
+    L=n-d=n-e+1,             e=d+1.
+
+For every nonnegative weight vector p, with Q=max_(z in D) z.p>0, one has
+
+    d*n*Q-(d+1)*sum_(z in D) z.p >= Q/L^d.             (EFFECTIVE-CH)
+
+This statement uses residue injectivity and a down-set, not semigroup integrality or
+primitive values>=n. It therefore also applies at a nonmultiplicity primitive modulus.
+
+**Word-length bound.** A monotone path from0 to a NONZERO word z has |z|+1 distinct cells of D.
+Exactly one is a unit vector. The other d-1 unit vectors are additional cells, so
+n>=|z|+d. Consequently |z|<=L and ||z||_2<=L for every z in D. In particular L>=2.
+
+**Normalization and strictness.** Choose r in D attaining Q and consider the polytope
+
+    P_r={sigma>=0: r.sigma=1, z.sigma<=1 for every z in D}.
+
+It is nonempty (p/Q belongs), closed, and contained in [0,1]^d because the unit vectors
+belong to D. The column identity gives, throughout P_r,
+
+    f(sigma)=d*n-(d+1)*sum_D z.sigma
+            =sum_j sum_(j-columns C) |C|*(1-top(C).sigma)>=0.
+
+In fact f>0. Here is the equality audit, including zero coordinates. If f=0, every column
+top has weight1. If n_i e_i is the i-axis top, n_i*sigma_i=1, hence ALL sigma_i>0.
+The j-column above (n_i-1)e_i has top (n_i-1)e_i+k e_j for an integer k>=1, because its
+base weight is less than1. Thus k*sigma_j=sigma_i. Reversing i,j forces all sigma_i equal.
+Every column then ends at the same degree H, so D is the full simplex Delta_H: if a
+minimal missing word of degree<=H existed, one predecessor's column would end below H.
+No word of larger degree is possible. Since n>d+1 and d>=2, H>=2.
+
+As in E416, E=Delta_1-Delta_(H-1) must also inject into Z/n. Equal residues of u-v and
+u'-v' imply equal residues, hence equal words, of u+v' and u'+v in Delta_H. But
+
+    |E|=binom(H+d-1,d)+d*binom(H+d-2,d-1)
+       >binom(H+d-1,d)+binom(H+d-1,d-1)=|Delta_H|=n,
+
+where the strict inequality is (d-1)(H-1)>0. This is impossible. Therefore f>0 on P_r.
+
+**Denominator bound.** At a vertex of P_r the active normals span R^d, even if P_r has
+smaller affine dimension. Choose d independent active equations. Their rows are words
+of D (RHS1), or signed coordinate units from sigma_j=0 (RHS0). They form a nonsingular
+integer matrix A; every row has Euclidean norm<=L. Hadamard gives
+
+    1<=|det A|<=L^d.
+
+Cramer's rule makes every coordinate denominator divide det A. The objective f has
+integer coefficients and integer constant, so the STRICTLY positive f at that vertex
+is at least1/|det A|>=1/L^d. A linear functional attains its minimum at a vertex of a
+nonempty compact polytope. Hence f>=1/L^d throughout P_r. Scaling back by Q proves
+EFFECTIVE-CH. No claim that a vertex is a semigroup or that a finite minimum is integral
+is made or needed.
+
+### 2. Effective conductor reduction for ALL semigroups — PROVED on paper
+
+Let S have multiplicity m and embedding dimension3<=e<m. Choose its canonical primitive
+factorization tile for Ap(S,m), put d=e-1 and M=c+m-1, and write
+
+    C_m=(e-2)*m*(m-1)/2,            L=m-e+1.
+
+Selmer and CH' give EXACTLY
+
+    m*W+C_m=d*m*M-e*sum_(w in Ap(S,m)) w.
+
+EFFECTIVE-CH therefore yields the uniform inequality
+
+    m*W+C_m >= M/L^(e-1).                              (EFF-W)
+
+In particular every S in this domain with W<=0 satisfies
+
+    c+m-1 <= C_m*(m-e+1)^(e-1).                        (EFF-C)
+
+For larger conductor W is strictly positive. This applies simultaneously to every
+realizable profile and every multiplicity, not just a fixed saved face. For each fixed
+m,e it makes the remaining nonpositive domain finite. It does NOT bound m, prove the
+sign in that domain, or make its enumeration an efficient or approved next action.
+
+The same proof with ANY primitive modulus a and3<=e<a gives
+
+    a*W+(e-2)*a*(a-1)/2 >= (c+a-1)/(a-e+1)^(e-1).
+
+This does not assume the other primitives exceed a. The multiplicity version is the
+stronger conductor exclusion; the arbitrary-modulus statement checks compatibility
+with E445's warning about even primitives below the least odd pivot.
+
+The exceptions are necessary: e=2 permits a chain D and zero homogeneous deficit;
+e=m permits D=Delta_1 and zero deficit. Both already satisfy Wilf by known theorems.
+The argument is thus a genuine reduction from all S, with those exceptions handled.
+
+### 3. The full joint certificate has an explicit nonpositive-depth bound too
+
+Use ONLY the original multiplicity-based E414/E417 model here, with x=a-y. There are
+k=m-e composite nonzero residues; x_0=x_g=0 on0 and primitive residues. A tight
+factorization tree gives x_s<=h_min(s)-1<=|z_s|-1, as in E416.
+
+Order the k nonunit words by nondecreasing degree. For the i-th word of degree h,
+its h-2 strict composite prefixes of degrees2,...,h-1 all occur earlier. Thus
+|z_i|-1<=i and
+
+    sum_s x_s <= sum_(nonunit z in D)(|z|-1) <= k*(k+1)/2.
+
+Since J=W-e*sum x, EFF-W yields
+
+    m*J >= M/L^(e-1)-C_m-e*m*k*(k+1)/2.                (EFF-J)
+
+Consequently J<=0 forces
+
+    M <= L^(e-1)*(C_m+e*m*k*(k+1)/2).
+
+This holds also for real actual/certificate points in a realizable profile: its fixed
+tile still reconstructs all weights, and the x tree bound uses no integrality. It is
+not a proof that the joint real minimum, integer capped minimum or cheaper assignment
+bound is nonnegative. It supplies an explicit all-profile bound on where a failure
+of the full model can occur, not permission to discard composite certificate rows.
+
+### 4. Closed compute gate and research decision
+
+Before this proof, one proposed60-second direct full-tile falsification used the OLD
+mirror19 seed. It STOPPED at eligibility in0.00seconds, before ANY neighborhood
+comparison: its canonical height is2, already covered by Flat-MaxCL. The independent
+baseline is m19,e6,c104,g64,W136,Dep4,kappa5,N20,phase15,Q_full19. It is not a resistant
+case. The temporary search-mode change was removed; only explicit Q_full/phase audit
+fields are retained. No replacement seed, larger search or positive census was run.
+
+Global review: EFF-W/EFF-J turn strict recession into an explicit, residue-aware growth
+bound; they do not pay the finite correction at small coordinates. The finite parity
+budget with FULL reserve, weakest useful full-tile Hall budget with both reserves,
+and full weighted coupling remain the three universal lines. Do not turn EFF-C into a
+fixed-multiplicity project or a giant conductor census. The next decisive result must
+control the finite affine budget uniformly, rather than improve this coarse cutoff.
+
+## E447 — first vanishing edges do not injectively account for scalar deaths
+
+2026-10-23. **Scope.** Proves Wilf for EVERY S if the E444 finite source value gain is
+paid; reduction YES, its difference is exactly W. This section tests one proposed
+component map in that universal allocation. It does not start a three-generator proof
+programme or claim the component alone would prove Wilf. The second user-authorized
+Sol6.1-high agent supplied the proof below; root checked the arithmetic and membership.
+Paper proof only, no numerical work, Lean or novelty claim.
+
+Let A=k[S]/(t^a). For each odd nonpivot primitive p, multiplication has TWO kernels,
+
+    K_p^0=ker(A_even --t^p--> A_odd),
+    K_p^1=ker(A_odd  --t^p--> A_even).
+
+A proposed way to control the killed scalar classes in E444 is to follow their chosen
+odd-factor word and charge each class to its first vanishing edge. That map need NOT
+be injective, and its edge need not have the even parent counted by E445's reserve.
+
+Use ONLY the already recorded S=<13,15,47>, a13. All displayed generators are primitive
+and odd; T=S/2 has no positive element below13. With I={0,1,17}+T, for1<=n<=12,
+
+    nI intersect[0,12]={0,...,n}.
+
+Therefore n belongs to H_n=nI minus(n-1)I for every4<=n<=12. These are nine DISTINCT
+scalar-layer classes. Their source products are the words(t^15)^n, and all vanish:
+
+    15n-13=47+15(n-4) belongs to S.
+
+The first three powers survive:15-13=2,30-13=17 and45-13=32 do not belong to S.
+For32 the only possible generators are13,15; subtracting one of them leaves19 or17,
+and no combination gives32. Thus all nine words have the SAME first vanishing edge
+
+    t^45 --t^15--> t^60=0,                 60-13=47 in S.
+
+The indicated first-death map sends nine classes to one slot. This edge has an ODD
+parent and EVEN target: its kernel element is in K_15^1, not an even-parent copy in
+E445's R_par. So even a two-sided kernel construction must control descendants of a
+kernel edge; counting or reserving it just once does not pay every scalar class.
+
+This proves failure of THIS specified map. No comparison between the total number of
+scalar deaths and the dimensions of ALL kernels has been computed or refuted. A different
+global allocation or weighted descendant estimate remains possible. The exact full
+budget requiring payment is still E441/E444/E445; no new sign inequality was proved by
+the two-sided-kernel pivot. Stop the first-death injection and rank-only substitution,
+not the source parity strategy. The conductor/closure surplus and FULL even-parent
+reserve remain available, and no requirement that individual kernel modules pay for
+themselves is introduced.

@@ -5535,3 +5535,51 @@ finite sign was NOT advanced to a theorem. The reserve-free payer was decisively
 Next keep R_par, odd deficits and higher-product relations together, or use the full-tile
 Hall alternative with both reserves. No further scalar bookkeeping/selector optimization
 is justified by the positive fixtures. The original all-S objective remains active.
+
+### 2026-10-23 12:49 EDT — E446: effective growth across all profiles
+
+An attempted direct test of the weaker full-tile Hall bound stopped at its gate: OLD
+mirror19/35/37/43/45/61 has height2. No neighborhood was searched, no replacement seed
+was chosen, and the temporary search mode was removed. Independent membership/columns
+give c104,g64,W136,Dep4,kappa5,N20,Q_full19. This is a settled input, not positive evidence.
+
+Instead made the advisor's E416 strict recession argument quantitative. For a canonical
+tile with n cells and d=e-1 unit vectors, a nonzero word path misses the other d-1 units,
+so every word has degree<=n-d. Normalize weights to top1. E416's equality argument gives
+a strictly positive integer-affine column objective on a compact polytope. At each vertex,
+active integer row norms are<=n-d; Cramer/Hadamard bounds its denominator by(n-d)^d.
+Therefore the objective is at least the reciprocal everywhere. No face enumeration.
+
+This proves mW+C >= M/(m-e+1)^(e-1), M=c+m-1,C=(e-2)m(m-1)/2, for EVERY3<=e<m.
+It provides an explicit counterexample conductor cap uniform over all profiles (m still
+varies). The same argument works at any primitive pivot n with3<=e<n, without p>=n.
+For the full joint model, order the k=m-e nonunit cells by degree: |z_i|-1<=i, giving
+sum x<=k(k+1)/2 and the explicit corresponding nonpositive-J cutoff.
+
+The user authorized TWO Sol6.1-high agents. One independently reviewed all equality,
+denominator, exact-invariant and joint-loss steps and found no gap; the other attacks
+the finite parity payment. The review is not external peer review or Lean verification.
+BGOW already decide each fixed multiplicity using face/integer feasibility; no novelty
+claim for that fact or the elementary linear algebra is made.
+
+Decision: keep this quantitative all-S reduction, but do not turn it into a giant
+bounded-conductor/fixed-multiplicity verification or spend more effort sharpening the
+cutoff. The finite affine gain remains the missing theorem. Preserve original parity
+multiplication and FULL unused-parent reserve; the full-tile Hall budget with both
+reserves and the complete weighted certificate remain the other universal lines.
+
+### 2026-10-23 — E447: a kernel slot can have many scalar descendants
+
+The second authorized agent tried to pay higher scalar deaths using source multiplication
+kernels, keeping both parity directions. It found a concrete failure of the proposed
+first-death injection on the existing13/15/47 paper control: n belongs to H_n for4..12,
+and every source word15^n first dies at45->60 by15. Thus nine classes share one slot.
+The parent45 is odd, so this slot is not in E445's even-parent reserve either. Root
+checked the direct memberships; no new invariants or computation.
+
+This closes the specified first-death map, not a total-kernel dimension conjecture or
+the full parity route. A vanishing edge generates a whole scalar descendant module;
+its weighted cost must be controlled with BOTH kernels, actual values and global
+conductor/closure resources. The agent did not derive a sufficient finite inequality.
+Do not describe this pivot or another filtration reconstruction as a sign proof.
+Both authorized agents completed their tasks; no further launches or jobs are active.

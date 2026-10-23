@@ -25,6 +25,7 @@ python3 verify_probe.py --tangent-check data/primitive_tangent.jsonl.gz /tmp/wil
 python3 verify_probe.py --support-audit data/axis_transport_zero.jsonl.gz /tmp/wilf-p39-support-anchors.json ./repair_scan
 python3 verify_probe.py --support-audit data/support_weighted_endpoint.jsonl /tmp/wilf-p39-support-weighted.json ./repair_scan
 python3 verify_probe.py --support-audit data/support_cycle_endpoint.jsonl /tmp/wilf-p39-support-cycle.json ./repair_scan
+python3 verify_probe.py --support-audit data/full_tile_eligibility.jsonl /tmp/wilf-p39-full-tile-eligibility.json ./repair_scan
 python3 verify_probe.py --lo-only-check data/support_lo_witnesses.jsonl.gz
 for name in probe structural_probe residual_probe stress_probe climb_probe margin_probe; do
   python3 verify_probe.py "data/$name.jsonl.gz" "/tmp/wilf-p39-$name-summary.json"

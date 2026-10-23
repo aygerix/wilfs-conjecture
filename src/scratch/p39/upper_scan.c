@@ -198,7 +198,7 @@ static void print_residue_stats(ResidueStats *S,ResidueStats *T){
 }
 /* Canonical tile uses primitive RESIDUE order and first-coordinate lex minimum,
  * matching verify_probe.factor_basis. No restriction on factorization height. */
-static ll supp_dep,supp_support,supp_credit,supp_kappa;
+static ll supp_dep,supp_support,supp_credit,supp_kappa,supp_full;
 static int supp_height,supp_lowmax;
 typedef struct {int u,v,next;ll cap,initial;} ClosureEdge;
 typedef struct {int n,ne,*head,*level,*it,*queue;ClosureEdge *edge;} ClosureGraph;
@@ -336,10 +336,11 @@ static void supp_geometry(int m,int e,int c,int r,int *w,int *mu,int *ord,int *g
  ll C=(ll)(e-2)*m*(m-1)/2,genus=0;for(int s=1;s<m;s++)genus+=w[s]/m;
  ll W=(ll)e*(c-genus)-c;assert((dist_credit-C)%m==0);
  assert(W==supp_credit+(dist_credit-C)/m);
+ supp_full=supp_dep+(dist_credit-C)/m;
  if(dump){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"canonical_height\":%d,\"Dep\":%lld,\"support_sum\":%lld,\"kappa\":%lld,\"gamma_mu\":%lld,\"low_maximal\":%d,\"G\":[%d",m,e,c,genus,W,supp_height,supp_dep,supp_support,supp_kappa,supp_credit,supp_lowmax,m);
   for(int j=0;j<d;j++)printf(",%d",w[gr[j]]);
-  printf("],\"gamma\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",gamma[s]);printf("]}\n");fflush(stdout);
+  printf("],\"Q_full\":%lld,\"phase\":%lld,\"gamma\":[",supp_full,(dist_credit-C)/m);for(int s=0;s<m;s++)printf("%s%d",s?",":"",gamma[s]);printf("]}\n");fflush(stdout);
  }
 }
 static ll residual_assignment(int m,int *w,int *mu,int *U,int q,int rho,int r,
