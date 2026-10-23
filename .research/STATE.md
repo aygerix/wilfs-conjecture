@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 07:41 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 08:18 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,16 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E435, current joint target:** internal negative-start aliases ALWAYS inject into distinct
+missing-direction slots (u,j,0). This uniform component payment is PROVED, with no strict-gap
+assumption. After cancellation the remaining debt is exterior aliases L_out plus raw carries K;
+resources are unused column starts C, remaining missing slots Gamma-F_in and wrapped slots V.
+The identity F_res=C+(Gamma-F_in)+V-L_out-K is exact; its universal sign remains UNKNOWN.
+C>=0 is proved by choosing one distinct nontrivial column for each maximal cell. Cuts with
+Gamma=K=0 are safe; zero-total-resource cuts reduce to that case and are also safe. These
+are cut exclusions, not a universal Wilf theorem. The19 and old114 cuts refute both fixed
+type assignments of unused starts, so the remaining allocation must permit adaptive sharing.
 
 **E434, current proof obligation:** assigning every nonwrapping occurrence to its own parent
 component is a PROVED feasible partial flow. The remaining nonzero demands are1+floor(z.delta/m),
@@ -241,6 +251,10 @@ checking residual capacities both by subtraction and by missing+wrapped componen
 leakage identity and full-tile budget/alias/wrap-load counts. Its `residual_budget` is the
 frozen objective; `pool_budget` is the ORIGINAL pool budget at that selected cut. The three
 frozen bundles are data/completion_frozen_probe.jsonl.gz and completion_frozen_audit.json.
+`verify_probe.py --joint-defect-check FROZEN_INPUT OLD_CUT_INPUT OUTPUT` audits E435's
+internal slot witnesses, maximal-column selection, exterior groups and exact cancellation.
+It reuses ONLY the3 existing tiles, their old selected cuts and two40 zero-resource controls;
+there is no new optimizer. Data are in data/joint_defect_audit.json and checkpoint_435_checks.log.
 
 ## Current attempt and next action
 
@@ -258,7 +272,25 @@ proofs, not positivity. The uniform deficiency<=m theorem remains UNKNOWN and is
 than the complete-tile support bound, itself stronger than Wilf. A negative proper cut need
 not refute Wilf. No reduction from all S to the41 diagnostic profiles is claimed.
 
-**First precise next proof task (E434):** extend the feasible nonwrapping occurrence flow by
+**First precise next proof task (E435):** prove, for every genuine D and every nontrivial
+down-set E, the SINGLE joint inequality
+
+    K(E)+L_out(E) <= C(E)+(Gamma_D(nonmax E)-F_in(E))+V_D(nonmax E).
+
+F_in has already been mapped to distinct missing-direction slots; C=number_of_negative_starts
+minus number_of_maximal_cells is nonnegative by an explicit column selection. Construct the
+remaining cancellation/transport of exterior alias relations AND carry copies into unused
+starts, unreserved missing slots and wrapped slots. A dimension comparison or an unspecified
+rank bound alone would only restate the inequality. The scalar lowering trial fails even on
+the safe height1 control (rank2 versus a d+1-dimensional domain), so do not tune its coefficients.
+
+The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
+C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
+(114 fails). Wrapped capacity alone cannot pay raw carries (54>45 on that114 cut). No new
+positive-profile tests are next. The Gamma=K=0 safe-cut proof supplies a valid base; extending
+it quantitatively to nonzero exterior/carry debt is the missing step.
+
+Equivalently, the original E434 task is to extend the feasible nonwrapping occurrence flow by
 routing every NONZERO cell's remaining1+K_z units into proper-divisor capacities
 R_u=Gamma_D(u)+V_u and the permitted nonzero directional pool units. On u->z=u+e_j the
 pool choices are phi(u), and also phi(u)-delta_j if u_j=0; ancestor paths allow descent.
@@ -334,7 +366,10 @@ completion_frozen_sanitizer.jsonl.gz and checkpoint_434_checks.log. Whole-tile19
 the minimum over all cuts is0 at the EMPTY cut. Neither is an E432 minimum. No new census.
 The extra nonempty40 control verifies leakage2 exactly; a fresh original-pool40 C result
 also passes the changed checker, so the old path remains compatible.
-All E432/E433/E434 general mathematical statements remain paper-proved, not Lean checked. No universal
+E435 reused those exact certificates, with no new C solve, to audit3 whole tiles,3 old selected
+cuts and2 zero-resource controls. It checks each internal alias slot and all components of
+the joint defect separately. Files are joint_defect_audit.json and checkpoint_435_checks.log.
+All E432–E435 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

@@ -354,3 +354,19 @@ Do not overcount all formal aliases as additional source debt. Carry charges and
 compensation must share a single budget; at least6 wrapped units are required on this tile.
 Also do not assume the integer lift set is closed under every primitive residue subtraction:
 this is the old U=T condition (E379/E431), not automatic. The10 seed already refutes it.
+
+## E435 — neither fixed use of surplus column starts is universal (2026-10-23)
+
+After the PROVED cancellation of internal aliases, JD has debts L_out+K and resources
+C+(Gamma-F_in)+V. Reserving C ONLY for carries fails on the old19 full tile: exterior
+aliases8 exceed remaining missing0+wrapped7. Reserving C ONLY for exterior aliases fails
+on the old34-cell114 cut: carries54 exceed remaining missing2+wrapped45. Wrapped capacity
+alone also cannot pay those raw carries,54>45. These are failures of fixed accounting rules,
+not JD+, the C flow or Wilf. Exact decompositions are in data/joint_defect_audit.json.
+
+The scalar lowering trial T=sum c_j X_j^(-1)(Z_j+M_j), with M_j indicating a successor in E,
+fails the proposed nullity<=Gamma bound already on E={0,e_1,...,e_d}: all unit columns land
+in the same e_0 row and the origin adds only one vector, so rank2 versus domain d+1. For
+d>=2, nullity d-1>0 although Gamma_D(nonmax E)=0. This symbolic failure persists for
+generic nonzero coefficients. Stop coefficient tuning for that operator. It does not
+invalidate the distinct internal slot map or the safe-cut proof in PROOFS E435.

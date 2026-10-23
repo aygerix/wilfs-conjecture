@@ -1184,3 +1184,13 @@ from E379/E431; it is not a new reduction and is false without that hypothesis. 
 boundary-alias kernel payer is refuted by the existing19 tile, not justified by E420's
 valid joint-interior injection. Broad Wilf/Hall/monomial-boundary/differential searches
 supplied no theorem USED to infer universal extendability. No priority claim follows.
+
+### E435 scope and prior principle (2026-10-23)
+
+The safe-cut proof uses the standard cross-sum injection already recorded in E420 and
+the earlier one-step difference body. No new difference-set theorem is claimed. The
+internal-alias slot injection, surplus-column selection and joint defect identity are
+proved directly in E435. Searches of the record for internal/exterior aliases and broad
+Wilf/column/matching queries supplied no external result USED to prove the remaining
+joint inequality. No priority or exhaustive-literature claim is made. The scalar-lowering
+trial is refuted by a self-contained height1 rank calculation, without a numerical search.

@@ -5280,3 +5280,29 @@ The expanded-lift subtraction shortcut would require the earlier U=T condition; 
 duplicate assumption. The next mathematical operation is the joint carry/alias allocation
 for actual source counts. Retain unfrozen POOL/E432 if freezing fails. The other universal
 lines remain weighted repair coupling and arithmetic/integrality. No new Lean proof.
+
+### 2026-10-23 08:10 EDT — E435: a valid alias payment and the actual shared surplus
+
+Proved an explicit injection for INTERNAL negative-start aliases: if the image is a
+nonmaximal cell u, then u+e_j cannot be canonical. The unit slot(u,j,0) exists, and distinct
+starts use distinct slots. This pays exactly F_in of the missing-direction units without
+assuming a strict semigroup gap. It repairs one valid part of the failed all-alias payer.
+
+Selected one distinct nontrivial column per maximal cell, giving surplus C=|F|-|max E|>=0.
+After internal cancellation the exact residual budget is C+(Gamma-F_in)+V-L_out-K.
+Gamma=K=0 cuts are safe by the standard cross-sum injection; zero-total-resource cuts
+force K=0 along nonwrapping paths and have budget C. These are universal cut exclusions,
+not a proof restricted to a semigroup subfamily or a proof of the remaining sign.
+
+The existing19 tile forces unused starts to help exterior aliases (8>0+7). The old114 cut
+forces them to help carries (54>2+45). Thus no fixed choice of only one debt type works.
+The scalar lowering operator trial also fails symbolically on a height1 cut, rank2 versus
+d+1-dimensional domain; no numerical coefficient/rank search is justified.
+
+Global review: the uniform slot map changes the proof frontier by removing internal aliases;
+JD alone is still equivalent bookkeeping, not positivity. The remaining map must act on
+exterior relations and carry copies together, into unused starts and the unreserved slots.
+No operator for that full map has been constructed. Continue that joint construction; stop
+fixed type budgets and scalar lowering. Reused only3 saved tiles/old cuts and2 controls on
+Fejer, with no new optimizer or positive census. Keep the other universal lines active and
+retain unfrozen POOL/E432 if E434's stronger extension eventually fails. No Lean claim.

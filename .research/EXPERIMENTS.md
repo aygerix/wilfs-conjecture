@@ -1037,3 +1037,46 @@ python3 verify_probe.py --completion-pool-check data/completion_frozen_sanitizer
 Bundle any new C output beside the SAME existing seed before auditing. Exit5 denotes a
 failed fixed-allocation extension, NOT a genuine negative W. General proofs, the separate
 alias counterexample and the remaining joint inequality are in PROOFS E434.
+
+## E435 — audit the internal slot injection and shared surplus (2026-10-23)
+
+**Scope:** the universal JD+ budget is exactly E434's residual sign after a proved internal
+alias cancellation; E434 implies POOL/E432/SUPP and the complements. This is not a new
+semigroup subfamily or an enlargement of a positive census. Paper proofs are in E435.
+
+Used Fejer (littlewood-paley-8375, us-east1-b, ~/wilf/p39), deterministic Python STDLIB for
+exact auditing of EXISTING C certificates. No new C flow optimization, LP, Python optimizer,
+random seed, sampler or Lean compilation. Audit elapsed time was not instrumented.
+
+verify_probe.py --joint-defect-check re-audits the three saved frozen certificates and the
+matching OLD completion cuts. It reconstructs each internal-alias canonical exit, verifies
+distinct slot(u,j,0) witnesses, chooses a distinct maximal-column start, groups exterior
+aliases and verifies JD against the direct frozen budget. It asserts coverage of exactly
+the19,40,114 fixtures. There are6 labeled main contexts but only5 DISTINCT (D,E) contexts,
+since the19 old cut is its full tile. Two additional40 controls E={0,e1} and E={0,e1,e2,e3}
+have zero total residual parent resource and joint margin0. These test the new safe-cut
+accounting; the universal safe-cut statement is proved on paper, not inferred from them.
+
+Key exact results, in order (F_in,L_out,K; C,G_rem,V):
+
+- 19 full tile: (4,8,6;8,0,7), debt14/resources15, margin1.
+- 114 OLD34-cell cut: (2,2,54;15,2,45), debt56/resources62, margin6.
+- 40 OLD7-cell cut: (0,1,0;1,2,0), debt1/resources3, margin2.
+
+The first refutes reserving unused starts ONLY for carries, because exterior8>0+7. The
+second refutes reserving unused starts ONLY for exterior aliases, because carry54>2+45;
+also54>wrapped45. No JD+ or Wilf failure was found or claimed. The unused-start resource
+must be allowed to support either debt type in this accounting. No more fixtures are next.
+
+Source reports and slot witnesses are data/joint_defect_audit.json; execution output is
+data/checkpoint_435_checks.log. Direction indices in the JSON witnesses are zero-based.
+Exterior images lie outside phi(nonmax E), and may still represent maximal cells inside E.
+Reproduce on Fejer:
+
+```sh
+python3 verify_probe.py --joint-defect-check data/completion_frozen_probe.jsonl.gz data/completion_cut_probe.jsonl.gz /tmp/joint-defect-audit.json
+```
+
+The zero-resource exclusion and the scalar-lowering rank2 counterexample are symbolic
+arguments. No coefficient tuning or finite-field rank search was performed. No new C
+code was changed, so the earlier ASan/UBSan flow replays were not rerun for this audit.

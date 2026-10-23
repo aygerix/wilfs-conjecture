@@ -195,6 +195,52 @@ def frozen_payment_geometry(D,kept):
             'required_wrapped_usage':max(0,source-G-(len(pool)-1)),
             'capacity_components':{'missing':gamma,'wrapped':wrapped}}
 
+def joint_defect_geometry(D,kept):
+    """E435: cancel only aliases with a proved distinct canonical-exit slot."""
+    gr,z=factor_basis(D);m=D['m'];d=len(gr);lookup={v:s for s,v in z.items()};E=set(kept)
+    assert len(E)>=2
+    P=partial_support_geometry(D,E)['nonmax'];maxima=E-P
+    starts={};internal=[];used_slots=set();outside=defaultdict(list)
+    for v in sorted(E):
+        for j,g in enumerate(gr):
+            w=list(z[v]);w[j]+=1
+            if not z[v][j] and lookup.get(tuple(w)) in E:
+                u=(v-g)%m;starts[v,j]=u
+                if u in P:
+                    exit_word=list(z[u]);exit_word[j]+=1
+                    assert tuple(exit_word) not in lookup
+                    slot=(u,j,0);assert slot not in used_slots;used_slots.add(slot)
+                    internal.append({'start_base':v,'direction':j,'image':u,'slot':list(slot)})
+                else:outside[u].append([v,j])
+    selected=[]
+    for s in sorted(maxima):
+        j=next(j for j in range(d) if z[s][j]);base=list(z[s]);base[j]=0
+        tag=(lookup[tuple(base)],j);assert tag in starts;selected.append(tag)
+    assert len(set(selected))==len(maxima)
+    G=frozen_payment_geometry(D,E);inside=len(internal)
+    exterior=sum(len(group)-1 for group in outside.values())
+    unused=len(starts)-len(maxima);missing=G['missing_direction_capacity']-inside
+    assert unused>=0 and missing>=0
+    assert inside+exterior==len(P)+len(starts)-G['pool_size']==G['alias_loss']
+    debt=G['raw_carry_sum']+exterior
+    resources=unused+missing+G['wrapped_capacity']
+    assert resources-debt==G['residual_budget']
+    zero_raw_carry_interior=G['missing_direction_capacity']==G['raw_carry_sum']==0
+    zero_resource=G['missing_direction_capacity']+G['wrapped_capacity']==0
+    if zero_raw_carry_interior:
+        assert inside==exterior==0 and resources-debt>=0
+    if zero_resource:
+        assert G['raw_carry_sum']==inside==exterior==0 and resources-debt==unused
+    return {'size':len(E),'nonmaximal':len(P),'maximal':len(maxima),'negative_starts':len(starts),
+            'internal_aliases':inside,'exterior_alias_debt':exterior,'raw_carry_debt':G['raw_carry_sum'],
+            'unused_column_starts':unused,'remaining_missing_capacity':missing,
+            'wrapped_capacity':G['wrapped_capacity'],'joint_debt':debt,'joint_resources':resources,
+            'joint_margin':resources-debt,'internal_slot_witnesses':internal,
+            'selected_maximal_columns':[list(tag) for tag in selected],
+            'outside_groups':{str(u):v for u,v in sorted(outside.items())},
+            'zero_raw_carry_interior':zero_raw_carry_interior,'zero_resource':zero_resource,
+            'raw_carry_excess_over_wrapped':max(0,G['raw_carry_sum']-G['wrapped_capacity'])}
+
 def audit_completion_pool_cut(C):
     D,R=C['seed'],C['cut'];audit(D);frozen=R.get('frozen_nonwrap',False)
     G=completion_graph(D,True,frozen);m=D['m'];n=3*m+2
@@ -1179,6 +1225,29 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1]=='--joint-defect-check':
+        old={tuple(sorted(C['seed']['generators'])):C for C in
+             (json.loads(line) for line in open_text(sys.argv[3]) if line.strip())}
+        results=[]
+        for line in open_text(sys.argv[2]):
+            if not line.strip():continue
+            C=json.loads(line);D=C['seed'];key=tuple(sorted(D['generators']))
+            assert C['cut']['frozen_nonwrap'];audit_completion_pool_cut(C);audit_completion_cut(old[key])
+            R={'G':list(key),'actual_W':D['W'],'whole_tile':joint_defect_geometry(D,range(D['m'])),
+               'old_selected_cut':joint_defect_geometry(D,old[key]['cut']['kept'])}
+            if list(key)==[40,41,42,43]:
+                R['zero_resource_controls']=[joint_defect_geometry(D,{0,1}),joint_defect_geometry(D,{0,1,2,3})]
+                assert all(V['zero_resource'] and V['joint_margin']==0 for V in R['zero_resource_controls'])
+            results.append(R)
+        assert len(results)==3 and {tuple(R['G']) for R in results}=={
+            (19,39,41,50,52,53),(40,41,42,43),(114,305,307,310)}
+        with open(sys.argv[4],'w') as out:json.dump(results,out,indent=2)
+        for R in results:
+            for label in ('whole_tile','old_selected_cut'):
+                print('JOINT-DEFECT',R['G'],label,{k:v for k,v in R[label].items() if k not in
+                      ('internal_slot_witnesses','selected_maximal_columns','outside_groups')})
+        print('EXACTLY AUDITED three existing tiles and old cuts; no new optimizer or universal sign claim')
+        sys.exit(0)
     if sys.argv[1]=='--completion-pool-check':
         results=[audit_completion_pool_cut(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
         with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)

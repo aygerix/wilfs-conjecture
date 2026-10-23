@@ -9090,3 +9090,133 @@ aliases together; do not give each alias relation, column or phase layer its own
 No more positive instances are next. If freezing proves too strong, retain the unfrozen
 E433 pool or weaker E432 allowance. Full weighted coupling and actual arithmetic/integrality
 remain the other universal lines. All general proofs here are on paper, not Lean checked.
+
+## E435 — internal aliases have distinct slots; the remaining joint defect (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF the joint inequality below holds
+for every cut of every genuine tile in c>4m,3e<m. Proved reduction from all S to this case:
+yes, it is exactly E434's residual sign after a proved cancellation, followed by E433/E432
+and the recorded complements. The uniform sign is UNKNOWN. The zero-resource result below
+excludes certain CUTS from a counterexample; it is not a restricted semigroup programme or
+a proved reduction of all S to those easy cuts. No novelty claim or Lean verification.
+
+### Internal aliases consume distinct canonical-exit slots — PROVED
+
+Fix a down-set E inside D with |E|>=2 and put P=nonmax(E), A=max(E). Write
+
+    F={(v,j):v in E,v_j=0,v+e_j in E},
+    psi(v,j)=phi(v)-delta_j mod m,
+    F_in={(v,j) in F:psi(v,j) in phi(P)}.
+
+Here every base v in F belongs to P. Residue injectivity identifies cells with their
+residues when forming U(E)=phi(P) union psi(F);0 already lies in P. For (v,j) in F_in,
+let u in P have phi(u)=psi(v,j). Then u+e_j is NOT in D: if it were, its residue would
+equal phi(v), forcing u+e_j=v, contrary to v_j=0. Assign this start the missing-direction
+slot (u,j,0), among the u_j+1 slots of that canonical exit.
+
+This assignment is INJECTIVE. Equal slots give equal u and j, hence equal residues of v
+and then equal v. Therefore
+
+    |F_in| <= number of missing directions at P <= Gamma_D(P).
+
+This pays the internal alias subspace by explicit distinct slots. It is not an assertion
+that all aliases are paid, or an extension of the actual source flow. Nor is a canonical
+exit assumed a strict actual semigroup gap: a different word may give a zero-gap trade,
+as in the old E420 example. The slot injection uses only absence of the CANONICAL word.
+
+Formally, use Laurent-monomial basis vectors indexed by P and v-e_j for F. They are all
+distinct. Evaluation into k[Z/m] sends them to their residue basis vectors. For each
+internal start the kernel vector e_(v-e_j)-e_u is independent of the others, and the slot
+map above gives an injective linear map on this internal kernel subspace. This is a
+constructed map, unlike an unspecified matrix with an assumed rank bound.
+
+### Nonnegative surplus and exterior debt — PROVED exact reformulation
+
+Group the remaining starts by their image outside phi(P), with group sizes q_b, and set
+
+    L_out=sum_(b outside phi(P),q_b>0)(q_b-1),
+    K(E)=sum_(z in E) floor(z.delta/m),
+    C(E)=|F|-|A|,             G_rem(E)=Gamma_D(P)-|F_in|.
+
+Both C and G_rem are nonnegative. For C, choose any positive coordinate j of each maximal
+cell z and assign it its j-column start (z-z_j e_j,j). This belongs to F. Distinct maximal
+cells cannot be tops of the same j-column, so these choices are injective. The complement
+consists of C unused starts. Nonnegativity of G_rem follows from the slot injection.
+
+The complete alias rank loss is |F_in|+L_out: starts landing in P each add one relation;
+an exterior group of size q contributes q-1. Also
+
+    |U(E)|=|P|+|F|-|F_in|-L_out,
+    S_E=|P|+|A|-1+K(E).
+
+Substitution in E434 gives the EXACT identity
+
+    F_res(E)=C(E)+G_rem(E)+V_D(P)-L_out-K(E).                (JD)
+
+Thus the universal target is now
+
+    L_out+K(E) <= C(E)+G_rem(E)+V_D(P).                    (JD+, UNKNOWN)
+
+Every displayed debt and resource is nonnegative. This isolates a uniform valid payment
+for internal aliases, but JD itself is an accounting identity, not a reason for JD+.
+A proof by an injective map must actually construct the remaining map from exterior alias
+relations AND raw carry copies to unused starts and the remaining missing/wrapped slots.
+Their dimension inequality alone would only restate the unknown sign.
+
+### A safe-cut lemma and zero-resource base — PROVED for all genuine tiles
+
+If Gamma_D(P)=0, every cell of P has every primitive successor in D. Then psi is injective
+on ALL of F, and its image is disjoint from phi(P). Disjointness follows from the internal
+slot argument. For two distinct directions j,k, equality psi(v,j)=psi(v',k) would give
+equal residues for v+e_k and v'+e_j, both in D. They cannot be equal vectors: their
+j-coordinates are0 and at least1, respectively. For equal directions injectivity of phi
+already forces v=v'. This is the standard E420 cross-sum argument, not a new difference
+principle. Consequently F_in=L_out=0.
+
+It follows that ANY cut with Gamma_D(P)=0 AND K(E)=0 satisfies
+
+    F_res(E)=C(E)+V_D(P)>=0.                               (SAFE)
+
+In particular, if the TOTAL residual parent resource Gamma_D(P)+V_D(P) is0, then K(E)=0
+as well. All internal E edges are nonwrapping; along a word path from0, phase labels
+increase by delta_j without wrapping. Hence rho+z.delta<m for every z in E, so raw carry
+vanishes. Therefore such a cut has F_res(E)=C(E)>=0. Empty and singleton cuts are harmless
+separately. A putative negative cut must leave this regime. This is a proved cut exclusion,
+not a universal proof or an instruction to study only zero-carry semigroups.
+
+### Two incompatible fixed splits — exact existing-cut obstructions
+
+On the full19 tile <19,39,41,50,52,53>, the independent decomposition gives
+
+    F_in4, L_out8, K6;     C8, G_rem0, V7.
+
+The joint margin is15-14=1. If unused starts were reserved ONLY for carries, exterior
+debt8 would have only G_rem+V=7 available. Thus that fixed rule fails by at least1.
+
+On the OLD34-cell optimal h-cut of <114,305,307,310>, it gives
+
+    F_in2, L_out2, K54;    C15, G_rem2, V45.
+
+The joint margin is62-56=6. If unused starts were reserved ONLY for exterior aliases,
+raw carries54 would have only G_rem+V=47 available, a shortfall7. Wrapped capacity ALONE
+is also insufficient,54>45. These are counterexamples to proposed separate type budgets,
+not to JD+, the residual flow or Wilf. In this accounting at least9 of the15 unused starts
+are needed in total on the114 cut. An actual construction must allow their use to adapt.
+
+### Operator trial / global review
+
+A scalar cyclic-lowering trial cannot supply the missing rank theorem. Let X_j be the
+cyclic residue shift, Z_j the diagonal canonical coordinate, and M_j the diagonal indicator
+of a j-successor in E. The explicit map T=sum_j c_j X_j^(-1)(Z_j+M_j) has image in the
+formal residue pool. But on E={0,e_1,...,e_d}, every unit maps to c_j e_0; only the origin
+adds one more image vector. Its rank is2 for nonzero generic c, whereas |E|=d+1 and
+Gamma_D(P)=0. For d>=2 this refutes the hoped-for nullity<=Gamma bound, even on the safe
+40-tile control. Tuning its scalar weights cannot cure that symbolic obstruction.
+
+The valid advance is the internal slot map and safe-cut exclusion, not a general positivity
+claim. Stop scalar-lowering rank tuning and either fixed type budget. Continue the JOINT
+exterior-alias/carry construction with the explicit nonnegative resources in JD. This is
+still the actual boundary/residue line; weighted full repair and arithmetic/integrality
+remain active alternatives. No larger profile census or narrower-family programme is opened.
+Existing flow certificates were reused only to audit the new decomposition on three full
+tiles, their old selected cuts and two zero-resource controls. These are closed checks.
