@@ -1086,3 +1086,13 @@ separate canonical monomial-boundary rewriting proof retaining those margins; it
 its boundary is a minimal presentation/outer Betti set. Generic Groebner/LP methodology is not a
 novelty claim. Searches on arXiv, GitHub and conjectures.io for primitive duals/poset games did not
 supply a uniform finite-correction payment theorem; this limited search is not a nonexistence claim.
+
+### 2026-10-23: primitive dual budgets / interior residue matching
+
+Focused arXiv/GitHub/conjectures.io searches for primitive duals and residue-boundary allocations found
+no source used for a new positivity claim. E419 is ordinary affine LP-dual transfer, no novelty claimed.
+E420 uses the standard cross-sum difference-set injection already present in the earlier B_h notes
+(PROOFS, difference-body lemma) and in the advisor's E416 proof. Its simple rank-credit consequence is
+dominated by the old whole-boundary rearrangement estimate; the false CR-TILE criterion is not revived.
+The E421 counterexample and all its semigroup/repair invariants are independently computed repository
+results, not attributed to an external paper.

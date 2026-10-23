@@ -9,6 +9,8 @@
  * --individual-search NS SEED [MIN_E]: falsify the integer individual-payment bound.
  * --transport-audit m g...: three exact graph relaxations with path witnesses.
  * --unit-search NS SEED [MIN_E]: stop on a capped-unpaid envelope above one.
+ * --interior-unit-search NS SEED [MIN_E]: restrict that target to cells whose
+ *   addition by every non-multiplicity primitive remains in the Apéry set.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * --weighted-search NS SEED [MIN_E]: test W-e sum U>=0, stopping at first failure.
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
@@ -109,16 +111,21 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
     if((dump==8||dump==9||combined_audit)&&i==j&&U[i]>(U[s]+a)/2){U[i]=(U[s]+a)/2;changed=1;}
    }
   }
-  ll unpaid=0;int target=0;for(int s=1;s<m;s++){unpaid+=U[s];if(U[s]>U[target])target=s;}
+  ll unpaid=0;int target=0;for(int s=1;s<m;s++){
+   unpaid+=U[s];int eligible=1;
+   if(unit_audit==3)for(int g=1;g<m;g++)if(gen[g]&&w[s]+w[g]!=w[(s+g)%m]){eligible=0;break;}
+   if(eligible&&U[s]>U[target])target=s;
+  }
   ll bound=W-e*unpaid;
   int n=0,res[MM],perm[MM];ll alpha[MM],beta[MM],M=0;
   if(dump==7||dump==8||dump==9||combined_audit)M=residual_assignment(m,w,mu,U,q,rho,r,&n,res,perm,alpha,beta,dump==9);
   ll phi=bound+e*((M+1)/2);
-  if(dump==6||dump==7||dump==8||dump==9||(unit_audit==1&&U[target]>1)||(unit_audit==2&&(bound<*best||bound<0))){
+  if(dump==6||dump==7||dump==8||dump==9||((unit_audit==1||unit_audit==3)&&U[target]>1)||(unit_audit==2&&(bound<*best||bound<0))){
    printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"integer\":%s,\"equality\":%s,\"bound\":%lld,\"unpaid\":%lld,\"target\":%d,\"max_upper\":%d,\"sweeps\":%d,\"G\":[%d",m,e,c,W,B,(dump==8||dump==9)?"true":"false",dump==9?"true":"false",bound,unpaid,target,U[target],sweeps,m);
    for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("],\"b\":[");
    for(int s=0;s<m;s++)printf("%s%d",s?",":"",z[s]);printf("],\"u\":[");
    for(int s=0;s<m;s++)printf("%s%d",s?",":"",U[s]);printf("]");
+   if(unit_audit==3)printf(",\"interior_target\":true");
    if(dump==7||dump==8||dump==9){
     printf(",\"residual_matching\":{\"M\":%lld,\"rounded_bound\":%lld,\"residues\":[",M,bound+e*((M+1)/2));
     for(int a=0;a<n;a++)printf("%s%d",a?",":"",res[a]);printf("],\"permutation\":[");
@@ -135,7 +142,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    return 1;
   }
   if(unit_audit==2){if(bound<*best)*best=bound;if(B<0)nbneg++;return bound<0?-4:1;}
-  return unit_audit==1&&U[target]>1?-3:1;
+  return (unit_audit==1||unit_audit==3)&&U[target]>1?-3:1;
  }
  int ix[MM],res[MM],n=0;for(int s=1;s<m;s++){ix[s]=-1;if(!gen[s]){ix[s]=n;res[n++]=s;}}
  if(dump==5){
@@ -274,6 +281,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
 int main(int argc,char **argv){
  if(argc>1&&!strcmp(argv[1],"--weighted-search")){unit_audit=2;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--unit-search")){unit_audit=1;argc--;argv++;}
+ if(argc>1&&!strcmp(argv[1],"--interior-unit-search")){unit_audit=3;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--individual-search")){individual_audit=1;argc--;argv++;}
  if(argc==3&&!strcmp(argv[1],"--position-audit")){
   int maxm=atoi(argv[2]);if(maxm<2||maxm>128)return 1;ll checks=0;

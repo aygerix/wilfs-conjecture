@@ -477,3 +477,49 @@ not been added; reported actual values at joint optima must not be mislabeled as
 `bash run_checks.sh` on fejer passes247 exact primal/dual optima and2 exact diagnostic rays, plus all
 existing assignment/transport/equality, primitive/full comparison, position and BASE checks. The canonical
 log is `data/checkpoint_418_checks.log`. No new large enumeration or backwards-climb run was launched.
+
+### E419–E421 — 2026-10-23: primitive budget audit and a weighted interior counterexample
+
+Scope remains universal BACKWARDS-WILF. No family target/profile enumeration. An exact affine change
+of existing duals audits J=N+K+Q+R_a+R_y-P-C', including all coefficient loads and zero-RHS trades.
+The canonical interior/boundary injection is checked independently, together with its partial rank
+credit. That credit is dominated by a prior boundary estimate and is NOT a new universal positivity
+mechanism (PROOFS E419/E420). Five `--face-zero-unpaid` tests stay positive and are not expanded.
+
+The new falsification target was unpaid<=1 in cells extendible by ALL non-multiplicity primitives.
+This is a proposed universal intermediate lemma, not a restricted Wilf family. Pure C on fejer:
+
+    ./repair_scan --interior-unit-search 10000 421 4
+
+Range is the existing six generator modes,20<=m<=160,3..16 proposed non-multiplicity generators,
+heights1..8 as in upper_scan.c, with actual minimal e>=4,c>4m,3e<m acceptance. The new predicate filters
+to actual fully extendible cells and uses the real propagated envelope. It stops at sample2045,
+1798 accepted, G=<104,420,453,509>, target81,U81=3. Upper-bound output is independently reconstructed
+by verify_matching.py and is not itself a feasible witness. Search/provenance is in
+`data/interior_unit_candidate.jsonl`.
+
+    ./certprobe --cap-max 81 104 420 453 509
+    ./certprobe --cap-int-max 81 104 420 453 509
+
+The first has exact rational primal/dual coordinate optimum7/3; the second exports a feasible integer
+vector with target2. MIP duals/optimality are NOT exported or trusted. The combined verifier checks
+integer feasibility exactly and pairs the witness with the independent real bound, giving integer
+maximum floor(7/3)=2. All Apéry factorizations are independently counted by generator-order coin DP
+and are unique. Membership reconstructs c4784,g2647,ell2137,W3764,w81=2265; additions by420,453,509
+remain Apéry. Real/integer counterexamples concern the UNIT CAP, not Wilf or full-certificate positivity.
+The integer vector has mass38 and feasible objective3612, not a separately minimized IntCap value.
+
+A constructed radix inflation <390,9010,9222,21465> had empty full capped core and did not preserve the
+intended loss. Three earlier coordinate controls (64/6,new64/26,new146/75) each had maximum0. These
+failed constructions/controls are saved so they are not repeated. No solver tests were run for the
+loose aggregate matching bound:30 existing seeds already pass by delta caps and the last by known
+zero closure. The canonical zero-gap injected-trade example <11,12,18> is exactly audited.
+
+All12 new solver model records (11 exact LP optima,1 integer witness) were consolidated into existing
+`data/allowance_source_probe.jsonl.gz`, now49 model records with46 optima,2 diagnostic rays and1 integer
+witness. Consolidated `bash run_checks.sh` passes258 exact LP optima,2 diagnostic rays, and the integer
+feasibility/coordinate-optimality check, alongside existing checks. Final log:
+`data/checkpoint_421_checks.log`. Source-transfer/projection/packing audits cover74 genuine-domain
+joint points; these are not74 distinct profiles. New C integer-witness, zero-unpaid and filtered search
+paths pass address/undefined-behavior sanitizers with leak detection disabled for Gurobi. No new
+manuscript or competing handoff was created.

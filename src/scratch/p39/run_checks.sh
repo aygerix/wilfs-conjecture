@@ -22,12 +22,19 @@ python3 verify_matching.py --standalone data/individual_selected.jsonl data/top_
 python3 verify_matching.py --standalone data/weighted_matching.jsonl data/integer_weighted_matching.jsonl data/weighted_search_selected.jsonl
 python3 verify_matching.py --standalone data/combined_selected.jsonl data/equality_selected.jsonl
 python3 verify_matching.py --standalone data/joint_witness_matching.jsonl
+python3 verify_matching.py --standalone data/interior_unit_candidate.jsonl
 python3 - <<'PY'
 import json
 full={tuple(sorted(R['generators'])):R['face']['optimum'] for R in json.load(open('/tmp/wilf-p39-joint_face_probe-summary.json'))}
 reduced=json.load(open('/tmp/wilf-p39-primitive_face_probe-summary.json'))
 assert all(full[tuple(sorted(R['generators']))]==R['face']['optimum'] for R in reduced)
 print('MATCHED',len(reduced),'full/primitive joint-face optima exactly')
+diagnostics=json.load(open('/tmp/wilf-p39-allowance_source_probe-summary.json'))
+integer=[R['cone'] for R in diagnostics if sorted(R['generators'])==[104,420,453,509] and R.get('cone',{}).get('integer_witness')]
+assert len(integer)==1 and integer[0]['fully_extendible'] and integer[0]['unique_apery_factorizations'] and integer[0]['integer_optimum']=='2' and integer[0]['real_upper_bound']=='7/3'
+trade=[R['face']['primitive_projection'] for R in diagnostics if sorted(R['generators'])==[11,12,18] and 'face' in R]
+assert len(trade)==1 and trade[0]['zero_gap_injected_sources']>=1
+print('CERTIFIED fully extendible coordinate: real maximum7/3, integer maximum2; injected relations can be zero-gap trades')
 PY
 python3 verify_matching.py data/transport_all.jsonl data/probe.jsonl.gz data/structural_probe.jsonl.gz data/residual_probe.jsonl.gz data/stress_probe.jsonl.gz data/climb_probe.jsonl.gz data/margin_probe.jsonl.gz
 ./repair_scan --position-audit 128

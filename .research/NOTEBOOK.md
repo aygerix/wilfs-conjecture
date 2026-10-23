@@ -4980,3 +4980,19 @@ source rule, consistent with the advisor's warning about coordinates. Keep the f
 provisional; stop accuracy-only matching refinements and profile-list expansion. Next work is an adaptive
 primitive-boundary/residue allocation paying C plus certificate loss, retaining global compensation.
 All proof statements and exact tests are in existing records; STATE remains the sole handoff.
+
+### 2026-10-23 01:45 EDT — E419–E421: weighted interior loss, not an improved instance bound
+
+Transferred full dual coefficient balances into primitive coordinates, with all trade loads retained.
+The source budget is explicit but its global sign is still the target. Interior-to-boundary residue
+injection is valid; its simple rank credit is dominated by old CR-TILE's whole-boundary estimate, so
+that estimate is not an advance/next lane. Zero-gap canonical boundary trades must be retained.
+
+A fresh targeted C search falsified the stronger unit-cap shortcut on fully extendible cells:
+<104,420,453,509>, w81=5*453, real maximum7/3, integer maximum2. All Apéry factorizations are unique.
+The integer upper bound comes from the independent exact real LP; MIP supplies only an exactly checked
+feasible vector. Thus weighted mass can occur deep in the interior, even without collisions. Do not
+patch the claim to a guessed2. Stop the failed inflation construction and the uninformative positive
+zero-cost sample. Keep the full universal goal active. Next work must route weighted interior mass
+using the coupled tight relations together with primitive boundary credits and zero-RHS trades,
+not replace it by boundary/interior vertex counts. The new104case is an adversarial allocation test.

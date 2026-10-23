@@ -12,12 +12,14 @@ def open_text(path):
 def rat(v):
     return F(str(v)).limit_denominator(1000000)
 
-def primitive_projection(D,x,value,full_certificate):
-    """Audit primitive trades, the column objective, and residue/cap distances.
+def unique_apery_factorizations(D):
+    counts=[0]*(max(D['w'])+1);counts[0]=1
+    for g in D['generators']:
+        if g==D['m']:continue
+        for v in range(g,len(counts)):counts[v]+=counts[v-g]
+    return all(counts[w]==1 for w in D['w'])
 
-    x is the one-based (actual a,q,certificate y) vector. Its actual entries
-    may be rational: this calculation does not assert they are a semigroup.
-    """
+def factor_basis(D):
     m,e,r=D['m'],D['e'],D['r'];d=e-1
     gr=sorted(g%m for g in D['generators'] if g!=m)
     z={0:(0,)*d}
@@ -29,6 +31,37 @@ def primitive_projection(D,x,value,full_certificate):
                 v=list(z[t]);v[j]+=1;candidates.append(tuple(v))
         assert candidates
         z[s]=min(candidates)  # lex-least factorization, a monomial order
+    return gr,z
+
+def interior_sources(D):
+    """Residue injection from interior column bases to distinct boundary cells."""
+    m=D['m'];gr,z=factor_basis(D);d=len(gr);cells=set(z.values())
+    interior={v for v in cells if all(tuple(a+int(k==j) for k,a in enumerate(v)) in cells for j in range(d))}
+    weights=[0]*m;images=set();matches=[];budget=0
+    pairs={(i,j,s):(u-tau) for i,j,s,J,tau,l,u in D['pairs'] if not J}
+    for v in sorted(interior):
+        s=sum(a*g for a,g in zip(v,gr))%m
+        for j,g in enumerate(gr):
+            if v[j]:continue
+            parent=(s-g)%m
+            assert z[parent] not in interior and parent not in images
+            images.add(parent);weights[s]+=1;weights[parent]-=1
+            gap=D['w'][parent]+D['w'][g]-D['w'][s]
+            J,rem=divmod(gap,m);assert not rem and J>=0
+            kappa=0 if J else pairs[min(parent,g),max(parent,g),s]
+            budget+=J-1 if J else kappa
+            matches.append([parent,g,s,J,kappa])
+    assert len(images)+len(interior)<=m
+    weights[0]=0  # unpaid residue0 is fixed to zero
+    return interior,weights,budget,matches
+
+def primitive_projection(D,x,value,full_certificate):
+    """Audit primitive trades, the column objective, and residue/cap distances.
+
+    x is the one-based (actual a,q,certificate y) vector. Its actual entries
+    may be rational: this calculation does not assert they are a semigroup.
+    """
+    m,e,r=D['m'],D['e'],D['r'];d=e-1;gr,z=factor_basis(D)
     cells=set(z.values());assert len(cells)==m
     for v in cells:
         for j in range(d):
@@ -97,11 +130,91 @@ def primitive_projection(D,x,value,full_certificate):
         for s in sorted(range(1,m),key=lambda s:D['w'][s]):
             hmin[s]=1+min(hmin[(s-g)%m] for g in gr if D['w'][(s-g)%m]+D['w'][g]==D['w'][s])
             assert unpaid[s]<=hmin[s]-1
+    interior,_,_,matches=interior_sources(D)
+    image={parent for parent,_,_,_,_ in matches};L=len(image)
+    distance_credit=sum((r-s)%m for s in image)
+    headroom=sum(w[r]-w[s] for s in image)
+    image_unpaid=sum(unpaid[s] for s in image)
+    assert distance_credit>=L*(L-1)//2
+    assert headroom>=distance_credit+m*image_unpaid
+    assert surplus>=headroom
+    gamma={s:sum(v[j]+1 for j in range(d) if tuple(t+int(k==j) for k,t in enumerate(v)) not in cells) for s,v in z.items()}
+    assert all(gamma[s]>=1 for s in image)
+    weighted_headroom=sum(gamma[s]*(w[r]-w[s]) for s in image)
+    weighted_distance=sum(gamma[s]*((r-s)%m) for s in image)
+    weighted_unpaid=sum(gamma[s]*unpaid[s] for s in image)
+    rank_credit=sum(k*a for k,a in enumerate(sorted((gamma[s] for s in image),reverse=True)))
+    assert weighted_distance>=rank_credit
+    assert surplus>=weighted_headroom>=weighted_distance+m*weighted_unpaid
     return {'primitive_residues':gr,'objective_coefficients':H,'correction':str(C),
             'column_surplus':str(surplus),'unpaid_sum':str(sum(unpaid)),
             'actual_objective_at_joint_point':str((surplus-C)/m),
             'affine_boundary_rows':len(corners),'strict_boundary_rows':sum(t for _,t in corners.values()),
-            'primitive_translation_rewrite_steps':rewrites}
+            'primitive_translation_rewrite_steps':rewrites,
+            'interior_cells':len(interior),'injected_sources':len(matches),
+            'zero_gap_injected_sources':sum(J==0 for _,_,_,J,_ in matches),
+            'injected_distance_credit':distance_credit,'uniform_injected_credit':L*(L-1)//2,
+            'injected_headroom':str(headroom),'injected_unpaid_mass':str(image_unpaid),
+            'injected_rank_credit':rank_credit,'injected_weighted_distance':weighted_distance,
+            'injected_weighted_unpaid':str(weighted_unpaid),
+            'interior_unpaid':[[s,str(unpaid[s])] for s in range(m) if z[s] in interior and unpaid[s]]}
+
+def primitive_dual_budget(D,C,value):
+    """Exact affine substitution of a complete a,q,y dual into p,unpaid x.
+
+    Unlike sign restrictions on individual old RHS contributions, this keeps
+    all zero-RHS trade loads. No assertion that the resulting budget is
+    nonnegative without its verified dual certificate is made.
+    """
+    m,e,r=D['m'],D['e'],D['r'];d=e-1;gr,z=factor_basis(D);nv=d+m-1
+    jac={};constant={}
+    for s in range(1,m):
+        v=[F(a-b,m) for a,b in zip(z[r],z[s])]+[F(0)]*(m-1)
+        jac[s]=v;constant[s]=-F((r-s)%m,m)
+        v=v.copy();v[d+s-1]=-1
+        jac[m+s]=v;constant[m+s]=constant[s]
+    jac[m]=[F(a,m) for a in z[r]]+[F(0)]*(m-1);constant[m]=-F(r,m)
+    obj=[F(0)]*nv;objconst=F(m-r-1)
+    for a,c in [(m,e-m)]+[(m+s,e) for s in range(1,m)]:
+        objconst+=c*constant[a]
+        for j,t in enumerate(jac[a]):obj[j]+=c*t
+    correction=F((e-2)*(m-1),2);assert objconst==-correction
+    H=[(e-1)*m*z[r][j]-e*sum(v[j] for v in z.values()) for j in range(d)]
+    assert obj==[F(v,m) for v in H]+[F(-e)]*(m-1)
+    costs=defaultdict(F);load=[F(0)]*nv
+    for R in C['rows']:
+        pi=rat(R['pi']);rhs=rat(R['b'])-sum(v*constant[a] for a,v in R['a'])
+        kind=R['kind'];key=R['pair']
+        if kind==0:
+            assert rhs==(-1 if D['pairs'][key][3] else 0)
+            category='strict_boundaries' if rhs else 'zero_rhs_trades'
+        elif kind==1:
+            i,j,s,J,tau,lo,up=D['pairs'][key]
+            assert rhs==(-(tau+lo) if R['sense']=='>' else up-tau)
+            category='allowances'
+        elif kind==3:
+            assert rhs==-F(m+key,m);category='primitive_bounds' if key in gr else 'positive_apery_bounds'
+        else:
+            assert rhs==0;category='zero_rhs_links'
+        costs[category]+=pi*rhs
+        if pi:
+            for a,v in R['a']:
+                if v:
+                    for j,t in enumerate(jac[a]):
+                        if t:load[j]+=pi*v*t
+    for a,rc in enumerate(map(rat,C['rc']),1):
+        rhs=(5 if a==m else 0)-constant[a]
+        category='depth' if a==m else 'actual_cap' if a<m else 'certificate_cap'
+        costs[category]+=rc*rhs
+        if rc:
+            for j,t in enumerate(jac[a]):
+                if t:load[j]+=rc*t
+    assert load==obj
+    costs['correction']=-correction
+    assert sum(costs.values())==value
+    assert all(v>=0 for k,v in costs.items() if k not in ('allowances','correction'))
+    assert costs['allowances']<=0
+    return {k:str(v) for k,v in costs.items()}
 
 def audit_face(D,out):
     m,e,r=D['m'],D['e'],D['r'];C=D['face'];nv=2*m-1
@@ -111,7 +224,7 @@ def audit_face(D,out):
     oriented=actual=='oriented_primitive_edges'
     primitive=actual!='all_pairs'
     coverage=C.get('certificate_constraints','full')
-    assert coverage in ('full','zero_rhs_only')
+    assert coverage in ('full','zero_rhs_only','zero_unpaid_sides')
     expected=[];gr={g%m for g in D['generators'] if g!=m}
     for p,(i,j,s,J,tau,lo,up) in enumerate(D['pairs']):
         coeff=defaultdict(int)
@@ -121,8 +234,8 @@ def audit_face(D,out):
         if not primitive or i in gr or j in gr:expected.append((p,0,sense,tau-int(bool(J)),A))
         if not J:
             B={m+a:v for a,v in coeff.items()};B[m]=-1
-            if coverage=='full' or not lo:expected.append((p,1,'>',-lo,B))
-            if coverage=='full' or not up:expected.append((p,1,'<',up,B))
+            if coverage=='full' or coverage=='zero_rhs_only' and not lo or coverage=='zero_unpaid_sides' and tau+lo==0:expected.append((p,1,'>',-lo,B))
+            if coverage=='full' or coverage=='zero_rhs_only' and not up or coverage=='zero_unpaid_sides' and up-tau==0:expected.append((p,1,'<',up,B))
     for s in range(1,m):
         if not primitive or s in gr:expected.append((s,3,'<',-1-int(s>r),{s:1,m:-1}))
         expected.append((s,4,'<',0,{m+s:1,s:-1}))
@@ -176,7 +289,9 @@ def audit_face(D,out):
         result={'status':'unbounded','slope':str(slope),'integer_ray_scale':scale,'steps':step,'negative_witness_value':str(value)}
     result['certificate_constraints']=coverage
     result['actual_constraints']=actual
-    if not oriented:result['primitive_projection']=primitive_projection(D,x,value,coverage=='full')
+    if not oriented:
+        result['primitive_projection']=primitive_projection(D,x,value,coverage=='full')
+        if C['status']==2:result['primitive_dual_budget']=primitive_dual_budget(D,C,value)
     # If the actual point is integral, reconstruct S independently from its
     # resulting positive generators, rather than accepting Kunz inequalities alone.
     if not oriented and all(x[a].denominator==1 for a in range(1,m+1)):
@@ -234,6 +349,22 @@ def audit_cone(D,out):
         if capped or u-tau==0:expected.append((p,0,'>',tau-u if capped else 0,dict(coeff)))
     if not capped:expected.extend((-1,2,'>',0,{s:1,m:-1}) for s in core)
     assert len(expected)==len(C['rows'])
+    if C.get('integer_witness'):
+        assert mode=='coordinate' and 'rc' not in C
+        x=[F(0)]+list(map(rat,C['x']))
+        assert len(x)==m+1 and all(v.denominator==1 for v in x)
+        assert all(0<=x[s]<=upper[s-1] for s in range(1,m+1))
+        for (p,kind,sense,rhs,coeff),R in zip(expected,C['rows']):
+            assert (R['pair'],R['kind'],R['sense'],rat(R['b']),dict(R['a']))==(p,kind,sense,rhs,coeff) and 'pi' not in R
+            value=sum(v*x[s] for s,v in coeff.items())
+            assert value<=rhs if sense=='<' else value>=rhs
+        for i,j,s,J,tau,l,u in D['pairs']:
+            if not J:assert -(u-tau)<=x[i]+x[j]-x[s]<=tau+l
+        assert -x[target]==rat(C['value'])
+        out['cone']={'mode':mode,'target':target,'core':core,'integer_witness':True,'target_value':str(x[target]),'unpaid':[str(v) for v in x[:m]],'capped_objective':str(F(D['W'])-D['e']*sum(x[:m])),
+                     'fully_extendible':all(D['w'][target]+g==D['w'][(target+g)%m] for g in D['generators'] if g!=m),
+                     'unique_apery_factorizations':unique_apery_factorizations(D)}
+        return out
     x=[F(0)]+list(map(rat,C['x']));rc=list(map(rat,C['rc']));load=[F(0)]*(m+1)
     assert len(x)==m+1 and len(rc)==m and all(0<=x[s]<=upper[s-1] for s in range(1,m+1))
     used=[];dual=F(0)
@@ -256,6 +387,7 @@ def audit_cone(D,out):
         for i,j,s,J,tau,l,u in D['pairs']:
             if not J:assert -(u-tau)<=x[i]+x[j]-x[s]<=tau+l
         out['cone']={'mode':mode,'target':target,'core':core,'optimum':str(primal),'unpaid':[str(v) for v in x[:m]],'capped_objective':str(F(D['W'])-D['e']*sum(x[:m])),'dual_nonzero':used}
+        if mode=='coordinate':out['cone']['fully_extendible']=all(D['w'][target]+g==D['w'][(target+g)%m] for g in D['generators'] if g!=m)
         return out
     for s in core:assert x[s]>=x[m]
     ray=x[:m];finite=[v/2 for v in ray]
@@ -363,6 +495,20 @@ if __name__=='__main__':
     for line in open_text(sys.argv[1]):
         if not line.strip(): continue
         results.append(audit(json.loads(line)))
+    coordinate_bounds={}
+    for R in results:
+        C=R.get('cone',{})
+        if C.get('mode')=='coordinate' and not C.get('integer_witness'):
+            key=(tuple(sorted(R['generators'])),C['target'])
+            coordinate_bounds[key]=min(coordinate_bounds.get(key,F(10)**100),-F(C['optimum']))
+    for R in results:
+        C=R.get('cone',{})
+        if not C.get('integer_witness'):continue
+        upper=coordinate_bounds.get((tuple(sorted(R['generators'])),C['target']))
+        if upper is not None:
+            C['real_upper_bound']=str(upper)
+            assert F(C['target_value'])<=upper//1
+            if F(C['target_value'])==upper//1:C['integer_optimum']=C['target_value']
     with open(sys.argv[2],'w') as f: json.dump(results,f,indent=2)
     for R in results:
         if 'face' in R:
@@ -371,11 +517,16 @@ if __name__=='__main__':
             continue
         if 'cone' in R:
             C=R['cone']
+            if C.get('integer_witness'):
+                print('INTEGER-REPAIR G=%s target=%d value=%s fully_extendible=%s integer_optimum=%s (from separate real bound %s)'%(R['generators'],C['target'],C['target_value'],C['fully_extendible'],C.get('integer_optimum','not asserted'),C.get('real_upper_bound','absent')))
+                continue
             if 'mode' in C:
                 print('CORE-LP G=%s mode=%s target=%d core=%d optimum=%s max_unpaid=%s capped_witness=%s'%(R['generators'],C['mode'],C['target'],len(C['core']),C['optimum'],max(map(F,C['unpaid'])),C['capped_objective']))
             else:print('CONE G=%s core=%d epsilon=%s ray_scale=%s max_unpaid=%s capped_upper=%s'%(R['generators'],len(C['core']),C['epsilon'],C['max_ray_scale'],max(map(F,C['scaled_unpaid'])),C['capped_objective_upper']))
             continue
         print('G=%s q=%s h=%s W=%s | '%(R['generators'],R['q'],R['h'],R['W'])+' '.join('%s=%s[nontight:%d,tighterror:%d]'%(name,V['optimum'],len(V['non_tight_violations']),len(V['tight_errors'])) for name,V in R['models'].items()))
-    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R)+int(R.get('face',{}).get('status')=='optimal') for R in results),'primal/dual optima')
+    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R and not R['cone'].get('integer_witness'))+int(R.get('face',{}).get('status')=='optimal') for R in results),'primal/dual optima')
+    witnesses=sum(bool(R.get('cone',{}).get('integer_witness')) for R in results)
+    if witnesses:print('EXACTLY FEASIBLE',witnesses,'integer repair witnesses; optimality requires a separate bound')
     rays=sum(R.get('face',{}).get('status')=='unbounded' for R in results)
     if rays:print('EXACTLY CERTIFIED',rays,'unbounded rays and negative integer model points; numerical semigroups only when independently reconstructed')

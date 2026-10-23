@@ -7735,3 +7735,154 @@ credits paying C plus weighted certificate loss. Do not require individual chain
 themselves. When a negative certificate appears, compare separately minimized actual and joint objectives
 on the SAME domain before deciding whether integrality or certificate coupling is responsible. No such
 negative full-model point or universal allocation has yet been found.
+
+### An exact primitive-coordinate dual budget (E419)
+
+**General affine dual transfer proved by substitution; full coefficient balance audited over Q.**
+This implements the E417 parametrization on existing dual certificates without dropping any load.
+Let pi be the old row duals and rc_a,rc_q,rc_y the nonnegative lower-bound reduced costs in a,q,y.
+All formulas below use the unscaled objective J. Define
+
+    N = sum_{non-tight actual rows} (-pi),
+    K = sum_{positive primitive rows at g} (-pi)*(m+g)/m,
+    Q = rc_q*(5m+r)/m,
+    R_a = sum_{s>0} rc_a(s)*[r-s]_m/m,
+    R_y = sum_{s>0} rc_y(s)*[r-s]_m/m,
+    P = sum_{tight certificate lower sides} pi*alpha
+        +sum_{tight certificate upper sides} (-pi)*kappa,
+    C'=(e-2)(m-1)/2.
+
+Then the same dual gives exactly
+
+    J=N+K+Q+R_a+R_y-P-C'.
+
+For a full actual model that includes redundant nonprimitive positive bounds, their analogous credits
+are (-pi)*(m+s)/m. They vanish at optima: a nonprimitive value is at least2m+2>m+s, so complementary
+slackness makes its positive-bound multiplier0. The checker retains/audits the term rather than relying
+on this simplification. All displayed credits are nonnegative, P>=0. Actual tight trade loads remain
+in the coefficient balance but have RHS0. This is a coordinate conversion, NOT a positivity theorem.
+
+Proof: substitute a_s=((z_r-z_s).p-[r-s]_m)/m, q=(z_r.p-r)/m and y_s=a_s-x_s into every old row and
+variable lower bound. Actual tight RHS becomes0, non-tight RHS-1, positive bounds become -p_g/m<=
+-(m+g)/m, and q>=5 becomes z_r.p/m>=(5m+r)/m. Bounds a_s>=0 and y_s>=0 become top/residue inequalities,
+respectively without and with unpaid mass. Certificate lower sides become -(x_i+x_j-x_s)>=-alpha
+and upper sides become -(x_i+x_j-x_s)<=kappa, modulo zero-RHS actual trades. The objective constant
+is -C'. Summing with the old duals and reduced costs proves the identity and coefficient stationarity.
+
+The independently checked five reduced duals give the following contributions:
+
+| Seed | N | K | Q | R_a+R_y | P | C' | J |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| <60,67,71,121> | 0 | 11068/75 | 0 | 8297/75 | 96/5 | 59 | 180 |
+| <64,67,69,77,129> | 15 | 16903/32 | 0 | 585/32 | 15 | 189/2 | 452 |
+| <146,155,175,184> | 0 | 0 | 0 | 3505/3 | 0 | 145 | 3070/3 |
+| <146,155,184,535> | 0 | 69565/73 | 0 | 19130/73 | 72 | 145 | 998 |
+| <13,17,27,29> | 0 | 0 | 175/13 | 384/13 | 0 | 12 | 31 |
+
+These are not canonical/universal weights. In particular cap credit alone does not pay C' in the64
+certificate, whereas the hard146 certificate uses cap credit alone. Neither individual-source funding
+rule is inferred. P here uses alpha/kappa, NOT the lo/up cost of E414's a,q budget. Discarding sides
+with zero old allowance RHS is consequently different from discarding zero-unpaid-cost sides.
+
+A diagnostic `--face-zero-unpaid` retains only alpha0 lower and kappa0 upper sides, with the complete
+primitive actual domain/caps. Five saved profiles have exact minima176,432,870,42903/44,22 (60,64,
+new146,65,19 respectively). The putative universal zero-unpaid-cost certificate was not disproved or
+proved. Stop expanding this positive sample. Raw data is consolidated in allowance_source_probe.jsonl.gz.
+
+### Interior residue injection and the limit of a boundary-count allocation (E420)
+
+**General paper counting lemma; the difference-set principle is standard, not a novelty claim.**
+For the canonical factorization down-set D define
+
+    T={v in D : v+e_j in D for every j},
+    F={(j,v):v in T, v_j=0}.
+
+Map (j,v) to the unique canonical word u in D with residue phi(u)=phi(v)-g_j. This map is injective
+and its image I is contained in D\T. To prove injectivity, equality for two sources gives equal
+residues of v+e_k and v'+e_j, both in D. Their vectors are equal by residue injectivity. If j!=k,
+the j-coordinate is0 on the first and positive on the second, impossible. Thus j=k and v=v'. If the
+image u lay in T, u+e_j and v would be equal vectors, again contradicting v_j=0. Therefore
+
+    |T|+sum_j |{v in T:v_j=0}| <= m.
+
+This extends the full-simplex difference count in E416 to arbitrary canonical D. It does not require
+unique factorizations. A matched canonical exit u+e_j may nevertheless be a TIGHT actual relation;
+being outside a canonical down-set is different from being outside the actual Apéry set.
+
+For example S=<11,12,18> has multiplicity11 and primitive values12,18. Its lex down-set has v=(0,2)
+(weight36) in T, since36+12=48 and36+18=54 are both Apéry values. The source j=1 maps to u=(2,0),
+weight24. Thus u+e_1=(3,0) is outside D but 3*12=2*18 is a zero-gap trade. Treating every injected
+source as a positive primitive exit is FALSE. The exact joint optimum31 is only a control, not a new
+family target. A further payment construction must retain these zero-RHS trades.
+
+There is a valid partial finite-credit consequence. Write gamma_s=sum_{j:z_s+e_j notin D}(z_{s,j}+1),
+the actual column multiplicity at a boundary cell. CH' gives H.p=sum_s gamma_s*(M-w_s). For the image
+I above, L=|I| and gamma_s>=1. Distinct residues give distinct d_s=[r-s]_m, so
+
+    H.p >= sum_{s in I} gamma_s*d_s + m*sum_{s in I} gamma_s*x_s
+         >= sum_{k=0}^{L-1} k*gamma_(k) + m*sum_{s in I} gamma_s*x_s,
+
+where gamma_(k) are sorted in decreasing order. The second inequality is elementary rearrangement:
+distinct nonnegative integer distances minimize the weighted sum at0,...,L-1, paired oppositely to
+weights. In particular H.p>=binom(L,2)+m*sum_I x_s. These statements pay a finite amount plus weighted
+mass on I, but do NOT pay C+em*sum_ALL x. They cannot be promoted to full Wilf.
+
+**Duplication review / decision:** the rank estimate is dominated by the corresponding old estimate
+using the entire boundary (see the failed CR-TILE shape-only criterion, E349). Do not market it as a
+new positivity mechanism or repeat that failed criterion. The injection makes sharing explicit but
+leaves the essential weighted transport of interior mass unresolved. A proposed aggregate transport
+inequality sum_F(x_v-x_u)<=sum_{strict matches}(J-1)+sum_{tight matches}kappa was too weak to discriminate
+on saved S:30 seeds pass already by the delta box, and the remaining hard146 seed has full zero
+closure. No additional LPs were run for that loose aggregate. Three sharper coordinate tests at64/6,
+new64/26,new146/75 all have maximum0; these are diagnostics, not a transport theorem.
+
+### Weighted unpaid mass occurs even in the fully extendible interior (E421)
+
+**FALSE universal shortcut, for real AND integer repairs:** x_s<=1 whenever w_s+p is Apéry for every
+primitive p other than the multiplicity. This is a different hypothesis from the already false global
+unit bound E406; it too fails. A fresh genuine semigroup is
+
+    S=<104,420,453,509>,     e=4, c=4784=46m, g=2647, ell=2137, W=3764.
+
+It lies in the remaining domain c>4m,3e<m. Here w_81=2265=5*453, and
+
+    w_81+420=2685=w_85,
+    w_81+453=2718=w_14,
+    w_81+509=2774=w_70.
+
+Thus this cell is fully extendible by all non-multiplicity primitives; its canonical word is(0,5,0).
+Independent generator-order coin DP confirms that EVERY Apéry representative has a unique factorization
+in420,453,509. This is not a factorization-collision phenomenon or an unpaid weight confined to maximal
+cells. The exact real capped coordinate maximum is7/3, certified by rational primal and dual vectors.
+The integer maximum is EXACTLY2: the real upper bound gives x_81<=floor(7/3)=2 for integer x, and the
+following integer full-capped witness attains2.
+
+    x_s=2 on {51,55,66,77,81,85,88,92,96},
+    x_s=1 on {3,14,18,29,33,40,44,48,59,61,62,65,67,69,70,73,74,78,89,100},
+    x_s=0 elsewhere.
+
+The independently reconstructed semigroup and every cap/tight inequality pass exactly over Z.
+The witness has total mass38 and objective W-e*38=3612. This is a FEASIBLE objective, not a separately
+minimized IntCap value. MIP status supplies no mathematical upper bound here: integer optimality follows
+only from the separate exact real LP bound and this exact integer witness. There is no Wilf failure.
+
+Discovery: the existing pure C scanner with new `--interior-unit-search 10000 421 4` tests the real
+propagated upper bound only on cells whose addition by every primitive stays Apéry. It stops at sample2045,
+1798 accepted, with U_81=3. This is only an upper bound, not a feasible assignment. `--cap-max 81` then
+certifies7/3; naive rounding did not produce an integer witness. The C API `--cap-int-max 81` finds the
+integer witness, independently checked with no dual/optimality claim from MIP. The combined verifier
+uses the real bound to certify integer maximum2. Raw data: allowance_source_probe.jsonl.gz; scanner
+candidate/provenance: interior_unit_candidate.jsonl. The scanner's interior condition is independently
+checked from membership-reconstructed Apéry values.
+
+A prior targeted construction inflated the tile of<13,17,27,29> by coprime radix factors(2,5,3) and a
+residue-preserving primitive scale53. The resulting genuine<390,9010,9222,21465> makes the chosen old
+cell fully extendible, but its full capped core is empty. That attempt did not preserve positive unpaid
+mass; discontinue that construction as evidence for a unit bound. It was a diagnostic, not a family proof.
+
+**Project-level decision:** stop all global or interior unit-cap hypotheses; do not replace1 by a guessed2
+(the real interior maximum already exceeds2). Keep the full primitive-coordinate weighted objective
+and the exact source budget E419. The next allocation must transport genuinely weighted interior mass
+through coupled tight relations while retaining primitive boundary gaps and zero-RHS trades. The new104
+example is an adversarial diagnostic for that universal rule, not a new regional-proof catalogue target.
+The original full Wilf theorem and universal joint/Phi positivity remain unproved.

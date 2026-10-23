@@ -216,3 +216,18 @@ joint minima are both22. The65case provides a second diagnostic ray. Do not call
 full-certificate counterexample. Data/checking: PROOFS E418 and p39/data/allowance_source_probe.jsonl.gz.
 Signed tight-row RHS costs depend on parametrization; E417 primitive coordinates put actual trades
 at RHS0. Discontinue this sourcewise a,q sign restriction rather than patching its examples.
+
+### E421: unit unpaid mass even in fully extendible Apéry cells — FALSE over R and Z
+
+The proposed repair shortcut x_s<=1 for cells extendible by every primitive OTHER THAN the multiplicity
+fails at S=<104,420,453,509>, m104,e4,c4784,g2647,W3764. The cell w81=2265=5*453 has all three extensions
+2685,2718,2774 in Apéry. Its exact real capped maximum is7/3. A separate integer feasible witness has
+x81=2; the real bound floors to2, proving exact integer maximum2. Every Apéry factorization is unique.
+Do not restrict weighted unpaid mass to maximal/boundary cells or treat interior mass as vertex count.
+No new uniform cap2 is proposed. Full data/checking and witness support are in PROOFS E421,
+p39/data/allowance_source_probe.jsonl.gz, and p39/data/interior_unit_candidate.jsonl.
+
+Also false: every source in the E420 interior-to-canonical-boundary injection is a strict actual exit.
+In<11,12,18>, the source v=(0,2),j=1 maps to u=(2,0), with3*12=2*18 a tight zero-gap trade. Keep the
+inner trade structure when translating canonical geometry into arithmetic credit. E420's rank bound
+is dominated by the old whole-boundary bound; it is not a revival of the false CR-TILE criterion.

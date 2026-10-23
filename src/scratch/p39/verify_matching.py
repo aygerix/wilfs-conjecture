@@ -75,7 +75,12 @@ def envelope_audit(C,w,mu,b,q,r,rho):
  if C.get('integer'):
   for i,j,s,a,k in pairs:
    if i==j:assert 2*U[i]<=U[s]+a
- assert C['max_upper']==max(U) and U[C['target']]==max(U)
+ if C.get('interior_target'):
+  gr=[g%m for g in C['G'] if g!=m]
+  interior=[s for s in range(m) if all(w[s]+w[g]==w[(s+g)%m] for g in gr)]
+  assert C['target'] in interior and U[C['target']]==max(U[s] for s in interior)
+  assert C['max_upper']==U[C['target']]
+ else:assert C['max_upper']==max(U) and U[C['target']]==max(U)
  assert C['unpaid']==sum(U) and C['bound']==C['W']-C['e']*sum(U)
  extra=''
  if 'residual_matching' in C:

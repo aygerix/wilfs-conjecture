@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 00:52 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 01:47 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -97,6 +97,21 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   failures of the full model. Discontinue that coordinate-dependent sign restriction. Removing just
   allowance-cost sides stays positive on31 saved profiles and gives0 on<13,17>; no universal claim.
 
+- **Primitive dual transfer (E419):** the old dual converts exactly to
+  J=N+K+Q+R_a+R_y-P-C', with nonnegative strict-boundary, primitive, depth and residue/cap credits;
+  actual tight trade RHS0; P uses alpha/kappa, not old lo/up. The checker verifies the entire
+  transformed coefficient vector. This is a normal form, not a universal nonnegative allocation.
+- **Residue injection / limit (E420):** canonical fully extendible column bases inject into distinct
+  canonical boundary cells. The finite rank-credit bound is valid but dominated by the old whole-
+  boundary estimate; do not revive failed CR-TILE or call it a new positivity mechanism. Injected
+  relations may be zero-gap trades (<11,12,18>), so they are not all sources of positive gap credit.
+- **NEW genuine obstruction (E421):** <104,420,453,509> has c4784=46m,g2647,e4,W3764. Its w81=2265
+  remains Apéry after adding EACH of420,453,509, yet its real capped unpaid maximum is7/3 and its
+  integer maximum is exactly2. A separate exact LP dual and an independently checked integer witness
+  prove those claims; MIP status is not used as a bound. All Apéry factorizations are unique. Thus
+  weighted loss occurs even in the fully extendible interior without collisions. No global or interior
+  unit cap; do not substitute a guessed2 cap. This is not a Wilf/full-certificate positivity failure.
+
 ## Existing implementations
 
 | Code | Purpose | Coverage and dependencies |
@@ -106,8 +121,8 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [enumlp3.c](../src/scratch/p37/enumlp3.c) | Newer C enumeration plus RT3/UA3, with optional height filter. | Pass h4only=0 for all heights. Audit found a 256-bit key overflow at m=24; key capacity is now derived from MAXM. |
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
-| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. `--face-free` and `--face-free-oriented` are explicitly weaker diagnostics, never full-model counterexample checks. Independent checker: verify_probe.py (now also audits primitive projection and affine boundary rewriting). |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--cover` is an UPPER certificate, not a Wilf lower bound. |
+| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. `--cap-int-max RES` exports an integer feasibility witness without an LP dual; the checker pairs it with a separate real LP bound when available. `--face-free`, `--face-free-oriented`, and `--face-zero-unpaid` are explicitly weaker diagnostics, never full-model counterexample checks. Independent checker: verify_probe.py (now also audits primitive projection and affine boundary rewriting). |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--interior-unit-search` filters targets to actual cells extendible by every non-multiplicity primitive; the new104case refutes its proposed unit cap. `--cover` is an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity, equality and transport audits. | `--standalone` needs no Gurobi data. upper_dp.py has rational propagation, `--rigid` closure, and `--chain-budget INPUT MATCHING...` for exact CH/primitive-factorization budgets on audited data. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
@@ -158,7 +173,9 @@ Phi281,128,22,5027. These are regional certificates and diagnostics, not an exha
 **Next mathematical action:** follow the advisor's primitive-coordinate finite-surplus programme.
 Use E417's exact projection mJ=H.p-C-e*m*sum x: zero-RHS inner trades, strict affine boundaries>=m,
 positive primitive bounds, depth and explicit residue/cap credits. Construct an adaptive global
-allocation paying C plus ALL admissible weighted certificate loss. No uniform allocation is proved.
+allocation paying C plus ALL admissible weighted certificate loss, including genuinely weighted
+fully extendible interior cells as demonstrated by E421. Retain zero-RHS trades in any matching.
+No uniform allocation is proved. The E419 exact transferred budget is now audited coefficient by coefficient; it is not itself the missing inequality.
 E416 already settles strict positivity at infinity (3<=e<m); focus on the sign of the FINITE minimum.
 E417 canonical corners preserve unit margins by integer rewriting; a further outer-Betti compression
 must be justified separately, not inferred just from homogeneous cone equivalence. All composite-parent
@@ -172,18 +189,22 @@ joint CapUA3 minima do NOT imply Phi_Z>=0; these implications must not be revers
 primal needs integer reconstruction before any semigroup/certificate-failure claim. The same universal
 backwards strategy/scope remains active; no reduction of all S to these31 profiles is claimed.
 The old class-merging-only, collision-only and local/per-direction chain funding rules are closed;
+the boundary-only/interior-unit-cap shortcut is now also FALSE. The E420 injection-image rank estimate
+is dominated by the old whole-boundary estimate; the false CR-TILE positivity criterion is not revived.
 E412/E413 and the older FAILED record explain why. No single-top-ideal size, bounded core, unit cap,
 partial-tile deletion or guessed W/c constant. The old10000-candidate sample needs no rerun.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E418 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E421 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass247 exact LP optima (the212 earlier checks plus35 diagnostic optima),
-and2 exact diagnostic rays. The latter have no semigroup reconstruction; they falsify only the weakened
-sourcewise-sign model. Primitive projection/boundary rewriting is also audited on68 genuine-domain
-model points (including fractional actual coordinates). These checks include
+Latest consolidated checks pass258 exact LP optima (the212 earlier checks plus46 diagnostic optima),
+and2 exact diagnostic rays, plus1 independently feasible integer repair witness. The separate real
+LP upper bound certifies its integer coordinate optimum2. Source transfer and boundary packing are
+also audited on74 genuine-domain joint points. The2 diagnostic rays have no semigroup reconstruction;
+they falsify only the weakened sourcewise-sign model. Primitive projection/boundary rewriting includes
+fractional actual coordinates. These checks include
 the four new integer witness assignments and existing checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_418_checks.log) and data/allowance_lean.log.
+[validation log](../src/scratch/p39/data/checkpoint_421_checks.log) and data/allowance_lean.log.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
 New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
 New full/reduced joint-face C paths also pass ASan/UBSan, Gurobi leak detection disabled;
@@ -191,7 +212,11 @@ data/joint_face_sanitizer.log. No FULL-model unbounded ray occurred. The diagnos
 has2 exact rays; its model-point scaling was checked, with semigroup reconstruction deliberately disabled.
 The new free/oriented C branches pass ASan/UBSan, leak detection disabled for Gurobi; checkpoint_418_checks.log.
 The new allowance audit checks33,375,552 residue pairs;13 saved S pass exact CH and independent
-factorization-count diagnostics. General semigroup consequences and CH budget allocation remain paper/open.
+factorization-count diagnostics. General semigroup consequences and CH budget allocation remain paper/open. The new integer-witness,
+zero-unpaid and interior-search C branches pass ASan/UBSan, leak detection disabled, in the checkpoint log.
+The interior search stops at sample2045/1798 accepted, seed421; it is a targeted falsification, not
+a universal/large-bound verification. Candidate/provenance: data/interior_unit_candidate.jsonl; all new
+solver data were consolidated into existing data/allowance_source_probe.jsonl.gz.
 
 ## Supporting records — consult as needed
 
