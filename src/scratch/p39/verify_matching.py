@@ -47,12 +47,19 @@ def standalone(C):
    up=int((w[s]-c)%m<=m-rho-2 and i<=r and j<=r)
    tau=((w[i]-c)%m+(w[j]-c)%m-(w[s]-c)%m-rho)//m
    assert mu[i]+mu[j]-mu[s]==q+tau and up-tau in (0,1)
+   closed_cost=int(i<=r and j<=r and i+j<=2*r-m)+int(i>r and j>r and i+j<=m+r)
+   assert up-tau==closed_cost
    penalty[s]=min(penalty[s],penalty[i]+penalty[j]+up-tau)
    length[s]=min(length[s],length[i]+length[j])
    b[s]=max(b[s],b[i]+b[j]-q-up)
   assert penalty[s]<=length[s]-1
   assert b[s]==max(0,mu[s]-penalty[s])
  assert b==C['b'] and all(0<=a<=v for a,v in zip(b,mu))
+ free={a for a in gr if (a<=r and a>=max(1,2*r-m)) or a==m-1}
+ active=[0]*m
+ for s in order:
+  active[s]=min(active[(s-g%m)%m]+int(g%m not in free) for g in G[1:] if w[(s-g%m)%m]+g==w[s])
+  assert mu[s]-b[s]<=max(0,active[s]-1)
  assert C['B']==e*sum(b)-c
  res=[s for s in range(1,m) if s not in gr];assert C['residues']==res
  n=len(res);ix={s:a for a,s in enumerate(res)}
@@ -65,8 +72,12 @@ def standalone(C):
   assert all(type(v) is int for v in alpha+beta)
   assert min(alpha,default=0)+min(beta,default=0)>=0
  selected=[0]*n;actual=[mu[s]-b[s] for s in res]
+ capacity_mode='capacity_lower' in C
+ forced=[0]*n;positive_edges=[]
  def edge(a,z,d):
   assert actual[a]+actual[z]>=d
+  if capacity_mode:
+   forced[a]=max(forced[a],d-actual[z]);positive_edges.append((a,z,d))
   if cover_mode:assert v[a]+v[z]>=d
   else:
    assert alpha[a]+beta[z]>=d
@@ -100,7 +111,27 @@ def standalone(C):
  corrected=C['B']+e*((M+1)//2)
  assert corrected==C['corrected']<=C['W']
  assert C['W']-C['B']==e*loss and M<=2*loss
- return 'INDEPENDENTLY CERTIFIED G=%s c=%d B=%d M=%d loss=%d bound=%d W=%d'%(G,c,C['B'],M,loss,corrected,C['W'])
+ active_budget=sum(min(mu[s],max(0,active[s]-1)) for s in range(1,m))
+ result='INDEPENDENTLY CERTIFIED G=%s c=%d B=%d M=%d loss=%d bound=%d W=%d free_generators=%d active_budget=%d'%(G,c,C['B'],M,loss,corrected,C['W'],len(free),active_budget)
+ if capacity_mode:
+  assert forced==C['capacity_lower']
+  cp=C['capacity_permutation'];ca=C['capacity_alpha'];cb=C['capacity_beta']
+  assert sorted(cp)==list(range(n)) and len(ca)==len(cb)==n
+  assert all(type(v) is int for v in ca+cb)
+  assert min(ca,default=0)+min(cb,default=0)>=0
+  capselected=[0]*n
+  for a,z,d in positive_edges:
+   h=max(0,d-forced[a]-forced[z]);assert ca[a]+cb[z]>=h
+   if cp[a]==z:capselected[a]=max(capselected[a],h)
+  cm=sum(capselected);assert cm==C['capacity_M']==sum(ca)+sum(cb)
+  twice=2*sum(forced)+cm;assert twice==C['capacity_value_twice']>=M
+  assert twice-M==C['capacity_gap_twice']
+  repair=[F(2*forced[a]+ca[a]+cb[a],2) for a in range(n)]
+  assert all(0<=repair[a]<=actual[a] for a in range(n))
+  assert 2*sum(repair)==twice
+  for a,z,d in positive_edges:assert repair[a]+repair[z]>=d
+  result+=' bounded_cover_twice=%d capacity_gap_twice=%d'%(twice,twice-M)
+ return result
 
 if len(sys.argv)>1 and sys.argv[1]=='--standalone':
  for path in sys.argv[2:]:

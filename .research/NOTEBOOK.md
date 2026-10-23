@@ -4661,3 +4661,46 @@ would obscure the open realizability problem. The useful new mechanism is the un
 the dead shortcut is universal payment of a fixed fraction of all loss. Next derive a residue-counting constraint
 for unpaid penalties compatible with the M0 example, or obtain a genuine negative restricted certificate before
 adding target/capacity constraints. All records remain in their existing files; STATE is the sole current handoff.
+
+## 2026-10-22 21:39 EDT — capacity obstruction, actual-W extremizers and exact penalty regions
+
+Previous goal turn classified **PROGRESS**: commit58414ab saved the exact tree-loss representation, independent
+certificates and eliminated the unsupported M>=sum delta shortcut. Authoritative repository/remote checks found
+no surviving calculation job; current turn kept the same approved universal backwards scope, with no agents.
+
+**Attempt 1: can the original optimal cover have nonnegative unpaid loss at every cell?** FALSE (E399).
+The general graph clipping argument converts actual repair upper caps to forced individual lower bounds and
+one shifted assignment. On the11th saved case, <66,67,71,72,98,103,128>, unrestricted cost41 versus bounded42
+is certified exactly. Thus changing the representative optimal cover cannot always remove excess allocations.
+The capped optimum is a separate valid bound for actual W, not an equivalence to unrestricted UA3.
+
+**Attempt 2: use actual W/c rather than only a certificate-deficit objective (E400).** Three C descents produce
+a deep e4 local minimum <43,155,184,193> (q22,height6,W366/c926) and an e7 high-generator variant. Matching
+is exact on the e4 case. Restricting to B<0, as is necessary for a true counterexample, falsifies the universal
+candidate B>=0 or2W>=c at <60,67,71,121> (W236,c480,B-164). Continuing reaches <60,71,121,143>, W237,c655,
+matching bound189, full UA3=W237. No negative W or negative matching certificate was found. Four new S and
+20 LP optima were rationally certified; total135 on27 S. No replacement guessed W/c constant is proposed.
+
+**Derivation from the failures (E401).** The penalty is exactly the union of two residue regions, HH small
+unwrapped sums and LL sums<=m+r. Lean checks this identity for all sizes. The resulting interval of primitive
+residues, together with m-1, adds no actual loss. Counting outside-interval primitive occurrences gives the
+general bound delta<=min(mu,(eta-1)_+). Proof: combine outside leaves first, then add the remaining leaves;
+every partial sum is Apéry. The top-target exception at m-1 has delta0. The eta bound, not just the older
+height bound, is checked independently on the saved data. It is not yet Lean formalized.
+
+**Global review — CONTINUE, with a concrete change in proof model.** Do not assume the original optimal cover
+has a nonnegative unpaid amount at every cell. A capped repair is legitimate for actual W and has a proved
+counterexample reduction, so it can be used if pointwise counting needs it; universal positivity remains open.
+Do not keep lowering an empirical W/c threshold. Next trace positive delta-level sets along additions of
+zero-loss qualifying summands, including COMPOSITES: the hard negative-baseline examples can have no qualifying
+primitive, so a primitive-only chain proof cannot cover the goal. Derive or falsify a residue-counting payment
+inequality using these chains and the paired penalty joins. This remains a universal target, not a family task.
+
+Validation: `run_checks.sh` passes all135 LP optima, saved assignment/capacity/cover certificates, the independent
+eta bounds,33,375,552 position checks and30 BASE examples. ASan/UBSan pass the new capacity and negative-B
+actual-W search paths. The updated Lean file compiles with the exact position identity and the two previous
+matching components, only propext/Classical.choice/Quot.sound. Log: src/scratch/p39/data/checkpoint_401_checks.log.
+Turn classification: **PROGRESS**. Full Wilf is unproved; keep the goal ACTIVE.
+Reproduction detail: the initial negative-B pilot stopped on the first dichotomy failure; the final
+`--wilf-negative-wide` reports that first failure once and continues to a local optimum. The saved initial
+pilot and continuation logs preserve both stages.

@@ -2,6 +2,7 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Ring
+import Mathlib.Tactic.SplitIfs
 import Lean.Elab.Tactic.Omega
 
 /-!
@@ -33,7 +34,26 @@ theorem rounded_assignment_repair_bound (W B e M T : ℤ)
   have hmul := mul_le_mul_of_nonneg_left hceil he
   omega
 
+/-- The unit upper-row penalty is supported on two explicit residue regions.
+`s` is the nonzero sum residue, and `rp` is its conductor-shifted residue.
+This algebraic identity does not assert semigroup realizability. -/
+theorem upper_penalty_position (m r i j s rp : ℤ)
+    (_hm : 2 ≤ m) (hr0 : 0 ≤ r) (hrm : r < m)
+    (hi0 : 0 < i) (him : i < m) (hj0 : 0 < j) (hjm : j < m)
+    (_hne : i + j ≠ m)
+    (hs : s = if i + j > m then i + j - m else i + j)
+    (hrp : rp = if s > r then s - r - 1 else s + m - r - 1) :
+    (if rp ≤ r - 1 ∧ i ≤ r ∧ j ≤ r then (1 : ℤ) else 0) -
+        ((if i + j > m then (1 : ℤ) else 0) +
+          (if s > r then (1 : ℤ) else 0) -
+          (if i > r then (1 : ℤ) else 0) -
+          (if j > r then (1 : ℤ) else 0)) =
+      (if i ≤ r ∧ j ≤ r ∧ i + j ≤ 2 * r - m then (1 : ℤ) else 0) +
+        (if i > r ∧ j > r ∧ i + j ≤ m + r then (1 : ℤ) else 0) := by
+  split_ifs at * <;> omega
+
 end Wilf
 
 #print axioms Wilf.assignment_repair_sum_bound
 #print axioms Wilf.rounded_assignment_repair_bound
+#print axioms Wilf.upper_penalty_position

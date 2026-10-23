@@ -6949,3 +6949,103 @@ of that residue. Thus it is the unique least-cost factorization. All parking coo
 the corresponding diagonal of L, since singleton U is among the tests, so the finite check is exhaustive.
 This is a direct certificate argument for the experiment, not a novelty claim about parking-function theory.
 The relation to z-superstability and M-matrix energy minimization is recorded in LITERATURE.
+
+### Actual repair capacities: exact assignment reduction and a failed normal form (2026-10-22; E399)
+
+**Graph lemma (PROVED on paper).** Let H be any symmetric nonnegative integer matrix and let delta>=0 be an
+integer feasible pair cover: delta_i+delta_j>=H_ij, including diagonal constraints. Define
+
+    a_i=max(0,max_j(H_ij-delta_j)),
+    H'_ij=max(0,H_ij-a_i-a_j),
+    M'=maximum assignment weight for H'.
+
+Then the minimum of sum t subject to 0<=t<=delta and t_i+t_j>=H_ij is exactly
+
+    sum a + M'/2.
+
+*Proof.* Every bounded cover has t_i>=H_ij-delta_j, hence t>=a. After subtracting a, the pair constraints
+are precisely the ordinary nonnegative cover problem for H', whose optimum is M'/2 by the symmetric
+assignment argument already proved above. The upper caps do not raise this shifted optimum. Indeed, for
+ANY cover t>=a, clipping it to min(t,delta) preserves all pair constraints: if only i is clipped, the other
+endpoint is at least a_j>=H_ij-delta_i; if both are clipped use feasibility of delta. Also delta>=a, so the
+clipped vector remains >=a. Thus an optimum cannot exceed delta in any coordinate, since clipping would
+strictly reduce its cost. This proves equality. QED.
+
+Apply this with the actual repair delta=mu-b. It gives the general valid Wilf bound
+
+    W >= B+e(sum a+ceil(M'/2)).
+
+It is NOT automatically a lower bound on unrestricted UA3: a general UA3 repair was not proved <=delta.
+Any Wilf counterexample must make this bound negative, so it is a valid residual within the universal target.
+Its universal nonnegativity remains unproved. The C audit uses two exact integer assignments, with independent
+primal/dual checks; the bounded primal is reconstructed as a_i+(alpha'_i+beta'_i)/2 and checked <=delta.
+
+**FALSE normal form.** The original (uncapped) cover need not have an optimum <=delta. For
+S=<66,67,71,72,98,103,128>, m66,c326,g215,e7,W451,B115,sum delta48, original M82:
+
+    unrestricted cover optimum =41,
+    bounded cover optimum =42 (sum a41, M'=2).
+
+Thus EVERY original optimum exceeds actual repair at some coordinate. The saved original symmetric-dual
+cover assigns 2 to residues2,7,10,12 and3/2 to residues11,42, each with actual delta1. Its total still is41.
+The bounded optimum raises the Wilf bound from402 to409, both below actual W451. This refutes a proposed
+per-cell nonnegative-unpaid interpretation of the original optimum, not the matching theorem or Wilf.
+
+### Exact position of unit penalties and a generator-count loss bound (E401)
+
+Keep m,r,up,tau and exclude zero parent/sum residues. The exact closed form is
+
+    kappa(i,j)=up(i,j)-tau(i,j)
+       = [i<=r and j<=r and i+j<=2r-m]
+         +[i>r and j>r and i+j<=m+r].
+
+**PROVED.** Mixed types have tau=up=0. For HH, the tau=1 cases have up=1; in a tau=0 case, up=1 exactly
+when the unwrapped sum is <=2r-m. For LL, up=0 and tau=-1 exactly when i+j<=m+r. These are exhaustive,
+using the previously proved tau formula. The two displayed regions are disjoint.
+
+**Lean status:** `Wilf.upper_penalty_position` in `lean/Wilf/RepairMatching.lean` kernel-checks the exact
+integer identity for arbitrary admissible m,r,i,j, with explicit definitions of the sum/shifted residues.
+Only propext,Classical.choice,Quot.sound; no sorry or added axioms. This formalizes the position identity,
+NOT its semigroup interpretation or the following loss bound. The C identity audit also checks33,375,552
+nonzero residue pairs over every 2<=m<=128 and every r (diagnostic redundancy, not the universal proof).
+
+Let Z be the non-m primitive residues in the sufficient zero-penalty region
+
+    {a : max(1,2r-m)<=a<=r} union {m-1}.
+
+Adding a primitive with residue in the interval always has kappa=0. Adding one at m-1 can have kappa=1
+only when its target is r, where mu_r=delta_r=0. Therefore every tight primitive addition by g in Z satisfies
+
+    delta_(s+g) <= delta_s.
+
+For a general tight pair, the upper recurrence gives delta_s<=delta_i+delta_j+kappa(i,j). Let eta_s be the
+minimum number of primitive occurrences OUTSIDE Z among all factorizations of w_s. Then, for EVERY S,
+
+    delta_s <= min(mu_s,max(0,eta_s-1)).
+
+*Proof.* Choose a factorization realizing eta. All partial sums are Apéry. Combine the eta outside-Z leaves
+first, costing at most eta-1 unit penalties, then add the Z leaves one at a time without increasing delta.
+If eta=0 or1, start with a single primitive (delta=0), then add the Z leaves. The top-target exception has
+delta=0 and causes no problem. This proves the bound without gradedness, uniqueness, or a depth restriction.
+It is a statement about delta, not D_r: the latter can be positive while mu_r=0.
+
+The same nonincrease holds for ANY Apéry summand a in the displayed residue region with delta_a=0, not
+just primitives. Thus zero-loss composite summands can provide downward closure of positive delta-level
+sets even when Z contains no primitive. This is the next residue-counting mechanism to test. Its ability
+to pay the full Wilf deficit is NOT proved. The independently reconstructed shortest-path eta bound passes
+the saved matching/cover data; e.g. <43,155,184,193> has two qualifying primitives, loss8 and eta-bound sum20.
+
+### Failed constant-margin dichotomy and direct actual-W search (E400)
+
+The candidate statement, on e>=4,c>4m,3e<m,
+
+    B>=0 OR 2W>=c,
+
+would imply Wilf together with the known e<=3 case, but is FALSE. A single generator lift gives
+
+    <60,61,67,71>: c420,W260,B-144
+       -> <60,67,71,121>: c480,g301,W236,B-164,M156,matching bound148.
+
+Here 2W472<c480. Exact UA3=AM3=180, TX=FACE=W236, all rationally certified. Continuing actual W/c
+descent while retaining B<0 reaches <60,71,121,143>, c655,g432,W237,B-111,M150,bound189,UA3=W237.
+Do not replace 1/2 by another empirically chosen constant. These are finite local-search outcomes only.

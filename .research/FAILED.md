@@ -159,3 +159,18 @@ The vector b already satisfies every UA3 row, with certified UA3=B=133. Some los
 other loss cells occur as parents but still produce no positive repair demand. Thus lost actual level does
 not by itself create compulsory repair payment. A second example <20,25,61,102,143,184> has loss22,M10.
 This kills the shortcut, not the proved bound W>=B+e ceil(M/2) or its still-unproved universal positivity.
+
+### An optimal repair cover can always be bounded by actual repair (FALSE, E399)
+
+For <66,67,71,72,98,103,128>, c326,g215,e7,W451,B115 and sum(mu-b)=48. The unrestricted pair-cover
+optimum is M/2=41, but the optimum with 0<=t<=mu-b is42. Two exact assignments plus an independent
+bounded primal/dual audit verify the strict gap. Thus no unrestricted optimum admits nonnegative unpaid
+loss at every cell. The separate capped-cover bound is valid for W; it is not automatically a UA3 bound.
+
+### Negative upper baseline forces W>=c/2 (FALSE, E400)
+
+Even on e>=4,c>4m,3e<m, the proposed full-Wilf dichotomy B>=0 or2W>=c fails:
+<60,67,71,121> has c480,g301,e4,W236,B-164, with matching M156 and bound148. Full UA3=180 is exactly
+certified. Continuing the B<0 actual-W/c descent gives <60,71,121,143>, c655,W237,B-111,M150,bound189.
+This disproves the dichotomy, not Wilf or universal matching positivity. Do not substitute a smaller guessed
+constant as a research plan. Local search supplies no global minimum.

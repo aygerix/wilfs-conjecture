@@ -2,6 +2,10 @@
  * No LP solver. Every accepted sample is a genuine semigroup with e >= 4,
  * c > 4m and 3e < m; no height/depth restriction. Stop on first negative assignment-corrected bound.
  * usage: upper_scan NS SEED [MIN_E=4]
+ * --capacity-audit m g...: audit whether an optimal cover fits actual repair caps.
+ * --wilf-climb-wide / --wilf-negative-wide m g...: minimize actual W/c,
+ *   with the latter retaining only B<0 (a necessary condition for W<0).
+ * --position-audit MAXM: exhaustively check the algebraic penalty identity (MAXM<=128).
  * This is sampling, not exhaustive enumeration and not a proof of Wilf.
  */
 #include <stdio.h>
@@ -67,7 +71,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  }
  static int (*A)[MM];if(!A){A=calloc(MM,sizeof(*A));if(!A){perror("assignment matrix");exit(2);}}
  memset(A,0,MM*sizeof(*A));int perm[MM];ll alpha[MM],beta[MM],match=0;
- if(B<0||dump==2){
+ if(B<0||dump==2||dump==4){
   for(int i=1;i<m;i++)for(int j=i;j<m;j++){int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
    int rp=(w[s]-c)%m;if(rp<0)rp+=m;int lo=rp>=m-rho&&i>r&&j>r;
    int demand=q-lo-z[i]-z[j]+z[s];if(demand<=0)continue;
@@ -91,13 +95,29 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
   }
  }
  if(corrected<*best){*best=corrected;if(dump==1)printf("NEW_MIN corrected=%lld B=%lld M=%lld W=%lld m=%d e=%d q=%d h=%d\n",corrected,B,match,W,m,e,q,hh);}
- if(dump==2){
+ if(dump==2||dump==4){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"M\":%lld,\"corrected\":%lld,\"G\":[%d",m,e,c,W,B,match,corrected,m);
   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("],\"b\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",z[s]);
   printf("],\"residues\":[");for(int a=0;a<n;a++)printf("%s%d",a?",":"",res[a]);
   printf("],\"permutation\":[");for(int a=0;a<n;a++)printf("%s%d",a?",":"",perm[a]);
   printf("],\"alpha\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",alpha[a]);
-  printf("],\"beta\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",beta[a]);printf("]}\n");
+  printf("],\"beta\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",beta[a]);printf("]");
+  if(dump==4){
+   int lower[MM]={0};ll sumlower=0;
+   for(int a=0;a<n;a++)for(int b=0;b<n;b++){
+    int v=A[a][b]-(mu[res[b]]-z[res[b]]);if(v>lower[a])lower[a]=v;
+   }
+   for(int a=0;a<n;a++){sumlower+=lower[a];for(int b=0;b<n;b++){
+    A[a][b]-=lower[a]+lower[b];if(A[a][b]<0)A[a][b]=0;
+   }}
+   ll residual=assignment(n,A,perm,alpha,beta);
+   printf(",\"capacity_M\":%lld,\"capacity_value_twice\":%lld,\"capacity_gap_twice\":%lld,\"capacity_lower\":[",residual,2*sumlower+residual,2*sumlower+residual-match);
+   for(int a=0;a<n;a++)printf("%s%d",a?",":"",lower[a]);
+   printf("],\"capacity_permutation\":[");for(int a=0;a<n;a++)printf("%s%d",a?",":"",perm[a]);
+   printf("],\"capacity_alpha\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",alpha[a]);
+   printf("],\"capacity_beta\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",beta[a]);printf("]");
+  }
+  printf("}\n");
  }
  if(W<0||corrected<0){printf("%s corrected=%lld B=%lld M=%lld W=%lld m=%d e=%d c=%d q=%d rho=%d h=%d G=[%d",W<0?"WILF_FAILURE":"BOUND_FAILURE",corrected,B,match,W,m,e,c,q,rho,hh,m);
   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("]\n");fflush(stdout);return -1;}
@@ -105,32 +125,50 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
- if(argc>4&&(!strcmp(argv[1],"--climb")||!strcmp(argv[1],"--climb-wide"))){
-  int wide=!strcmp(argv[1],"--climb-wide");
+ if(argc==3&&!strcmp(argv[1],"--position-audit")){
+  int maxm=atoi(argv[2]);if(maxm<2||maxm>128)return 1;ll checks=0;
+  for(int m=2;m<=maxm;m++)for(int r=0;r<m;r++)for(int i=1;i<m;i++)for(int j=i;j<m;j++){
+   int s=(i+j)%m;if(!s)continue;int rho=m-r-1,rp=(s+rho)%m;
+   int up=rp<=r-1&&i<=r&&j<=r;
+   int tau=(i+j>m)+(s>r)-(i>r)-(j>r),k=up-tau;
+   int closed=(i<=r&&j<=r&&i+j<=2*r-m)+(i>r&&j>r&&i+j<=m+r);
+   assert(k==closed);
+   if((i<=r&&i>=2*r-m)||(j<=r&&j>=2*r-m))assert(k==0);
+   if(j==m-1&&k)assert(s==r);
+   checks++;
+  }
+  printf("POSITION_IDENTITY_CHECKED max_m=%d pairs=%lld\n",maxm,checks);return 0;
+ }
+ if(argc>4&&(!strcmp(argv[1],"--climb")||!strcmp(argv[1],"--climb-wide")||!strcmp(argv[1],"--wilf-climb")||!strcmp(argv[1],"--wilf-climb-wide")||!strcmp(argv[1],"--wilf-negative-wide"))){
+  int wide=strstr(argv[1],"wide")!=NULL,wilf=strstr(argv[1],"wilf")!=NULL,negative=strstr(argv[1],"negative")!=NULL;
   int ng=argc-2,G0[GG],m=atoi(argv[2]);if(ng>GG||m<2||m>=MM)return 1;
   for(int a=0;a<ng;a++)G0[a]=atoi(argv[a+2]);
   ll best0=1LL<<60;
   if(!eval(m,G0,ng,4,0,&best0))return 1;
-  need_e=last_e;int iter=0;long calls=1;
+  if(negative&&last_B>=0)return 1;
+  need_e=last_e;int iter=0,announced=0;long calls=1;
   for(;;){
    int ret=eval(m,G0,ng,4,0,&best0);if(ret<0)return 0;
    ll num=last_num,den=last_den,W0=last_W;int c0=last_c;
-   printf("CLIMB iter=%d ratio=%lld/%lld corrected=%lld B=%lld M=%lld W=%lld c=%d q=%d h=%d G=[",iter,num,den,last_corrected,last_B,last_M,last_W,last_c,last_q,last_h);
+   printf("%s iter=%d ratio=%lld/%lld corrected=%lld B=%lld M=%lld W=%lld c=%d q=%d h=%d G=[",wilf?"WILF_CLIMB":"CLIMB",iter,num,den,last_corrected,last_B,last_M,last_W,last_c,last_q,last_h);
    for(int a=0;a<ng;a++)printf("%s%d",a?",":"",G0[a]);printf("]\n");fflush(stdout);
+   if(negative&&2*last_W<last_c&&!announced){printf("NEGATIVE_BASELINE_DICHOTOMY_FAILURE\n");announced=1;}
    if(iter++>=100){printf("ITERATION_LIMIT calls=%ld\n",calls);return 0;}
    int BG[GG],found=0;
    for(int a=0;a<ng;a++){
     int minm=3*need_e+1,maxm=MM-1;for(int b=1;b<ng;b++)if(G0[b]-1<maxm)maxm=G0[b]-1;
+    if(wilf&&minm<20)minm=20; /* m<=19 is already proved; diagnostic search only. */
     int limit=wide?(a==0?maxm-minm+1:7*m):10;
     for(int k=0;k<limit;k++){
      int step=wide?0:(int[]){-m,-8,-4,-2,-1,1,2,4,8,m}[k];
      if(!wide&&a==0&&step!=1&&step!=-1)continue;
      int T[GG];memcpy(T,G0,ng*sizeof(int));T[a]=wide?(a==0?minm+k:m+1+k):T[a]+step;int mm=T[0];
-    if(mm<4||mm>=MM)continue;
+    if(mm<4||mm>=MM||(wilf&&mm<20))continue;
     int ok=1;for(int b=1;b<ng;b++)if(T[b]<=mm)ok=0;if(!ok)continue;
-    ret=eval(mm,T,ng,4,0,&best0);calls++;if(ret<0){printf("CLIMB_FAILURE calls=%ld\n",calls);return 0;}if(!ret)continue;
+    ret=eval(mm,T,ng,4,0,&best0);calls++;if(ret<0){printf("CLIMB_FAILURE calls=%ld\n",calls);return 0;}if(!ret||(negative&&last_B>=0))continue;
     ll nn=last_num,dd=last_den;
-    if(nn*den>num*dd||(nn*den==num*dd&&last_W*c0<W0*last_c)){
+    int improve=wilf?(last_W*c0<W0*last_c||(last_W*c0==W0*last_c&&last_W<W0)):(nn*den>num*dd||(nn*den==num*dd&&last_W*c0<W0*last_c));
+    if(improve){
      num=nn;den=dd;W0=last_W;c0=last_c;memcpy(BG,T,ng*sizeof(int));found=1;
     }
     }
@@ -167,11 +205,12 @@ int main(int argc,char **argv){
   }
   printf("ENUM_DONE m=%d e=%d K=%d candidates=%ld accepted=%ld Bnegative=%ld min_corrected=%lld max_repair_ratio=%lld/%lld\n",m,e,K,cand,acc,nbneg,best0,ratio_num,ratio_den);return 0;
  }
- if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover"))){
+ if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit"))){
   int ng=argc-2,G0[MM+GG],m0=INT_MAX;if(ng>MM+GG)return 1;for(int k=0;k<ng;k++){G0[k]=atoi(argv[k+2]);if(G0[k]<m0)m0=G0[k];}
   if(m0<2||m0>=MM)return 1;
   int at=0;while(G0[at]!=m0)at++;int tmp=G0[0];G0[0]=G0[at];G0[at]=tmp;
-  ll best0=1LL<<60;return eval(m0,G0,ng,2,!strcmp(argv[1],"--cover")?3:2,&best0)==0?1:0;
+  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:2;
+  ll best0=1LL<<60;return eval(m0,G0,ng,2,mode,&best0)==0?1:0;
  }
  if(argc<3)return 1;long N=atol(argv[1]);state=strtoull(argv[2],NULL,10);if(!state)state=1;int mine=argc>3?atoi(argv[3]):4;
  ll best=1LL<<60;long accepted=0;int G[GG];

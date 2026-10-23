@@ -1,0 +1,4 @@
+WILF_CLIMB iter=0 ratio=1360/2336 corrected=488 B=-680 M=584 W=772 c=1460 q=10 h=10 G=[146,147,155,184]
+WILF_CLIMB iter=1 ratio=0/1 corrected=786 B=786 M=0 W=786 c=1978 q=14 h=13 G=[146,193,155,184]
+WILF_CLIMB iter=2 ratio=0/1 corrected=334 B=334 M=0 W=366 c=926 q=22 h=6 G=[43,193,155,184]
+LOCAL_OPTIMUM calls=7433

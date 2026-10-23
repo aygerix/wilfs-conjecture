@@ -1,0 +1,5 @@
+G=[60, 121, 67, 71] q=8 h=7 W=236 | RT3=689/4[nontight:30,tighterror:199] UA3=180[nontight:0,tighterror:34] TX=236[nontight:0,tighterror:0] AM3=180[nontight:0,tighterror:34] FACE=236[nontight:0,tighterror:0]
+G=[60, 121, 71, 143] q=11 h=10 W=237 | RT3=2403/11[nontight:38,tighterror:106] UA3=237[nontight:0,tighterror:0] TX=237[nontight:0,tighterror:0] AM3=237[nontight:0,tighterror:0] FACE=237[nontight:0,tighterror:0]
+G=[43, 184, 193, 155] q=22 h=6 W=366 | RT3=1697/5[nontight:7,tighterror:0] UA3=366[nontight:0,tighterror:0] TX=1697/5[nontight:7,tighterror:0] AM3=366[nontight:0,tighterror:0] FACE=3760/11[nontight:0,tighterror:0]
+G=[66, 71, 72, 361, 98, 103, 128] q=5 h=5 W=346 | RT3=325[nontight:80,tighterror:81] UA3=339[nontight:0,tighterror:3] TX=346[nontight:0,tighterror:0] AM3=339[nontight:0,tighterror:3] FACE=346[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 4 semigroups; 20 primal/dual optima

@@ -1,0 +1,11 @@
+INDEPENDENTLY CERTIFIED G=[20, 23, 25, 39] c=98 B=14 M=18 loss=14 bound=50 W=70 bounded_cover_twice=18 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[25, 59, 60, 76, 93, 102] c=318 B=546 M=0 loss=0 bound=546 W=546 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[20, 25, 61, 102, 143, 184] c=240 B=312 M=10 loss=22 bound=342 W=444 bounded_cover_twice=10 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[19, 26, 27, 48] c=90 B=22 M=0 loss=0 bound=22 W=22 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[37, 75, 78, 80, 88, 89] c=222 B=18 M=28 loss=14 bound=102 W=102 bounded_cover_twice=28 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] c=241 B=137 M=18 loss=13 bound=200 W=228 bounded_cover_twice=18 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] c=229 B=170 M=44 loss=24 bound=324 W=338 bounded_cover_twice=44 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[15, 37, 39, 40] c=104 B=32 M=0 loss=0 bound=32 W=32 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[13, 17, 27, 29] c=63 B=25 M=6 loss=4 bound=37 W=41 bounded_cover_twice=6 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] c=140 B=133 M=0 loss=8 bound=133 W=189 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] c=326 B=115 M=82 loss=48 bound=402 W=451 bounded_cover_twice=84 capacity_gap_twice=2

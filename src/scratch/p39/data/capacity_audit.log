@@ -1,0 +1,11 @@
+CAPACITY [20, 23, 25, 39] M 18 bounded_twice 18 gap_twice 0
+CAPACITY [25, 76, 102, 59, 60, 93] M 0 bounded_twice 0 gap_twice 0
+CAPACITY [20, 61, 102, 143, 184, 25] M 10 bounded_twice 10 gap_twice 0
+CAPACITY [19, 26, 27, 48] M 0 bounded_twice 0 gap_twice 0
+CAPACITY [37, 75, 78, 80, 88, 89] M 28 bounded_twice 28 gap_twice 0
+CAPACITY [55, 71, 78, 79, 93, 97, 99] M 18 bounded_twice 18 gap_twice 0
+CAPACITY [55, 60, 61, 68, 70, 73, 78] M 44 bounded_twice 44 gap_twice 0
+CAPACITY [15, 37, 39, 40] M 0 bounded_twice 0 gap_twice 0
+CAPACITY [13, 27, 29, 17] M 6 bounded_twice 6 gap_twice 0
+CAPACITY [34, 42, 53, 54, 56, 57, 67] M 0 bounded_twice 0 gap_twice 0
+CAPACITY [66, 67, 71, 72, 98, 103, 128] M 82 bounded_twice 84 gap_twice 2
