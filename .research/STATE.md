@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 21:46 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-22 22:40 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -43,6 +43,11 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 - **Failed normal forms:** an original optimal cover need not fit actual repair caps (E399), and
   B<0 does not force W>=c/2 (E400). Capped covers have a separate exact assignment reduction and a valid
   W lower bound; universal positivity is still unproved. See PROOFS before reusing either failed shortcut.
+- **New transport/rigidity (E403/E404):** unpaid variables satisfy certified difference constraints. The
+  capped-pair graph raises the hard146 bound374->602; zero-loss composite summands alone improve none
+  of27 saved cases. Exact-zero closure fixes146/146 in that case. Top-divisor unpaid repair is always zero,
+  but that ideal can have size2 for arbitrarily large m. Arithmetic rigidity components are Lean checked;
+  graph/semigroup closure proofs remain on paper. Universal nonnegativity is not established.
 
 ## Existing implementations
 
@@ -54,8 +59,8 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
 | [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX and full-Kunz relaxations; export primal/dual data. | Gurobi C API; no height restriction. Independent membership/rational checker: verify_probe.py alongside it. |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, actual-W and certificate local search, capacity audit. | Pure C. `--wilf-negative-wide` minimizes W/c within B<0; `--capacity-audit` exports both cover optima. `--cover` gives an UPPER certificate, not a Wilf lower bound. |
-| [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, tree-penalty and matching/cover audit. | `--standalone` needs no Gurobi data or dense matrix. upper_dp.py alongside it implements rational interval propagation. |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity and target-transport audits. | Pure C. `--transport-audit` exports shortest-path witnesses; `--individual-climb-wide` tests one-step payments. `--cover` gives an UPPER certificate, not a Wilf lower bound. |
+| [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity and transport-path audit. | `--standalone` needs no Gurobi data. upper_dp.py implements rational propagation and `--rigid` exact-zero closure. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
 [Experiment E375](EXPERIMENTS.md) records 108 matching certificate minima against the MILP and C timings of
@@ -66,32 +71,33 @@ Audit height filters, fixed-size limits and exact certificate coverage before ad
 
 Completed: 135 exactly rationally certified LP optima on 27 S; independently verified integer assignment
 certificates. The simple B>=0 shortcut is false (e=5 example B=-33,W=467); matching raises its bound to347.
-Initial gate: 17230 accepted samples over two seeds (76 with B<0), 2577 truncation samples (5 with B<0), and
-55001 unique S in the exact m20/e5/Kunz<=6 box; no negative corrected bound. These are bounded evidence only.
+Earlier gates and bounded sample counts are in E392; none proves universal certificate positivity.
 
 Local C search improves the credit ratio to1052/1720 at <146,155,175,184>: B=-526,M430,bound334,W1130.
 Here full UA3=W; coordinate propagation gives421 after one pass but does not recover the full payment (E395/E397).
-Fourteen cofactor-shaped examples and a matrix-free m27574 check produced no failure. The exhaustive conductor
-alignment check in that one 27574-cell tile found no rho0 first-layer unit rescaling; stop enlarging this construction (E398).
+The cofactor-shaped construction and its conductor-alignment test are closed as diagnostics; do not enlarge it (E398).
 
 New actual-W search: <43,155,184,193>, c926,W366,matching bound366 (q22,height6). Within B<0 it reaches
 <60,71,121,143>, c655,W237,B-111,M150,bound189,UA3=W237. These are local minima only. The simpler
 <60,67,71,121> already refutes B>=0 or2W>=c. At <66,67,71,72,98,103,128>, unrestricted cover41 versus
 actual-capped42 refutes the nonnegative-unpaid optimal-cover normal form. Exact data: E399/E400.
 
-**Next mathematical action:** trace positive delta-level sets along tight additions of qualifying ZERO-LOSS
-summands, including composites. Negative-baseline cases can have Z empty, so primitive-only chains do not
-cover the goal. Derive or falsify a residue-counting payment inequality using those chains and paired penalty
-joins. A capped repair can support nonnegative pointwise unpaid loss, with its own proved W bound; do not
-assume equivalence to the original matching optimum or unrestricted UA3. Any negative W must also make this
-capped bound negative, so the full goal has a proved reduction to that residual. Avoid more guessed W/c
-constants, larger boxes or more lattice tiles without a new discriminating hypothesis.
+Latest structural test: one-step integer payments survive the reused sample/local descents (UNPROVED
+positivity). Capped transport recovers237=W on the low-W60 example; exact-zero closure leaves3 variables
+on the e5 example and15 on another e4 example. Rigidity gives capped-model value W, not a proof of its sign.
+
+**Next mathematical action:** analyze the remaining zero-face constraints after exact-zero closure. Derive a
+residue-counting inequality paying for BOTH the fixed boundary and residual paired costs, using all relevant
+maximal elements and the full residue bijection. A single top ideal has no uniform size; a bounded core size
+cannot be assumed. Do not delete paid cells and apply the already-false partial-tile lemma. Zero-loss-summand
+transport alone did not explain the gap. Any negative W forces the proved capped bounds negative, so this
+residual still covers every possible counterexample. No larger boxes or guessed W/c constants.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E401 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E404 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest complete run passed; ASan/UBSan also passed the changed C capacity/actual-W search paths.
-See [the validation log](../src/scratch/p39/data/checkpoint_401_checks.log) and data/position_lean.log alongside it.
+Latest consolidated checks and the new C ASan/UBSan paths passed. See the [validation log](../src/scratch/p39/data/checkpoint_404_checks.log)
+and data/top_rigidity_lean.log alongside it. E404 records the two added Lean components.
 
 ## Supporting records — consult as needed
 

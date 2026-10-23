@@ -13,10 +13,16 @@ python3 verify_matching.py data/matching_residual.jsonl data/residual_probe.json
 python3 verify_matching.py data/matching_boundary.jsonl data/structural_probe.jsonl.gz
 python3 verify_matching.py data/matching_stress.jsonl data/stress_probe.jsonl.gz
 python3 verify_matching.py --standalone data/matching_loss.jsonl data/climb_matching.jsonl data/lattice_matching.jsonl.gz data/lattice_cover_large.jsonl.gz data/capacity_audit.jsonl data/dichotomy_matching.jsonl data/low_wilf_matching.jsonl
+python3 verify_matching.py --standalone data/individual_selected.jsonl data/top_primitive.jsonl data/top_primitive_transport.jsonl
+python3 verify_matching.py data/transport_all.jsonl data/probe.jsonl.gz data/structural_probe.jsonl.gz data/residual_probe.jsonl.gz data/stress_probe.jsonl.gz data/climb_probe.jsonl.gz data/margin_probe.jsonl.gz
 ./repair_scan --position-audit 128
 ./repair_scan --capacity-audit 66 67 71 72 98 103 128 > /tmp/wilf-p39-capacity.jsonl
 python3 verify_matching.py --standalone /tmp/wilf-p39-capacity.jsonl
 ./repair_scan --cover 64 67 69 77 129 > /tmp/wilf-p39-cover.jsonl
 python3 verify_matching.py --standalone /tmp/wilf-p39-cover.jsonl
 python3 upper_dp.py --propagate data/climb_probe.jsonl.gz > /tmp/wilf-p39-propagate.log
+python3 upper_dp.py --rigid data/climb_probe.jsonl.gz > rigid_closure.log
+python3 upper_dp.py --rigid data/residual_probe.jsonl.gz >> rigid_closure.log
+python3 upper_dp.py --rigid data/margin_probe.jsonl.gz >> rigid_closure.log
+cat rigid_closure.log
 python3 base_deflation.py

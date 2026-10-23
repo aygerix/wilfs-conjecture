@@ -1,0 +1,5 @@
+'Wilf.assignment_repair_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Wilf.rounded_assignment_repair_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Wilf.upper_penalty_position' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Wilf.lower_allowance_at_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Wilf.unpaid_vanishes_at_exact_split' depends on axioms: [propext, Classical.choice, Quot.sound]

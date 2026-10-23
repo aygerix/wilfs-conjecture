@@ -1,0 +1,12 @@
+G=[146, 155, 175, 184] W=1130 UPPER=-526 missing_lower=870
+RIGID initial=10 fixed=146/146 sweeps=4 bound=1130 remaining=[]
+G=[64, 129, 67, 69, 77] W=467 UPPER=-33 missing_lower=186
+RIGID initial=10 fixed=61/64 sweeps=2 bound=447 remaining=[(2, 1), (7, 2), (62, 1)]
+G=[60, 121, 67, 71] W=236 UPPER=-164 missing_lower=158
+RIGID initial=9 fixed=45/60 sweeps=2 bound=108 remaining=[(21, 2), (28, 3), (32, 3), (35, 3), (39, 3), (42, 2), (43, 3), (46, 2), (49, 1), (50, 2), (53, 1), (54, 2), (55, 3), (56, 1), (57, 1)]
+G=[60, 121, 71, 143] W=237 UPPER=-111 missing_lower=132
+RIGID initial=11 fixed=60/60 sweeps=3 bound=237 remaining=[]
+G=[43, 184, 193, 155] W=366 UPPER=334 missing_lower=11
+RIGID initial=37 fixed=43/43 sweeps=2 bound=366 remaining=[]
+G=[66, 71, 72, 361, 98, 103, 128] W=346 UPPER=59 missing_lower=85
+RIGID initial=33 fixed=65/66 sweeps=2 bound=339 remaining=[(58, 1)]

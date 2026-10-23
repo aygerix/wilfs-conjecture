@@ -7049,3 +7049,129 @@ would imply Wilf together with the known e<=3 case, but is FALSE. A single gener
 Here 2W472<c480. Exact UA3=AM3=180, TX=FACE=W236, all rationally certified. Continuing actual W/c
 descent while retaining B<0 reaches <60,71,121,143>, c655,g432,W237,B-111,M150,bound189,UA3=W237.
 Do not replace 1/2 by another empirically chosen constant. These are finite local-search outcomes only.
+
+### Individual repair payments and their exact remainder (2026-10-22; E402)
+
+Keep the actual integer repair delta and pair matrix H. Define
+
+    F_i=max(0,max_j(H_ij-delta_j),ceil(H_ii/2)).
+
+Every INTEGER bounded pair cover satisfies t_i>=F_i. Consequently
+
+    I(S)=B+e sum_i F_i <= W.
+
+The ceilings are justified by actual integrality; I is not asserted to bound unrestricted real UA3 or even
+the real capped pair-cover LP. Universal I>=0 is unproved. Reusing the E392 sample (10000 candidates,
+8592 accepted,34 B-negative) and three finite local descents found no failure; these checks are not a proof.
+
+There is an exact cellwise expression. For a tight pair p=(i,j->s) put alpha_p=tau_p+lo_p in {0,1} and
+C_p=delta_s+alpha_p. For a non-generator i, its remainder R_i=delta_i-F_i equals
+
+    min( {delta_i}
+         union {C_p : tight i+j->s, j!=i}
+         union {floor(C_p/2) : tight i+i->s} ).
+
+An empty successor set contributes no extra minimum. This follows by substituting
+d_p=delta_i+delta_j-C_p into the cap-induced lower bound, and treating a generator partner (fixed repair0)
+and a repeated variable separately. Nonpositive demands do not affect the minimum. Thus
+
+    I(S)=W-e sum_i R_i.
+
+This describes exactly what one-step individual payments leave unpaid, rather than assuming all unpaid
+cells are maximal. The latter inference is not justified.
+
+### Target-repair transport as a certified shortest-path relaxation (E403; PROVED on paper)
+
+Write an admissible repair as t and define unpaid variables x=delta-t. For the bounded repair system,
+0<=x<=delta. The two tight rows are exactly
+
+    -kappa_p <= x_i+x_j-x_s <= alpha_p,
+    alpha_p=tau_p+lo_p,       kappa_p=up_p-tau_p.
+
+Both costs are0/1 and alpha_p+kappa_p<=1. Three DIFFERENT relaxations are implemented:
+
+1. **Generator summands.** If j is a generator then x_j=0, even for unrestricted UA3. Hence
+   x_i<=x_s+alpha_p and x_s<=x_i+kappa_p. Use only these edges and x<=delta.
+2. **Zero-loss summands.** Under the actual caps, delta_j=0 implies x_j=0, giving the same two edges
+   for composite j as well. These extra rows produced NO improvement on the27 saved examples.
+3. **All capped pairs.** For any partner j, nonnegativity and its cap give
+
+       x_i<=x_s+alpha_p,      x_s<=x_i+delta_j+kappa_p.
+
+   Add both parent orientations of every tight pair. This retains target-repair transport that ordinary
+   pair cover drops. A repeated parent is relaxed by the same valid bounds; halving is not imposed here.
+
+In each graph an edge u->v of cost c means x_v<=x_u+c. Initialize distance at every vertex i by delta_i.
+The distance envelope U_i=min_j(delta_j+shortest-path-cost(j,i)) is the coordinatewise greatest feasible
+vector for that difference-constraint relaxation. All costs/caps are nonnegative integers, so U>=0, U<=delta
+and U is integral. Proof: every path gives the indicated upper bound for any feasible x; conversely the
+distance vector obeys each edge inequality and each cap. Therefore the relaxation's maximum sum x is sum U.
+
+It follows that T=W-e sum U is a lower bound on UA3 in mode1, and a lower bound on actual W in modes2/3.
+Modes2/3 are not claimed to lower-bound unrestricted UA3. A negative W necessarily makes all these valid W
+lower bounds negative, so they remain within the proved reduction of the universal backwards target.
+Universal nonnegativity of any such T is NOT proved.
+
+The C routine exports U and a predecessor forest. The independent checker reconstructs membership, Apéry,
+all edges and caps, verifies every edge inequality, and checks that each predecessor path terminates at a
+cap with exact total distance. This certifies the envelope, not just feasibility. Generator-mode bounds
+were also checked against all27 independently rationally audited UA3 optima.
+
+Examples: <146,155,175,184> gives generator/zero-loss374, all-pairs602, versus UA3=W1130. For
+<60,71,121,143>, generator221 and all-pairs237=W. For <64,67,69,77,129>, both give452=UA3<W467.
+The failed expectation was that zero-loss COMPOSITE SUMMANDS explained the gap; in the saved examples
+they did not. Nonzero partner caps and target rows do explain an additional part, but do not finish Wilf.
+
+### Exact zero targets and top-divisor rigidity; no uniform size for one top ideal (E404)
+
+In any bounded repair, if a tight target has x_s=0 and alpha_p=0, then nonnegativity forces x_i=x_j=0.
+For the largest Apéry residue r this applies to EVERY tight split: its shifted residue is m-1, and
+
+    alpha_(i,j->r)=tau+lo=0.
+
+Proof: i+j=r implies both parents<=r and tau=lo=0. If i+j=r+m, both parents>r, tau=-1 and lo=1.
+Thus, for A={i : w_r-w_i in S}, every admissible capped unpaid vector vanishes on A. In particular the
+all-pairs distance envelope has U_i=0 on A. The arithmetic allowance identity and the abstract nonnegative
+zero-split implication are kernel-checked in RepairMatching.lean; the semigroup construction remains on paper.
+
+This rigidity does not give a uniform lower bound |A|>=m/e. An arbitrarily large genuine counterexample
+to that COUNTING CLAIM is obtained as follows (not a counterexample to Wilf). For n>=7 put m=2n and
+
+    T=<m,m+1,m+2>,       f=nm-1,       S=T union{f}=<m,m+1,m+2,f>.
+
+The Apéry representatives of T are w_(2k)=k(m+2) and w_(2k+1)=m+1+k(m+2),0<=k<n. These follow by
+minimizing the number of1/2 offsets; wrapping adds at least n extra generators and cannot improve them.
+Hence c(T)=nm and g(T)=n^2. Since f is its Frobenius number, adjoining it adds just that one element.
+Only w_(m-1) drops, by m, to f; the next largest representative is nm-2. Consequently
+
+    c(S)=(n-1)m,  g(S)=n^2-1,  e(S)=4,  W(S)=2(n-1)(n-2),  A={0,m-1}.
+
+The new largest Apéry element f is primitive, so |A|=2 while m/e=n/2 is unbounded. These S satisfy
+c>4m,3e<m for n>=7. The n10 instance <20,21,22,199> was independently checked: c180,W144, matching
+and all transport bounds144. It cannot be ignored as a finite small-m anomaly. Any global counting proof
+must use other maximal Apéry elements or further structure, rather than the size of the single top ideal.
+No novelty is claimed for Frobenius adjunction or elementary Apéry symmetry.
+
+**Exact-zero closure (general paper lemma).** Start K={s:delta_s=0}. Repeat the following two implications
+over all tight pairs until no new coordinate is added:
+
+    alpha_p=0 and s in K  => i,j in K;
+    kappa_p=0 and i,j in K => s in K.
+
+Every capped full-repair unpaid vector x vanishes on K. The first rule follows from
+x_i+x_j<=x_s=0; the second from x_s<=x_i+x_j=0. Nonnegativity is essential in both. Finite induction proves
+the claim, and closure terminates after at most m new-coordinate additions. If CapUA3 denotes the minimum
+of the full tight-pair UA3 system with the added caps y<=mu, then
+
+    W >= CapUA3 >= B+e sum_{s in K} delta_s = W-e sum_{s outside K} delta_s.
+
+This is the bound obtained by fixing these repairs and dropping the rest. If K contains every coordinate, the
+bounded full-repair system has the unique vector x=0 and value W. This is a structural equality statement,
+not a positivity proof for W. It does not establish the same equality for unrestricted UA3.
+
+For <146,155,175,184>, initial K has10 cells; four sweeps fix146/146. For <60,71,121,143>,11 initially,
+then60/60 in three sweeps. For <64,67,69,77,129>,10 initially, then61/64, leaving residues2,7,62 with
+actual deltas1,2,1. The e4 example <60,67,71,121> leaves15 coordinates, so a core-size bound by e-2
+cannot be assumed. These are exact finite diagnostics of the general closure, not a universal bounded-core
+theorem. Future counting must retain the full residue bijection: deleting paid cells does not preserve the
+tile hypotheses (see the recorded FALSE partial-tile extensions).

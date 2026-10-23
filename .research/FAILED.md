@@ -174,3 +174,12 @@ Even on e>=4,c>4m,3e<m, the proposed full-Wilf dichotomy B>=0 or2W>=c fails:
 certified. Continuing the B<0 actual-W/c descent gives <60,71,121,143>, c655,W237,B-111,M150,bound189.
 This disproves the dichotomy, not Wilf or universal matching positivity. Do not substitute a smaller guessed
 constant as a research plan. Local search supplies no global minimum.
+
+### The single largest Apéry divisor ideal has size at least m/e (FALSE, E404)
+
+For every n>=7 set m=2n and S=<m,m+1,m+2,nm-1>. The last generator is the Frobenius number of
+<m,m+1,m+2>; adjoining it lowers only the largest Apéry representative. It is now itself the largest
+Apéry element and is primitive, so its divisor ideal is exactly {0,nm-1}, of size2, while m/e=n/2 grows.
+These S have c>4m,3e<m. PROOFS gives exact Apéry/conductor/genus formulas. Thus no uniform positive
+fraction of the residues is controlled by that SINGLE top ideal. This does not disprove top-divisor
+rigidity; it requires a counting proof to retain other maximal elements and the full residue bijection.

@@ -1,11 +1,12 @@
 """Exact upper-side, generator-aware split bound; diagnostic of which dual signs are needed.
-No LP solver. Input: certprobe JSONL. All arithmetic is integral.
+No LP solver. Input: certprobe JSONL. Exact integer/rational arithmetic.
 """
 import json,sys
 from fractions import Fraction as F
 from verify_probe import open_text
 propagate=len(sys.argv)>1 and sys.argv[1]=='--propagate'
-for line in open_text(sys.argv[2] if propagate else sys.argv[1]):
+rigid=len(sys.argv)>1 and sys.argv[1]=='--rigid'
+for line in open_text(sys.argv[2] if propagate or rigid else sys.argv[1]):
  D=json.loads(line); m,e,q,c=(D[k] for k in ('m','e','q','c'))
  to=[[] for _ in range(m)]
  for i,j,s,J,tau,lo,up in D['pairs']:
@@ -17,6 +18,20 @@ for line in open_text(sys.argv[2] if propagate else sys.argv[1]):
  violations=[(i,j,s) for i,j,s,J,tau,lo,up in D['pairs'] if not J and z[i]+z[j]-z[s]<q-lo]
  value=e*sum(z)-c
  print('G=%s W=%d UPPER=%d missing_lower=%d'%(D['generators'],D['W'],value,len(violations)))
+ if rigid:
+  delta=[u-b for u,b in zip(D['mu'],z)]
+  fixed={s for s,v in enumerate(delta) if not v};initial=len(fixed);sweeps=0
+  while True:
+   old=fixed.copy();sweeps+=1
+   for i,j,s,J,tau,l,u in D['pairs']:
+    if J:continue
+    if tau+l==0 and s in fixed:fixed.update((i,j))
+    if u-tau==0 and i in fixed and j in fixed:fixed.add(s)
+   if old==fixed:break
+  remaining=[(s,delta[s]) for s in range(m) if s not in fixed]
+  bound=D['W']-e*sum(v for s,v in remaining)
+  print('RIGID initial=%d fixed=%d/%d sweeps=%d bound=%d remaining=%s'%(initial,len(fixed),m,sweeps,bound,remaining))
+  continue
  if not propagate:continue
  # All bounds are rational bounds on every UA3-feasible y, not integer rounding.
  lo=list(map(F,z));hi=[F(q)]+[None]*(m-1)

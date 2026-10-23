@@ -52,8 +52,27 @@ theorem upper_penalty_position (m r i j s rp : ℤ)
         (if i > r ∧ j > r ∧ i + j ≤ m + r then (1 : ℤ) else 0) := by
   split_ifs at * <;> omega
 
+/-- A tight split into the largest Apéry residue has no lower-row allowance. -/
+theorem lower_allowance_at_top (m r i j : ℤ)
+    (_hm : 2 ≤ m) (hr0 : 0 < r) (hrm : r < m)
+    (hi0 : 0 < i) (him : i < m) (hj0 : 0 < j) (hjm : j < m)
+    (hsum : i + j = r ∨ i + j = r + m) :
+    ((if i + j > m then (1 : ℤ) else 0) -
+      (if i > r then (1 : ℤ) else 0) -
+      (if j > r then (1 : ℤ) else 0)) +
+      (if m - 1 ≥ r + 1 ∧ i > r ∧ j > r then (1 : ℤ) else 0) = 0 := by
+  rcases hsum with hsum | hsum <;> split_ifs <;> omega
+
+/-- Nonnegative unpaid amounts cannot survive an exact split into a zero target. -/
+theorem unpaid_vanishes_at_exact_split (x y : ℝ)
+    (hx : 0 ≤ x) (hy : 0 ≤ y) (hxy : x + y ≤ 0) : x = 0 ∧ y = 0 := by
+  exact ⟨le_antisymm (le_trans (le_add_of_nonneg_right hy) hxy) hx,
+    le_antisymm (le_trans (le_add_of_nonneg_left hx) hxy) hy⟩
+
 end Wilf
 
 #print axioms Wilf.assignment_repair_sum_bound
 #print axioms Wilf.rounded_assignment_repair_bound
 #print axioms Wilf.upper_penalty_position
+#print axioms Wilf.lower_allowance_at_top
+#print axioms Wilf.unpaid_vanishes_at_exact_split

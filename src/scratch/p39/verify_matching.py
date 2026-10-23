@@ -7,6 +7,47 @@ the repair rows; it requires neither Gurobi data nor a dense matching matrix.
 import sys,json
 from fractions import Fraction as F
 from verify_probe import audit,open_text
+def transport_audit(C,w,mu,b,q,r,rho,gr):
+ m=len(w);delta=[v-a for v,a in zip(mu,b)];order=sorted(range(1,m),key=w.__getitem__)
+ top_ideal=[s for s in range(m) if w[s]+w[(r-s)%m]==w[r]]
+ reports=[]
+ for name in C['transport']:
+  assert name in ('generators','zero_loss','capped_pairs')
+  costs=[{} for _ in range(m)];used=set()
+  for ii,i in enumerate(order):
+   if 2*w[i]>w[r]:break
+   for j in order[ii:]:
+    if w[i]+w[j]>w[r]:break
+    s=(i+j)%m
+    if not s or w[i]+w[j]!=w[s]:continue
+    tau=mu[i]+mu[j]-mu[s]-q
+    lo=int((w[s]-C['c'])%m>=m-rho and i>r and j>r)
+    a=tau+lo
+    k=int(i<=r and j<=r and i+j<=2*r-m)+int(i>r and j>r and i+j<=m+r)
+    assert a in (0,1) and k in (0,1) and a+k<=1
+    for anchor,v in ((i,j),(j,i)):
+     if name!='capped_pairs' and not (anchor in gr if name=='generators' else delta[anchor]==0):continue
+     used.add(anchor)
+     forward=k+(delta[anchor] if name=='capped_pairs' else 0)
+     costs[s][v]=min(costs[s].get(v,10**100),a)
+     costs[v][s]=min(costs[v].get(s,10**100),forward)
+  T=C['transport'][name];u=T['u'];parent=T['parent']
+  assert len(u)==len(parent)==m and all(type(v) is int for v in u+parent)
+  assert u[0]==0 and all(0<=u[i]<=delta[i] for i in range(m))
+  for i in range(m):
+   for j,cost in costs[i].items():assert u[j]<=u[i]+cost
+   p=parent[i];assert -1<=p<m
+   if p==-1:assert u[i]==delta[i]
+   else:assert i in costs[p] and u[i]==u[p]+costs[p][i]
+   seen=set();v=i
+   while parent[v]!=-1:
+    assert v not in seen;seen.add(v);v=parent[v]
+  assert T.get('used_composite_summands',T.get('used_composite_anchors'))==len(used-gr)
+  assert T['unpaid']==sum(u) and T['bound']==C['W']-C['e']*sum(u)
+  if name=='capped_pairs':assert all(u[s]==0 for s in top_ideal)
+  reports.append('%s=%d[unpaid:%d,composites:%d]'%(name,T['bound'],sum(u),len(used-gr)))
+ return 'TRANSPORT CERTIFIED G=%s W=%d top_ideal=%d | '%(sorted(C['G']),C['W'],len(top_ideal))+' '.join(reports)
+
 def standalone(C):
  import heapq, math
  G=sorted(C['G']);m=C['m'];e=C['e']
@@ -61,6 +102,7 @@ def standalone(C):
   active[s]=min(active[(s-g%m)%m]+int(g%m not in free) for g in G[1:] if w[(s-g%m)%m]+g==w[s])
   assert mu[s]-b[s]<=max(0,active[s]-1)
  assert C['B']==e*sum(b)-c
+ if 'transport' in C:return transport_audit(C,w,mu,b,q,r,rho,gr)
  res=[s for s in range(1,m) if s not in gr];assert C['residues']==res
  n=len(res);ix={s:a for a,s in enumerate(res)}
  cover_mode='cover' in C
@@ -73,11 +115,12 @@ def standalone(C):
   assert min(alpha,default=0)+min(beta,default=0)>=0
  selected=[0]*n;actual=[mu[s]-b[s] for s in res]
  capacity_mode='capacity_lower' in C
- forced=[0]*n;positive_edges=[]
+ forced=[0]*n;diagonal=[0]*n;positive_edges=[]
  def edge(a,z,d):
   assert actual[a]+actual[z]>=d
   if capacity_mode:
    forced[a]=max(forced[a],d-actual[z]);positive_edges.append((a,z,d))
+   if a==z:diagonal[a]=max(diagonal[a],d)
   if cover_mode:assert v[a]+v[z]>=d
   else:
    assert alpha[a]+beta[z]>=d
@@ -115,6 +158,11 @@ def standalone(C):
  result='INDEPENDENTLY CERTIFIED G=%s c=%d B=%d M=%d loss=%d bound=%d W=%d free_generators=%d active_budget=%d'%(G,c,C['B'],M,loss,corrected,C['W'],len(free),active_budget)
  if capacity_mode:
   assert forced==C['capacity_lower']
+  if 'individual_lower' in C:
+   individual=[max(forced[a],(diagonal[a]+1)//2) for a in range(n)]
+   assert individual==C['individual_lower'] and all(individual[a]<=actual[a] for a in range(n))
+   ib=C['B']+e*sum(individual);assert ib==C['individual_bound']<=C['W']
+   result+=' individual_bound=%d'%ib
   cp=C['capacity_permutation'];ca=C['capacity_alpha'];cb=C['capacity_beta']
   assert sorted(cp)==list(range(n)) and len(ca)==len(cb)==n
   assert all(type(v) is int for v in ca+cb)
@@ -146,6 +194,10 @@ for path in sys.argv[2:]:
 for line in open_text(sys.argv[1]):
  if not line.startswith('{'):continue
  C=json.loads(line);S,R=D[tuple(sorted(C['G']))];m,e,q,c=(S[k] for k in ('m','e','q','c'))
+ if 'transport' in C:
+  print(standalone(C))
+  assert C['transport']['generators']['bound']<=F(R['models']['UA3']['optimum'])
+  continue
  gr={g%m for g in S['generators'] if g!=m};to=[[] for _ in range(m)]
  for i,j,s,J,tau,lo,up in S['pairs']:
   if not J:to[s].append((i,j,up))

@@ -1,0 +1,5 @@
+INDEPENDENTLY CERTIFIED G=[146, 155, 175, 184] c=2034 B=-526 M=430 loss=414 bound=334 W=1130 free_generators=0 active_budget=479 individual_bound=514 bounded_cover_twice=548 capacity_gap_twice=118
+INDEPENDENTLY CERTIFIED G=[60, 71, 121, 143] c=655 B=-111 M=150 loss=87 bound=189 W=237 free_generators=0 active_budget=101 individual_bound=209 bounded_cover_twice=160 capacity_gap_twice=10
+INDEPENDENTLY CERTIFIED G=[64, 67, 69, 77, 129] c=448 B=-33 M=152 loss=100 bound=347 W=467 free_generators=0 active_budget=100 individual_bound=447 bounded_cover_twice=192 capacity_gap_twice=40
+INDEPENDENTLY CERTIFIED G=[64, 69, 77, 129, 237] c=510 B=-40 M=116 loss=103 bound=250 W=475 free_generators=0 active_budget=105 individual_bound=300 bounded_cover_twice=138 capacity_gap_twice=22
+TRANSPORT CERTIFIED G=[20, 21, 22, 199] W=144 top_ideal=2 | generators=144[unpaid:0,composites:0] zero_loss=144[unpaid:0,composites:0] capped_pairs=144[unpaid:0,composites:14]

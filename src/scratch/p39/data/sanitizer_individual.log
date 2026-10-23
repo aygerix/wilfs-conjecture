@@ -1,0 +1,12 @@
+NEW_MIN corrected=6622 B=6622 M=0 W=6752 m=136 e=13 q=14 h=6
+NEW_MIN corrected=645 B=645 M=0 W=1194 m=111 e=9 q=6 h=4
+NEW_MIN corrected=74 B=74 M=0 W=182 m=30 e=6 q=6 h=5
+REPAIR_TIGHT ratio=66/760 corrected=347 B=-33 M=152 W=467 G=[64,129,67,69,77]
+NEW_MIN corrected=51 B=51 M=0 W=141 m=28 e=6 q=5 h=4
+NEW_MIN corrected=13 B=13 M=0 W=209 m=28 e=4 q=11 h=10
+NEW_MIN corrected=12 B=12 M=0 W=908 m=64 e=4 q=15 h=15
+NEW_MIN corrected=8 B=8 M=0 W=1764 m=73 e=4 q=29 h=24
+REPAIR_TIGHT ratio=16/184 corrected=84 B=-8 M=46 W=120 G=[22,23,121,126]
+REPAIR_TIGHT ratio=972/4776 corrected=1902 B=-486 M=1194 W=2582 G=[156,157,475,167]
+REPAIR_TIGHT ratio=92/360 corrected=134 B=-46 M=90 W=178 G=[38,39,84,49]
+DONE samples=1000 accepted=856 seed=390 min_e=4 min_bound=8 Bnegative=4 max_repair_ratio=92/360

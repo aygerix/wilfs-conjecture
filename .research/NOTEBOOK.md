@@ -4704,3 +4704,49 @@ Turn classification: **PROGRESS**. Full Wilf is unproved; keep the goal ACTIVE.
 Reproduction detail: the initial negative-B pilot stopped on the first dichotomy failure; the final
 `--wilf-negative-wide` reports that first failure once and continues to a local optimum. The saved initial
 pilot and continuation logs preserve both stages.
+
+## 2026-10-22 22:37 EDT — successor remainders, target transport and exact-zero closure
+
+Previous goal turn classified **PROGRESS**:5e74760 contains a general loss-support proof, two rigorously
+falsified shortcuts, new genuine extremizers and a Lean algebraic component. Repository status preserved
+the unrelated user changes; a remote process check found no surviving research job. No agents launched.
+
+**Attempt 1 (E402).** Derived the exact one-step individual payments F_i and successor-minimum unpaid
+remainders R_i. Their general integer lower bound I is valid; its positivity is unproved. Reusing the same
+10000-candidate C sample tested34 negative-baseline cases. Three full one-coordinate descents found only
+positive local minima. This is not a reason to increase the same boxes; the question now needs a counting
+argument or a new explicit adversarial mechanism.
+
+**Attempt 2 (E403).** Derived graph difference constraints for unpaid x. Fixed-zero summands give two unit
+cost edges. The exact shortest-path envelope has independently verified cap and path witnesses. Adding
+zero-loss composites makes no improvement on ANY of27 saved S, so it does not explain the observed gap.
+The actual caps allow all tight pairs to supply edges; those improve the hard146 case374->602 and the
+actual-W60 local minimum221->237. These are lower bounds for actual/capped repairs, not all for UA3.
+
+**Proof and obstruction (E404).** All tight splits into the largest Apéry cell have alpha=0. Hence all its
+divisors have zero unpaid repair. Lean checks the exact arithmetic step and the abstract nonnegative zero
+implication. A uniform size bound for that single divisor ideal is nevertheless FALSE: adjoining the
+Frobenius number to <2n,2n+1,2n+2> gives e4 with a primitive largest Apéry element and divisor ideal size2
+for arbitrarily large m. The family remains in c>4m,3e<m. This precludes hiding the missing count in a
+claim that the largest cell controls a fixed proportion of the residues.
+
+**Exploit the target rows.** Exact-zero closure alternates: a zero target with alpha0 fixes both parents;
+two zero parents with kappa0 fix the target. It forces146/146 coordinates on the hardest saved matching
+case, and60/60 on the low-W local minimum, while other examples leave3 or15 variables. The full capped
+model is rigid where closure is complete, but its value then is actual W, whose universal sign still needs
+proof. Do not confuse certificate rigidity with a Wilf proof.
+
+**Global review — CONTINUE, stop the zero-loss-summand-only explanation.** The missing payment can require
+nonzero partner caps and already-paid target relations. Next analyze the remaining zero-face constraints
+after rigid closure, using all relevant maximal elements and full residue completeness. Do not induct by
+deleting paid cells: the old partial-tile counting extension is false. The next global lemma must count
+the paid boundary AND the residual paired costs, not assume a bounded core size or another numerical
+W/c constant. The universal target and its approved scope remain unchanged; all computed bounds have a
+proved necessary-counterexample implication. Full Wilf remains unproved.
+
+Validation at22:40 EDT: consolidated checks pass all135 exact LP optima, existing matching/capacity data,
+the27 new transport path certificates (including generator-bound comparison with certified UA3), the four
+individual-payment witnesses, the top-primitive example and exact-zero closure. New C transport and individual
+paths pass ASan/UBSan. Lean kernel checks both added rigidity components, only the three standard axioms;
+semigroup constructions and zero-closure induction remain paper proofs. Log: data/checkpoint_404_checks.log
+under src/scratch/p39/. Turn classification: **PROGRESS**; keep the full goal ACTIVE.
