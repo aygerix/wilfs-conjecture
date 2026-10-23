@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 10:12 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 10:50 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,28 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E441, current arithmetic attempt:** for every proper S with least odd primitive a, let
+H be the halves of even primitives and A+ the positive half differences (p-a)/2 of odd
+primitives. U=<a,H,A+> is the additive closure of the normalized odd ideal I from E440.
+It contains S/2, has eU<=eS and gU<gS. Thus conditional transfer WU>=0 => WS>=0 would
+prove ALL Wilf by genus induction. That transfer and the stronger WS>=WU are UNKNOWN.
+This is standard normalized ideal blowup, not a new representation or a proved Wilf descent.
+
+**Paper-proved mixed identity:** modulo a (not necessarily the multiplicity), the Apéry
+representatives satisfy wS(2s)=wT(s)+wI(s), T=S/2. Relative to wU, write integer lifts K,L;
+0<=L<=K<=L+1. Only K-L is binary; the common height L can be large. The exact budget is
+WS=2WU+2(eS-eU)ellU+(eS-1)(cS-2cU)-eS*(b+sum(K+L)), b=(a-1)/2. Its sign is NOT proved.
+The stronger factor2 payer is already false on old19: WS32,WU23, correction-14.
+
+**E441 bounded discriminator CLOSED:** one deterministic C descent from old19 made one
+improving normalized-score move, then stopped at a local optimum after1392 comparisons,
+1361 eligible. Endpoint19/41/50/52/53/58 has WS46,WU36; no negative margin. These two
+cases and two boundary controls pass independent membership/ALL modulo-a entry audits;
+ASan/UBSan reproduces the same search byte-for-byte. No more seeds or positive-profile
+census. The next task is a GLOBAL common-height payment in the exact budget, retaining
+both copies of WU if needed, rather than another reconstruction optimizer. E435/E437
+cyclic payment and full genuinely weighted repair remain the other universal lines.
 
 **E439/E440, actual arithmetic:** a least-genus Wilf counterexample must satisfy
 gcd(P minus {n})=1 for EVERY primitive n. If that gcd is k>1, division of the other
@@ -325,6 +347,21 @@ ALL pivot-Apéry entries, minimal generator changes, parity membership, normaliz
 generators/conductor/genus and the exact signed corrections. No new C code or optimizer.
 Data: data/quotient_descent_audit.json and checkpoint_440_checks.log. run_checks.sh includes it.
 
+**E441 implementation:** existing [upper_scan.c](../src/scratch/p39/upper_scan.c) adds pure-C
+`--odd-audit G...` and `--odd-climb STEPS G...`, reusing its changed-multiplicity/generator
+reconstruction. The bounded search has at most20 moves; its candidate box is m<256 and
+other inputs<=8m, with c>4m,3e<m retained. Its printed `accepted` counts eligible neighbors,
+NOT accepted moves. The single completed run stops after one move; do not expand it.
+`verify_probe.py --odd-closure-check SEARCH_LOG ./repair_scan OUTPUT` compares saved
+cases with fresh C outputs, then independent membership DP reconstructs S,T,I,U, minimal
+generators and every representative modulo a. It verifies K,L, genus identities, cofactor
+gcds and all four terms of the budget; controls include U=N and nonmultiplicity a.
+Data: data/odd_closure_search.log, odd_closure_audit.json, checkpoint_441_checks.log.
+ASan/UBSan search output matches normal SHA256
+96bb30771b0c6751a68d74477ff57f2c9fd3012df1568006dcf602949ca5f7fa.
+The old quotient audit also passed; no broad LP suite or new profile census. run_checks.sh
+includes the targeted saved-case replay. All new mathematical statements are paper proofs.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -371,14 +408,17 @@ component to pay itself. No new solver run is warranted without a proof-derived 
 that distinguishes a source of finite surplus. If no such inequality emerges, return to
 actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
 
-**Actual-arithmetic task after E440:** keep E439's proved cofactor1 normalization for a
-least-genus counterexample. For T=S/2 and normalized I, the odd primitives generate I as
-a T-ideal; every lost even primitive of T is half the sum of two odd primitives. Use that
-structured pair relation, v=|I minus T| and the ACTUAL WT surplus to derive a uniform transfer
-or a contradiction to minimality. It must cover ALL admissible I and ALL r. The scalar
-bound q<=binom(r+1,2) alone does not pay (q-r)ellT; q<=r and a nonnegative standalone
-correction are false. Do not launch more quotient variants, a fixed-rank programme, or
-a new positive-profile census. The exact PAR-W identity is not itself positivity progress.
+**Actual-arithmetic task after E441:** keep E439's cofactor1 normalization for a least-genus
+counterexample. Replace uncontrolled quotient generator growth by U=<I>=<a,H,A+>, with
+eU<=eS and smaller genus. PROOFS E441 gives the exact mixed Apéry budget and typed H/A
+constraints. Seek a uniform bound on the WEIGHTED common lifts sum(K+L), using residue
+completeness and actual WU, sufficient to force WS>=0 when WU>=0. MON1 (WS>=WU) is
+stronger than necessary and must not become sacred; the factor2 correction already fails.
+Only epsilon=K-L is binary. Do not replace L by support size, infer a unit cap from the
+two search cases, or run a new closure/shortest-path optimizer that merely reconstructs
+the instance. The bounded C falsification is CLOSED with no failure, not a theorem.
+This is standard normalized-ideal blowup; no novelty claim. All ranks/heights/depths
+remain included. The cyclic-boundary and full weighted-certificate alternatives remain active.
 
 The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
 C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
@@ -479,7 +519,11 @@ E438–E440 add the known rank-one arithmetic descent and a precise parity-trans
 including the cofactor1 remaining-domain example. Checks and code are inventoried above;
 the old E437 graph replay also passed after the new audit code. No broad LP suite, new C
 sanitizer path or large enumeration was rerun. General arithmetic applications are on paper.
-All E432–E440 general mathematical statements remain paper-proved, not Lean checked. No universal
+E441 adds the standard odd-ideal closure, generator/genus bounds, mixed Apéry identity and
+exact common-height budget. Its two saved C cases and two boundary controls pass independent
+membership, fresh-output and ASan/UBSan checks; data and modes are inventoried above.
+The only search stopped at a local optimum; no negative margin and no universal sign claim.
+All E432–E441 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

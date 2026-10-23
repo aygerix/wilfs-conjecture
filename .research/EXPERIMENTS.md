@@ -1255,3 +1255,70 @@ python3 verify_probe.py --quotient-descent-check ./repair_scan /tmp/wilf-p39-quo
 
 Stop the standalone monotone parity payer and further variants. Any proof along this
 universal arithmetic line must retain quotient surplus and the odd-pair/filled-gap coupling.
+
+### 2026-10-23 — E441: one bounded odd-ideal-closure falsification, CLOSED
+
+Scope: Proves Wilf for every S IF W(S)>=W(U), or the weaker nonnegativity transfer, is
+proved universally for U=<a,halves of even primitives,positive half differences of odd
+primitives>. Proved reduction to all S: YES, E441 proves eU<=eS and gU<gS. This bounded
+experiment tests the stronger proposed inequality; it does not prove it.
+
+Fejer e2-standard-8, gcc13.3.0 (Ubuntu13.3.0-6ubuntu2~24.04.1), Python3.12.3.
+Existing upper_scan.c now has --odd-audit and --odd-climb modes, using the same exact
+integer shortest-path/minimal-generator reconstruction as --residue-audit. No solver.
+The ONE deterministic run started at the OLD sharp19 example, minimized (WS-WU)/cS,
+breaking equal scores by WS/cS, and stopped at its first local optimum. Bound20 moves,
+external wall cap60seconds. No RNG. In each neighborhood one input generator is replaced:
+the first input ranges3..min(255,min(other inputs)-1); others range m+1..8m. Keep only
+genuine inputs whose actual multiplicity equals the first input and c>4m,3e<m. Redundant
+inputs are minimized by the exact evaluator. These are bounded neighborhoods, not all S.
+
+| Source S | cS,gS,eS,WS | U minimal generators | cU,gU,eU,WU | WS-WU |
+| --- | --- | --- | --- | ---: |
+|19,39,41,50,52,53|88,68,6,32|10,11,17,19,25,26|25,17,6,23|9|
+|19,41,50,52,53,58|98,74,6,46|11,17,19,25,26,29|36,24,6,36|10|
+
+One actual improving move: 9/88 -> 10/98, with NO negative margin. Final calls1392,
+eligible1361. The C field `accepted` means eligible neighbor evaluations, NOT accepted
+moves. Both sources have all six leave-one-out primitive gcds1. The initial case already
+refutes WS>=2WU: 32<46. The run ended at local optimum, not at the time/step limit;
+runtime was not instrumented. Launch ETA/hard cap was60seconds. No further seeds/variants.
+
+Independent Python stdlib membership DP (no optimizer and no NS.from_gapset) reconstructs
+S, T=S/2, I=A0+T and U, their minimal generators, conductors and finite gap counts. The
+new --odd-closure-check first compares both SAVED search cases against fresh C outputs.
+It then verifies ALL representatives modulo the least odd a, the mixed identity
+wS(2s)=wT(s)+wI(s), integer lift arrays K,L, 0<=L<=K<=L+1, both genus differences and
+the full four-part OC-W budget. For the two search cases those terms are respectively
+(46,0,190,-204) and (72,0,130,-156), summing to32 and46.
+
+Two additional boundary controls, not search seeds:
+
+| Source S | least odd a | U | WS,WU | OC-W parts |
+| --- | ---: | --- | --- | --- |
+|5,7|5|N|0,0|0,0,24,-24|
+|6,7,11|7|2,3|4,0|0,2,26,-24|
+
+The first exercises cU=gU=0 and common lift L up to2 (lambda up to4). The second uses
+a different from the multiplicity of S,T,U. No general unit bound on L is assumed.
+
+Verification: -fsanitize=address,undefined -fno-omit-frame-pointer replayed the SAME
+bounded C search and both controls without diagnostics. Normal and sanitizer search
+stdout are byte-identical, SHA256
+96bb30771b0c6751a68d74477ff57f2c9fd3012df1568006dcf602949ca5f7fa.
+The old --quotient-descent-check also passed; unchanged large/LP suites were not rerun.
+Saved data: src/scratch/p39/data/odd_closure_search.log, odd_closure_audit.json and
+checkpoint_441_checks.log. run_checks.sh includes the new fresh-C/saved-case audit.
+
+Reproduce from src/scratch/p39 on Fejer (first command is the CLOSED search, not a new seed):
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+./repair_scan --odd-audit 19 39 41 50 52 53
+timeout 60 ./repair_scan --odd-climb 20 19 39 41 50 52 53
+python3 verify_probe.py --odd-closure-check data/odd_closure_search.log ./repair_scan /tmp/wilf-p39-odd.json
+```
+
+Decision: CLOSED discriminator, no failure of MON1 found in these bounded neighborhoods.
+No universal monotonicity or Wilf theorem follows. The next work is a proof of weighted
+common-height payment in OC-W, not expanded computation or another reconstruction solver.

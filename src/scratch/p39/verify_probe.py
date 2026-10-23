@@ -600,6 +600,45 @@ def membership_stats(G,apery_modulus=None):
     w=[next(x for x in range(s,N+1,n) if member[x]) for s in range(n)]
     return {'m':m,'e':len(minimal),'c':c,'g':genus,'W':len(minimal)*(c-genus)-c,'G':minimal,'w':w}
 
+def audit_odd_comparison(C):
+    """E441: independent membership plus the mixed Apéry-sum identity."""
+    source=membership_stats(C['G']);a=min(p for p in source['G'] if p%2)
+    S=membership_stats(source['G'],a);odd=[p for p in S['G'] if p%2]
+    H=[p//2 for p in S['G'] if not p%2];A=[(p-a)//2 for p in odd]
+    U=membership_stats([a]+H+[x for x in A if x],a)
+    pairs=[(p+q)//2 for j,p in enumerate(odd) for q in odd[j:]]
+    T=membership_stats(H+pairs,a)
+    for expected,reported in ((S,C),(U,C['odd_closure'])):
+        assert all(expected[k]==reported[k] for k in ('m','e','c','g','W'))
+        assert expected['G']==sorted(reported['G'])
+    assert C['least_odd']==a and U['e']<=S['e'] and U['g']<=T['g']<S['g']
+    iw=[min(x+T['w'][(s-x)%a] for x in A) for s in range(a)]
+    gi=sum(w//a for w in iw);ci=max(iw)-a+1
+    K=[];L=[]
+    for s in range(a):
+        k,rem=divmod(T['w'][s]-U['w'][s],a);assert rem==0 and k>=0
+        l,rem=divmod(iw[s]-U['w'][s],a);assert rem==0 and 0<=l<=k<=l+1
+        assert S['w'][(2*s)%a]==T['w'][s]+iw[s]
+        K.append(k);L.append(l)
+    b=(a-1)//2;E=S['e'];ellU=U['c']-U['g']
+    assert S['g']==T['g']+gi+b and S['c']==max(2*T['c']-1,a+2*ci-1)
+    assert sum(K)==T['g']-U['g'] and sum(L)==gi-U['g']
+    parts=[2*U['W'],2*(E-U['e'])*ellU,(E-1)*(S['c']-2*U['c']),-E*(b+sum(K)+sum(L))]
+    assert S['W']==sum(parts) and C['margin']==S['W']-U['W']
+    cofactors=[]
+    for p in S['G']:
+        common=0
+        for q in S['G']:
+            if q!=p:common=gcd(common,q)
+        cofactors.append(common)
+    return {'S':{k:S[k] for k in ('m','e','c','g','W','G')},
+            'U':{k:U[k] for k in ('m','e','c','g','W','G')},
+            'T':{k:T[k] for k in ('m','e','c','g','W','G')},
+            'least_odd':a,'ideal_conductor':ci,'ideal_genus':gi,'ideal_generators':A,
+            'apery_modulus':a,'T_lifts':K,'I_lifts':L,'binary_difference':[k-l for k,l in zip(K,L)],
+            'W_parts':parts,'margin':C['margin'],'leave_one_out_gcds':cofactors,
+            'genuine_negative_W':min(S['W'],T['W'],U['W'])<0}
+
 def audit_residue_comparison(C):
     S=membership_stats(C.get('input_G',C['G']));m=S['m']
     T=membership_stats([m]+[g%m for g in S['G'] if g!=m],m)
@@ -1523,6 +1562,27 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--odd-closure-check':
+        import subprocess
+        records=[]
+        for line in open(sys.argv[2]):
+            if line.startswith('{'):records.append(json.loads(line))
+        unique={tuple(sorted(C['G'])):C for C in records};results=[]
+        for G,C in unique.items():
+            fresh=json.loads(subprocess.check_output([sys.argv[3],'--odd-audit',*map(str,G)],text=True))
+            assert fresh==C
+            results.append(audit_odd_comparison(C))
+        for G in ([5,7],[6,7,11]):
+            C=json.loads(subprocess.check_output([sys.argv[3],'--odd-audit',*map(str,G)],text=True))
+            results.append(audit_odd_comparison(C))
+        assert len(records)==3 and len(unique)==2
+        assert any(R['S']['G']==[19,39,41,50,52,53] and R['S']['W']==32 and R['U']['W']==23 for R in results)
+        report={'search_json_records':len(records),'distinct_search_cases':len(unique),
+                'controls':2,'records':results,'bounded_search_found_failure':any(R['margin']<0 for R in results[:len(unique)])}
+        with open(sys.argv[4],'w') as out:json.dump(report,out,indent=2)
+        for R in results:print('ODD-CLOSURE',R)
+        print('EXACTLY AUDITED two saved search cases and two boundary controls; no universal monotonicity claim')
+        sys.exit(0)
     if sys.argv[1]=='--quotient-descent-check':
         R=audit_quotient_descent(sys.argv[2])
         with open(sys.argv[3],'w') as out:json.dump(R,out,indent=2)

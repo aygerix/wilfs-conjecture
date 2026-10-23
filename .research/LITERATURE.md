@@ -1245,3 +1245,25 @@ proving the universal conditional Wilf transfer. E440's false monotone payer and
 cofactor1 obstruction are independently checked repository calculations; novelty of that
 particular observation is unassessed. Searches covered Wilf/gcd/scaling/quotient/duplication,
 arXiv, GitHub and conjectures.io. Search absence supplies no priority or nonexistence claim.
+
+### E441: quotient rank and standard normalized-ideal blowup (2026-10-23)
+
+Opened primary author PDF [Bogart–O'Neill–Woods, When is a numerical semigroup a quotient?](https://www2.oberlin.edu/faculty/kwoods/research/quotientability.pdf),
+introduction and Definition1.1: quotient rank is the least source generator count in a
+quotient representation. This supplies terminology, NOT a Wilf density inequality. The
+unrestricted attempt e(source)*ell(quotient)>=c(quotient) fails already for <3,5>/2.
+No positive theorem about that quantity is imported from this source.
+
+Opened the official [NumericalSgps Chapter7 documentation](https://gap-packages.github.io/numericalsgps/doc/chap7_mj.html),
+sections7.3-3/4 and7.3-12/14. BlowUp(I) is union_n(nI-nI); normalized ideal sums stabilize
+and the reduction number records stabilization. For E441's 0-containing ideal I, the
+stable sum equals <I>, so the construction is standard ideal blowup/additive closure.
+The elementary equality is proved directly in E441; GAP was NOT run. Ideal Apéry lists
+and Kunz coordinates are also standard; the mixed modulo-a formula and finite budget
+are supplied with self-contained proofs, without a novelty claim.
+
+Discovery searches covered quotient rank/density, Wilf odd generators/duplication/blowup,
+arXiv and GitHub, alongside the repository's existing records. These sources are not
+invoked as proving the missing nonnegativity transfer or a universal common-height payer.
+No completeness or priority claim is made. The documentation's standard terminology
+must prevent presenting this closure as a newly discovered parametrization.

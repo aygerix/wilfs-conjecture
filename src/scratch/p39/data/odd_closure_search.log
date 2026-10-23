@@ -1,0 +1,6 @@
+{"m":19,"e":6,"c":88,"g":68,"W":32,"G":[19,39,41,50,52,53],"least_odd":19,"odd_closure":{"m":10,"e":6,"c":25,"g":17,"W":23,"G":[10,11,25,26,17,19]},"margin":9}
+ODD_CLIMB iter=0 calls=0 accepted=0 score=9/88
+{"m":19,"e":6,"c":88,"g":68,"W":32,"G":[19,39,41,50,52,53],"least_odd":19,"odd_closure":{"m":10,"e":6,"c":25,"g":17,"W":23,"G":[10,11,25,26,17,19]},"margin":9}
+ODD_CLIMB iter=1 calls=695 accepted=679 score=10/98
+{"m":19,"e":6,"c":98,"g":74,"W":46,"G":[19,58,41,50,52,53],"least_odd":19,"odd_closure":{"m":11,"e":6,"c":36,"g":24,"W":36,"G":[11,25,26,17,29,19]},"margin":10}
+ODD_STOP reason=local_optimum calls=1392 accepted=1361

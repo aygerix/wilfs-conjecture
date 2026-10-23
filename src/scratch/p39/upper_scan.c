@@ -26,6 +26,8 @@
  * --supp-climb weighted|cycle ITER m g...: bounded local falsification of
  *   the weighted support budget or proposed cycle-excess bound; no LP solver.
  * --residue-audit G...: reconstruct S and T from MINIMAL-generator residues.
+ * --odd-audit G...: exact S and additive closure of its normalized odd ideal.
+ * --odd-climb STEPS G...: one bounded falsification of W(S)>=W(odd closure).
  * --residue-climb ITER m g...: bounded general RD falsification, all heights/
  *   depths, retaining c>4m,3e<m,W(T)>0 and the necessary genus-bound filter.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
@@ -123,6 +125,29 @@ static int residue_compare(int *G,int ng,ResidueStats *S,ResidueStats *T){
   for(int j=0;j<R->e;j++)fprintf(stderr,"%s%d",j?",":"",R->G[j]);fprintf(stderr,"]\n");exit(4);
  }
  return 1;
+}
+static void print_odd_stats(ResidueStats *S,ResidueStats *U,int a);
+static int odd_compare(int *G,int ng,ResidueStats *S,ResidueStats *U,int *least_odd){
+ if(!residue_stats(G,ng,S))return 0;
+ if(S->m==1)return 0; /* The descent is for proper S; U=N is allowed. */
+ int a=INT_MAX,A[MM],n=0;
+ for(int j=0;j<S->e;j++)if((S->G[j]&1)&&S->G[j]<a)a=S->G[j];
+ if(a==INT_MAX)return 0;A[n++]=a;
+ for(int j=0;j<S->e;j++){
+  int p=S->G[j];if(!(p&1))A[n++]=p/2;else if(p>a)A[n++]=(p-a)/2;
+ }
+ assert(n==S->e);if(!residue_stats(A,n,U))return 0;
+ assert(U->e<=S->e&&U->genus<S->genus);*least_odd=a;
+ if(S->W<0||U->W<0)print_odd_stats(S,U,a);
+ return 1;
+}
+static void print_odd_stats(ResidueStats *S,ResidueStats *U,int a){
+ printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"G\":[",S->m,S->e,S->c,S->genus,S->W);
+ for(int j=0;j<S->e;j++)printf("%s%d",j?",":"",S->G[j]);
+ printf("],\"least_odd\":%d,\"odd_closure\":{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"G\":[",a,U->m,U->e,U->c,U->genus,U->W);
+ for(int j=0;j<U->e;j++)printf("%s%d",j?",":"",U->G[j]);
+ printf("]},\"margin\":%lld}\n",S->W-U->W);fflush(stdout);
+ if(S->W<0||U->W<0){fprintf(stderr,"POTENTIAL_NEGATIVE_W requires independent audit\n");exit(4);}
 }
 static void print_residue_stats(ResidueStats *S,ResidueStats *T){
  printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"G\":[",S->m,S->e,S->c,S->genus,S->W);
@@ -527,6 +552,34 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>2&&!strcmp(argv[1],"--odd-audit")){
+  int G[MM],ng=argc-2,a;if(ng>MM)return 2;for(int j=0;j<ng;j++)G[j]=atoi(argv[j+2]);
+  ResidueStats S,U;if(!odd_compare(G,ng,&S,&U,&a))return 2;print_odd_stats(&S,&U,a);return 0;
+ }
+ if(argc>5&&!strcmp(argv[1],"--odd-climb")){
+  int limit=atoi(argv[2]),ng=argc-3,G[MM];if(limit<0||limit>20||ng>MM)return 2;
+  for(int j=0;j<ng;j++)G[j]=atoi(argv[j+3]);long calls=0,accepted=0;
+  for(int iter=0;;iter++){
+   ResidueStats S,U;int a;
+   if(!odd_compare(G,ng,&S,&U,&a)||S.m!=G[0]||3*S.e>=S.m||S.c<=4*S.m)return 2;
+   ll num=S.W-U.W;int den=S.c;ll W0=S.W;int c0=S.c;
+   printf("ODD_CLIMB iter=%d calls=%ld accepted=%ld score=%lld/%d\n",iter,calls,accepted,num,den);print_odd_stats(&S,&U,a);
+   if(num<0||iter==limit){printf("ODD_STOP reason=%s\n",num<0?"descent_inequality_failure":"iteration_limit");return 0;}
+   int found=0,BG[MM];
+   for(int j=0;j<ng;j++){
+    int lo=j?G[0]+1:3,hi=j?8*G[0]:MM-1;if(!j)for(int b=1;b<ng;b++)if(G[b]-1<hi)hi=G[b]-1;
+    for(int v=lo;v<=hi;v++){
+     if(v==G[j])continue;int A[MM];memcpy(A,G,ng*sizeof(int));A[j]=v;calls++;
+     if(!odd_compare(A,ng,&S,&U,&a)||S.m!=A[0]||3*S.e>=S.m||S.c<=4*S.m)continue;accepted++;
+     ll nn=S.W-U.W;int dd=S.c;
+     if((__int128)nn*den<(__int128)num*dd||((__int128)nn*den==(__int128)num*dd&&(__int128)S.W*c0<(__int128)W0*S.c)){num=nn;den=dd;W0=S.W;c0=S.c;memcpy(BG,A,ng*sizeof(int));found=1;}
+     if(nn<0){print_odd_stats(&S,&U,a);printf("ODD_STOP reason=descent_inequality_failure calls=%ld\n",calls);return 0;}
+    }
+   }
+   if(!found){printf("ODD_STOP reason=local_optimum calls=%ld accepted=%ld\n",calls,accepted);return 0;}
+   memcpy(G,BG,ng*sizeof(int));
+  }
+ }
  if(argc>2&&!strcmp(argv[1],"--residue-audit")){
   int G[MM],ng=argc-2;if(ng>MM)return 2;for(int j=0;j<ng;j++)G[j]=atoi(argv[j+2]);
   ResidueStats S,T;if(!residue_compare(G,ng,&S,&T))return 2;print_residue_stats(&S,&T);return 0;

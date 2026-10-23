@@ -7,6 +7,7 @@ export LD_LIBRARY_PATH="$GUROBI_ROOT/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 gcc -O2 certprobe.c -I"$GUROBI_ROOT/include" -L"$GUROBI_ROOT/lib" -lgurobi130 -lm -o certprobe
 gcc -O3 upper_scan.c -o repair_scan
 python3 verify_probe.py --quotient-descent-check ./repair_scan /tmp/wilf-p39-quotient-descent.json
+python3 verify_probe.py --odd-closure-check data/odd_closure_search.log ./repair_scan /tmp/wilf-p39-odd-closure.json
 python3 verify_probe.py --completion-cut-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-cut.json
 python3 verify_probe.py --completion-structure-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-structure.json
 python3 verify_probe.py --completion-pool-check data/completion_pool_probe.jsonl.gz /tmp/wilf-p39-completion-pool.json

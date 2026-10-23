@@ -5398,3 +5398,39 @@ lost primitives using their odd-pair structure and filled-gap mass. The correcti
 need not be nonnegative. Do not start a fixed-rank/duplication family census or mistake
 PAR-W for a sign proof. E435/E437 cyclic payment and genuinely weighted full repair remain
 the other two universal lines. No universal proof, genuine counterexample or Lean claim.
+
+### 2026-10-23 — E441: control quotient generator growth by closing the odd ideal
+
+The E440 quotient can have more generators than its source, defeating its simple payer.
+Tried bounding quotient density using source generator count; the unrestricted claim
+e(S)*ell(S/2)>=c(S/2) already fails for S=<3,5>, T=<3,4,5> (2<3). This is a failed
+source of surplus, not a remaining-domain counterexample or a sufficient Wilf theorem.
+No computation or restricted programme was launched for it. Quotient rank is standard
+(Bogart–O'Neill–Woods); no external density theorem was used.
+
+Instead normalized I's ADDITIVE CLOSURE is U=<a,H,A+>, with a least odd S element,
+H even primitive halves and A+ positive odd primitive half differences. Proved the
+displayed list has E entries, U contains S/2 and gU<gS. Thus WU>=0=>WS>=0, if proved,
+gives ALL Wilf by induction. The closure is standard normalized ideal blowup, not a
+new representation. The finite correction, rather than the parametrization, is the target.
+
+Modulo a, t_s-i_s is0 or a. This yields wS(2s)=t_s+i_s and the exact budget
+WS=2WU+2(E-eU)ellU+(E-1)(cS-2cU)-E*(b+sum(K+L)). Here K,L are lifts above wU,
+and K-L is binary. Derived typed H/A input constraints on both lifts; wrote their proofs
+in E441. They expose a weighted COMMON height L that must not be confused with epsilon.
+For S=<5,7>, U=N, L reaches2 and lambda4. Exact reconstruction still does not explain sign.
+
+The old sharp19 already refutes the factor2 payer: WS32,WU23. A single bounded C local
+falsification of factor1, on Fejer, made ONE normalized-score improvement then stopped
+locally: source19/41/50/52/53/58 has WS46,WU36.1392 comparisons,1361 eligible; no failure.
+Two saved cases plus controls5/7 and6/7/11 pass ALL modulo-a identity, independent
+membership/minimal-generator and exact-budget audits. ASan/UBSan reproduces the same run
+byte-for-byte; old quotient audit passes. No new seed/profile census is authorized by this.
+
+Global review: the generator-growth obstruction is removed by a genuine smaller-genus
+construction, but neither monotonicity nor positivity transfer has been established.
+The next sign argument may use both copies of WU; demanding WS>=WU is optional. Seek
+a GLOBAL common-height bound from typed input relations plus cyclic residue completeness,
+not another shortest-path implementation or a positive-fixture tally. Keep the boundary
+cycle/carry and genuinely weighted certificate alternatives active. All statements here
+are paper proofs/audited finite calculations, not Lean claims or a universal Wilf proof.
