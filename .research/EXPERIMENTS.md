@@ -1191,3 +1191,67 @@ python3 verify_probe.py --exterior-forest-check data/completion_cut_probe.jsonl.
 
 Stop at this structural accounting; do not launch more profile/graph optimizers to increase
 paid-edge counts without a candidate uniform surplus inequality.
+
+## E438–E440 — actual quotient descent and a failed parity payer (2026-10-23)
+
+**Scope:** the common-divisor descent reduces full Wilf to proper semigroups whose
+leave-one-out minimal-generator gcds are all1. Conditional transfer from S/2 would also
+prove full Wilf by genus induction. The stronger monotone payment W(S)>=2W(S/2) is being
+falsified, not assumed. No fixed embedding dimension, parity rank or family is a proof target.
+
+Used Fejer, littlewood-paley-8375, us-east1-b, ~/wilf/p39, Python3.12.3 stdlib and the
+EXISTING pure-C repair_scan --residue-audit and --supp-audit. No C changes, LP, RNG,
+annealer, optimizer or large enumeration. The main audit is verify_probe.py
+--quotient-descent-check ./repair_scan OUTPUT. It uses an independent membership DP
+through min(G)*max(G)+min(G), verifies a full multiplicity-length tail, reconstructs
+all minimal generators, conductor/genus/Apéry values, and compares C's exact invariants.
+For each distinguished-pivot descent it also checks EVERY pivot-Apéry entry, regardless
+of whether that pivot is the multiplicity. For T=N it uses the c=g=ell=W=0 convention.
+
+Four fixed controls, chosen to check distinct proof obligations:
+
+| S | n,k | T | W(S), W(T) | Correction beyond kW(T) |
+| --- | --- | --- | --- | --- |
+|<5,6,8>|5,2|<3,4,5>|2,0|2|
+|<17,18,21,33>|17,3|<6,7,11>|65,4|21+32|
+|<18,21,29,33>|29,3|<6,7,11>|89,4|21+56|
+|<5,7>|5,7|N|0,0|0|
+
+All four change multiplicity; the third uses a nonmultiplicity pivot. The general formula
+and genus-descent proof are in PROOFS E439 and use known rank-one invariant formulas.
+These checks are not promoted to a universal computational proof.
+
+Two constructed parity witnesses, the second selected ONLY to test the cofactor1 restriction:
+
+| S | c,g,e,W | S/2 generators | quotient c,g,e,W | W(S)-2W(S/2) |
+| --- | --- | --- | --- | ---: |
+|<17,18,21,33>|83,46,4,65|9,17,19,21,25,33|42,23,6,72|-79|
+|<17,18,21,37>|84,48,4,60|9,17,19,21,29|42,24,5,48|-36|
+
+Both S satisfy c>4m,3e<m. The second has ALL leave-one-out gcds1. The first normalized
+ideal has generators0,2,8, conductor32, genus15; the second has generators0,2,10,
+conductor34, genus16. The audit verifies even membership, the generated odd ideal,
+its finite complement, every lost even primitive's odd-pair witness and the exact PAR-W
+identity. Corrections decompose as(-76,0,-3) and(-36,0,0). The latter isolates primitive
+loss with no filled-gap/conductor correction. Both actual Wilf numbers remain positive.
+
+The initial hand prediction W56 for the second witness was corrected by C and independent
+membership to W60 (genus48, not49); its failed inequality is60<96. The retained scope
+line preserves that prediction and its explicit correction. No unverified prediction is
+used downstream. No further variants were attempted.
+
+The single E438 BASE discriminator <15,37,39,40> was also independently checked:
+Dep10,T7,kappa5,N7,Gamma.mu30,W32, support lower bound12. It was already excluded by
+the weaker shape criterion. That diagnostic is closed, not new positive evidence.
+
+The new audit and the old E437 forest replay pass. Runtime was not instrumented; launch
+ETAs were seconds / under a minute. No new C sanitizer path or broad LP suite was needed.
+Saved files: data/quotient_descent_audit.json and data/checkpoint_440_checks.log.
+run_checks.sh includes the new mode. Reproduce on Fejer:
+
+```sh
+python3 verify_probe.py --quotient-descent-check ./repair_scan /tmp/wilf-p39-quotient.json
+```
+
+Stop the standalone monotone parity payer and further variants. Any proof along this
+universal arithmetic line must retain quotient surplus and the odd-pair/filled-gap coupling.

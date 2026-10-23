@@ -1221,3 +1221,27 @@ and conjectures.io discovery. They supplied no external theorem USED for the rem
 cycle-and-carry sign. This is not an exhaustive-search or absence-of-literature claim.
 The general partial allocation and its limitations are self-contained; the classical
 MSTD construction remains attributed in E436 above.
+
+### E439/E440: fixed quotients and numerical duplication (2026-10-23)
+
+Opened primary full texts [Ojeda–Rosales, On Numerical Semigroups with Fixed Quotient,
+2605.14775](https://arxiv.org/html/2605.14775), Proposition4.9, Theorems4.12/4.14/4.15
+and Corollary3.6; also [Singh–Srinivasan2306.09876](https://arxiv.org/html/2306.09876v1),
+Definition2.1, to distinguish ordinary gluing from the more general rank-one case.
+The rank-one formulas F(S)=kF(T)+(k-1)n and g(S)=kg(T)+(k-1)(n-1)/2 are PRIOR results,
+with n in T and gcd(n,k)=1. E439's Apéry proof reproduces them and includes T=N directly.
+The positive Wilf correction/minimal-counterexample gcd condition is a direct application;
+no claim that the underlying genus/Frobenius formulas are new. Corollary3.6 concerns the
+paper's different Delta_d(a) construction; it is not misquoted as the general rank-one
+Wilf identity. The supplied E439 proof separately checks primitive survival and e(T).
+
+Opened [D'Anna–Strazzanti1211.3693](https://arxiv.org/html/1211.3693), introduction, and
+[Strazzanti1404.4959](https://arxiv.org/html/1404.4959), Proposition3.3, the following
+Frobenius discussion and Lemma4.8. Every numerical semigroup being a duplication of its
+half using a relative ideal is KNOWN. Normalizing that ideal to minimum0 is also KNOWN.
+E440's parity count and primitive-pair accounting are self-contained applications of this
+representation, not a newly discovered parametrization. Neither paper is invoked as
+proving the universal conditional Wilf transfer. E440's false monotone payer and concrete
+cofactor1 obstruction are independently checked repository calculations; novelty of that
+particular observation is unassessed. Searches covered Wilf/gcd/scaling/quotient/duplication,
+arXiv, GitHub and conjectures.io. Search absence supplies no priority or nonexistence claim.

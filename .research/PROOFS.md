@@ -9463,3 +9463,198 @@ It is the SAME unresolved JD sign in a constructive normal form. The old19 and11
 still require adaptive sharing of unused starts. If this stronger frozen target fails,
 retain unfrozen POOL or E432, and keep weighted full repair and actual arithmetic/integrality
 as the other universal lines. All general assertions here are paper-proved, not Lean checked.
+
+## E438 — one depth-credit discriminator, closed (2026-10-23)
+
+**Scope.** Proves Wilf for: every S if E432 completion / E435 JD+ holds universally in the
+remaining domain. Proved reduction from all S to this case: yes, the recorded implication
+chain and complements. To test whether that depth-free auxiliary claim discards necessary
+credit, reused ONLY E393's existing S=<15,37,39,40>. Its exact data are c104,g70,e4,W32,
+Dep10,T7,kappa5,N7,Gamma.mu30. Thus the full support bound is12 and even Dep>=T already
+excludes it. This attempt yields no new positivity evidence. It is CLOSED; do not expand
+the BASE examples or test a sharper wrapped-height envelope on these already excluded cases.
+
+The contemplated actual-side envelope follows from a canonical edge u->u+e_j:
+mu_u-mu_(u+e_j)=floor(p_j/m)+[conductor-phase edge wraps]>=1+[wrap]. Thus mu dominates
+the longest-path sum of these unit/wrap costs, with maximal cells initialized at0.
+This is a consequence of existing positive primitive bounds, not a new sign theorem.
+Its positivity has not been proved and no new optimizer or envelope census was run.
+
+## E439 — exact common-divisor descent of actual semigroups (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF Wilf holds for every proper S
+whose minimal generator set P satisfies gcd(P\{n})=1 for EVERY n in P. Proved reduction
+from all S to this case: yes, the strict genus descent below and the N boundary. No height,
+depth, multiplicity or embedding-dimension cutoff. This is part of the actual arithmetic
+line of the backwards approach, not a restricted-family proof target. It does not settle
+the remaining gcd1 class. No novelty claim: the rank-one invariant formulas appear in
+[Ojeda–Rosales 2605.14775, Theorem4.14](https://arxiv.org/html/2605.14775), with the primitive
+accounting in Proposition4.9. The application to a minimal counterexample is given explicitly.
+
+Let S be proper with minimal generators P={n,p_1,...,p_d}. The distinguished n may be ANY
+primitive; it need not be the multiplicity. Suppose k=gcd(p_1,...,p_d)>1, and put
+
+    T=<n,p_1/k,...,p_d/k>.
+
+Then gcd(n,k)=1, T is numerical, and T=S/k={x:kx in S}. For the reverse quotient inclusion,
+write kx=A*n+sum B_i*p_i. Coprimality forces k|A, yielding x in T. The other inclusion is
+immediate by multiplying generators. This is an actual integer semigroup operation.
+
+### Apéry, genus and the exact defect — PROVED on paper
+
+Using Apéry sets relative to n, even when n is not T's multiplicity, we have the SET identity
+
+    Ap(S,n)=k*Ap(T,n).
+
+Proof: an Apéry minimum cannot use n. Among sums of the other generators, multiplication
+by k scales all values and permutes residues modulo n. Thus the minimum of each residue
+is the scaled old minimum. In particular, the usual Apéry maximum/genus formulas give
+
+    c(S)=k*c(T)+(k-1)(n-1),
+    g(S)=k*g(T)+(k-1)(n-1)/2,
+    ell(S)=k*ell(T)+(k-1)(n-1)/2.                         (DIV)
+
+Every p_i/k remains primitive in T: a decomposition into two positive T elements would,
+after multiplication by k, decompose the primitive p_i in S. Since the displayed list
+generates T, only n can become redundant. Therefore e(T) is e(S) or e(S)-1. With E=e(S),
+
+    W(S)=k*W(T)+k*(E-e(T))*ell(T)
+                    +(k-1)*(E-2)*(n-1)/2.              (DIV-W)
+
+All corrections after kW(T) are nonnegative. This includes T=N, using c=g=ell=W=0 and
+e=1. Also g(T)<g(S), since n,k>=2 and the second term in (DIV) is positive. Thus any
+negative actual W(S) would descend to a negative W(T) of strictly smaller genus.
+
+Strong induction on genus proves the scope reduction. Equivalently, a least-genus Wilf
+counterexample must have gcd(P\{n})=1 for every primitive n. Termination reaches N or a
+semigroup satisfying that condition; no unproved reduction to a fixed e or profile is used.
+This descent supplies real positive finite corrections, unlike the failed arbitrary
+common-positive-shift monotonicity in E431. The operations and hypotheses are different.
+
+### Checks and limit
+
+Existing C residue reconstruction and independent membership agree on four controls:
+
+| S | Distinguished n,k | T | Contributions in DIV-W |
+| --- | --- | --- | --- |
+|<5,6,8>|5,2|<3,4,5>|0+0+2=2|
+|<17,18,21,33>|17,3|<6,7,11>|12+21+32=65|
+|<18,21,29,33>|29,3|<6,7,11>|12+21+56=89|
+|<5,7>|5,7|N|0+0+0=0|
+
+The third pivot is NOT the multiplicity. All Apéry entries relative to the pivot are
+compared, including the N boundary. These are checks of a general proof, not a family
+enumeration or a novelty claim. Generic leave-one-out-gcd1 semigroups remain untouched.
+
+## E440 — parity exposes a primitive-loss correction (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF Wilf transfers from T=S/2 to S
+for every proper S. Proved reduction from all S to this case: yes, g(T)<g(S), since all
+gaps of T correspond to EVEN gaps of S and1 is an ODD gap of every proper S. The N boundary
+starts strong induction. The universal transfer is UNKNOWN and is equivalent in strength
+to Wilf; merely stating it is no advance. The stronger proposed payer W(S)>=2W(T) is FALSE,
+including inside the remaining domain and after E439's cofactor restriction.
+
+The representation below is standard numerical duplication with a relative ideal:
+[Strazzanti 1404.4959, Proposition3.3 and Lemma4.8](https://arxiv.org/html/1404.4959).
+It is written here in normalized form to retain exact genus, primitive-loss and defect
+terms; no novelty claim for duplication or the elementary identities.
+
+### Normalized odd ideal and exact identities — PROVED on paper
+
+For ANY proper S, let a=2b+1 be its least odd element, T=S/2, and
+
+    I={i>=0:a+2i in S}.
+
+Then0 in I, T subset I, I+T subset I, a in T, and a+I+I subset T. Conversely these
+conditions, with T numerical and a positive odd element of T, make
+
+    S=2T union (a+2I)
+
+a numerical semigroup with quotient T. Both parity classes are cofinite and all three
+addition cases are covered. Thus this construction retains ALL S, not only proper ideals
+I subset T or almost symmetric duplications. Here I is normalized to contain T.
+
+Write C=c(T), h=g(I)=|N\I|, c_I=min{c:[c,infinity) subset I}, with c_I=0 if I=N. Counting
+even and odd gaps gives
+
+    g(S)=g(T)+h+b,
+    c(S)=max(2C-1,a+2c_I-1).                            (PAR)
+
+For odd gaps, the b positive odds below a are missing and the rest correspond to N\I.
+For the conductor take the larger of the last even and odd gaps, with the usual negative
+boundary conventions when a parity class has no nonnegative gaps. Put
+
+    v=g(T)-h>=0,             t=c(S)-2C in {-1,0,2,4,...}.
+
+Then ell(S)=2ell(T)+v-b+t.
+
+Let r be the number of ODD primitives of S and q the number of primitives p of T for
+which2p is NOT primitive in S. Every even primitive of S is twice a primitive of T.
+Here r,q are LOCAL primitive counts, not the earlier top residue and conductor depth.
+Further, a lost2p must be the sum of TWO odd primitives of S. Indeed a decomposition
+into evens would decompose p in T. Factoring an odd summand into one odd primitive and
+an even remainder shows that any nonzero remainder would again decompose p in T.
+Consequently
+
+    e(S)=e(T)+r-q,             q<=binom(r+1,2).
+
+The normalized offsets of the odd primitives are exactly the minimal T-ideal generators
+of I: every odd S element is one odd primitive plus an even S element. With E=e(S),
+direct substitution yields
+
+    W(S)=2W(T)+2(r-q)*ell(T)+E*(v-b)+(E-1)*t.            (PAR-W)
+
+This formula retains a potentially NEGATIVE primitive-loss term. There is no permission
+to discard it or assume q<=r. The upper bound by binom(r+1,2) is a structural count, not
+the missing global payment of q-r copies of ell(T).
+
+### Two exact monotone-transfer obstructions
+
+First take S=<17,18,21,33>. It has m17,e4,c83,g46,ell37,W65, so c>4m and3e<m.
+Pairing its odd generators and halving its even generators gives
+
+    T=<9,17,19,21,25,33>, c42,g23,ell19,e6,W72.
+
+Here a17,b8,I=(0+T) union (2+T) union (8+T), c_I32,h15,v8,r3,q5,t=-1. The five lost
+quotient primitives are17,19,21,25,33, with odd-pair witnesses(17,17),(17,21),(21,21),
+(17,33),(33,33). The exact correction in (PAR-W) is
+
+    -76+0-3=-79,           W(S)=2*72-79=65.
+
+This S is itself reducible under E439 (factor3 after omitting17), so it alone would not
+refute a version restricted by that reduction. Use the SINGLE cofactor1 variant
+
+    S=<17,18,21,37>, m17,e4,c84,g48,ell36,W60;
+    T=S/2=<9,17,19,21,29>, c42,g24,ell18,e5,W48.
+
+Every gcd(P\{n}) is1. Also c>4m and3e<m. Here I=(0+T) union (2+T) union (10+T), c_I34,
+h16,v8,b8,r3,q4,t0. Lost primitives17,19,21,29 have pair witnesses(17,17),(17,21),
+(21,21),(21,37). Thus
+
+    correction=-36+0+0=-36,       W(S)=2*48-36=60<96.
+
+The second obstruction survives the cofactor restriction; both W values remain positive.
+Neither is a Wilf counterexample or a refutation of conditional transfer of NONNEGATIVITY.
+The initial hand prediction W56 for the variant missed a17-unit improvement of one Apéry
+entry; exact C and independent membership give genus48 and W60. The saved data use only
+the corrected values. This is not a search over variants.
+
+### Global review / next mathematical obligation
+
+The common-divisor descent is a valid universal normalization with a positive finite
+correction, already based on known rank-one formulas. It does not resolve the generic
+cofactor1 case. Numerical duplication also predates this work; its universal representation
+must not be presented as a new reduction theorem. The concrete deduction here is that
+even in the remaining cofactor1 domain the simple monotone quotient payer is false, and
+PAR-W identifies its primitive-loss cost exactly. Stop that payer and do not expand a
+duplication/profile census or retreat to a fixed number of odd generators.
+
+Within the standing actual-arithmetic line, the next testable proof task is to use the
+structured odd-pair relations together with the filled-gap mass v to bound the loss of
+q-r quotient primitives, RETAINING the surplus W(T). Requiring the correction alone to
+be nonnegative is refuted. A successful general conditional transfer, or a weaker argument
+for a least-genus counterexample, must cover all r and all normalized admissible I.
+The full finite positivity statement remains UNKNOWN. E435/E437's cyclic boundary route
+and the genuinely weighted full-certificate route remain available; no exclusive switch
+to a narrower family has been made. All new proof applications are on paper, not Lean checked.

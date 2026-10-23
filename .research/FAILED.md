@@ -5,6 +5,18 @@
 Purpose: before a new conjecture gets proof effort, state why none of the mechanisms below undermines it. Each entry:
 statement, smallest/clearest counterexample, and what actually pays the deficit. Experiment IDs refer to EXPERIMENTS.md.
 
+**E440, monotone parity payer — FALSE (2026-10-23).** W(S)>=2W(S/2) fails even in
+c>4m,3e<m and with gcd(P minus {p})=1 for every primitive p. Take S=<17,18,21,37>:
+m17,e4,c84,g48,ell36,W60. Its quotient T=<9,17,19,21,29> has c42,g24,ell18,e5,W48,
+so60<96. With S=2T union(a+2I), a17, normalized ideal generators0/2/10, there are
+r3 odd primitives and q4 lost doubled quotient primitives. The PAR-W correction is
+2(r-q)ellT=-36; its filled-gap and conductor terms vanish (v=b8,t0). Thus q<=r is
+also false. The earlier reducible S=<17,18,21,33> gives W65, quotient W72 and correction-79.
+This refutes the standalone nonnegative correction, NOT conditional transfer of Wilf
+nonnegativity or Wilf. WT's actual surplus must remain in any such proof. Both examples
+were independently reconstructed by C and membership DP. Stop further variants; full
+proof, scope and data are in PROOFS/EXPERIMENTS E439–E440 and STATE's sole inventory.
+
 ## Gate for new conjectures
 1. **Necessity audit.** List the nonnegative terms of the exact identity that the conjecture discards. Show on data
    (ablation) that they are not the terms paying the deficit.

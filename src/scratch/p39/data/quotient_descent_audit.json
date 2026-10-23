@@ -1,0 +1,349 @@
+{
+  "common_divisor_descents": [
+    {
+      "S": {
+        "m": 5,
+        "e": 3,
+        "c": 10,
+        "g": 6,
+        "W": 2,
+        "generators": [
+          5,
+          6,
+          8
+        ]
+      },
+      "pivot": 5,
+      "factor": 2,
+      "T": {
+        "m": 3,
+        "e": 3,
+        "c": 3,
+        "g": 2,
+        "W": 0,
+        "generators": [
+          3,
+          4,
+          5
+        ]
+      },
+      "W_parts": [
+        0,
+        0,
+        2
+      ],
+      "apery_modulus": 5,
+      "all_apery_entries_checked": 5,
+      "pivot_is_multiplicity": true,
+      "multiplicity_changes": true
+    },
+    {
+      "S": {
+        "m": 17,
+        "e": 4,
+        "c": 83,
+        "g": 46,
+        "W": 65,
+        "generators": [
+          17,
+          18,
+          21,
+          33
+        ]
+      },
+      "pivot": 17,
+      "factor": 3,
+      "T": {
+        "m": 6,
+        "e": 3,
+        "c": 17,
+        "g": 10,
+        "W": 4,
+        "generators": [
+          6,
+          7,
+          11
+        ]
+      },
+      "W_parts": [
+        12,
+        21,
+        32
+      ],
+      "apery_modulus": 17,
+      "all_apery_entries_checked": 17,
+      "pivot_is_multiplicity": true,
+      "multiplicity_changes": true
+    },
+    {
+      "S": {
+        "m": 18,
+        "e": 4,
+        "c": 107,
+        "g": 58,
+        "W": 89,
+        "generators": [
+          18,
+          21,
+          29,
+          33
+        ]
+      },
+      "pivot": 29,
+      "factor": 3,
+      "T": {
+        "m": 6,
+        "e": 3,
+        "c": 17,
+        "g": 10,
+        "W": 4,
+        "generators": [
+          6,
+          7,
+          11
+        ]
+      },
+      "W_parts": [
+        12,
+        21,
+        56
+      ],
+      "apery_modulus": 29,
+      "all_apery_entries_checked": 29,
+      "pivot_is_multiplicity": false,
+      "multiplicity_changes": true
+    },
+    {
+      "S": {
+        "m": 5,
+        "e": 2,
+        "c": 24,
+        "g": 12,
+        "W": 0,
+        "generators": [
+          5,
+          7
+        ]
+      },
+      "pivot": 5,
+      "factor": 7,
+      "T": {
+        "m": 1,
+        "e": 1,
+        "c": 0,
+        "g": 0,
+        "W": 0,
+        "generators": [
+          1
+        ]
+      },
+      "W_parts": [
+        0,
+        0,
+        0
+      ],
+      "apery_modulus": 5,
+      "all_apery_entries_checked": 5,
+      "pivot_is_multiplicity": true,
+      "multiplicity_changes": true
+    }
+  ],
+  "parity_obstructions": [
+    {
+      "S": {
+        "m": 17,
+        "e": 4,
+        "c": 83,
+        "g": 46,
+        "W": 65,
+        "generators": [
+          17,
+          18,
+          21,
+          33
+        ]
+      },
+      "T": {
+        "m": 9,
+        "e": 6,
+        "c": 42,
+        "g": 23,
+        "W": 72,
+        "generators": [
+          9,
+          17,
+          19,
+          21,
+          25,
+          33
+        ]
+      },
+      "least_odd": 17,
+      "b": 8,
+      "ideal_conductor": 32,
+      "ideal_genus": 15,
+      "filled_gaps": 8,
+      "odd_primitive_count": 3,
+      "lost_even_primitive_count": 5,
+      "lost_even_witnesses": {
+        "17": [
+          17,
+          17
+        ],
+        "19": [
+          17,
+          21
+        ],
+        "21": [
+          21,
+          21
+        ],
+        "25": [
+          17,
+          33
+        ],
+        "33": [
+          33,
+          33
+        ]
+      },
+      "conductor_difference": -1,
+      "correction_parts": [
+        -76,
+        0,
+        -3
+      ],
+      "correction": -79,
+      "monotone_transfer_false": true,
+      "genuine_negative_W": false,
+      "ideal_generators": [
+        0,
+        2,
+        8
+      ],
+      "leave_one_out_gcds": [
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "S": {
+        "m": 17,
+        "e": 4,
+        "c": 84,
+        "g": 48,
+        "W": 60,
+        "generators": [
+          17,
+          18,
+          21,
+          37
+        ]
+      },
+      "T": {
+        "m": 9,
+        "e": 5,
+        "c": 42,
+        "g": 24,
+        "W": 48,
+        "generators": [
+          9,
+          17,
+          19,
+          21,
+          29
+        ]
+      },
+      "least_odd": 17,
+      "b": 8,
+      "ideal_conductor": 34,
+      "ideal_genus": 16,
+      "filled_gaps": 8,
+      "odd_primitive_count": 3,
+      "lost_even_primitive_count": 4,
+      "lost_even_witnesses": {
+        "17": [
+          17,
+          17
+        ],
+        "19": [
+          17,
+          21
+        ],
+        "21": [
+          21,
+          21
+        ],
+        "29": [
+          21,
+          37
+        ]
+      },
+      "conductor_difference": 0,
+      "correction_parts": [
+        -36,
+        0,
+        0
+      ],
+      "correction": -36,
+      "monotone_transfer_false": true,
+      "genuine_negative_W": false,
+      "ideal_generators": [
+        0,
+        2,
+        10
+      ],
+      "leave_one_out_gcds": [
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "closed_BASE_discriminator": {
+    "m": 15,
+    "e": 4,
+    "c": 104,
+    "g": 70,
+    "W": 32,
+    "canonical_height": 3,
+    "Dep": 10,
+    "support_sum": 7,
+    "kappa": 5,
+    "gamma_mu": 30,
+    "low_maximal": 1,
+    "G": [
+      15,
+      37,
+      39,
+      40
+    ],
+    "gamma": [
+      0,
+      2,
+      4,
+      1,
+      2,
+      5,
+      6,
+      0,
+      6,
+      0,
+      0,
+      6,
+      6,
+      6,
+      1
+    ],
+    "inversions": 7,
+    "shape_excluded": true,
+    "residue_excluded": true,
+    "phase_support_bound": 12,
+    "phase_excluded": true,
+    "flat_excluded": false,
+    "weighted_budget": 23
+  }
+}

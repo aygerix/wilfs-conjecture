@@ -5362,3 +5362,39 @@ repeat the advisor's concern. The next proof must derive a global source paying 
 AND carries using cyclic labels/actual conductor arithmetic, or pivot within the standing
 weighted-repair and actual-integrality lines. Do not demand componentwise positivity or
 launch another profile census. No universal proof or genuine counterexample has emerged.
+
+### 2026-10-23 10:10 EDT — E438–E440: actual arithmetic descent and primitive loss
+
+Tried a wrapped longest-path height lower bound for actual mu, following directly from
+mu_parent-mu_child>=1+[phase wrap]. Did not launch another envelope optimizer. The single
+old BASE discriminator15/37/39/40 already passes the WEAKER support criterion (Dep10>T7,
+phase bound12); further examples would not distinguish a payment mechanism. Closed it.
+
+Derived the common-divisor quotient operation for ANY distinguished primitive n. If k>1
+divides all the other primitives, T=<n,other/k>=S/k has smaller genus, and exact pivot-Apéry
+scaling gives W(S)=kW(T)+k(eS-eT)ellT+(k-1)(eS-2)(n-1)/2. The corrections are nonnegative,
+even with changed multiplicity or T=N. Checked prior sources: the invariant formulas are
+known rank-one results in Ojeda–Rosales2605.14775. Recorded the explicit consequence for
+a least-genus counterexample: every leave-one-out primitive gcd must be1. No novelty claim.
+
+Attempted a broader monotone quotient payer, W(S)>=2W(S/2), which would imply full Wilf
+by genus induction. Derived the standard normalized-duplication data and exact correction
+2(r-q)ellT+eS(v-b)+(eS-1)t. The lost quotient primitives are halves of odd-primitive pairs;
+they can outnumber the odd primitives. Strazzanti1404.4959 already gives the universal
+relative-ideal representation; do not relabel that as a new parametrization.
+
+Constructed S17/18/21/33: W65, quotient W72, correction-79. Since it is common-divisor
+reducible, derived ONE cofactor1 variant17/18/21/37. Its independent exact data are c84,
+g48,e4,ell36,W60; quotient9/17/19/21/29 has c42,g24,e5,ell18,W48. All leave-one-out gcds1;
+the correction is-36, entirely primitive loss (r3,q4,v=b8,t0). My hand prediction56 missed
+a17-unit improvement of one Apéry entry; C and membership corrected it to60. Both S are
+in c>4m,3e<m and have POSITIVE W. No more variants are justified. Four descent controls,
+including nonmultiplicity29 and N, and the old forest replay all pass on Fejer.
+
+Global review: a known-formula descent supplies a real finite positive correction and a
+valid universal normalization; it does not settle the generic cofactor1 case. Monotone
+parity funding is refuted even there. Keep the quotient's ACTUAL surplus and try to price
+lost primitives using their odd-pair structure and filled-gap mass. The correction alone
+need not be nonnegative. Do not start a fixed-rank/duplication family census or mistake
+PAR-W for a sign proof. E435/E437 cyclic payment and genuinely weighted full repair remain
+the other two universal lines. No universal proof, genuine counterexample or Lean claim.

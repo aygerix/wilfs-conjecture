@@ -241,6 +241,94 @@ def joint_defect_geometry(D,kept):
             'zero_raw_carry_interior':zero_raw_carry_interior,'zero_resource':zero_resource,
             'raw_carry_excess_over_wrapped':max(0,G['raw_carry_sum']-G['wrapped_capacity'])}
 
+def audit_quotient_descent(executable):
+    """E439/E440: four exact descent controls and one failed parity payer.
+    Reuses generic C reconstruction; independent checks use membership only.
+    No optimizer, sampler or genus enumeration.
+    """
+    import subprocess
+    cache={}
+    def read(generators):
+        G=sorted(set(generators));key=tuple(G)
+        if key in cache:return cache[key]
+        m=min(G);limit=m*max(G)+m;member=bytearray(limit+1);member[0]=1
+        for x in range(1,limit+1):member[x]=any(x>=p and member[x-p] for p in G)
+        last=max((x for x in range(limit+1) if not member[x]),default=-1)
+        assert limit-last>=m
+        c=last+1;g=sum(not member[x] for x in range(c))
+        minimal=[x for x in range(1,max(G)+1) if member[x] and
+                 not any(member[a] and member[x-a] for a in range(1,x))]
+        w=[next(x for x in range(s,limit+1,m) if member[x]) for s in range(m)]
+        assert c==max(w)-m+1
+        D={'m':m,'e':len(minimal),'c':c,'g':g,'W':len(minimal)*(c-g)-c,
+           'generators':minimal,'w':w,'q':(c+m-1)//m,'r':w.index(max(w))}
+        D['rho']=D['q']*m-c;D['mu']=[max(0,(c-x+m-1)//m) for x in w]
+        raw=json.loads(subprocess.check_output([executable,'--residue-audit',*map(str,G)],text=True))
+        assert all(raw[k]==D[k] for k in ('m','e','c','g','W')) and sorted(raw['G'])==minimal
+        cache[key]=(D,member);return cache[key]
+    def summary(D):return {k:D[k] for k in ('m','e','c','g','W','generators')}
+    fixtures=[([5,6,8],5),([17,18,21,33],17),([18,21,29,33],29),([5,7],5)]
+    descents=[]
+    for G,n in fixtures:
+        S,sm=read(G);other=[p for p in S['generators'] if p!=n];k=0
+        for p in other:k=gcd(k,p)
+        assert k>1 and gcd(k,n)==1
+        T,tm=read([n]+[p//k for p in other]);e=S['e'];ell=T['c']-T['g']
+        assert T['e'] in (e,e-1) and {p//k for p in other}<=set(T['generators'])
+        def apery(member):return [next(x for x in range(s,len(member),n) if member[x]) for s in range(n)]
+        sa,ta=apery(sm),apery(tm)
+        assert all(sa[(k*s)%n]==k*ta[s] for s in range(n))
+        assert S['c']==k*T['c']+(k-1)*(n-1)
+        assert 2*S['g']==2*k*T['g']+(k-1)*(n-1) and T['g']<S['g']
+        assert (k-1)*(e-2)*(n-1)%2==0
+        parts=[k*T['W'],k*(e-T['e'])*ell,(k-1)*(e-2)*(n-1)//2]
+        assert sum(parts)==S['W'] and min(parts[1:])>=0
+        descents.append({'S':summary(S),'pivot':n,'factor':k,'T':summary(T),
+                         'W_parts':parts,'apery_modulus':n,'all_apery_entries_checked':n,
+                         'pivot_is_multiplicity':n==S['m'],'multiplicity_changes':S['m']!=T['m']})
+    parity=[]
+    for G,expected_w,expected_t,expected_correction in (([17,18,21,33],65,72,-79),([17,18,21,37],60,48,-36)):
+        S,sm=read(G);odds=[p for p in S['generators'] if p%2]
+        even=[p//2 for p in S['generators'] if not p%2]
+        pairs=[(p+q)//2 for j,p in enumerate(odds) for q in odds[j:]]
+        T,tm=read(even+pairs)
+        assert all(sm[2*x]==tm[x] for x in range(min(len(tm),(len(sm)+1)//2)))
+        a=min(odds);b=(a-1)//2;I=[bool(sm[a+2*i]) for i in range((len(sm)-a+1)//2)]
+        ci=max((i for i,inside in enumerate(I) if not inside),default=-1)+1
+        gi=sum(not inside for inside in I[:ci]);v=T['g']-gi
+        assert a+2*len(I)>=S['c'] and S['g']==T['g']+gi+b
+        assert S['c']==max(2*T['c']-1,a+2*ci-1)
+        ideal_generators=[(p-a)//2 for p in odds]
+        for i,inside in enumerate(I):
+            assert inside==any(i>=j and (i-j>=len(tm) or tm[i-j]) for j in ideal_generators)
+        lost=[p for p in T['generators'] if 2*p not in S['generators']];r=len(odds);q=len(lost)
+        witnesses={str(p):next([u,w] for j,u in enumerate(odds) for w in odds[j:] if u+w==2*p) for p in lost}
+        assert S['e']==T['e']+r-q and q<=r*(r+1)//2
+        t=S['c']-2*T['c'];ell=T['c']-T['g'];e=S['e']
+        parts=[2*(r-q)*ell,e*(v-b),(e-1)*t]
+        assert S['W']==2*T['W']+sum(parts) and sum(parts)==expected_correction
+        assert 3*e<S['m'] and S['c']>4*S['m'] and S['W']==expected_w and T['W']==expected_t
+        cofactors=[]
+        for p in G:
+            k=0
+            for other in G:
+                if other!=p:k=gcd(k,other)
+            cofactors.append(k)
+        if G[-1]==37:assert cofactors==[1,1,1,1]
+        parity.append({'S':summary(S),'T':summary(T),'least_odd':a,'b':b,
+                 'ideal_conductor':ci,'ideal_genus':gi,'filled_gaps':v,'odd_primitive_count':r,
+                 'lost_even_primitive_count':q,'lost_even_witnesses':witnesses,
+                 'conductor_difference':t,'correction_parts':parts,'correction':sum(parts),
+                 'monotone_transfer_false':True,'genuine_negative_W':False,
+                 'ideal_generators':ideal_generators,'leave_one_out_gcds':cofactors})
+    base,_=read([15,37,39,40]);B=support_geometry(base)
+    raw=json.loads(subprocess.check_output([executable,'--supp-audit',*map(str,base['generators'])],text=True))
+    assert all(raw[k]==B[k] for k in raw)
+    assert B['Dep']==10 and B['support_sum']==7 and B['phase_support_bound']==12
+    return {'common_divisor_descents':descents,
+            'parity_obstructions':parity,
+            'closed_BASE_discriminator':B}
+
 def exterior_forest_geometry(D,kept,all_aliases=False):
     """E437: explicit partial exchange, not an optimizer or positivity test."""
     J=joint_defect_geometry(D,kept);gr,z=factor_basis(D);m=D['m']
@@ -1435,6 +1523,14 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--quotient-descent-check':
+        R=audit_quotient_descent(sys.argv[2])
+        with open(sys.argv[3],'w') as out:json.dump(R,out,indent=2)
+        for V in R['common_divisor_descents']:print('QUOTIENT-DESCENT',V)
+        for V in R['parity_obstructions']:print('PARITY-OBSTRUCTION',V)
+        print('CLOSED-BASE-DISCRIMINATOR',R['closed_BASE_discriminator']['phase_support_bound'])
+        print('EXACTLY AUDITED four descents, two false monotone-payer witnesses and one stopped BASE diagnostic')
+        sys.exit(0)
     if sys.argv[1]=='--exterior-forest-check':
         old={tuple(sorted(C['seed']['generators'])):C for C in
              (json.loads(line) for line in open_text(sys.argv[2]) if line.strip())}

@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 09:32 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 10:12 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,30 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E439/E440, actual arithmetic:** a least-genus Wilf counterexample must satisfy
+gcd(P minus {n})=1 for EVERY primitive n. If that gcd is k>1, division of the other
+generators gives T=S/k of strictly smaller genus and the exact identity
+W(S)=kW(T)+k(eS-eT)ellT+(k-1)(eS-2)(n-1)/2, with nonnegative corrections. This holds
+for nonmultiplicity pivots and changed multiplicity; the invariant formulas are known
+rank-one results (Ojeda–Rosales2605.14775), not claimed new. The generic cofactor1 case remains.
+
+The broader parity payer W(S)>=2W(S/2) is FALSE even after this normalization:
+S=<17,18,21,37> has m17,e4,c84,g48,W60; T=S/2=<9,17,19,21,29> has c42,g24,e5,W48.
+All four leave-one-out gcds are1 and S lies in c>4m,3e<m. The correction is exactly-36,
+from losing one unit of embedding dimension under lifting. Normalized parity ideals give
+W(S)=2W(T)+2(r-q)ellT+eS(v-b)+(eS-1)t; definitions/proof in E440. Here r,q are LOCAL
+primitive counts (not top residue/depth), with r3,q4,ellT18,
+v=b8,t0. An earlier reducible witness gives correction-79. Both W(S) are POSITIVE.
+Stop monotone quotient funding and further variants. Conditional transfer of NONNEGATIVITY
+is still UNKNOWN and would imply full Wilf by genus induction. Its next arithmetic proof
+must retain WT and relate lost quotient primitives (halves of odd-generator pairs) to
+filled-gap mass. Duplication itself is standard (Strazzanti1404.4959); no new representation
+claim, fixed-rank target, solver or duplication-family census. The E435/E437 boundary and
+full weighted-certificate lines remain active alternatives.
+
+**E438 diagnostic closed:** the old BASE example15/37/39/40 already passes Dep10>T7,
+with phase support12. No new positivity evidence; do not expand BASE or height-envelope checks.
 
 **E437, exchange proved / finite sign still unknown:** the previous two-to-one exit collision
 is repaired by rooting its two-edge positive-word tree at the shared word and charging its
@@ -293,6 +317,14 @@ outputs match byte-for-byte. No Python optimizer or new profile census.
 The JD audit covers ONE pair cut of this large D, not every down-set. Only the semigroup
 membership/Apéry verification covers all97558 residues.
 
+**E439/E440 exact arithmetic audit:** `verify_probe.py --quotient-descent-check ./repair_scan OUTPUT`
+uses the existing pure-C --residue-audit reconstruction and separate Python membership DP.
+It checks4 common-divisor descents, including a nonmultiplicity pivot and T=N;2 constructed
+parity payer failures (one cofactor1); and the single closed E438 diagnostic. It verifies
+ALL pivot-Apéry entries, minimal generator changes, parity membership, normalized ideal
+generators/conductor/genus and the exact signed corrections. No new C code or optimizer.
+Data: data/quotient_descent_audit.json and checkpoint_440_checks.log. run_checks.sh includes it.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -338,6 +370,15 @@ Do not merely improve the forest/edge assignment, assert a rank theorem, or requ
 component to pay itself. No new solver run is warranted without a proof-derived inequality
 that distinguishes a source of finite surplus. If no such inequality emerges, return to
 actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
+
+**Actual-arithmetic task after E440:** keep E439's proved cofactor1 normalization for a
+least-genus counterexample. For T=S/2 and normalized I, the odd primitives generate I as
+a T-ideal; every lost even primitive of T is half the sum of two odd primitives. Use that
+structured pair relation, v=|I minus T| and the ACTUAL WT surplus to derive a uniform transfer
+or a contradiction to minimality. It must cover ALL admissible I and ALL r. The scalar
+bound q<=binom(r+1,2) alone does not pay (q-r)ellT; q<=r and a nonnegative standalone
+correction are false. Do not launch more quotient variants, a fixed-rank programme, or
+a new positive-profile census. The exact PAR-W identity is not itself positivity progress.
 
 The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
 C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
@@ -434,7 +475,11 @@ accountings (internal slots retained/all aliases together) plus the local two-ed
 repair. Data: exterior_forest_audit.json, checkpoint_437_checks.log. The original E435 audit
 also passed after the change; no C source changed, new optimizer ran, or large witness
 membership computation was repeated. run_checks.sh includes the new targeted replay.
-All E432–E437 general mathematical statements remain paper-proved, not Lean checked. No universal
+E438–E440 add the known rank-one arithmetic descent and a precise parity-transfer obstruction,
+including the cofactor1 remaining-domain example. Checks and code are inventoried above;
+the old E437 graph replay also passed after the new audit code. No broad LP suite, new C
+sanitizer path or large enumeration was rerun. General arithmetic applications are on paper.
+All E432–E440 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 
