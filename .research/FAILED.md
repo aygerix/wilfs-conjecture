@@ -456,3 +456,13 @@ uses floor(p/a) and gives4. This is not a counterexample to E430 at its stated m
 Also FALSE on paper: higher-layer deaths require an ORIGINAL even primitive. For all-odd
 S13/15/47, I={0,1,17}+T with min(T positive)=13, so4 belongs to H_4, but4*15=13+47.
 No additional numerical search/invariants are used for this hand counterexample.
+
+
+## E451 — minimum odd increment is too coarse as the sole descendant payer
+
+The valid VALUE-DEATH inequality controls ALL killed scalar classes by their closure
+values (no fixed first-edge capacity). It does NOT pay OC-W alone. On the existing
+S=<13,15,17,19> calibration, alpha1,U=N,A_alpha78,b6,e4,c64 and J<=12 force its proposed
+standalone lower bound <=-96 while actual W48. This refutes the standalone-payment
+proposal, not VALUE-DEATH, TRANSFER or Wilf. No new calculation/family programme.
+Retain full original increment distribution, source filtration and all global reserves.

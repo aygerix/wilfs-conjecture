@@ -10820,3 +10820,149 @@ height>=3 and the intended realizability conditions, and state the allocation le
 it would distinguish. E448 parity/Hall finite-budget work remains the mathematics.
 The exact parameters, timings, checked records and cleanup evidence are in E450 of
 EXPERIMENTS.md and src/apery_scan/data; they establish finite checks only.
+
+
+## E451 — exact mirror phases and residue-column scalar deaths
+
+2026-10-23 14:40 EDT. Proves Wilf for: EVERY numerical semigroup IF the remaining finite
+full-tile or parity payment holds. Proved reduction from all S to this case: yes,
+SUPP-WILF/E432 and E444/E448 plus complements. These are proved STRUCTURAL COMPONENTS,
+not finite positivity. No new computation, restriction to all-odd sources, manuscript,
+Lean or novelty claim. Same two user-authorized agents supplied independent proof work;
+root checked the arguments below. The user's next steering moved engineering to E452.
+
+### 1. Mirror phase pairing at the same maximal cell
+
+Let m>=2 and let D be a full residue-injective factorization tile of size m in
+dimension d, with primitive residue map delta. Fix a maximal cell a of D and evaluate Q with
+TOP CELL a in both orientations delta and -delta. Then exactly
+
+    Q_delta(a)+Q_(-delta)(a)=2Dep+m-1-|a|.             (MIRROR-Q)
+
+Proof: E450 gives mQ=mDep+sum_z Gamma_z*[(phi(a)-phi(z)) mod m]-C,
+C=(d-1)m(m-1)/2. At z=a both mirrored distances are0; at every other z they sum to m,
+by residue injectivity. Thus the sum is2mDep+m(dm-Gamma_a)-2C. A maximal cell has
+Gamma_a=d+|a|. Divide by m and simplify. More generally at any cell a the right side
+is2Dep+m+d-1-Gamma_a, but only maximal cells can be actual tops with positive weights.
+This identity does not transfer nonnegativity between orientations.
+
+The mirror with the SAME tile and top is genuinely realizable from an actual seed:
+replace each nonmultiplicity primitive p_j by (m-1)p_j, retaining m. Every residue
+path weight scales by m-1, and the residue map is negated bijectively. Hence the
+Apéry values scale, the canonical tile and top cell persist, and exactly the original
+e is retained. More generally any positive L coprime to m does this unit relabelling.
+Selmer/conductor formulas give
+
+    W_L=L*W+(L-1)*(e-2)*(m-1)/2.                      (INFLATE-W)
+
+For L=m-1, write B=(e-2)(m-1)/2 and K=2Dep+m-1-|a|. Using W=Q+R and the actual
+inflated identity W_L=(K-Q)+R_L yields
+
+    mW=K+R+R_L-(m-2)B >= K+R-(m-2)B.                (MIRROR-R)
+
+The subtraction remains and is not known to be paid. No sign theorem follows.
+Old19 and its recorded mirror give Q5+Q19=24=2*4+18-2, a consistency check already
+available in the record, not a new search. Positive inflation also raises the genus;
+it does not descend a hypothetical minimal counterexample.
+
+For a different proposed maximal top, E431 supplies a sufficient realizability test:
+a rational positive primitive direction q annihilates all tight factorization trades,
+is nonnegative on strict boundary differences (strict positivity also suffices), and
+has (a-z).q>0 for every z!=a. Clear denominators and use p+mKq. Old strict affine margins
+are preserved and the proposed top dominates for large K. This can turn an abstract
+negative phase into a genuine Q-bound counterexample if such a phase/direction is
+found; it does not assert that every maximal cell passes the test.
+
+### 2. Killed scalar classes are initial segments, pointwise lift identity
+
+Use E441 notation at the least odd primitive a: T=S/2, I={u:a+2u in S}, U=<I>.
+For a residue s modulo a let u_s,t_s,i_s be their least representatives and put
+
+    K_s=(t_s-u_s)/a, L_s=(i_s-u_s)/a,
+    epsilon_s=K_s-L_s in{0,1}, lambda_s=K_s+L_s.
+
+For0<=k<K_s define u(s,k)=u_s+k*a and the scalar birth
+
+    n_s(k)=min{n>=1:u(s,k) in nI}.
+
+Each u(s,k) belongs to exactly H_(n_s(k)); these are ALL scalar classes in U minus T.
+For two successive positions that are BOTH outside T,
+
+    n_s(k+1)<=n_s(k)-2.                              (BIRTH-DROP)
+
+Indeed n_s(k)>=2 in that situation: if it were1, a+I subset T would put the next
+position in T. Now a+nI subset(n-2)I implies the displayed drop. The last transition
+to T is excluded: a birth1 can drop to0, so do not assert the inequality there.
+
+The product for u(s,k) has source value
+
+    n_s(k)*a+2u(s,k)=2u_s+a*(n_s(k)+2k).
+
+E441 gives the source Apéry value in residue2s as2u_s+a*lambda_s. Since the product
+belongs to S, its excess
+
+    E_s(k)=n_s(k)+2k-lambda_s
+
+is a NONNEGATIVE integer. It is nonincreasing along k while outside T by BIRTH-DROP.
+A scalar class survives in A=k[S]/(t^a) exactly when E_s(k)=0; otherwise it is killed.
+Therefore killed positions form an INITIAL segment0,...,D_s-1 and surviving positions
+form the remaining TERMINAL segment. There cannot be alternating surviving/dead holes
+in a column. This statement uses actual multiplication/value labels, not a Hilbert
+function with an assumed source generator count.
+
+Let nu_s be the largest number of nonpivot odd primitives in ANY factorization of the
+source Apéry value in residue2s. Equivalently it is its largest odd-ideal filtration
+degree; set nu_s=0 if that value is in no positive odd-product space. From E444, all
+surviving scalar representations are exactly those products. On the surviving tail,
+n_s(k)+2k=lambda_s, so its degrees are nu_s,nu_s-2,..., down to1 if epsilon_s=1,
+and down to2 if epsilon_s=0 and nu_s>0. If the tail is empty then epsilon_s=0:
+otherwise the last gap position lies in I and gives a surviving degree1 product.
+Consequently, POINTWISE,
+
+    lambda_s=nu_s+2D_s,
+    K_s=ceil(nu_s/2)+D_s,
+    L_s=floor(nu_s/2)+D_s.                            (POINTWISE-DEATH)
+
+Also nu_s mod2=epsilon_s. This includes s=0 and columns with K_s=0. The nu_s are
+filtration degrees, not an assumption that the original value grading is standard.
+Summing recovers E448's moment/death identity because b_n counts source Apéry values
+whose largest filtration degree is n, and sum D_s=sum_(n>=3)eta_n.
+
+This refinement retains WHERE the killed mass sits. It does not bound sum D_s by a
+paid resource. In particular first-death edges still have unbounded descendants, and
+there is no bound assumed on the number of minimal kernel generators. The next
+parity inequality must pay the full surviving moment AND these initial-segment lengths
+using actual values, full W(U), coefficient ring B and parent reserves together.
+
+
+### 3. A value-sensitive bound on the ENTIRE killed mass; standalone payer fails
+
+For q>0 original nonpivot odd primitives, define alpha=min(p-a)/2>0 over those
+primitives and J=#{s:D_s>0}. Then the pointwise column structure gives
+
+    alpha*(nu_s+2D_s+1_(D_s>0))<=u_s,
+    2sum D_s<=sum_s floor(u_s/alpha)-sum_s nu_s-J.     (VALUE-DEATH)
+
+Proof: if K_s=0 both nu_s,D_s vanish. Otherwise u_s is in H_(n_s(0)). Every nI
+representation of an element of H_n has all n factors outside T: a T factor could
+be absorbed into the remaining ideal factors, placing it in(n-1)I. Since I=A0+T,
+every outside-T factor is at least alpha. Thus u_s>=alpha*n_s(0). If D_s=0, the
+first class survives and n_s(0)=lambda_s=nu_s. If D_s>0, it is killed, giving
+n_s(0)>=lambda_s+1=nu_s+2D_s+1. Sum after dividing by alpha and taking floors.
+This uses actual closure values and original primitive increments, with no assumed
+bound on kernel roots or constant capacity on first-death edges. q=0 is separate:
+all primitives except a are even, so the E439 normalization applies (or e=1/N).
+
+This controls the full descendant count but is TOO WEAK as a stand-alone payer.
+Writing A_alpha=sum floor(u_s/alpha), OC-W gives the valid bound
+
+    W(S)>=2W(U)+2(e-e_U)ell(U)+(e-1)(cS-2cU)
+          -e*(b+A_alpha-J).
+
+On the ALREADY recorded k2 control S=<13,15,17,19>, a13,U=N,alpha1,A_alpha78,
+b6,c64,e4, J<=12 makes the displayed lower bound at most-96, although W48.
+No new numerical run: all invariants are from E444's fixed calibration. It is sharp
+on the old equality calibration<5,7>, but those positive calibrations cannot prove
+its sign. STOP any claim that this bound alone pays OC-W. The next refinement must
+use the distribution of the ORIGINAL odd increments/value-graded module, retaining
+both W(U) copies and full reserves; the minimum alpha discards too much information.

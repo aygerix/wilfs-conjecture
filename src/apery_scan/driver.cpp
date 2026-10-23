@@ -6,11 +6,13 @@
 #include <chrono>
 #include <iostream>
 #include <limits>
+#include <mutex>
 #include <thread>
 #include <unordered_set>
 
 using namespace wilf;
 using Clock = std::chrono::steady_clock;
+double gpu_context_initialization_ms = 0;
 double elapsed(Clock::time_point start) {
     return std::chrono::duration<double, std::milli>(Clock::now() - start).count();
 }
@@ -25,6 +27,18 @@ struct Random {
 };
 void require(bool value, const std::string& message) {
     if (!value) throw std::runtime_error(message);
+}
+template<class Function> void safe_parallel(int count, int threads, Function function) {
+    std::atomic<int> next{0}; std::atomic<bool> failed{false};
+    std::exception_ptr error; std::mutex error_mutex;
+    auto worker=[&] {
+        try {for(int i; !failed && (i=next.fetch_add(1))<count;)function(i);}
+        catch(...) {std::lock_guard<std::mutex> lock(error_mutex);if(!error)error=std::current_exception();failed=true;}
+    };
+    std::vector<std::thread> pool;
+    try {for(int i=1;i<threads;++i)pool.emplace_back(worker);}
+    catch(...) {failed=true;for(auto& t:pool)t.join();throw;}
+    worker();for(auto& t:pool)t.join();if(error)std::rethrow_exception(error);
 }
 template<class T> void print_array(const std::vector<T>& values) {
     std::cout << '[';
@@ -140,7 +154,11 @@ int benchmark(int batch, std::uint64_t seed, int threads, int m, int k,
         const int changed=rng.next()%k,other=rng.next()%k;
         for(int j=0;j<k;++j) {
             i64 p;
-            if(mode==3)p=i64(m)*(1+rng.next()%12)+rng.next()%m;
+            if(mode==3) {
+                const i64 height=1+rng.next()%12;
+                const int delta=rng.next()%m;
+                p=i64(m)*height+delta;
+            }
             else {
                 require(anchor[j]>m,"mutation anchor must exceed modulus");
                 const int old=anchor[j]%m;
@@ -265,10 +283,82 @@ int benchmark(int batch, std::uint64_t seed, int threads, int m, int k,
     if(eligible && minimum_phase<0)emit_case("unrealized_negative_phase",m,phase_G,phase_w,phase_best);
     return 0;
 }
+
+int neighbor_audit(int threads,int m,const std::vector<i64>& anchor) {
+    require(m>=3 && m<=1024 && threads>=1 && threads<=128 && !anchor.empty() && anchor.size()<=64,
+            "invalid neighbor audit shape");
+    for(i64 p:anchor)require(p>m && p<13LL*m,"neighbor anchor out of height range");
+    const auto basew=scan_cpu(m,anchor);const auto base=support(m,anchor,basew);
+    const i64 baseF=base.kappa-base.Dep;
+    std::vector<std::pair<int,i64>> moves;
+    for(int j=0;j<static_cast<int>(anchor.size());++j)
+        for(i64 value=m+1;value<13LL*m;++value)if(value!=anchor[j])moves.emplace_back(j,value);
+    require(moves.size()==anchor.size()*static_cast<size_t>(12*m-2),"neighbor coverage count wrong");
+    std::vector<i64> fitness(moves.size(),std::numeric_limits<i64>::min());
+    std::vector<int> finite(moves.size()),eligible(moves.size()),height(moves.size()),codes(moves.size());
+    std::vector<int> evaluated(moves.size());std::atomic<bool> discovery{false};
+    std::vector<std::uint64_t> hashes(moves.size());
+    const auto started=Clock::now();
+    safe_parallel(static_cast<int>(moves.size()),threads,[&](int i) {
+        if(discovery.load())return;
+        evaluated[i]=1;
+        auto G=anchor;G[moves[i].first]=moves[i].second;
+        const auto w=scan_cpu(m,G);
+        if(std::find(w.begin(),w.end(),INF)!=w.end())return;
+        const auto score=support(m,G,w);finite[i]=1;
+        const auto& b=score.basic;
+        if(b.W<0){codes[i]=4;discovery=true;}
+        eligible[i]=b.e>=4 && 3*b.e<m && b.c>4*m;
+        const int d=b.e-1;
+        for(int r=0;r<m;++r){int degree=0;for(int j=0;j<d;++j)degree+=score.words[static_cast<size_t>(r)*d+j];height[i]=std::max(height[i],degree);}
+        if(eligible[i] && score.Q<0 && codes[i]!=4){codes[i]=3;discovery=true;}
+        if(!eligible[i] || height[i]<3)return;
+        hashes[i]=score.tile_hash;fitness[i]=score.kappa-score.Dep;
+        if(fitness[i]>0 && codes[i]==0)codes[i]=5;
+        if(codes[i])discovery=true;
+    });
+    const double wall=elapsed(started);
+    i64 bestF=std::numeric_limits<i64>::min(),sameF=bestF,changedF=bestF;
+    int best=-1,promoted=-1,code=0,accepted=0,better=0,ties=0,finite_count=0;
+    std::unordered_set<std::uint64_t> tiles;
+    auto priority=[](int value){return value==4?3:value==3?2:value==5?1:0;};
+    for(int i=0;i<static_cast<int>(moves.size());++i) {
+        finite_count+=finite[i];
+        if(priority(codes[i])>priority(code)){promoted=i;code=codes[i];}
+        if(!eligible[i] || height[i]<3)continue;
+        ++accepted;better+=fitness[i]>baseF;ties+=fitness[i]==baseF;tiles.insert(hashes[i]);
+        if(fitness[i]>bestF){bestF=fitness[i];best=i;}
+        if(moves[i].second%m==anchor[moves[i].first]%m)sameF=std::max(sameF,fitness[i]);
+        else changedF=std::max(changedF,fitness[i]);
+    }
+    auto field=[](i64 value){if(value==std::numeric_limits<i64>::min())std::cout<<"null";else std::cout<<value;};
+    std::cout<<"{\"kind\":\"single_input_plateau_audit\",\"m\":"<<m<<",\"base_F\":"<<baseF
+             <<",\"provided_generators\":"<<anchor.size()<<",\"replacements\":"<<moves.size()
+             <<",\"evaluated\":"<<std::accumulate(evaluated.begin(),evaluated.end(),0)
+             <<",\"cofinite\":"<<finite_count<<",\"domain_eligible_height_ge3\":"<<accepted
+             <<",\"improving\":"<<better<<",\"ties\":"<<ties<<",\"maximum_F\":";field(bestF);
+    std::cout<<",\"same_residue_maximum_F\":";field(sameF);
+    std::cout<<",\"changed_residue_maximum_F\":";field(changedF);
+    std::cout<<",\"diagnostic_tiles\":"<<tiles.size()<<",\"wall_ms\":"<<wall
+             <<",\"scope\":\"all one-input changes m+1<=p<13m; finite move set only\"}\n";
+    const int selected=promoted>=0?promoted:best;
+    if(selected>=0) {
+        auto G=anchor;G[moves[selected].first]=moves[selected].second;
+        const auto w=scan_cpu(m,G);require(w==dijkstra_heap(m,G),"neighbor selected heap check failed");
+        const auto score=support(m,G,w);
+        emit_case(code==4?"negative_W_candidate":code==3?"negative_Q_candidate":code==5?"support_resistant_candidate":"neighbor_best",m,G,w,score);
+    }
+    return code;
+}
+
+#include "warm.hpp"
+#include "adaptive.hpp"
 int main(int argc,char**argv) {
     try {
 #ifdef WILF_CUDA
+        const auto gpu_init_started=Clock::now();
         std::cerr<<"GPU "<<gpu_description()<<'\n';
+        gpu_context_initialization_ms=elapsed(gpu_init_started);
 #endif
         if(argc>=2 && std::string(argv[1])=="--self-test") {self_test(argc>2?std::stoi(argv[2]):1000);return 0;}
         if(argc>=3 && std::string(argv[1])=="--case") {
@@ -279,11 +369,21 @@ int main(int argc,char**argv) {
         }
         if(argc==7 && std::string(argv[1])=="--bench")
             return benchmark(std::stoi(argv[2]),std::stoull(argv[3]),std::stoi(argv[4]),std::stoi(argv[5]),std::stoi(argv[6]));
+        if(argc==8 && std::string(argv[1])=="--warm")
+            return warmed_run(std::stoi(argv[2]),std::stoi(argv[3]),std::stoull(argv[4]),std::stoi(argv[5]),std::stoi(argv[6]),std::stoi(argv[7]));
+        if(argc>=5 && std::string(argv[1])=="--neighbors") {
+            std::vector<i64> anchor;for(int i=4;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
+            return neighbor_audit(std::stoi(argv[2]),std::stoi(argv[3]),anchor);
+        }
+        if(argc>=8 && std::string(argv[1])=="--adaptive") {
+            std::vector<i64> anchor;for(int i=7;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
+            return adaptive_run(std::stoi(argv[2]),std::stoi(argv[3]),std::stoull(argv[4]),std::stoi(argv[5]),std::stoi(argv[6]),anchor);
+        }
         if(argc>=7 && std::string(argv[1])=="--mutate") {
             std::vector<i64>anchor;for(int i=6;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
             return benchmark(std::stoi(argv[2]),std::stoull(argv[3]),std::stoi(argv[4]),std::stoi(argv[5]),static_cast<int>(anchor.size()),anchor);
         }
-        std::cerr<<"usage: --self-test [lists] | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators...\n";
+        std::cerr<<"usage: --self-test [lists] | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators... | --warm batch repeats seed threads m k | --adaptive batch generations seed threads m generators... | --neighbors threads m generators...\n";
         return 2;
     } catch(const std::exception& error) {std::cerr<<"ERROR "<<error.what()<<'\n';return 2;}
 }

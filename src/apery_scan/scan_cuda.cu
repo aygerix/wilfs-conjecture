@@ -124,53 +124,126 @@ std::string gpu_description() {
     return out.str();
 }
 
-void gpu_scan_batch(int m, int k, int batch, const std::vector<i64>& generators,
-                    std::vector<i64>& weights, std::vector<Basic>& stats,
-                    GpuTiming& timing) {
-    const auto start = std::chrono::steady_clock::now();
-    if (m < 1 || m > 1024 || k < 0 || batch <= 0 || batch > (1 << 20) ||
+namespace {
+using Clock = std::chrono::steady_clock;
+double milliseconds(Clock::time_point start) {
+    return std::chrono::duration<double, std::milli>(Clock::now() - start).count();
+}
+void finish_timing(GpuTiming& timing, Clock::time_point start) {
+    timing.wall_ms = milliseconds(start);
+    timing.host_ms = std::max(0.0, timing.wall_ms - timing.allocation_ms - timing.setup_ms -
+        timing.upload_ms - timing.kernel_ms - timing.download_ms);
+}
+void validate_batch(int m, int k, int batch, int capacity,
+                    const std::vector<i64>& generators) {
+    if (m < 1 || m > 1024 || k < 0 || capacity <= 0 || capacity > (1 << 20) ||
+        batch <= 0 || batch > capacity ||
         generators.size() != static_cast<size_t>(batch) * k)
-        throw std::invalid_argument("invalid GPU batch shape (m<=1024)");
+        throw std::invalid_argument("invalid GPU batch shape or workspace capacity");
     for (i64 p : generators) {
         if (p <= m || static_cast<__int128>(8) * m * m * p >= INF)
             throw std::invalid_argument("GPU requires p>m and 8*m*m*p<INF");
     }
+}
+}
+
+struct GpuWorkspace::Impl {
+    int modulus = 0, generator_count = 0, batch_capacity = 0;
     i64 *input = nullptr, *output = nullptr;
-    Basic* device_stats = nullptr;
+    Basic* stats = nullptr;
     cudaEvent_t before = nullptr, after = nullptr;
-    try {
-        const size_t input_bytes = generators.size() * sizeof(i64);
-        const size_t output_bytes = static_cast<size_t>(batch) * m * sizeof(i64);
-        if (input_bytes) {
-            check(cudaMalloc(&input, input_bytes), "allocate generators");
-            check(cudaMemcpy(input, generators.data(), input_bytes, cudaMemcpyHostToDevice), "upload generators");
-        }
-        check(cudaMalloc(&output, output_bytes), "allocate Apéry arrays");
-        check(cudaMalloc(&device_stats, static_cast<size_t>(batch) * sizeof(Basic)), "allocate statistics");
-        check(cudaEventCreate(&before), "create start event");
-        check(cudaEventCreate(&after), "create end event");
-        check(cudaEventRecord(before), "record kernel start");
-        if (m <= 256) scan_kernel<256><<<batch, 256>>>(m, k, input, output, device_stats);
-        else if (m <= 512) scan_kernel<512><<<batch, 512>>>(m, k, input, output, device_stats);
-        else scan_kernel<1024><<<batch, 1024>>>(m, k, input, output, device_stats);
-        check(cudaGetLastError(), "launch cyclic scans");
-        check(cudaEventRecord(after), "record kernel end");
-        check(cudaEventSynchronize(after), "wait for cyclic scans");
-        check(cudaEventElapsedTime(&timing.kernel_ms, before, after), "measure kernel");
-        weights.resize(static_cast<size_t>(batch) * m); stats.resize(batch);
-        check(cudaMemcpy(weights.data(), output, output_bytes, cudaMemcpyDeviceToHost), "download Apéry arrays");
-        check(cudaMemcpy(stats.data(), device_stats, static_cast<size_t>(batch) * sizeof(Basic), cudaMemcpyDeviceToHost), "download statistics");
-        check(cudaFree(input), "free generators"); input = nullptr;
-        check(cudaFree(output), "free Apéry arrays"); output = nullptr;
-        check(cudaFree(device_stats), "free statistics"); device_stats = nullptr;
-        check(cudaEventDestroy(before), "destroy start event"); before = nullptr;
-        check(cudaEventDestroy(after), "destroy end event"); after = nullptr;
-    } catch (...) {
-        cudaFree(input); cudaFree(output); cudaFree(device_stats);
+    GpuTiming setup;
+    ~Impl() noexcept {
+        // Cleanup must not replace an allocation/launch exception. cudaFree
+        // also waits for outstanding uses if run() failed after a launch.
+        if (input) cudaFree(input);
+        if (output) cudaFree(output);
+        if (stats) cudaFree(stats);
         if (before) cudaEventDestroy(before);
         if (after) cudaEventDestroy(after);
-        throw;
     }
-    timing.wall_ms = std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - start).count();
+};
+
+GpuWorkspace::GpuWorkspace(int m, int k, int capacity) : impl_(new Impl) {
+    const auto start = Clock::now();
+    if (m < 1 || m > 1024 || k < 0 || capacity <= 0 || capacity > (1 << 20))
+        throw std::invalid_argument("invalid GPU workspace shape (m<=1024)");
+    Impl& state = *impl_;
+    state.modulus = m; state.generator_count = k; state.batch_capacity = capacity;
+    const size_t input_bytes = static_cast<size_t>(capacity) * k * sizeof(i64);
+    const size_t output_bytes = static_cast<size_t>(capacity) * m * sizeof(i64);
+    const auto allocation_start = Clock::now();
+    if (input_bytes) check(cudaMalloc(&state.input, input_bytes), "allocate workspace generators");
+    check(cudaMalloc(&state.output, output_bytes), "allocate workspace Apéry arrays");
+    check(cudaMalloc(&state.stats, static_cast<size_t>(capacity) * sizeof(Basic)), "allocate workspace statistics");
+    state.setup.allocation_ms = milliseconds(allocation_start);
+    const auto setup_start = Clock::now();
+    check(cudaEventCreate(&state.before), "create workspace start event");
+    check(cudaEventCreate(&state.after), "create workspace end event");
+    state.setup.setup_ms = milliseconds(setup_start);
+    finish_timing(state.setup, start);
+}
+
+GpuWorkspace::~GpuWorkspace() noexcept = default;
+GpuWorkspace::GpuWorkspace(GpuWorkspace&&) noexcept = default;
+GpuWorkspace& GpuWorkspace::operator=(GpuWorkspace&&) noexcept = default;
+int GpuWorkspace::m() const noexcept { return impl_ ? impl_->modulus : 0; }
+int GpuWorkspace::k() const noexcept { return impl_ ? impl_->generator_count : 0; }
+int GpuWorkspace::capacity() const noexcept { return impl_ ? impl_->batch_capacity : 0; }
+const GpuTiming& GpuWorkspace::setup_timing() const noexcept {
+    static const GpuTiming empty;
+    return impl_ ? impl_->setup : empty;
+}
+
+void GpuWorkspace::run(int batch, const std::vector<i64>& generators,
+                       std::vector<i64>& weights, std::vector<Basic>& stats,
+                       GpuTiming& timing) {
+    const auto start = Clock::now();
+    timing = GpuTiming{};
+    if (!impl_) throw std::logic_error("cannot run a moved-from GPU workspace");
+    Impl& state = *impl_;
+    const int m = state.modulus, k = state.generator_count;
+    validate_batch(m, k, batch, state.batch_capacity, generators);
+    const size_t input_bytes = generators.size() * sizeof(i64);
+    const size_t output_bytes = static_cast<size_t>(batch) * m * sizeof(i64);
+    const auto upload_start = Clock::now();
+    if (input_bytes)
+        check(cudaMemcpy(state.input, generators.data(), input_bytes, cudaMemcpyHostToDevice), "upload generators");
+    timing.upload_ms = milliseconds(upload_start);
+    // Upload before resizing so the legacy API also tolerates using the input
+    // vector as the output vector. No host input is read after this point.
+    weights.resize(static_cast<size_t>(batch) * m);
+    stats.resize(batch);
+    check(cudaEventRecord(state.before), "record kernel start");
+    if (m <= 256) scan_kernel<256><<<batch, 256>>>(m, k, state.input, state.output, state.stats);
+    else if (m <= 512) scan_kernel<512><<<batch, 512>>>(m, k, state.input, state.output, state.stats);
+    else scan_kernel<1024><<<batch, 1024>>>(m, k, state.input, state.output, state.stats);
+    check(cudaGetLastError(), "launch cyclic scans");
+    check(cudaEventRecord(state.after), "record kernel end");
+    check(cudaEventSynchronize(state.after), "wait for cyclic scans");
+    check(cudaEventElapsedTime(&timing.kernel_ms, state.before, state.after), "measure kernel");
+    const auto download_start = Clock::now();
+    check(cudaMemcpy(weights.data(), state.output, output_bytes, cudaMemcpyDeviceToHost), "download Apéry arrays");
+    check(cudaMemcpy(stats.data(), state.stats, static_cast<size_t>(batch) * sizeof(Basic), cudaMemcpyDeviceToHost), "download statistics");
+    timing.download_ms = milliseconds(download_start);
+    finish_timing(timing, start);
+}
+
+void gpu_scan_batch(int m, int k, int batch, const std::vector<i64>& generators,
+                    std::vector<i64>& weights, std::vector<Basic>& stats,
+                    GpuTiming& timing) {
+    const auto start = Clock::now();
+    // Preserve the legacy path's rejection of malformed/range-invalid inputs
+    // before any CUDA allocation or context initialization.
+    validate_batch(m, k, batch, batch, generators);
+    GpuTiming setup;
+    {
+        GpuWorkspace workspace(m, k, batch);
+        setup = workspace.setup_timing();
+        workspace.run(batch, generators, weights, stats, timing);
+    }
+    timing.allocation_ms = setup.allocation_ms;
+    timing.setup_ms = setup.setup_ms;
+    finish_timing(timing, start);
 }
 }

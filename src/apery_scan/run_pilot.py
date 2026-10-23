@@ -24,7 +24,7 @@ import time
 IMAGE = "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"
 DEFAULT_GPU = "NVIDIA GeForce RTX 3090"
 CAP = 1.0
-FILES = ("apery.hpp", "gpu.hpp", "scan_cuda.cu", "driver.cpp", "verify_scan.py")
+FILES = ("apery.hpp", "gpu.hpp", "scan_cuda.cu", "driver.cpp", "verify_scan.py", "warm.hpp", "adaptive.hpp")
 LEASE_FIELDS = {"id", "name", "created", "deadline", "gpu", "price", "watchdogPID"}
 REMOTE = "/workspace/wilf-apery"
 
@@ -359,7 +359,7 @@ def remote_job(ssh, deadline, label, argv=None, shell=None, extension="jsonl"):
               (REMOTE, seconds, shlex.quote(command), label, extension, label))
     note("Running " + label + ".")
     result = run([*ssh, script], timeout=seconds + 8)
-    if result.returncode in (3, 4) and (label.startswith(("bench_", "mutate_"))
+    if result.returncode in (3, 4, 5) and (label.startswith(("bench_", "mutate_", "adaptive_"))
                                        or label in {"cpu_selftest", "gpu_selftest", "memcheck"}):
         return result.returncode
     if result.returncode:
@@ -483,7 +483,7 @@ def pilot(args):
     lease["watchdogPID"] = watcher.pid
     save_lease(lease_path, lease)
     ssh = None
-    outcome = {"status": "failed", "pod_id": None, "name": name, "deadline": lease["deadline"],
+    outcome = {"status": "failed", "campaign": args.campaign, "pod_id": None, "name": name, "deadline": lease["deadline"],
                "gpu": gpu, "catalog_secure_price": price, "output": str(output),
                "public_key_cleanup": "Task public key remains registered; remove only this key if desired."}
     create_attempted = False
@@ -539,7 +539,7 @@ def pilot(args):
         if ssh is None:
             raise PilotError("SSH observation timed out; no restart or replacement rental")
         upload(ssh, source, deadline)
-        remote_job(ssh, deadline, "hardware", shell="uname -a; lscpu; nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader; sha256sum apery.hpp gpu.hpp scan_cuda.cu driver.cpp verify_scan.py; nvcc --version", extension="txt")
+        remote_job(ssh, deadline, "hardware", shell="uname -a; lscpu; nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader; sha256sum " + " ".join(FILES) + "; nvcc --version; command -v nsys || true", extension="txt")
         threads = effective_threads(ssh, deadline)
         outcome["cpu_threads"] = threads
         remote_job(ssh, deadline, "cpu_compile", argv=["g++", "-std=c++17", "-O3", "-pthread", "-Wall", "-Wextra", "-Werror", "driver.cpp", "-o", "scan_cpu"], extension="log")
@@ -550,17 +550,29 @@ def pilot(args):
         promoted = remote_job(ssh, deadline, "gpu_selftest", argv=["./scan_gpu", "--self-test", "100"])
         if not promoted:
             promoted = remote_job(ssh, deadline, "memcheck", shell='''if command -v compute-sanitizer >/dev/null 2>&1; then compute-sanitizer --tool memcheck --error-exitcode 9 ./scan_gpu --self-test 5; else printf '%s\n' '{"kind":"memcheck_unavailable"}'; fi''')
-        if not promoted:
+        if not promoted and args.campaign == "legacy-pilot":
             for index, (m, k) in enumerate(((63, 8), (127, 8), (256, 12), (512, 12), (1024, 12))):
                 promoted = remote_job(ssh, deadline, "bench_%d" % m,
                                       argv=["./scan_gpu", "--bench", "4096", str(4500 + index), str(threads), str(m), str(k)])
                 if promoted:
                     break
-        if not promoted:
+        if not promoted and args.campaign == "legacy-pilot":
             anchor = [239, 282, 295, 318, 333, 379, 386, 390, 400, 405, 407]
             for bucket, m in enumerate((61, 63, 67, 71)):
                 promoted = remote_job(ssh, deadline, "mutate_%d" % m,
                                       argv=["./scan_gpu", "--mutate", "4096", str(4501 + bucket), str(threads), str(m), *map(str, anchor)])
+                if promoted:
+                    break
+        if not promoted and args.campaign == "warm-adaptive":
+            for m,k,seed in ((63,8,4500),(256,12,4502),(1024,12,4504)):
+                remote_job(ssh, deadline, "warm_%d" % m,
+                           argv=["./scan_gpu", "--warm", "4096", "7", str(seed), str(threads), str(m), str(k)])
+            # Repeated runs of the SAME allocation set are also memory checked.
+            remote_job(ssh, deadline, "warm_memcheck", shell='''if command -v compute-sanitizer >/dev/null 2>&1; then compute-sanitizer --tool memcheck --error-exitcode 9 ./scan_gpu --warm 32 2 4500 2 63 8; else printf '%s\\n' '{"kind":"memcheck_unavailable"}'; fi''')
+            anchor = [239, 282, 295, 318, 333, 379, 386, 390, 400, 405, 407]
+            for bucket,m in enumerate((61,63,67,71)):
+                promoted = remote_job(ssh, deadline, "adaptive_%d" % m,
+                                      argv=["./scan_gpu", "--adaptive", "1024", "150", str(4521+bucket), str(threads), str(m), *map(str,anchor)])
                 if promoted:
                     break
         # Verification remains permitted after a promoted exit; no more search.
@@ -626,6 +638,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--gpu-id", default=DEFAULT_GPU)
     parser.add_argument("--minutes", type=int, default=20)
+    parser.add_argument("--campaign", choices=("legacy-pilot", "warm-adaptive"), default="warm-adaptive")
     parser.add_argument("--output", default="data/runpod_pilot_" + dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S"))
     parser.add_argument("--key", default="~/.ssh/wilf_runpod_ed25519")
     parser.add_argument("--watchdog", help=argparse.SUPPRESS)

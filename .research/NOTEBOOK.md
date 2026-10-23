@@ -5634,3 +5634,30 @@ how it creates a residue-support-resistant genuine tile, then name the payment l
 its failure distinguishes. Keep E448's general mixed coefficient algebra/value labels,
 killed scalar descendants, full parent reserve and both Hall reserves. No restriction
 to all-odd/fixed-e cases and no conductor census. STATE is the sole current inventory.
+
+
+### 2026-10-23 14:53 EDT — E451 components; E452 warmed feedback and exact barrier
+
+User correctly challenged the passive pilot and self-imposed no-compute-until-resistant
+rule. Superseded that gate with a named directed F=kappa-Dep discovery predicate.
+Implemented reusable GPU/host buffers, single-pass primitives, parallel canonical
+scoring and genuine scored-parent feedback. Same TWO agents only. Warm actual full
+CPU/GPU medians now show1.295--1.322x benefit (7 measured repeats,2warmups); no timeline
+profiler/overlap claim. Adaptive614400 evals/600gens,500640feedback proposals, m63F-7->-3,
+no nonflat positiveF or negativeQ/W. Flat positiveF9 is already covered and not success.
+Both raw logs and independent coin/columns audits persisted; Runpod terminated, estimated
+GPU runtime0.0177USD, task key removed, old4 EXITED pods untouched.
+
+New discriminating result: on the63 endpoint, ALL8294 allowed one-input replacements
+were checked on Fejer in121ms. No F improvement;19 neutral ties preserve residues;
+any changed-residue eligible nonflat neighbor drops toF<=-52. This finite local barrier
+explains why score-only one-entry ascent stalls. It does not exclude neutral paths,
+coordinated replacements, other height ranges or resistant S. Next target moves should
+cross this barrier deliberately, not just run longer. Do not reinstate the passive gate.
+
+Paper E451 is independently reviewed: mirror-Q pairing at the same maximal cell;
+killed scalar classes form initial segments of each U/T residue column, with pointwise
+lambda_s=nu_s+2D_s. A value-sensitive alpha bound controls the ENTIRE killed mass,
+but its standalone OC-W payment is refuted on the already recorded k2 calibration.
+Keep full source increment distribution and all global reserves. No finite sign/Lean
+or novelty claim. Universal goal remains ACTIVE; no proof or genuine counterexample.

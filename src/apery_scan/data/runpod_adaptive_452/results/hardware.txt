@@ -1,0 +1,57 @@
+Linux 25aebe69a011 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           52 bits physical, 57 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  96
+On-line CPU(s) list:                     0-95
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz
+CPU family:                              6
+Model:                                   106
+Thread(s) per core:                      2
+Core(s) per socket:                      24
+Socket(s):                               2
+Stepping:                                6
+CPU max MHz:                             3500.0000
+CPU min MHz:                             800.0000
+BogoMIPS:                                5600.00
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect wbnoinvd dtherm ida arat pln pts vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid fsrm md_clear pconfig flush_l1d arch_capabilities
+Virtualization:                          VT-x
+L1d cache:                               2.3 MiB (48 instances)
+L1i cache:                               1.5 MiB (48 instances)
+L2 cache:                                60 MiB (48 instances)
+L3 cache:                                72 MiB (2 instances)
+NUMA node(s):                            2
+NUMA node0 CPU(s):                       0-23,48-71
+NUMA node1 CPU(s):                       24-47,72-95
+Vulnerability Gather data sampling:      Mitigation; Microcode
+Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+NVIDIA A40, 595.91.07, 46068 MiB
+0288bf367b5d61d2405075504075e770a848e8cd4bb1c58fa6a20effa6c90ae7  apery.hpp
+bed27fccb6f30b69723f15f0cf42c7c4d0d75af3bc42a9e7c17daf9d4664e107  gpu.hpp
+fa307f6272cae2d180ad7de027f90c265e9c58ac1c8fb3641f1fcba712ad9b8f  scan_cuda.cu
+8ab02642a3be81958ce7fed1f25c481b91bd638714b034cf667f19dee351f90d  driver.cpp
+abdffd5bc70ead76ea86023c2bca230d65babc3d3fe0ccf80443882293be262d  verify_scan.py
+b3ed7f9f266b8eee79ca57042e276b932667c4a53288dca0262d35880e4d8ce9  warm.hpp
+9348da278c24fdc59b13ddce676b14f1f021c46f83d0db8df752207dd4d74c37  adaptive.hpp
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Thu_Mar_28_02:18:24_PDT_2024
+Cuda compilation tools, release 12.4, V12.4.131
+Build cuda_12.4.r12.4/compiler.34097967_0

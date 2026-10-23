@@ -1,0 +1,111 @@
+{
+  "checked": 4,
+  "results": [
+    {
+      "kind": "adaptive_best",
+      "m": 61,
+      "e": 4,
+      "c": 2495,
+      "g": 1615,
+      "W": 1025,
+      "Q": 67,
+      "R": 958,
+      "Qmin": 66,
+      "F": -5,
+      "height": 7,
+      "leave_one_out_gcds": [
+        5,
+        1,
+        1,
+        1
+      ],
+      "all_apery_entries_checked": 61,
+      "coin_membership_bound": 2616,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    },
+    {
+      "kind": "adaptive_best",
+      "m": 63,
+      "e": 12,
+      "c": 912,
+      "g": 777,
+      "W": 708,
+      "Q": 56,
+      "R": 652,
+      "Qmin": 50,
+      "F": -3,
+      "height": 3,
+      "leave_one_out_gcds": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "all_apery_entries_checked": 63,
+      "coin_membership_bound": 1037,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    },
+    {
+      "kind": "adaptive_best",
+      "m": 67,
+      "e": 4,
+      "c": 2019,
+      "g": 1223,
+      "W": 1165,
+      "Q": 81,
+      "R": 1084,
+      "Qmin": 69,
+      "F": -21,
+      "height": 9,
+      "leave_one_out_gcds": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "all_apery_entries_checked": 67,
+      "coin_membership_bound": 2152,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    },
+    {
+      "kind": "adaptive_best",
+      "m": 71,
+      "e": 4,
+      "c": 1618,
+      "g": 969,
+      "W": 978,
+      "Q": 88,
+      "R": 890,
+      "Qmin": 88,
+      "F": -20,
+      "height": 8,
+      "leave_one_out_gcds": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "all_apery_entries_checked": 71,
+      "coin_membership_bound": 1759,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    }
+  ],
+  "negative_Q": 0,
+  "negative_W": 0
+}

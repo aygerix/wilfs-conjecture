@@ -2,6 +2,8 @@
 import argparse
 import json
 from collections import defaultdict
+from math import gcd
+from functools import reduce
 
 
 def verify(record):
@@ -54,6 +56,7 @@ def verify(record):
         words[s] = min(choices)
     assert record['primitive_residues'] == residues
     assert record['canonical_words'] == [x for s in range(m) for x in words[s]]
+    height = max(map(sum, words.values()))
     inv = {word: s for s, word in words.items()}
     assert len(inv) == m
     top = w.index(max(w)); rho = (-c) % m
@@ -89,8 +92,12 @@ def verify(record):
     assert min(phases) == record['Qmin'] and phases.index(min(phases)) == record['minimum_top_phase']
     if record['kind'] == 'negative_Q_candidate': assert Q < 0
     if record['kind'] == 'negative_W_candidate': assert record['W'] < 0
+    if record['kind'] == 'support_resistant_candidate':
+        assert kappa > dep and height >= 3 and e >= 4 and 3 * e < m and c > 4 * m
     return {'kind': record['kind'], 'm': m, 'e': e, 'c': c, 'g': g, 'W': record['W'],
-            'Q': Q, 'R': R, 'Qmin': min(phases), 'all_apery_entries_checked': m,
+            'Q': Q, 'R': R, 'Qmin': min(phases), 'F': kappa - dep, 'height': height,
+            'leave_one_out_gcds': [reduce(gcd, minimal[:j] + minimal[j + 1:]) for j in range(e)],
+            'all_apery_entries_checked': m,
             'coin_membership_bound': bound, 'exact_predecessors': True,
             'canonical_columns': True, 'abstract_phases_are_not_realizations': True}
 

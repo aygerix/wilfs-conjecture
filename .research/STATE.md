@@ -1,10 +1,44 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 14:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 14:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+**E452 COMPLETE: warmed GPU benefit and genuinely adaptive feedback VERIFIED.** The
+user's advisor critique correctly superseded the self-imposed no-compute-until-resistant
+rule. Directed discovery remains authorized; do NOT reinstate that gate. Reusable
+GPU/host buffers, parallel canonical scoring and single primitive extraction are live.
+Seven measured full-path repetitions show CPU/GPU median milliseconds63:23.034/17.495,
+256:120.227/90.929,1024:505.465/390.450 (about1.30x FULL-path speedup, not32x).
+No timeline profiler or asynchronous overlap was used. Fejer and GPU exact checks pass,
+including repeated-workspace memory checking and independent final coin/column audits.
+
+Adaptive614400 evaluations INCLUDE repeated elites;500640 proposals explicitly depend
+on scored parents across600 feedback generations. Best F at m61/63/67/71 improves
+-112->-5,-7->-3,-156->-21,-125->-20. No nonflat F>0,negativeQ/W or new sign theorem.
+Height2 bridges reached F9 and remain already covered, not resistant discoveries.
+The63 endpoint is cofactor1, height3,Dep42,kappa39,Q56,R652,W708.
+**Exact follow-up:** ALL8294 one-input replacements in the height1..12 box checked
+on Fejer: no improvement,19 neutral ties; every changed-residue eligible nonflat
+neighbor has F<=-52. This is a FINITE local barrier, not global impossibility. It
+motivates coordinated residue/tile moves or neutral traversal, not more generations
+of the same ascent policy. Raw/aggregate evidence:
+[adaptive_analysis_452.json](../src/apery_scan/data/adaptive_analysis_452.json).
+
+A40 u3tgprqzvgrw2q ran14:39:11--14:40:59EDT and is independently confirmed ABSENT;
+controller81926 is TERMINAL, watchdog done. Estimated GPU runtime0.0177USD, not invoice.
+Task public key removed,4 unrelated EXITED pods untouched. No GPU/Fejer search job
+or running agent remains. Same two authorized agents completed all work/audits.
+
+**E451 paper components, independently reviewed:** exact mirror-Q pairing at a fixed
+maximal cell, and residue-column scalar deaths form INITIAL segments with pointwise
+lambda_s=nu_s+2D_s,nu the max source odd filtration degree. New value-sensitive bound
+alpha*(nu_s+2D_s+1_(D_s>0))<=u_s controls ALL descendant mass, without counting kernel
+roots. Its standalone OC-W payer is FALSE on the existing k2 calibration; retain full
+original increment distribution, W(U), coefficient ring and parent reserves. No Lean,
+novelty or finite-sign claim. Details in PROOFS E451; do not repeat the alpha-only payer.
+
 **E450 Runpod pilot COMPLETE; sampler CLOSED.** User explicitly authorized the GPU
 proposal. Exact C++/CUDA engine and proofs are retained; no rental or background research
 job remains. Fejer passed1011 lists/7627 incremental heap/certificate checks. A40 CUDA
@@ -20,8 +54,8 @@ runtime cost0.022USD at quoted0.59/hour, not an invoice. Details/data: E450 EXPE
 No negativeQ/W or negative abstract phase. This is NOT new resistant-case positivity
 evidence. Stop this sampler; do not enlarge its census or rerent. GPU kernels were fast,
 but allocation/transfers and CPU canonical analysis erase the gain at4096-candidate
-batches. The next compute proposal must FIRST explain how it creates a realizable
-height>=3 tile with Dep<kappa and name the allocation lemma tested. No W cutoff is
+batches. That old prerequisite construction gate is SUPERSEDED by the user-steered E452
+directed discovery task above; this passive sampler alone stays closed. No W cutoff is
 valid for excluding Q<0<W. The SAME two authorized agents completed CPU/audit tasks;
 no new agent was launched. Mathematical finite payment remains open below.
 Fejer is running in us-east1-b on e2-standard-8 after two c2d-standard-8 capacity failures. The startup process check
@@ -466,8 +500,8 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 
 | Code | Purpose | Coverage and dependencies |
 | --- | --- | --- |
-| [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--bench B SEED THREADS m k` and `--mutate B SEED THREADS m p...` are finite diagnostics, never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
-| [scan_cuda.cu](../src/apery_scan/scan_cuda.cu) | Batched CUDA/CUB segmented prefix/suffix minima and primitive/invariant extraction. | One block per candidate; same exact integer algorithm as CPU. GPU outputs compared with CPU arrays/statistics and O(mk) witnesses; CUDA testing/benchmark results belong in E450, not assumed from compilation. |
+| [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--warm B REPEATS SEED THREADS m k` measures separate repeated full paths; `--adaptive B GENS SEED THREADS m p...` is scored-parent discovery; `--neighbors THREADS m p...` is exact finite one-input plateau diagnosis. Old `--bench`/`--mutate` remain closed pilot diagnostics. Never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
+| [scan_cuda.cu](../src/apery_scan/scan_cuda.cu) | Batched CUDA/CUB segmented prefix/suffix minima and primitive/invariant extraction. | One block per candidate; same exact integer algorithm as CPU. GPU outputs compared with CPU arrays/statistics and O(mk) witnesses; Reusable GpuWorkspace supports warmed/feedback runs. E450/E452 provide actual CUDA and repeated-workspace checks, not just compilation. |
 | [verify_scan.py](../src/apery_scan/verify_scan.py) | Independent coin-membership and explicit-column verifier for promoted records, including all conductor phases. | Python stdlib, no shortest-path dependency; bounded exact membership cap fails closed. Canonical lex ties checked explicitly. |
 | [run_pilot.py](../src/apery_scan/run_pilot.py) | User-authorized one-pod Runpod orchestration, bounded jobs, result download and confirmed cleanup. | runpodctl CLI; own task SSH key stays outside repository. Uses requested server deadline and detached cleanup watchdog. Price<=1USD/hour,<=20minutes, no persistent volume, never touches unrelated pods. Not a standing authorization to rerent or enlarge searches. |
 | [enumh4.c](../src/scratch/p37/enumh4.c) | Direct semigroup enumeration; exact integer W; tight-pair keys. | No Gurobi. Fixed m/e, Kunz <= K, c > 4m, 3e < m; **height >= 4 filter**. |
@@ -590,12 +624,19 @@ V0 explicitly. The general 1/L theorem and all-a countermap proof are PAPER argu
 
 ## Current attempt and next action
 
-**E450 is closed:** implementation, bounded GPU tests, independent checks and cleanup
-are complete. Retain src/apery_scan and its compact witnesses. No cloud/Fejer job is
-pending. Do NOT rerun or scale this positive sampler. Before another computation,
-construct a residue-support-resistant genuine tile (or prove why a proposed one cannot
-be realized), with Dep<kappa and height>=3, and specify the mathematical allocation
-failure it targets. All E448/449 results and the three universal lines are preserved.
+**E452 next action:** both requested engineering follow-ups and bounded tests are
+complete. No rental/job is pending. The old passive sampler stays closed, but directed
+compute is allowed for a named mathematical predicate. Use the exact63 local barrier
+to construct a GENERAL correlated residue/primitive exchange or neutral traversal rule;
+then state its bounded falsification test before computing. Do not simply increase
+generation count, or assume the finite one-step barrier excludes neutral/coordinated
+paths. The example calibrates a universal discovery mechanism, not a fixed-m Wilf target.
+
+**Parallel proof obligation:** exploit E451's POINTWISE-DEATH/VALUE-DEATH while retaining
+the full distribution of original odd increments and mixed coefficient ring B. The
+minimum-alpha stand-alone payer already fails, so do not optimize or resample it.
+A uniform payment of the surviving moment plus initial-column death lengths remains
+needed. Mirror-Q provides an exact paired identity but no positivity transfer.
 
 **First precise proof task:** on the remaining genuine tiles, try to derive
 N(actual top)>=kappa-Dep from arithmetic boundary/maximum constraints, retaining the

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <functional>
@@ -34,6 +35,10 @@ struct Support {
     std::uint64_t tile_hash = 0; // Diagnostic only; never a certificate of equality.
     std::vector<i64> minimal;
     std::vector<int> residues, words, gamma;
+};
+
+struct SupportTiming {
+    double certification_ms = 0, canonical_ms = 0, scoring_ms = 0;
 };
 
 inline void validate_inputs(int m, const std::vector<i64>& G) {
@@ -204,8 +209,9 @@ inline std::uint64_t hash_tile(const std::vector<int>& residues,
 
 } // namespace detail
 
-inline Basic invariants(int m, const std::vector<i64>& G,
-                        const std::vector<i64>& w) {
+inline Basic invariants_impl(int m, const std::vector<i64>& G,
+                             const std::vector<i64>& w,
+                             std::vector<int>* primitive_output) {
     std::string err;
     if (!certify(m, G, w, &err)) throw std::invalid_argument("uncertified table: " + err);
     detail::require_multiplicity(m, G);
@@ -224,7 +230,9 @@ inline Basic invariants(int m, const std::vector<i64>& G,
         return out; // N: conductor, genus and defect are all zero.
     }
     out.top = static_cast<int>(std::max_element(w.begin(), w.end()) - w.begin());
-    out.e = 1 + static_cast<int>(detail::primitive_residues(m, G, w).size());
+    auto primitives = detail::primitive_residues(m, G, w);
+    out.e = 1 + static_cast<int>(primitives.size());
+    if (primitive_output) *primitive_output = std::move(primitives);
     const i64 sum = std::accumulate(w.begin(), w.end(), i64(0));
     const i64 genus_numerator = sum - i64(m) * (m - 1) / 2;
     if (genus_numerator < 0 || genus_numerator % m != 0)
@@ -235,10 +243,23 @@ inline Basic invariants(int m, const std::vector<i64>& G,
     return out;
 }
 
+inline Basic invariants(int m, const std::vector<i64>& G,
+                        const std::vector<i64>& w) {
+    return invariants_impl(m, G, w, nullptr);
+}
+
 inline Support support(int m, const std::vector<i64>& G,
-                       const std::vector<i64>& w) {
+                       const std::vector<i64>& w, SupportTiming* timing = nullptr) {
+    using SupportClock = std::chrono::steady_clock;
+    auto stamp = timing ? SupportClock::now() : SupportClock::time_point{};
+    if (timing) *timing = SupportTiming{};
     Support out;
-    out.basic = invariants(m, G, w);
+    out.basic = invariants_impl(m, G, w, &out.residues);
+    if (timing) {
+        const auto now = SupportClock::now();
+        timing->certification_ms = std::chrono::duration<double, std::milli>(now - stamp).count();
+        stamp = now;
+    }
     if (!out.basic.finite)
         throw std::invalid_argument("support requires a cofinite semigroup");
     out.minimal.push_back(m);
@@ -247,7 +268,7 @@ inline Support support(int m, const std::vector<i64>& G,
         out.tile_hash = detail::hash_tile(out.residues, out.words);
         return out;
     }
-    out.residues = detail::primitive_residues(m, G, w); // increasing RESIDUE order
+    // invariants_impl supplied the primitive list in increasing RESIDUE order.
     const int d = static_cast<int>(out.residues.size());
     for (int s : out.residues) out.minimal.push_back(w[s]);
     std::sort(out.minimal.begin(), out.minimal.end());
@@ -283,6 +304,12 @@ inline Support support(int m, const std::vector<i64>& G,
             }
         }
         if (!found) throw std::logic_error("no primitive tight factorization");
+    }
+
+    if (timing) {
+        const auto now = SupportClock::now();
+        timing->canonical_ms = std::chrono::duration<double, std::milli>(now - stamp).count();
+        stamp = now;
     }
 
     i64 gamma_sum = 0, weighted_deficit_residue = 0, weighted_height = 0;
@@ -345,6 +372,8 @@ inline Support support(int m, const std::vector<i64>& G,
     if (q + d - out.gamma[0] != out.Dep + at_zero_numerator / m)
         throw std::logic_error("phase sweep did not close");
     out.tile_hash = detail::hash_tile(out.residues, out.words);
+    if (timing)
+        timing->scoring_ms = std::chrono::duration<double, std::milli>(SupportClock::now() - stamp).count();
     return out;
 }
 

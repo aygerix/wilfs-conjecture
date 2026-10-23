@@ -1,0 +1,3 @@
+========= COMPUTE-SANITIZER
+{"kind":"self_test","lists":16,"prefixes_checked":74,"gpu_prefixes_checked":74,"independent_heap":true,"corrupt_certificate_rejected":true}
+========= ERROR SUMMARY: 0 errors

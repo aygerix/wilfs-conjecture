@@ -1,0 +1,698 @@
+{
+  "kind": "E452_warmed_adaptive_audit",
+  "checked_utc": "2026-10-23T18:50:17.300282+00:00",
+  "total_evaluations_including_elite_rechecks": 614400,
+  "feedback_proposals": 500640,
+  "domain_eligible": 612844,
+  "eligible_height_ge3": 605494,
+  "flat_bridges": 7350,
+  "resistant_height_ge3": 0,
+  "negative_Q": 0,
+  "negative_W": 0,
+  "all_feedback_trace_audits_passed": true,
+  "islands": [
+    {
+      "m": 61,
+      "seed": 4521,
+      "generations": 150,
+      "evaluations_including_elite_rechecks": 153600,
+      "feedback_proposals": 125160,
+      "forced_migrants": 18008,
+      "elite_rechecks": 9536,
+      "domain_eligible": 152918,
+      "nonflat_eligible": 152918,
+      "flat_bridges": 0,
+      "best_F_improvements": [
+        [
+          0,
+          -112
+        ],
+        [
+          1,
+          -67
+        ],
+        [
+          3,
+          -60
+        ],
+        [
+          4,
+          -53
+        ],
+        [
+          5,
+          -45
+        ],
+        [
+          6,
+          -32
+        ],
+        [
+          11,
+          -30
+        ],
+        [
+          13,
+          -29
+        ],
+        [
+          14,
+          -23
+        ],
+        [
+          35,
+          -21
+        ],
+        [
+          59,
+          -17
+        ],
+        [
+          62,
+          -14
+        ],
+        [
+          69,
+          -11
+        ],
+        [
+          70,
+          -5
+        ]
+      ],
+      "maximum_flat_F": null,
+      "minimum_actual_Q": 45,
+      "minimum_abstract_Q": 45,
+      "elapsed_ms": 1129.6,
+      "verified_final": {
+        "generators": [
+          61,
+          330,
+          340,
+          365
+        ],
+        "m": 61,
+        "e": 4,
+        "c": 2495,
+        "g": 1615,
+        "W": 1025,
+        "Dep": 45,
+        "kappa": 40,
+        "N": 62,
+        "Q": 67,
+        "R": 958,
+        "Qmin": 66
+      }
+    },
+    {
+      "m": 63,
+      "seed": 4522,
+      "generations": 150,
+      "evaluations_including_elite_rechecks": 153600,
+      "feedback_proposals": 125160,
+      "forced_migrants": 18008,
+      "elite_rechecks": 9536,
+      "domain_eligible": 153308,
+      "nonflat_eligible": 145958,
+      "flat_bridges": 7350,
+      "best_F_improvements": [
+        [
+          0,
+          -7
+        ],
+        [
+          2,
+          -4
+        ],
+        [
+          15,
+          -3
+        ]
+      ],
+      "maximum_flat_F": 9,
+      "minimum_actual_Q": 36,
+      "minimum_abstract_Q": 35,
+      "elapsed_ms": 1454.3,
+      "verified_final": {
+        "generators": [
+          63,
+          307,
+          438,
+          440,
+          454,
+          461,
+          474,
+          475,
+          477,
+          482,
+          486,
+          492
+        ],
+        "m": 63,
+        "e": 12,
+        "c": 912,
+        "g": 777,
+        "W": 708,
+        "Dep": 42,
+        "kappa": 39,
+        "N": 53,
+        "Q": 56,
+        "R": 652,
+        "Qmin": 50
+      }
+    },
+    {
+      "m": 67,
+      "seed": 4523,
+      "generations": 150,
+      "evaluations_including_elite_rechecks": 153600,
+      "feedback_proposals": 125160,
+      "forced_migrants": 18008,
+      "elite_rechecks": 9536,
+      "domain_eligible": 153279,
+      "nonflat_eligible": 153279,
+      "flat_bridges": 0,
+      "best_F_improvements": [
+        [
+          0,
+          -156
+        ],
+        [
+          1,
+          -57
+        ],
+        [
+          3,
+          -44
+        ],
+        [
+          4,
+          -29
+        ],
+        [
+          100,
+          -21
+        ]
+      ],
+      "maximum_flat_F": null,
+      "minimum_actual_Q": 66,
+      "minimum_abstract_Q": 66,
+      "elapsed_ms": 1261.28,
+      "verified_final": {
+        "generators": [
+          67,
+          200,
+          257,
+          325
+        ],
+        "m": 67,
+        "e": 4,
+        "c": 2019,
+        "g": 1223,
+        "W": 1165,
+        "Dep": 66,
+        "kappa": 45,
+        "N": 60,
+        "Q": 81,
+        "R": 1084,
+        "Qmin": 69
+      }
+    },
+    {
+      "m": 71,
+      "seed": 4524,
+      "generations": 150,
+      "evaluations_including_elite_rechecks": 153600,
+      "feedback_proposals": 125160,
+      "forced_migrants": 18008,
+      "elite_rechecks": 9536,
+      "domain_eligible": 153339,
+      "nonflat_eligible": 153339,
+      "flat_bridges": 0,
+      "best_F_improvements": [
+        [
+          0,
+          -125
+        ],
+        [
+          1,
+          -115
+        ],
+        [
+          2,
+          -69
+        ],
+        [
+          5,
+          -59
+        ],
+        [
+          6,
+          -43
+        ],
+        [
+          16,
+          -41
+        ],
+        [
+          21,
+          -31
+        ],
+        [
+          28,
+          -29
+        ],
+        [
+          29,
+          -26
+        ],
+        [
+          143,
+          -22
+        ],
+        [
+          149,
+          -20
+        ]
+      ],
+      "maximum_flat_F": null,
+      "minimum_actual_Q": 74,
+      "minimum_abstract_Q": 68,
+      "elapsed_ms": 1268.25,
+      "verified_final": {
+        "generators": [
+          71,
+          173,
+          180,
+          211
+        ],
+        "m": 71,
+        "e": 4,
+        "c": 1618,
+        "g": 969,
+        "W": 978,
+        "Dep": 65,
+        "kappa": 45,
+        "N": 68,
+        "Q": 88,
+        "R": 890,
+        "Qmin": 88
+      }
+    }
+  ],
+  "warmed_benchmarks": [
+    {
+      "kind": "warmed_benchmark",
+      "m": 1024,
+      "supplied_k": 12,
+      "batch": 4096,
+      "seed": 4504,
+      "threads": 7,
+      "warmups": 2,
+      "repetitions": 7,
+      "all_arrays_and_stats_verified": true,
+      "candidate_sums_are_not_parallel_wall_times": true,
+      "input_hash": "12672931265834697413",
+      "generation_draw_order": "height_then_residue",
+      "gpu_context_observation_ms": 90.0034,
+      "workspace_allocation_ms": 116.827,
+      "workspace_setup_ms": 0.007539,
+      "cpu_full_batch_wall_ms": {
+        "min": 494.863,
+        "median": 505.465,
+        "max": 514.23
+      },
+      "gpu_full_batch_wall_ms": {
+        "min": 381.9,
+        "median": 390.45,
+        "max": 394.777
+      },
+      "cpu_reconstruction_wall_ms": {
+        "min": 120.462,
+        "median": 123.769,
+        "max": 125.157
+      },
+      "gpu_reconstruction_wall_ms": {
+        "min": 7.19955,
+        "median": 7.6124,
+        "max": 9.20543
+      },
+      "cpu_analysis_wall_ms": {
+        "min": 374.388,
+        "median": 382.376,
+        "max": 390.45
+      },
+      "gpu_analysis_wall_ms": {
+        "min": 374.677,
+        "median": 382.285,
+        "max": 387.146
+      },
+      "gpu_upload_ms": {
+        "min": 0.050424,
+        "median": 0.055471,
+        "max": 0.11459
+      },
+      "gpu_kernel_ms": {
+        "min": 3.46979,
+        "median": 3.48083,
+        "max": 3.49066
+      },
+      "gpu_download_ms": {
+        "min": 3.54149,
+        "median": 3.95369,
+        "max": 5.45266
+      },
+      "gpu_host_residual_ms": {
+        "min": 0.127611,
+        "median": 0.136597,
+        "max": 0.152404
+      },
+      "certification_sum_candidate_elapsed_ms": {
+        "min": 1075.55,
+        "median": 1100.53,
+        "max": 1105.99
+      },
+      "canonical_sum_candidate_elapsed_ms": {
+        "min": 665.87,
+        "median": 675.836,
+        "max": 687.715
+      },
+      "scoring_sum_candidate_elapsed_ms": {
+        "min": 868.756,
+        "median": 887.334,
+        "max": 896.392
+      },
+      "samples": [
+        {
+          "cpu_full_ms": 507.506,
+          "gpu_full_ms": 381.9,
+          "gpu_kernel_ms": 3.47498
+        },
+        {
+          "cpu_full_ms": 496.469,
+          "gpu_full_ms": 383.551,
+          "gpu_kernel_ms": 3.48083
+        },
+        {
+          "cpu_full_ms": 494.863,
+          "gpu_full_ms": 383.765,
+          "gpu_kernel_ms": 3.48243
+        },
+        {
+          "cpu_full_ms": 499.846,
+          "gpu_full_ms": 394.777,
+          "gpu_kernel_ms": 3.46979
+        },
+        {
+          "cpu_full_ms": 507.358,
+          "gpu_full_ms": 393.558,
+          "gpu_kernel_ms": 3.49066
+        },
+        {
+          "cpu_full_ms": 505.465,
+          "gpu_full_ms": 390.45,
+          "gpu_kernel_ms": 3.47002
+        },
+        {
+          "cpu_full_ms": 514.23,
+          "gpu_full_ms": 394.156,
+          "gpu_kernel_ms": 3.48272
+        }
+      ],
+      "median_full_batch_speedup": 1.294570367524651
+    },
+    {
+      "kind": "warmed_benchmark",
+      "m": 256,
+      "supplied_k": 12,
+      "batch": 4096,
+      "seed": 4502,
+      "threads": 7,
+      "warmups": 2,
+      "repetitions": 7,
+      "all_arrays_and_stats_verified": true,
+      "candidate_sums_are_not_parallel_wall_times": true,
+      "input_hash": "11024514088984850090",
+      "generation_draw_order": "height_then_residue",
+      "gpu_context_observation_ms": 74.2667,
+      "workspace_allocation_ms": 163.319,
+      "workspace_setup_ms": 0.007608,
+      "cpu_full_batch_wall_ms": {
+        "min": 118.51,
+        "median": 120.227,
+        "max": 125.467
+      },
+      "gpu_full_batch_wall_ms": {
+        "min": 88.1142,
+        "median": 90.9294,
+        "max": 91.7138
+      },
+      "cpu_reconstruction_wall_ms": {
+        "min": 29.7137,
+        "median": 31.6876,
+        "max": 34.8636
+      },
+      "gpu_reconstruction_wall_ms": {
+        "min": 1.8991,
+        "median": 1.92758,
+        "max": 1.96847
+      },
+      "cpu_analysis_wall_ms": {
+        "min": 87.7918,
+        "median": 88.7827,
+        "max": 90.5907
+      },
+      "gpu_analysis_wall_ms": {
+        "min": 86.1325,
+        "median": 88.9795,
+        "max": 89.7533
+      },
+      "gpu_upload_ms": {
+        "min": 0.0535,
+        "median": 0.056399,
+        "max": 0.104223
+      },
+      "gpu_kernel_ms": {
+        "min": 0.56176,
+        "median": 0.56304,
+        "max": 0.568512
+      },
+      "gpu_download_ms": {
+        "min": 1.16046,
+        "median": 1.16528,
+        "max": 1.20416
+      },
+      "gpu_host_residual_ms": {
+        "min": 0.121811,
+        "median": 0.135268,
+        "max": 0.150905
+      },
+      "certification_sum_candidate_elapsed_ms": {
+        "min": 258.873,
+        "median": 267.221,
+        "max": 269.253
+      },
+      "canonical_sum_candidate_elapsed_ms": {
+        "min": 143.061,
+        "median": 147.138,
+        "max": 150.072
+      },
+      "scoring_sum_candidate_elapsed_ms": {
+        "min": 195.68,
+        "median": 201.863,
+        "max": 204.115
+      },
+      "samples": [
+        {
+          "cpu_full_ms": 120.227,
+          "gpu_full_ms": 90.9577,
+          "gpu_kernel_ms": 0.56176
+        },
+        {
+          "cpu_full_ms": 125.467,
+          "gpu_full_ms": 90.9294,
+          "gpu_kernel_ms": 0.562304
+        },
+        {
+          "cpu_full_ms": 119.74,
+          "gpu_full_ms": 88.1142,
+          "gpu_kernel_ms": 0.568512
+        },
+        {
+          "cpu_full_ms": 121.414,
+          "gpu_full_ms": 91.7138,
+          "gpu_kernel_ms": 0.56304
+        },
+        {
+          "cpu_full_ms": 119.499,
+          "gpu_full_ms": 88.5681,
+          "gpu_kernel_ms": 0.562528
+        },
+        {
+          "cpu_full_ms": 118.51,
+          "gpu_full_ms": 88.4769,
+          "gpu_kernel_ms": 0.563232
+        },
+        {
+          "cpu_full_ms": 120.263,
+          "gpu_full_ms": 91.6859,
+          "gpu_kernel_ms": 0.56352
+        }
+      ],
+      "median_full_batch_speedup": 1.3222016201580566
+    },
+    {
+      "kind": "warmed_benchmark",
+      "m": 63,
+      "supplied_k": 8,
+      "batch": 4096,
+      "seed": 4500,
+      "threads": 7,
+      "warmups": 2,
+      "repetitions": 7,
+      "all_arrays_and_stats_verified": true,
+      "candidate_sums_are_not_parallel_wall_times": true,
+      "input_hash": "2309760263242267993",
+      "generation_draw_order": "height_then_residue",
+      "gpu_context_observation_ms": 61.3507,
+      "workspace_allocation_ms": 122.236,
+      "workspace_setup_ms": 0.010123,
+      "cpu_full_batch_wall_ms": {
+        "min": 21.8038,
+        "median": 23.0343,
+        "max": 25.0215
+      },
+      "gpu_full_batch_wall_ms": {
+        "min": 17.2318,
+        "median": 17.4954,
+        "max": 18.3053
+      },
+      "cpu_reconstruction_wall_ms": {
+        "min": 5.1413,
+        "median": 5.65311,
+        "max": 6.17993
+      },
+      "gpu_reconstruction_wall_ms": {
+        "min": 0.878442,
+        "median": 0.891359,
+        "max": 1.06629
+      },
+      "cpu_analysis_wall_ms": {
+        "min": 16.2654,
+        "median": 17.3717,
+        "max": 18.829
+      },
+      "gpu_analysis_wall_ms": {
+        "min": 16.2115,
+        "median": 16.4911,
+        "max": 17.4104
+      },
+      "gpu_upload_ms": {
+        "min": 0.031868,
+        "median": 0.048763,
+        "max": 0.051802
+      },
+      "gpu_kernel_ms": {
+        "min": 0.312704,
+        "median": 0.317856,
+        "max": 0.323648
+      },
+      "gpu_download_ms": {
+        "min": 0.431981,
+        "median": 0.437949,
+        "max": 0.622786
+      },
+      "gpu_host_residual_ms": {
+        "min": 0.07941,
+        "median": 0.081075,
+        "max": 0.085296
+      },
+      "certification_sum_candidate_elapsed_ms": {
+        "min": 49.4201,
+        "median": 50.2561,
+        "max": 53.2284
+      },
+      "canonical_sum_candidate_elapsed_ms": {
+        "min": 26.6566,
+        "median": 27.1076,
+        "max": 28.5518
+      },
+      "scoring_sum_candidate_elapsed_ms": {
+        "min": 33.2863,
+        "median": 33.8075,
+        "max": 35.5501
+      },
+      "samples": [
+        {
+          "cpu_full_ms": 22.465,
+          "gpu_full_ms": 17.7081,
+          "gpu_kernel_ms": 0.317888
+        },
+        {
+          "cpu_full_ms": 23.7274,
+          "gpu_full_ms": 17.2318,
+          "gpu_kernel_ms": 0.312704
+        },
+        {
+          "cpu_full_ms": 22.0887,
+          "gpu_full_ms": 17.809,
+          "gpu_kernel_ms": 0.319808
+        },
+        {
+          "cpu_full_ms": 23.3502,
+          "gpu_full_ms": 17.2324,
+          "gpu_kernel_ms": 0.323648
+        },
+        {
+          "cpu_full_ms": 25.0215,
+          "gpu_full_ms": 18.3053,
+          "gpu_kernel_ms": 0.317376
+        },
+        {
+          "cpu_full_ms": 21.8038,
+          "gpu_full_ms": 17.4954,
+          "gpu_kernel_ms": 0.317344
+        },
+        {
+          "cpu_full_ms": 23.0343,
+          "gpu_full_ms": 17.3859,
+          "gpu_kernel_ms": 0.317856
+        }
+      ],
+      "median_full_batch_speedup": 1.3165917898419015
+    }
+  ],
+  "pod": {
+    "id": "u3tgprqzvgrw2q",
+    "created_utc": "2026-10-23T18:39:11Z",
+    "absence_confirmed_utc": "2026-10-23T18:40:59Z",
+    "seconds_to_confirmed_absence": 108.0,
+    "quoted_gpu_usd_per_hour": 0.59,
+    "estimated_gpu_usd": 0.0177,
+    "estimate_not_invoice": true,
+    "task_pod_absent_in_all_inventory": true,
+    "remaining_unrelated_exited_pods": 4,
+    "task_account_public_key_removed": true
+  },
+  "no_timeline_profiler_used": true,
+  "timing_qualification": "Repeated actual full CPU/GPU batch wall measurements; generation/reference preparation and post-path array comparison excluded on both paths. Candidate stage elapsed sums overlap across threads and are not wall times. Same E450 parameter ranges/seeds; current RNG draw order explicitly sequenced, input hashes saved; whole historical batch identity not asserted.",
+  "scope_qualification": "Finite feedback discovery search across four multiplicities, not exhaustive or a universal positivity proof. No resistant nonflat case found; positive F flat bridges are covered separately. No automatic longer run or additional rental.",
+  "single_input_plateau_audit": {
+    "kind": "single_input_plateau_audit",
+    "m": 63,
+    "base_F": -3,
+    "provided_generators": 11,
+    "replacements": 8294,
+    "evaluated": 8294,
+    "cofinite": 8294,
+    "domain_eligible_height_ge3": 8284,
+    "improving": 0,
+    "ties": 19,
+    "maximum_F": -3,
+    "same_residue_maximum_F": -3,
+    "changed_residue_maximum_F": -52,
+    "diagnostic_tiles": 5602,
+    "wall_ms": 121.38,
+    "scope": "all one-input changes m+1<=p<13m; finite move set only"
+  }
+}

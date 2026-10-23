@@ -1628,3 +1628,139 @@ then a precise realization/allocation predicate. Search for payment obstructions
 do not turn a failed sampler into a positive-profile census. The THREE universal
 lines remain finite parity descendant payment, full-tile Hall with both reserves,
 and full coupled certificates; none has a proved finite sign yet.
+
+
+## E452 — warmed full paths, genuine feedback, and an exact local plateau
+
+2026-10-23 14:53 EDT. Proves Wilf for: EVERY S if the uniform payment/realizability theorem
+is extracted; proved reduction yes, W=Q+R plus complements. The user supplied the
+advisor's detailed criticism and steered continuation to warmed measurements and an
+adaptive F=kappa-Dep search. This SUPERSEDES the self-imposed requirement to already
+possess a resistant seed before a directed discovery computation. E450's passive
+sampler remains closed. No universal sign, exhaustive range or novelty claim.
+
+**Implementation.** Same exact cyclic kernel, now GpuWorkspace owns device buffers
+and events for an entire repeated measurement or adaptive run. Host arrays also
+persist across generations. Upload/kernel/download/host residual and one-time setup
+are separately instrumented. Calls are synchronous; asynchronous overlap was NOT
+implemented or tested. Host clocks plus CUDA events were used; nsys was unavailable,
+so no timeline-profiler result is claimed. NVIDIA's Best Practices allocation section
+explains why avoiding repeated malloc/free is appropriate:
+https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#allocation
+
+support() now certifies and extracts primitives ONCE, returns actual e, and optionally
+times certification/invariants, canonical construction and support/phase scoring.
+Candidate scoring uses exception-safe multicore scheduling. The production adaptive
+path analyzes GPU-returned weights, with NO complete serial CPU reconstruction.
+Every candidate has edge/predecessor certification; two bounded heap samples run each
+generation; every final/promoted witness gets heap and independent coin/column audits.
+
+**Fejer preflight.** g++ C++17 -O3 -pthread -Wall -Wextra -Werror; selftest1000 again
+passes1011 lists/7627 prefixes after the refactor. Adaptive64x4 at m63 passes and its
+final witness is independently checked. The old19 mirror with F1,height2 is tested
+with batch1/gen1 and returns0: correctly a flat bridge, not a resistant discovery.
+CPU files are data/{cpu_selftest_452,adaptive_cpu_preflight_452,adaptive_flat_control_452}.jsonl
+and adaptive_cpu_verified_452.json. The purpose is correctness, not positive evidence.
+
+**Warmed comparison.** ONE A40 secure worker,7 threads from measured7.65-CPU quota.
+Each fixed4096-candidate batch has2 unmeasured warmups and7 measured repetitions.
+CPU/GPU order alternates. EACH full wall measurement includes its own reconstruction
+and parallel certification/canonical/scoring analysis, using its own returned arrays.
+Shared generation/reference setup and post-path complete-array comparisons are outside
+both timers. All arrays/stats agree with the reference. E450 parameter ranges and
+seeds are reused, but historical bit-for-bit whole-batch identity is NOT asserted:
+RNG height/residue draws now have explicit compiler-independent order; input hashes
+are saved. Candidate stage sums overlap across threads and are NOT parallel wall times.
+
+| m | full CPU median (min--max) ms | full GPU median (min--max) ms | full median speedup | warmed GPU reconstruction median ms |
+|---|---:|---:|---:|---:|
+|63|23.034 (21.804--25.022)|17.495 (17.232--18.305)|1.317x|0.891|
+|256|120.227 (118.510--125.467)|90.929 (88.114--91.714)|1.322x|1.928|
+|1024|505.465 (494.863--514.230)|390.450 (381.900--394.777)|1.295x|7.612|
+
+At m1024, medians upload0.055ms,kernel3.481ms,download3.954ms; analysis382.285ms.
+One-time allocation116.827ms is excluded from warmed runs and reported separately.
+The context-properties observation90.003ms need not capture every lazy-context cost;
+allocation can include the remainder. The reconstruction result is now a real full-path
+benefit, about23--24% less batch time, not a claim that the full program is32x faster.
+CPU certification/canonical/scoring remains the dominant time; fine phase sums are
+in raw data. No uncontrolled attribution to a single optimization or cross-worker
+comparison is made. compute-sanitizer passes both prefix tests and repeated-workspace
+warm32/reps2, with0 memory errors. No racecheck claim.
+
+**Adaptive specification / execution.** Four independent m61/63/67/71 runs, seeds4521..4524,
+1024 candidates and150 feedback generations each; supplied11 values seeded from OLD63
+239,282,295,318,333,379,386,390,400,405,407, heights1..12. Each generation is scored BEFORE
+its archive generates the next population. Archive size<=64 with actual-e/tile-hash
+diversity; high raw F first, smaller W/c secondary, a separate flat-bridge reserve,
+forced migrants and score-ranked tournament parent selection. Mutations change one
+residue, one height, two entries, correlated residue translation/mirror/unit transform,
+redundancy and shared-height shifts. Archive quotas are not proposal probabilities.
+Epoch fields identify archive updates, not necessarily an elite's original birth.
+
+Discovery predicate: genuine S,e>=4,3e<m,c>4m,height>=3 andF>0. NegativeW anywhere or
+negativeQ in the eligible domain are distinct immediate promotions, not confused with
+positiveF. Flat positiveF remains a bridge, since Flat-MaxCL already covers height2.
+Q/R/W and ALL-phase minima are logged for best nonflat cases; abstract phases are
+marked unrealized. No W<=0 conductor cutoff is applied to positive-W/negative-Q search.
+
+614400 evaluations INCLUDE repeated elites.500640 proposals explicitly depend on scored
+parents;72032 forced migrants,38144 elite rechecks, and3584 initial anchor/mutation
+proposals complete the count.612844 domain-eligible,605494 eligible nonflat,7350 flat
+bridges. All600 generation logs pass parent-epoch/count/monotone-best trace checks.
+There is NO claim that all inputs or hashes are distinct or that the finite space is
+exhausted. Actual adaptive loop times per island were1.13--1.45seconds; this is a fast
+bounded feedback test, not hours of unattended GPU search.
+
+| m | initial best nonflat F | final best nonflat F | last improvement generation |
+|---|---:|---:|---:|
+|61|-112|-5|70|
+|63|-7|-3|15|
+|67|-156|-21|100|
+|71|-125|-20|149|
+
+No eligible nonflat F>0, negativeQ or negativeW was found. PositiveF as high as9 DID
+occur in height2 bridges; these were correctly kept separate and did not trigger success.
+All4 final examples pass independent membership/canonical/phase verification on Runpod
+and again locally. The61 final example has a leave-one-out gcd5, so E439 also excludes
+it;63/67/71 finals have every leave-one-out gcd1. Those distinctions prevent relabelling
+protected examples as new Wilf obstruction evidence.
+
+**Exact plateau follow-up, Fejer CPU (new predicate, no extra rental).** The63 endpoint is
+
+    <63,307,438,440,454,461,474,475,477,482,486,492>,
+    c912,g777,e12,W708,Dep42,kappa39,N53,Q56,R652,Qmin50.
+
+Its canonical tile has T44 and ONE cubic,3*307=921; every leave-one-out gcd is1.
+Residues are the mirrored Haanpaa63 cover. To distinguish a sampling miss from a true
+strict one-step local maximum, `--neighbors 7 63 ...` replaces EACH of the11 supplied
+entries by EVERY integer64<=p<819 except the unchanged entry. Coverage is exactly
+11*(12*63-2)=8294, and ALL8294 were evaluated/cofinite.8284 pass domain+height>=3.
+MaxF remains-3, improvements0,ties19; all changed-residue eligible nonflat neighbors
+have F<=-52. All19 neutral ties therefore preserve that entry's residue.5602 diagnostic
+tile hashes, runtime121.38ms. Selected witness independently heap/coin/column verified.
+This is an EXACT FINITE local barrier for this move grammar. It does NOT exclude paths
+through neutral/worse scores, coordinated changes, added inputs or heights outside1..12.
+It does NOT prove any global maximum or Wilf. Do not automatically expand to all two-input
+pairs: next use the barrier to design a mathematically specified coordinated/neutral move.
+
+**Resources / artifacts.** A40 u3tgprqzvgrw2q created14:39:11EDT, absent by14:40:59EDT,
+108seconds at quoted0.59/hour -> estimated GPU runtime0.0177USD, NOT invoice/storage/rounding.
+Requested server deadline14:59:11 and independent task watchdog; active controller cleanup
+terminated immediately after results. Independent --all inventory confirms task absence
+and4 untouched prior EXITED pods. Task account SSH key removed by exact fingerprint.
+No rental/background search remains. Controller did not restart on a polling timeout.
+
+Raw logs: src/apery_scan/data/runpod_adaptive_452/results, local_verified.json; exact GPU
+run driver snapshot driver_gpu_run.cpp matches the hardware-recorded SHA256 (the final
+driver later adds CPU-only neighbor diagnostics). Fejer follow-up files are
+neighbor_plateau_452.jsonl and neighbor_plateau_verified_452.json. Aggregate warmed
+samples, feedback trajectories, verified finals, finite local barrier and cleanup:
+[adaptive_analysis_452.json](../src/apery_scan/data/adaptive_analysis_452.json).
+
+Decision: warmed GPU benefit and genuine feedback are VERIFIED. The resistant discovery
+objective is NOT achieved. Retain the engine; next redesign coordinated residue/tile
+moves or neutral-component exploration from the exact local barrier, rather than merely
+increasing generation count. Directed discovery remains authorized; no requirement to
+already possess a resistant example is reinstated. Universal proof work retains E451's
+pointwise descendant structure, both parity reserves, whole-tile Hall and coupled repairs.
