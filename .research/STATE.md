@@ -184,6 +184,13 @@ expand the list of regional certificates. If a full-model negative point appears
 the actual objective on the same domain to distinguish integrality from coupling loss. An actual
 objective evaluated at the joint optimum is NOT its independently minimized value.
 
+Three universal lines within the approved backwards strategy remain distinct: primitive boundary/
+residue funding of the finite correction; transport of genuinely weighted interior repair through
+ALL tight relations; and actual-coordinate arithmetic/integrality, including exact audits of any
+proposed descent. The first concrete task is a weighted transport rule that survives the104case.
+The follow-up zero-unpaid-cost joint minimum2337/2 on that profile was positive, so that sample is
+closed; it supplies no uniform theorem and is not added to the258-optimum consolidated count.
+
 Original Phi_Z>=0 and its equivalent CH budget remain unproved, stronger sufficient targets. Positive
 joint CapUA3 minima do NOT imply Phi_Z>=0; these implications must not be reversed. A negative joint
 primal needs integer reconstruction before any semigroup/certificate-failure claim. The same universal

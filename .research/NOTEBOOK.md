@@ -4996,3 +4996,20 @@ patch the claim to a guessed2. Stop the failed inflation construction and the un
 zero-cost sample. Keep the full universal goal active. Next work must route weighted interior mass
 using the coupled tight relations together with primitive boundary credits and zero-RHS trades,
 not replace it by boundary/interior vertex counts. The new104case is an adversarial allocation test.
+
+### 2026-10-23 01:50 EDT — follow-up source-cost test and stop decision
+
+After pushing c2bcffb, tested `certprobe --face-zero-unpaid 104 420 453 509` on fejer. Independent
+membership and exact rational primal/dual/source-transfer audit passes: minimum2337/2,q145/8,
+fractional actual point (not a semigroup). This would have refuted a zero-unpaid-cost universal
+construction if negative, but the positive result supplies only another regional certificate.
+Do not enlarge this sample or infer universal positivity. It is a separately reproduced follow-up,
+not part of the258-optimum consolidated checkpoint count. Its full command is reproducible from
+committed C/checker code; the discovery output is /tmp/wilf422-zero-unpaid.jsonl on fejer.
+
+Keep the three universal questions distinct within the approved backwards strategy: (1) a primitive
+boundary/residue dual that pays the finite correction; (2) global transport of weighted interior repair
+through all tight coupled relations; (3) the arithmetic/integrality distinction between actual and
+joint real minima, including scrutiny of any proposed integral descent. No family target, guessed
+constant cap or unchecked preservation claim is activated. The first concrete task is to derive a
+weighted transport rule that survives the104case, not to improve its individual certificate value.
