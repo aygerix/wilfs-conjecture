@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 02:40 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 03:07 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -122,6 +122,25 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   nothing about its sign. The exact potential dual expresses the missing finite payment as (PAY),
   involving adjacent potential levels; do not replace it by a unit cap or unweighted single cut.
 
+- **Primitive cycle allocation (E425, paper):** each primitive's column exits permute its column
+  bases; a cycle has exactly m/h cells and total actual gap p/h, h=gcd(m,p). Excess strict gaps
+  J-1 pay every primitive row's combined unit allowance alpha+kappa once, with positive surplus.
+  A minimum-prefix cut gives an explicit nonnegative allocation. This bounds ROW allowances, not
+  unpaid coordinates; arbitrary repeated composite-row weights, the objective coefficients and C
+  are NOT paid. Every integer orbit has some J>=2; for coprime primitives/large p this already
+  follows in the real domain. All31 saved joint points satisfy it, so no current integrality
+  obstruction was found. Do not expand that diagnostic or claim a general repair of the real LP.
+  The corrected E424 bound passed one closed36-anchor diagnostic (no new LPs); this is not a sign
+  theorem. The natural column-scaled per-orbit extension is now refuted by E426; combine global routing
+  with the E419 coefficient budget, rather than count more positive examples.
+
+- **Weighted orbit obstruction (E426):** scaling E425 by canonical column lengths is FALSE even
+  after known-zero closure. In the existing e11 example, primitive170/orbit4 has weighted strict
+  excess7 against active row cost42 (unweighted7>=6 is valid). Another orbit has8<24. The complete
+  E424 global bound is4419>0. This refutes only per-orbit column-scaled self-payment. Next use
+  globally coupled primitive-boundary credits and match the E419 objective coefficients; no orbit,
+  column or direction is required to pay separately. Exact table and regression are saved.
+
 ## Existing implementations
 
 | Code | Purpose | Coverage and dependencies |
@@ -180,9 +199,10 @@ distinct profile LP minima positive, including180,452,3070/3,998,31,60673/44,502
 fractional;24 integral actual optima independently reconstructed. Four changed integer witnesses have
 Phi281,128,22,5027. These are regional certificates and diagnostics, not an exhaustive profile list.
 
-**Next mathematical action:** prove or refute the E424 finite payment inequality (PAY), using
+**Next mathematical action:** construct a GLOBAL weighted allocation for the E424 finite payment inequality (PAY), using
 primitive strict exits, zero-RHS trades and complete cyclic residues. The layered potential dual is
-an exact statement of the gap, not its solution. Stop optimizing the E423 original baseline: exact
+an exact statement of the gap, not its solution. E426 rules out scaling the E425 unit-row payment
+separately on each orbit; use cross-orbit/direction compensation while matching all coefficients. Stop optimizing the E423 original baseline: exact
 optimal negative bounds show that no allocation inside that network can pay it. Stop expanding
 positive regional samples. A negative corrected Omega needs its exact potential audited, then
 comparison with the full capped and separately minimized actual models. Three universal lines
@@ -204,7 +224,7 @@ objective evaluated at the joint optimum is NOT its independently minimized valu
 Three universal lines within the approved backwards strategy remain distinct: primitive boundary/
 residue funding of the finite correction; transport of genuinely weighted interior repair through
 ALL tight relations; and actual-coordinate arithmetic/integrality, including exact audits of any
-proposed descent. The weighted transport rule now survives the104case (E422/E424); its finite funding inequality (PAY) is the next precise proof obligation.
+proposed descent. The weighted transport rule now survives the104case (E422/E424); (PAY), including coefficient matching and the finite correction, remains the next precise obligation. E425 supplies an explicit primitive-unit-row allocation, whose extension to the required weighted loads is unproved.
 The follow-up zero-unpaid-cost joint minimum2337/2 on that profile was positive, so that sample is
 closed; it supplies no uniform theorem and is not added to the258-optimum consolidated count.
 
@@ -221,15 +241,15 @@ Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full s
 record earlier checks; E394 records the first two Lean components; E395-E421 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass16 new exact integer transport flows in addition to258 exact LP optima (the212 earlier checks plus46 diagnostic optima),
+Latest consolidated checks pass44 exact integer transport flows and primitive cycle allocations in addition to258 exact LP optima (the212 earlier checks plus46 diagnostic optima),
 and2 exact diagnostic rays, plus1 independently feasible integer repair witness. The separate real
 LP upper bound certifies its integer coordinate optimum2. Source transfer and boundary packing are
 also audited on74 genuine-domain joint points. The2 diagnostic rays have no semigroup reconstruction;
 they falsify only the weakened sourcewise-sign model. Primitive projection/boundary rewriting includes
 fractional actual coordinates. These checks include
 the four new integer witness assignments and existing checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_424_checks.log) and data/allowance_lean.log.
-The new C flow path passes ASan/UBSan on all16 original/zero-aware inputs, with leak detection disabled; no new Lean claim.
+[validation log](../src/scratch/p39/data/checkpoint_425_checks.log) and data/allowance_lean.log.
+The C flow path passes ASan/UBSan on8 original and36 zero-aware inputs across checkpoints424/425, with leak detection disabled; no new Lean claim.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
 New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
 New full/reduced joint-face C paths also pass ASan/UBSan, Gurobi leak detection disabled;

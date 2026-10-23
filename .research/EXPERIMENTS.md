@@ -571,3 +571,43 @@ rays and1 integer repair witness, plus16 exact flow/row certificates and the ear
 checks. New C flow paths also pass ASan/UBSan on all16 inputs, leak detection disabled. Full terminal
 log: data/checkpoint_424_checks.log. The generation/check/sanitizer batch finished successfully on
 fejer; no enumeration, regional LP expansion, or universal sign proof is claimed.
+
+### E425 — 2026-10-23: closed funding diagnostic and primitive orbit audits
+
+One bounded test of E424 (PAY) used36 DISTINCT existing/historical anchors: the31 saved joint seeds,
+the8 earlier flow controls (overlapping those seeds), and the three historical column obstructions
+<80,291,292,293>,<62,87,88,89>,<114,305,307,310>. No search/enumeration expansion, no new regional LPs.
+All36 corrected bounds were nonnegative, including the control equality0. The three historical
+bounds were3230,813,2122 respectively. This is evidence only; the positive sample is closed.
+Those seeds/flows are consolidated into existing data/axis_transport_zero.jsonl.gz (36 records),
+alongside the8 original flows. Regenerate from each raw record's seed with upper_dp.py; no dependence
+on an uncommitted generation script. Full integer optimality and row audits apply as before.
+
+The E425 orbit identity was proved before adding its audit to verify_probe.py. For each primitive,
+the checker independently builds the canonical column-base permutation, verifies its h cycles,
+m/h total cells and p/h total gaps, then checks the exact strict-excess/unit-fee identity on full
+residue orbits and every prefix of the constructive minimum-prefix allocation. This is not an
+unpaid-coordinate cap. Its precise limitation is arbitrary repeated row weights and objective
+coefficient matching. Numerical credit does not automatically supply a Farkas certificate.
+
+A separate exact read-only check of31 saved joint actual points found no violation of the necessary
+integer condition max_orbit J>=2. Six had nonintegral Apéry values; seven have fractional actual
+Kunz/depth coordinates (the previous E414 convention). No new optimizer was run and no inference
+of actual integrality or universal positivity follows. The possible new integrality restriction is
+only for m<p<2m,gcd(m,p)>1,orbits away from0; the other cases already satisfy it in the real domain.
+
+Updated run_checks.sh audits44 flow records, in addition to the unchanged258 LP optima,2 diagnostic
+rays,1 integer repair witness and old checks. The pure C flow solver is unchanged from E424.
+Checkpoint425 additionally repeats its ASan/UBSan zero-aware path on all36 anchors (leak detection
+disabled); checkpoint424 covers the8 original inputs. See data/checkpoint_425_checks.log and the
+prior checkpoint424 sanitizer tail. No universal sign theorem or Lean claim is made.
+
+E426 follow-up (same36 anchors, no new seed/solver): tested the precise weighted extension (WOC),
+using canonical column length on every edge and removing tight fees whose two unpaid endpoints
+are in full K. Two violating primitive orbits occur, both for170 in the existing e11case: orbit2
+has8<24 and orbit4 has7<42. Their raw values are recoverable from the consolidated seed; the new
+checker fields `column_weighted_strict_excess` and `column_weighted_active_allowance` compute them.
+The exact orbit4 table is in PROOFS E426. The minimum-prefix unweighted allocations all remain
+valid. Final changed-path audit rechecks all44 flow/primitive-cycle certificates and asserts7<42
+and corrected global bound4419. That terminal audit is appended to checkpoint_425_checks.log.
+This rules out a natural per-orbit weighting, not global compensation or Wilf. Stop this line.

@@ -243,3 +243,13 @@ helps compared with independent local decompositions but does not close the arit
 E424 makes a justified correction using already forced-zero coordinates; its universal sign remains
 unproved. Do not revive an interior unit cap, require each column to pay for itself, or infer
 positivity from the corrected bound's positive saved examples. Data: p39/data/axis_transport.jsonl.gz.
+
+### E426: scale the primitive orbit allocation by canonical column lengths — FALSE after zero closure
+
+In E406's genuine e11 semigroup <153,166,170,317,325,474,617,766,921,925,1080>, primitive170 has an
+orbit {4,21,38,55,72,89,106,123,140}. Strict excess supplies have column weights1 and give7; six active
+tight allowances have column weight7 and give42. They remain active after full known-zero closure.
+The unweighted cycle pays7>=6 exactly as E425 proves; column scaling is the invalid step. Another
+orbit has8<24. The full corrected E424 bound remains4419>0. Do not call this a certificate/Wilf
+failure or abandon global compensation: discontinue only per-orbit column-scaled self-payment.
+Exact table/proof/checker regression: PROOFS E426, verify_probe.py primitive_cycle_budget, run_checks.sh.

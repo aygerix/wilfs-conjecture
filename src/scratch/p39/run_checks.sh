@@ -39,7 +39,7 @@ assert len(trade)==1 and trade[0]['zero_gap_injected_sources']>=1
 print('CERTIFIED fully extendible coordinate: real maximum7/3, integer maximum2; injected relations can be zero-gap trades')
 ordinary={tuple(sorted(R['generators'])):R for R in json.load(open('/tmp/wilf-p39-axis-summary.json'))}
 zero={tuple(sorted(R['generators'])):R for R in json.load(open('/tmp/wilf-p39-axis-zero-summary.json'))}
-assert len(ordinary)==len(zero)==8
+assert len(ordinary)==8 and len(zero)==36
 assert ordinary[60,67,71,121]['baseline_bound']==-13
 assert ordinary[60,61,67,71]['baseline_bound']==-10
 assert ordinary[146,147,155,185]['baseline_bound']==-33
@@ -47,7 +47,12 @@ assert zero[60,67,71,121]['baseline_bound']==144
 assert zero[104,420,453,509]['baseline_bound']==3107
 assert zero[13,17]['mixed_cells']==zero[13,17]['transport_cost']==0
 assert zero[13,17,27,29]['mixed_cells']==0 and zero[13,17,27,29]['known_zero']==12
-print('CERTIFIED16 integer transport flows, including optimal negative original baselines and zero-demand controls; no universal sign assertion')
+for R in list(ordinary.values())+list(zero.values()):
+    assert all(C['surplus']>0 for P in R['primitive_cycles'] for C in P['cycles'])
+weighted=zero[153,166,170,317,325,474,617,766,921,925,1080]
+orbit=[C for P in weighted['primitive_cycles'] if P['primitive']==170 for C in P['cycles'] if C['orbit']==4]
+assert len(orbit)==1 and orbit[0]['column_weighted_strict_excess']==7 and orbit[0]['column_weighted_active_allowance']==42
+print('CERTIFIED44 integer transport flows and primitive orbit allocations, including optimal negative original baselines and zero-demand controls; no universal sign assertion')
 PY
 python3 verify_matching.py data/transport_all.jsonl data/probe.jsonl.gz data/structural_probe.jsonl.gz data/residual_probe.jsonl.gz data/stress_probe.jsonl.gz data/climb_probe.jsonl.gz data/margin_probe.jsonl.gz
 ./repair_scan --position-audit 128

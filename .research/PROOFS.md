@@ -8079,3 +8079,124 @@ Sum over the finite range containing min pi-1 through max pi+1. These follow dir
 merely one unweighted cut or each column independently. Next attempt: use strict primitive exits,
 zero-RHS trades and complete cyclic residues to prove (PAY), or exhibit an exact violating potential
 on a genuine low-W input before trying another transport refinement.
+
+### Primitive orbit surplus and a constructive unit-row allocation (E425)
+
+**PROVED ON PAPER; elementary permutation accounting, no novelty claim; not Lean checked.** Scope:
+every proper numerical semigroup, no parameter restriction. This organizes actual strict-boundary
+credit for the universal finite-payment question. It does not pay arbitrary certificate row weights
+or the discrete correction, and is not asserted to prove (PAY).
+
+Fix a primitive p!=m, g=p mod m, h=gcd(m,g), and the permutation s->s+g of residues. Its h orbits O
+have n=m/h cells. For every edge define the actual nonnegative INTEGER gap
+
+    J_s=(w_s+p-w_{s+g})/m.
+
+If J_s=0 and s!=0, charge the combined two oriented repair allowances
+
+    a_s=alpha_(s,g)+kappa_(s,g) in {0,1}.
+
+At the trivial tight edge0->g set a_0=0; its unpaid row is identically zero. At strict edges define
+supply J_s-1>=0. Let F_O be the number of tight edges with a_s=0. Then the exact cycle identity is
+
+    sum_{s in O:J_s>0}(J_s-1) - sum_{s in O:J_s=0}a_s
+      = (p-m)/h + F_O >0.                                        (OC)
+
+Proof: telescope w around the residue orbit to get sum_O J_s=p/h. If k strict edges occur, their
+excess sum is p/h-k. There are n-k tight edges, and their charge is n-k-F_O. Subtract. Since
+p>=m+g and h divides p,m,g, (p-m)/h is a positive integer. This proves (OC). No unpaid coordinate
+has been bounded by1: the bounded objects here are the exact ROW ALLOWANCES alpha+kappa.
+
+There is a constructive nonnegative allocation around the orbit. Give strict edges supply J_s-1
+and tight edges demand a_s. Cut the cyclic list immediately after a minimum of its cumulative
+balance. Every prefix of the rotated list has nonnegative balance; forward transport from previous
+supplies pays every demand and leaves the surplus in (OC). This is the standard cycle-prefix
+argument. It genuinely pays all primitive unit-row coupons ONCE, allowing negative individual
+local balances; arbitrary repeated row usage is not covered.
+
+The same resource is organized by the canonical factorization columns, without confusing canonical
+exits with actual strict exits. For a p-direction column C of length L_C, append e_j to its top
+and let b_sigma(C) be the canonical word with that residue. Then b_sigma(C) has j-coordinate0:
+otherwise b_sigma(C)-e_j lies in D with the top's residue, so residue injectivity makes it the top,
+contradicting maximality of the column. Thus sigma permutes the column bases. Each column cycle
+concatenates exactly one residue orbit, so
+
+    sum_cycle L_C=m/h,   sum_cycle J_C=p/h,
+    J_C=(L_C*p+w_base(C)-w_base(sigma(C)))/m,
+    sum_cycle(J_C-L_C)=(p-m)/h.
+
+All strict primitive edges occur among these column exits. Some exits are tight zero-RHS trades;
+they are included among the tight unit-row charges, not misclassified as strict sources. This
+makes (OC) an explicit global balance for E417 primitive boundaries. It is an organization of
+existing arithmetic constraints, not an extra independent continuous inequality.
+
+**Integer strengthening:** each primitive orbit contains an edge with J_s>=2. Otherwise every J_s
+would be0 or1 and sum J_s<=m/h, contradicting p/h>m/h. Hence all genuine integer semigroups are
+covered by the finite disjunction, for EACH primitive and EACH orbit,
+
+    there exists s in O with (z_s+e_j-z_{s+g}).p >=2m.              (DEEP)
+
+This does not specify which edge and supplies no multiplicity-independent finite profile list.
+A continuous profile need only have some J_s>1; rounding that to2 is unjustified for fractional
+actual coordinates. (DEEP) is a valid universal integer boundary condition, not a proved positivity
+mechanism. A potential route is to use the selected deep exits to anchor a weighted allocation;
+its obligations are still to pay repeated composite-parent costs and C without double spending.
+The present cycle allocation alone cannot do either.
+
+Qualification on (DEEP): the orbit containing0 already has J_(m-g)>=3 even at a continuous actual
+point satisfying positive Kunz bounds, since w_(m-g)>=m+(m-g) and p>=m+g. For p>=2m, the orbit mean
+p/m itself forces max J>=2 over the reals. Thus a NEW integrality restriction can occur only on
+orbits away from0, for gcd(m,g)>1 and m<p<2m. If every primitive is coprime to m, (DEEP) adds nothing
+to the current continuous domain. Do not advertise it as a general repair of the real relaxation.
+
+The allocation in (OC) is a scalar allocation of actual gap EXCESSES, not yet a dual certificate
+for J. E419 fixes primitive/boundary multipliers by an objective coefficient identity; (OC) does
+not prove those multipliers can all be1 or constant on cycles. Any use in the Wilf proof must match
+H and all certificate-coordinate coefficients and reserve C. This coefficient obligation is in
+addition to the scalar budget, and prevents double spending of primitive value credit.
+
+### Natural column-length scaling of the orbit allocation fails after zero closure (E426)
+
+**FALSE weighted extension; exact genuine remaining-domain obstruction.** The E425 scalar allocation
+cannot simply be multiplied by the column lengths appearing in CH'. A precise attempted extension
+was, on each primitive orbit O,
+
+    sum_{strict s in O} L(s)*(J_s-1)
+       >= sum_{tight s in O, not both s,s+g in K} L(s)*(alpha_s+kappa_s),           (WOC)
+
+where L(s) is the length of the canonical p-direction column through z_s, and K is full E424
+known-zero closure. Charges with both unpaid endpoints forced zero are correctly omitted. (WOC)
+is FALSE even with that correction; this is not an assertion about arbitrary invented weights.
+
+Use the independently verified E406 semigroup
+
+    S=<153,166,170,317,325,474,617,766,921,925,1080>, c1683,g1013,e11,W5687.
+
+For primitive p170,g17,h17, the orbit starting4 has the following exact data. Every listed tight
+edge has alpha0,kappa1. K contains4 but none of21,38,55,72,89,106,123,140.
+
+| s | w_s | L(s) | s+17 mod153 | J_s |
+|---:|---:|---:|---:|---:|
+|4|1687|1|21|2|
+|21|1551|1|38|7|
+|38|650|7|55|0|
+|55|820|7|72|0|
+|72|990|7|89|0|
+|89|1160|7|106|0|
+|106|1330|7|123|0|
+|123|1500|7|140|0|
+|140|1670|7|4|1|
+
+Thus weighted supply is1*(2-1)+1*(7-1)+7*(1-1)=7, while all six active tight allowances cost7,
+for demand42. Unweighted supply7 and demand6 still satisfy E425 with surplus1=(170-153)/17.
+The orbit starting2 gives a second deficit: weighted supply8,demand24. Source excess lies in short
+columns, while repeated charges lie in long columns. Known-zero closure does not remove this
+obstruction. The complete corrected E424 flow bound on S is4419>0, so this is NOT a failure of
+Wilf, of the full capped model, or of E424's corrected global certificate.
+
+The checker reconstructs these numbers from the existing seed and canonical words; run_checks.sh
+asserts the7-versus42 obstruction. Stop the column-scaled per-orbit payment rule. As the advisor
+warned, compensating credit must cross the chosen pieces. A global primitive-boundary allocation
+may use the orbit identities but cannot require each orbit, column or direction to fund itself.
+The next obligation is a globally coupled weighted allocation with the E419 objective coefficients,
+not another local self-payment refinement or a larger positive sample.

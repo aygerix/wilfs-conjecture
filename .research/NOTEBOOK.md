@@ -5038,3 +5038,32 @@ Verification: consolidated258 LP optima,2 diagnostic rays,1 integer repair witne
 integer flow certificates and their C sanitizer runs pass. Paper results are not yet Lean checked.
 No universal Wilf proof/counterexample, no claim of novelty for column/network machinery, no new
 manuscript. STATE remains the sole current handoff and implementation inventory.
+
+### 2026-10-23 03:01 EDT — primitive orbit budget; stop the positive diagnostic
+
+The single closed36-anchor (PAY) test passed; no evidence justifies making the sample larger.
+Derived and proved E425: canonical column exits form a base permutation whose cycles follow the
+primitive residue orbits. On each, actual strict-gap EXCESS J-1 pays the combined alpha+kappa
+allowances of all tight primitive rows once, with surplus (p-m)/gcd(m,p)+number of free tight rows.
+The standard minimum-prefix cut constructs a forward allocation. Actual unpaid coordinates are
+still arbitrarily weighted. This is elementary exact accounting, not claimed novel or a Wilf proof.
+
+The integer max-gap>=2 consequence adds nothing for coprime primitives or p>=2m, and no saved joint
+point violates it. Do not turn that into another regional optimization programme. The global
+review decision is to retain the explicit orbit routing as a tool for primitive boundary funding,
+but reject the leap from its scalar unit-row budget to full weighted-certificate payment. E419's
+objective coefficient matching and the finite correction C must still be paid. Next derive a
+weighted orbit allocation compatible with those coefficients, or obtain a concrete obstruction to
+that compatibility; do not merely count more coupons or reconstruct another individual W.
+
+### 2026-10-23 03:07 EDT — E426 refutes the natural weighted extension
+
+Attempted the explicit weighted cycle inequality with canonical column lengths, deleting already
+forced-zero coupons first. On the same closed36-anchor data, two primitive170 orbits of the existing
+e11case fail:8<24 and7<42. Source excess sits in short columns, repeated active charges in long
+ones. The complete corrected global bound remains4419, so the failed demand was local self-payment.
+This is exactly why the advisor warns against requiring each piece to pay for itself. Preserve
+E425's valid unit-row allocation, discontinue column-scaled orbit payment, and do not run another
+local balancing search. Next work must couple orbit/direction credits and satisfy the full E419
+objective coefficient identity, with C reserved. This is a mathematical obstruction/corrected
+strategy under the same universal scope, not a Wilf or full capped counterexample.

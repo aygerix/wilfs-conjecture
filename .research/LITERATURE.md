@@ -1110,3 +1110,11 @@ its corrected sign; absence of a hit is not a novelty/nonexistence claim. Reopen
 [Marashdeh 2608.12531](https://arxiv.org/html/2608.12531), already in this record: its defect/type
 reduction does not state the needed weighted transport payment theorem. No new result from it is
 assumed here.
+
+E425 uses ordinary permutation telescoping and the standard minimum-prefix cycle allocation;
+no novelty claim. Focused searches on primitive/column cycles and minimum-distance diagrams did
+not provide a cited weighted Wilf payment theorem. The Cayley degree/diameter literature (e.g.
+Dougherty–Faber, arXiv:math/9412223) concerns a related setting, not a result invoked to pay the finite
+correction here. No inference from its abstract to the needed weighted inequality is made. The
+primitive orbit count in PROOFS is proved directly and adds no independent continuous constraint;
+the disjunctive integer exit condition has the limitations stated there.

@@ -3,6 +3,7 @@ Uses only Python stdlib; floats are discovery data until every constraint and ob
 usage: python3 verify_probe.py probe.jsonl summary.json
 """
 import json, sys, gzip
+from math import gcd
 from fractions import Fraction as F
 from collections import defaultdict
 
@@ -38,6 +39,61 @@ def upper_baseline(D):
     for s in sorted(range(1,m),key=lambda s:D['w'][s]):
         b[s]=D['mu'][s] if s in gr else max([0]+[b[i]+b[j]-D['q']-up for i,j,t,J,tau,lo,up in D['pairs'] if not J and t==s])
     return b
+
+def primitive_cycle_budget(D,known_zero):
+    """Exact funding of unit primitive-row allowances, NOT arbitrary row weights."""
+    m=D['m'];gr,z=factor_basis(D);inv={v:s for s,v in z.items()};out=[]
+    # alpha+kappa=lo+up; the two oriented allowances together cost at most1.
+    fees={(i,j):lo+up for i,j,s,J,tau,lo,up in D['pairs'] if not J}
+    for j,g in enumerate(gr):
+        p=D['w'][g];h=gcd(m,g);columns=defaultdict(list)
+        for v in inv:columns[v[:j]+v[j+1:]].append(v)
+        next_base={};length={};exit_gap={};cell_length={}
+        for col in columns.values():
+            base=min(col,key=lambda v:v[j]);top=max(col,key=lambda v:v[j]);s=inv[top];t=(s+g)%m
+            assert base[j]==z[t][j]==0
+            next_base[base]=z[t];length[base]=len(col)
+            for v in col:cell_length[inv[v]]=len(col)
+            gap,rem=divmod(D['w'][s]+p-D['w'][t],m);assert not rem and gap>=0
+            exit_gap[base]=gap
+        assert set(next_base)==set(next_base.values())
+        unseen=set(next_base);column_cycles=0
+        while unseen:
+            a=min(unseen);v=a;cells=gap=0
+            while True:
+                assert v in unseen;unseen.remove(v);cells+=length[v];gap+=exit_gap[v];v=next_base[v]
+                if v==a:break
+            assert cells==m//h and gap==p//h;column_cycles+=1
+        assert column_cycles==h
+        seen=set();cycles=[]
+        for start in range(m):
+            if start in seen:continue
+            vertices=[];resources=[];fund=charge=free=weighted_fund=weighted_charge=0;s=start
+            while s not in seen:
+                seen.add(s);vertices.append(s);t=(s+g)%m;J,rem=divmod(D['w'][s]+p-D['w'][t],m)
+                assert not rem and J>=0
+                if J:
+                    fund+=J-1;resources.append(J-1);weighted_fund+=cell_length[s]*(J-1)
+                else:
+                    fee=fees[min(s,g),max(s,g)] if s else 0
+                    assert fee in (0,1);charge+=fee;free+=fee==0;resources.append(-fee)
+                    if not(s in known_zero and t in known_zero):weighted_charge+=cell_length[s]*fee
+                s=t
+            assert s==start and len(vertices)==m//h
+            assert fund-charge==(p-m)//h+free>0
+            # Cut just after a minimum prefix: all rotated balances stay >=0.
+            total=minimum=cut=0
+            for k,v in enumerate(resources):
+                total+=v
+                if total<minimum:minimum=total;cut=k+1
+            balance=0
+            for v in resources[cut:]+resources[:cut]:balance+=v;assert balance>=0
+            assert balance==fund-charge
+            cycles.append({'orbit':start,'start':vertices[cut%len(vertices)],'length':len(vertices),
+                           'strict_excess':fund,'unit_allowance_cost':charge,'free_tight_edges':free,'surplus':balance,
+                           'column_weighted_strict_excess':weighted_fund,'column_weighted_active_allowance':weighted_charge})
+        out.append({'primitive':p,'residue':g,'column_cycles':h,'cycles':cycles})
+    return out
 
 def axis_transport_network(D,zero_aware=False):
     """Column reflections and a global network of axis-adding decompositions."""
@@ -95,6 +151,8 @@ def axis_transport_network(D,zero_aware=False):
 def audit_axis_transport(C):
     D=C['seed'];audit(D)  # independent membership/minimal generators/Apéry audit
     zero_aware=C.get('zero_aware',False);N=axis_transport_network(D,zero_aware);R=C['flow'];m,e,r=D['m'],D['e'],D['r']
+    full_known=set(N['known_zero'] if zero_aware else axis_transport_network(D,True)['known_zero'])
+    primitive_cycles=primitive_cycle_budget(D,full_known)
     assert (R['nodes'],R['arcs'],R['flow'])==(N['nodes'],len(N['arcs']),N['demand'])
     flows=R['flows'];potential=R['potential']
     assert len(flows)==len(N['arcs']) and len(potential)==N['nodes']
@@ -136,7 +194,7 @@ def audit_axis_transport(C):
             'reflection_cost':N['constant'],'allowance_cost':old_cost,'unpaid_cost':unpaid_cost,
             'transport_cost':unpaid_cost if zero_aware else old_cost,
             'baseline_bound':baseline,'actual_bound':actual,'gamma':gamma,
-            'net_rows':[[p,v] for p,v in enumerate(net) if v]}
+            'net_rows':[[p,v] for p,v in enumerate(net) if v], 'primitive_cycles':primitive_cycles}
 
 def interior_sources(D):
     """Residue injection from interior column bases to distinct boundary cells."""
