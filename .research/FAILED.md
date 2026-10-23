@@ -316,3 +316,25 @@ or Wilf. It rules out the tempting fixed cellwise allocation in a proof of that 
 The canonical degree allocation has sufficient PARENT capacities but may exceed individual
 beta source capacities; do not describe it or the inversion preflow as a feasible full flow.
 The41 positive exact cut checks are closed diagnostics, not a uniform capacity theorem.
+
+## E433 — joint-interior credit does not pay the cut (2026-10-23)
+
+FALSE: h(E)<=|A-Delta_1|, where A consists of cells with ALL active successors inside E.
+The cross-sum proof that |A-Delta_1|<=m is valid; the claimed payment is not.
+
+Genuine S=<40,41,42,43>, m40,e4,c520,g273,W468, rho0, has canonical cut
+E={0,e1,e2,e3,2e2,e2+e3,2e3}. Benefits total16 and nonmaximal divisor capacities total11,
+so h5. A={0} and its difference set has4 points. Direct columns give Dep2,N0,kappa0:
+the missed credit is already a boundary problem without modular carry loss. Another
+checked cut in <62,87,88,89> has demand30 and interior credit16.
+
+The independent membership/flow/column audits are in data/completion_structure_audit.json.
+Five discovery failures on the SAME41 saved selected cuts are listed in
+data/completion_interior_test.json; only40 and62 are used as independently audited
+falsifications. No failure of the global m allowance or Wilf is asserted.
+
+STOP this interior-only allocation. The replacement directional residue pool in PROOFS
+E433 counts separate ray starts and their actual cyclic aliases; its global payment remains
+UNKNOWN. Two exact all-cut checks are diagnostics, not a new positivity theorem. Also stop
+the generic supported-matrix idea unless an arithmetic operator is actually constructed:
+mere existence of a high-rank supported matrix is equivalent to the same Hall condition.

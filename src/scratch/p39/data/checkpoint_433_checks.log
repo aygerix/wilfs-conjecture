@@ -1,0 +1,4 @@
+--completion-cut-check {'size': 7, 'missing': 33, 'Dep': 2, 'N': 0, 'kappa': 0, 'budget': 35, 'G': [40, 41, 42, 43], 'kept': [0, 1, 2, 3, 4, 5, 6], 'cut_capacity': 308, 'actual_W': 468, 'genuine_negative_W': False, 'completion_failure': False, 'negative_mass': 313, 'maximum_Hall_deficiency': 5, 'cut_height': 2, 'witness_one_per_cell_shortfall': 0, 'independently_enumerated_ideals': None, 'global_optimum_over_downsets': True}
+EXACTLY CERTIFIED 1 global down-set minima ; no universal sign claim
+COMPLETION-POOL {'G': [40, 41, 42, 43], 'm': 40, 'e': 4, 'c': 520, 'actual_W': 468, 'pool_budget': 0, 'pool_size': 1, 'deficiency': 1, 'global_completion_budget': 39, 'size': 1, 'pool': [0], 'kept': [0], 'pool_payment_failure': False, 'completion_failure': False, 'genuine_negative_W': False, 'global_optimum_over_downsets': True}
+EXACTLY CERTIFIED 1 directional-pool minima; negative pool budget is not a Wilf failure

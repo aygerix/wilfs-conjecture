@@ -1,0 +1,56 @@
+[
+  {
+    "G": [
+      114,
+      305,
+      307,
+      310
+    ],
+    "m": 114,
+    "e": 4,
+    "c": 2967,
+    "actual_W": 2161,
+    "pool_budget": 0,
+    "pool_size": 1,
+    "deficiency": 1,
+    "global_completion_budget": 113,
+    "size": 1,
+    "pool": [
+      0
+    ],
+    "kept": [
+      0
+    ],
+    "pool_payment_failure": false,
+    "completion_failure": false,
+    "genuine_negative_W": false,
+    "global_optimum_over_downsets": true
+  },
+  {
+    "G": [
+      40,
+      41,
+      42,
+      43
+    ],
+    "m": 40,
+    "e": 4,
+    "c": 520,
+    "actual_W": 468,
+    "pool_budget": 0,
+    "pool_size": 1,
+    "deficiency": 1,
+    "global_completion_budget": 39,
+    "size": 1,
+    "pool": [
+      0
+    ],
+    "kept": [
+      0
+    ],
+    "pool_payment_failure": false,
+    "completion_failure": false,
+    "genuine_negative_W": false,
+    "global_optimum_over_downsets": true
+  }
+]

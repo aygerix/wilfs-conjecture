@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 06:30 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 07:01 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,15 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E433, current allocation test:** the joint-interior difference-set payment is FALSE,
+including a zero-carry cut in <40,41,42,43> (Hall demand5, interior credit4). The62 cut
+fails30 versus16. A replacement pool U(E) retains the residues of nonmaximal cells and
+one-direction negative boundary starts, counting aliases once. The universal claim
+h(E)<=|U(E)|<=m would imply E432, but is UNKNOWN. It is equivalent to routing all
+nonzero sources in an explicit augmented graph; the origin reserves its one unit.
+Two exact all-cut C checks pass (40 and114); they are closed diagnostics, not a theorem.
+Critical-cut deletion conditions and an exact phase-walk/mean identity are paper-proved.
 
 **E432, current finite-payment formulation:** the support completion functional over every
 sub-tile is exactly a weighted closure/minimum-cut problem. Inversions linearize, all cell
@@ -207,6 +216,16 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 3.5-6.2 seconds versus 25-55 minutes for tested e = 4 instances. These are previous results, not new benchmarks.
 Audit height filters, fixed-size limits and exact certificate coverage before adapting the existing code.
 
+**E433 inventory additions:** `upper_scan.c --support-pool-cut m g...` is pure C and exports
+an exact all-down-set minimum of |U(E)|-h(E), with flow/cut certificate; exit5 means a failed
+POOL claim, not Wilf. `verify_probe.py --completion-pool-check INPUT OUTPUT` independently
+reconstructs membership, pool residues, full graph and integer certificate.
+`--completion-structure-check data/completion_cut_probe.jsonl.gz OUTPUT` reuses just13/17,
+40,62,114 to check residual-minimal cuts, strict deletion conditions and all their phase
+identities. The41-fixture reports completion_interior_test.json and completion_pool_test.json
+are selected-cut falsification diagnostics; only completion_pool_probe.jsonl.gz checks every
+cut for the NEW pool objective, on TWO tiles. Do not conflate those coverages.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -223,8 +242,17 @@ proofs, not positivity. The uniform deficiency<=m theorem remains UNKNOWN and is
 than the complete-tile support bound, itself stronger than Wilf. A negative proper cut need
 not refute Wilf. No reduction from all S to the41 diagnostic profiles is claimed.
 
-**First precise next proof task:** construct the global flow/charge allocation using the COMPLETE
-cyclic residue system. The canonical degree allocation respects parent capacities; its unused
+**First precise next proof task (E433):** construct a simultaneous routing of every NONZERO
+cell's beta units into proper-divisor capacities omega and the permitted nonzero directional
+pool units. For each canonical edge u->z=u+e_j, source z can reach the free residue phi(u),
+and also phi(u)-delta_j when u_j=0; parent implications permit further descent. Each nonzero
+free residue has capacity1, with aliases counted ONCE. The origin's benefit1 is reserved.
+Equivalently prove h(E)<=|U(E)|, where U={0} union phi(nonmax E) union the negative boundary
+starts above. Height<=1 cuts satisfy it, but a maximal-cell induction can add charge without
+enlarging U when all parents were already nonmaximal. Retain and redistribute earlier slack;
+do not launch more positive-profile checks or treat the two passing tiles as global evidence.
+
+The older global degree/inversion identity may help: the degree allocation respects parent capacities; its unused
 amount at a nonmaximal parent is Gamma. The explicit inversion flux cancels eta in the source
 balances and leaves1+kappa(z)-sum_(missing directions)I_j(z). Those balances can be negative;
 neither construction is asserted feasible under the actual beta source capacities. Resolve
@@ -232,6 +260,13 @@ these balances globally, leaving at most m unmatched units. An injection of all 
 unmatched charges into DISTINCT cyclic residue classes would suffice. Do not assign one free
 unit rigidly to each source: the114case has a34-cell witness with Hall deficiency39, failing
 that local rule by5. Do not require columns, directions or cells to pay separately.
+
+**Stopped E433 routes:** an unspecified matrix of nullity<=m only restates Hall, without an
+arithmetic operator or kernel proof. Requiring ALL successors for the interior credit is
+false: the40 example has kappa=N=0, so its shortfall already comes from boundary structure.
+The directional pool retains those missing starts; this is a candidate mechanism, not a
+proved repair. PRIVATE/CRIT conditions on minimal bad cuts restrict shared parents but do
+not exclude the14-maximal-cell114 core. See PROOFS/FAILED E433 for exact statements.
 
 If the stronger completion claim fails, classify the exact cut and keep the weaker full-tile
 payment target; do not abandon the universal goal or assume the stronger auxiliary conjecture
@@ -265,7 +300,11 @@ are41 normal exact flow certificates plus3 sanitizer replays, and41 selected-pat
 C ASan/UBSan passes the flow paths and partial geometry. Logs are data/checkpoint_432_checks.log
 and data/completion_cut_sanitizer.log. The checks are in run_checks.sh; unchanged264 LP optima
 were not rerun merely to inflate this checkpoint. E430/E431 checks remain in that suite.
-All E432 general mathematical statements remain paper-proved, not Lean checked. No universal
+E433 adds4 exact structure audits,2 pool-flow certificates and one pool ASan/UBSan replay;
+the changed original completion path was also re-audited on40. Files are
+data/completion_structure_audit.json, completion_pool_probe.jsonl.gz, completion_pool_audit.json,
+completion_pool_sanitizer.jsonl and checkpoint_433_checks.log. No new solver LP or census.
+All E432/E433 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

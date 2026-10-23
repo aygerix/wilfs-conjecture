@@ -1160,3 +1160,15 @@ self-contained conversion for the support functional. No novelty is claimed for 
 closure optimization. No external theorem is used to assert Delta_H<=m: that new sufficient
 capacity target remains unproved. Exact searches for the Wilf column/carry/partial-tile
 statement supplied no theorem used in the proof; absence of a search hit is not a priority claim.
+
+### E433 allocation check (2026-10-23)
+
+Searched the existing record for interior/difference-body/matrix-rank arguments before
+using them. The one-step cross-sum injection is already proved in Ray identity/E344 and
+E420, so no novelty is attributed to it. The new joint-interior PAYMENT claim is false;
+PROOFS/FAILED E433 give exact counterexamples. The full-tile phase averaging identity is
+also older; E433 derives its fixed-partial-cut version and critical deletion conditions.
+Web searches for Wilf with linear algebra, Hall/monomial matching, and negative boundary
+residue matching supplied no theorem USED to prove the proposed directional-pool allocation.
+This is not a priority claim or an exhaustive literature exclusion. The new closure test
+uses the same standard Picard reduction cited above. Its universal sign remains UNKNOWN.

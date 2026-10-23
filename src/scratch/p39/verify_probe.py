@@ -56,7 +56,7 @@ def partial_support_geometry(D,kept):
     return {'size':len(kept),'missing':m-len(kept),'Dep':dep,'N':N,'kappa':kappa,
             'budget':dep+N-kappa+m-len(kept),'nonmax':nonmax}
 
-def completion_graph(D):
+def completion_graph(D,pool=False):
     m=D['m'];gr,z=factor_basis(D);d=len(gr);inv={v:s for s,v in z.items()};eta=[0]*m
     for j in range(d):
         cols=defaultdict(list)
@@ -73,15 +73,21 @@ def completion_graph(D):
           sum(z[s][j] for j in range(d) if gr[j]<=(s+D['rho'])%m) for s in range(m)]
     assert co==[-v for v in beta] and all(v>=1 for v in beta)
     omega=[d+sum(z[s]) for s in range(m)];benefit=-sum(v for v in co if v<0)
-    source,sink=2*m,2*m+1;arcs=[]
+    source=(3 if pool else 2)*m;sink=source+1;arcs=[]
     for s in range(m):
         if co[s]<0:arcs.append([source,s,-co[s]])
         elif co[s]>0:arcs.append([s,sink,co[s]])
         arcs.append([m+s,sink,omega[s]])
+    if pool:
+        for s in range(m):arcs.append([2*m+s,sink,int(s!=0)])
     for s in range(m):
         for j in range(d):
             v=list(z[s]);v[j]+=1;t=inv.get(tuple(v))
-            if t is not None:arcs.extend([[t,s,benefit+1],[t,m+s,benefit+1]])
+            if t is not None:
+                arcs.extend([[t,s,benefit+1],[t,m+s,benefit+1]])
+                if pool:
+                    arcs.append([t,2*m+s,benefit+1])
+                    if not z[s][j]:arcs.append([t,2*m+(s-gr[j])%m,benefit+1])
     return {'m':m,'gr':gr,'z':z,'eta':eta,'co':co,'beta':beta,'omega':omega,'benefit':benefit,'arcs':arcs,'source':source,'sink':sink}
 
 def audit_completion_cut(C):
@@ -136,6 +142,121 @@ def audit_partial_support(C):
     if R['budget']>=0:assert R['checked']==2*D['m']
     return {**{k:v for k,v in P.items() if k!='nonmax'},'G':D['generators'],'actual_W':D['W'],
             'genuine_negative_W':D['W']<0,'tested_patterns':R['checked']}
+
+def audit_completion_pool_cut(C):
+    D,R=C['seed'],C['cut'];audit(D);G=completion_graph(D,True);m=D['m'];n=3*m+2
+    assert R['pool_mode'] and all(R[k]==D[k] for k in ('m','e','c','rho'))
+    assert [a[:3] for a in R['arcs']]==G['arcs']
+    assert R['weights']==G['co'] and R['omega']==G['omega'] and R['negative_mass']==G['benefit']
+    cut=set(R['cut']);assert G['source'] in cut and G['sink'] not in cut and all(0<=v<n for v in cut)
+    balance=[0]*n;capacity=0;residual=defaultdict(list)
+    for u,v,cap,f in R['arcs']:
+        assert all(type(a) is int for a in (u,v,cap,f)) and 0<=f<=cap
+        balance[u]-=f;balance[v]+=f
+        if u in cut and v not in cut:capacity+=cap
+        if f<cap:residual[u].append(v)
+        if f:residual[v].append(u)
+    value=R['cut_capacity'];expected=[0]*n;expected[G['source']]=-value;expected[G['sink']]=value
+    assert balance==expected and capacity==value
+    reachable={G['source']};queue=[G['source']]
+    for u in queue:
+        for v in residual[u]:
+            if v not in reachable:reachable.add(v);queue.append(v)
+    assert reachable==cut
+    E={s for s in range(m) if s in cut};assert E==set(R['kept']) and len(E)==R['size']
+    P=partial_support_geometry(D,E);z=G['z'];lookup={v:s for s,v in z.items()};pool={0}
+    for s in E:
+        for j,g in enumerate(G['gr']):
+            v=list(z[s]);v[j]+=1
+            if lookup.get(tuple(v)) in E:
+                pool.add(s)
+                if not z[s][j]:pool.add((s-g)%m)
+    assert {s for s in range(m) if m+s in cut}==P['nonmax']
+    assert {0}|{s for s in range(m) if 2*m+s in cut}==pool
+    deficiency=sum(G['beta'][s] for s in E)-sum(G['omega'][s] for s in P['nonmax'])
+    # E432 value at THIS pool-optimal cut, not the separate E432 minimum.
+    assert P['budget']==R['global_completion_budget']==m-deficiency
+    assert R['budget']==1+value-G['benefit']==len(pool)-deficiency
+    return {'G':D['generators'],'m':m,'e':D['e'],'c':D['c'],'actual_W':D['W'],
+            'pool_budget':R['budget'],'pool_size':len(pool),'deficiency':deficiency,
+            'global_completion_budget':P['budget'],'size':len(E),'pool':sorted(pool),
+            'kept':sorted(E),'pool_payment_failure':R['budget']<0,
+            'completion_failure':P['budget']<0,'genuine_negative_W':D['W']<0,
+            'global_optimum_over_downsets':True}
+
+def audit_completion_structure(C):
+    """Audit E433 on an existing C flow, without a new search or optimization."""
+    base=audit_completion_cut(C);D,R=C['seed'],C['cut'];G=completion_graph(D)
+    m=D['m'];d=len(G['gr']);z=G['z'];lookup={v:s for s,v in z.items()}
+    # Residual reachability gives the inclusion-smallest minimum source-side cut.
+    residual=defaultdict(list)
+    for u,v,cap,f in R['arcs']:
+        if f<cap:residual[u].append(v)
+        if f:residual[v].append(u)
+    reachable={G['source']};queue=[G['source']]
+    for u in queue:
+        for v in residual[u]:
+            if v not in reachable:reachable.add(v);queue.append(v)
+    assert reachable==set(R['cut'])
+    E=set(R['kept']);P=partial_support_geometry(D,E);children={s:[] for s in E}
+    for s in E:
+        for j in range(d):
+            v=list(z[s]);v[j]+=1;t=lookup.get(tuple(v))
+            if t in E:children[s].append(t)
+    maxima=E-P['nonmax'];private=[]
+    for s in sorted(maxima):
+        parents=[u for u in E if children[u]==[s]]
+        cost=sum(G['omega'][u] for u in parents);benefit=G['beta'][s]
+        assert benefit>cost,(s,benefit,cost)
+        if s:
+            assert benefit<=2*sum(z[s])
+            if d>=2:assert len(parents)<=1
+            if parents:
+                K=sum(z[s][j]*G['gr'][j] for j in range(d))//m
+                wrapped=sum(z[s][j] for j in range(d) if G['gr'][j]>(s+D['rho'])%m)
+                assert K-wrapped>=d-1 and sum(z[s])>=d
+        private.append({'residue':s,'word':list(z[s]),'degree':sum(z[s]),'beta':benefit,
+                        'private_parents':parents,'private_capacity':cost})
+    active=[j for j in range(d) if any(z[s][j] for s in E)]
+    interior={s for s in E if all(lookup.get(tuple(a+(i==j) for i,a in enumerate(z[s]))) in E
+                                 for j in active)}
+    difference={z[s] for s in interior}
+    for s in interior:
+        for j in active:
+            v=list(z[s]);v[j]-=1;difference.add(tuple(v))
+    residues={sum(v[j]*G['gr'][j] for j in range(d))%m for v in difference}
+    assert len(residues)==len(difference)<=m
+    assert len(difference)==len(interior)+sum(z[s][j]==0 for s in interior for j in active)
+    # Change phase only as a combinatorial diagnostic. The new phases are not
+    # asserted to be conductors of genuine semigroups with this tile.
+    deficiencies=[];gamma={s:0 for s in E}
+    for s in E:
+        for j in range(d):
+            v=list(z[s]);v[j]+=1
+            if lookup.get(tuple(v)) not in E:gamma[s]+=z[s][j]+1
+    assert sum(gamma.values())==d*len(E)
+    for rho in range(m):
+        phase={**D,'rho':rho};T=partial_support_geometry(phase,E)
+        beta=[1+sum(z[s][j]*G['gr'][j] for j in range(d))//m+
+              sum(z[s][j] for j in range(d) if G['gr'][j]<=(s+rho)%m) for s in E]
+        deficiency=sum(beta)-sum(G['omega'][s] for s in P['nonmax'])
+        assert m-deficiency==T['budget']
+        deficiencies.append(deficiency)
+    for rho in range(m):
+        top=(m-1-rho)%m
+        assert deficiencies[(rho+1)%m]-deficiencies[rho]==(d-gamma[top] if top in E else 0)
+    assert sum(deficiencies)==m*(len(E)-P['Dep'])-sum(E)
+    return {'G':D['generators'],'actual_W':D['W'],'size':len(E),
+            'conductor_phase':D['rho'],'conductor_deficiency':deficiencies[D['rho']],
+            'maximum_phase_deficiency':max(deficiencies),'phase_deficiencies':deficiencies,
+            'phase_sum':sum(deficiencies),'Dep':P['Dep'],'residue_sum':sum(E),
+            'active_directions':active,'interior_words':[list(z[s]) for s in sorted(interior)],
+            'difference_size':len(difference),
+            'interior_payment_shortfall':max(0,deficiencies[D['rho']]-len(difference)),
+            'cut_cells':[{'residue':s,'word':list(z[s]),'beta':G['beta'][s],
+                          'omega':G['omega'][s],'nonmaximal':s in P['nonmax']} for s in sorted(E)],
+            'inclusion_smallest_optimal_cut':True,'maximal_cells':private,
+            'checked_phases':m,'completion_failure_at_actual_phase':base['completion_failure']}
 
 def membership_stats(G,apery_modulus=None):
     """Membership DP independent of the C shortest-path reconstruction."""
@@ -984,6 +1105,29 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1]=='--completion-pool-check':
+        results=[audit_completion_pool_cut(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
+        with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)
+        for R in results:
+            print('COMPLETION-POOL',R)
+            if R['genuine_negative_W']:print('GENUINE NEGATIVE W: independent membership audit passed',R)
+        print('EXACTLY CERTIFIED',len(results),'directional-pool minima; negative pool budget is not a Wilf failure')
+        sys.exit(0)
+    if sys.argv[1]=='--completion-structure-check':
+        # Reuse the 114 witness, a boundary control and two falsifications of
+        # interior-only payment. This does not enlarge the closed fixture list.
+        wanted={(114,305,307,310),(13,17),(40,41,42,43),(62,87,88,89)};results=[]
+        for line in open_text(sys.argv[2]):
+            C=json.loads(line)
+            if tuple(sorted(C['seed']['generators'])) in wanted:
+                results.append(audit_completion_structure(C))
+        assert {tuple(sorted(R['G'])) for R in results}==wanted
+        with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)
+        for R in results:
+            print('COMPLETION-STRUCTURE', {k:v for k,v in R.items() if k not in ('phase_deficiencies','maximal_cells','cut_cells')})
+            print('MAXIMAL-CELL TESTS',R['maximal_cells'])
+        print('EXACTLY AUDITED critical-cut and cyclic-phase identities; no universal sign claim')
+        sys.exit(0)
     if sys.argv[1] in ('--completion-cut-check','--partial-support-check'):
         check=audit_completion_cut if sys.argv[1]=='--completion-cut-check' else audit_partial_support
         results=[check(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]

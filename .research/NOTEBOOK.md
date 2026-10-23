@@ -5224,3 +5224,35 @@ problem rather than another coordinate-dependent dual sign condition. The comple
 if it fails, retain that weaker global payment rather than make this auxiliary conjecture sacred.
 The three lines remain actual boundary/residue payment, full weighted coupling and arithmetic/
 integrality. No restricted family, proof claim, subagent or new manuscript was activated.
+
+### 2026-10-23 07:01 EDT — E433: reject joint-interior payment, retain directional starts
+
+Continued the approved all-S backward finite-payment target. An unspecified supported matrix
+with kernel dimension<=m only restates Hall; no operator was found, so stop that restatement.
+Derived strict deletion conditions for inclusion-minimal optimal/bad cuts. A maximal cell has
+at most one private parent; one forces degree>=d and K-minus-wrapped-degree>=d-1. The114
+optimal cut nonetheless has14 shared-parent maximal cells, so leaf removal is insufficient.
+Also derived the exact phase walk h_(rho+1)-h_rho=d-Gamma at the wrapping cell and its mean
+on any fixed proper cut. These are identities, not a positivity mechanism.
+
+Tried to pay unmatched mass using the one-step joint-interior difference set. The valid
+cross-sum injection gives its size<=m; the PAYMENT claim is false. In genuine40/41/42/43,
+the explicit7-cell cut has benefits16, proper-divisor capacity11, and interior difference
+size4. Thus h5>4 even with kappa=N=0. The62 cut fails30>16. Both independently checked;
+the five discovery failures used only the same41 old selected cuts. Stop interior-only credit.
+
+Global review: neither greater reconstruction accuracy nor a new name for Hall pays the
+finite correction. The interior failure identifies specifically omitted boundary starts.
+Retain them direction by direction in U(E)={0} union phi(nonmax E) union negative ray starts,
+counting actual residue aliases once. Proving h(E)<=|U(E)| would give the global allowance.
+Height<=1 works; a naive add-one-cell induction fails to account for earlier slack when
+parents were already nonmaximal. The next actual proof attempt must construct a simultaneous
+routing of all nonzero beta sources, not demand each added cell pay for itself.
+
+Added only a targeted C falsification mode for this claim. The41 OLD selected cuts pass,
+which is limited coverage for a different objective. Exact all-cut tests on JUST40 and114
+then both give minimum0; independently verified integer flows/cuts, ASan/UBSan40 and an
+old-path40 regression pass. These checks are closed. No more positive-tile census is next.
+The uniform routing theorem is UNKNOWN. All proof/status/data links and the first next
+action are in the single STATE handoff. Other universal lines remain full weighted coupling
+and actual arithmetic/integrality; no narrower family or unapproved subagent was activated.

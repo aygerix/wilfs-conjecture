@@ -8830,3 +8830,143 @@ were nonnegative, and independent exhaustive ideal enumeration agreed on the13-p
 semigroup census or a universal sign argument. The diagnostic is CLOSED; do not enlarge it.
 The general identities/reductions are paper-proved, not Lean checked. The finite Hall inequality
 remains unproved, and may be stronger than necessary even if Wilf is true.
+
+## E433 — critical cuts, phase drift, and a falsified interior payment (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF the E432 Hall bound holds throughout
+c>4m,3e<m. Proved reduction from all S to this case: yes, E432/SUPP-WILF and the recorded
+complement theorems. The results below constrain that universal allocation; they do not prove
+its sign. No restriction to the four checked semigroups, embedding dimension or height is made.
+All general assertions here are paper proofs, not Lean checked. No novelty claim is made.
+
+### Deleting a critical cut — PROVED necessary conditions
+
+Write h(E)=sum_E beta-sum_(nonmax E) omega. Choose an inclusion-minimal maximizer E of h
+among down-sets. Such E is the cell set reachable from the source in the residual network of
+an E432 maximum flow: residual reachability is contained in every minimum source-side cut.
+Alternatively, in a contradiction proof choose an inclusion-minimal E with h(E)>m. The
+following strict deletion inequality holds in either situation.
+
+If V is a nonempty upper ideal of E, then E\V is a down-set and
+
+    sum_V beta > sum_(u in nonmax(E) \ nonmax(E\V)) omega(u).       (CRIT)
+
+Indeed the difference of the two sides is h(E)-h(E\V), which is strictly positive by the
+choice of E. For a maximal cell z, let P_z consist of its immediate parents whose ONLY
+immediate child in E is z. Exactly those parents become maximal on deleting z. Thus
+
+    beta(z) > sum_(u in P_z) (d+|u|).                           (PRIVATE)
+
+For n=|z|>0, K=floor(z.delta/m)<=n-1, hence beta(z)<=2n. Every member of P_z has
+capacity d+n-1. If d>=2, there can be at most one private parent. If there is one, put
+T=sum_(j:delta_j>r(z)) z_j. Since beta=1+K+n-T, PRIVATE implies
+
+    K-T >= d-1,             n>=d.                             (CARRY-PRIVATE)
+
+These are restrictions on a potentially bad CUT, not a restriction of the semigroup domain.
+They are not sufficient for a violation: the saved114 cut has14 maximal degree4 cells,
+all with NO private parent, and still h=39<m114. Replacing the global problem by leaf removal
+would discard this shared-parent core.
+
+### Moving the phase — PROVED exact identities, not a semigroup construction
+
+Keep E,D,delta fixed and replace rho by any rho in Z/m. Let h_rho(E) be its deficiency and
+Gamma_E(v)=sum_(j:v+e_j notin E)(v_j+1). Let v be the unique cell in D with
+phi(v)=m-1-rho modulo m. Then
+
+    h_(rho+1)(E)-h_rho(E) = d-Gamma_E(v) if v in E, else 0.    (PHASE)
+
+To prove this, the indicator [delta_j<=r(z)] gains1 only at r(z)=delta_j-1 and loses1
+at r(z)=m-1. The first event has parent v=z-e_j, so its total positive contribution is
+sum_(j:v+e_j in E)(v_j+1). The negative contribution is |v| when v belongs to E.
+Their difference is d-Gamma_E(v). A parent outside E has no child inside a down-set.
+
+For each cell, averaging the BETA formula over phases gives
+
+    mean_rho beta_rho(z)=1+|z|-phi(z)/m.
+
+Using Dep(E)=d|E|-sum_max(E)(d+|z|), it follows that
+
+    sum_(rho=0)^(m-1) h_rho(E)=m(|E|-Dep(E))-sum_(z in E)phi(z). (MEAN)
+
+In particular the mean completion budget is m-|E|+Dep(E)+sum_E phi/m>=0. This does NOT
+bound its phase minimum. For E=D the mean deficiency is (m+1)/2-Dep(D), a rewriting of the
+older column/carry averaging identity; the extension here keeps a fixed proper cut. Other
+phases are not asserted to be realizable conductor phases with the same actual generators.
+
+### Interior-only payment — FALSE, including a zero-carry obstruction
+
+For the active coordinates J of E put Delta_J={0} union {e_j:j in J}, and
+A={u:u+Delta_J subset E}. The standard cross-sum argument proves that the residue map is
+injective on A-Delta_J: equal residues of u-v and u'-v' imply equal residues of u+v' and
+u'+v, both in E. Consequently
+
+    L(E):=|A-Delta_J|=|A|+sum_(j in J)|{u in A:u_j=0}| <=m.
+
+The tempting allocation claim h(E)<=L(E) is FALSE. A fully checked cut in
+S=<40,41,42,43>, m40,e4,c520,g273,W468, has canonical words
+
+    E={0,e_1,e_2,e_3,2e_2,e_2+e_3,2e_3},  delta=(1,2,3), rho=0.
+
+Its benefits in that order are 1,2,2,2,3,3,3 (total16). The nonmaximal cells are
+0,e_2,e_3 with capacities3,4,4 (total11). Hence h(E)=5. But A={0}, so L(E)=4.
+Direct columns give Dep=2,N=0,kappa=0. Thus the missing unit is NOT caused by modular
+carry loss: the joint interior misses boundary contributions even in a zero-carry cut.
+This is a counterexample in the actual remaining domain, not a Wilf failure (W468>0).
+
+An independently audited62 cut in <62,87,88,89> has h30,L16. A discovery pass through the
+same41 old selected cuts found five failures; only these two are used as the audited
+falsifications. No new semigroup population was enumerated. Stop interior-only payment.
+
+### A directional residue pool — explicit replacement target, UNKNOWN
+
+The failed joint interior required every primitive successor. Retain direction-specific
+boundary starts instead. For every E define the set of RESIDUES
+
+    U(E)={0} union phi(nonmax E)
+             union {phi(u)-delta_j mod m:u in E,u_j=0,u+e_j in E}.
+
+Coincident residues are counted ONCE. The new sufficient claim is
+
+    h(E)<=|U(E)| for every genuine D and every down-set E.     (POOL, UNKNOWN)
+
+Since U(E) subset Z/m, POOL implies the E432 Hall bound. It is a global residue allocation,
+not one credit fixed at each selected cell. Height<=1 cuts satisfy it: for k active unit
+cells U={0,-delta_j}, so |U|=k+1, whereas h<=1+2k-d<=k+1. This checks a necessary boundary,
+not a reduction of the research domain.
+
+There is an exact min-cut falsification test. Extend E432's graph by pool nodes p_s, with
+p_s->sink capacity1 for s!=0 and capacity0 for s=0. For every canonical edge u->z=u+e_j,
+add implications b_z->p_(phi(u)) and, if u_j=0, b_z->p_(phi(u)-delta_j). The first implication
+activates precisely nonmaximal residues, and the second activates the directional starts.
+Thus selected pool nodes of positive cost are exactly U(E)\{0}, and
+
+    min_E (|U(E)|-h(E)) = 1+maxflow-sum_D beta.              (POOL-CUT, PROVED)
+
+This is another standard closure reduction, not a proof of POOL. Since b_0 has benefit1
+and no outgoing implication, its unit cannot be routed. POOL is equivalently the assertion
+that ALL nonzero cell sources can be routed simultaneously using divisor capacities and
+the permitted nonzero pool units. This makes the constructive obligation explicit.
+
+Simple maximal-cell induction is insufficient: adding a cell with already-nonmaximal
+parents can add positive beta without adding any pool residue. Earlier slack must be
+retained and redistributed; no individual step is assumed to pay for itself.
+
+Selected old maximum-h cuts pass POOL on the41 saved fixtures, which does NOT check every
+cut for this different objective. Exact POOL-CUT then checks ALL cuts of just the40 and114
+tiles; both have minimum0, attained at E={0}. Integer flow/cut and independent membership
+audits verify these two regional statements. They are CLOSED diagnostics, not a uniform
+sign theorem. Do not launch another positive-profile list. The next proof task is the
+simultaneous routing construction above, retaining the weaker E432 target if POOL fails.
+
+### Global review / stopped approaches
+
+An unspecified supported matrix with nullity<=m is not a mechanism: after expanding the
+integer source/sink capacities into unit copies, existence of rank>=sum beta-m is equivalent
+to the same Hall bound (a nonzero minor gives a matching; a matching gives such a matrix).
+No arithmetic operator with that rank was constructed. Stop this restatement unless an
+explicit operator and a new kernel proof are supplied. Stop joint-interior-only credit,
+which fails even with kappa=N=0. Continue the directional/global residue routing problem,
+not additional reconstruction accuracy. Weighted repair coupling and actual arithmetic/
+integrality remain the other two universal lines; no restricted-family programme is opened.
+The two pool certificate bundles are saved as data/completion_pool_probe.jsonl.gz.

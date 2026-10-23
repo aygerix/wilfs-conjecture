@@ -1,0 +1,110 @@
+{
+  "tested_existing_cuts": 41,
+  "failures": [
+    {
+      "G": [
+        19,
+        39,
+        41,
+        50,
+        52,
+        53
+      ],
+      "size": 19,
+      "active": 5,
+      "interior": 2,
+      "difference_size": 11,
+      "deficiency": 14,
+      "margin": -3
+    },
+    {
+      "G": [
+        80,
+        291,
+        292,
+        293
+      ],
+      "size": 24,
+      "active": 3,
+      "interior": 2,
+      "difference_size": 7,
+      "deficiency": 12,
+      "margin": -5
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "size": 7,
+      "active": 3,
+      "interior": 1,
+      "difference_size": 4,
+      "deficiency": 5,
+      "margin": -1
+    },
+    {
+      "G": [
+        62,
+        87,
+        88,
+        89
+      ],
+      "size": 36,
+      "active": 3,
+      "interior": 5,
+      "difference_size": 16,
+      "deficiency": 30,
+      "margin": -14
+    },
+    {
+      "G": [
+        66,
+        71,
+        72,
+        361,
+        98,
+        103,
+        128
+      ],
+      "size": 21,
+      "active": 6,
+      "interior": 1,
+      "difference_size": 7,
+      "deficiency": 10,
+      "margin": -3
+    }
+  ],
+  "minimum_margin": -14,
+  "selected": [
+    {
+      "G": [
+        13,
+        17
+      ],
+      "size": 13,
+      "active": 1,
+      "interior": 12,
+      "difference_size": 13,
+      "deficiency": 13,
+      "margin": 0
+    },
+    {
+      "G": [
+        114,
+        305,
+        307,
+        310
+      ],
+      "size": 34,
+      "active": 3,
+      "interior": 18,
+      "difference_size": 45,
+      "deficiency": 39,
+      "margin": 6
+    }
+  ],
+  "scope": "candidate strengthening only; no new semigroup census or universal sign proof"
+}

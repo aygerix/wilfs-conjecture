@@ -927,3 +927,57 @@ Mathematical deliverables are PROOFS E432: inversion linearization, the positive
 closure/Hall equivalence, a parent-capacity identity and exact inversion redistribution.
 The last two do not yet form a feasible full flow. The missing proof is Delta_H<=m uniformly,
 or a weaker complete-tile payment argument if that stronger completion claim fails.
+
+## E433 — targeted falsification and exact pool-flow checks (2026-10-23)
+
+**Target/scope:** universal E432 finite payment, with the same complement reduction; no fixed
+height/e family target. All new calculations used Fejer, project littlewood-paley-8375,
+us-east1-b, existing ~/wilf/p39. Pure C Dinic for the new optimization, Python STDLIB for
+exact independent auditing/orchestration; no Gurobi LP, Python optimizer, random seed or
+new semigroup census. Per-command elapsed times were not instrumented.
+
+1. Reused the41 selected cuts in completion_cut_probe.jsonl.gz to falsify
+h(E)<=|A-Delta_active|. Discovery found5 failures; completion_interior_test.json records them.
+Independent membership, exact flow/cut, direct columns and signed-vector residue injection
+then verified the40 and62 failures. These refute the proposed allocation, not Wilf.
+The40 witness has kappa=N=0; its failure is a boundary deficit even without carry loss.
+
+2. completion_structure_audit.json and completion_structure_checks.log check four EXISTING
+fixtures:13/17,40/41/42/43,62/87/88/89,114/305/307/310. The residual reachable set is verified
+to equal the C cut, so it is the inclusion-smallest optimum. PRIVATE and CARRY-PRIVATE hold
+on every maximal cell. All13+40+62+114=229 phases verify PHASE, MEAN and direct column counts.
+Other phases are combinatorial diagnostics, not claimed genuine semigroup reconstructions.
+For the114 cut h at conductor phase111 is39, its maximum over phases is42, and its interior
+difference size is45; the earlier one-credit-per-selected-cell rule still fails39>34.
+
+3. The replacement directional pool U(E) was first checked ONLY on those same41 selected
+old maximum-h cuts (completion_pool_test.json): no failure. That does NOT cover other cuts
+for the new objective. Added C --support-pool-cut then optimized |U|-h over EVERY down-set
+of the40 and114 tiles. Both minima are0, attained at E={0}. The certificate bundles are
+completion_pool_probe.jsonl.gz and the independent reports completion_pool_audit.json.
+The old114 witness has pool45 versus h39; the old40 witness has pool7 versus h5.
+These are two closed regional tests, not a universal POOL proof or a reason for more profiles.
+The export field global_completion_budget evaluates E432's functional AT THE POOL-OPTIMAL
+cut; it is not the independently minimized E432 objective. In these two certificates the
+pool-optimal cut is {0}, so those values113 and39 must not replace the old E432 minima.
+
+4. ASan/UBSan new pool path passed on40 (completion_pool_sanitizer.jsonl), checked again
+independently. The modified original --support-cut path on40 still gives h5 and completion
+budget35, with exact independent flow/column audit. checkpoint_433_checks.log records both.
+No unchanged broad LP tests were rerun; run_checks.sh now includes the saved structure and
+pool certificates. No Lean result is claimed.
+
+Reproduce from ~/wilf/p39:
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+./repair_scan --support-pool-cut 40 41 42 43
+./repair_scan --support-pool-cut 114 305 307 310
+python3 verify_probe.py --completion-pool-check data/completion_pool_probe.jsonl.gz /tmp/pool-audit.json
+python3 verify_probe.py --completion-structure-check data/completion_cut_probe.jsonl.gz /tmp/structure-audit.json
+```
+
+For new outputs, bundle the C JSON as cut beside the existing seed from the same generators.
+Exit5 means a negative proposed POOL budget, not negative actual W. Every reported actual
+semigroup invariant is checked by independent membership reconstruction. General CRIT/PHASE/
+MEAN/POOL-CUT proofs and the UNKNOWN uniform routing claim are in PROOFS E433.
