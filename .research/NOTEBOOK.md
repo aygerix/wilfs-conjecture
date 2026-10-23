@@ -5118,3 +5118,36 @@ weight bound improves from e-1 to the dimension of that quotient. Lift any resid
 error by signed tight multipliers at zero finite cost. No strict affine boundary is removed. This
 is a global structural lemma, not positivity; unique-factorization profiles retain the full e-1
 bound, so it does not revive collision-only funding.
+
+
+## 2026-10-23 — E430: global review after the transport/payment obstruction
+
+New paper result: the full certificate strictly decreases on tight primitive addition, hence
+its superlevel sets are down-sets, even in the real actual domain. The proof is only the lower
+tight row plus the positive primitive bound; it does not prove positivity. Raw/profile-patched
+baselines can violate weak order (eight comparisons among36 saved seeds). A proposed level-set
+payment for those baselines therefore has an omitted hypothesis.
+
+More consequential strategy finding: ALL36 current anchors already satisfy the older proved
+SUPP shape criterion. Their positive regional certificates diagnose auxiliary models but do not
+address resistant actual semigroups. The old63 height3 example survives only the shape criterion;
+it is also covered by the stronger residue-aware SUPP bound. This exclusion should have been
+applied earlier. STATE now puts the correction first and removes the stale chronological next
+steps. No existing exact LP certificate was invalidated.
+
+Two bounded C descents were completed and closed, rather than enlarged: the weighted support
+margin reaches543 from1211; the cycle-excess diagnostic falls into the proved flat complement.
+Neither outcome is a general inequality. The cycle-rank interpretation is exact elementary
+counting, while the proposed binomial bound has no constructed injection or global allocation.
+A separate simple lo-only transport payment fails exactly on114/62/65 cases. The full weighted
+coupling/primitive-boundary approach is not thereby refuted.
+
+Global review: distance to result remains the finite arithmetic payment, not recession or
+instance reconstruction. Stop more positive regional minima, baseline order-ideal arguments
+without their hypothesis, and the failed sourcewise transport rule. Continue the advisor's
+global primitive/residue allocation: actual Gamma.mu must pay kappa_0-N; full certificates must
+pay the complete E429 coefficient budget and weighted losses. Maintain actual arithmetic,
+weighted full coupling, and boundary/residue counting as distinct lines. Require every future
+actual candidate report to state the shape, conductor-phase SUPP, and flat exclusions separately.
+This is a policy correction within BACKWARDS-WILF, not a return to false CASEB-FLAT or a fixed
+height/depth program. Exact statements and reproduction are in PROOFS/EXPERIMENTS E430.

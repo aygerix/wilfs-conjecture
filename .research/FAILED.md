@@ -263,3 +263,23 @@ Thus the E425 scalar surplus is not an independent additional source after objec
 its primitive value credit has already been spent. This does not rule out signed zero-RHS trades,
 unbalanced flows matched by adaptive cap loads, or a global boxed allocation. E429 retains exactly
 those possibilities. Do not revive nonnegative circulation-only funding under a new local weight.
+
+## E430 — baseline order and lo-only payment failures (2026-10-23)
+
+**False:** the raw or profile-zero-patched upper-closure baseline is antitone along tight primitive
+addition. In <60,67,71,121>, w55=355,w11=71,w6=426, but the patched baseline has l55=0<l6=1.
+Every full feasible certificate instead has y55>=2, since y6=1. The raw baseline already fails
+on <66,67,71,72,98,103,128>: b34=0<b35=1 along primitive67. The36-seed audit finds8 offending
+comparisons. Full certificates DO have strict primitive decrease (PROOFS E430); do not transfer
+that property to a cheaper baseline without proof.
+
+**False:** the ordinary axis network's uncovered lo-only reflection cost is at most rho. Reprice
+every positive arc to0, retain negative lo prices, and solve exactly: <114,305,307,310> gives183>111;
+<62,87,88,89> gives52>49; <65,82,214,217,265> gives79>62. Integer flow/dual audits and regeneration
+are in EXPERIMENTS E430. The larger P<=rho+support_sum remains unproved; this payment argument
+cannot prove it.
+
+**Strategy correction:** all36 current transport anchors satisfy the older proved SUPP shape
+criterion. Their positive certificate values are not evidence from unresolved actual Wilf cases.
+The old63 height3 case survives the shape-only filter but is also excluded by the residue-aware
+SUPP bound (kappa8<Dep42). Always distinguish those criteria. No enlarged positive-anchor survey.

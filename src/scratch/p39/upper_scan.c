@@ -14,6 +14,9 @@
  * --axis-flow FILE: exact integer min-cost flow for weighted column transport;
  *   exports a feasible flow and residual potentials for independent checking.
  * --axis-seed m g...: export exact seed invariants/rows without optimization.
+ * --supp-audit m g...: canonical support/column counts and SUPP-WILF identities.
+ * --supp-climb weighted|cycle ITER m g...: bounded local falsification of
+ *   the weighted support budget or proposed cycle-excess bound; no LP solver.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * --weighted-search NS SEED [MIN_E]: test W-e sum U>=0, stopping at first failure.
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
@@ -80,6 +83,48 @@ static int last_e,last_c,last_q,last_h;
 static uint64_t rnd(void){state^=state>>12;state^=state<<25;state^=state>>27;return state*2685821657736338717ULL;}
 static int pick(int n){return (int)(rnd()%(unsigned)n);}
 static int root(int *p,int a){while(p[a]!=a){p[a]=p[p[a]];a=p[a];}return a;}
+/* Canonical tile uses primitive RESIDUE order and first-coordinate lex minimum,
+ * matching verify_probe.factor_basis. No restriction on factorization height. */
+static ll supp_dep,supp_support,supp_credit,supp_kappa;
+static int supp_height,supp_lowmax;
+static void supp_geometry(int m,int e,int c,int r,int *w,int *mu,int *ord,int *gen,int dump){
+ int d=e-1,gr[MM],F[MM][MM]={{0}},gamma[MM]={0},maximal[MM]={0},at=0;
+ for(int s=1;s<m;s++)if(gen[s])gr[at++]=s;assert(at==d);
+ for(int k=1;k<m;k++){
+  int s=ord[k],found=0;
+  for(int j=0;j<d;j++){
+   int t=(s-gr[j]+m)%m;if(w[t]+w[gr[j]]!=w[s])continue;
+   int take=!found;
+   if(found)for(int a=0;a<d;a++){
+    int v=F[t][a]+(a==j);if(v!=F[s][a]){take=v<F[s][a];break;}
+   }
+   if(take)for(int a=0;a<d;a++)F[s][a]=F[t][a]+(a==j);found=1;
+  }assert(found);
+ }
+ supp_dep=supp_support=supp_credit=supp_kappa=0;supp_height=supp_lowmax=0;
+ ll dist_credit=0;
+ for(int s=0;s<m;s++){
+  int support=0,degree=0,axes=0;maximal[s]=1;
+  for(int j=0;j<d;j++){
+   support+=F[s][j]>0;degree+=F[s][j];axes+=(F[s][j]*gr[j])%m;
+   int t=(s+gr[j])%m,successor=1;
+   for(int a=0;a<d;a++)if(F[t][a]!=F[s][a]+(a==j)){successor=0;break;}
+   if(successor)maximal[s]=0;else gamma[s]+=F[s][j]+1;
+  }
+  if(degree>supp_height)supp_height=degree;
+  if(support)supp_support+=support-1;supp_kappa+=axes/m;
+  if(!maximal[s])supp_dep+=gamma[s];else if(mu[s])supp_lowmax++;
+  supp_credit+=(ll)gamma[s]*mu[s];dist_credit+=(ll)gamma[s]*((r-s+m)%m);
+ }
+ ll C=(ll)(e-2)*m*(m-1)/2,genus=0;for(int s=1;s<m;s++)genus+=w[s]/m;
+ ll W=(ll)e*(c-genus)-c;assert((dist_credit-C)%m==0);
+ assert(W==supp_credit+(dist_credit-C)/m);
+ if(dump){
+  printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"canonical_height\":%d,\"Dep\":%lld,\"support_sum\":%lld,\"kappa\":%lld,\"gamma_mu\":%lld,\"low_maximal\":%d,\"G\":[%d",m,e,c,genus,W,supp_height,supp_dep,supp_support,supp_kappa,supp_credit,supp_lowmax,m);
+  for(int j=0;j<d;j++)printf(",%d",w[gr[j]]);
+  printf("],\"gamma\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",gamma[s]);printf("]}\n");fflush(stdout);
+ }
+}
 static ll residual_assignment(int m,int *w,int *mu,int *U,int q,int rho,int r,
  int *count,int *res,int *perm,ll *alpha,ll *beta,int equality){
  int ix[MM],n=0;for(int s=0;s<m;s++){ix[s]=-1;if(U[s]){ix[s]=n;res[n++]=s;}}
@@ -129,6 +174,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
+ if(dump==11||dump==12){supp_geometry(m,e,c,r,w,mu,ord,gen,dump==11);last_e=e;last_c=c;last_W=W;return 1;}
  if(dump==10){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"q\":%d,\"rho\":%d,\"r\":%d,\"generators\":[%d",m,e,c,genus,W,q,rho,r,m);
   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);
@@ -329,6 +375,49 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>6&&!strcmp(argv[1],"--supp-climb")){
+  /* Bounded falsification only. mode=cycle tests Delta<=binom(d,2);
+   * mode=weighted tests Gamma.mu>=support_sum after the proved shape/flat
+   * exclusions. Neither a positive run nor a local optimum is a theorem. */
+  int weighted=!strcmp(argv[2],"weighted"),limit=atoi(argv[3]),ng=argc-4,G[MM];
+  if((!weighted&&strcmp(argv[2],"cycle"))||limit<0||limit>30||ng>MM)return 2;
+  for(int a=0;a<ng;a++)G[a]=atoi(argv[a+4]);ll unused=LLONG_MAX;long calls=0,accepted=0;
+  if(G[0]<2||G[0]>=MM)return 2;
+  for(int a=1;a<ng;a++)if(G[a]<=G[0])return 2;
+  for(int iter=0;;iter++){
+   if(!eval(G[0],G,ng,2,12,&unused))return 2;calls++;
+   if(supp_dep>=supp_support||(weighted&&supp_height<=2)){fprintf(stderr,"seed excluded by shape/flat theorem\n");return 2;}
+   ll num=weighted?supp_credit-supp_support:supp_support-supp_dep-(ll)(last_e-1)*(last_e-2)/2;
+   int den=weighted?last_c:1;ll W0=last_W;int c0=last_c;
+   printf("SUPP_CLIMB mode=%s iter=%d calls=%ld accepted=%ld score=%lld/%d\n",argv[2],iter,calls,accepted,num,den);
+   eval(G[0],G,ng,2,11,&unused);
+   if((weighted?num<0:num>0)||iter==limit){printf("SUPP_STOP reason=%s\n",(weighted?num<0:num>0)?"intermediate_inequality_failure":"iteration_limit");return 0;}
+   int found=0,BG[MM];
+   for(int a=0;a<ng;a++){
+    int lo=a?G[0]+1:3*(ng-1)+1,hi=a?8*G[0]:MM-1;
+    if(!a)for(int b=1;b<ng;b++)if(G[b]-1<hi)hi=G[b]-1;
+    for(int v=lo;v<=hi;v++){
+     if(v==G[a])continue;int T[MM];memcpy(T,G,ng*sizeof(int));T[a]=v;
+     calls++;if(!eval(T[0],T,ng,2,12,&unused))continue;
+     if(supp_dep>=supp_support||(weighted&&supp_height<=2))continue;accepted++;
+     ll nn=weighted?supp_credit-supp_support:supp_support-supp_dep-(ll)(last_e-1)*(last_e-2)/2;
+     int dd=weighted?last_c:1;
+     int better=weighted?nn*den<num*dd:nn>num;
+     if((ll)nn*den==(ll)num*dd&&last_W*c0<W0*last_c)better=1;
+     if(better){num=nn;den=dd;W0=last_W;c0=last_c;memcpy(BG,T,ng*sizeof(int));found=1;}
+     if(weighted?nn<0:nn>0){eval(T[0],T,ng,2,11,&unused);printf("SUPP_STOP reason=intermediate_inequality_failure calls=%ld\n",calls);return 0;}
+    }
+   }
+   if(!found){printf("SUPP_STOP reason=local_optimum calls=%ld accepted=%ld\n",calls,accepted);return 0;}
+   memcpy(G,BG,ng*sizeof(int));
+  }
+ }
+ if(argc>3&&!strcmp(argv[1],"--supp-audit")){
+  int G[MM],ng=argc-2;ll unused=LLONG_MAX;if(ng>MM)return 2;
+  for(int a=0;a<ng;a++)G[a]=atoi(argv[a+2]);if(G[0]<2||G[0]>=MM)return 2;
+  for(int a=1;a<ng;a++)if(G[a]<=G[0])return 2;
+  return eval(G[0],G,ng,2,11,&unused)?0:2;
+ }
  if(argc==3&&!strcmp(argv[1],"--axis-flow"))return axis_flow(argv[2]);
  if(argc>1&&!strcmp(argv[1],"--weighted-search")){unit_audit=2;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--unit-search")){unit_audit=1;argc--;argv++;}

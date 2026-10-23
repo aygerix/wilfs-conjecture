@@ -1,0 +1,10 @@
+BASELINE-ORDER 36 seeds; 8 violating primitive comparisons
+{'G': [60, 67, 71, 121], 'name': 'profile_zero', 'parent': 55, 'g': 11, 'target': 6, 'parent_value': 0, 'target_value': 1, 'Tparent': 4, 'Ttarget': 4, 'mu_parent': 3, 'mu_target': 1, 'parent_known': False, 'target_known': True}
+{'G': [60, 71, 121, 143], 'name': 'profile_zero', 'parent': 48, 'g': 11, 'target': 59, 'parent_value': 0, 'target_value': 1, 'Tparent': 3, 'Ttarget': 1, 'mu_parent': 3, 'mu_target': 1, 'parent_known': False, 'target_known': True}
+{'G': [66, 67, 71, 72, 98, 103, 128], 'name': 'raw', 'parent': 34, 'g': 1, 'target': 35, 'parent_value': 0, 'target_value': 1, 'Tparent': 2, 'Ttarget': 0, 'mu_parent': 2, 'mu_target': 1, 'parent_known': True, 'target_known': True}
+{'G': [104, 420, 453, 509], 'name': 'profile_zero', 'parent': 36, 'g': 93, 'target': 25, 'parent_value': 2, 'target_value': 5, 'Tparent': 8, 'Ttarget': 8, 'mu_parent': 10, 'mu_target': 5, 'parent_known': False, 'target_known': True}
+{'G': [146, 147, 155, 185], 'name': 'profile_zero', 'parent': 135, 'g': 9, 'target': 144, 'parent_value': 2, 'target_value': 4, 'Tparent': 4, 'Ttarget': 4, 'mu_parent': 6, 'mu_target': 4, 'parent_known': False, 'target_known': True}
+{'G': [146, 147, 155, 185], 'name': 'profile_zero', 'parent': 136, 'g': 9, 'target': 145, 'parent_value': 0, 'target_value': 3, 'Tparent': 5, 'Ttarget': 4, 'mu_parent': 5, 'mu_target': 3, 'parent_known': False, 'target_known': True}
+{'G': [146, 155, 184, 535], 'name': 'profile_zero', 'parent': 124, 'g': 38, 'target': 16, 'parent_value': 7, 'target_value': 8, 'Tparent': 3, 'Ttarget': 2, 'mu_parent': 10, 'mu_target': 8, 'parent_known': False, 'target_known': True}
+{'G': [146, 155, 184, 535], 'name': 'profile_zero', 'parent': 133, 'g': 38, 'target': 25, 'parent_value': 5, 'target_value': 7, 'Tparent': 4, 'Ttarget': 3, 'mu_parent': 9, 'mu_target': 7, 'parent_known': False, 'target_known': True}
+FULL-CERTIFICATE STRICT ORDER 31 exact saved joint points

@@ -688,3 +688,98 @@ optimizer calls. New C seed-export paths pass ASan/UBSan on3 inputs. The C conti
 passes ASan/UBSan on all6 allocation models, Gurobi leak detection disabled. The final exact rational
 budget audit is appended after correcting a display-only integer division to Fraction; all central
 primal/dual calculations were already exact. Log: data/checkpoint_429_checks.log.
+
+## E430 — support filter, baseline-order obstructions and closed C diagnostics (2026-10-23)
+
+Scope: BACKWARDS-WILF, all heights/depths in the remaining domain. The proved SUPP-WILF and
+Flat-MaxCL supply complements; the weighted support target is a sufficient unproved statement,
+not a new restricted-family goal. No new LP optimizer calls were made for this experiment.
+
+`upper_scan.c --supp-audit m g...` constructs the lex-least factorization tile in increasing
+primitive RESIDUE order, independently of the older value-order/reverse-lex p34 convention.
+It exports canonical height, Gamma, Dep, support sum, kappa_0, Gamma.mu and low maximal count.
+`verify_probe.py --support-audit INPUT OUTPUT [C_BINARY]` reconstructs membership/minimal
+generators, enumerates complete columns and checks the exact inversion/overflow/W identities.
+With a C binary it compares every exported count. This audit is now in run_checks.sh.
+
+Reproduce on fejer in ~/wilf/p39:
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+python3 verify_probe.py --support-audit data/axis_transport_zero.jsonl.gz /tmp/support.json ./repair_scan
+./repair_scan --supp-climb weighted 10 63 239 282 295 318 333 379 386 390 400 405 407
+./repair_scan --supp-climb cycle 10 63 239 282 295 318 333 379 386 390 400 405 407
+```
+
+Results:
+- All36 saved transport anchors satisfy Dep>=support_sum. They were already excluded from
+  actual Wilf counterexamples by the old proved shape theorem. They remain valid diagnostic
+  examples for auxiliary certificate claims, without being resistant actual cases.
+- Raw/profile-zero-patched baselines have8 primitive-edge violations of weak antitonicity;
+  explicit examples and a general strict-order proof for FULL certificates are in PROOFS E430.
+  The full-face auditor now checks strict primitive decrease at every saved feasible full point.
+- The weighted descent retains Dep<support_sum and canonical height>=3. Each step tries every
+  single input-generator replacement in [m+1,8m] and multiplicity replacements from
+  3*(input_list_length-1)+1 through min(255,smallest_other_input-1), maintaining the original
+  input generator-list length (actual minimal e may change).
+  Scores compare (Gamma.mu-support_sum)/c, then W/c. No global height/depth bound is assumed;
+  generator neighborhoods and number of steps ARE finite. It terminates at a local optimum,
+  not at the10-step cap. The accepted endpoint is
+  <63,239,358,379,381,386,390,396,400,405,407,408>, c754,g641,e12,W602, canonical height3,
+  Dep42,T44,kappa8,Gamma.mu587,low_maximal14. Weighted margin543 versus1211 initially.
+- The cycle diagnostic maximizes Delta-binom(d,2), then minimizes W/c. It terminates at a
+  local optimum with m42,e10,c771,g648,W459, canonical height2,Dep26,T28,kappa7,Gamma.mu436.
+  This endpoint is already covered by Flat-MaxCL; its positive outcome has little bearing
+  on the remaining height>=3 problem. It supplies no universal cycle bound.
+- In BOTH logs the original `calls` field counted only evaluations admitted to the open domain
+  (25,225 and40,548 respectively), not all attempted neighbors. The code now increments before
+  evaluation; it does not silently relabel those historical counts. `accepted` counts visits
+  surviving the additional shape/height filter, not distinct semigroups (97 and561).
+- The initial63 example and both endpoints satisfy the stronger residue-aware SUPP exclusion.
+  They are shape-residual diagnostics, not surviving actual counterexample candidates.
+  Both descent diagnostics are CLOSED: do not enlarge them on the strength of positive values.
+
+Saved raw logs: data/support_weighted_climb.log and data/support_cycle_climb.log. Independent
+seed exports and geometry audits are data/support_{weighted,cycle}_endpoint{.jsonl,_audit.json}.
+The36-anchor audit and eight comparisons are data/support_anchor_audit.json. These are C/stdlib
+checks, not Python optimization, an exhaustive finite class, or a proof of a conjectured bound.
+
+### Lo-only payment obstruction
+
+Earlier in this same research cycle, the ordinary axis network was modified by replacing each
+arc price p with min(p,0). For every input, the C integer flow's primal and residual-potential
+dual values were independently checked. The putative bound reflection_constant+flow_cost<=rho
+fails for <114,305,307,310> (183>111), <62,87,88,89> (52>49) and <65,82,214,217,265> (79>62).
+Their independently reconstructed (c,g,W) are (2967,1685,2161), (819,411,813), (1108,596,1452).
+Exact numerical summaries are data/support_lo_cover_audit.{json,log}. To regenerate the three
+flow certificates from existing saved seeds (stdlib orchestration, C optimization only):
+
+```python
+import gzip,json,subprocess,tempfile
+from verify_probe import axis_transport_network,audit_integer_flow
+wanted={(114,305,307,310),(62,87,88,89),(65,82,214,217,265)}
+for line in gzip.open('data/axis_transport_zero.jsonl.gz','rt'):
+    D=json.loads(line)['seed']
+    if tuple(sorted(D['generators'])) not in wanted: continue
+    N=axis_transport_network(D,False)
+    N['arcs']=[[*a[:3],min(a[3],0)] for a in N['arcs']]
+    with tempfile.NamedTemporaryFile(mode='w') as f:
+        f.write('%d %d %d %d %d\n'%(N['nodes'],len(N['arcs']),N['source'],N['sink'],N['demand']))
+        for a in N['arcs']: f.write(' '.join(map(str,a))+'\n')
+        f.flush()
+        R=json.loads(subprocess.check_output(['./repair_scan','--axis-flow',f.name],text=True))
+    _,cost=audit_integer_flow(N,R)
+    print(sorted(D['generators']),N['constant']+cost,D['rho'])
+```
+
+No Wilf/full-model counterexample was found. The failure invalidates the proposed lo-only
+decomposition; it does not establish or refute the larger P<=rho+support_sum conjecture.
+
+The three negative flow certificates were regenerated exactly and are now saved, with seeds,
+in data/support_lo_witnesses.jsonl.gz. Replay without optimization with
+`python3 verify_probe.py --lo-only-check data/support_lo_witnesses.jsonl.gz` (in run_checks.sh).
+The consolidated suite passed with the new full-certificate strict-order assertions and38
+independent support reconstructions, alongside the unchanged264 prior LP optima and existing
+ray/witness/flow audits. The new C geometry path passed ASan/UBSan on the63 weighted endpoint,
+the42 cycle endpoint and a zero-step weighted-climb seed. Logs: data/checkpoint_430_checks.log
+and data/support_sanitizer.log. No E430 paper statement is newly Lean checked.

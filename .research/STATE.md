@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 03:58 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 04:56 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,17 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E430 strategy correction:** all36 saved transport anchors already satisfy the proved SUPP-WILF
+shape exclusion. Their later positive certificate values are not evidence from resistant actual
+Wilf cases. The old63 height3 example survives only that shape filter; the residue-aware theorem
+also excludes it. See the current action below before reusing those examples.
+
+**New paper fact:** every FULL feasible certificate strictly drops by at least1 along a tight
+primitive addition, even on the real actual profile domain. Its superlevel sets are down-sets.
+The raw/profile-patched baselines need not be antitone (8 exact comparisons on36 seeds), so a
+level-set argument cannot silently substitute them. PROOFS E430 contains the elementary proof.
+The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue it.
 
 - **Recorded as Lean checked:** Wilf for c <= 4m. Together with the recorded 3e >= m theorem, the remaining
   domain is c > 4m and 3e < m. See [the literature record](LITERATURE.md) and `lean/external/conjio_d4/`.
@@ -181,114 +192,61 @@ Audit height filters, fixed-size limits and exact certificate coverage before ad
 
 ## Current attempt and next action
 
-Completed: 135 exactly rationally certified LP optima on 27 S; independently verified integer assignment
-certificates. The simple B>=0 shortcut is false (e=5 example B=-33,W=467); matching raises its bound to347.
-Earlier gates and bounded sample counts are in E392; none proves universal certificate positivity.
+**Research frontier:** the advisor's distinction remains decisive. E416 controls recession; the
+sign of the finite minimum is open. E417/E419/E429 provide exact primitive coordinates and dual
+normal forms, without a uniform allocation paying the arithmetic correction and weighted loss.
+Do not count recovery of an individual W or another positive regional LP as a positivity mechanism.
 
-Local C search improves the credit ratio to1052/1720 at <146,155,175,184>: B=-526,M430,bound334,W1130.
-Here full UA3=W; coordinate propagation gives421 after one pass but does not recover the full payment (E395/E397).
-The cofactor-shaped construction and its conductor-alignment test are closed as diagnostics; do not enlarge it (E398).
+**E430 correction to the previous anchor policy:** the36 saved transport examples all satisfy
+Dep>=T, where T=sum(max(support-1,0)). They are already covered by the old SUPP-WILF theorem.
+A C/independent-column audit now reports the shape criterion, residue criterion, conductor-phase
+SUPP bound, and flat-height criterion separately. The old63 height3 example has Dep42<T44 but
+kappa8<Dep42, so it too is already excluded by the stronger theorem. These remain diagnostics
+for precise auxiliary claims; none should be labeled a resistant actual counterexample candidate.
 
-New actual-W search: <43,155,184,193>, c926,W366,matching bound366 (q22,height6). Within B<0 it reaches
-<60,71,121,143>, c655,W237,B-111,M150,bound189,UA3=W237. These are local minima only. The simpler
-<60,67,71,121> already refutes B>=0 or2W>=c. At <66,67,71,72,98,103,128>, unrestricted cover41 versus
-actual-capped42 refutes the nonnegative-unpaid optimal-cover normal form. Exact data: E399/E400.
+**New proved consequence of the full coupled rows:** y strictly drops along a tight primitive
+edge, even in the real actual domain; hence its superlevel sets are Apéry down-sets. In contrast,
+the raw/profile-patched baseline can INCREASE along such an edge. See PROOFS E430 for the short
+proof and exact60/66 examples. This prevents a tempting invalid level-set argument for E429.
 
-Latest structural test: all12 saved nonempty cores have genuine positive residual directions. Five
-targeted coordinate LPs on saved S each have maximum1, but a fresh C diagnostic stops at candidate12
-with an actual maximum2 at residue23 of <153,166,170,317,325,474,617,766,921,925,1080>.
-Its c1683,g1013,e11,W5687 and full feasible vector are independently checked. Discontinue unit-weight
-counting. A maximal Apéry cell with no tight successor can carry two unpaid units; all maximal elements
-and their weights must be retained. No genuine Wilf failure or universal proof has been obtained.
+**Closed negative test:** uncovered lo-only axis cost<=rho is false on114/62/65 examples, with
+exact optima183>111,52>49,79>62. This sourcewise decomposition cannot fund the global budget.
+No more computation on that payment rule or the older orbit/circulation self-payment rules.
 
-Latest coupling check: no-floor propagation plus residual assignment improves232->236 and176->180
-on the two saved60cases. Integer propagation alone captures both increases. On the supplied
-<65,82,214,217,265>, integer propagation1402 plus residual matching gives1407; independently audited
-real CapUA3=1407. This confirms that individual upper bounds need not be jointly feasible even after
-integer propagation. The new stage is a valid strengthening, not a global counting theorem.
+**Closed bounded diagnostics:** support T is exactly the cycle rank of the canonical Hasse graph.
+A proposed cycle-excess bound T-Dep<=binom(e-1,2) remains unproved and is insufficient by itself.
+A weighted sufficient target Gamma.mu>=T on shape-case-B, height>=3 tiles would imply Wilf
+with SUPP-WILF/Flat-MaxCL, but is also unproved and stronger than necessary. One bounded C
+weighted descent reaches c754,W602,Gamma.mu-T543; a separate cycle descent falls into height2.
+Both endpoints are already excluded by residue-aware SUPP. Do not enlarge these positive samples.
+The raw data and exact search neighborhoods are in EXPERIMENTS E430 and src/scratch/p39/data/.
 
-New backwards descent (E410): three deterministic local searches find no negative Phi_Z. Two new
-local optima are <64,69,77,129,149>,W284,Phi274,c446; and <146,155,184,535>,W1334,Phi990,c2334.
-The latter has real/ integer capped optimum998, exactly certified. Its forced-equal class
-{76,85,94,103,114,123,132,141} has size8; class-weighted cover raises residual assignment18->22,
-giving998. This explains the missing8 as a residue-multiplicity payment, not a uniform positivity proof.
+**First precise next task:** seek a general primitive-boundary/residue allocation paying the
+FINITE correction. On the actual side, the exact support budget to be paid is
+Gamma.mu >= kappa_0-N; use the sharper proved lower bound Dep-kappa_0+N before calling a
+semigroup resistant. On the full certificate side retain E429's complete (BC)/(BB) coefficient
+and budget equations, including C/m, transport P_0, tree penalties and all weighted unpaid mass.
+The strict-order lemma can support counting on FULL y; it does not justify using level sets of b.
+Try to derive a global allocation before any further diagnostic; an abstract torus homology
+count does not prove the proposed cycle injection. A failed auxiliary inequality must be
+classified separately from an actual Wilf failure. Continue the advisor's finite-surplus strategy.
 
-Latest global falsification test: E414 varies actual mu/q AND capped certificate y on each saved tight
-profile, fixing only m,largest residue and exact tight pattern; no upper depth/height bound. All31
-distinct profile LP minima positive, including180,452,3070/3,998,31,60673/44,5027. Seven actual optima
-fractional;24 integral actual optima independently reconstructed. Four changed integer witnesses have
-Phi281,128,22,5027. These are regional certificates and diagnostics, not an exhaustive profile list.
+Three distinct lines remain within BACKWARDS-WILF: (1) actual primitive boundary and complete
+cyclic residue payment; (2) full weighted repair coupling and order ideals; (3) arithmetic and
+integrality of the actual domain, including any proposed descent. No fixed embedding dimension,
+height, Q5 family, unit cap, collision-only rule or unproved family reduction is activated.
 
-**Next mathematical action:** construct a profile-adaptive GLOBAL boxed allocation satisfying E429
-(BC) and paying the complete budget (BB): C/m+P_0+sum lambda*T. Use the trade-quotient partial-coordinate
-normal form (at most e-1 partial weights) to seek a residue-sensitive full/unused/partial baseline rule, retaining signed tight
-trades and strict primitive boundaries. Normal form/duality alone is not positivity. Do not run
-another positive regional sample or tune local/column/orbit self-payment. E427 shows why balanced
-nonnegative circulations cannot create new finite credit, even globally, after coefficient matching.
-The complete-profile E429 minima on the3 chosen anchors are positive, so that diagnostic is closed.
-If a negative allocation-model point appears, check its genuine congruences/membership and compare
-with the full coupled and ACTUAL domains, keeping the distinctions in E428.
-Continue the advisor's primitive-coordinate finite-surplus programme.
-Use E417's exact projection mJ=H.p-C-e*m*sum x: zero-RHS inner trades, strict affine boundaries>=m,
-positive primitive bounds, depth and explicit residue/cap credits. Construct an adaptive global
-allocation paying C plus ALL admissible weighted certificate loss, including genuinely weighted
-fully extendible interior cells as demonstrated by E421. Retain zero-RHS trades in any matching.
-No uniform allocation is proved. The E419 exact transferred budget is now audited coefficient by coefficient; it is not itself the missing inequality.
-E416 already settles strict positivity at infinity (3<=e<m); focus on the sign of the FINITE minimum.
-E417 canonical corners preserve unit margins by integer rewriting; a further outer-Betti compression
-must be justified separately, not inferred just from homogeneous cone equivalence. All composite-parent
-certificate rows stay. Do not continue the failed E418 sourcewise sign rule in a,q coordinates or
-expand the list of regional certificates. If a full-model negative point appears, separately minimize
-the actual objective on the same domain to distinguish integrality from coupling loss. An actual
-objective evaluated at the joint optimum is NOT its independently minimized value.
-
-Three universal lines within the approved backwards strategy remain distinct: primitive boundary/
-residue funding of the finite correction; transport of genuinely weighted interior repair through
-ALL tight relations; and actual-coordinate arithmetic/integrality, including exact audits of any
-proposed descent. The weighted transport rule now survives the104case (E422/E424); (PAY), including coefficient matching and the finite correction, remains the next precise obligation. E425 supplies an explicit primitive-unit-row allocation, whose extension to the required weighted loads is unproved.
-The follow-up zero-unpaid-cost joint minimum2337/2 on that profile was positive, so that sample is
-closed; it supplies no uniform theorem and is not added to the258-optimum consolidated count.
-
-Original Phi_Z>=0 and its equivalent CH budget remain unproved, stronger sufficient targets. Positive
-joint CapUA3 minima do NOT imply Phi_Z>=0; these implications must not be reversed. A negative joint
-primal needs integer reconstruction before any semigroup/certificate-failure claim. The same universal
-backwards strategy/scope remains active; no reduction of all S to these31 profiles is claimed.
-The old class-merging-only, collision-only and local/per-direction chain funding rules are closed;
-the boundary-only/interior-unit-cap shortcut is now also FALSE. The E420 injection-image rank estimate
-is dominated by the old whole-boundary estimate; the false CR-TILE positivity criterion is not revived.
-E412/E413 and the older FAILED record explain why. No single-top-ideal size, bounded core, unit cap,
-partial-tile deletion or guessed W/c constant. The old10000-candidate sample needs no rerun.
-Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E429 record the latest work.
-The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
-certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass258 previous exact LP optima plus6 E429 allocation-model optima,
-44 previous integer transport flows,3 audited bounded-descent endpoints and the6 new models' transport
-proofs. Primitive cycle allocations remain audited. The earlier258 comprise212 prior checks plus46
-diagnostics. The suite separately checks2 exact diagnostic rays and1 independently feasible integer
-repair witness. The separate real
-LP upper bound certifies its integer coordinate optimum2. Source transfer and boundary packing are
-also audited on74 genuine-domain joint points. The2 diagnostic rays have no semigroup reconstruction;
-they falsify only the weakened sourcewise-sign model. Primitive projection/boundary rewriting includes
-fractional actual coordinates. These checks include
-the four new integer witness assignments and existing checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_429_checks.log) and data/allowance_lean.log.
-The C flow path passes ASan/UBSan on8 original and36 zero-aware inputs across checkpoints424/425.
-New C seed export passes3 sanitizer inputs; the C continuous-matrix solver passes all6 allocation models,
-Gurobi leak detection disabled. The new results are not Lean checked. E428 certifies20 saved actual minima
-by exact dual restriction, with11 nonzero gaps; these do not increase the optimizer count.
-The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
-New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
-New full/reduced joint-face C paths also pass ASan/UBSan, Gurobi leak detection disabled;
-data/joint_face_sanitizer.log. No FULL-model unbounded ray occurred. The diagnostic oriented model now
-has2 exact rays; its model-point scaling was checked, with semigroup reconstruction deliberately disabled.
-The new free/oriented C branches pass ASan/UBSan, leak detection disabled for Gurobi; checkpoint_418_checks.log.
-The new allowance audit checks33,375,552 residue pairs;13 saved S pass exact CH and independent
-factorization-count diagnostics. General semigroup consequences and CH budget allocation remain paper/open. The new integer-witness,
-zero-unpaid and interior-search C branches pass ASan/UBSan, leak detection disabled, in the checkpoint log.
-The interior search stops at sample2045/1798 accepted, seed421; it is a targeted falsification, not
-a universal/large-bound verification. Candidate/provenance: data/interior_unit_candidate.jsonl; all new
-solver data were consolidated into existing data/allowance_source_probe.jsonl.gz.
+**Verification and implementation:** run_checks.sh is the consolidated exact-certificate entry
+point. The latest checkpoint passed264 LP optima,2 weakened diagnostic rays,1 independently
+feasible integer repair witness, earlier flow certificates and E428's20 exact actual-minimum
+transfers (the other11 only bracket minima). The E430 suite adds independent support identities
+on36 anchors and2 descent endpoints and checks strict primitive order at saved full model points.
+Three lo-only flow counterexamples replay with exact primal/dual certificates. New C geometry
+paths pass ASan/UBSan; logs are data/checkpoint_430_checks.log and data/support_sanitizer.log.
+The new C modes are --supp-audit and bounded --supp-climb weighted|cycle. They need no solver;
+verify_probe.py --support-audit independently checks their geometry. All general semigroup and
+E430 order statements are paper proofs, not newly Lean checked. No complete universal proof or
+genuine counterexample has been obtained. Existing code inventory above remains authoritative.
 
 ## Supporting records — consult as needed
 

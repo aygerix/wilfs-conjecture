@@ -34,6 +34,41 @@ def factor_basis(D):
         z[s]=min(candidates)  # lex-least factorization, a monomial order
     return gr,z
 
+def support_geometry(D):
+    """Independent column enumeration for the proved SUPP-WILF filter."""
+    m,e,r=D['m'],D['e'],D['r'];gr,z=factor_basis(D);d=e-1
+    inv={v:s for s,v in z.items()};assert len(inv)==m
+    gamma=[0]*m;nonmax=set();inversions=0
+    for j in range(d):
+        columns=defaultdict(list)
+        for v in inv:columns[v[:j]+v[j+1:]].append(v)
+        for col in columns.values():
+            top=max(col,key=lambda v:v[j]);assert sorted(v[j] for v in col)==list(range(len(col)))
+            gamma[inv[top]]+=len(col)
+            for v in col:
+                u=list(v);u[j]+=1
+                if tuple(u) in inv:nonmax.add(inv[v])
+                if v!=top and (inv[v]+D['rho'])%m>(inv[top]+D['rho'])%m:inversions+=1
+    support=sum(max(0,sum(a>0 for a in v)-1) for v in inv)
+    edges=sum(sum(a>0 for a in v) for v in inv)
+    assert support==edges-m+1  # connected Hasse graph cycle rank
+    kappa=sum(sum((v[j]*gr[j])%m for j in range(d))//m for v in inv)
+    credit=sum(gamma[s]*D['mu'][s] for s in range(m))
+    dep=sum(gamma[s] for s in nonmax)
+    R=inversions-kappa;C=(e-2)*m*(m-1)//2
+    assert sum(gamma)==d*m
+    assert sum(gamma[s]*((r-s)%m) for s in range(m))-C==m*R
+    assert D['W']==R+credit
+    assert kappa<=support and D['W']>=dep-kappa+inversions>=dep-support
+    return {'m':m,'e':e,'c':D['c'],'g':D['g'],'W':D['W'],
+            'canonical_height':max(map(sum,inv)), 'Dep':dep,'support_sum':support,
+            'kappa':kappa,'gamma_mu':credit,'low_maximal':sum(s not in nonmax and D['mu'][s]>0 for s in range(m)),
+            'G':D['generators'],'gamma':gamma,'inversions':inversions,
+            'shape_excluded':dep>=support,'residue_excluded':dep>=kappa,
+            'phase_support_bound':dep-kappa+inversions,'phase_excluded':dep-kappa+inversions>=0,
+            'flat_excluded':max(map(sum,inv))<=2,
+            'weighted_budget':credit-support}
+
 def upper_baseline(D):
     m=D['m'];gr={g%m for g in D['generators'] if g!=m};b=[0]*m;b[0]=D['q']
     for s in sorted(range(1,m),key=lambda s:D['w'][s]):
@@ -535,6 +570,11 @@ def audit_face(D,out):
             for i,j,s,J,tau,lo,up in D['pairs']:
                 val=x[i]+x[j]-x[s]-x[m];b=0 if ray else tau-int(bool(J))
                 assert val==b if not J else val<=b
+        if not ray and not oriented and coverage=='full':
+            for i,j,s,J,tau,lo,up in D['pairs']:
+                if J:continue
+                if i in gr:assert x[m+j]-x[m+s]>=1
+                if j in gr:assert x[m+i]-x[m+s]>=1
     seed=[F(0)]+list(map(F,D['mu'][1:]))+[F(D['q'])]+list(map(F,D['mu'][1:]))
     feasible(seed);rho=m-r-1
     assert rho+sum(obj[a]*seed[a] for a in range(1,nv+1))==D['W']
@@ -772,6 +812,41 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1]=='--lo-only-check':
+        count=0
+        for line in open_text(sys.argv[2]):
+            C=json.loads(line);D=C['seed'];audit(D)
+            N=axis_transport_network(D,False)
+            N['arcs']=[[*a[:3],min(a[3],0)] for a in N['arcs']]
+            _,cost=audit_integer_flow(N,C['flow']);value=N['constant']+cost
+            assert value==C['lo_cost']>D['rho'];count+=1
+            print('LO-ONLY OBSTRUCTION',sorted(D['generators']),value,'>',D['rho'])
+        print('EXACTLY CERTIFIED',count,'lo-only payment obstructions')
+        sys.exit(0)
+    if sys.argv[1]=='--support-audit':
+        import subprocess
+        results=[];obstructions=[]
+        for line in open_text(sys.argv[2]):
+            if not line.strip():continue
+            C=json.loads(line);D=C.get('seed',C)
+            audit({**{k:v for k,v in D.items() if k not in ('face','cone')},'models':{}})
+            R=support_geometry(D)
+            if len(sys.argv)>4:
+                V=json.loads(subprocess.check_output([sys.argv[4],'--supp-audit',*map(str,[D['m']]+[g for g in D['generators'] if g!=D['m']])],text=True))
+                for key,value in V.items():assert sorted(value)==sorted(R[key]) if key=='G' else value==R[key],(key,value,R[key])
+            results.append(R)
+            b=upper_baseline(D);A=axis_face_model(D,0);K=A['known']
+            for name,y in [('raw',b),('profile_zero',[D['mu'][s] if s in K else b[s] for s in range(D['m'])])]:
+                for g in A['gr']:
+                    for s in range(1,D['m']):
+                        t=(s+g)%D['m']
+                        if D['w'][s]+D['w'][g]==D['w'][t] and y[s]<y[t]:
+                            obstructions.append({'G':D['generators'],'baseline':name,'parent':s,'primitive':g,'target':t,'values':[y[s],y[t]]})
+        report={'records':results,'shape_excluded':sum(R['shape_excluded'] for R in results),
+                'baseline_order_obstructions':obstructions}
+        with open(sys.argv[3],'w') as out:json.dump(report,out,indent=2)
+        print('SUPPORT-AUDIT records=%d shape_excluded=%d baseline_order_obstructions=%d'%(len(results),report['shape_excluded'],len(obstructions)))
+        sys.exit(0)
     if sys.argv[1]=='--axis-face':
         results=[audit_axis_face(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
         with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)

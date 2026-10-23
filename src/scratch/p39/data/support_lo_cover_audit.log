@@ -1,0 +1,5 @@
+SUPP shape complement covers 36 of 36 saved anchors
+COST OBSTRUCTIONS 3
+{'G': [114, 305, 307, 310], 'mode': 'lo_cover', 'value': 183, 'threshold': 111, 'rho': 111, 'sup': 137, 'dep': 249}
+{'G': [62, 87, 88, 89], 'mode': 'lo_cover', 'value': 52, 'threshold': 49, 'rho': 49, 'sup': 41, 'dep': 72}
+{'G': [65, 82, 214, 217, 265], 'mode': 'lo_cover', 'value': 79, 'threshold': 62, 'rho': 62, 'sup': 51, 'dep': 156}

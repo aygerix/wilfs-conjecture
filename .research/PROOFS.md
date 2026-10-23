@@ -8374,3 +8374,127 @@ finite credit. Thus dual feasibility and the optimum are preserved. The claim co
 quotient; it removes no strict affine margins and assumes no outer-Betti minimal presentation.
 This is a concrete use of inner trades in the global allocation, but still gives no sign for (BB).
 Collision-free profiles may have L=0, so k=d; no collision-only payment principle is inferred.
+
+## E430 — full-certificate order ideals; support audit and the remaining counting gap (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup if the finite payment inequality is proved
+on the remaining domain c>4m,3e<m. Proved reduction from all S to this case: yes (the recorded
+c<=4m and 3e>=m complements). The following order lemma is general; the counting targets below
+are sufficient intermediate claims, NOT established positivity theorems.
+
+### Strict decrease along primitive additions — PROVED on paper
+
+Use E414's actual/certificate coordinates a,y with y_0=a_0=q. For a genuine seed a=mu.
+For every nonzero primitive residue g, the generator link and positive primitive bound give
+
+    y_g=a_g <= q-1-[g>r].
+
+If w_s+w_g=w_t, the lower tight certificate row gives
+
+    y_s+y_g-y_t >= q-lo_(s,g).
+
+Here lo_(s,g) can be1 only if g>r (and s>r). Therefore
+
+    y_s-y_t >= q-y_g-lo_(s,g) >= 1+[g>r]-lo_(s,g) >= 1.       (ORDER)
+
+For s=0 the same conclusion is the primitive bound itself. This proof also applies throughout
+the full REAL actual profile domain, not only at integer semigroups. It requires the lower
+tight rows and the generator links; no integrality assumption on y was used.
+
+Every Apéry-poset comparison factors into tight primitive steps. Indeed, factor the positive
+semigroup difference into minimal generators; multiplicity m cannot occur, and each prefix
+stays Apéry, or the endpoint would cease to be Apéry. Iterating (ORDER) shows y is antitone
+on this poset, with a drop at least the length of any such path. In any canonical tile D,
+y(z)+|z| is antitone under coordinatewise order, since every intervening subword is in D.
+Consequently every superlevel set of y is a down-set. For integer y, the diagram
+{(z,k):z in D,0<=k<y(z)} is a down-set and is closed under replacing one primitive occurrence
+by one multiplicity occurrence. No assertion that its complement is a semigroup follows.
+
+This is a structural consequence of existing full rows, not a claim of a new propagation
+principle or a universal sign proof. It identifies a hypothesis needed for level-set counting.
+
+### The cheaper baselines need not have this order — REFUTED
+
+For S=<60,67,71,121>, use the E429 profile-forced zero set K_0, and put l_s=mu_s on K_0,
+l_s=b_s elsewhere. Then
+
+    w_55=355, w_11=71 (primitive), w_6=426,
+    w_55+w_11=w_6, l_55=0, l_6=1.
+
+Thus even weak antitonicity fails for the patched baseline. Every feasible full certificate
+has y_6=mu_6=1 and y_55>=2 by (ORDER). Even the RAW baseline can fail weak antitonicity:
+in <66,67,71,72,98,103,128>, b_34=0<b_35=1 along the tight primitive67 edge.
+The exact saved audit finds8 offending primitive-edge comparisons over36 seeds (counting
+raw/profile baselines separately). Do not apply an order-ideal argument to b or l without
+establishing the needed property for that replacement.
+
+### Old support theorem must filter the research anchors — EXACT AUDIT
+
+Let Gamma_s be the sum of canonical column lengths ending at z_s; let Dep=sum Gamma_s over
+nonmaximal cells; write T=sum_z(max(support(z)-1,0)). The already proved SUPP-WILF gives
+
+    W = N-kappa_0+Gamma.mu >= Dep-kappa_0+N >= Dep-T.
+
+ALL36 saved seeds in data/axis_transport_zero.jsonl.gz have Dep>=T. They are therefore
+already excluded by a proved shape criterion, irrespective of the later certificate models.
+This does not invalidate their exact LP certificates, but those certificates were not evidence
+from resistant actual Wilf cases. Further positive optimization on those profiles is closed.
+The C checker now exports these counts; an independent checker enumerates whole columns,
+checks the inversion/overflow identity and reconstructs genuine membership.
+
+### Cycle interpretation and a sufficient weighted target — mixed status
+
+The canonical Hasse graph has m vertices, sum_z support(z) edges and is connected (remove
+coordinates to reach0). Its cycle rank is exactly
+
+    sum_z support(z)-m+1 = T.                                (CYCLE, PROVED)
+
+Thus Delta=T-Dep is a cycle count minus nonmaximal column payment. A proposed intermediate
+bound Delta<=binom(d,2), d=e-1, is CONJECTURED for canonical numerical-semigroup tiles. It
+is false for abstract down-sets: the full two-variable simplex of height3 has Delta3>1.
+Residue completeness and possibly coherence are essential. No injection of these cycles into
+torus homology has been constructed, and homology dimension alone is NOT such a proof.
+Even a proof of this bound would not pay the finite correction by itself.
+
+A stronger-than-necessary sufficient target, retaining weights, is
+
+    Gamma.mu >= T
+
+on shape-case-B tiles (Dep<T) of canonical height>=3. With SUPP-WILF and Flat-MaxCL on the
+complement, it would prove Wilf: W=N-kappa_0+Gamma.mu>=N>=0. Its sign is UNKNOWN. It is not
+claimed equivalent to Wilf, and its failure would not be a Wilf counterexample. Unlike the
+older CASEB-WINDOW, it does not discard the nonmaximal depth credit or maximal heights.
+
+Two bounded C descents from the genuine63 example found no failure. The weighted endpoint
+has m63,e12,c754,g641,W602,Dep42,T44,Gamma.mu587, hence a weighted margin543. The cycle run
+ended at a height2 tile, already covered by Flat-MaxCL. Both diagnostics are CLOSED; neither
+is a general theorem or justification to enlarge the sample. Crucially even the initial63
+seed has kappa_0=8<Dep42: it survives only the SHAPE criterion, not the stronger residue-aware
+SUPP exclusion. Calling it a surviving actual counterexample candidate would be incorrect.
+
+**Strategic review.** The main mathematical gap is still finite global payment. Discontinue
+more positive regional minima, baseline level-set counting without (ORDER), and the simple
+lo-only payment route refuted below. Keep three distinct questions: actual residue/primitive
+boundary payment, full weighted certificate coupling, and integrality of the real actual
+domain. Before a genuine search labels a point resistant, report the shape criterion, the
+residue-aware Dep-kappa_0+N criterion and Flat-MaxCL separately. The exact remaining sufficient
+support payment is Gamma.mu>=kappa_0-N; (ORDER) may aid a full-certificate argument but cannot
+be assumed for its cheaper baseline. The cycle bound has no established global allocation yet.
+
+### A simple lo-only transport payment is FALSE
+
+In the ordinary E422 axis network, set every positive arc price to0 and leave negative lo
+prices unchanged. The reflection constant plus this minimum flow cost is the uncovered
+lo cost L. The attractive estimate L<=rho fails on genuine remaining-domain semigroups:
+
+| generators | L | rho |
+| --- | ---: | ---: |
+| 114,305,307,310 | 183 | 111 |
+| 62,87,88,89 | 52 | 49 |
+| 65,82,214,217,265 | 79 | 62 |
+
+These are exact integer flow optima with residual-potential dual audits, not approximate
+optimizer statuses. They refute this simple decomposition only. The larger conjectural
+ordinary cost bound P<=rho+T was not refuted by the36 saved examples, but has NO proof and
+the failed L<=rho argument cannot establish it. Do not turn the positive sample into a claim.
+Reproduction, data and the closed search neighborhoods are in EXPERIMENTS E430.

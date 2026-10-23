@@ -6,6 +6,10 @@ GUROBI_ROOT=${GUROBI_ROOT:-/home/jmercedes/gurobi1303/linux64}
 export LD_LIBRARY_PATH="$GUROBI_ROOT/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 gcc -O2 certprobe.c -I"$GUROBI_ROOT/include" -L"$GUROBI_ROOT/lib" -lgurobi130 -lm -o certprobe
 gcc -O3 upper_scan.c -o repair_scan
+python3 verify_probe.py --support-audit data/axis_transport_zero.jsonl.gz /tmp/wilf-p39-support-anchors.json ./repair_scan
+python3 verify_probe.py --support-audit data/support_weighted_endpoint.jsonl /tmp/wilf-p39-support-weighted.json ./repair_scan
+python3 verify_probe.py --support-audit data/support_cycle_endpoint.jsonl /tmp/wilf-p39-support-cycle.json ./repair_scan
+python3 verify_probe.py --lo-only-check data/support_lo_witnesses.jsonl.gz
 for name in probe structural_probe residual_probe stress_probe climb_probe margin_probe; do
   python3 verify_probe.py "data/$name.jsonl.gz" "/tmp/wilf-p39-$name-summary.json"
 done

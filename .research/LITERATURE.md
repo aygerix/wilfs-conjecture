@@ -404,6 +404,16 @@ Statements from these are SECONDARY (quoted from papers that were read) or UNVER
 - Nakamura, "Hilbert schemes of abelian group orbits", J. Algebraic Geom. 10 (2001): our tiles = Nakamura's G-graphs for
   G = ℤ/m ⊂ GL(d) diagonal with weights p; for abelian G ⊂ GL(3) the cones σ(Γ) form a fan (normalization of G-Hilb).
   SECONDARY (via web summary). Craw–Reid / Craw–Maclagan–Thomas for SL(3) structure. Not read in full.
+  **Primary-source qualification, 2026-10-23:** the G-graph identification is correct, but a
+  general coherence assertion must not be inferred. Craw–Maclagan–Thomas,
+  [Moduli of McKay quiver representations II](https://arxiv.org/html/math/0611840v2),
+  Corollary1.2/Proposition4.10 and Example4.12, characterize monomial points on the coherent
+  component by initial ideals and exhibit a monomial G-cluster outside it. Their introduction
+  explicitly corrects Nakamura Corollary2.4/Theorem2.11. Our positive-weight canonical Apéry
+  tiles are coherent by their minimum-weight construction with monomial tie-breaking; arbitrary
+  residue-complete down-sets need not be. No general cycle-excess bound or Wilf payment theorem
+  follows from these results. This primary correction supersedes an overbroad reading of the
+  earlier secondary summary; no new G-Hilbert bridge is claimed.
 - Gomory group problem: coherent tiles = solution sets of min w·x, Σ x_a p_a ≡ g (mod m) (standard; our observation
   that all tiles d ≤ 3, m ≤ 9 are coherent is OURS, computational).
 - Marashdeh 2608.12531 re-checked: Θ(S) = Σ_{gaps}(ν_S(x) − 1); Prop 5.1 W ≥ Θ − Σ_{i≤t+1−e} λ_S(f_i) for t ≥ e;
