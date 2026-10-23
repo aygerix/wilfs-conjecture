@@ -33,6 +33,111 @@ def factor_basis(D):
         z[s]=min(candidates)  # lex-least factorization, a monomial order
     return gr,z
 
+def upper_baseline(D):
+    m=D['m'];gr={g%m for g in D['generators'] if g!=m};b=[0]*m;b[0]=D['q']
+    for s in sorted(range(1,m),key=lambda s:D['w'][s]):
+        b[s]=D['mu'][s] if s in gr else max([0]+[b[i]+b[j]-D['q']-up for i,j,t,J,tau,lo,up in D['pairs'] if not J and t==s])
+    return b
+
+def axis_transport_network(D,zero_aware=False):
+    """Column reflections and a global network of axis-adding decompositions."""
+    m=D['m'];gr,z=factor_basis(D);d=len(gr);inv={v:s for s,v in z.items()}
+    pair={(i,j):p for p,(i,j,s,J,*_) in enumerate(D['pairs']) if not J}
+    reflection=[0]*len(D['pairs']);gamma=[0]*m
+    def pair_id(a,b):
+        assert a and b
+        return pair[min(a,b),max(a,b)]
+    for j in range(d):
+        columns=defaultdict(list)
+        for v in z.values():columns[v[:j]+v[j+1:]].append(v)
+        for key in sorted(columns):
+            column=columns[key];top=max(column,key=lambda v:v[j]);gamma[inv[top]]+=len(column)
+            for v in column:
+                axis=tuple(top[j]-v[j] if k==j else 0 for k in range(d))
+                if inv[v] and inv[axis]:reflection[pair_id(inv[v],inv[axis])]+=1
+    known=set()
+    if zero_aware:
+        b=upper_baseline(D);known={s for s in range(m) if b[s]==D['mu'][s]}
+        while True:
+            old=known.copy()
+            for i,j,s,J,tau,lo,up in D['pairs']:
+                if J:continue
+                if tau+lo==0 and s in known:known.update((i,j))
+                if up-tau==0 and i in known and j in known:known.add(s)
+            if known==old:break
+        for p,R in enumerate(reflection):
+            if not R:continue
+            i,j,s,*_=D['pairs'][p];coeff=defaultdict(int)
+            for a,v in ((i,1),(j,1),(s,-1)):
+                if a not in known:coeff[a]+=v
+            if all(v<=0 for v in coeff.values()):reflection[p]=0
+    mixed=[v for v in sorted(inv) if sum(a>0 for a in v)>=2]
+    need=sum(inv[v] not in known for v in mixed);source=m;sink=m+1;arcs=[];arc_pairs=[]
+    def merge(u,v,p):
+        i,j,s,J,tau,lo,up=D['pairs'][p];assert not J
+        low,high=(tau+lo,up-tau) if zero_aware else (lo,up)
+        if reflection[p]:arcs.append([u,v,reflection[p],-low]);arc_pairs.append(p)
+        arcs.append([u,v,need,high]);arc_pairs.append(p)
+    for v in mixed:
+        support=[j for j in range(d) if v[j]];target=inv[v]
+        if len(support)==2:
+            a,b=support;va=tuple(v[a] if j==a else 0 for j in range(d));vb=tuple(v[b] if j==b else 0 for j in range(d))
+            merge(source,target,pair_id(inv[va],inv[vb]))
+        else:
+            for j in support:
+                parent=tuple(0 if k==j else v[k] for k in range(d));axis=tuple(v[j] if k==j else 0 for k in range(d))
+                merge(inv[parent],target,pair_id(inv[parent],inv[axis]))
+        if target not in known:arcs.append([target,sink,1,0]);arc_pairs.append(-1)
+    constant=sum(a*(D['pairs'][p][4]+D['pairs'][p][5] if zero_aware else D['pairs'][p][5]) for p,a in enumerate(reflection))
+    return {'nodes':m+2,'source':source,'sink':sink,'demand':need,'arcs':arcs,
+            'arc_pairs':arc_pairs,'reflection':reflection,'gamma':gamma,'constant':constant,'known_zero':sorted(known)}
+
+def audit_axis_transport(C):
+    D=C['seed'];audit(D)  # independent membership/minimal generators/Apéry audit
+    zero_aware=C.get('zero_aware',False);N=axis_transport_network(D,zero_aware);R=C['flow'];m,e,r=D['m'],D['e'],D['r']
+    assert (R['nodes'],R['arcs'],R['flow'])==(N['nodes'],len(N['arcs']),N['demand'])
+    flows=R['flows'];potential=R['potential']
+    assert len(flows)==len(N['arcs']) and len(potential)==N['nodes']
+    assert all(type(v) is int for v in flows+potential)
+    balance=[0]*N['nodes'];cost=0;dual=N['demand']*(potential[N['sink']]-potential[N['source']])
+    merges=[0]*len(D['pairs'])
+    for (u,v,cap,price),f,p in zip(N['arcs'],flows,N['arc_pairs']):
+        assert 0<=f<=cap;balance[u]-=f;balance[v]+=f;cost+=f*price
+        reduced=price+potential[u]-potential[v]
+        if f<cap:assert reduced>=0
+        if f:assert reduced<=0
+        dual+=cap*min(0,reduced)
+        if p>=0:merges[p]+=f
+    expected=[0]*N['nodes'];expected[N['source']]=-N['demand'];expected[N['sink']]=N['demand']
+    assert balance==expected and cost==dual==R['cost']
+    net=[a-b for a,b in zip(N['reflection'],merges)];load=[0]*m;unpaid_cost=old_cost=0
+    for p,v in enumerate(net):
+        if not v:continue
+        i,j,s,J,tau,lo,up=D['pairs'][p];assert not J
+        load[i]+=v;load[j]+=v;load[s]-=v
+        unpaid_cost+=v*(tau+lo) if v>0 else -v*(up-tau)
+        old_cost+=v*lo if v>0 else -v*up
+    gamma=N['gamma'];known=set(N['known_zero'])
+    if zero_aware:
+        assert all(load[s]>=e-gamma[s] for s in range(1,m) if s not in known)
+        assert unpaid_cost==N['constant']+cost
+    else:
+        assert load[1:]==[e-gamma[s] for s in range(1,m)]
+        assert sum(net)==m-e and old_cost==N['constant']+cost
+    correction=(e-2)*m*(m-1)//2;dist_credit=sum(gamma[s]*((r-s)%m) for s in range(m))
+    if not zero_aware:assert dist_credit-correction-m*unpaid_cost==m*(D['rho']-old_cost)
+    assert (dist_credit-correction)%m==0
+    constant=(dist_credit-correction)//m;b=upper_baseline(D)
+    lower=[D['mu'][s] if s in known else b[s] for s in range(m)]
+    baseline=constant+sum(a*v for a,v in zip(gamma,lower))-unpaid_cost
+    actual=constant+sum(a*v for a,v in zip(gamma,D['mu']))-unpaid_cost
+    assert actual+unpaid_cost==D['W'] and baseline<=actual
+    return {'generators':D['generators'],'zero_aware':zero_aware,'known_zero':len(known),'mixed_cells':N['demand'],'flow_cost':cost,
+            'reflection_cost':N['constant'],'allowance_cost':old_cost,'unpaid_cost':unpaid_cost,
+            'transport_cost':unpaid_cost if zero_aware else old_cost,
+            'baseline_bound':baseline,'actual_bound':actual,'gamma':gamma,
+            'net_rows':[[p,v] for p,v in enumerate(net) if v]}
+
 def interior_sources(D):
     """Residue injection from interior column bases to distinct boundary cells."""
     m=D['m'];gr,z=factor_basis(D);d=len(gr);cells=set(z.values())
@@ -491,6 +596,12 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1]=='--axis-transport':
+        results=[audit_axis_transport(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
+        with open(sys.argv[3],'w') as f:json.dump(results,f,indent=2)
+        for R in results:print('AXIS-TRANSPORT G=%s zero_aware=%s mixed=%d cost=%d baseline=%d actual=%d'%(sorted(R['generators']),R['zero_aware'],R['mixed_cells'],R['transport_cost'],R['baseline_bound'],R['actual_bound']))
+        print('EXACTLY CERTIFIED',len(results),'integer transport flows and signed row certificates')
+        sys.exit(0)
     results=[]
     for line in open_text(sys.argv[1]):
         if not line.strip(): continue

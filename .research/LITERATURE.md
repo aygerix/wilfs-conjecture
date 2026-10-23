@@ -1096,3 +1096,17 @@ E420 uses the standard cross-sum difference-set injection already present in the
 dominated by the old whole-boundary rearrangement estimate; the false CR-TILE criterion is not revived.
 The E421 counterexample and all its semigroup/repair invariants are independently computed repository
 results, not attributed to an external paper.
+
+### 2026-10-23: weighted column transport / exact axis flow
+
+Rechecked [Zhai 1111.2779v1](https://arxiv.org/html/1111.2779v1), Section3/Lemma3: the down-set
+column inequality is established prior work. E422 combines the existing column identity with
+signed tight repair rows and arbitrary weighted unpaid coordinates. Binary-tree telescoping,
+min-cost-flow integrality and residual-potential optimality are standard; no novelty is claimed
+for those ingredients. Internal review includes CH', Ramp Lemma, GW-CR, CP/CCP and failed local
+column-payment refinements. E423's negative optimal baselines prohibit another sourcewise funding
+claim. A focused search for Wilf/Apéry tight transport supplied no external theorem used to assert
+its corrected sign; absence of a hit is not a novelty/nonexistence claim. Reopened
+[Marashdeh 2608.12531](https://arxiv.org/html/2608.12531), already in this record: its defect/type
+reduction does not state the needed weighted transport payment theorem. No new result from it is
+assumed here.

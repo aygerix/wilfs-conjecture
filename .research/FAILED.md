@@ -231,3 +231,15 @@ Also false: every source in the E420 interior-to-canonical-boundary injection is
 In<11,12,18>, the source v=(0,2),j=1 maps to u=(2,0), with3*12=2*18 a tight zero-gap trade. Keep the
 inner trade structure when translating canonical geometry into arithmetic credit. E420's rank bound
 is dominated by the old whole-boundary bound; it is not a revival of the false CR-TILE criterion.
+
+### E423: optimal axis recombination alone pays the original finite baseline — FALSE
+
+For the general E422 weighted transport, choose the cheapest axis-adding decomposition flow and
+claim rho+Gamma.b>=P_old. Exact flow primal/dual certificates refute this on genuine remaining-domain
+semigroups: <60,67,71,121> has14<27 (bound-13), <60,61,67,71> has16<26 (bound-10), and
+<146,147,155,185> has82<115 (bound-33). This is not a Wilf or full capped failure. It excludes fixing
+the claimed payment by another axis-adding allocation within this network. Shared-row cancellation
+helps compared with independent local decompositions but does not close the arithmetic budget.
+E424 makes a justified correction using already forced-zero coordinates; its universal sign remains
+unproved. Do not revive an interior unit cap, require each column to pay for itself, or infer
+positivity from the corrected bound's positive saved examples. Data: p39/data/axis_transport.jsonl.gz.

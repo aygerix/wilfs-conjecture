@@ -4,6 +4,23 @@ No LP solver. Input: certprobe JSONL. Exact integer/rational arithmetic.
 import json,sys
 from fractions import Fraction as F
 from verify_probe import open_text
+if len(sys.argv)>1 and sys.argv[1]=='--axis-transport':
+ import subprocess,tempfile,gzip
+ from pathlib import Path
+ from verify_probe import audit,axis_transport_network,audit_axis_transport
+ solver=sys.argv[4] if len(sys.argv)>4 else './repair_scan';zero_aware='--zero-aware' in sys.argv[5:]
+ output=gzip.open(sys.argv[3],'wt') if sys.argv[3].endswith('.gz') else open(sys.argv[3],'w')
+ with output as out,tempfile.TemporaryDirectory(prefix='wilf-axis-') as temp:
+  for line in open_text(sys.argv[2]):
+   if not line.strip():continue
+   D=json.loads(line);D={k:v for k,v in D.items() if k not in ('models','face','cone')};D['models']={};audit(D)
+   N=axis_transport_network(D,zero_aware);path=Path(temp)/'network.txt'
+   path.write_text('%d %d %d %d %d\n'%(N['nodes'],len(N['arcs']),N['source'],N['sink'],N['demand'])+'\n'.join(' '.join(map(str,a)) for a in N['arcs'])+'\n')
+   p=subprocess.run([solver,'--axis-flow',str(path)],check=True,text=True,capture_output=True,timeout=60)
+   C={'seed':D,'flow':json.loads(p.stdout),'zero_aware':zero_aware};R=audit_axis_transport(C)
+   out.write(json.dumps(C)+'\n');out.flush()
+   print('AXIS-TRANSPORT G=%s cost=%d baseline=%d'%(sorted(D['generators']),R['transport_cost'],R['baseline_bound']),flush=True)
+ sys.exit(0)
 if len(sys.argv)>1 and sys.argv[1]=='--chain-budget':
  # Analyze already audited semigroup/certificate data against the recorded CH
  # identity. This is an exact diagnostic, not a new semigroup membership audit.

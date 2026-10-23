@@ -523,3 +523,51 @@ feasibility/coordinate-optimality check, alongside existing checks. Final log:
 joint points; these are not74 distinct profiles. New C integer-witness, zero-unpaid and filtered search
 paths pass address/undefined-behavior sanitizers with leak detection disabled for Gurobi. No new
 manuscript or competing handoff was created.
+
+### E422–E424 — 2026-10-23: exact weighted axis transport, finite funding obstruction
+
+Same universal approved target; these are adversarial intermediate-lemma tests, not a family target.
+Derived the general weighted reflection/recombination theorem BEFORE optimizing its axis-adding
+subclass. Python stdlib builds/audits networks; pure C solves integer min-cost flow on fejer, no
+Gurobi/Python optimizer. Every exported optimum includes flows and residual potentials; the separate
+checker reconstructs membership, minimal generators, Apéry values, all network arcs, primal/dual
+costs, and every signed tight-row coefficient. Exact data:
+
+    data/axis_transport.jsonl.gz
+    data/axis_transport_zero.jsonl.gz
+
+Each has8 seeds (16 flows total); reproduce from raw seeds using the extraction below, then
+
+    gcc -O3 upper_scan.c -o repair_scan
+    python3 upper_dp.py --axis-transport /tmp/axis-seeds.jsonl /tmp/axis.jsonl ./repair_scan
+    python3 upper_dp.py --axis-transport /tmp/axis-seeds.jsonl /tmp/axis-zero.jsonl ./repair_scan --zero-aware
+    python3 verify_probe.py --axis-transport /tmp/axis.jsonl /tmp/axis-summary.json
+
+Extraction: for each JSON line C in gzip.open('data/axis_transport.jsonl.gz','rt'), write
+json.dumps(C['seed'])+'\n' to /tmp/axis-seeds.jsonl. Commands run from p39. C input limits are8194 nodes,
+1e6 arcs/flow/capacity and absolute arc cost<=1e6; seed coverage is only the following table, not
+those whole ranges. All network/certificate arithmetic is integral; membership audits use exact
+integers. The flow theorem is valid for arbitrary dimension/depth; implementation bounds are separate.
+
+| Minimal generators | Original P_old | Original lower bound | Zero-aware P_K | Corrected lower bound |
+|---|---:|---:|---:|---:|
+| 13,17 |3|0|0|0|
+| 13,17,27,29 |1|23|0|36|
+| 37,75,78,80,88,89 |7|48|0|102|
+| 60,61,67,71 |26|-10|1|198|
+| 60,67,71,121 |27|-13|11|144|
+| 104,420,453,509 |48|2645|35|3107|
+| 146,147,155,185 |115|-33|53|551|
+| 146,155,184,535 |77|219|87|563|
+
+The original and zero-aware costs use different allowances (lo/up versus alpha/kappa); do not compare
+them as the same objective. The three negative original bounds have optimality certificates, so the
+original finite funding claim is disproved within this axis network. Corrected positive samples do
+not prove its universal sign. Zero-demand controls include a nonempty pure-axis residual core in
+13/17/27/29, and all-known-zero37case. No capped optimum is inferred from the `actual_bound` diagnostic.
+
+Consolidated `bash run_checks.sh` passes the unchanged258 exact LP optima,2 weakened-model diagnostic
+rays and1 integer repair witness, plus16 exact flow/row certificates and the earlier matching/BASE
+checks. New C flow paths also pass ASan/UBSan on all16 inputs, leak detection disabled. Full terminal
+log: data/checkpoint_424_checks.log. The generation/check/sanitizer batch finished successfully on
+fejer; no enumeration, regional LP expansion, or universal sign proof is claimed.

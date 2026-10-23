@@ -11,6 +11,8 @@
  * --unit-search NS SEED [MIN_E]: stop on a capped-unpaid envelope above one.
  * --interior-unit-search NS SEED [MIN_E]: restrict that target to cells whose
  *   addition by every non-multiplicity primitive remains in the Apéry set.
+ * --axis-flow FILE: exact integer min-cost flow for weighted column transport;
+ *   exports a feasible flow and residual potentials for independent checking.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * --weighted-search NS SEED [MIN_E]: test W-e sum U>=0, stopping at first failure.
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
@@ -37,6 +39,39 @@ static int need_e,kunz_cap;
 static int individual_audit;
 static int unit_audit;
 static int combined_audit;
+typedef struct {int u,v,cap,cost;} FlowArc;
+static int axis_flow(const char *path){
+ FILE *in=fopen(path,"r");int n,na,source,sink,need;
+ if(!in||fscanf(in,"%d%d%d%d%d",&n,&na,&source,&sink,&need)!=5||n<2||n>8194||na<0||na>1000000||source<0||source>=n||sink<0||sink>=n||source==sink||need<0||need>1000000)return 2;
+ FlowArc *a=calloc((size_t)2*na+1,sizeof(*a));int *initial=calloc((size_t)na+1,sizeof(int));
+ long long *dist=calloc(n,sizeof(long long));int *prev=calloc(n,sizeof(int));
+ if(!a||!initial||!dist||!prev)return 2;
+ for(int j=0;j<na;j++){
+  int u,v,cap,cost;if(fscanf(in,"%d%d%d%d",&u,&v,&cap,&cost)!=4||u<0||u>=n||v<0||v>=n||cap<0||cap>1000000||cost < -1000000||cost>1000000)return 2;
+  a[2*j]=(FlowArc){u,v,cap,cost};a[2*j+1]=(FlowArc){v,u,0,-cost};initial[j]=cap;
+ }fclose(in);
+ int sent=0;long long cost=0,inf=LLONG_MAX/4;
+ while(sent<need){
+  for(int v=0;v<n;v++){dist[v]=inf;prev[v]=-1;}dist[source]=0;
+  for(int k=0;k<n-1;k++){int changed=0;for(int j=0;j<2*na;j++)if(a[j].cap&&dist[a[j].u]!=inf&&dist[a[j].v]>dist[a[j].u]+a[j].cost){dist[a[j].v]=dist[a[j].u]+a[j].cost;prev[a[j].v]=j;changed=1;}if(!changed)break;}
+  if(prev[sink]<0){fprintf(stderr,"axis flow infeasible\n");return 3;}
+  int delta=need-sent,v=sink,steps=0;
+  while(v!=source){int j=prev[v];if(j<0||++steps>n)return 3;if(a[j].cap<delta)delta=a[j].cap;v=a[j].u;}
+  for(v=sink;v!=source;){int j=prev[v];a[j].cap-=delta;a[j^1].cap+=delta;v=a[j].u;}
+  sent+=delta;cost+=(long long)delta*dist[sink];
+ }
+ /* A super-source at zero distance checks ALL residual components, including
+  * ones no longer reachable from the original source after saturation. */
+ for(int v=0;v<n;v++)dist[v]=0;
+ for(int k=0;k<n;k++){int changed=0;for(int j=0;j<2*na;j++)if(a[j].cap&&dist[a[j].v]>dist[a[j].u]+a[j].cost){dist[a[j].v]=dist[a[j].u]+a[j].cost;changed=1;}if(!changed)break;if(k==n-1){fprintf(stderr,"negative residual cycle\n");return 3;}}
+ long long primal=0,dual=(long long)need*(dist[sink]-dist[source]);
+ for(int j=0;j<na;j++){int f=initial[j]-a[2*j].cap;long long reduced=a[2*j].cost+dist[a[2*j].u]-dist[a[2*j].v];primal+=(long long)f*a[2*j].cost;if(reduced<0)dual+=(long long)initial[j]*reduced;}
+ if(primal!=cost||dual!=cost){fprintf(stderr,"axis flow dual mismatch\n");return 3;}
+ printf("{\"nodes\":%d,\"arcs\":%d,\"flow\":%d,\"cost\":%lld,\"flows\":[",n,na,sent,cost);
+ for(int j=0;j<na;j++)printf("%s%d",j?",":"",initial[j]-a[2*j].cap);
+ printf("],\"potential\":[");for(int v=0;v<n;v++)printf("%s%lld",v?",":"",dist[v]);printf("]}\n");
+ free(a);free(initial);free(dist);free(prev);return 0;
+}
 static ll last_num,last_den,last_corrected,last_B,last_M,last_W;
 static ll last_individual;
 static ll last_propagated;
@@ -279,6 +314,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc==3&&!strcmp(argv[1],"--axis-flow"))return axis_flow(argv[2]);
  if(argc>1&&!strcmp(argv[1],"--weighted-search")){unit_audit=2;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--unit-search")){unit_audit=1;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--interior-unit-search")){unit_audit=3;argc--;argv++;}

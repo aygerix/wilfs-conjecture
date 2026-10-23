@@ -23,6 +23,8 @@ python3 verify_matching.py --standalone data/weighted_matching.jsonl data/intege
 python3 verify_matching.py --standalone data/combined_selected.jsonl data/equality_selected.jsonl
 python3 verify_matching.py --standalone data/joint_witness_matching.jsonl
 python3 verify_matching.py --standalone data/interior_unit_candidate.jsonl
+python3 verify_probe.py --axis-transport data/axis_transport.jsonl.gz /tmp/wilf-p39-axis-summary.json
+python3 verify_probe.py --axis-transport data/axis_transport_zero.jsonl.gz /tmp/wilf-p39-axis-zero-summary.json
 python3 - <<'PY'
 import json
 full={tuple(sorted(R['generators'])):R['face']['optimum'] for R in json.load(open('/tmp/wilf-p39-joint_face_probe-summary.json'))}
@@ -35,6 +37,17 @@ assert len(integer)==1 and integer[0]['fully_extendible'] and integer[0]['unique
 trade=[R['face']['primitive_projection'] for R in diagnostics if sorted(R['generators'])==[11,12,18] and 'face' in R]
 assert len(trade)==1 and trade[0]['zero_gap_injected_sources']>=1
 print('CERTIFIED fully extendible coordinate: real maximum7/3, integer maximum2; injected relations can be zero-gap trades')
+ordinary={tuple(sorted(R['generators'])):R for R in json.load(open('/tmp/wilf-p39-axis-summary.json'))}
+zero={tuple(sorted(R['generators'])):R for R in json.load(open('/tmp/wilf-p39-axis-zero-summary.json'))}
+assert len(ordinary)==len(zero)==8
+assert ordinary[60,67,71,121]['baseline_bound']==-13
+assert ordinary[60,61,67,71]['baseline_bound']==-10
+assert ordinary[146,147,155,185]['baseline_bound']==-33
+assert zero[60,67,71,121]['baseline_bound']==144
+assert zero[104,420,453,509]['baseline_bound']==3107
+assert zero[13,17]['mixed_cells']==zero[13,17]['transport_cost']==0
+assert zero[13,17,27,29]['mixed_cells']==0 and zero[13,17,27,29]['known_zero']==12
+print('CERTIFIED16 integer transport flows, including optimal negative original baselines and zero-demand controls; no universal sign assertion')
 PY
 python3 verify_matching.py data/transport_all.jsonl data/probe.jsonl.gz data/structural_probe.jsonl.gz data/residual_probe.jsonl.gz data/stress_probe.jsonl.gz data/climb_probe.jsonl.gz data/margin_probe.jsonl.gz
 ./repair_scan --position-audit 128

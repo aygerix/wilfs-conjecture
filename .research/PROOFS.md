@@ -7886,3 +7886,196 @@ and the exact source budget E419. The next allocation must transport genuinely w
 through coupled tight relations while retaining primitive boundary gaps and zero-RHS trades. The new104
 example is an adversarial diagnostic for that universal rule, not a new regional-proof catalogue target.
 The original full Wilf theorem and universal joint/Phi positivity remain unproved.
+
+### Weighted column reflection and axis recombination (E422)
+
+**PROVED ON PAPER, general; not Lean checked. 2026-10-23.** This is a transport inequality for
+arbitrarily weighted REAL unpaid repairs, not a unit/interior cap or a Wilf positivity theorem.
+Dependencies: E390/E396 capped repair, E417 canonical down-set, CH'. Scope: every proper numerical
+semigroup, with no depth/height/embedding-dimension cutoff. Uniform positivity of the bound below
+would imply full capped positivity, hence Wilf; its original baseline version is FALSE (E423).
+
+Put d=e-1. Choose the lex-least primitive factorization z_s of each w_s; D={z_s} is a down-set,
+contains 0 and all d unit vectors, and maps bijectively to residues. Write x(v)=x_s for v=z_s,
+x(0)=0, and A_p(x)=x_i+x_j-x_s for a tight pair p=(i,j->s). Then
+
+    -kappa_p <= A_p(x) <= alpha_p,  alpha_p,kappa_p in {0,1}.
+
+For each j-column C, let t(C) be its top, and define
+
+    Gamma_s=sum_{j,C:t(C)=z_s}|C|,    sum Gamma=d*m,    Gamma_0=0.
+
+Reflect v in its column: a=(t_j-v_j)e_j, so v+a=t. Summing its tight inequality over every column
+and every v gives a row multiset R with exact coefficient identity
+
+    sum_p R_p A_p(x) = d*sum_D x(v) + sum_{v,j}x(v_j e_j) - sum_s Gamma_s x_s.
+
+When a=0 or v=0 the row is the identity0 and is omitted. Reflection on a column permutes its
+j-coordinates, which proves the axis-sum term. Choose ANY binary recombination of the nonzero axis
+blocks v_j e_j of each mixed word v (support at least2). Every intermediate word is <=v, hence in D,
+and its primitive values add tightly. Summing the reversed rows over these trees gives B with
+
+    -sum_p B_p A_p(x) = sum_D x(v) - sum_{v,j}x(v_j e_j).
+
+Thus nu=R-B satisfies, coefficient by coefficient on every nonzero residue,
+
+    sum_p nu_p A_p = sum_s(e-Gamma_s)x_s,
+    e*sum_s x_s <= sum_s Gamma_s x_s + P(nu),
+    P(nu)=sum_p (nu_p)_+ alpha_p + (-nu_p)_+ kappa_p.                 (T)
+
+Cancelling shared reflection/recombination rows BEFORE charging P is essential. The statement is
+valid for arbitrary real weights satisfying the tight inequalities; no integrality or x<=1 is used.
+For nonnegative capped repairs y=mu-x>=b, CH' and M-w_s=m*mu_s+[r-s]_m give
+
+    J=W-e*sum x >= (sum_s Gamma_s [r-s]_m-C)/m + sum_s Gamma_s b_s - P(nu),
+    C=(e-2)m(m-1)/2.                                               (TB)
+
+The numerator is divisible by m for a genuine seed semigroup. If cost is instead written in old
+certificate allowances P_old=sum nu_+ lo+sum(-nu)_+ up, then
+
+    sum nu=m-e,
+    sum Gamma_s [r-s]_m-C-m*P(nu)=m*(rho-P_old),
+    (TB)=rho+sum Gamma_s b_s-P_old.
+
+Indeed each tight row has distance coboundary d_i+d_j-d_s=r-m*tau_p. Apply it to the exact load
+identity and use alpha=tau+lo, kappa=up-tau. These identities are independently audited in code.
+This is a weighted extension/combination of the established column method; no novelty claim about
+column reflection, binary tree summation or network optimization is made.
+
+### Global axis-adding recombination is an exact integer min-cost flow (E423)
+
+**PROVED ON PAPER for the specified transport subclass, with exact audited examples.** This is
+NOT optimization over every binary factorization tree or over the full capped LP. It applies in
+all d, even though several adversarial inputs have e4. Pure C implementation: upper_scan.c
+`--axis-flow FILE`; independent membership/row/primal-dual checker: verify_probe.py.
+
+Restrict recombination paths to adding one entire axis block at each step. The nodes are mixed
+words in D, a source and a sink. For each support2 word, an edge from source represents its unique
+split into two axis blocks. For each larger-support word v and each j in its support, an edge
+v-v_j e_j -> v represents adding that axis block. Every mixed word absorbs one unit through a
+capacity1 edge to the sink. Source supplies N=number of mixed words. This is a DAG before residual
+arcs are added. Incoming minus outgoing equals1 at each mixed word. Decomposing integer flow into
+source-sink paths supplies one axis-adding decomposition per mixed word; conversely such choices
+supply a feasible flow. Intermediate words can carry many paths.
+
+For a merge row p, if its total flow is B_p, its signed net cost is
+
+    lo_p*max(R_p-B_p,0)+up_p*max(B_p-R_p,0).
+
+There is at most one merge edge for a given tight pair: residue injectivity on D identifies both
+parent words, their sum, and the unique added axis block (support2 has only its single source edge).
+Use a constant sum R_p lo_p, an edge of capacity R_p and cost -lo_p, followed by an overflow edge
+of capacity N and cost up_p. Other reflection rows contribute only the constant. Since lo,up>=0,
+this linear network has exactly the convex net cost above at optimum. All paths use at most d-1
+merge edges, and N is a sufficient overflow capacity. Integral capacities imply an integral optimum;
+this is standard min-cost-flow integrality, not a new theorem about arbitrary tree optimization.
+
+The C solver uses integer shortest augmenting paths and exports a residual potential pi. The separate
+checker reconstructs all arcs from independently checked membership/Apéry data, verifies flow balances,
+capacities and residual reduced costs, then checks the exact equality
+
+    cost=N*(pi_sink-pi_source)+sum_arcs capacity*min(0,cost_arc+pi_u-pi_v).
+
+Weak duality proves optimality even without trusting the solver algorithm/status. It also rebuilds
+nu and checks every residue coefficient and the E422 distance/cost identity.
+
+**A genuine obstruction to the original proposed funding rule:** even optimal axis transport can
+have negative (TB). For <60,67,71,121>, optimum P_old=27 while rho+Gamma.b=14, hence (TB)=-13.
+For <60,61,67,71>, cost26 versus credit16 gives-10. For <146,147,155,185>, cost115 versus credit82
+gives-33. These are exact integer flow optima with dual certificates, not failures of Wilf or CapUA3.
+Improving the allocation WITHIN this network cannot prove the original baseline payment claim.
+Data: p39/data/axis_transport.jsonl.gz. Stop tuning this original baseline.
+
+### Known-zero-aware weighted transport and the remaining payment lemma (E424)
+
+**PROVED ON PAPER inequality; nonnegativity CONJECTURAL/UNKNOWN. Not Lean checked.** This correction
+uses only already forced zero coordinates; it does not postulate a new cap or discard target coupling.
+Let K begin at {s:delta_s=0} and close under the two valid rules
+
+    alpha_p=0 and s in K => i,j in K;
+    kappa_p=0 and i,j in K => s in K.
+
+Every feasible nonnegative real repair has x_s=0 on K, by the tight inequalities and induction.
+Delete a reflection row whenever its coefficient vector restricted to residues outside K is
+coordinatewise nonpositive. Its value is then <=0, so deleting it INCREASES the remaining row load
+on nonnegative repairs. Require sink demand1 only at mixed words outside K; mixed words in K may
+still be intermediate routing nodes. Reflection deletion and removal of K-word recombinations imply
+
+    load_s >= e-Gamma_s for s outside K.
+
+For the latter assertion, omitting the decomposition of a K-word removes its target term (zero)
+and leaves its nonnegative axis-block terms as surplus. Flow conservation proves the same identity
+for shared paths, including K intermediate nodes. Reconstruct nu=R'-B' as before and charge
+
+    P_K(nu)=sum nu_+ alpha+sum(-nu)_+ kappa.
+
+Now use literal alpha/kappa costs, NOT old lo/up, since the load is no longer an equality on all
+residues. The flow construction uses constant sum R'_p alpha_p, cheap capacity R'_p cost-alpha_p,
+overflow capacity N cost kappa_p. It has the same standard integral optimality/certificate proof.
+For x>=0 with x_K=0, load domination yields
+
+    e*sum x <= Gamma.x+P_K.
+
+Put l_s=mu_s for s in K and l_s=b_s otherwise. Then every full capped certificate satisfies
+
+    J >= Omega := (Gamma.dist-C)/m + Gamma.l - P_K.                 (ZTB)
+
+The immediate sufficient universal theorem is Omega>=0 on EVERY semigroup in the remaining domain,
+for the cost-minimizing flow above (or a more flexible valid transport). It is NOT established by
+the construction. In particular, if K is all residues, demand and cost vanish and Omega=W: exact
+reconstruction alone has returned the original sign problem, precisely the advisor's warning.
+Do not count that degeneracy as a positivity proof or demand that each column pay separately.
+
+On the saved adversarial cases, (TB)->(ZTB) is -13->144 for60/67/71/121, -10->198 for60/61/67/71,
+-33->551 for146/147/155/185, and2645->3107 for the weighted-interior104case. These are diagnostic
+instances, not a theorem about the sign. Two-generator/zero-demand controls are included. All16 flows
+have independent integer optimality and row certificates. The diagnostic quantity W-P_K is also
+exported as `actual_bound`; it is NOT the minimum of J and is NOT (ZTB), since it substitutes mu for
+all certificate coordinates. No inference of Phi_Z positivity is made.
+
+**Next proof obligation:** allocate primitive-boundary and cyclic-residue credit to the finite
+transport cost in (ZTB), allowing compensation between columns and genuinely weighted interior mass.
+A min-cost-flow dual can expose the necessary level-set/cut deficits, but duality alone is not the
+missing arithmetic inequality. Keep actual integrality/descent as a distinct universal line.
+
+#### Finite allocation as a precise potential/cut obligation (E424 continuation)
+
+The E424 flow cost has the following exact dual form. Let V be its mixed nodes plus source o;
+T be the demanded mixed words outside K, N=|T|; and E its merge edges. A merge edge a=(u,v)
+represents row p(a). Write R_a=R'_p(a). Rows with no merge edge contribute to the constant only.
+Define A=(Gamma.dist-C)/m+Gamma.l. Then
+
+    P_K^* = sum_p R'_p alpha_p + max_pi [sum_{v in T}(pi_v-pi_o)
+                    -sum_{a in E} R_a (pi_v-pi_u+alpha_p(a))_+],
+    subject to pi_v-pi_u<=kappa_p(a) for every merge edge a.         (FD)
+
+Proof: eliminate sink arcs, whose total capacity is N and hence are all saturated. At each mixed
+node prescribe net inflow1 on T and0 elsewhere; source supply N. For each merge edge keep the cheap
+capacity R_a cost-alpha, and make its overflow edge unlimited with cost kappa. Removing the overflow
+bound N does not change the minimum: the graph is a DAG, every feasible flow decomposes into N
+source-to-demand paths, and each edge carries <=N. The ordinary potential dual gives (FD), with the
+cheap-capacity term -R_a(pi_v-pi_u+alpha)_+ and the displayed overflow constraint. Finite network
+strong duality proves equality; integer costs admit an integer maximizing potential, obtained from
+shortest distances in an optimal residual network with unlimited overflow forward arcs. Additive
+normalization pi_o=0 is optional. For N0 the same argument covers the zero-demand network.
+
+Consequently the still-UNPROVED universal finite payment lemma for this construction is EXACTLY
+
+    sum_{v in T}(pi_v-pi_o)
+      <= A-sum_p R'_p alpha_p
+         +sum_{a in E}R_a(pi_v-pi_u+alpha_p(a))_+                  (PAY)
+
+for every feasible integer potential pi. This is not a positivity theorem: (FD) alone merely
+identifies what a global arithmetic allocation must establish. It retains residue labels through
+A and the actual tight-pair pattern, as well as weighted repeated use of each row through R_a.
+
+There is an explicit layered-cut interpretation, which prevents an unjustified ordinary-Hall
+simplification. Put T_h={v:pi_v>=h}, including source membership. The objective's first term is the
+sum over integer levels h of |T intersect T_h|-N*1_{o in T_h}. An alpha0 penalty counts merge edges
+entering T_h, with capacity R_a. An alpha1 penalty counts head v in T_h and tail u outside T_{h+1}.
+The kappa0 constraint forces v in T_h => u in T_h; kappa1 forces v in T_h => u in T_{h-1}.
+Sum over the finite range containing min pi-1 through max pi+1. These follow directly from
+(pi_v-pi_u+alpha)_+=#{h:pi_u-alpha<h<=pi_v}. Thus one must pay interacting adjacent levels, not
+merely one unweighted cut or each column independently. Next attempt: use strict primitive exits,
+zero-RHS trades and complete cyclic residues to prove (PAY), or exhibit an exact violating potential
+on a genuine low-W input before trying another transport refinement.

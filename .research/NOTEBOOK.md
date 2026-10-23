@@ -5013,3 +5013,28 @@ through all tight coupled relations; (3) the arithmetic/integrality distinction 
 joint real minima, including scrutiny of any proposed integral descent. No family target, guessed
 constant cap or unchecked preservation claim is activated. The first concrete task is to derive a
 weighted transport rule that survives the104case, not to improve its individual certificate value.
+
+### 2026-10-23 02:40 EDT — E422–E424 weighted transport and strategic review
+
+PROGRESS: proved the arbitrary-weight reflection/recombination inequality and reduced axis-adding
+allocation to an exact integer min-cost flow. Independent checks verify all costs, potentials and
+row loads. Optimizing signed rows globally recovers cancellation lost by independent local trees,
+but the original baseline still has exact optimal bounds-13,-10,-33 on saved genuine remaining-domain
+S. This is a substantive obstruction, not a Wilf failure. Retain the theorem; discontinue that
+original funding rule. Known-zero closure gives a justified different load domination and corrected
+bound Omega, with no unit cap and no discarded target coupling. It survives the104 weighted interior
+obstruction; positive examples do not prove its sign.
+
+Mandatory global review after these distinct attempts: the missing universal statement is still an
+allocation of finite arithmetic surplus. Better reconstruction alone is not a theory of success.
+The new exact potential dual localizes the needed allocation to interacting adjacent levels (PAY),
+while preserving primitive/cyclic information in its budget. Continue only if that arithmetic can
+pay all levels globally, or an exact adversarial potential exposes what the simplification loses.
+Do not enlarge the positive sample or optimize more local weights merely for accuracy. Maintain
+primitive-boundary funding, weighted tight transport, and actual arithmetic/integrality as three
+universal lines under the same approved backwards strategy. No side-family target or new cap2.
+
+Verification: consolidated258 LP optima,2 diagnostic rays,1 integer repair witness remain;16 new
+integer flow certificates and their C sanitizer runs pass. Paper results are not yet Lean checked.
+No universal Wilf proof/counterexample, no claim of novelty for column/network machinery, no new
+manuscript. STATE remains the sole current handoff and implementation inventory.
