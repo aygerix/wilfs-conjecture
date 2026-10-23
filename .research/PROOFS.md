@@ -10728,3 +10728,95 @@ Decision: preserve primitive rounding as an arithmetic bridge with controlled e,
 keeping CEIL-COST unpaid. No rounding or regional LP expansion is prioritized over the
 advisor's finite value/descendant payment. A real witness, if sought later, must satisfy
 ALL actual rows and depth/sparse restrictions, not just one fractional closure row.
+
+
+## E450 — exact batched Apéry scans and phase witnesses; bounded GPU pilot
+
+2026-10-23. Proves Wilf for: EVERY numerical semigroup IF a uniform full-budget
+payment or realizability theorem is extracted. Proved reduction from all S to this
+case: yes, E430/E432 SUPP-WILF plus the recorded c<=4m and3e>=m complements.
+The engine and finite pilot are diagnostic prerequisites, not a proof of that theorem.
+The scan/phase proposals came from the user's advisor. No novelty claim or Lean claim.
+
+**SCAN (proved).** Fix m>=1, positive supplied generators, and exact old distances
+w in residues modulo m, allowing infinity for unreachable residues. On adjoining p,
+put delta=p mod m, g=gcd(m,delta), h=m/g. For each cycle choose a representative b
+in0,...,g-1 and let r_t=b+t*delta mod m,0<=t<h. With A_t=w_(r_t)-t*p,
+
+    w'_(r_t)=t*p+min(min_(s<=t) A_s, h*p+min_(s>t) A_s).
+
+The second minimum is infinity if its index set is empty; infinity is tested explicitly
+before arithmetic. Any enlarged factorization is an old factorization followed by j
+copies of p. If j>=h, removing h copies preserves the residue and lowers the value,
+so a minimum has0<=j<h. For a start s<=t use j=t-s; for s>t use j=t-s+h.
+This gives the formula, including noncoprime intermediate stages. Prefix and suffix
+minima give O(m) work per generator and O(mk) total work, with O(m) CPU workspace.
+The CUDA implementation uses flagged segmented minima on all residue cycles.
+The flagged operation (v,a)*(w,b)=(b?w:min(v,w),a OR b) is associative: it selects the
+minimum after the last marked segment start. Threads outside m use an isolated
+infinite entry and execute the same barriers as every active thread.
+
+**DISTANCE-WITNESS (proved).** A finite proposed array is exact if w_0=0, all entries
+are nonnegative with w_r congruent r mod m, every supplied-generator edge satisfies
+w_(s+delta)<=w_s+p, and every nonzero residue has a tight predecessor with smaller
+value. Predecessors terminate at0, proving attainability. Conversely, summing edge
+inequalities from0 bounds w_r by every attaining path length. Together these give
+equality with the shortest distance. For partial arrays, finite-source edges also
+verify that no reachable residue was declared infinite; each finite nonzero entry
+still has its strictly decreasing predecessor. Verification costs O(mk).
+
+**PRIMITIVE-EDGE (proved).** Assume all supplied p>m and gcd(m,p_1,...,p_k)=1, so m
+is the actual multiplicity. A nonzero Apéry value w_t is composite iff
+w_t=w_s+p_j for a supplied generator and s!=0. The forward implication uses an
+attaining factorization of w_t: it cannot contain m. If it is composite, a minimal
+factorization has at least two supplied generators. Remove one; the remainder must
+be its residue's Apéry representative, since replacing it by a smaller one would
+contradict minimality of w_t. Its remainder residue cannot be0, since a positive
+multiple of m in such a factorization would make w_t-m belong to S. The converse
+is a positive two-summand decomposition. Hence scanning only mk generator edges
+finds the ACTUAL embedding dimension. This does not remove composite-parent rows
+from certificate models. The m=1 convention is handled separately with c=g=W=0.
+
+**PHASE-SWEEP (proved from the support identity).** Keep the residue-labelled canonical
+lex tile and its primitive residues fixed, and write d=e-1, C=(e-2)m(m-1)/2. For a
+proposed TOP RESIDUE r (not rho=(-c) mod m), define
+
+    m Q(r)=m Dep+sum_s Gamma_s*((r-s) mod m)-C.
+
+Since sum Gamma=d*m, advancing r by1 increases every cyclic distance by1 except
+at s=r+1, where it decreases by m-1. Thus
+
+    Q(r+1)-Q(r)=d-Gamma_(r+1).
+
+One direct phase and a sweep score all m phases in O(m) work. These are abstract
+scores unless the specified top/tile/primitive residues are simultaneously realized.
+On an actual semigroup the support identity is exactly
+
+    W=Q+R,  Q=Dep+N-kappa,  R=Gamma.mu-Dep>=0.
+
+Changing generator heights within a region retaining those data cannot change Q.
+Any optimization of Q must cross a structural boundary. The actual W<=0 conductor
+cutoff from E448 does NOT exclude a possible Q<0<W and was not applied to this pilot.
+
+**Exactness/implementation limits.** src/apery_scan uses signed64 weights, with host128
+validation8*m*m*max(p)<2^60 and a separate infinity sentinel. A shortest finite residue
+path can be made simple, so it uses at most m-1 edges. This bounds intermediate
+finite weights and scan arithmetic by a few m*max(p), and invariant arithmetic by
+a few m^2*max(p). Supplied values may be redundant or repeated; actual primitives
+are reconstructed. CPU m<=8192; the present CUDA block implementation supports m<=1024.
+Canonical words resolve lexicographic ties on primitive residues in ascending order.
+The shortest-path predecessor witness alone does not certify those tie choices;
+the independent verifier reconstructs them and enumerates columns explicitly.
+
+**Outcome / strategic decision.** CUDA passed every tested prefix and the full finite
+batches, and compute-sanitizer reported0 memory errors. All36860 eligible inputs in
+the36864-candidate pilot were already residue-support excluded. Therefore this sampler
+provided NO resistant profile, negative Q, allocation obstruction or new Wilf evidence.
+It is CLOSED; do not enlarge its sample count or extend the rental. Kernel speed did
+not translate to a pipeline gain at these batches because allocation/transfers and
+CPU canonical analysis dominate. Retain the exact engine and compact witnesses.
+Before another compute campaign, derive a construction that can satisfy Dep<kappa,
+height>=3 and the intended realizability conditions, and state the allocation lemma
+it would distinguish. E448 parity/Hall finite-budget work remains the mathematics.
+The exact parameters, timings, checked records and cleanup evidence are in E450 of
+EXPERIMENTS.md and src/apery_scan/data; they establish finite checks only.

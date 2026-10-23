@@ -1,0 +1,16 @@
+ptxas info    : Overriding maximum register limit 256 for '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi1024EEEviiPKxPxPNS_5BasicE' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi512EEEviiPKxPxPNS_5BasicE' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi256EEEviiPKxPxPNS_5BasicE' with  64 of maxrregcount option
+ptxas info    : 7 bytes gmem, 56 bytes cmem[4]
+ptxas info    : Compiling entry function '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi1024EEEviiPKxPxPNS_5BasicE' for 'sm_86'
+ptxas info    : Function properties for _ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi1024EEEviiPKxPxPNS_5BasicE
+    64 bytes stack frame, 64 bytes spill stores, 64 bytes spill loads
+ptxas info    : Used 64 registers, 64 bytes cumulative stack size, 33312 bytes smem, 384 bytes cmem[0]
+ptxas info    : Compiling entry function '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi512EEEviiPKxPxPNS_5BasicE' for 'sm_86'
+ptxas info    : Function properties for _ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi512EEEviiPKxPxPNS_5BasicE
+    8 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 64 registers, 8 bytes cumulative stack size, 16928 bytes smem, 384 bytes cmem[0]
+ptxas info    : Compiling entry function '_ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi256EEEviiPKxPxPNS_5BasicE' for 'sm_86'
+ptxas info    : Function properties for _ZN4wilf45_GLOBAL__N__0facaa0a_12_scan_cuda_cu_1f8b8cde11scan_kernelILi256EEEviiPKxPxPNS_5BasicE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 49 registers, 8736 bytes smem, 384 bytes cmem[0]

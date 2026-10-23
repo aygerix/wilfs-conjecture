@@ -1,0 +1,39 @@
+{
+  "checked": 2,
+  "results": [
+    {
+      "kind": "case",
+      "m": 19,
+      "e": 6,
+      "c": 88,
+      "g": 68,
+      "W": 32,
+      "Q": 5,
+      "R": 27,
+      "Qmin": 5,
+      "all_apery_entries_checked": 19,
+      "coin_membership_bound": 125,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    },
+    {
+      "kind": "case",
+      "m": 13,
+      "e": 4,
+      "c": 64,
+      "g": 36,
+      "W": 48,
+      "Q": 15,
+      "R": 33,
+      "Qmin": 15,
+      "all_apery_entries_checked": 13,
+      "coin_membership_bound": 89,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    }
+  ],
+  "negative_Q": 0,
+  "negative_W": 0
+}

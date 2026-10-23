@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "pod_id": "vr1ad9zy9hazi7",
+  "name": "wilf-apery-pilot-20261023T180500-62468",
+  "deadline": "2026-10-23T18:25:00Z",
+  "gpu": "NVIDIA A40",
+  "catalog_secure_price": 0.59,
+  "output": "/Users/jmercedes/Desktop/Projects/Research/wilfs-conjecture/src/apery_scan/data/runpod_pilot_450_A40",
+  "public_key_cleanup": "Task public key remains registered; remove only this key if desired.",
+  "error": "remote stage hardware failed (exit 127); logs retained remotely",
+  "results_downloaded": true,
+  "pod_absence_confirmed": true
+}

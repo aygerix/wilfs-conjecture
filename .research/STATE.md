@@ -1,18 +1,29 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 13:28 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 14:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
-**Immediate authorized work: E450 Runpod exact-Apéry pilot.** User supplied the GPU
-proposal and explicitly said to use Runpod if agreed. CPU/CUDA implementation and
-independent correctness checks are being prepared; no GPU has been rented. Configured
-runpodctl2.9.0 lists no running pods. Pilot cap: ONE GPU<=1USD/hour,20minutes from
-creation, server termination deadline plus cleanup, no persistent volume. Primary
-predicate is a genuine negative Q (or exact allocation-rule failure), with W and full
-reserve R kept distinct; never use the W cutoff to reject Q<0<W. The SAME two agents
-now assist CPU implementation and scan audit; no new agents were launched.
+**E450 Runpod pilot COMPLETE; sampler CLOSED.** User explicitly authorized the GPU
+proposal. Exact C++/CUDA engine and proofs are retained; no rental or background research
+job remains. Fejer passed1011 lists/7627 incremental heap/certificate checks. A40 CUDA
+passed111 lists/752 prefixes, compute-sanitizer74 prefixes/0 errors, and all36864 batch
+arrays/invariants matched CPU. Independent coin/column/phase audit passed all9 saved
+minima on Runpod and locally. Both task pods terminated and absent in --all inventory;
+four pre-existing EXITED pods untouched; task account SSH key removed. Estimated GPU
+runtime cost0.022USD at quoted0.59/hour, not an invoice. Details/data: E450 EXPERIMENTS,
+[aggregate audit](../src/apery_scan/data/pilot_analysis_450.json).
+
+**Discriminating result:** ALL36860 eligible inputs were already residue-support excluded
+(Dep>=kappa).165 escaped shape-only exclusion but none reached the remaining obstruction.
+No negativeQ/W or negative abstract phase. This is NOT new resistant-case positivity
+evidence. Stop this sampler; do not enlarge its census or rerent. GPU kernels were fast,
+but allocation/transfers and CPU canonical analysis erase the gain at4096-candidate
+batches. The next compute proposal must FIRST explain how it creates a realizable
+height>=3 tile with Dep<kappa and name the allocation lemma tested. No W cutoff is
+valid for excluding Q<0<W. The SAME two authorized agents completed CPU/audit tasks;
+no new agent was launched. Mathematical finite payment remains open below.
 Fejer is running in us-east1-b on e2-standard-8 after two c2d-standard-8 capacity failures. The startup process check
 found no previous research jobs. User also authorized laptop calculations if fejer cannot run.
 The specific ANCHOR plan remains **proposed, not automatically approved** by the resumption.
@@ -455,6 +466,10 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 
 | Code | Purpose | Coverage and dependencies |
 | --- | --- | --- |
+| [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--bench B SEED THREADS m k` and `--mutate B SEED THREADS m p...` are finite diagnostics, never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
+| [scan_cuda.cu](../src/apery_scan/scan_cuda.cu) | Batched CUDA/CUB segmented prefix/suffix minima and primitive/invariant extraction. | One block per candidate; same exact integer algorithm as CPU. GPU outputs compared with CPU arrays/statistics and O(mk) witnesses; CUDA testing/benchmark results belong in E450, not assumed from compilation. |
+| [verify_scan.py](../src/apery_scan/verify_scan.py) | Independent coin-membership and explicit-column verifier for promoted records, including all conductor phases. | Python stdlib, no shortest-path dependency; bounded exact membership cap fails closed. Canonical lex ties checked explicitly. |
+| [run_pilot.py](../src/apery_scan/run_pilot.py) | User-authorized one-pod Runpod orchestration, bounded jobs, result download and confirmed cleanup. | runpodctl CLI; own task SSH key stays outside repository. Uses requested server deadline and detached cleanup watchdog. Price<=1USD/hour,<=20minutes, no persistent volume, never touches unrelated pods. Not a standing authorization to rerent or enlarge searches. |
 | [enumh4.c](../src/scratch/p37/enumh4.c) | Direct semigroup enumeration; exact integer W; tight-pair keys. | No Gurobi. Fixed m/e, Kunz <= K, c > 4m, 3e < m; **height >= 4 filter**. |
 | [enumlp.c](../src/scratch/p37/enumlp.c) | Same enumeration plus RT2/UA2 optimization and cached LPs. | Gurobi C API for certificate LPs; same height filter. |
 | [enumlp3.c](../src/scratch/p37/enumlp3.c) | Newer C enumeration plus RT3/UA3, with optional height filter. | Pass h4only=0 for all heights. Audit found a 256-bit key overflow at m=24; key capacity is now derived from MAXM. |
@@ -575,12 +590,19 @@ V0 explicitly. The general 1/L theorem and all-a countermap proof are PAPER argu
 
 ## Current attempt and next action
 
-**Immediate E450 task:** finish exact64-bit CPU and CUDA cyclic-scan engines with
-O(mk) primitive detection and shortest-path witnesses; compare against independent
-heap Dijkstra after every generator addition before renting Runpod. Benchmark the
-same CPU scan, multicore CPU, GPU kernel and full canonical-analysis pipeline, then
-run a bounded structural negative-Q campaign. See SCOPE for the user's exact approval
-and cost/time limit. No GPU job is currently live; all E448/449 math is preserved below.
+**E450 is closed:** implementation, bounded GPU tests, independent checks and cleanup
+are complete. Retain src/apery_scan and its compact witnesses. No cloud/Fejer job is
+pending. Do NOT rerun or scale this positive sampler. Before another computation,
+construct a residue-support-resistant genuine tile (or prove why a proposed one cannot
+be realized), with Dep<kappa and height>=3, and specify the mathematical allocation
+failure it targets. All E448/449 results and the three universal lines are preserved.
+
+**First precise proof task:** on the remaining genuine tiles, try to derive
+N(actual top)>=kappa-Dep from arithmetic boundary/maximum constraints, retaining the
+complete cyclic residue reserve. If that sufficient statement fails, isolate the
+unpaid amount and use the FULL R=Gamma.mu-Dep in W=Q+R. This is the E432 whole-tile
+payment obligation, not an all-cut/frozen strengthening. The parity descendant/value
+budget below remains the distinct current alternative; no bounded family is activated.
 
 **Current exact target (E444–E448):** prove the finite source value gain for EVERY S:
 `(e-1)M-e*mean >= (e-2)(a-1)/2`, using the ORIGINAL parity algebra, cyclic residue labels,

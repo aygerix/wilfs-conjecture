@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "pod_id": "0cusya4qucf07m",
+  "name": "wilf-apery-pilot-20261023T180953-62711",
+  "deadline": "2026-10-23T18:23:53Z",
+  "gpu": "NVIDIA A40",
+  "catalog_secure_price": 0.59,
+  "output": "/Users/jmercedes/Desktop/Projects/Research/wilfs-conjecture/src/apery_scan/data/runpod_pilot_450_A40_retry",
+  "public_key_cleanup": "Task public key remains registered; remove only this key if desired.",
+  "cpu_threads": 7,
+  "promoted_exit": 0,
+  "results_downloaded": true,
+  "pod_absence_confirmed": true
+}

@@ -1,0 +1,7 @@
+__pycache__/
+scan_cpu
+scan_gpu
+data/*/known_hosts
+data/*/lease.json
+data/*/watchdog.log
+data/*/cleanup.done

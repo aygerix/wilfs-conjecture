@@ -5610,3 +5610,27 @@ Runpod CLI2.9.0 is configured and currently lists NO running pods. None rented y
 Prepare CPU/CUDA code before renting; SAME two authorized agents assist algorithm
 audit and CPU engine. This benchmark prerequisite must feed a named negative-Q or
 allocation-rule falsification, not an additional positive-profile census.
+
+
+### 2026-10-23 14:16 EDT — E450 exact GPU pilot complete; sampler killed
+
+User explicitly authorized Runpod. Implemented exact signed64 C++/CUDA cyclic scans,
+O(mk) actual primitives and compact distance witnesses; advisor's scan and phase sweep
+are proved in E450. Fejer1011-list/7627-prefix audit, A40 CUDA111-list/752-prefix audit,
+74-prefix compute-sanitizer and all36864 full GPU/CPU batch comparisons passed. Nine
+saved minima independently verified by coin membership, canonical columns and every phase.
+Both pods terminated; temporary account SSH key removed; estimated GPU time0.022USD.
+
+Discriminating result: all36860 eligible candidates already satisfy Dep>=kappa.165
+escape shape-only support, but none survives residue-aware support. No negative Q/W,
+negative abstract phase, resistant profile or new allocation rule. Stop this sampler
+immediately; no more GPU spending/positive census. The GPU kernel is fast but CPU
+canonical analysis and transfer/allocation costs dominate at4096-candidate batches.
+
+Global review: the implementation improves exact diagnostic access, not the finite
+positivity theorem. The proposed quantity Q remains a sufficient strengthening;
+R=W-Q must stay available if it fails. Next computational proposal must FIRST explain
+how it creates a residue-support-resistant genuine tile, then name the payment lemma
+its failure distinguishes. Keep E448's general mixed coefficient algebra/value labels,
+killed scalar descendants, full parent reserve and both Hall reserves. No restriction
+to all-odd/fixed-e cases and no conductor census. STATE is the sole current inventory.

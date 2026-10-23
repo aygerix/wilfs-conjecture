@@ -1518,3 +1518,113 @@ python3 verify_probe.py --advisor-filtration-check ./repair_scan /tmp/wilf-p39-f
 No C path, optimizer or GPU was introduced for E448. E449 primitive ceilings and the
 two opposite-cost real perturbations were checked on paper only; numerical runs were
 deferred. Both real W there are positive; no negative real or genuine W witness.
+
+
+## E450 — exact Apéry CPU/CUDA pilot; sampler closed (2026-10-23)
+
+Scope/authorization: SCOPE.md E450; the user explicitly requested Runpod. Proves Wilf
+for EVERY S IF the uniform full-budget payment/realizability theorem follows; proved
+reduction yes (SUPP-WILF plus complements). The finite experiment is not that theorem.
+Named predicate: find a genuine Q<0, distinguishing R=W-Q and actual W. No conductor
+cutoff for W<=0 was used to reject positive-W/negative-Q possibilities. No fixed tile,
+primitive residue set or top was held fixed as a search objective.
+
+Implementation is src/apery_scan, inventoried in STATE. The exact cyclic scan replaces
+array-Dijkstra reconstruction with O(mk) integer work; CPU and CUDA use the same formula.
+Independent heap Dijkstra, predecessor/edge certificates, and coin-membership/explicit
+column checking serve different verification roles. See E450 in PROOFS for statements.
+This does NOT remove composite-parent certificate inequalities.
+
+**Fejer prerequisite.** g++ -std=c++17 -O3 -pthread -Wall -Wextra -Werror driver.cpp
+-o scan_cpu; `./scan_cpu --self-test 1000` passed1011 lists,
+7627 generator prefixes. Boundary cases include N, noncofinite prefixes, redundant
+supplied generators, non-power-of-two modulus and64-bit values. Corrupt certificates
+are rejected. Old19 and13/15/17/19 controls also pass independent coin/column checking.
+Downloaded logs: src/apery_scan/data/cpu_selftest.jsonl, cpu_old19.jsonl,
+cpu_k2.jsonl and cpu_independent_audit.json. No claim that these controls are unresolved.
+
+**Runpod lifecycle.** runpodctl2.9.0; secure NVIDIA A40, quoted0.59USD/hour; image
+runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04; no persistent/network volume.
+First pod vr1ad9zy9hazi7 existed14:05:00--14:05:49EDT. Its hardware probe found the GPU,
+but SSH PATH lacked nvcc. Controller failed closed, downloaded logs and terminated it.
+The corrected controller sets /usr/local/cuda/bin and /usr/local/nvidia/bin explicitly.
+Only after independent absence confirmation, a sequential retry0cusya4qucf07m ran
+14:09:53--14:11:18EDT, well inside the original14:25 maximum. No overlapping task pods.
+Both calls requested absolute server termination deadlines; the get response did NOT
+independently expose the backend deadline, so the detached local watchdog and active
+controller cleanup were retained. Actual termination was confirmed through --all
+inventory: both task IDs absent; the four pre-existing EXITED pods untouched. The task
+account public key was removed by its exact fingerprint. Private key and API config
+were never uploaded or committed. Leases/known_hosts/watchdog files are gitignored.
+Creation-to-confirmed-absence134seconds at0.59/hour gives estimated GPU cost0.021961USD;
+not an invoice and excludes storage/billing rounding. No rental remains active.
+
+**CUDA exactness.** nvcc CUDA12.4, -std=c++17 -O3 -DWILF_CUDA -arch=sm_86
+-maxrregcount=64 -Xptxas=-v -Xcompiler=-pthread.111 lists /752 prefixes matched the
+independent heap and CPU arrays, including intermediate noncofinite stages. Every GPU
+weight and invariant also matched CPU across ALL36864 batched candidates. The first256
+of each of9 batches (2304 additional cases) were heap-rechecked. compute-sanitizer
+--tool memcheck --error-exitcode9 ./scan_gpu --self-test5 passed16 lists/74 prefixes:
+ERROR SUMMARY:0 errors. No claim of racecheck or exhaustive GPU correctness testing.
+
+**Exact finite batches.** Each contains4096 candidates. Baseline(m,k):
+(63,8),(127,8),(256,12),(512,12),(1024,12), seeds4500,...,4504. Supplied positive values
+m*q+delta,1<=q<=12,0<=delta<m, replacing p=m by2m; duplicates/redundancies allowed.
+Structural batches at m61,63,67,71, seeds4501,...,4504, mutate OLD63 inputs
+239,282,295,318,333,379,386,390,400,405,407. Four interleaved modes: one changed residue;
+unit automorphism of residues; up to two changed residues/heights; uniform redraw.
+Input supplies11 values; actual embedding dimension is reconstructed, never assumed11+1.
+The highest analyzed modulus was1024, not an exhaustive fixed-m range.
+
+Of36864 inputs,36861 were cofinite and36860 satisfied e>=4,3e<m,c>4m. All36860 already
+satisfy Dep>=kappa, the residue-aware support exclusion.36695 also satisfy the older
+shape bound Dep>=T_supp. Thus165 escape shape-only exclusion but NONE escape the
+residue bound. All have canonical height>=3, so flat exclusion counts are0. Diagnostic
+hash counts show changing tiles/profiles but are not proof of exhaustive or collision-free
+coverage. No negative Q, negative W or negative abstract phase was found. No frontier
+positivity evidence is claimed: this sampling distribution failed to reach the residual
+mathematical obstruction. It is CLOSED, with no larger census/rental authorized by this run.
+
+**Timing on the SAME worker.** CPU affinity96 but effective quota7.65 CPUs; use7 threads,
+not96. Times below are milliseconds per4096-candidate baseline batch; single measurements,
+not medians. CPU columns time reconstruction only. GPU wall includes allocations, copies
+of ALL Apéry arrays, and primitive/invariant extraction. The final CPU column includes
+invariant/certificate checking plus canonical construction/support/phase analysis.
+
+| m | serial CPU scan | 7-thread CPU scan | GPU kernel | GPU stage incl. allocation/transfers | CPU certification/canonical analysis |
+| --- | ---: | ---: | ---: | ---: | ---: |
+|63|30.490|6.218|0.679|98.490|169.176|
+|127|72.060|13.280|0.717|110.876|354.731|
+|256|208.492|32.570|0.930|108.284|839.151|
+|512|427.056|62.893|2.453|131.840|1750.310|
+|1024|857.487|126.375|3.884|148.513|3706.650|
+
+GPU kernels alone are fast. At these batches the implemented GPU stage was slower
+than seven-thread reconstruction, and canonical analysis dominates. The JSON pipeline
+fields explicitly SUM measured generation, selected scan stage and common analysis;
+they are not a separately timed end-to-end execution and omit the extra heap regression
+stage. They show no application gain here (e.g. m1024 CPU3833.50 vs GPU3855.64ms).
+Persistent buffers, larger device batches and device canonical analysis were NOT benchmarked;
+this does not show that GPUs cannot help another well-targeted workload. Do not rent to
+optimize those until there is a mathematically useful resistant input generator.
+
+**Witness audit / artifacts.** Each batch saves its actual minimum-Q example, including
+supplied/actual generators, full weights, tight predecessors, lex words, Gamma, mu, Q/R/W
+and all-phase minimum. All9 passed verify_scan.py on Runpod and again locally, using
+independent integer coin membership, explicit columns and direct O(m^2) phase sums.
+The lowest saved actual Q is60 at m63,e12,c785,g603,W1399,R1339 (actual example's
+abstract minimum58; the batch-wide abstract minimum49 belongs to another example).
+This witness is already support-excluded; it is not a new hard case. No negative
+abstract score was silently asserted realizable.
+
+Raw outputs: src/apery_scan/data/runpod_pilot_450_A40/results (setup failure),
+runpod_pilot_450_A40_retry/results (successful run), local_verified.json (repeat audit).
+Aggregate parameters, whitelisted cleanup evidence, costs and full timing records:
+[pilot_analysis_450.json](../src/apery_scan/data/pilot_analysis_450.json).
+
+Decision: retain exact engine; discontinue this sampler and GPU rental. Before any
+new campaign, give a construction/proof argument capable of Dep<kappa and height>=3,
+then a precise realization/allocation predicate. Search for payment obstructions;
+do not turn a failed sampler into a positive-profile census. The THREE universal
+lines remain finite parity descendant payment, full-tile Hall with both reserves,
+and full coupled certificates; none has a proved finite sign yet.
