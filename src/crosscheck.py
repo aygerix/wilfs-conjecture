@@ -16,6 +16,9 @@ def main(G):
         counts[g] += 1
         assert s.g == g, (s, g)
         A = s.summary()
+        # Exercise gap-set construction on every independently checked semigroup.
+        rebuilt = NS.from_gapset(s.gaps)
+        assert 0 in rebuilt and rebuilt.summary() == A
         B = ns_kunz.invariants(s.P)
         for k in ('m', 'e', 'c', 'g', 'ell', 'W'):
             assert A[k] == B[k], (k, A, B)
@@ -33,6 +36,26 @@ def main(G):
     print(f'ok, {sum(counts)} semigroups, {time.time()-t0:.1f}s')
 
 # hand examples
+for gaps in ({0}, {-1}, {0, 1}, {1, 2.5}, {1.0}, {True}, {"1"}, [1, True]):
+    try:
+        NS.from_gapset(gaps)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError(f"accepted invalid gaps: {gaps!r}")
+try:
+    NS.from_gapset({2})  # Contains 1 but omits 1+1.
+except ValueError:
+    pass
+else:
+    raise AssertionError("accepted a gap set violating additive closure")
+try:
+    NS(1, 1, bytes([0, 1])).check_closed()
+except ValueError:
+    pass
+else:
+    raise AssertionError("accepted membership without zero")
+assert NS.from_gapset(iter([1, 2, 3, 5, 7, 11, 11])).gaps == [1, 2, 3, 5, 7, 11]
 s = NS.from_generators([3, 5, 7]); assert (s.c, s.g, s.ell, s.e, s.m) == (5, 3, 2, 3, 3), s.summary()
 s = NS.from_generators([4, 6, 9]); assert (s.gaps, s.c, s.g, s.ell, s.e) == ([1,2,3,5,7,11], 12, 6, 6, 3), s.summary()
 s = NS.from_generators([3, 5]);    assert (s.c, s.g, s.ell, s.e, s.W) == (8, 4, 4, 2, 0)

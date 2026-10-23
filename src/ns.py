@@ -9,6 +9,7 @@ Conventions (see CLAUDE.md):
 """
 from math import gcd
 from functools import reduce
+from numbers import Integral
 
 
 class NS:
@@ -51,7 +52,10 @@ class NS:
 
     @staticmethod
     def from_gapset(gaps):
-        gaps = set(gaps)
+        gaps = list(gaps)
+        if any(isinstance(x, bool) or not isinstance(x, Integral) or x <= 0 for x in gaps):
+            raise ValueError("gaps must be positive integers")
+        gaps = {int(x) for x in gaps}
         if not gaps:
             return NS(0, 1, bytes([1]))
         c = max(gaps) + 1
@@ -62,6 +66,8 @@ class NS:
         return s
 
     def check_closed(self):
+        if not self.mem or not self.mem[0]:
+            raise ValueError("numerical semigroup must contain zero")
         S = [x for x in range(self.c + self.m) if self.mem[x]]
         for a in S:
             for b in S:
