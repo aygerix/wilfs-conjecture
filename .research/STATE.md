@@ -1,10 +1,18 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 12:55 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 13:28 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+**Immediate authorized work: E450 Runpod exact-Apéry pilot.** User supplied the GPU
+proposal and explicitly said to use Runpod if agreed. CPU/CUDA implementation and
+independent correctness checks are being prepared; no GPU has been rented. Configured
+runpodctl2.9.0 lists no running pods. Pilot cap: ONE GPU<=1USD/hour,20minutes from
+creation, server termination deadline plus cleanup, no persistent volume. Primary
+predicate is a genuine negative Q (or exact allocation-rule failure), with W and full
+reserve R kept distinct; never use the W cutoff to reject Q<0<W. The SAME two agents
+now assist CPU implementation and scan audit; no new agents were launched.
 Fejer is running in us-east1-b on e2-standard-8 after two c2d-standard-8 capacity failures. The startup process check
 found no previous research jobs. User also authorized laptop calculations if fejer cannot run.
 The specific ANCHOR plan remains **proposed, not automatically approved** by the resumption.
@@ -22,7 +30,44 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 
 ## Where the mathematics stands
 
-**E446, effective growth proved on paper and independently agent-reviewed:** for EVERY
+**E448, advisor's stronger stability theorem VERIFIED:** for EVERY S with3<=e<m,
+M=c+m-1,C=(e-2)m(m-1)/2,L=m-e+1, now `mW+C>=M/L`, superseding E446's L^(e-1).
+Thus W<=0 forces `c+m-1<=C*L<=m(m-1)/2*floor((m-1)^2/4)<=m(m-1)^3/8`.
+The advisor's proof uses disjoint axis/singleton column deficits, forces equal axis
+lengths under F<1/L, then forces a full simplex, excluded by cyclic residue injectivity.
+Root and the same authorized geometric reviewer found no gap, including zero weights.
+This is a completed QUARTIC actual-conductor reduction; m remains unbounded. Do not
+start a bounded-conductor census or optimize the cutoff. For the original full joint
+model, `mJ>=M/L-C-em*k(k+1)/2`, k=m-e, also over its real domain; no integrality or sign
+of the finite minimum follows. The geometric arbitrary-primitive-modulus version holds.
+
+**E448, correct parity Hilbert object VERIFIED:** with o=(A_odd),V0=A_even,
+`o^n=V_n directsum V_(n+1)`, so `gr_o(A)_n=V_n/V_(n+2)` and b_n=v_n-v_(n+2).
+The algebra is generated over B=A/o by q ORIGINAL odd primitive classes. Keep the
+value-resolved B-module bound, not just b_n<=binom(q+n-1,n)*dimB. Ordinary field
+Macaulay applies when all source primitives are odd (B=k); NO reduction from all S
+to that specialization is proved. Exact lift mass is `sum n*b_n +2sum_(n>=3)eta_n`,
+eta_n=h_n-v_n. The surviving moment has the correct generator budget; killed mass
+still needs a GLOBAL payment from values, conductor/closure surplus and FULL reserves.
+
+The advisor's all-odd e4 family<a,a+2,3a+8,3a+10>, odd a>=15, rigorously gives a-4
+scalar descendants of ONE first-death edge, in c>4m,3e<m and cofactor1. It refutes any
+fixed capacity on that map, not value-dependent/global allocation. No family-W programme.
+Fejer C/membership/ideal-power audit checks ONLY old13/15/47, old19 and ONE a15 member,
+0.18seconds: b=(1,2,3,4,2,1), b=(6,7,6) with dimB6, and11 shared deaths respectively.
+All new results are advisor-supplied paper proofs, independently agent-reviewed, not
+Lean checked or claimed novel. BOTH same authorized agents have completed their tasks.
+
+**E449, earlier arithmetic component preserved / deferred:** ceiling only primitive
+values to their residue classes preserves EXACTLY e, using the strict>=m primitive-word
+margin. It realizes real actual points as genuine S', but the conductor and genus
+increments compete. Two paper-checked points in the same OLD19 profile show rounding
+can either lower or raise W (-18/19,+74/19). No negative real actual point was found;
+both real defects in the witness are positive. No numerical run or LP expansion on
+these points; priority remains E448's finite value/descendant payment. Shared all-Kunz
+ceilings can create primitives and are not a substitute for the source generator count.
+
+**E446, historical denominator bound (valid; superseded by E448):** for EVERY
 S with3<=e<m, put M=c+m-1, C=(e-2)m(m-1)/2 and L=m-e+1. Then
 `mW+C >= M/L^(e-1)`. Thus a hypothetical W<=0 forces
 `c+m-1 <= C*(m-e+1)^(e-1)`. This quantifies the advisor's E416 strict recession theorem
@@ -520,13 +565,31 @@ OLD mirror19 eligibility rejection; raw seed/audit and aborted-gate log are in d
 This checks a gate and added fields, not a new positive search. E446's all-profile
 conductor bound is a paper proof with independent agent audit, not a numerical routine.
 
+**E448 implementation:** `verify_probe.py --advisor-filtration-check EXE OUTPUT` uses
+existing C `--odd-audit` and independent exact source multiplication/odd-ideal powers.
+It verifies the V_n quotient and VALUE-graded module bound, mixed coefficient base,
+moment/death identity and the a15 shared-edge witness. ONLY old13,old19 and that one
+family member are controls; no solver or new C path. Data: advisor_filtration_audit.json,
+checkpoint_448_checks.log; replay is in run_checks.sh. V_dimensions_from_n_zero includes
+V0 explicitly. The general 1/L theorem and all-a countermap proof are PAPER arguments.
+
 ## Current attempt and next action
 
-**Current exact target (E444–E446):** prove the finite source value gain for EVERY S:
+**Immediate E450 task:** finish exact64-bit CPU and CUDA cyclic-scan engines with
+O(mk) primitive detection and shortest-path witnesses; compare against independent
+heap Dijkstra after every generator addition before renting Runpod. Benchmark the
+same CPU scan, multicore CPU, GPU kernel and full canonical-analysis pipeline, then
+run a bounded structural negative-Q campaign. See SCOPE for the user's exact approval
+and cost/time limit. No GPU job is currently live; all E448/449 math is preserved below.
+
+**Current exact target (E444–E448):** prove the finite source value gain for EVERY S:
 `(e-1)M-e*mean >= (e-2)(a-1)/2`, using the ORIGINAL parity algebra, cyclic residue labels,
-E439 normalization and the FULL E445 unused-parent reserve. E446 now supplies an explicit
+E439 normalization and the FULL E445 unused-parent reserve. E448 now supplies a quartic
 large-conductor exclusion; it does not make the bounded finite budget nonnegative. The
-next theorem must explain that finite payment, not refine the cutoff or reconstruct more W.
+next theorem must pay BOTH surviving degree moment sum n*b_n and killed scalar mass
+2sum eta_n using their actual value labels and the coefficient ring B. The unseparated
+E441 budget retains BOTH WU and every nonnegative resource; do not require the two costs
+to pay independently. No all-odd reduction, cutoff refinement or Hilbert census is active.
 
 **Hall alternative, at its weakest useful strength:** prove Q(D)=Dep+N-kappa>=0 at the
 actual conductor phase, retaining BOTH reserves in Q=frozen+Leak+m-pool. At the full tile
@@ -712,7 +775,10 @@ paper-proved, not Lean checked. E445's parent injection/typed credit and arbitra
 weighted-depth lemmas are also paper-proved; the stronger reserve-free payer is refuted
 on OLD19 and the finite sign is still UNKNOWN. E446's quantitative cyclic-tile gap and
 explicit all-profile conductor/full-joint bounds are paper-proved and independently
-agent-reviewed; they leave the finite sign unproved. No universal
+agent-reviewed; they leave the finite sign unproved.
+E448 supersedes that cutoff by the advisor's1/L argument and identifies the correct
+odd-ideal Hilbert sequence, with independent paper and fixed-case set audits. These
+remain partial results; the full finite value gain is UNKNOWN. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

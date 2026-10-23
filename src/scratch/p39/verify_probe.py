@@ -734,6 +734,82 @@ def audit_source_parity(C):
             'nonzero_odd_products':nonzero_odd_products,'mean_value':str(mean),'maximum_value':maximum,
             'finite_correction':correction,'all_basis_products_checked':a*a}
 
+def audit_odd_filtration(C):
+    """E448: independent monomial ideal powers, preserving value and parity."""
+    from collections import Counter
+    from itertools import combinations_with_replacement
+    source=audit_source_parity(C);layers=audit_odd_layers(C)
+    a=source['a'];S=membership_stats(source['S']['G'],a)
+    values=set(S['w']);even={v for v in values if v%2==0};odd=values-even
+    V=[even,odd]
+    while V[-1]:
+        V.append({v+w for v in V[-1] for w in odd if v+w in values})
+        assert len(V)<=max(values)+3
+    getV=lambda n:V[n] if n<len(V) else set()
+    ideal=getV(1)|getV(2);powers=[values]
+    while powers[-1]:
+        powers.append({v+w for v in powers[-1] for w in ideal if v+w in values})
+        assert len(powers)<=max(values)+3
+    for n,power in enumerate(powers):
+        assert not getV(n)&getV(n+1)
+        assert power==getV(n)|getV(n+1)
+    b=[len(powers[n])-len(powers[n+1]) for n in range(len(powers)-1)]
+    graded=[powers[n]-powers[n+1] for n in range(len(b))]
+    assert all(b[n]==len(getV(n))-len(getV(n+2)) for n in range(len(b)))
+    assert all(v>=0 for v in b) and sum(b)==a
+    coefficient=even-getV(2)
+    h=layers['Hilbert_function'][1:]
+    geth=lambda n:h[n-1] if n<=len(h) else 0
+    assert len(getV(1))==geth(1) and len(getV(2))==geth(2)
+    assert b[0]==len(coefficient)==a-geth(1)-geth(2)
+    oddprimitives=[p for p in S['G'] if p!=a and p%2]
+    evenprimitives=[p for p in S['G'] if p%2==0];q=len(oddprimitives)
+    assert ideal=={v+p for v in values for p in oddprimitives if v+p in values}
+    generated={0}
+    while True:
+        nxt=generated|{v+p for v in generated for p in evenprimitives if v+p in coefficient}
+        if nxt==generated:break
+        generated=nxt
+    assert generated==coefficient
+    for n,block in enumerate(graded):
+        free=Counter(sum(word) for word in combinations_with_replacement(oddprimitives,n))
+        assert len(block)<=sum(free.values())*len(coefficient)
+        if n:assert len(block)<=(comb(q+n-1,n) if q else 0)*b[0]
+        for value in block:
+            assert sum(count for shift,count in free.items() if value-shift in coefficient)>=1
+    assert len(getV(3))>=geth(1)-q*b[0]
+    allodd=not evenprimitives
+    if allodd:
+        assert coefficient=={0} and b[0]==1 and b[1]==q==S['e']-1
+        assert geth(1)+geth(2)==a-1 and len(getV(3))==geth(1)-q
+        assert geth(1)-geth(3)<=q
+    eta=[geth(n)-len(getV(n)) for n in range(1,max(len(h),len(V)-1)+1)]
+    assert all(v>=0 for v in eta) and all(v==0 for v in eta[:2])
+    moment=sum(n*v for n,v in enumerate(b));death=2*sum(eta[2:])
+    assert moment+death==layers['weighted_lift_mass']
+    M=max(values);L=a-S['e']+1;correction=(S['e']-2)*a*(a-1)//2
+    homogeneous=(S['e']-1)*a*M-S['e']*sum(values)
+    assert homogeneous==a*S['W']+correction and homogeneous*L>=M
+    result={'S':source['S'],'a':a,'odd_primitive_count':q,'even_primitive_count':len(evenprimitives),
+            'coefficient_value_basis':sorted(coefficient),'associated_graded_Hilbert_function':b,
+            'associated_graded_value_bases':[sorted(G) for G in graded],
+            'V_dimensions_from_n_zero':[len(v) for v in V],
+            'scalar_layer_dimensions':h,'killed_layer_counts':eta,
+            'graded_degree_moment':moment,'twice_killed_mass':death,
+            'weighted_lift_mass':layers['weighted_lift_mass'],'all_original_primitives_odd':allodd,
+            'linear_stability_gap':homogeneous,'linear_stability_L':L,'maximum_value':M}
+    if sorted(S['G'])==[a,a+2,3*a+8,3*a+10]:
+        assert a>=15 and a%2 and S['m']==a and S['e']==4 and 3*S['e']<a and S['c']>=5*a
+        assert all(gcd(*[p for p in S['G'] if p!=removed])==1 for removed in S['G'])
+        p=a+2
+        assert all(n*p in values for n in (1,2,3)) and 4*p not in values
+        assert 4*p-a==3*a+8
+        for n in range(4,a):
+            assert n in layers['power_layers'][n-1] and n*p not in values
+        result['shared_first_death']={'parent':3*p,'primitive':p,'formal_target':4*p,
+                                     'scalar_descendants':list(range(4,a)),'capacity_needed':a-4}
+    return result
+
 def rational_row_rank(rows,width):
     basis={}
     for values in rows:
@@ -1765,6 +1841,19 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--advisor-filtration-check':
+        import subprocess
+        result=[]
+        for G in ([13,15,47],[19,39,41,50,52,53],[15,17,53,55]):
+            C=json.loads(subprocess.check_output([sys.argv[2],'--odd-audit',*map(str,G)],text=True))
+            result.append(audit_odd_filtration(C))
+        assert result[0]['associated_graded_Hilbert_function']==[1,2,3,4,2,1]
+        assert result[1]['associated_graded_Hilbert_function']==[6,7,6]
+        assert result[2]['shared_first_death']['capacity_needed']==11
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        for R in result:print('ODD-FILTRATION',{k:v for k,v in R.items() if k!='associated_graded_value_bases'})
+        print('EXACTLY AUDITED two old algebra controls and ONE mechanism-family member; no finite-sign theorem')
+        sys.exit(0)
     if sys.argv[1]=='--parity-credit-check':
         import subprocess
         result=[]

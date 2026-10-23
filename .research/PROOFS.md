@@ -10412,3 +10412,319 @@ the two-sided-kernel pivot. Stop the first-death injection and rank-only substit
 not the source parity strategy. The conductor/closure surplus and FULL even-parent
 reserve remain available, and no requirement that individual kernel modules pay for
 themselves is introduced.
+
+## E448 — advisor's linear stability bound and the correct odd-ideal Hilbert sequence
+
+2026-10-23. **Scope.** Proves Wilf for EVERY S once the finite arithmetic budget is
+proved uniformly; reduction YES, E444's identity and the recorded complements. The
+quantitative column theorem below is a proved uniform reduction, not that finite sign.
+The all-odd specialization has NO proved reduction from all semigroups and is used
+only as a specialization/calibration of the general filtration. The four-generator
+family falsifies a proposed UNIVERSAL charging rule; it is not a new Wilf family target.
+
+All three main deductions below were supplied by the user's advisor in the review of
+318a08b. Root checked them, and the SAME two user-authorized Sol6.1-high agents
+independently audited the geometric and algebraic arguments. PAPER PROOFS, not Lean
+checked or externally peer reviewed; no novelty claim. E446 remains a valid historical
+proof but its denominator bound is superseded by this stronger argument.
+
+### 1. The cyclic-tile gap is Q/(n-d), not merely Q/(n-d)^d — PROVED
+
+Use E446's finite down-set D in N^d, containing0 and every unit vector, with
+|D|=n>d+1,d>=2 and a linear residue bijection onto Z/n. Put L=n-d. For every
+nonnegative p with Q=max_D z.p>0,
+
+    d*n*Q-(d+1)*sum_D z.p >= Q/L.                       (LINEAR-CH)
+
+Normalize sigma=p/Q, so the MAXIMUM CELL weight is1. Write
+
+    F=d*n-(d+1)*sum_D z.sigma
+     =sum_j sum_(j-columns C) |C|*(1-top(C).sigma)>=0.
+
+Suppose F<1/L. Let N_i e_i be the i-axis top and delta_i=1-N_i*sigma_i. The axis
+column plus the other d-1 unit vectors gives1<=N_i<=L. Axis contributions are distinct
+terms of the column sum, so
+
+    F>=sum_i(N_i+1)*delta_i.                            (AX)
+
+This already excludes sigma_i=0, which would contribute at least2. Positivity has
+not been assumed.
+
+For i!=j, the word(N_i-1)e_i MUST extend by e_j. If N_i=1 this is the existing unit
+e_j. If N_i>1 and its j-column were a singleton, that column is distinct from EVERY
+axis column: its direction is j and its base has positive i-coordinate. Its contribution
+delta_i+sigma_i can therefore be added without double counting to the i-axis term:
+
+    F>=(N_i+2)*delta_i+sigma_i
+      =1/N_i+(N_i+2-1/N_i)*delta_i>=1/N_i>=1/L,
+
+a contradiction. The required extension has weight at most1, giving
+
+    sigma_j-sigma_i<=delta_i for all i!=j.              (EXT)
+
+All N_i are equal. Indeed, if a=N_i<b=N_j, the exact identity and reversed EXT give
+
+    b-a=b*delta_i-a*delta_j+a*b*(sigma_i-sigma_j)
+        <=b*delta_i+a*(b-1)*delta_j
+        <=L*((a+1)*delta_i+(b+1)*delta_j)<=L*F<1.
+
+The coefficient comparison uses a,b<=L and nonnegative deficits. It contradicts the
+positive integer b-a. Write the common axis length H. From AX,
+
+    (1-F/(H+1))/H<=sigma_i<=1/H.                       (WEIGHTS)
+
+A column top of degree at most H-1 has weight<=(H-1)/H, so that column alone
+contributes at least1/H>=1/L>F. A top of degree at least H+1 has, by WEIGHTS, weight
+at least(H+1-F)/H>1, since F<1. Both are impossible. Thus EVERY column top has degree H.
+
+Every cell consequently has degree<=H. A minimal missing word of degree<=H would
+have a predecessor whose corresponding column ends below H. Therefore D=Delta_H.
+H=1 contradicts n>d+1; for H>=2 the E416 injection of Delta_1-Delta_(H-1) into Z/n
+contradicts its cardinality greater than|Delta_H|. This finishes the contradiction
+and proves LINEAR-CH. No rational-vertex or denominator estimate is needed.
+
+### 2. Polynomial conductor reduction — PROVED
+
+For EVERY numerical semigroup with3<=e<m, put
+
+    M=c+m-1, C_m=(e-2)*m*(m-1)/2, L=m-e+1.
+
+The exact E446 identity and LINEAR-CH give
+
+    m*W+C_m >= M/L,
+    W >= (c+m-1)/(m*(m-e+1))-(e-2)*(m-1)/2.             (LIN-W)
+
+Thus every such S with W<=0 satisfies
+
+    c+m-1<=C_m*(m-e+1)
+          <=m*(m-1)/2*floor((m-1)^2/4)
+          <=m*(m-1)^3/8.                               (QUARTIC-C)
+
+The optimization is elementary: (e-2)+(m-e+1)=m-1 and their product is at most the
+displayed integer square bound. This is a quartic cutoff in m for ACTUAL nonpositive W.
+It leaves m unbounded. Along every sequence with fixed m,e and c tending to infinity,
+liminf W/c>=1/(m*(m-e+1)). The e=2/e=m exceptions are necessary and already satisfy
+Wilf. No bounded-conductor census or further cutoff refinement is activated.
+
+For any other primitive modulus a with3<=e<a, the same geometric proof gives
+
+    a*W+(e-2)*a*(a-1)/2 >= (c+a-1)/(a-e+1).
+
+It does not require the other primitives to exceed a. For the ORIGINAL full
+multiplicity-based E414 joint model, keep k=m-e and E446's sum x<=k(k+1)/2:
+
+    m*J>=M/L-C_m-e*m*k*(k+1)/2.                         (LIN-J)
+
+Hence J<=0 implies M<=L*(C_m+e*m*k*(k+1)/2), also for real actual/certificate points.
+This second bound is not claimed quartic uniformly in e, and does not imply minimizer
+integrality or a finite-minimum sign. Composite certificate rows remain necessary.
+
+### 3. The odd ideal gives a genuine associated graded algebra — PROVED
+
+Let A=k[S]/(t^a), a the least odd primitive. Let V_n span products of n odd classes,
+with V_0=A_even, and put o=(A_odd). E444 gives V_(n+2) subset V_n and v_i=h_i for i1,2.
+Even multiplication preserves V_n and odd multiplication takes it to V_(n+1).
+Consequently o=V_1 directsum V_2 and, for EVERY n>=0,
+
+    o^n=V_n directsum V_(n+1),
+    gr_o(A)_n isomorphic V_n/V_(n+2).                  (ODD-GR)
+
+The two direct summands have opposite parity. Expanding(V_1+V_2)^n gives V_j for
+n<=j<=2n, and nesting reduces them to the two stated parity pieces. For n0 the formula
+is A=V_0 directsum V_1. The quotient isomorphisms preserve VALUE grading; taken together
+they preserve multiplication. This is not an assertion that A has a standard grading
+by original factorization length.
+
+Put B=A/o, v_n=dim V_n and b_n=v_n-v_(n+2). Nilpotence and telescoping give
+
+    b_n>=0, sum_(n>=0)b_n=a,
+    b_0=dim B=a-h_1-h_2, B isomorphic A_even/V_2.
+
+The q ORIGINAL nonpivot odd primitive classes generate o. Therefore there is a
+value-graded surjection B[Y_1,...,Y_q] -> gr_o(A), where Y_j has o-degree1 and
+value degree p_j. For n>=1,
+
+    b_n<=binom(q+n-1,n)*b_0,
+    v_3>=h_1-q*(a-h_1-h_2).                            (MODULE)
+
+For q0 read positive-degree dimensions as0; E439 separately handles that source case.
+The value-resolved version, retaining the original primitive VALUES, is
+
+    dim(gr_o A)_(n,w)
+      <=sum_(alpha in N^q, |alpha|=n) dim B_(w-alpha.p). (VALUE-MODULE)
+
+This is the graded surjection's degreewise dimension bound, not freeness or a sign
+theorem. Original even primitive classes survive indecomposably in B: vanishing or
+decomposing one would decompose that source primitive as a sum of positive S elements.
+Thus their original actions remain in the coefficient ring rather than being counted
+as independent new odd generators.
+
+If ALL original primitives are odd, B=k, o is A's maximal ideal, q=e-1 and
+
+    b_0=1, b_1=q, h_1+h_2=a-1,
+    v_3=h_1-q, h_1-h_3<=q.
+
+Here gr_o(A) is a standard graded k-algebra, so ordinary Macaulay theory applies to b.
+For mixed parity B can have dimension greater than1: use MODULE/VALUE-MODULE instead
+of silently applying ordinary field-based Macaulay with q generators. There is no
+proved reduction from all S to the all-odd specialization.
+
+For the EXISTING13/15/47 control, x=t^15,y=t^47 gives
+
+    A isomorphic k[x,y]/(x^4,x*y^3,y^4).
+
+The three monomials vanish since60-13=47,156-13=143=11*13, and
+188-13=175=10*13+3*15. The quotient has13 standard monomials (the4-by3 rectangle
+plus y^3), so its surjection to the13-dimensional A is an isomorphism. Their ordinary
+degrees give b=(1,2,3,4,2,1). This control's grading is not assumed for general A.
+
+### 4. Surviving degree moment plus killed scalar mass — EXACT
+
+Let eta_n=h_n-v_n>=0. E444 gives eta_1=eta_2=0. Since all sums are finite,
+
+    sum_(n>=1)n*b_n=v_1+2*sum_(n>=2)v_n,
+    h_1+2*sum_(n>=2)h_n
+      =sum_(n>=1)n*b_n+2*sum_(n>=3)eta_n.              (SURVIVE-DEATH)
+
+The left side is E442's exact lift mass sum lambda. Substitution into E441 retains
+the FULL budget:
+
+    W(S)=2W(U)+2(e-e_U)*ell_U+(e-1)*(c(S)-2c(U))
+         -e*(b+sum_(n>=1)n*b_n+2*sum_(n>=3)eta_n),
+
+where the isolated b=(a-1)/2 is NOT the sequence b_n. No summand is assumed to pay
+itself. Correct Hilbert structure controls the surviving moment; it does not by itself
+bound the killed mass. The actual values, coefficient actions, conductor/closure surplus
+and full parent reserve remain required for a quantitative finite payment.
+
+### 5. Unbounded first-death multiplicity in the remaining domain — PROVED
+
+For EVERY odd a>=15, let S_a=<a,a+2,3a+8,3a+10>. All four generators are primitive:
+the high ones are below4a and cannot be sums of one or three low generators (three low
+offsets are at most6), while their difference2 is below the least positive element.
+Every leave-one-out gcd is1. Omitting a leaves gcd(a+2,2,4)=1; omitting a+2 leaves
+gcd(a,8,10)=1; omitting either high generator leaves a,a+2.
+
+The even number5a-1 is a gap. A representation would have two or four odd generators;
+six are too large. Two low generators are too small, two high too large, and high+low
+is at most4a+12<5a-1. Four low generators total at most4a+8<5a-1, while one high plus
+three low is already at least6a+8. Thus m=a,e4,3e<m and c>=5a>4m.
+
+Here T=S_a/2 has least positive element a and I={0,1,a+4,a+5}+T. Below a, nI={0,...,n}
+for1<=n<=a-1, so n belongs to H_n throughout that range. With p=a+2, the first three
+powers survive modulo t^a:2,a+4 and2a+6 are gaps. But4p=a+(3a+8), and for4<=n<=a-1,
+
+    n*p-a=(3a+8)+(n-4)*p belongs to S_a.
+
+Thus a-4 DISTINCT scalar classes share the SAME first vanishing edge3p->4p. Its
+parent is odd and formal target even. Their weighted killed contribution is at least
+2(a-4), unbounded even with fixed source e4 and all recorded sparse/deep/cofactor
+restrictions. This refutes any capacity bounded independently of a on THAT natural map,
+not value-dependent capacities, a global descendant allocation or Wilf. No family
+enumeration or family-W theorem is a target.
+
+### Review / next finite obligation
+
+The advisor's strengthened stability theorem is substantive and its proof is sound.
+Treat the polynomial conductor exclusion as completed; do not spend the next cycle
+optimizing its constant. ODD-GR and SURVIVE-DEATH identify the correct algebra and the
+unpaid killed mass. VALUE-MODULE is retained so that a future allocation can use actual
+primitive increments and the coefficient ring, not only dimensions. The universal
+finite value gain remains unproved; neither Macaulay nor the unbounded countermap
+family is represented as a proof of it. The differential branch remains secondary:
+its proposed inequality is exactly W>=R_rel, a stronger demand needing its own payment.
+
+## E449 — primitive-preserving rounding, and its unavoidable finite sign cost
+
+2026-10-23. This paper component was obtained in the E448 arithmetic task BEFORE the
+advisor's latest steering, then preserved/deferred while the advisor audit took priority.
+Scope: Proves Wilf for every S IF the full real actual domain is nonnegative; reduction
+YES, E414/E417 and complements. A negative real point would refute this stronger route,
+not Wilf. The lemma below realizes real points arithmetically but does NOT transfer their
+sign. Supplied by the first already-authorized agent; root audited it. No new computation,
+optimization, profile census, additional agent or novelty/Lean claim.
+
+### Primitive ceilings retain exactly e generators — PROVED
+
+Let p be a real point of a realizable E414/E417 actual profile, with original primitive
+residues g_j, multiplicity m and d=e-1. Set
+
+    p'_j=m*ceil((p_j-g_j)/m)+g_j,
+    delta_j=p'_j-p_j in[0,m),
+    S'=<m,p'_1,...,p'_d>.
+
+The displayed E generators are EXACTLY the minimal generators of S'. All exceed m
+except m itself, and their residues have gcd1 with m because the profile is realizable.
+For any non-m word z!=e_j of residue g_j, seed primitiveness makes it strict. E417's
+affine rewriting then gives z.p-p_j>=m, including words outside the canonical tile.
+Therefore
+
+    z.p'-p'_j=(z.p-p_j)+z.delta-delta_j>=m-delta_j>0.
+
+A representation using extra copies of m is even larger. No displayed p'_j decomposes;
+the generating set admits no additional minimal generator. Thus S' is numerical with
+m(S')=m,e(S')=e. Every word value weakly increases, so its genuine Apéry values satisfy
+w'_s>=w_s and c(S')>=c_real. In particular q>=5 and3e<m survive. The tight profile and
+top residue need NOT survive.
+
+The exact remaining rounding payment is
+
+    W(S')-W_real=(e-1)*(M'-M)-(e/m)*sum_s(w'_s-w_s).     (CEIL-COST)
+
+Both increments are nonnegative. The lemma proves preservation of the ORIGINAL
+generator count, not a favorable sign of their difference.
+
+### The cost can have either sign in the remaining domain — PAPER witness
+
+The OLD19 profile has the five primitive words for39,41,50,52,53 and all degree2 words
+EXCEPT39+52 and41+50. The two omitted sums are91, above their canonical53 by38.
+These1+5+13 words have every residue modulo19 once; all higher-degree words exceed the
+largest106. The top word is2*53. Coordinate sums are(6,6,6,6,7), giving
+
+    H=5*19*z_top-6*sum z=(-36,-36,-36,-36,148).
+
+Take integer primitives P*=(799,839,1019,1059,1079)=20*(39,41,50,52,53)+19, with m19.
+The same tile remains genuine: all triples have value>=2397>M2158; the omitted pairs
+have value1858, above canonical1079; residues are unchanged since20=1 modulo19.
+Every leave-one-out primitive gcd is1: gcd(799,839)=1 handles deletion of m, while retaining
+prime19 handles each other deletion. Exact sums give c2140,g1562,W1328, e6,3e<m.
+
+Lower ONLY799 by1/2 to obtain real point A, or ONLY1079 by1/2 to obtain real point B.
+Both obey the FULL same actual profile. Tight rows are word identities. Strict primitive
+rows from omitted pairs retain gap>=778.5; triple rows retain gap>=237.5, both>m.
+Distinct integer Apéry values for P* are at least20 apart; a perturbation changes any
+word of degree<=2 by at most1, so top differences remain>=19>any required residue
+distance18. Primitive positivity and q>=5 have ample slack. The top residue stays11,
+with q_A113 and q_B113-1/19. The primitive ceilings of BOTH points are exactly P*.
+
+Consequently
+
+    W(P*)-W(A)=H_799/(2*19)=-18/19,
+    W(P*)-W(B)=H_1079/(2*19)=74/19.
+
+These are two real points in ONE existing realizable profile, not new optimized profiles.
+Both real defects are positive. They refute either proposed monotonicity of CEIL-COST,
+not real actual positivity or Wilf. The exact examples and all real constraints were
+independently checked on paper by the same authorized reviewer; no numerical run is claimed.
+
+### Rounding every Kunz coordinate has a separate generator-count cost
+
+For real actual Kunz coordinates xi_s and top q, shared ceilings
+k_s(t)=ceil(xi_s+t), q_t=ceil(q+t),0<t<1 preserve closure, strict non-tight rows and
+the top residue. They can CREATE primitive residues. With fixed-e pseudo-defect V_t,
+
+    integral_0^1 V_t dt=W_real+e-m,
+    integral_0^1 W(S_t)dt
+      =W_real+e-m+integral_0^1(e_t-e)*ell_t dt.
+
+This extra term cannot generally be bounded by m-e: starting at ANY integer Kunz
+vector, all nonzero coordinates increase by1, every nonzero tight pair gains a unit
+gap, e_t=m and ell_t=ell+1. On OLD19 the term is13*21=273, not13. This stops that
+rounding shortcut. A rowwise floor argument also cannot assume closure from a tight
+row alone: fractional parts(.6,.6,.2) give rounded slack-1 for0<t<.4; this is a local
+row obstruction, not an asserted full-profile counterexample.
+
+Decision: preserve primitive rounding as an arithmetic bridge with controlled e, while
+keeping CEIL-COST unpaid. No rounding or regional LP expansion is prioritized over the
+advisor's finite value/descendant payment. A real witness, if sought later, must satisfy
+ALL actual rows and depth/sparse restrictions, not just one fractional closure row.

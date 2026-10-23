@@ -1339,3 +1339,20 @@ not as an external finite-correction theorem. Searches for fixed-multiplicity/co
 recession bounds did not supply a source USED to pay the remaining finite minimum.
 No absence or novelty claim is made. One user-authorized Sol6.1-high agent independently
 audited the complete argument; this is not Lean verification or external peer review.
+
+### E448/E449: advisor stability and associated graded hypotheses (2026-10-23)
+
+Reopened primary [Zhai1111.2779](https://arxiv.org/html/1111.2779), Lemma3/Thm1. The
+advisor's NEW1/L proof adds quantitative cyclic separation; it is recorded in PROOFS
+E448 and credited to the advisor. Priority/novelty is unchecked. The cutoff leaves m
+unbounded. Reopened [Eliahou1703.01761](https://arxiv.org/html/1703.01761), Definition5.1
+and Theorem5.5: ordinary Macaulay requires standard grading over a FIELD with degree
+zero equal to that field. E448 checks this for the all-odd associated graded algebra;
+the mixed case uses its directly proved B-module/value-graded polynomial surjection.
+No all-odd reduction is claimed.
+
+BGOW1903.04342, Conjecture4.4, proposes emptiness of real critical regions, not a proved
+fractional negative witness. E449 uses E417's affine primitive-word margin. Searches
+for generator subtraction/selective shifts supplied no external sign-transfer theorem
+USED here; no absence claim or activated shift programme follows. All-Kunz ceilings and
+primitive ceilings are distinct: only the latter preserves the original e in E449.

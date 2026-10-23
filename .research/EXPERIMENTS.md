@@ -1488,3 +1488,33 @@ growth plus a normalized rational-vertex determinant bound proves
 user-authorized Sol6.1-high agents independently audited the proof and sharpened the
 word-length denominator. Both root and reviewer also checked the joint-model loss bound
 sum x<=k(k+1)/2, k=m-e. No semigroup enumeration, finite sign or Lean claim follows.
+
+### 2026-10-23 — E448: advisor stability/filtration audit
+
+The1/L cyclic-tile theorem, quartic actual conductor cutoff and all-a first-death
+family are PAPER proofs supplied by the advisor, checked by root and the SAME two
+authorized Sol6.1-high agents. No numerical search is their proof. Ordinary Macaulay
+uses b only when its degree-zero ring is k; mixed parity retains B and value grading.
+
+One exact Fejer audit uses ONLY existing13/15/47, existing19/39/41/50/52/53, and ONE
+a15 member15/17/53/55. Existing C --odd-audit reconstructs data; independent membership
+and monomial-set multiplication computes ALL odd-ideal powers, verifies the quotient
+and value-graded module bounds, and checks the moment/death identity and shared edge.
+
+| Source | dim B | b sequence | sum n*b_n | twice killed mass | full lift mass |
+| --- | ---: | --- | ---: | ---: | ---: |
+|13/15/47|1|1,2,3,4,2,1|33|30|63|
+|old19|6|6,7,6|19|6|25|
+|15/17/53/55|1|1,3,4,4,2,1|36|36|72|
+
+All pass, runtime0.18seconds (user0.15,sys0.03 on final replay). At a15 eleven scalar
+classes4..14 share51->68 by17. These invariants calibrate the universal map obstruction,
+not a family-W theorem. Data: advisor_filtration_audit.json,checkpoint_448_checks.log.
+
+```sh
+python3 verify_probe.py --advisor-filtration-check ./repair_scan /tmp/wilf-p39-filtration.json
+```
+
+No C path, optimizer or GPU was introduced for E448. E449 primitive ceilings and the
+two opposite-cost real perturbations were checked on paper only; numerical runs were
+deferred. Both real W there are positive; no negative real or genuine W witness.

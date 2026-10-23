@@ -5583,3 +5583,30 @@ its weighted cost must be controlled with BOTH kernels, actual values and global
 conductor/closure resources. The agent did not derive a sufficient finite inequality.
 Do not describe this pivot or another filtration reconstruction as a sign proof.
 Both authorized agents completed their tasks; no further launches or jobs are active.
+
+### 2026-10-23 13:28 EDT — E448 advisor upgrade; E449 bridge preserved
+
+Previous turn made progress, pushed318a08b. Reused the SAME two authorized agents.
+Earlier arithmetic work proved primitive-preserving ceilings but not their sign; two
+paper-checked points of the SAME old19 profile have rounding changes-18/19,+74/19,
+both real W positive. Saved as E449, numerical tests deferred. Hall maximum-residue
+starts have lift>=3, but no finite allocation resulted; absolute lift and the already
+false K<=V shortcut are not new payment.
+
+The advisor's1/L theorem passes root and independent geometric audit: singleton
+columns do not duplicate axes, unequal axis lengths contradict integer separation,
+small total deficit forces all tops degree H, and the simplex contradicts cyclic
+injectivity. This yields the QUARTIC conductor bound. Treat it as completed; no cutoff
+refinement or growing bounded census. The algebra audit verifies ODD-GR, the general
+B-module/value-graded bound, all-odd field-Macaulay, and the exact surviving/death mass
+identity. No reduction to all-odd S. The new all-a e4 family refutes fixed-capacity
+first-death charging after sparse/deep/cofactor exclusions, not Wilf. Three exact Fejer
+controls pass in0.18seconds. All general claims are paper-proved, not Lean or novelty.
+
+Latest user steering additionally authorizes a Runpod GPU pilot. E450 specifies exact
+scan/certificate correctness, one GPU<=1USD/hour,20minute creation-to-termination cap,
+no persistent volume, and negative-Q/realizability targets across structural changes.
+Runpod CLI2.9.0 is configured and currently lists NO running pods. None rented yet.
+Prepare CPU/CUDA code before renting; SAME two authorized agents assist algorithm
+audit and CPU engine. This benchmark prerequisite must feed a named negative-Q or
+allocation-rule falsification, not an additional positive-profile census.
