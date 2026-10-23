@@ -466,3 +466,45 @@ S=<13,15,17,19> calibration, alpha1,U=N,A_alpha78,b6,e4,c64 and J<=12 force its 
 standalone lower bound <=-96 while actual W48. This refutes the standalone-payment
 proposal, not VALUE-DEATH, TRANSFER or Wilf. No new calculation/family programme.
 Retain full original increment distribution, source filtration and all global reserves.
+
+## E453/E454 — closure-moment shortcuts and finite neutral exits (2026-10-23)
+
+FALSE: plain U odd moment Z, even with one credit per actual dead column, always pays
+OC-W. Paper control S=<101,103,311,313>, U=N has Z5050,b50,J<=100 and c<=6564, so
+3c-4(b+Z-J)<=-308. This is an upper bound refuting that proposed lower-bound sign,
+not an exact c/g/W computation or a Wilf counterexample. The original relation
+5*103=313+2*101 supplies omitted descendant credit1940 across these closure words.
+Do not replace the original source presentation by U's minimal generator description.
+
+FALSE as COMPLETE source-death mechanisms: pure-coordinate inputs only, or primitive
+outputs only. Paper S=<31,33,37,72> has birth3 at u5 and source representative72,
+requiring mixed input2*33+37=72+31. Distinct paper S=<31,33,43,91> has birth5 at u5,
+source representative134=43+91, nu2,lambda4,D1; no primitive-output block fits5*33,
+but5*33=31+43+91 saves1. Both satisfy the deep/sparse/cofactor guards; no new invariant
+search was performed. General mixed-input/composite-output SOURCE-TRADE remains valid.
+
+The advisor's zero-death alpha refinement is valid, but NOT a sufficient universal
+payer. On the ONE fixed31/33/101/103 control, it still gives joint upper438 instead
+of297 and Wlower-48 instead of516. Explicit disjoint original-source4/5-block trades
+repair this control exactly; that does not establish their universal sufficiency.
+
+Bounded access result, NOT a universal failed lemma: all19 saved neutral representatives
+and their complete8294-replacement outgoing neighborhoods have no improving F exit.
+Total165880 evaluations including initial collection. The proper two-atom residue-cover
+recipe also finds0 full/one-hole covers among70125 exchanges at the saved input. Stop
+these recipes at their stated bounds. Neither finding rules out deeper neutral paths,
+other coordinated changes or globally resistant configurations. E455 proves a general
+buffered connection after coordinated shifts; it does not preserve W or stay in the box.
+
+## E456 — completed source units do not alone pay the finite correction
+
+FALSE for arbitrary constructed residue tiles: a downset containing every original
+primitive unit automatically has nonnegative constructed Wilf lower bound. Paper
+S=<4,5,7>,pivot4,D={0,e1,e2,2e2} has weights0,5,7,14, actual max10 and actualW2,
+but L(D)=2*10-(3/4)*26-3/2=-1. It already contains every unit, so unit completion
+makes no change. This is not a counterexample to Wilf, the cyclic-tile inequality,
+E456 compression, or a remaining-domain theorem. It demonstrates the unpayable step
+of substituting the constructed maximum for actual M without retaining the excess.
+Also, all units may be present in D_U while deaths remain (old paper31/33/43/91).
+Therefore missing-unit primitive blocks are a proved component, not a complete
+source-trade catalogue; mixed/composite relations and full reserves remain necessary.

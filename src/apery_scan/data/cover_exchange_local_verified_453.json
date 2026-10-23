@@ -1,0 +1,16 @@
+{
+  "checked": 0,
+  "results": [],
+  "negative_Q": 0,
+  "negative_W": 0,
+  "independent_exchange_coverage": [
+    {
+      "m": 63,
+      "proposals": 70125,
+      "all_set_sums_independently_checked": true,
+      "full_covers": 0,
+      "one_hole_covers": 0,
+      "affine_orbit_size": 24
+    }
+  ]
+}

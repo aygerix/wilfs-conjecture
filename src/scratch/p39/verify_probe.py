@@ -810,6 +810,111 @@ def audit_odd_filtration(C):
                                      'scalar_descendants':list(range(4,a)),'capacity_needed':a-4}
     return result
 
+def audit_pointwise_death(C):
+    """E451/E454: exact columns; one fixed trade calibration, never a search."""
+    R=audit_odd_comparison(C);filtration=audit_odd_filtration(C);layers=audit_odd_layers(C)
+    a=R['least_odd'];S=membership_stats(R['S']['G'],a);U=membership_stats(R['U']['G'],a)
+    values=set(S['w']);birth={}
+    for n,layer in enumerate(layers['power_layers'],1):
+        for u in layer:
+            assert u not in birth;birth[u]=n
+    nu_by_value={v:n for n,block in enumerate(filtration['associated_graded_value_bases']) for v in block}
+    assert set(nu_by_value)==values
+    original=[p for p in S['G'] if p!=a]
+    beta=[p//2 if p%2==0 else (p-a)//2 for p in original]
+    chi=[p%2 for p in original];assert all(x>0 for x in beta)
+    # Original labels are retained even when redundant in U. Optimize odd count,
+    # then lexicographic word, only on the exact U-Apéry representatives.
+    words={0:(0,)*len(original)};counts={0:0}
+    for s in sorted(range(1,a),key=lambda s:U['w'][s]):
+        choices=[]
+        for j,b in enumerate(beta):
+            parent=(s-b)%a
+            if U['w'][parent]+b==U['w'][s]:
+                word=list(words[parent]);word[j]+=1
+                choices.append((counts[parent]+chi[j],tuple(word)))
+        assert choices
+        counts[s],words[s]=min(choices)
+    columns=[];all_positions=set();D=[];nu=[];lambdas=[]
+    for s in range(a):
+        K,L=R['T_lifts'][s],R['I_lifts'][s];lam=K+L
+        v=S['w'][(2*s)%a];degree=nu_by_value[v]
+        positions=[];excess=[];deaths=[]
+        for k in range(K):
+            u=U['w'][s]+k*a;n=birth[u];all_positions.add(u)
+            E=n+2*k-lam;assert E>=0
+            dead=n*a+2*u not in values;assert dead==(E>0)
+            positions.append({'k':k,'u':u,'birth':n,'excess':E,'killed':dead})
+            excess.append(E);deaths.append(dead)
+        assert all(birth[positions[k+1]['u']]<=positions[k]['birth']-2 for k in range(K-1))
+        assert excess==sorted(excess,reverse=True)
+        killed=sum(deaths);assert deaths==[True]*killed+[False]*(K-killed)
+        assert lam==degree+2*killed and K==(degree+1)//2+killed and L==degree//2+killed
+        assert degree%2==K-L
+        initial_birth=birth[U['w'][s]] if K else 0
+        assert counts[s]==initial_birth and lam+int(killed>0)<=counts[s]
+        columns.append({'s':s,'U_value':U['w'][s],'K':K,'L':L,'lambda':lam,'nu':degree,
+                        'D':killed,'U_word':list(words[s]),'U_odd_count':counts[s],'positions':positions})
+        D.append(killed);nu.append(degree);lambdas.append(lam)
+    assert all_positions==set(birth)
+    assert sum(D)==sum(filtration['killed_layer_counts'])
+    assert sum(nu)==filtration['graded_degree_moment']
+    assert sum(lambdas)==sum(nu)+2*sum(D)==layers['weighted_lift_mass']
+    positive_alpha=[b for b,c in zip(beta,chi) if c]
+    alpha=min(positive_alpha) if positive_alpha else None
+    if alpha is not None:
+        assert all(alpha*(v+2*d+int(d>0))<=u for v,d,u in zip(nu,D,U['w']))
+    J=sum(d>0 for d in D);Aalpha=sum(u//alpha for u in U['w']) if alpha is not None else 0
+    zero_refinement=sum(v if d==0 else u//alpha-1 for v,d,u in zip(nu,D,U['w'])) if alpha is not None else 0
+    parent=audit_parity_credit(C)
+    result={'S':R['S'],'U':R['U'],'a':a,'original_source_labels':original,
+            'normalized_labels':beta,'odd_flags':chi,'columns':columns,
+            'sum_nu':sum(nu),'sum_D':sum(D),'J':J,'sum_lambda':sum(lambdas),
+            'U_odd_moment_Z':sum(counts.values()),'alpha_min':alpha,'A_alpha':Aalpha,
+            'alpha_strict_upper':Aalpha-J,'zero_death_column_upper':zero_refinement,
+            'full_parent_reserve':parent['unused_deficit_reserve'],
+            'parent_primitive_credit':parent['primitive_credit'],
+            'full_parent_scaled_W':parent['full_scaled_W'],
+            'pointwise_initial_segments_checked':a,'universal_sign_claim':False}
+    if S['G']==[31,33,101,103]:
+        assert a==31 and U['G']==[1] and beta==[1,35,36] and chi==[1,1,1]
+        assert (S['c'],S['g'],S['W'])==(588,312,516)
+        assert (sum(nu),sum(D),J,sum(lambdas),Aalpha)==(123,87,27,297,465)
+        assert zero_refinement==Aalpha-J==438
+        assert 4*33==101+31 and 5*33==103+2*31
+        single=[];combined=[];packing=[]
+        for s in range(a):
+            assert words[s]==(s,0,0) and counts[s]==s
+            j,r=divmod(s,5);four=int(r==4);five=j
+            assert 4*four+5*five<=s
+            credit=four+2*five
+            # Independent bounded integer packing for THIS 31-element audit.
+            exact=max(x+2*y for x in range(s//4+1) for y in range(s//5+1) if 4*x+5*y<=s)
+            assert credit==exact==2*j+int(r==4)
+            word=[s-4*four-5*five,four,five]
+            constructed=sum(n*p for n,p in zip(word,original))
+            assert constructed==2*s+a*(s-credit)==S['w'][(2*s)%a]
+            assert lambdas[s]==counts[s]-credit
+            assert lambdas[s]<=counts[s]-max(credit,int(D[s]>0))
+            single.append(2*j);combined.append(credit)
+            packing.append({'s':s,'four_blocks':four,'five_blocks':five,'credit':credit,
+                            'replacement_source_word':word,'source_value':constructed})
+        assert sum(single)==162 and sum(combined)==168
+        b=(a-1)//2;E=S['e'];base=sum(R['W_parts'][:3])
+        bounds={'alpha_min_with_strict_dead':base-E*(b+Aalpha-J),
+                'zero_death_columns':base-E*(b+zero_refinement),
+                'single_trade':base-E*(b+sum(counts.values())-sum(single)),
+                'single_trade_max_strict':base-E*(b+sum(counts.values())-sum(max(c,int(d>0)) for c,d in zip(single,D))),
+                'combined_disjoint_trades':base-E*(b+sum(counts.values())-sum(combined))}
+        assert bounds=={'alpha_min_with_strict_dead':-48,'zero_death_columns':-48,
+                        'single_trade':492,'single_trade_max_strict':496,'combined_disjoint_trades':516}
+        result['fixed_trade_control']={'single_credit':sum(single),'combined_credit':sum(combined),
+            'single_joint_upper':sum(counts.values())-sum(single),'combined_joint_upper':sum(counts.values())-sum(combined),
+            'single_twice_killed_upper':sum(counts.values())-sum(single)-sum(nu),
+            'combined_twice_killed_upper':sum(counts.values())-sum(combined)-sum(nu),
+            'packing':packing,'full_budget_lower_bounds':bounds,'overlap_guard':'disjoint original inputs; strict-death combined by MAX'}
+    return result
+
 def rational_row_rank(rows,width):
     basis={}
     for values in rows:
@@ -1841,6 +1946,17 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--pointwise-death-check':
+        import subprocess
+        G=list(map(int,sys.argv[4:]));assert G
+        C=json.loads(subprocess.check_output([sys.argv[2],'--odd-audit',*map(str,G)],text=True))
+        result=audit_pointwise_death(C)
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('POINTWISE-DEATH',{k:v for k,v in result.items() if k not in ('columns','fixed_trade_control')})
+        if 'fixed_trade_control' in result:
+            print('FIXED-TRADE',{k:v for k,v in result['fixed_trade_control'].items() if k!='packing'})
+        print('ONE fixed input; no family census or universal sign claim')
+        sys.exit(0)
     if sys.argv[1]=='--advisor-filtration-check':
         import subprocess
         result=[]

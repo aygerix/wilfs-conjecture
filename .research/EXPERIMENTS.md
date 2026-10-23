@@ -1764,3 +1764,99 @@ moves or neutral-component exploration from the exact local barrier, rather than
 increasing generation count. Directed discovery remains authorized; no requirement to
 already possess a resistant example is reinstated. Universal proof work retains E451's
 pointwise descendant structure, both parity reserves, whole-tile Hall and coupled repairs.
+
+## E453/E454 — coordinated-cover, neutral-exit and source-trade diagnostics
+
+2026-10-23 15:50 EDT. Scope: EVERY S IF a uniform full-budget payment/realizability
+argument follows; reduction yes, E432 SUPP-WILF/full Q+R or E444 OC-W plus complements.
+These are bounded mechanism tests and code checks, not new Wilf ranges. Same TWO
+previously authorized agents; no new launches or GPU rental. All Fejer jobs finished.
+
+**E453 exact cover criterion.** In the E45263 residue atomset A (0 plus its11 actual
+primitive residues), remove exactly two NONZERO atoms and insert exactly two elements
+outside the OLD A. All55*1275=70125 possibilities were checked by the new C++
+`--exchange` bitset path (m<=64, proposal cap2million). Pair-coverage maximum59;
+full covers0, one-hole covers0. The24 affine normalized images were already known
+in E354 and were not rerun as a semigroup census. Coverage1.90795ms, empty scoring
+wrapper0.631056ms: ZERO uniform-lift semigroups evaluated. The full histogram and
+accepted sets were independently recomputed using Python sets, remotely and locally.
+Files: `src/apery_scan/data/cover_exchange_453.jsonl`,
+`cover_exchange_verified_453.json`, `cover_exchange_local_verified_453.json`.
+
+**E454 exact neutral exits.** Anchor supplied inputs, preserving their order:
+
+    307 474 482 438 486 461 475 492 440 477 454
+
+At m63 the first stage exhausts all11*(12*63-2)=8294 single-input replacements,
+64<=p<819 except the unchanged input. It rediscovers19 F-neutral neighbors, all
+EXACTLY matching primitive residues, canonical words and Gamma. Top, Q, R and W
+are allowed to differ. Each of those19 then receives the SAME complete8294-replacement
+outgoing audit. Total20*8294=165880 evaluations,2945.15ms wall time with7 Fejer CPU
+threads. No F improvement or negativeQ/W. Every outgoing maximumF is-3; every
+changed-residue eligible/nonflat maximum is-52, except seed13 at-53. The audit is
+only this two-move horizon: it does NOT exhaust the full neutral component, exclude
+coordinated moves, prove archive pruning caused the old plateau, or establish Wilf.
+
+All39 exported origin/neutral/best records pass independent coin membership,
+canonical lex reconstruction, explicit column and conductor-phase audits; all19
+exact tile identities are compared again independently. Files:
+`neutral_neighborhood_454.jsonl`, `neutral_neighborhood_verified_454.json`,
+`neutral_neighborhood_local_verified_454.json` in the same data directory.
+Reproduction after `g++ -std=c++17 -O3 -pthread -Wall -Wextra -Werror driver.cpp -o scan_cpu`:
+
+    ./scan_cpu --exchange 7 63 307 474 482 438 486 461 475 492 440 477 454
+    ./scan_cpu --neutral 7 63 307 474 482 438 486 461 475 492 440 477 454
+    python3 verify_scan.py data/cover_exchange_453.jsonl --output /tmp/exchange_audit.json
+    python3 verify_scan.py data/neutral_neighborhood_454.jsonl --output /tmp/neutral_audit.json
+
+The data are already verified; these are reproduction commands, not an instruction
+to repeat or enlarge the search automatically.
+
+**Archive correction and bounded integration.** Exact grouping key is now
+(e,primitive-residue vector,canonical-word vector), never the diagnostic hash. Up
+to4 distinct actual primitive-height vectors survive per group; max64 groups/256
+representatives. The original best tier/F/Wc winner and unconditional W/c winner
+are retained, followed by distant-height and mixed-row boundary/slack diversity.
+Nearest strict mixed-row distance is only a heuristic: zero/one-sign rows cannot
+supply a nontrivial positive-orthant crossing, and even mixed signs do not certify
+integer accessibility. Parent selection is a ranked-group tournament followed by
+uniform representative selection. Group quotas/elite counts are not representative
+counts. Exact control `--archive-test` retains W708 and W1020 (474->348) together,
+and separates an actual different tile despite a forced diagnostic hash collision:
+2groups,3reps. File: `archive_control_454.jsonl`.
+
+ONLY64 candidates*4generations,seed4540,m63,7threads were then run as an integration
+check. Group capacity8; retained reps11,14,19,21 across8 groups, all <=4/group.
+156 scored-parent proposals; best nonflatF remains-3. Final saved witness independently
+heap/coin/column verified. Wall15.302ms is a tiny CPU workflow check, not a search-quality
+comparison or benchmark. Files: `archive_integration_454.jsonl`,
+`archive_integration_verified_454.json`. Native C++17 and the WILF_CUDA host path
+pass warnings-as-errors/syntax checks. No new NVCC, device runtime, sanitizer, GPU
+throughput or entire-campaign comparison is claimed for these host archive edits.
+
+**Fixed parity control, no family search.** Existing C `--odd-audit` plus independent
+membership, T/I powers, source products and per-column birth/death checking verifies
+ONLY the advisor's S=<31,33,101,103>: c588,g312,W516, sum(nu)123,sum(D)87,J27,
+Lambda297,Z=A_alpha465. Coarse alpha and zero-death refinement both upper-bound
+joint mass by438, giving Wlower-48. Original-source trades4*33=101+31 and
+5*33=103+2*31 give the disjoint packing C(s)=2floor(s/5)+1_(s mod5=4),0<=s<31.
+Total168; exact joint bound297, killed mass174, Wlower516. Every column includes
+an attaining source word and independent bounded integer packing verification.
+Single5-block gives162/joint303/Wlower492; max with existing strict-death credit
+improves to163/joint302/Wlower496. Credits are combined by MAX where they overlap,
+not added twice. Full alternate parent budget checks reserve7494 and primitive
+credit909, scaled W47988=3*31*516. General sufficiency is NOT established.
+Existing checker entry point:
+
+    python3 verify_probe.py --pointwise-death-check ./repair_scan OUTPUT 31 33 101 103
+
+File: `src/scratch/p39/data/parity_trade_control_454.json`. No new C path, optimizer,
+positive profile census or further control family was run.
+
+**Decision.** Close these exact finite recipes at their stated budgets. Keep the archive
+fix and E455's general paper connectivity result. Next mathematical target is a UNIFORM
+source-trade payment quota, including mixed inputs/composite outputs and full reserves;
+Hall full-Q/R and coupled actual-coordinate routes remain alternatives. E452's1.30x
+measurement is specifically BATCH EVALUATION: generation/selection/archive are excluded.
+There is still no matched CPU/GPU comparison of the entire adaptive campaign, and no
+new GPU rental or benchmark in E453/E454.

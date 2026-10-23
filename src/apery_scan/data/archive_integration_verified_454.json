@@ -1,0 +1,39 @@
+{
+  "checked": 1,
+  "results": [
+    {
+      "kind": "adaptive_best",
+      "m": 63,
+      "e": 12,
+      "c": 912,
+      "g": 777,
+      "W": 708,
+      "Q": 56,
+      "R": 652,
+      "Qmin": 50,
+      "F": -3,
+      "height": 3,
+      "leave_one_out_gcds": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "all_apery_entries_checked": 63,
+      "coin_membership_bound": 1037,
+      "exact_predecessors": true,
+      "canonical_columns": true,
+      "abstract_phases_are_not_realizations": true
+    }
+  ],
+  "negative_Q": 0,
+  "negative_W": 0
+}

@@ -353,6 +353,8 @@ int neighbor_audit(int threads,int m,const std::vector<i64>& anchor) {
 
 #include "warm.hpp"
 #include "adaptive.hpp"
+#include "exchange.hpp"
+#include "neutral.hpp"
 int main(int argc,char**argv) {
     try {
 #ifdef WILF_CUDA
@@ -361,6 +363,7 @@ int main(int argc,char**argv) {
         gpu_context_initialization_ms=elapsed(gpu_init_started);
 #endif
         if(argc>=2 && std::string(argv[1])=="--self-test") {self_test(argc>2?std::stoi(argv[2]):1000);return 0;}
+        if(argc==2 && std::string(argv[1])=="--archive-test") {adaptive_archive_selftest();return 0;}
         if(argc>=3 && std::string(argv[1])=="--case") {
             const int m=std::stoi(argv[2]);std::vector<i64>G;
             for(int i=3;i<argc;++i)G.push_back(std::stoll(argv[i]));
@@ -375,6 +378,14 @@ int main(int argc,char**argv) {
             std::vector<i64> anchor;for(int i=4;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
             return neighbor_audit(std::stoi(argv[2]),std::stoi(argv[3]),anchor);
         }
+        if(argc>=5 && std::string(argv[1])=="--exchange") {
+            std::vector<i64> anchor;for(int i=4;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
+            return exchange_audit(std::stoi(argv[2]),std::stoi(argv[3]),anchor);
+        }
+        if(argc>=5 && std::string(argv[1])=="--neutral") {
+            std::vector<i64> anchor;for(int i=4;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
+            return neutral_audit(std::stoi(argv[2]),std::stoi(argv[3]),anchor);
+        }
         if(argc>=8 && std::string(argv[1])=="--adaptive") {
             std::vector<i64> anchor;for(int i=7;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
             return adaptive_run(std::stoi(argv[2]),std::stoi(argv[3]),std::stoull(argv[4]),std::stoi(argv[5]),std::stoi(argv[6]),anchor);
@@ -383,7 +394,7 @@ int main(int argc,char**argv) {
             std::vector<i64>anchor;for(int i=6;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
             return benchmark(std::stoi(argv[2]),std::stoull(argv[3]),std::stoi(argv[4]),std::stoi(argv[5]),static_cast<int>(anchor.size()),anchor);
         }
-        std::cerr<<"usage: --self-test [lists] | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators... | --warm batch repeats seed threads m k | --adaptive batch generations seed threads m generators... | --neighbors threads m generators...\n";
+        std::cerr<<"usage: --self-test [lists] | --archive-test | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators... | --warm batch repeats seed threads m k | --adaptive batch generations seed threads m generators... | --neighbors threads m generators... | --exchange threads m generators... | --neutral threads m generators...\n";
         return 2;
     } catch(const std::exception& error) {std::cerr<<"ERROR "<<error.what()<<'\n';return 2;}
 }

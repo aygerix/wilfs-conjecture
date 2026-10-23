@@ -1356,3 +1356,33 @@ fractional negative witness. E449 uses E417's affine primitive-word margin. Sear
 for generator subtraction/selective shifts supplied no external sign-transfer theorem
 USED here; no absence claim or activated shift programme follows. All-Kunz ceilings and
 primitive ceilings are distinct: only the latter preserves the original e in E449.
+
+### E453–E455: cover exchanges, canonical height cells and trade shadows (2026-10-23)
+
+Reopened primary [Haanpaa2004](https://cs.uwaterloo.ca/journals/JIS/VOL7/Haanpaa/haanpaa.html)
+and its full PDF. Its sum covers allow equal summands; isomorph rejection/minimum-cover
+search is prior work. E453's proper two-atom set-sum identity is elementary, and the24
+normalized affine images of the old63 cover were already used in E354. No completeness
+or uniqueness of all63 covers is inferred from one published example or its affine orbit.
+
+Reopened [Brower–McDonough–O'Neill2401.06025v3](https://arxiv.org/html/2401.06025v3):
+primitive-coordinate face descriptions and realizability (Theorems4.8/4.9), chamber
+incidence/walking (Theorem5.5) are relevant prior machinery. The new archive's mixed-row
+slack heuristic is NOT an implementation of a complete Kunz-fan walk or an integer
+boundary accessibility test. E455 instead gives a direct seed-weight/lex-perturbation
+proof of an interior integer direction and buffered Manhattan connectivity of one
+canonical tile's height realizations; it deliberately permits old inner trades to
+break, unlike E431's fixed-tight-profile tangent realization. No priority claim.
+
+E453 original-source block replacement, E454 exact fixed packing and E455 top-vertex
+necessity are proved directly with all hypotheses in PROOFS. Elementary word substitution,
+column floor sums and convexity are not attributed as new general techniques. No
+external theorem is being used to assert the still-missing finite payment.
+
+E456 extends the directly proved word-substitution component to a downset-preserving
+full-shadow compression and source-primitivity/knapsack irredundancy. It is an elementary
+monomial normalization construction, not claimed a new general algebra technique.
+The paper proof applies to any primitive pivot; no external result is invoked to
+assert a nonnegative completed-tile mean–maximum budget. Its exact remaining quota
+and an explicit noncanonical-tile limitation are recorded, so restoration of original
+generator count is not mistaken for a proof of the finite correction.

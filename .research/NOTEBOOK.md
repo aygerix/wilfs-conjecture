@@ -5661,3 +5661,54 @@ lambda_s=nu_s+2D_s. A value-sensitive alpha bound controls the ENTIRE killed mas
 but its standalone OC-W payment is refuted on the already recorded k2 calibration.
 Keep full source increment distribution and all global reserves. No finite sign/Lean
 or novelty claim. Universal goal remains ACTIVE; no proof or genuine counterexample.
+
+### 2026-10-23 16:00 EDT — E453–E456: exact neutral access, source credits and preserved shadows
+
+Scope remains EVERY S via full Q/R or OC-W and recorded complements. Latest advisor
+identified a real archive information loss. Fixed exact grouping and kept up to4
+height/boundary-diverse states per tile while retaining best W/c. Fixed control keeps
+W708 and W1020 together; synthetic hash collision separates genuine different tiles.
+The bounded64x4 CPU workflow retains11/14/19/21 states over8 groups. No new GPU rental,
+NVCC/device test or throughput/quality comparison. E452 speedup is BATCH EVALUATION,
+not the entire adaptive campaign; STATE now states that distinction explicitly.
+
+Finite discrimination: all70125 proper two-atom changes from old63 have pair coverage
+<=59, so0 near-covers and0 new lifted semigroups evaluated. All19 exact same-tile
+neutral representatives plus their complete one-input exits cost165880 evaluations/
+2.95seconds on Fejer and give no F improvement/negativeQ/W.39 exported witnesses
+independently coin/column/phase checked remotely and locally. Do not infer full neutral
+component exhaustion, generic impossibility or historical archive causation.
+
+New mathematics: E453 source-word trades pay joint surviving+killed mass with disjoint
+inputs and original generator count; full shadows replace any fixed kernel-root capacity.
+On ONE advisor31 control, disjoint4/5-block credits168 give exact lift297 and W516,
+where alpha/zero-death438 gives-48. Mixed inputs AND composite outputs are necessary;
+those incompleteness witnesses were independently checked on paper, not a family census.
+
+E455 establishes buffered integer connectivity after common coordinated neutral shifts,
+for any genuine canonical tile. Exact lex/primitive rows, interior direction and monotone
+rounding are independently reviewed. The connection may be huge, changes tight patterns/
+top/W and does not prove unit connectivity in the search box or preserve defect sign.
+Actual tops must be positively exposed vertices; old63's lowest abstract pair phase is
+an impossible midpoint. No claimed finite sign or new positive profile certificate.
+
+E456 advances the payment structure: omitted original units correspond exactly to
+non-Apery normalized labels. Their source-primitive blocks have strictly positive credit,
+and other omitted-primitive blocks cannot pay an anchor as well as its own block without
+decomposing that primitive. The full-shadow compression z->z-q*x+q*e_k preserves downsets,
+residue bijection and old units, introducing one missing unit per step. It works at ANY
+primitive pivot and improves the constructed lower bound by exactly e*sigma*sum q.
+Same TWO authorized agents independently checked the separate primitivity/compression
+arguments. No compute, Lean or novelty claim. The old primitive genus/source budget is
+retained; this does not replace its actual maximum by a constructed one.
+
+GLOBAL REVIEW after two failed finite access recipes and the new paper components:
+stop those recipes at the exact budgets. More generations would not answer a new
+mathematical question. Continue the original-source quota in E456, with missing-unit
+anchors, mixed/composite trades and ALL reserves. Compression restores geometry and
+source generator count but cannot itself prove positivity; its constructed maximum
+may exceed actual M, as the small paper4/5/7 guard demonstrates. SOURCE-QUOTA states
+precisely the credit still needed. Hall at the actual top/full Q+R and full actual-
+coordinate arithmetic remain distinct alternatives; no all-cut/frozen strengthening,
+all-odd reduction, cutoff optimization or positive census is activated. Universal
+Wilf goal ACTIVE, no proof or genuine counterexample; STATE is the sole handoff.

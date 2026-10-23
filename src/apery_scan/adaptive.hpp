@@ -5,6 +5,9 @@
 // a universal sign claim or a claim that every diagnostic phase is realizable.
 #include <array>
 #include <set>
+#include <map>
+#include <tuple>
+#include <cmath>
 
 struct AdaptiveEntry {
     std::vector<wilf::i64> G, w;
@@ -13,6 +16,9 @@ struct AdaptiveEntry {
     int height = 0;
     wilf::i64 F = std::numeric_limits<wilf::i64>::min(), support_mass = 0;
     bool finite = false, eligible = false;
+    bool diversity_ready = false;
+    std::vector<wilf::i64> primitive_heights, mixed_slacks;
+    double boundary_distance = std::numeric_limits<double>::infinity();
 };
 
 inline int adaptive_tier(const AdaptiveEntry& item) {
@@ -107,33 +113,201 @@ inline std::vector<wilf::i64> adaptive_mutate(Random& rng, int m,
     return result;
 }
 
-inline std::vector<AdaptiveEntry> adaptive_archive(std::vector<AdaptiveEntry> pool,
-                                                  int capacity, int m) {
-    std::sort(pool.begin(), pool.end(), adaptive_better);
-    std::vector<AdaptiveEntry> answer;
-    std::set<std::pair<int, std::uint64_t>> selected;
-    std::vector<int> by_e(m + 1, 0);
-    auto take = [&](int tier, int limit) {
-        for (int pass = 0; pass < 2 && static_cast<int>(answer.size()) < limit; ++pass) {
-            for (const auto& item : pool) {
-                if (static_cast<int>(answer.size()) >= limit) break;
-                if (!item.finite || adaptive_tier(item) != tier) continue;
-                const auto key = std::make_pair(item.score.basic.e, item.score.tile_hash);
-                if (selected.count(key) || (pass == 0 && by_e[key.first] >= 4)) continue;
-                selected.insert(key);
-                ++by_e[key.first];
-                answer.push_back(item);
+// Exact structural identity; the diagnostic hash is NEVER used for grouping.
+using AdaptiveKey = std::tuple<int, std::vector<int>, std::vector<int>>;
+inline AdaptiveKey adaptive_key(const AdaptiveEntry& item) {
+    return {item.score.basic.e, item.score.residues, item.score.words};
+}
+inline std::vector<std::vector<int>> adaptive_groups(const std::vector<AdaptiveEntry>& entries) {
+    std::map<AdaptiveKey, int> index;
+    std::vector<std::vector<int>> groups;
+    for (int i = 0; i < static_cast<int>(entries.size()); ++i) {
+        const auto key = adaptive_key(entries[i]);
+        auto found = index.find(key);
+        if (found == index.end()) {
+            const int at = static_cast<int>(groups.size());
+            index.emplace(key, at); groups.push_back({i});
+        } else groups[found->second].push_back(i);
+    }
+    return groups;
+}
+inline void adaptive_prepare_diversity(AdaptiveEntry& item, int m) {
+    if (item.diversity_ready) return;
+    item.diversity_ready = true;
+    const int d = static_cast<int>(item.score.residues.size());
+    for (int r : item.score.residues) item.primitive_heights.push_back(item.w[r] / m);
+    for (int s = 0; s < m; ++s) for (int j = 0; j < d; ++j) {
+        const int t = (s + item.score.residues[j]) % m;
+        bool positive = false, negative = false;
+        double norm2 = 0;
+        for (int k = 0; k < d; ++k) {
+            const int coefficient = item.score.words[static_cast<std::size_t>(s)*d+k] + (k == j)
+                                  - item.score.words[static_cast<std::size_t>(t)*d+k];
+            positive |= coefficient > 0; negative |= coefficient < 0;
+            norm2 += double(coefficient) * coefficient;
+        }
+        // Identity and one-sign rows do not give a nontrivial positive-orthant
+        // crossing. Mixed signs are necessary, not sufficient, for accessibility.
+        if (!positive || !negative) continue;
+        const wilf::i64 gap = item.w[s] + item.w[item.score.residues[j]] - item.w[t];
+        require(gap >= 0 && gap % m == 0, "invalid primitive-edge slack");
+        item.mixed_slacks.push_back(gap / m);
+        // Distance in primitive HEIGHT coordinates to the trade hyperplane
+        // gap=0. Tight rows remain in the diversity vector, not this strict-row
+        // minimum. This heuristic does not certify that crossing is attainable.
+        if (gap > 0)
+            item.boundary_distance = std::min(item.boundary_distance,
+                double(gap / m) / std::sqrt(norm2));
+    }
+}
+inline wilf::i64 adaptive_l1(const std::vector<wilf::i64>& a, const std::vector<wilf::i64>& b) {
+    require(a.size() == b.size(), "same structural group has incompatible diversity coordinates");
+    wilf::i64 result = 0;
+    for (std::size_t i = 0; i < a.size(); ++i) result += a[i] > b[i] ? a[i]-b[i] : b[i]-a[i];
+    return result;
+}
+inline bool adaptive_ratio_better(const AdaptiveEntry& a, const AdaptiveEntry& b) {
+    const __int128 left = static_cast<__int128>(a.score.basic.W) * std::max(wilf::i64(1), b.score.basic.c);
+    const __int128 right = static_cast<__int128>(b.score.basic.W) * std::max(wilf::i64(1), a.score.basic.c);
+    return left != right ? left < right : adaptive_better(a,b);
+}
+inline std::vector<AdaptiveEntry> adaptive_representatives(std::vector<AdaptiveEntry> candidates, int m) {
+    std::sort(candidates.begin(), candidates.end(), adaptive_better);
+    std::set<std::vector<wilf::i64>> height_keys;
+    std::vector<AdaptiveEntry> unique;
+    for (auto& item : candidates) {
+        adaptive_prepare_diversity(item,m);
+        if (height_keys.insert(item.primitive_heights).second) unique.push_back(std::move(item));
+    }
+    std::vector<int> chosen;
+    auto add = [&](int i) {
+        if (i >= 0 && chosen.size() < 4 && std::find(chosen.begin(),chosen.end(),i)==chosen.end()) chosen.push_back(i);
+    };
+    add(0); // Preserve the original best eligible/F/W/c representative.
+    int ratio_best = 0;
+    for (int i=1;i<static_cast<int>(unique.size());++i)
+        if(adaptive_ratio_better(unique[i],unique[ratio_best]))ratio_best=i;
+    add(ratio_best); // Also preserve unconditional best W/c if eligibility differs.
+    int farthest = -1; wilf::i64 farthest_distance = -1;
+    for(int i=0;i<static_cast<int>(unique.size());++i) {
+        const auto distance=adaptive_l1(unique[i].primitive_heights,unique[0].primitive_heights);
+        if(distance>farthest_distance){farthest=i;farthest_distance=distance;}
+    }
+    add(farthest); // A distant same-tile height state survives even with worse W/c.
+    while(chosen.size()<4 && chosen.size()<unique.size()) {
+        int best=-1; double boundary=std::numeric_limits<double>::infinity();
+        wilf::i64 diversity=-1, height_diversity=-1;
+        for(int i=0;i<static_cast<int>(unique.size());++i) {
+            if(std::find(chosen.begin(),chosen.end(),i)!=chosen.end())continue;
+            wilf::i64 row_distance=std::numeric_limits<wilf::i64>::max();
+            wilf::i64 height_distance=row_distance;
+            for(int j:chosen) {
+                row_distance=std::min(row_distance,adaptive_l1(unique[i].mixed_slacks,unique[j].mixed_slacks));
+                height_distance=std::min(height_distance,adaptive_l1(unique[i].primitive_heights,unique[j].primitive_heights));
+            }
+            if(best<0 || unique[i].boundary_distance<boundary ||
+               (unique[i].boundary_distance==boundary && (row_distance>diversity ||
+                (row_distance==diversity && height_distance>height_diversity)))) {
+                best=i;boundary=unique[i].boundary_distance;diversity=row_distance;height_diversity=height_distance;
             }
         }
-    };
-    const int bridge_reserve = capacity > 1 ? std::max(1, capacity / 4) : 0;
-    take(0, capacity - bridge_reserve);
-    take(1, std::min(capacity, static_cast<int>(answer.size()) + bridge_reserve));
-    take(0, capacity);
-    take(1, capacity);
-    if (answer.empty()) take(2, capacity); // explicitly reported outside-domain bridges
-    std::sort(answer.begin(), answer.end(), adaptive_better);
+        add(best);
+    }
+    std::vector<AdaptiveEntry> answer;
+    for(int i:chosen)answer.push_back(std::move(unique[i]));
     return answer;
+}
+
+// capacity counts EXACT STRUCTURAL GROUPS; returned flat entries contain up to
+// four representatives per group, at most 4*capacity. Group order is score rank,
+// and each group's first entry is its original best representative.
+inline std::vector<AdaptiveEntry> adaptive_archive(std::vector<AdaptiveEntry> pool,
+                                                  int capacity, int m) {
+    require(capacity>=1 && capacity<=64,"archive group capacity must be1..64");
+    std::sort(pool.begin(),pool.end(),adaptive_better);
+    std::map<AdaptiveKey,int> index;
+    std::vector<std::vector<AdaptiveEntry>> groups;
+    for(auto& item:pool)if(item.finite) {
+        auto key=adaptive_key(item);
+        auto found=index.find(key);
+        if(found==index.end()) {
+            const int at=static_cast<int>(groups.size());index.emplace(std::move(key),at);
+            groups.push_back({});groups.back().push_back(std::move(item));
+        } else groups[found->second].push_back(std::move(item));
+    }
+    std::vector<int> selected;std::set<int> used;std::vector<int> by_e(m+1,0);
+    auto take=[&](int tier,int limit) {
+        for(int pass=0;pass<2 && static_cast<int>(selected.size())<limit;++pass)
+            for(int i=0;i<static_cast<int>(groups.size()) && static_cast<int>(selected.size())<limit;++i) {
+                const auto& first=groups[i][0];const int e=first.score.basic.e;
+                if(adaptive_tier(first)!=tier || used.count(i) || (pass==0 && by_e[e]>=4))continue;
+                used.insert(i);++by_e[e];selected.push_back(i);
+            }
+    };
+    const int bridge_reserve=capacity>1?std::max(1,capacity/4):0;
+    take(0,capacity-bridge_reserve);
+    take(1,std::min(capacity,static_cast<int>(selected.size())+bridge_reserve));
+    take(0,capacity);take(1,capacity);if(selected.empty())take(2,capacity);
+    std::sort(selected.begin(),selected.end(),[&](int a,int b){return adaptive_better(groups[a][0],groups[b][0]);});
+    std::vector<AdaptiveEntry> answer;
+    for(int i:selected) {
+        auto reps=adaptive_representatives(std::move(groups[i]),m);
+        for(auto& item:reps)answer.push_back(std::move(item));
+    }
+    require(answer.size()<=static_cast<std::size_t>(4*capacity),"archive representative budget exceeded");
+    return answer;
+}
+
+inline void adaptive_archive_selftest() {
+    using namespace wilf;
+    const int m=63;
+    const std::vector<i64> base_G={307,438,440,454,461,474,475,477,482,486,492};
+    auto make_entry=[&](const std::vector<i64>& G) {
+        AdaptiveEntry item;item.G=G;item.w=scan_cpu(m,G);
+        require(item.w==dijkstra_heap(m,G),"archive control heap mismatch");
+        item.score=support(m,G,item.w);item.finite=true;
+        item.eligible=item.score.basic.e>=4 && 3*item.score.basic.e<m && item.score.basic.c>4*m;
+        item.F=item.score.kappa-item.score.Dep;
+        const int d=item.score.basic.e-1;
+        for(int s=0;s<m;++s) {
+            int degree=0;for(int j=0;j<d;++j)degree+=item.score.words[static_cast<std::size_t>(s)*d+j];
+            item.height=std::max(item.height,degree);
+        }
+        return item;
+    };
+    auto base=make_entry(base_G);
+    auto neutral_G=base_G;neutral_G[5]=348;
+    auto neutral=make_entry(neutral_G);
+    require(base.score.basic.W==708 && neutral.score.basic.W==1020,"archive fixed control invariants changed");
+    require(adaptive_key(base)==adaptive_key(neutral) && base.score.gamma==neutral.score.gamma,
+            "archive fixed neutral control changed exact tile");
+    require(adaptive_ratio_better(base,neutral),"archive control best W/c is not the base");
+    // A genuine generator-removal neighbor, with ONLY its diagnostic hash
+    // overwritten, proves that a collision cannot merge different exact keys.
+    auto different_G=base_G;different_G[5]=475;
+    auto different=make_entry(different_G);
+    require(adaptive_key(base)!=adaptive_key(different),"archive collision control has same exact key");
+    different.score.tile_hash=base.score.tile_hash;
+    auto archive=adaptive_archive({base,neutral,different},64,m);
+    const auto groups=adaptive_groups(archive);
+    require(groups.size()==2 && archive.size()==3,"archive exact grouping/representative retention failed");
+    bool kept_base=false,kept_neutral=false;
+    for(const auto& group:groups)if(adaptive_key(archive[group[0]])==adaptive_key(base)) {
+        require(archive[group[0]].score.basic.W==708,"archive original W/c best was displaced");
+        for(int at:group){kept_base|=archive[at].G==base_G;kept_neutral|=archive[at].G==neutral_G;}
+    }
+    require(kept_base && kept_neutral,"archive lost the higher-W neutral height representative");
+    adaptive_prepare_diversity(base,m);adaptive_prepare_diversity(neutral,m);
+    require(base.primitive_heights!=neutral.primitive_heights,"archive controls have identical primitive heights");
+    std::cout<<"{\"kind\":\"archive_self_test\",\"groups\":"<<groups.size()
+             <<",\"representatives\":"<<archive.size()<<",\"exact_grouping\":true"
+             <<",\"synthetic_hash_collision_test\":true,\"genuine_semigroups\":true"
+             <<",\"best_W\":708,\"neutral_W\":1020,\"best_preserved\":true,\"neutral_retained\":true"
+             <<",\"base_primitive_heights\":";print_array(base.primitive_heights);
+    std::cout<<",\"neutral_primitive_heights\":";print_array(neutral.primitive_heights);
+    std::cout<<",\"base_strict_boundary_distance\":"<<base.boundary_distance
+             <<",\"neutral_strict_boundary_distance\":"<<neutral.boundary_distance
+             <<",\"distance_is_accessibility_heuristic_only\":true}\n"<<std::flush;
 }
 
 inline int adaptive_run(int batch, int generations, std::uint64_t seed, int threads,
@@ -166,11 +340,15 @@ inline int adaptive_run(int batch, int generations, std::uint64_t seed, int thre
         const auto proposal_start = Clock::now();
         int feedback = 0, migrants = 0, copies = 0, outside_parent = 0, bridge_parent = 0;
         std::array<int, 8> operations{};
-        const int parent_count = static_cast<int>(archive.size());
+        const auto parent_groups = adaptive_groups(archive);
+        const int parent_count = static_cast<int>(parent_groups.size());
+        const int parent_representatives = static_cast<int>(archive.size());
+        const int elite_count = generation > 0 && batch > 1 ?
+            std::min(parent_count, std::max(1,batch/16)) : 0;
         for (int i = 0; i < batch; ++i) {
             std::vector<i64> G;
-            if (generation > 0 && i < std::min(parent_count, batch / 16)) {
-                G = archive[i].G;
+            if (i < elite_count) {
+                G = archive[parent_groups[i][0]].G;
                 ++copies;
             } else if ((i % 8 == 7) || (generation > 0 && archive.empty())) {
                 G = adaptive_migrant(rng, m, k);
@@ -180,9 +358,10 @@ inline int adaptive_run(int batch, int generations, std::uint64_t seed, int thre
             } else {
                 const AdaptiveEntry* parent = nullptr;
                 if (!archive.empty()) {
-                    const auto a = rng.next() % archive.size();
-                    const auto b = rng.next() % archive.size();
-                    parent = &archive[std::min(a, b)]; // score-ranked tournament selection
+                    const auto a = rng.next() % parent_groups.size();
+                    const auto b = rng.next() % parent_groups.size();
+                    const auto& group = parent_groups[std::min(a,b)];
+                    parent = &archive[group[rng.next()%group.size()]]; // ranked-group tournament, uniform representative
                     ++feedback;
                     outside_parent += !parent->eligible;
                     bridge_parent += parent->eligible && parent->height <= 2;
@@ -298,7 +477,9 @@ inline int adaptive_run(int batch, int generations, std::uint64_t seed, int thre
         archive = adaptive_archive(std::move(pool), archive_capacity, m);
         const double archive_ms = elapsed(archive_start);
         int archived_nonflat = 0, archived_bridges = 0;
-        for (const auto& item : archive) {
+        const auto archived_groups = adaptive_groups(archive);
+        for (const auto& group : archived_groups) {
+            const auto& item=archive[group[0]];
             archived_nonflat += item.eligible && item.height >= 3;
             archived_bridges += item.eligible && item.height <= 2;
         }
@@ -308,6 +489,7 @@ inline int adaptive_run(int batch, int generations, std::uint64_t seed, int thre
         std::cout << "{\"kind\":\"adaptive_generation\",\"m\":" << m << ",\"seed\":" << seed
                   << ",\"generation\":" << generation << ",\"batch\":" << batch << ",\"cpu_threads\":" << threads
                   << ",\"parent_archive_epoch\":" << generation - 1 << ",\"scored_parent_archive\":" << parent_count
+                  << ",\"parent_archive_groups\":" << parent_count << ",\"parent_archive_representatives\":" << parent_representatives
                   << ",\"parent_dependent_proposals\":" << feedback << ",\"total_parent_dependent_proposals\":" << total_feedback
                   << ",\"elite_copies\":" << copies << ",\"forced_migrants\":" << migrants
                   << ",\"outside_domain_parent_proposals\":" << outside_parent << ",\"flat_bridge_parent_proposals\":" << bridge_parent
@@ -319,7 +501,10 @@ inline int adaptive_run(int batch, int generations, std::uint64_t seed, int thre
                   << ",\"resistant_height_ge3\":" << resistant << ",\"actual_embedding_dimensions\":";
         print_array(std::vector<int>(actual_e.begin(), actual_e.end()));
         std::cout << ",\"diagnostic_tile_hashes\":" << tile_hashes.size() << ",\"diagnostic_profile_hashes\":" << profile_hashes.size()
-                  << ",\"archive_size\":" << archive.size() << ",\"archive_nonflat\":" << archived_nonflat
+                  << ",\"archive_size\":" << archived_groups.size()
+                  << ",\"archive_groups\":" << archived_groups.size() << ",\"archive_representatives\":" << archive.size()
+                  << ",\"archive_group_capacity\":" << archive_capacity << ",\"representatives_per_group_limit\":4"
+                  << ",\"parent_selection\":\"ranked_group_tournament_then_uniform_representative\"" << ",\"archive_nonflat\":" << archived_nonflat
                   << ",\"archive_flat_bridges\":" << archived_bridges << ",\"best_F_height_ge3\":";
         number_or_null(current_best, std::numeric_limits<i64>::min());
         std::cout << ",\"best_F_height_ge3_so_far\":"; number_or_null(best_seen, std::numeric_limits<i64>::min());

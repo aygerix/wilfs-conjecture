@@ -4,6 +4,35 @@ import json
 from collections import defaultdict
 from math import gcd
 from functools import reduce
+from itertools import combinations
+
+
+def verify_exchanges(record):
+    m = record['m']; A = tuple(record['old_atoms']); old = set(A)
+    assert m >= 3 and A == tuple(sorted(old)) and 0 in old
+    assert {(a+b) % m for a in old for b in old} == set(range(m))
+    outside = sorted(set(range(m)) - old)
+    histogram = [0] * (m+1); full = []; one = []; proposals = 0
+    for removed in combinations(A[1:], 2):
+        B = old - set(removed)
+        for added in combinations(outside, 2):
+            C = B | set(added)
+            sums = {(a+b) % m for a in C for b in C}
+            histogram[len(sums)] += 1; proposals += 1
+            if len(sums) == m: full.append(sorted(C))
+            elif len(sums) == m-1:
+                assert {(s+a) % m for s in sums for a in C} == set(range(m))
+                one.append(sorted(C))
+    full.sort(); one.sort()
+    orbit = {tuple(sorted((unit*(a-pivot)) % m for a in A))
+             for unit in range(1, m) if gcd(unit, m) == 1 for pivot in A}
+    assert record['proposals'] == proposals
+    assert record['coverage_histogram'] == histogram
+    assert record['full_cover_sets'] == full and record['one_hole_sets'] == one
+    assert record['affine_orbit_size'] == len(orbit)
+    assert record['full_covers_in_old_affine_orbit'] == sum(tuple(C) in orbit for C in full)
+    return {'m': m, 'proposals': proposals, 'all_set_sums_independently_checked': True,
+            'full_covers': len(full), 'one_hole_covers': len(one), 'affine_orbit_size': len(orbit)}
 
 
 def verify(record):
@@ -107,18 +136,45 @@ if __name__ == '__main__':
     parser.add_argument('inputs', nargs='+')
     parser.add_argument('--output')
     args = parser.parse_args()
-    results = []
+    results = []; coverage_results = []; neutral_origin = None; neutral_seeds = []; neutral_path = {}
     for path in args.inputs:
         with open(path) as source:
             for line in source:
                 if line.strip().startswith('{'):
                     record = json.loads(line)
+                    if record.get('kind') == 'two_atom_coverage':
+                        coverage_results.append(verify_exchanges(record))
                     if 'w' in record:
                         results.append(verify(record))
-    assert results, 'no promoted records to verify'
+                        kind = record.get('kind', '')
+                        if kind == 'neutral_origin': neutral_origin = record
+                        if kind.startswith('neutral_seed_'): neutral_seeds.append(record)
+                        if kind.startswith('neutral_path_'): neutral_path[kind] = record
+    assert results or coverage_results, 'no promoted records to verify'
     report = {'checked': len(results), 'results': results,
               'negative_Q': sum(r['Q'] < 0 for r in results),
               'negative_W': sum(r['W'] < 0 for r in results)}
+    if coverage_results: report['independent_exchange_coverage'] = coverage_results
+    if neutral_seeds:
+        assert neutral_origin is not None
+        for seed in neutral_seeds:
+            assert seed['m'] == neutral_origin['m']
+            assert all(seed[k] == neutral_origin[k] for k in ('e','primitive_residues','canonical_words','gamma'))
+            assert seed['kappa']-seed['Dep'] == neutral_origin['kappa']-neutral_origin['Dep']
+            assert len(seed['input_generators']) == len(neutral_origin['input_generators'])
+            assert sum(a!=b for a,b in zip(seed['input_generators'],neutral_origin['input_generators'])) == 1
+        report['exact_neutral_representatives_verified'] = len(neutral_seeds)
+    if neutral_path:
+        assert set(neutral_path) == {'neutral_path_origin','neutral_path_middle','neutral_path_exit'}
+        start = neutral_path['neutral_path_origin']; middle = neutral_path['neutral_path_middle']; end = neutral_path['neutral_path_exit']
+        assert all(start[k] == middle[k] for k in ('e','m','primitive_residues','canonical_words','gamma','Dep','kappa'))
+        assert len(start['input_generators']) == len(middle['input_generators']) == len(end['input_generators'])
+        assert sum(a!=b for a,b in zip(start['input_generators'],middle['input_generators'])) == 1
+        assert sum(a!=b for a,b in zip(middle['input_generators'],end['input_generators'])) == 1
+        improved = end['kappa']-end['Dep'] > start['kappa']-start['Dep']
+        assert improved or end['W'] < 0 or end['Q'] < 0
+        report['improving_neutral_path_independently_verified'] = improved
+        report['negative_neutral_path_independently_verified'] = end['W'] < 0 or end['Q'] < 0
     if args.output:
         with open(args.output, 'w') as out: json.dump(report, out, indent=2)
     print(json.dumps(report))

@@ -1,16 +1,69 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 14:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 16:00 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+**E453–E456 checkpoint: neutral archive repaired; finite exits checked; general components proved on paper.**
+The archive now groups by EXACT (e, primitive residues, canonical words), preserving up
+to4 distinct height representatives per group, including the W/c winner and height/
+boundary diversity. The advisor's W1020 neutral representative is retained alongside
+W708; a deliberate diagnostic hash collision cannot merge different tiles. Boundary
+slack ranking is a heuristic, not an integer realizability certificate. The64x4 CPU
+integration check retained11,14,19,21 reps across8 groups, with156 feedback proposals;
+it verifies the workflow, not improved search quality or GPU performance.
+
+**Finite advisor test:** all19 first-step neutral representatives have the SAME exact
+tile. ALL8294 outgoing one-input replacements from EACH were evaluated,165880 evaluations
+including initial collection,2.95seconds on Fejer. No F improvement or negativeQ/W.
+The39 exported witnesses pass independent coin/column/phase checks, remotely and locally.
+This does NOT exhaust the full neutral component or prove that archive pruning caused
+the old plateau. Separately, all70125 proper two-atom cover exchanges have pair coverage
+at most59: no full/one-hole covers, hence ZERO new uniform-lift semigroups evaluated.
+Both finite recipes stop here; no automatic extra generations or three-atom expansion.
+
+**New general mathematics, paper-proved and independently agent-reviewed:** original-
+source trades P.x=P.y+sigma*a give joint lift credit sigma for disjoint input blocks
+inside each original-label U-word. Credits pay surviving AND killed mass together,
+retaining original e, mixed parity, W(U) and every reserve. Their descendant contribution
+has an exact column-shadow sum; mixed inputs and composite outputs are necessary.
+On ONLY the advisor control S=<31,33,101,103>, packing4*33=101+31 and5*33=103+2*31
+gives total credit168, reducing joint lift bound465 to297 and recovering W516 exactly.
+The advisor's zero-death refinement alone gives bound438/Wlower-48 on this same input.
+This is calibration, not a universal payment theorem. General finite sign remains UNKNOWN.
+
+**E455 neutral-buffer lemma:** ANY two integer height assignments realizing a genuine
+labelled lex tile can be connected after a common positive coordinated neutral shift,
+using a buffered monotone unit-step path. The construction preserves m,e,D,residues,F;
+it may change tight patterns/top/W and leave every practical height box. It is not a
+Wilf-sign-preserving reduction or a proof of original unit-step connectivity. Actual
+tops must be positively exposed vertices, excluding some low abstract phases. No Lean
+or novelty claim. Full statements: PROOFS E453–E455; exact experiments: EXPERIMENTS E453/E454.
+
+No GPU rental this checkpoint. All Fejer diagnostic jobs finished. The SAME TWO authorized
+agents completed independent audits; no new launch. Next is a uniform finite payment
+using original-source trades and full reserves, with Hall/coupled alternatives retained.
+
+**E456 adds a general payment component, independently reviewed:** a missing original
+unit in D_U forces a positive primitive-output block; other such blocks cannot match
+its credit at its own input without decomposing that source primitive. A full-shadow
+compression replaces every applicable repeated input block by its primitive output,
+preserving a downset, all residues and existing units. Iterating restores ALL source
+units in at most e-1 steps. This compression works for ANY primitive pivot, not just
+the parity setup. Its exact gain in the constructed Wilf lower bound is e times the
+total pivot credit. It does not reconstruct Apéry minima or guarantee positivity:
+the constructed maximum may still exceed the actual one. SOURCE-QUOTA in PROOFS E456
+states the precise remaining global inequality. No computation, Lean or novelty claim.
+
 **E452 COMPLETE: warmed GPU benefit and genuinely adaptive feedback VERIFIED.** The
 user's advisor critique correctly superseded the self-imposed no-compute-until-resistant
 rule. Directed discovery remains authorized; do NOT reinstate that gate. Reusable
 GPU/host buffers, parallel canonical scoring and single primitive extraction are live.
 Seven measured full-path repetitions show CPU/GPU median milliseconds63:23.034/17.495,
-256:120.227/90.929,1024:505.465/390.450 (about1.30x FULL-path speedup, not32x).
+256:120.227/90.929,1024:505.465/390.450 (about1.30x BATCH-EVALUATION speedup).
+Candidate generation, selection and archive updates were outside this comparison;
+there is NO matched CPU/GPU speedup measurement for the entire adaptive campaign.
 No timeline profiler or asynchronous overlap was used. Fejer and GPU exact checks pass,
 including repeated-workspace memory checking and independent final coin/column audits.
 
@@ -500,9 +553,9 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 
 | Code | Purpose | Coverage and dependencies |
 | --- | --- | --- |
-| [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--warm B REPEATS SEED THREADS m k` measures separate repeated full paths; `--adaptive B GENS SEED THREADS m p...` is scored-parent discovery; `--neighbors THREADS m p...` is exact finite one-input plateau diagnosis. Old `--bench`/`--mutate` remain closed pilot diagnostics. Never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
+| [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--warm B REPEATS SEED THREADS m k` compares batch evaluation, excluding generation/archive; `--adaptive B GENS SEED THREADS m p...` is scored-parent discovery. `adaptive.hpp` retains up to4 distinct heights per EXACT tile group and selects groups before representatives. `--archive-test` checks the advisor's neutral pair and collision separation. `--neighbors THREADS m p...` diagnoses one-input plateaus; `--neutral THREADS m p...` audits all19 saved first-step ties and their bounded exits; `--exchange THREADS m p...` enumerates proper two-atom cover changes (bitset m<=64, cap2million). Old `--bench`/`--mutate` remain closed pilot diagnostics. Never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
 | [scan_cuda.cu](../src/apery_scan/scan_cuda.cu) | Batched CUDA/CUB segmented prefix/suffix minima and primitive/invariant extraction. | One block per candidate; same exact integer algorithm as CPU. GPU outputs compared with CPU arrays/statistics and O(mk) witnesses; Reusable GpuWorkspace supports warmed/feedback runs. E450/E452 provide actual CUDA and repeated-workspace checks, not just compilation. |
-| [verify_scan.py](../src/apery_scan/verify_scan.py) | Independent coin-membership and explicit-column verifier for promoted records, including all conductor phases. | Python stdlib, no shortest-path dependency; bounded exact membership cap fails closed. Canonical lex ties checked explicitly. |
+| [verify_scan.py](../src/apery_scan/verify_scan.py) | Independent coin-membership and explicit-column verifier for promoted records, including all conductor phases, exact neutral grouping/paths and complete two-atom set-sum coverage. | Python stdlib, no shortest-path dependency; bounded exact membership cap fails closed. Canonical lex ties checked explicitly. E453/E454 raw and independent results are in `src/apery_scan/data/cover_exchange_*453*`, `neutral_neighborhood_*454*`, `archive_control_454.jsonl`, `archive_integration_*454*`. |
 | [run_pilot.py](../src/apery_scan/run_pilot.py) | User-authorized one-pod Runpod orchestration, bounded jobs, result download and confirmed cleanup. | runpodctl CLI; own task SSH key stays outside repository. Uses requested server deadline and detached cleanup watchdog. Price<=1USD/hour,<=20minutes, no persistent volume, never touches unrelated pods. Not a standing authorization to rerent or enlarge searches. |
 | [enumh4.c](../src/scratch/p37/enumh4.c) | Direct semigroup enumeration; exact integer W; tight-pair keys. | No Gurobi. Fixed m/e, Kunz <= K, c > 4m, 3e < m; **height >= 4 filter**. |
 | [enumlp.c](../src/scratch/p37/enumlp.c) | Same enumeration plus RT2/UA2 optimization and cached LPs. | Gurobi C API for certificate LPs; same height filter. |
@@ -622,15 +675,32 @@ family member are controls; no solver or new C path. Data: advisor_filtration_au
 checkpoint_448_checks.log; replay is in run_checks.sh. V_dimensions_from_n_zero includes
 V0 explicitly. The general 1/L theorem and all-a countermap proof are PAPER arguments.
 
+**E454 pointwise/source-trade implementation:**
+`verify_probe.py --pointwise-death-check EXE OUTPUT G...` combines C `--odd-audit` with independent
+membership, scalar layers, source multiplication and per-column prefix checking.
+Only the advisor's31/33/101/103 input was run; its4/5-block packing is independently
+verified column by column in `src/scratch/p39/data/parity_trade_control_454.json`.
+No new C optimizer or source family. E455/E456 are paper proofs, not executable claims.
+
 ## Current attempt and next action
 
-**E452 next action:** both requested engineering follow-ups and bounded tests are
-complete. No rental/job is pending. The old passive sampler stays closed, but directed
-compute is allowed for a named mathematical predicate. Use the exact63 local barrier
-to construct a GENERAL correlated residue/primitive exchange or neutral traversal rule;
-then state its bounded falsification test before computing. Do not simply increase
-generation count, or assume the finite one-step barrier excludes neutral/coordinated
-paths. The example calibrates a universal discovery mechanism, not a fixed-m Wilf target.
+**E453–E456 next action:** the exact two-atom recipe and all19 neutral one-step exit
+audits are complete without a promotion; the archive correction and integration check
+are complete. No rental/job is pending. E455 supplies a GENERAL coordinated neutral
+access construction, but does not preserve W or stay in the tested box. Do not scale
+either finite diagnostic automatically. Directed discovery remains allowed for a named
+predicate; do not reinstate the old resistant-seed prerequisite. A future search should
+target an attainable boundary using its exact inequalities, not merely a low abstract
+phase, and must state a bounded discrimination question before computing.
+
+**Primary finite-payment proof task:** construct enough E453 SOURCE-TRADE credit C_s
+from ORIGINAL-label words, with componentwise disjoint inputs and mixed/composite
+relations, to make TRADE-BUDGET nonnegative UNIFORMLY. Keep full W(U), the mixed coefficient
+ring and all reserves. The single31 calibration is now paid exactly, but this does not
+supply a universal quota. Axis-only inputs, primitive-only outputs and alpha/J-only
+substitutions have explicit paper counterexamples and are stopped as complete mechanisms.
+E456 studies the primitive blocks forced when D_U omits original units; this is a
+component of the same allocation, not permission to discard other trade types.
 
 **Parallel proof obligation:** exploit E451's POINTWISE-DEATH/VALUE-DEATH while retaining
 the full distribution of original odd increments and mixed coefficient ring B. The
