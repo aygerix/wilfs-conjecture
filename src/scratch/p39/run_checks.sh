@@ -11,6 +11,7 @@ python3 verify_probe.py --odd-closure-check data/odd_closure_search.log ./repair
 python3 verify_probe.py --odd-layer-check data/odd_closure_search.log ./repair_scan /tmp/wilf-p39-odd-layers.json
 python3 verify_probe.py --differential-check data/differential_probe.json data/differential_control.json data/differential_boundary.json /tmp/wilf-p39-differential.json
 python3 verify_probe.py --advisor-parity-check ./repair_scan data/completion_frozen_probe.jsonl.gz data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-advisor-parity.json
+python3 verify_probe.py --parity-credit-check ./repair_scan /tmp/wilf-p39-parity-credit.json
 python3 verify_probe.py --completion-cut-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-cut.json
 python3 verify_probe.py --completion-structure-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-structure.json
 python3 verify_probe.py --completion-pool-check data/completion_pool_probe.jsonl.gz /tmp/wilf-p39-completion-pool.json

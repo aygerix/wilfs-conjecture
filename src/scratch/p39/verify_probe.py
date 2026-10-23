@@ -639,6 +639,59 @@ def audit_odd_comparison(C):
             'W_parts':parts,'margin':C['margin'],'leave_one_out_gcds':cofactors,
             'genuine_negative_W':min(S['W'],T['W'],U['W'])<0}
 
+def audit_parity_credit(C):
+    base=audit_odd_comparison(C);a=base['least_odd'];S=membership_stats(base['S']['G'],a)
+    M=max(S['w']);q=(S['c']+a-1)//a;rho=(-S['c'])%a
+    D={'m':a,'e':S['e'],'c':S['c'],'g':S['g'],'W':S['W'],'generators':S['G'],
+       'w':S['w'],'r':S['w'].index(M),'rho':rho,'mu':[(M-v)//a for v in S['w']]}
+    gr,z=factor_basis(D);inv={v:s for s,v in z.items()};d=len(gr);gamma=[0]*a;N=0;nonmax=set();depth=[0]*a;zero=[]
+    for j,g in enumerate(gr):
+        p=S['w'][g];columns=defaultdict(list)
+        for word in inv:columns[word[:j]+word[j+1:]].append(word)
+        for column in columns.values():
+            top=max(column,key=lambda v:v[j]);assert sorted(v[j] for v in column)==list(range(len(column)))
+            gamma[inv[top]]+=len(column)
+            N+=sum((inv[v]+rho)%a>(inv[top]+rho)%a for v in column)
+        for word,s in inv.items():
+            child=list(word);child[j]+=1;t=inv.get(tuple(child))
+            if t is None:continue
+            assert S['w'][s]+p==S['w'][t]
+            drop=D['mu'][s]-D['mu'][t]
+            assert drop==p//a+int((S['w'][s]+rho)%a+g>=a)
+            nonmax.add(s);depth[s]=max(depth[s],p//a)
+            if drop==0:zero.append({'parent_value':S['w'][s],'child_value':S['w'][t],'primitive':p,
+                                    'parent_mu':D['mu'][s],'child_mu':D['mu'][t]})
+    kappa=sum(sum((word[j]*gr[j])%a for j in range(d))//a for word in inv)
+    weighted=sum(gamma[s]*depth[s] for s in range(a));unweighted=sum(gamma[s] for s in nonmax)
+    exact=sum(gamma[s]*D['mu'][s] for s in range(a))+N-kappa
+    assert exact==S['W'] and all(D['mu'][s]>=depth[s] for s in range(a))
+    assert S['W']>=weighted+N-kappa
+    even={v for v in S['w'] if v%2==0};odd=set(S['w'])-even
+    oddprimitives=sorted(p for p in S['G'] if p%2 and p!=a);degree=len(oddprimitives)
+    assigned=set();witness=[];max_credit=0;unique=True
+    for v in sorted(odd):
+        candidates=[p for p in oddprimitives if v-p in even];p=candidates[0];u=v-p
+        max_credit+=max(candidates);unique&=len(candidates)==1
+        assert (u,p) not in assigned;assigned.add((u,p));witness.append({'child':v,'parent':u,'primitive':p})
+    unmatched={(u,p) for u in even for p in oddprimitives}-assigned
+    DE=sum(M-v for v in even);DO=sum(M-v for v in odd)
+    primitive_credit=sum(W['primitive'] for W in witness);reserve=sum(M-u for u,p in unmatched)
+    assert degree*len(even)>=len(odd)==len(witness)
+    assert degree*DE-DO==primitive_credit+reserve>=len(odd)*(a+2)
+    correction=(S['e']-2)*(a-1)//2
+    without=S['e']*(degree+1)*DO+S['e']*primitive_credit-degree*a*(M+correction)
+    assert without+S['e']*reserve==degree*a*S['W']
+    max_without=without+S['e']*(max_credit-primitive_credit)
+    return {'S':base['S'],'a':a,'even_dimension':len(even),'odd_dimension':len(odd),'odd_source_generator_count':degree,
+            'parent_witnesses':witness,'unused_parent_copies':len(unmatched),'primitive_credit':primitive_credit,
+            'unused_deficit_reserve':reserve,'typed_deficit':degree*DE-DO,
+            'even_deficit':DE,'odd_deficit':DO,'maximum_primitive_credit':max_credit,'unique_parents':unique,
+            'reserve_free_numerator':without,'best_reserve_free_numerator':max_without,
+            'full_scaled_W':without+S['e']*reserve,
+            'zero_drop_steps':zero,'unweighted_depth':unweighted,'weighted_depth':weighted,
+            'phase_correction':N-kappa,'naive_unweighted_bound':unweighted+N-kappa,
+            'corrected_weighted_bound':weighted+N-kappa,'original_exact_W':exact}
+
 def audit_source_parity(C):
     R=audit_odd_comparison(C);layers=audit_odd_layers(C);a=R['least_odd'];h1=layers['Hilbert_function'][1] if layers['power_layers'] else 0
     S=membership_stats(R['S']['G'],a);T=membership_stats(R['T']['G'],a);A=R['ideal_generators']
@@ -1711,6 +1764,22 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--parity-credit-check':
+        import subprocess
+        result=[]
+        for G in ([6,7,11],[19,39,41,50,52,53],[13,15,17,19]):
+            C=json.loads(subprocess.check_output([sys.argv[2],'--odd-audit',*map(str,G)],text=True))
+            result.append(audit_parity_credit(C))
+        control=result[0]
+        assert control['naive_unweighted_bound']==6>control['S']['W']==control['corrected_weighted_bound']==4
+        assert {'parent_value':17,'child_value':23,'primitive':6,'parent_mu':0,'child_mu':0} in control['zero_drop_steps']
+        sharp=result[1]
+        assert sharp['unique_parents'] and sharp['primitive_credit']==sharp['maximum_primitive_credit']==319
+        assert sharp['best_reserve_free_numerator']==-924 and sharp['full_scaled_W']==3*19*32
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        for R in result:print('PARITY-CREDIT',R)
+        print('EXACTLY AUDITED three fixed inputs; no universal finite-gain claim')
+        sys.exit(0)
     if sys.argv[1]=='--advisor-parity-check':
         import subprocess
         parity=[]

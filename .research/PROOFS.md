@@ -10096,3 +10096,119 @@ with E439 as a normalization. Keep full-tile Q with both reserves as the Hall al
 Stop repairing optional monotonicity, scalar Hilbert counts or forest cancellation merely
 to make them more exact. User's advisor is not credited with the ODD-PRODUCT deduction;
 the general identity/proof and finite audit were developed here in response to the advice.
+
+## E445 — source odd-parent credit, necessary reserve and arbitrary-modulus depth
+
+2026-10-23. Scope: Proves Wilf for EVERY S if E444's finite source value gain is paid.
+Proved reduction: YES, that difference is exactly W. The lemmas below are universal
+components; they do NOT themselves imply its sign. The stronger primitive-only stage is
+refuted on the OLD remaining-domain19 example. No restricted family, search or optimizer.
+All statements recorded as proved here are on paper, not Lean checked. No novelty claim
+for elementary module generation, parent counting or the ceiling identity.
+
+### 1. An injective odd-parent assignment using the original generators
+
+Let a be the least odd S element, A=Ap(S,a), M=max A, E=e(S). Write B_0,B_1 for its
+even and odd value sets. Let q be the number of ODD primitives other than a (not conductor
+depth). Every v in B_1 has v=p+u for such a primitive p and an even u in B_0. Indeed take
+a primitive factorization of v; it contains an odd primitive, cannot contain a, and the
+remaining even S value u is Apéry or else v-a would belong to S.
+
+Choose one such p per v. Different v give different pairs(u,p), since the sum determines
+v. This is an explicit injection B_1 -> B_0 times P_odd_other. Thus with h_1=|B_1|,
+
+    h_1<=q*(a-h_1),        h_1<=floor(q*a/(q+1)).
+
+Define D_i=sum_(v in B_i)(M-v). Give every even parent q labeled copies; call those not
+used by the injection unmatched. Let P_par=sum_(assigned children) p and
+R_par=sum_(unmatched (u,p))(M-u). Then EXACTLY
+
+    q*D_0-D_1=P_par+R_par >=(a+2)*h_1.                (ODD-PARENT)
+
+Each assigned parent deficit is M-u=M-v+p; the rest is R_par. All right-side terms are
+nonnegative. The source count q is retained, unlike replacing it by h_1. This is a
+positive TYPED functional with coefficients(q,-1), not yet the total-deficit inequality.
+
+### 2. The unmatched copy reserve cannot be discarded
+
+Put C_a=(E-2)(a-1)/2. For q>0 the main target rewrites exactly as
+
+    q*a*W=E*(q+1)*D_1+E*(P_par+R_par)-q*a*(M+C_a).     (PAR-BUDGET)
+
+This follows by substituting q*D_0=D_1+P_par+R_par into aW=E(D_0+D_1)-a(M+C_a).
+If q=0 all other source primitives are even, so E439's factor2 descent applies; no
+division by q is used. For a least-genus counterexample after E439, q>=1.
+
+A tempting stronger stage drops R_par and hopes the rest pays universally, perhaps after
+choosing different parents. This is FALSE even in c>4m,3e<m and cofactor1. For OLD
+S=<19,39,41,50,52,53> we have
+
+    E6,a19,q3,M106,C_a36,D_0=332,D_1=219,
+    P_par319,R_par458,
+    reserve-free numerator=-924,
+    full numerator=-924+6*458=1824=3*19*W, W32.
+
+All seven odd children have UNIQUE permissible primitive parents; the full witnesses
+are saved. Hence even maximum possible P_par is319, and parent selection cannot rescue
+the reserve-free stage. This refutes only that payer, not Wilf or source parity. With
+R_par retained, changing the parent rule only redistributes P_par versus R_par; their
+sum is the fixed functional qD_0-D_1. Do not launch a parent-choice optimizer.
+
+### 3. The multiplicity strict-drop rule does not transfer unchanged to modulus a
+
+Use a canonical factorization down-set D for Ap(S,a) over the E-1 primitives other than a.
+Here some EVEN primitives p may be LESS than a. Put
+
+    mu(v)=floor((M-v)/a)=max(0,ceil((c-v)/a)).
+
+On every tight primitive step v->v+p within the Apéry set,
+
+    mu(v)-mu(v+p)=floor(p/a)+[ ((v-c) mod a)+(p mod a)>=a ].
+
+This is an integer ceiling identity, extending the multiplicity formula already recorded
+in E438. It yields unit drop for p>=a, including every nonpivot odd primitive. A smaller
+even primitive may give zero drop. This does NOT refute E430, whose modulus was the
+multiplicity; it prevents reusing that theorem under changed hypotheses.
+
+For each cell v let b(v)=max floor(p/a) over its canonical primitive children, or0 if
+there are none. Then mu(v)>=b(v). Let gamma(v) be the sum of lengths of coordinate columns
+ending at v, N their phase-inversion count, and kappa the same residue carry count as
+E429/E432 but modulo a. The CH/residue identities remain valid for arbitrary a:
+
+    W=sum_v gamma(v)*mu(v)+N-kappa
+      >=sum_v gamma(v)*b(v)+N-kappa.                   (WEIGHTED-DEP)
+
+Proof: the canonical column identity uses positive primitive values and a complete
+residue system, without assuming p>=a. Splitting M-v into a*mu plus its residue gives
+the same N-kappa term. The final inequality uses nonnegative gamma and mu>=b. The
+unweighted Dep bound requires p>=a on an available child; that extra hypothesis cannot
+be silently reinstated when a differs from m(S).
+
+The OLD control S=<6,7,11>, a7, has Apéry values{0,6,11,12,17,22,23}. The tight p6
+step17->23 has mu0->0. Direct columns give unweighted Dep5, corrected weighted depth3,
+and N-kappa=1. Thus the naive transplanted bound6 exceeds the actual W4, while
+WEIGHTED-DEP gives4. No original multiplicity theorem is contradicted.
+
+### Verification and decision
+
+Existing C --odd-audit plus independent membership/modulo-a column enumeration checks
+ONLY old6/7/11, old19 and advisor k2. It verifies every parent, ceiling drop, weighted
+column identity, primitive/reserve budget and all possible parent choices via independent
+per-child maxima (no search). The old advisor/source-multiplication/reserve audit also
+passes. No new C code, sanitizer path, LP, source family or positive-profile census.
+Data/modes are inventoried in STATE; no numerical improvement is counted as a sign proof.
+
+Global review: ODD-PARENT is a genuine original-generator bound, but its coefficients
+do not directly pay the total deficit. Primitive-only funding fails, and preserving the
+full reserve merely recovers PAR-BUDGET until a new uniform lower bound is proved. Stop
+that stage and selector refinement. The next proof must couple R_par, D_1 and the
+higher odd-product relations (or use the full-tile Hall alternative with its reserves),
+retaining WEIGHTED-DEP when a>m. The finite sign remains UNKNOWN.
+
+One more proposed shortcut is ruled out on paper: higher scalar-layer deaths do not
+require an ORIGINAL even primitive. For S=<13,15,47>, all three displayed generators
+are odd and primitive (47 is not generated by13,15), with a13 and A0={0,1,17}.
+The half T has no positive element below13. Thus nI below13 is exactly{0,...,n} for
+n<=4, so4 belongs to H_4. But4*15=13+47, so the corresponding odd product vanishes
+modulo t^13. This is a hand-verified refutation of a universal shortcut, not a new
+three-generator target or compute seed. No c,g,W or family-wide claim is used for it.

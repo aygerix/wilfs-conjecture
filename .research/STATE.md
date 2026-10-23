@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 11:55 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 12:20 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,31 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E445, source-generator component proved / standalone payer stopped:** if q is the
+number of odd primitives OTHER than the least odd a, each odd Apéry value has an even
+Apéry parent through one of those q generators. Distinct children use distinct labeled
+parent copies. Thus h_1<=q(a-h_1) and q*D_even-D_odd=P_par+R_par>=(a+2)h_1, where
+P_par sums assigned primitive values and R_par sums unmatched parent deficits. This is
+a positive typed functional, NOT the required total-deficit inequality. The exact full
+budget is q*a*W=e*(q+1)*D_odd+e*(P_par+R_par)-q*a*(M+C_a).
+
+The stronger primitive-only stage dropping R_par is FALSE on OLD19 in the remaining
+domain/cofactor1: P319,R458,D_odd219, q3; its numerator is-924, while restoring6R gives
+1824=3*19*W32. All seven parents are unique, so selector optimization cannot fix it.
+Stop that stage; retain the FULL reserve. Do not count the three positive checks as a
+sign theorem or optimize another selector. Higher-layer deaths can also occur with
+only odd original primitives: the paper-only13/15/47 example has4 in H_4 but4*15=13+47.
+It is a shortcut refutation, not a fixed-e target or added compute fixture.
+
+**E445 modulus guard:** when a>m(S), an even primitive can be smaller than a. Then
+mu(v)-mu(v+p)=floor(p/a)+phase_wrap can be0. The original E430 multiplicity strict-drop
+claim remains valid, but cannot be transplanted unchanged. Source columns satisfy the
+exact W=Gamma.mu+N-kappa; safe depth uses b(v)=max floor(p/a) over canonical children.
+OLD6/7/11, a7, has tight17->23 by p6 with mu0->0. Naive unweighted depth would give6>W4;
+the correct weighted bound gives4. This guard is necessary for the E444 parity proof.
+The next all-S proof must couple the FULL R_par and odd deficits with higher multiplication
+relations, or use the reserved full-tile Hall alternative. No finite sign has been proved.
 
 **E444, current priority / advisor audit:** the four-generator family <6k+1,6k+3,6k+5,6k+7>
 has h_1=3k with eS-1=3, even in c>4m,3e<m and cofactor1. All formulas, including the
@@ -442,6 +467,14 @@ compares scalar layers with source odd products, checks k2 support via existing 
 Data: advisor_parity_audit.json, checkpoint_444_checks.log. run_checks.sh includes both
 targeted modes. The old layer audit also passes; no broad LP suite/new optimizer ran.
 
+**E445 implementation:** `verify_probe.py --parity-credit-check EXE OUTPUT` reuses C
+--odd-audit on ONLY old6/7/11, old19 and advisor k2. Membership reconstructs Ap(S,a),
+then exact canonical columns check every ceiling drop and weighted depth. Odd-parent
+witnesses, all allowed parent choices via per-child maxima, typed deficits and the full
+primitive/reserve budget are checked. Data: parity_credit_audit.json and
+checkpoint_445_checks.log. The old E444 algebra/reserve audit also passes; no C code,
+new sanitizer path, solver or census. run_checks.sh includes the targeted replay.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -488,7 +521,7 @@ component to pay itself. No new solver run is warranted without a proof-derived 
 that distinguishes a source of finite surplus. If no such inequality emerges, return to
 actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
 
-**Actual-arithmetic task after E444:** keep E439's cofactor1 normalization for a least-genus
+**Actual-arithmetic task after E445:** keep E439's cofactor1 normalization for a least-genus
 counterexample. Replace uncontrolled quotient generator growth by U=<I>=<a,H,A+>, with
 eU<=eS and smaller genus. PROOFS E441 gives the exact mixed Apéry budget and typed H/A
 constraints. Seek a uniform bound on the WEIGHTED common lifts sum(K+L), using residue
@@ -497,7 +530,9 @@ FALSE; its sparse-domain restriction is unknown and optional. E442 now expresses
 as h_1+2*sum_(n>=2)h_n of the ideal-power algebra. Retain its original-source coefficient
 actions (including paired quotient primitives); the scalar algebra's dimension h_1
 cannot be replaced by eS-1. Use the ORIGINAL source Apéry algebra, with its eS-1 generators,
-and the exact ODD-PRODUCT correspondence to quantify the finite value gain. Source relations
+and the exact ODD-PRODUCT correspondence to quantify the finite value gain. Retain E445's
+unmatched even-parent deficit reserve; primitive-only funding and selector refinement are
+refuted. When a>m, use floor(p/a) depth, not a unit drop on every primitive. Source relations
 kill higher scalar layers, but that is not a payment without a global inequality. No
 O-sequence census or layer optimizer is next. Only epsilon
 =K-L is binary. Do not replace L by support size, infer a unit cap from the
@@ -617,7 +652,9 @@ E443's standard differential presentation/Euler decomposition and E444's source-
 ODD-PRODUCT and reserve identities are proved on paper; their universal finite signs
 remain UNKNOWN. Advisor family/support formulas verify on paper and k2 is independently
 checked; no family search. All general lemmas recorded as proved in E432–E444 remain
-paper-proved, not Lean checked. No universal
+paper-proved, not Lean checked. E445's parent injection/typed credit and arbitrary-modulus
+weighted-depth lemmas are also paper-proved; the stronger reserve-free payer is refuted
+on OLD19 and the finite sign is still UNKNOWN. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

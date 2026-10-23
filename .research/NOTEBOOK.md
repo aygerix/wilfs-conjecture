@@ -5503,3 +5503,35 @@ a route to the finite sign. Prioritize the parity source algebra's quantitative 
 gain; retain weaker full-tile Hall and full weighted coupling. Stop unrestricted MON1,
 scalar Hilbert substitutions, further forest cancellation/rank accuracy and profile
 enumeration. E439 remains a proved normalization. No universal proof or Lean claim.
+
+### 2026-10-23 12:20 EDT — E445: source parity credit needs its own reserve
+
+Previous turn was progress, pushed8eae954. Tried to quantify actual odd multiplication
+using the ORIGINAL odd primitive count q. Proved odd child -> (even parent, odd primitive)
+is injective, hence h_1<=q(a-h_1). More importantly q*D_even-D_odd equals assigned
+primitive values plus unmatched even-parent deficits, all nonnegative. This retains the
+generator count but is a typed functional, not the required total deficit. Derived the
+full source W identity in those terms before proposing a reserve-free stage.
+
+That stage is refuted by OLD19 with no new semigroup: all seven primitive parents are
+unique, primitive credit319, unmatched reserve458, and reserve-free numerator-924. Full
+numerator is1824=3*19*W32. Stop the stage and parent-choice optimization. Merely retaining
+the exact reserve recovers W; a GLOBAL lower bound still has to explain its sign.
+
+Caught a modulus hypothesis that matters to the source-algebra approach. Even p<a gives
+floor(p/a)=0, so importing the m-based unit-drop/Dep credit unchanged is invalid. Proved
+the exact arbitrary-a floor-plus-wrap drop and corrected weighted column bound. OLD6/7/11
+has17->23 by p6 and mu0->0; naive bound6 exceeds W4, corrected bound4. No E430 theorem
+is refuted: its modulus was the multiplicity. The general ceiling identity was already
+present for m in E438; this is a guard on the new use, not a novelty claim.
+
+A separate hand check prevents assuming that deaths need original even primitives:
+S13/15/47 is all odd, 4 belongs to H_4, but4*15=13+47 kills the product. No computation
+or fixed-e target was started. Three old fixed-case parent/column audits and the old
+advisor audit pass on Fejer; no solver, sampler, new C path or census.
+
+Review: a correct source-count inequality and a modulus guard were proved; the needed
+finite sign was NOT advanced to a theorem. The reserve-free payer was decisively killed.
+Next keep R_par, odd deficits and higher-product relations together, or use the full-tile
+Hall alternative with both reserves. No further scalar bookkeeping/selector optimization
+is justified by the positive fixtures. The original all-S objective remains active.

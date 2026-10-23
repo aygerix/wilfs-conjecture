@@ -1307,3 +1307,17 @@ not the finite correction. The E444 source algebra is the original Apéry algebr
 its standard monomial basis; its parity description is credited to the user's advisor,
 not claimed new. The four-generator arithmetic family is a calibration of a failed
 Hilbert-dimension substitution, not a claimed new Wilf family or a literature novelty.
+
+### E445: arbitrary modulus and parity counting (2026-10-23)
+
+Rechecked primary [Hellus–Waldi1804.06146](https://arxiv.org/html/1804.06146) for weighted
+Artinian/down-set context. The ceiling identity with floor(p/m) was already recorded
+internally in E438; E445 extends its use to arbitrary primitive modulus a and flags that
+p<a permits zero drop. No new claim for elementary floors or module generation.
+
+Opened primary [Shor2511.05806](https://arxiv.org/html/2511.05806), section2/Proposition2.3,
+which counts odd/even gaps from arbitrary Apéry sets. Its free-semigroup specialization
+is NOT imported into the all-S target. E445's source-count/deficit injection is proved
+directly, without a novelty claim or an external positivity theorem. Searches covered
+Wilf/arbitrary modulus, parity modules, arXiv, GitHub and conjectures.io discovery; no
+absence/priority conclusion follows. The finite value gain remains unproved.

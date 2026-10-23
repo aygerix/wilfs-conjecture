@@ -431,3 +431,19 @@ data/differential_audit.json, independently reconstructed using all factorizatio
 This refutes even a graded vector-space reflection injection, NOT the ungraded torsion
 bound, the conductor differential inequality or Wilf. Do not repair it by merely choosing
 another common shift or enumerate more positive differential examples.
+
+## E445 — primitive-only parity funding and transplanted unit depth (2026-10-23)
+
+FALSE even in the remaining cofactor1 domain: after source odd-parent assignment, the
+primitive credit alone pays the finite gain. OLD19 has q3,D_odd219,P_par319 and reserve458;
+the reserve-free numerator is-924 for EVERY parent rule (all seven parents are unique).
+Full W remains32. Do not optimize selectors or discard the unmatched deficit reserve.
+
+FALSE transplantation: every primitive step drops the a-based coordinate by1, or the
+unweighted m-based Dep bound applies unchanged when a is not the multiplicity. OLD
+S6/7/11, a7, has tight17->23 by p6, mu0->0. The naive bound6>W4; safe weighted depth
+uses floor(p/a) and gives4. This is not a counterexample to E430 at its stated modulus.
+
+Also FALSE on paper: higher-layer deaths require an ORIGINAL even primitive. For all-odd
+S13/15/47, I={0,1,17}+T with min(T positive)=13, so4 belongs to H_4, but4*15=13+47.
+No additional numerical search/invariants are used for this hand counterexample.

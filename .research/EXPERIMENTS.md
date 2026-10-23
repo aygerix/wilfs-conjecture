@@ -1420,3 +1420,40 @@ python3 verify_probe.py --advisor-parity-check ./repair_scan data/completion_fro
 
 These results verify formulations and a failed pairing; they do not prove the missing
 finite gain. Retain source multiplication/value labels and BOTH Hall reserves.
+
+### 2026-10-23 — E445: original odd-parent credit and arbitrary-modulus guard
+
+All-S scope remains E444's exact finite-gain target. New stdlib audit
+--parity-credit-check reuses existing C --odd-audit on ONLY old6/7/11, old19 and advisor k2.
+It reconstructs Ap(S,a) independently, verifies every canonical ceiling drop, the exact
+column/phase identity, weighted depth, every odd child/even parent pair and the typed
+deficit identity. Per-child maximum primitive credits test ALL possible selectors without
+an optimizer or new semigroups. Fejer, same gcc/Python as E441. Runtime not instrumented;
+launch ETA under a minute. No C code changed or new sanitizer path was introduced.
+
+| Source | q | odd dimension | primitive credit | unmatched deficit reserve | best reserve-free numerator |
+| --- | ---: | ---: | ---: | ---: | ---: |
+|6/7/11|1|3|33|1|25|
+|19/39/41/50/52/53|3|7|319|458|-924|
+|13/15/17/19|3|6|102 (maximum108)|264 for selected rule|840|
+
+At19 all parents are unique. The reserve-free stage therefore fails for EVERY selector,
+even though actual W32>0. Restoring e*R=2748 gives numerator1824=q*a*W. Parent refinement
+cannot repair this stage and does not change the full invariant. This is not a Wilf failure.
+
+Nonmultiplicity control6/7/11 has a7 and tight17->23 by p6, with mu0->0. The naive
+unit-depth import would give6>W4; weighted floor(p/a) depth gives4. Existing multiplicity
+theorems are unchanged. At19 the weighted bound is9, and advisor k2 gives15; these are
+already settled inputs, NOT new positive Wilf evidence.
+
+The old --advisor-parity-check passes after the change. Data: parity_credit_audit.json
+and checkpoint_445_checks.log; targeted replay is in run_checks.sh:
+
+```sh
+python3 verify_probe.py --parity-credit-check ./repair_scan /tmp/wilf-parity-credit.json
+```
+
+Paper-only shortcut counterexample13/15/47 was NOT computed: 4 is in H_4 because below13
+I powers contain only sums of0,1, but4*15=13+47 kills its source product. It shows that
+deaths need not require an original even generator. No additional invariants or search.
+The global finite-gain sign is still unknown; stop primitive-only and selector refinement.
