@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 08:18 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 08:57 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,16 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E436, stopped stages / current repair:** the separate claim L_out<=C is FALSE even with
+K=F_in=0. A classical special-MSTD lift gives a genuine remaining-domain S with m97558,e513,
+c623660,g383166,W122749762>0; its lex pair cut fails the stage by13924. A lower bound1440
+holds for EVERY choice of pair representatives, so changing the tie order does not fix it.
+JD on this pair cut is not refuted: margin227670; at the actual phase C+V also covers L_out by166,
+so this witness does not make Gamma individually necessary. A corrected least-weight/lex
+root association always finds a canonical cross-exit, but two explicit relations reuse one
+capacity1 exit. The next proof needs JOINT exchange with all resources and raw carries,
+not an independent staged/root allocation. No more MSTD examples or root optimizers are next.
 
 **E435, current joint target:** internal negative-start aliases ALWAYS inject into distinct
 missing-direction slots (u,j,0). This uniform component payment is PROVED, with no strict-gap
@@ -256,6 +266,19 @@ internal slot witnesses, maximal-column selection, exterior groups and exact can
 It reuses ONLY the3 existing tiles, their old selected cuts and two40 zero-resource controls;
 there is no new optimizer. Data are in data/joint_defect_audit.json and checkpoint_435_checks.log.
 
+**E436 exact-witness implementation:** [mstd_shadow.cpp](../src/scratch/p39/mstd_shadow.cpp)
+constructs ONE classical-base-expansion witness and computes its genuine Apéry set with
+dynamically sized C++17 Dijkstra arrays (no solver). This exceeds upper_scan's m<256 limit;
+it is not a new sampler. Compile with `g++ -std=c++17 -O3 mstd_shadow.cpp -o mstd_shadow`.
+`verify_probe.py --mstd-shadow-check INPUT OUTPUT` independently reconstructs sum/difference
+sets, sparse lex pair words and ALL97558 Apéry values using unbounded-coin bitset membership.
+It also checks the two-to-one least-root exit collision. Raw data are
+data/mstd_shadow_probe.json.gz; reports are mstd_shadow_audit.json,
+mstd_shadow_sanitizer_audit.json and checkpoint_436_checks.log. Normal and ASan/UBSan
+outputs match byte-for-byte. No Python optimizer or new profile census.
+The JD audit covers ONE pair cut of this large D, not every down-set. Only the semigroup
+membership/Apéry verification covers all97558 residues.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -283,6 +306,16 @@ remaining cancellation/transport of exterior alias relations AND carry copies in
 starts, unreserved missing slots and wrapped slots. A dimension comparison or an unspecified
 rank bound alone would only restate the inequality. The scalar lowering trial fails even on
 the safe height1 control (rank2 versus a d+1-dimensional domain), so do not tune its coefficients.
+
+**E436 correction to the next construction:** do NOT first require L_out<=C; the MSTD lift
+refutes that stage on every representative choice. For an exterior group, choosing its
+least signed word by actual primitive weight then lex order proves that every other start
+(v,j) has a canonical cross-exit v+e_k in the root's direction k. This is a concrete map,
+but it can overload the same exit: the checked images2 and3 both choose (u_14,j_0), of
+capacity1. Construct the missing GLOBAL exchange rule, coordinating roots/unused starts,
+remaining missing slots and wrapped capacity while retaining raw carry copies. No such
+rule is established. All Gamma slots in the pair witness arise from zero actual-gap trades,
+so a proof cannot silently reinterpret them as strict positive arithmetic margins.
 
 The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
 C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
@@ -369,7 +402,11 @@ also passes the changed checker, so the old path remains compatible.
 E435 reused those exact certificates, with no new C solve, to audit3 whole tiles,3 old selected
 cuts and2 zero-resource controls. It checks each internal alias slot and all components of
 the joint defect separately. Files are joint_defect_audit.json and checkpoint_435_checks.log.
-All E432–E435 general mathematical statements remain paper-proved, not Lean checked. No universal
+E436 adds one constructed staged-claim counterexample, checked in C++ and independent
+membership DP through818775. All97558 Apéry entries agree; the new C++ sanitizer replay
+matches the normal output exactly. The root-map collision is checked in the SAME witness.
+This is a stopped-stage audit, not another positive Wilf census. Data paths are above.
+All E432–E436 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

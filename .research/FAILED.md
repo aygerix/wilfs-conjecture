@@ -370,3 +370,22 @@ in the same e_0 row and the origin adds only one vector, so rank2 versus domain 
 d>=2, nullity d-1>0 although Gamma_D(nonmax E)=0. This symbolic failure persists for
 generic nonzero coefficients. Stop coefficient tuning for that operator. It does not
 invalidate the distinct internal slot map or the safe-cut proof in PROOFS E435.
+
+## E436 — exterior aliases cannot always be paid from C first (2026-10-23)
+
+FALSE stage: L_out<=C for every genuine tile cut. A normalized special sum-dominant set H
+with |H+H|-|H-H|>=|H| gives a genuine-semigroup counterexample by B=H+max(H)+1,
+m=4max(B)+2 and S=<m,m+B>. The Apéry pair cut has K=F_in=0 and
+L_out-C>=|H+H|-|H|-|H-H|+1>0, for EVERY choice of pair representatives.
+
+Using the classical base29 cube gives m97558,e513,c623660,g383166,W122749762>0. The lex
+cut has L_out30988,C17064, shortfall13924; the representative-independent lower bound is1440.
+This is not a JD+ or Wilf failure: Gamma227504 and V14090 leave joint margin227670.
+All the missing pair directions here are zero-gap canonical trades, not strict exits.
+See PROOFS E436 and data/mstd_shadow_audit.json; no new MSTD-set novelty is claimed.
+
+The repaired least-weight/lex root association always gives a canonical exit, but is not
+injective: exterior images2 and3 in this SAME witness both charge the one-unit exit
+u_14+e_(j_0), canonically replaced by2u_7. Stop independent least-root assignment and
+the C-only stage. No more witnesses or root-weight optimizers are next; a joint exchange
+with unused starts, unreserved missing slots and wrapped capacity is still required.

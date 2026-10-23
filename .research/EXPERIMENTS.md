@@ -1080,3 +1080,58 @@ python3 verify_probe.py --joint-defect-check data/completion_frozen_probe.jsonl.
 The zero-resource exclusion and the scalar-lowering rank2 counterexample are symbolic
 arguments. No coefficient tuning or finite-field rank search was performed. No new C
 code was changed, so the earlier ASan/UBSan flow replays were not rerun for this audit.
+
+## E436 — one MSTD lift falsifies the staged exterior payment (2026-10-23)
+
+**Scope:** test the universal intermediate stage L_out<=C; together with a carry completion
+it would imply JD+/Wilf by E435. It is FALSE and stopped. The full JD+ target is retained.
+The witness is a constructed falsification, not a sum-dominant-family proof or profile census.
+The representative-independent obstruction theorem is on paper in PROOFS E436.
+
+Used Fejer, littlewood-paley-8375, us-east1-b, ~/wilf/p39; g++13.3.0 (Ubuntu13.3.0-6ubuntu2~24.04.1),
+Python3.12.3. One new C++17 dynamically sized auditor was needed because this witness
+exceeds the existing C scanner's m<256 arrays. No Gurobi, LP, Python optimizer or RNG.
+
+Source mstd_shadow.cpp builds the classical base29 cube H, shift B=H+12195 and m97558.
+It enumerates exact sums/differences and lex pair representatives, then runs positive-weight
+Dijkstra on97558 residue vertices (512 outgoing primitive edges each). It exports the ENTIRE
+Apéry array. verify_probe.py --mstd-shadow-check independently uses sparse exponent lex
+comparisons and exact unbounded-coin bitset DP, through818775, with a full m-long membership
+window proving the conductor. Every Apéry entry agrees, not just a hash or aggregate.
+
+Verified invariants: e513,c623660,g383166,ell240494,W122749762>0,rho59246. Minimality follows
+also from all primitives lying in(m,2m). The pair cut has size18089,P513,max17576,F34640,
+exterior images3652,F_in=K=0,L_out30988,C17064. Staged deficit13924. Independent sum/difference
+counts are17576 and15625; the theorem's lower bound1440 holds for any pair representative
+choice and was NOT established by enumerating monomial orders.
+
+Full JD+ is not contradicted: Gamma227504,V14090,joint margin227670. At the actual phase
+C+V-L_out=166, so this test does not prove Gamma individually necessary. Every missing
+canonical pair direction here has zero actual gap, a tie to another pair word.
+This is ONE pair-cut audit, not an optimization over all down-sets of the large D. The
+report's joint_claim_failure=false refers only to this checked cut, not to a regional theorem.
+
+The repaired least-root association was checked in this SAME witness. Images2/3 have
+nonroot starts(u_14,j_12)/(u_14,j_11) and least roots(u_2,j_0)/(u_3,j_0). Both choose the
+capacity1 exit(u_14,j_0), whose canonical target is2u_7. Direction indices in JSON are
+zero-based. This refutes independent root assignment, not a globally coordinated exchange.
+
+ASan/UBSan replay passed with no stderr diagnostic and matched normal output BYTE FOR BYTE.
+The normal raw JSON SHA256 is baa4f318ba22072cd771908f79d15178e7c4ab918e24e1ede0106e05e00162da.
+The sanitized invocation took1,905,185,534ns, including process launch/output; compilation,
+normal computation and Python audit times were not instrumented. Raw array data are
+data/mstd_shadow_probe.json.gz; independent report mstd_shadow_audit.json; sanitizer metadata
+mstd_shadow_sanitizer_audit.json; execution log checkpoint_436_checks.log. No broad old LP
+suite was rerun. run_checks.sh includes the new saved-witness audit.
+
+Reproduce on Fejer:
+
+```sh
+g++ -std=c++17 -O3 mstd_shadow.cpp -o mstd_shadow
+./mstd_shadow > /tmp/mstd-shadow.json
+python3 verify_probe.py --mstd-shadow-check /tmp/mstd-shadow.json /tmp/mstd-shadow-audit.json
+```
+
+For the sanitizer compile with -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer,
+then compare its full stdout to the normal result. Main JD+ remains unproved; next is the
+joint exchange lemma, not more instances or independent-root optimization.

@@ -1,0 +1,65 @@
+{
+  "radix": 29,
+  "power": 3,
+  "A_size": 512,
+  "A_max": 12194,
+  "shift": 12195,
+  "sum_count": 17576,
+  "difference_count": 15625,
+  "m": 97558,
+  "e": 513,
+  "c": 623660,
+  "g": 383166,
+  "ell": 240494,
+  "W": 122749762,
+  "rho": 59246,
+  "cut_size": 18089,
+  "nonmaximal": 513,
+  "maximal": 17576,
+  "negative_starts": 34640,
+  "exterior_images": 3652,
+  "internal_aliases": 0,
+  "raw_carry": 0,
+  "exterior_debt": 30988,
+  "unused_starts": 17064,
+  "staged_shortfall": 13924,
+  "missing_capacity": 227504,
+  "wrapped_capacity": 14090,
+  "joint_margin": 227670,
+  "staged_claim_false": true,
+  "joint_claim_failure": false,
+  "genuine_negative_W": false,
+  "independent_membership_limit": 818775,
+  "all_apery_entries_checked": 97558,
+  "membership_method": "exact unbounded-coin bitset DP",
+  "least_root_exit_collision": [
+    {
+      "image": 2,
+      "start": [
+        12209,
+        6
+      ],
+      "root": [
+        12197,
+        0
+      ],
+      "exit_parent": 12209,
+      "exit_direction": 0,
+      "capacity": 1
+    },
+    {
+      "image": 3,
+      "start": [
+        12209,
+        5
+      ],
+      "root": [
+        12198,
+        0
+      ],
+      "exit_parent": 12209,
+      "exit_direction": 0,
+      "capacity": 1
+    }
+  ]
+}

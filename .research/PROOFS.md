@@ -9220,3 +9220,135 @@ still the actual boundary/residue line; weighted full repair and arithmetic/inte
 remain active alternatives. No larger profile census or narrower-family programme is opened.
 Existing flow certificates were reused only to audit the new decomposition on three full
 tiles, their old selected cuts and two zero-resource controls. These are closed checks.
+
+## E436 — sum-dominant sets refute a staged exterior payment (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF exterior aliases can be paid from
+C first and the remaining joint carry budget can then be paid universally. Proved reduction
+from all S to the COMBINED claims: yes, their sum gives E435 JD+, then E434/E433/E432/SUPP
+and the complements. This section REFUTES the first intermediate claim L_out<=C on genuine
+semigroups in the remaining domain. It does not refute JD+ or Wilf, and does not activate a
+sum-dominant-family proof target. The new proof attempt is the cross-exit map below; its
+capacity collision is exhibited, so independent least-root choices are stopped too.
+
+### A general genuine-semigroup lift — PROVED obstruction theorem
+
+Let H subset [0,R] be finite, R>=1,0 in H,gcd(H)=1, d=|H|. Put
+
+    T=R+1, B=T+H, m=4max(B)+2=8R+6,
+    S=<m, m+b (b in B)>, s=|H+H|, t=|H-H|.
+
+Every generator m+b lies strictly between m and2m and is minimal. Thus multiplicity is m
+and embedding dimension d+1. The generator gcd is1, since common divisors divide all
+differences H and hence1. Therefore S is a numerical semigroup. Also3(d+1)<=3R+6<m.
+The integer5m-1 is a gap: a representation below5m uses at most4 positive generators;
+its sum of non-multiplicity residues is at most4max(B)=m-2, so cannot have residue m-1.
+Consequently c>=5m>4m. This verifies the genuine remaining-domain hypotheses uniformly.
+
+Every value2m+b+b' is Apéry. Its residue b+b' lies below m and above max(B), so it is
+neither0 nor a primitive residue. Subtracting m gives a number below2m which is not a
+generator. Equivalently a representation with3 positive generators is too large. Choose
+canonical pair words for the s distinct pair values and form the down-set E consisting
+of0, all d units and those pair words. This is a cut of the actual canonical D, for ANY
+monomial tie order. It has at least s maximal cells, and all its raw carries are0.
+
+Every negative start image belongs to
+
+    (-B mod m) union ((H-H)\{0} mod m).
+
+Indeed origin starts give -b; a mixed pair gives a difference b-b'. These sets are
+disjoint from0 and B: B lies in[R+1,2R+1], differences in[-R,R], and m=8R+6 prevents
+modular overlap. Thus F_in=0 for every choice of representatives and
+
+    |psi(F)|<=d+t-1,
+    L_out-C = |max(E)|-|psi(F)| >= s-d-t+1.                 (MSTD-OBSTRUCTION)
+
+In particular ANY normalized set with s-t>=d refutes the proposed exterior stage. The
+lower bound does not depend on the canonical tie order. One cannot rescue this all-S
+stage simply by selecting different pair representatives. This is a general obstruction
+to an intermediate claim, not a universal Wilf theorem or a new MSTD construction.
+
+### Explicit witness and independent verification
+
+Use the classical seed H0={0,2,3,4,7,11,12,14} and
+
+    H={a+29b+29^2 c:a,b,c in H0}.
+
+The seed and base-expansion method are standard; see [Hegarty, introduction](https://arxiv.org/html/math/0611582v2)
+and [Chu–McNew–Miller–Xu–Zhang, section3.1](https://cs.uwaterloo.ca/journals/JIS/VOL21/Miller/miller8.pdf).
+No novelty is claimed for these sets. Directly H0+H0=[0,28]\{1,20,27}, while
+H0-H0=[-14,14]\{-13,-6,6,13}. Base29 encodes sum digits uniquely. Difference digits
+are also unique: subtracting two digit representations has coefficients in[-28,28],
+so reduction modulo29 forces each coefficient0 successively. Hence
+
+    d=8^3=512, s=26^3=17576, t=25^3=15625, R=12194,
+    T=12195, m=97558, e=513, s-d-t+1=1440.
+
+One genuine S is therefore specified by just this formula and m, without a generator-list
+ambiguity. Independent residue shortest paths (C++) and unbounded-coin membership DP
+(Python stdlib bitset) agree on ALL97558 Apéry entries and give
+
+    c623660, g383166, ell240494, W122749762>0, rho59246.
+
+For the project's first-coordinate lex convention all squares are canonical: among pair
+words for2b_i, any other pair has a smaller least generator index and a larger earlier
+coordinate. Thus all units are nonmaximal in E, and the exact cut counts are
+
+    |E|18089, |nonmax E|513, |max E|17576,
+    |F|34640, |psi(F)|3652, F_in=K=0,
+    L_out30988, C17064, L_out-C13924>0.
+
+The stronger representative-independent lower bound is1440;13924 is the checked LEX value,
+not a claim to have enumerated all monomial orders. JD on THIS PAIR CUT is not violated:
+
+    Gamma_D(P)=227504, V_D(P)=14090,
+    C+Gamma+V-L_out=227670>0.
+
+At this ACTUAL phase C+V-L_out=166 as well, so the witness does not establish that Gamma
+is individually necessary. It establishes that exterior aliases cannot be restricted to
+C alone: missing OR wrapped resources must remain available to the joint argument.
+No optimization over all down-sets of this large D was performed or claimed.
+
+Here Gamma=d(d+1)-2s counts noncanonical ordered pairs. Every one of those missing canonical
+pair directions is a ZERO actual-gap trade to a different pair word of the same weight.
+Do not read this combinatorial capacity as a positive strict-exit margin. The cut disproves
+the staged C-only claim even without carries, but provides no Wilf counterexample. It also
+does not refute a differently stated claim with extra hypotheses from proved Wilf exclusions.
+
+### A corrected cross-exit association — PROVED, not injective
+
+For an exterior image group of starts (v,j), order the signed words v-e_j by actual weight
+v.p-p_j, then by the project's monomial tie order. Choose its least root (w,k). For every
+other start (v,j), j!=k and
+
+    v+e_k is a canonical exit at v in P.
+
+Proof: the root signed word is strictly smaller. Adding e_j+e_k preserves that order,
+so w+e_j is a strictly better word than v+e_k in the same residue. This excludes v+e_k
+from the canonical Apéry basis, whether the improvement is in actual weight or just the
+tie order. This constructs an association to a missing-direction slot family. It does
+NOT prove that distinct relations fit into distinct available slots.
+
+In the SAME witness let u_a denote the unit corresponding to residue T+a. The starts
+
+    (u_14,j_12), (u_14,j_11)
+
+have images2 and3, with least roots (u_2,j_0) and (u_3,j_0), respectively. The four relevant
+mixed pairs are canonical; within each group all actual signed weights are equal, and the
+root has the negative coordinate at the earliest index0. Both nonroot relations therefore
+map to the SAME exit u_14+e_(j_0), of capacity1. Its canonical replacement is2u_7, since
+14+0=7+7. Thus two relations compete for one slot. This is explicitly checked by the audit;
+independent least-root selection is not a capacity-respecting injection.
+
+### Global review / next obligation
+
+Stop the C-only exterior stage and independent least-root charging. The connection with
+sum/difference sets explains why that stage fails globally; it is not evidence against
+the full joint target. The corrected root association uses actual primitive weight/tie
+comparisons and locates real canonical exits, but needs a GLOBAL exchange rule to resolve
+collisions using unused starts, unreserved missing slots and wrapped capacity together,
+while retaining the raw carry charges. No such rule is proved here. Do not repeat this
+witness as a positive census or implement another numerical root optimizer without a new
+uniform lemma. Keep JD+/unfrozen POOL/E432 and the other two universal lines available.
+All general statements are paper proofs, not Lean checked; novelty of this application
+has not been established. Exact code/data and reproduction are in EXPERIMENTS E436/STATE.

@@ -5306,3 +5306,31 @@ No operator for that full map has been constructed. Continue that joint construc
 fixed type budgets and scalar lowering. Reused only3 saved tiles/old cuts and2 controls on
 Fejer, with no new optimizer or positive census. Keep the other universal lines active and
 retain unfrozen POOL/E432 if E434's stronger extension eventually fails. No Lean claim.
+
+### 2026-10-23 08:50 EDT — E436: an MSTD obstruction and a cross-exit repair attempt
+
+Tried the next stage L_out<=C, leaving carries for the remaining resources. Derived a
+genuine-semigroup lift of any normalized special sum-dominant set: B=H+R+1,m=8R+6,
+S=<m,m+B>. Minimality, gcd1,3e<m,c>=5m and the Apéry pair cut are proved directly.
+The pair cut forces L_out-C>=|H+H|-|H|-|H-H|+1 regardless of pair tie-breaking.
+Thus the classical base-expansion cube refutes this stage; it is not a new MSTD construction.
+
+One compact witness gives m97558,e513,c623660,g383166,ell240494,W122749762. Its lex cut
+has zero raw carries/internal aliases, but exterior debt30988>C17064 by13924. Full JD
+has margin227670, so the main inequality and Wilf remain untouched. C++ Dijkstra and an
+independent unbounded-coin bitset agree on all97558 Apéry entries. ASan/UBSan passes and
+reproduces the normal output byte-for-byte. This is ONE constructed falsification, no census.
+
+Attempted a repair using actual primitive-weight order: each exterior group's least signed
+word root forces a canonical cross-exit for every other start. Proved that association.
+It is not capacity respecting: the two images2/3 both charge the same capacity1 exit in
+the witness. Directly verified, with a zero-gap pair trade. Stop independent root assignment.
+
+Global review: the failed stage discards missing/wrapped resources that can cover the
+sum/difference imbalance even with K=0. At the actual phase C+V already covers L_out by166,
+so this witness does not make Gamma individually necessary. Its zero-gap trade capacity
+also cannot be described as a strict arithmetic margin. The cross-exit map is a real first step,
+but global exchange and raw carries must be handled together. Continue full JD+, not more
+positive examples or another root optimizer. The source construction is classical; novelty
+of this semigroup application is unassessed. Other universal lines remain weighted repair
+coupling and actual arithmetic/integrality. No narrower-family proof target or Lean claim.

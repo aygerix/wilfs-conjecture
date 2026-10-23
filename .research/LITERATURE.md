@@ -1194,3 +1194,17 @@ proved directly in E435. Searches of the record for internal/exterior aliases an
 Wilf/column/matching queries supplied no external result USED to prove the remaining
 joint inequality. No priority or exhaustive-literature claim is made. The scalar-lowering
 trial is refuted by a self-contained height1 rank calculation, without a numerical search.
+
+### E436: classical special sum-dominant sets versus the new stage obstruction (2026-10-23)
+
+Peter Hegarty, [Some explicit constructions of sets with more sums than differences](https://arxiv.org/html/math/0611582v2),
+introduction, observation2: the base-expansion method and the classical8-point set are
+explicitly recorded. Hùng Việt Chu, Nathan McNew, Steven J. Miller, Victor Xu, Sean Zhang,
+[When Sets Can and Cannot Have Sum-Dominant Subsets](https://cs.uwaterloo.ca/journals/JIS/VOL21/Miller/miller8.pdf),
+Journal of Integer Sequences21(2018),Article18.8.2, Definition3/section3.1, calls a set special
+when its sum/difference cardinality gap is at least its size and uses the8-point cube.
+Both PRIMARY full texts were opened. No novelty is claimed for the set or product method.
+Base29 suffices here by a direct digit argument; the semigroup lift and its representative-
+independent obstruction to L_out<=C are proved in E436. Novelty of that application has
+not been established. The failed ETH mirror returned404; the official journal PDF was read.
+The source is used for the classical construction, not to assert Wilf or JD+ positivity.

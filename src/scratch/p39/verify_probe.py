@@ -1224,7 +1224,106 @@ def audit(D):
         out['models'][name]={'optimum':str(primal),'dual_nonzero':used,'non_tight_violations':non_tight,'tight_errors':tight_errors,'y':[str(x) for x in y]}
     return out
 
+def audit_mstd_shadow(R):
+    """Independent E436 sum/difference and unbounded-coin membership audit."""
+    from itertools import product
+    seed=(0,2,3,4,7,11,12,14)
+    A=sorted({sum(x*29**i for i,x in enumerate(word)) for word in product(seed,repeat=3)})
+    sums={a+b for a in A for b in A};diffs={a-b for a in A for b in A}
+    T=max(A)+1;B=[T+a for a in A];d=len(B);m=4*max(B)+2;G=[m]+[m+b for b in B]
+    assert (len(A),len(sums),len(diffs),max(A))==(512,17576,15625,12194)
+    assert all(m<g<2*m for g in G[1:]) and 3*len(G)<m
+    common=0
+    for g in G:common=gcd(common,g)
+    assert common==1
+    # Sparse exponent comparison implements lex order directly, independently
+    # of the C++ shortcut of maximizing the lesser generator index.
+    def word(i,j):
+        result={i:1};result[j]=result.get(j,0)+1;return result
+    def lex_less(a,b):
+        for k in sorted(a.keys()|b.keys()):
+            if a.get(k,0)!=b.get(k,0):return a.get(k,0)<b.get(k,0)
+        return False
+    representatives={}
+    for i in range(d):
+        for j in range(i,d):
+            t=B[i]+B[j];candidate=word(i,j)
+            if t not in representatives or lex_less(candidate,representatives[t]):representatives[t]=candidate
+    assert len(representatives)==len(sums)
+    assert all(representatives[2*B[i]]=={i:2} for i in range(d))
+    # Bitset reachability processes binary powers of each generator; it is an
+    # exact unbounded-coin DP, independent of residue shortest paths.
+    N=max(R['apery'])+m;assert N<=20000000
+    mask=(1<<(N+1))-1;member=1
+    for g in G:
+        shift=g
+        while shift<=N:
+            member|=member<<shift;member&=mask;shift*=2
+    lastgap=(mask^member).bit_length()-1;c=lastgap+1
+    assert N-lastgap>=m
+    ell=(member&((1<<c)-1)).bit_count();genus=c-ell;W=len(G)*ell-c
+    blob=member.to_bytes((N+8)//8,'little');w=[None]*m;found=0
+    for n in range(N+1):
+        if blob[n//8]>>(n%8)&1 and w[n%m] is None:
+            w[n%m]=n;found+=1
+            if found==m:break
+    assert w==R['apery'] and c>=5*m and not (blob[(5*m-1)//8]>>((5*m-1)%8)&1)
+    assert all(w[t]==2*m+t for t in representatives)
+    rho=(-c)%m;P={0,*B};F=set()
+    cells=[{i:1} for i in range(d)]+list(representatives.values())
+    for v in cells:
+        raw=sum(B[i]*n for i,n in v.items())
+        for j,n in v.items():
+            if n==1:F.add((raw-B[j],j))
+    images={(v-B[j])%m for v,j in F};assert not (images&P)
+    assert len(images)<=d+len(diffs)-1
+    Gamma=0;V=sum(rho+b>=m for b in B)
+    for i in range(d):
+        for j in range(d):
+            if representatives[B[i]+B[j]]!=word(i,j):Gamma+=1+(i==j)
+            elif (B[i]+rho)%m+B[j]>=m:V+=1+(i==j)
+    exterior=len(F)-len(images);unused=len(F)-len(representatives);shortfall=exterior-unused
+    expected={'radix':29,'power':3,'A_size':d,'A_max':max(A),'shift':T,
+              'sum_count':len(sums),'difference_count':len(diffs),'m':m,'e':len(G),
+              'c':c,'g':genus,'ell':ell,'W':W,'rho':rho,'cut_size':1+d+len(representatives),
+              'nonmaximal':1+d,'maximal':len(representatives),'negative_starts':len(F),
+              'exterior_images':len(images),'internal_aliases':0,'raw_carry':0,
+              'exterior_debt':exterior,'unused_starts':unused,'staged_shortfall':shortfall,
+              'missing_capacity':Gamma,'wrapped_capacity':V,'joint_margin':Gamma+V-shortfall}
+    assert all(R[k]==v for k,v in expected.items())
+    assert shortfall>=1440 and Gamma==227504 and expected['joint_margin']>=0
+    # Least signed-word roots of differences2 and3 both charge the missing
+    # exit e_14+e_0, whose lex normal form is2e_7. Its capacity is only1.
+    index={a:i for i,a in enumerate(A)}
+    def signed(base,j):
+        v={} if base==0 else {B.index(base):1};v[j]=v.get(j,0)-1
+        return {i:n for i,n in v.items() if n}
+    collisions=[]
+    for image,subtrahend in [(2,12),(3,11)]:
+        group=[f for f in F if (f[0]-B[f[1]])%m==image]
+        assert all(base>0 and base-B[j]==image for base,j in group)
+        root=group[0]
+        for f in group[1:]:
+            if lex_less(signed(*f),signed(*root)):root=f
+        assert root==(T+image,index[0])
+        chosen=(T+14,index[subtrahend]);assert chosen in group and chosen!=root
+        assert representatives[(T+14)+(T+0)]=={index[7]:2}
+        collisions.append({'image':image,'start':list(chosen),'root':list(root),
+                           'exit_parent':T+14,'exit_direction':index[0],'capacity':1})
+    assert len({(V['exit_parent'],V['exit_direction']) for V in collisions})==1
+    return {**expected,'staged_claim_false':True,'joint_claim_failure':expected['joint_margin']<0,
+            'genuine_negative_W':W<0,'independent_membership_limit':N,
+            'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
+            'least_root_exit_collision':collisions}
+
 if __name__=='__main__':
+    if sys.argv[1]=='--mstd-shadow-check':
+        with open_text(sys.argv[2]) as source:R=audit_mstd_shadow(json.load(source))
+        with open(sys.argv[3],'w') as out:json.dump(R,out,indent=2)
+        print('MSTD-SHADOW',R)
+        if R['genuine_negative_W']:print('GENUINE NEGATIVE W: independent membership audit passed',R)
+        print('EXACTLY AUDITED one constructed failure of a staged claim; no Wilf failure inferred')
+        sys.exit(0)
     if sys.argv[1]=='--joint-defect-check':
         old={tuple(sorted(C['seed']['generators'])):C for C in
              (json.loads(line) for line in open_text(sys.argv[3]) if line.strip())}
