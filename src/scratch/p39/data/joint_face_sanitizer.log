@@ -1,0 +1,4 @@
+JOINT-FACE seed=[146, 155, 175, 184] status=optimal value=3070/3 q=46/3 witness=None actual_W=None
+EXACTLY CERTIFIED 1 semigroups; 1 primal/dual optima
+JOINT-FACE seed=[64, 129, 67, 69, 77] status=optimal value=452 q=7 witness=[64, 67, 69, 77, 129] actual_W=467
+EXACTLY CERTIFIED 1 semigroups; 1 primal/dual optima

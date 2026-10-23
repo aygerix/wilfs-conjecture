@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 23:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 00:24 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -72,6 +72,12 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   <13,17,27,29> has unique Apéry factorizations,E0,R1. The global CH identity gives
   m Phi_Z=sum Def+E-C-e*m*R, so chain-end deficits and the discrete correction must be retained.
   This identity is a restatement of the positivity gap, not a newly proved lower bound on it.
+- **Joint/primitive boundary model (E414/E415):** jointly varying actual Kunz coordinates and capped
+  certificate y, with unbounded q>=5, gives positive exact LP minima on31 saved profiles. This proves
+  regional full-capped nonnegativity, NOT Phi_Z positivity or universal Wilf. Fractional actual optima
+  are not semigroups; integral ones are independently reconstructed. A general paper lemma reduces
+  actual-side rows to primitive translations/positive primitive bounds, while retaining every coupled
+  certificate row. These sources are primitive-chain boundary exits; uniform dual construction is open.
 
 ## Existing implementations
 
@@ -82,7 +88,7 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [enumlp3.c](../src/scratch/p37/enumlp3.c) | Newer C enumeration plus RT3/UA3, with optional height filter. | Pass h4only=0 for all heights. Audit found a 256-bit key overflow at m=24; key capacity is now derived from MAXM. |
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
-| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX, full-Kunz relaxations, residual cone/capped models; export primal/dual data. | Gurobi C API; no height restriction. `--cone` tests residual support, `--cap` maximizes unpaid sum, `--cap-max RES` one coordinate. Independent membership/rational checker: verify_probe.py. |
+| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. Independent checker: verify_probe.py. |
 | [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--cover` is an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity, equality and transport audits. | `--standalone` needs no Gurobi data. upper_dp.py has rational propagation, `--rigid` closure, and `--chain-budget INPUT MATCHING...` for exact CH/primitive-factorization budgets on audited data. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
@@ -125,35 +131,39 @@ The latter has real/ integer capped optimum998, exactly certified. Its forced-eq
 {76,85,94,103,114,123,132,141} has size8; class-weighted cover raises residual assignment18->22,
 giving998. This explains the missing8 as a residue-multiplicity payment, not a uniform positivity proof.
 
-**Next mathematical action:** prove or falsify Phi_Z(S)>=0 on all remaining S, where Phi_Z is the
-integer propagated baseline plus e ceil(M_U/2), with positive overflow demands on the residual core
-(PROOFS/E409). The weaker no-floor propagation bound survived the reused10000-candidate sample,
-8592 accepted,34 B-negative; this already implies the stronger bound passes that SAME sample, and
-does not warrant rerunning it. Work backwards from saved low-W/weak-certificate examples to an
-arithmetic/residue-counting inequality comparing baseline and residual demand with c. Exactness of
-a semigroup-dependent relaxation is not such an inequality. Use the E411 class-weighted payment
-lemma only as an auxiliary tool: E412 proves it adds nothing at rho0. The missing step is a global
-allocation of primitive-chain boundary deficits, retaining residue multiplicities and the discrete
-correction. Specifically, with R=sum U-ceil(M_U/2), prove or refute
-sum_g Def_g+E >= (e-2)m(m-1)/2+e*m*R. This is exactly the original Phi_Z positivity target in CH
-coordinates, NOT a new theorem. E413 rules out paying e*m*R from E alone; even unique-factorization
-Apéry sets can have R>0. Do not spend another cycle on class-completion-only or collision-only
-funding. A stronger completed certificate remains valid but has unproved universal sign. No class
-size bound may be assumed. All12 saved nonempty REAL cores admit
-positive directions; integer floors can still create extra zeros, as verified on the60cases. Do not
-conflate these models. A single top ideal, a bounded core or unit weights cannot be assumed. Do not
-delete paid cells and apply the false partial-tile lemma. Any negative W forces Phi_Z negative, so
-the necessary-counterexample reduction is universal. No larger boxes or restricted-family targets.
+Latest global falsification test: E414 varies actual mu/q AND capped certificate y on each saved tight
+profile, fixing only m,largest residue and exact tight pattern; no upper depth/height bound. All31
+distinct profile LP minima positive, including180,452,3070/3,998,31,60673/44,5027. Seven actual optima
+fractional;24 integral actual optima independently reconstructed. Four changed integer witnesses have
+Phi281,128,22,5027. These are regional certificates and diagnostics, not an exhaustive profile list.
+
+**Next mathematical action:** construct a uniform nonnegative dual for the FULL coupled joint model
+using the E415 primitive-edge reduction. The reduced actual sources are primitive-chain exits and
+positive primitive values; all composite-parent certificate target rows must remain. Exact dual budget:
+J=rho+A+N+K+Q-P, where A is signed tight-actual contribution,N/K/Q>=0 are strict-exit/positivity/depth
+credits, and P>=0 is typed allowance cost. The missing universal rule must balance those loads using
+the primitive count and complete residue structure. Five representative reduced/full optima agree
+exactly; all omitted actual inequalities were independently checked. Do NOT turn this into face
+enumeration or a catalogue of family proofs. No uniform rule has been proved.
+
+Original Phi_Z>=0 and its equivalent CH budget remain unproved, stronger sufficient targets. Positive
+joint CapUA3 minima do NOT imply Phi_Z>=0; these implications must not be reversed. A negative joint
+primal needs integer reconstruction before any semigroup/certificate-failure claim. The same universal
+backwards strategy/scope remains active; no reduction of all S to these31 profiles is claimed.
+The old class-merging-only, collision-only and local/per-direction chain funding rules are closed;
+E412/E413 and the older FAILED record explain why. No single-top-ideal size, bounded core, unit cap,
+partial-tile deletion or guessed W/c constant. The old10000-candidate sample needs no rerun.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E413 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E415 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass135 existing LP optima,27 cone optima,9 capped/coordinate optima and5
-fresh normal-model optima (176 total), plus existing envelope/assignment witnesses,3 final descent
-witnesses,3 equality-completed witnesses, and existing matching/transport/BASE checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_413_checks.log) and data/allowance_lean.log.
+Latest consolidated checks pass212 exact LP optima (the176 earlier checks plus31 joint and5 reduced),
+the four new integer witness assignments and existing checks. See the
+[validation log](../src/scratch/p39/data/checkpoint_415_checks.log) and data/allowance_lean.log.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
 New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
+New full/reduced joint-face C paths also pass ASan/UBSan, Gurobi leak detection disabled;
+data/joint_face_sanitizer.log. No unbounded ray occurred, so its reification branch is not claimed tested.
 The new allowance audit checks33,375,552 residue pairs;13 saved S pass exact CH and independent
 factorization-count diagnostics. General semigroup consequences and CH budget allocation remain paper/open.
 

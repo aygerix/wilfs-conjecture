@@ -1,0 +1,6 @@
+JOINT-FACE seed=[60, 121, 67, 71] status=optimal value=180 q=8 witness=[60, 67, 71, 121] actual_W=236
+JOINT-FACE seed=[64, 129, 67, 69, 77] status=optimal value=452 q=7 witness=[64, 67, 69, 77, 129] actual_W=467
+JOINT-FACE seed=[146, 155, 175, 184] status=optimal value=3070/3 q=46/3 witness=None actual_W=None
+JOINT-FACE seed=[146, 155, 184, 535] status=optimal value=998 q=16 witness=[146, 155, 184, 535] actual_W=1334
+JOINT-FACE seed=[13, 27, 29, 17] status=optimal value=31 q=5 witness=None actual_W=None
+EXACTLY CERTIFIED 5 semigroups; 5 primal/dual optima

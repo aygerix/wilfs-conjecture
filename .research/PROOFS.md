@@ -7477,3 +7477,99 @@ argument based on CH must allow primitive-chain end deficits to pay part of the 
 while also retaining the discrete correction C and the complete residue count. The E-only charging
 rule and E411-merging-only global route are discontinued. The next universal obligation is an
 actual allocation of those boundary deficits, not another accurate reconstruction of individual W.
+
+### A joint, unbounded-depth nonnegativity test (E414)
+
+**Model equivalence on integer actual coordinates proved on paper;31 continuous LP optima exactly
+certified. Not a universal Wilf proof and not a proof of Phi_Z>=0.** Fix a seed's multiplicity m,
+largest-Apéry residue r, exact tight-pair set T, and primitive residues G. Write rho=m-r-1 and
+e=1+|G|. The carry tau and typed allowances depend only on the residue labels and r.
+
+Use variables q, a_s (actual mu), y_s (capped certificate),1<=s<m. Both a_0 and y_0 mean q.
+The actual-coordinate constraints are
+
+    q>=5, a>=0, a_r=0, a_s<=q-1-[s>r];
+    a_i+a_j-a_s-q=tau_p                  if p in T;
+    a_i+a_j-a_s-q<=tau_p-1               otherwise.
+
+All pairs here have nonzero parents and nonzero sum residue. The certificate constraints are
+
+    0<=y_s<=a_s, y_g=a_g for g in G;
+    -lo_p<=y_i+y_j-y_s-q<=up_p          for p in T.
+
+Minimize J=rho+(e-m)q+e sum_{s>0}y_s, with NO upper bound on q or any Kunz coordinate.
+
+For integral q,a, set k_s=q-a_s-[s>r] and v_s=mk_s+s. The bounds give k_s>=1. The pair rows are
+exactly the positive-Kunz closure inequalities, with the seed's equalities and all other slacks>=1.
+The top bounds and a_r0 make v_r the unique largest representative; hence c=mq-rho. Conversely every
+genuine S with this tight pattern/top residue and c>4m yields these integer coordinates. The fixed
+pattern gives exactly e primitive generators. Thus this is an exact description of the integer
+actual-side domain; it is not bounded genus/height enumeration.
+
+The implementation solves the CONTINUOUS relaxation in q,a,y. A fractional optimum is not a numerical
+semigroup. Its exact feasible dual is nevertheless a lower bound for every genuine integer S in the
+profile, since every such S and its capped certificate are feasible. If J_*=min LP, then
+
+    W(S)>=CapUA3(S)>=J_*     for every S in this one profile/top-residue domain.
+
+Positive J_* does NOT prove the weaker Phi_Z lower bound positive. An all-integral negative primal
+would refute integer capped-certificate positivity (and hence Phi_Z positivity); a fractional negative
+point would require further integer reconstruction/search. No negative primal or ray occurred here.
+
+All31 DISTINCT saved profiles have positive exact minima. Examples:60dichotomy180;64e5case452;
+hard146case3070/3 with fractional actual q46/3;new146case998;13unique case31;supplied65case60673/44;
+153weighted case5027. Seven actual-coordinate optima are fractional. The24 integral actual optima
+are independently reconstructed by membership from their resulting generators; four differ from
+their seed and have independently checked integer Phi values281,128,22,5027. These regional
+certificates are diagnostics toward a uniform rule, not newly adopted family targets.
+
+The exact dual budget is
+
+    J_*=rho+A+N+K+Q-P,
+
+where A is the SIGNED contribution from tight actual-coordinate equalities, N>=0 from non-tight
+unit-gap rows, K>=0 from positive Kunz lower bounds, Q=5*rc_q>=0, and P>=0 the total typed-certificate
+allowance cost. Generator links, caps and a_r0 have zero RHS and transfer coefficient load. The
+independent verifier checks every row, sign, coefficient balance, q lower-bound contribution and
+primal=dual over Q. The missing global theorem is a uniform choice of dual weights with J>=0 over
+all realizable profiles; no such choice has been proved. Face-based polyhedral verification and
+poset games are already in BGOW [1903.04342](https://arxiv.org/abs/1903.04342),Sections4/6. No novelty
+is claimed for face decomposition or LP duality; our added variables retain the coupled capped repair.
+
+### Primitive edges suffice for the actual-side domain (E415)
+
+**General paper equivalence; five full/reduced LP minima exactly compared.** In E414's ACTUAL-side
+constraints it suffices to retain pair rows having at least one primitive parent g in G, together
+with positive Kunz bounds only for g in G. All coupled CERTIFICATE rows are retained: this lemma
+does not justify dropping targets or composite-parent constraints on y.
+
+Proof in real labeled weights v_s= m(q-a_s-[s>r])+s, v_0=0. In the seed choose, for each s, a word
+in primitive generators factoring w_s. Every prefix is in its Apéry set by summand closure. The
+corresponding primitive edges are tight in the seed, so the retained equations imply
+v_s=sum of v_g along that word, also for arbitrary real actual-side variables. Each primitive
+v_g>=m+g>m. Thus every nonprimitive v_s, being a sum of at least two primitives, is>=2m+2>=m+s;
+this recovers all omitted positive Kunz bounds.
+
+For any pair i,j->s, append the chosen word for j to residue i. The telescoping identity is
+
+    v_i+v_j-v_s=sum_along_path(v_previous+v_g-v_next).
+
+Edges out of0 have gap0. Edges into0 have gap>=m by positivity; every other edge has gap0 or>=m
+as prescribed by the seed's primitive-edge pattern. If the seed pair is tight, all its appended
+prefixes are Apéry divisors of w_s, so every edge is tight and the sum is0. If the seed pair is
+non-tight, its seed path has positive total gap, so at least one edge is a strict primitive exit
+(or an edge into0). In the new real vector that edge still contributes>=m, and all others contribute
+nonnegatively. Hence the omitted non-tight pair gap is>=m. This proves every omitted actual row,
+over R as well as over the integer domain. The converse is immediate by taking a subset of rows.
+
+These strict primitive exits are exactly the ends of primitive Apéry chains. The reduction therefore
+connects E414's nonnegative arithmetic budget to the boundary terms sought in E413. It uses at most
+O(e*m) actual pair rows and e-1 positive-generator bounds; the full tight certificate system can
+still have O(m^2) rows. It is a shortest-path/telescoping characterization, not a claimed new general
+Kunz theorem. The independent checker verifies every omitted row even at fractional reduced-model
+optima. The five reduced minima equal180,452,3070/3,998,31 exactly, matching the full models.
+
+The remaining task is genuinely global: construct a uniform nonnegative dual budget from primitive
+boundary exits, positive primitive weights and coupled certificate rows, or find an independently
+decoded negative integer witness. Neither31 regional duals nor this encoding equivalence supplies
+that uniform construction. Do not replace the universal goal with further face enumeration.

@@ -1056,3 +1056,16 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   complete residue bijection and strictly positive reduction cost, then proves termination/minimality directly
   (PROOFS). No parking theorem or novelty claim is assumed. The gluing theorem arXiv:2306.09876 remains already
   recorded as #29; gluing was considered as an adversarial construction, not activated as a separate target.
+
+### 2026-10-23 — joint profile/certificate duals and primitive-edge reduction
+
+- Re-read the primary [BGOW paper](https://arxiv.org/html/1903.04342), Sections3,4,6. Its Kunz-face
+  verification and poset-game framework already use linear combinations of face constraints to prove
+  Wilf regionally. E414 does not claim novelty for that method or a proof of BGOW's universal conjecture;
+  it adds separate coupled capped-certificate variables and keeps actual depth unbounded. Our unit
+  non-tight margins are valid for integer Kunz coordinates; fractional optima are proof relaxations.
+- [Brower–McDonough–O'Neill](https://arxiv.org/abs/2401.06025) studies faithful projections of Kunz faces
+  and the Kunz fan. E415's specific implication is proved directly by primitive-factorization paths;
+  no new general projection theorem or novelty claim is inferred from a similarity of terminology.
+- The31 regional certificates do not exhaust all faces/multiplicities. The missing theorem is a
+  uniform nonnegative budget for all realizable profiles; no new external theorem is assumed for it.

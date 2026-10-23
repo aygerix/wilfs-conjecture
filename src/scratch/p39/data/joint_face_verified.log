@@ -1,0 +1,32 @@
+JOINT-FACE seed=[20, 23, 25, 39] status=optimal value=586/9 q=16/3 witness=None actual_W=None
+JOINT-FACE seed=[25, 76, 102, 59, 60, 93] status=optimal value=281 q=8 witness=[25, 35, 59, 68, 76, 77] actual_W=281
+JOINT-FACE seed=[20, 61, 102, 143, 184, 25] status=optimal value=128 q=5 witness=[20, 25, 41, 42, 43, 44] actual_W=128
+JOINT-FACE seed=[19, 26, 27, 48] status=optimal value=22 q=5 witness=[19, 26, 27, 48] actual_W=22
+JOINT-FACE seed=[37, 75, 78, 80, 88, 89] status=optimal value=85 q=5 witness=None actual_W=None
+JOINT-FACE seed=[55, 71, 78, 79, 93, 97, 99] status=optimal value=214 q=5 witness=[55, 71, 78, 79, 93, 97, 99] actual_W=228
+JOINT-FACE seed=[55, 60, 61, 68, 70, 73, 78] status=optimal value=324 q=5 witness=[55, 60, 61, 68, 70, 73, 78] actual_W=338
+JOINT-FACE seed=[15, 37, 39, 40] status=optimal value=22 q=5 witness=None actual_W=None
+JOINT-FACE seed=[13, 27, 29, 17] status=optimal value=31 q=5 witness=None actual_W=None
+JOINT-FACE seed=[34, 42, 53, 54, 56, 57, 67] status=optimal value=133 q=5 witness=[34, 42, 53, 54, 56, 57, 67] actual_W=189
+JOINT-FACE seed=[66, 67, 71, 72, 98, 103, 128] status=optimal value=409 q=5 witness=[66, 67, 71, 72, 98, 103, 128] actual_W=451
+JOINT-FACE seed=[20, 21, 22] status=optimal value=100 q=10 witness=[20, 21, 22] actual_W=100
+JOINT-FACE seed=[20, 21, 22, 39] status=optimal value=148 q=8 witness=[20, 21, 22, 39] actual_W=148
+JOINT-FACE seed=[40, 41, 42, 43] status=optimal value=468 q=13 witness=[40, 41, 42, 43] actual_W=468
+JOINT-FACE seed=[40, 41, 42, 79] status=optimal value=616 q=16 witness=[40, 41, 42, 79] actual_W=616
+JOINT-FACE seed=[40, 41, 118, 79] status=optimal value=843 q=23 witness=[40, 41, 79, 118] actual_W=843
+JOINT-FACE seed=[13, 17, 20] status=optimal value=22 q=7 witness=[13, 17, 33] actual_W=22
+JOINT-FACE seed=[16, 19, 21] status=optimal value=26 q=6 witness=[16, 19, 21] actual_W=26
+JOINT-FACE seed=[77, 102, 111, 121, 126, 133, 134, 137] status=optimal value=215 q=5 witness=[77, 102, 111, 121, 126, 133, 134, 137] actual_W=239
+JOINT-FACE seed=[64, 129, 67, 69, 77] status=optimal value=452 q=7 witness=[64, 67, 69, 77, 129] actual_W=467
+JOINT-FACE seed=[146, 147, 155, 185] status=optimal value=968 q=11 witness=[146, 147, 155, 185] actual_W=1136
+JOINT-FACE seed=[60, 61, 67, 71] status=optimal value=234 q=7 witness=[60, 61, 67, 71] actual_W=260
+JOINT-FACE seed=[146, 155, 175, 184] status=optimal value=3070/3 q=46/3 witness=None actual_W=None
+JOINT-FACE seed=[60, 121, 67, 71] status=optimal value=180 q=8 witness=[60, 67, 71, 121] actual_W=236
+JOINT-FACE seed=[60, 121, 71, 143] status=optimal value=237 q=11 witness=[60, 71, 121, 143] actual_W=237
+JOINT-FACE seed=[43, 184, 193, 155] status=optimal value=723/2 q=47/2 witness=None actual_W=None
+JOINT-FACE seed=[66, 71, 72, 361, 98, 103, 128] status=optimal value=339 q=5 witness=[66, 71, 72, 98, 103, 128, 361] actual_W=346
+JOINT-FACE seed=[64, 129, 69, 77, 149] status=optimal value=274 q=7 witness=[64, 69, 77, 129, 149] actual_W=284
+JOINT-FACE seed=[146, 155, 184, 535] status=optimal value=998 q=16 witness=[146, 155, 184, 535] actual_W=1334
+JOINT-FACE seed=[65, 265, 82, 214, 217] status=optimal value=60673/44 q=35/2 witness=None actual_W=None
+JOINT-FACE seed=[153, 766, 921, 617, 925, 1080, 317, 166, 474, 170, 325] status=optimal value=5027 q=11 witness=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1539] actual_W=5654
+EXACTLY CERTIFIED 31 semigroups; 31 primal/dual optima

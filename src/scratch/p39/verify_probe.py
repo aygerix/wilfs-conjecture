@@ -12,6 +12,85 @@ def open_text(path):
 def rat(v):
     return F(str(v)).limit_denominator(1000000)
 
+def audit_face(D,out):
+    m,e,r=D['m'],D['e'],D['r'];C=D['face'];nv=2*m-1
+    assert C['variables']==nv and C['status'] in (2,5)
+    primitive=C.get('actual_constraints','all_pairs')=='primitive_edges'
+    expected=[];gr={g%m for g in D['generators'] if g!=m}
+    for p,(i,j,s,J,tau,lo,up) in enumerate(D['pairs']):
+        coeff=defaultdict(int)
+        for a,v in ((i,1),(j,1),(s,-1)):coeff[a]+=v
+        A=dict(coeff);A[m]=-1
+        if not primitive or i in gr or j in gr:expected.append((p,0,'<' if J else '=',tau-int(bool(J)),A))
+        if not J:
+            B={m+a:v for a,v in coeff.items()};B[m]=-1
+            expected.extend(((p,1,'>',-lo,B),(p,1,'<',up,B)))
+    for s in range(1,m):
+        if not primitive or s in gr:expected.append((s,3,'<',-1-int(s>r),{s:1,m:-1}))
+        expected.append((s,4,'<',0,{m+s:1,s:-1}))
+        if s in gr:expected.append((s,2,'=',0,{m+s:1,s:-1}))
+    expected.append((r,5,'=',0,{r:1}))
+    obj=[F(0)]*(nv+1);obj[m]=e-m
+    for s in range(1,m):obj[m+s]=e
+    lower=[F(0)]*(nv+1);lower[m]=5
+    def feasible(x,ray=False):
+        assert len(x)==nv+1 and all(x[a]>= (0 if ray else lower[a]) for a in range(1,nv+1))
+        for _,_,sense,rhs,A in expected:
+            val=sum(v*x[a] for a,v in A.items());b=0 if ray else rhs
+            assert val==b if sense=='=' else val<=b if sense=='<' else val>=b
+        # Also audit every omitted actual-side constraint independently. These
+        # are implied by primitive paths, not omitted from the claimed domain.
+        if primitive:
+            for s in range(1,m):assert x[s]-x[m]<= (0 if ray else -1-int(s>r))
+            for i,j,s,J,tau,lo,up in D['pairs']:
+                val=x[i]+x[j]-x[s]-x[m];b=0 if ray else tau-int(bool(J))
+                assert val==b if not J else val<=b
+    seed=[F(0)]+list(map(F,D['mu'][1:]))+[F(D['q'])]+list(map(F,D['mu'][1:]))
+    feasible(seed);rho=m-r-1
+    assert rho+sum(obj[a]*seed[a] for a in range(1,nv+1))==D['W']
+    if C['status']==2:
+        x=[F(0)]+list(map(rat,C['x']));feasible(x)
+        rc=list(map(rat,C['rc']));load=[F(0)]*(nv+1);dual=F(rho);costs=defaultdict(F)
+        assert len(C['rows'])==len(expected) and len(rc)==nv and min(rc)>=0
+        for (p,kind,sense,rhs,A),R in zip(expected,C['rows']):
+            assert (R['pair'],R['kind'],R['sense'],rat(R['b']),dict(R['a']))==(p,kind,sense,rhs,A)
+            pi=rat(R['pi']);assert pi<=0 if sense=='<' else pi>=0 if sense=='>' else True
+            dual+=pi*rhs
+            category=('actual_nontight' if D['pairs'][p][3] else 'actual_tight') if kind==0 else ('certificate_lower' if sense=='>' else 'certificate_upper') if kind==1 else 'positive_kunz' if kind==3 else 'zero_rhs'
+            costs[category]+=pi*rhs
+            for a,v in A.items():load[a]+=pi*v
+        for a in range(1,nv+1):
+            assert obj[a]-load[a]==rc[a-1];dual+=rc[a-1]*lower[a]
+        value=F(rho)+sum(obj[a]*x[a] for a in range(1,nv+1))
+        assert value==dual and abs(float(value)-C['value'])<1e-6
+        costs['conductor_shift']=F(rho);costs['depth_lower_bound']=5*rc[m-1]
+        assert sum(costs.values())==value
+        result={'status':'optimal','optimum':str(value),'q':str(x[m]),'actual_constraints':'primitive_edges' if primitive else 'all_pairs','dual_costs':{k:str(v) for k,v in costs.items()}}
+    else:
+        import math
+        ray=[F(0)]+list(map(rat,C['ray']));feasible(ray,True)
+        slope=sum(obj[a]*ray[a] for a in range(1,nv+1));assert slope<0
+        scale=math.lcm(*(v.denominator for v in ray))
+        step=max(1,int(F(D['W'])/(-slope*scale))+1)
+        x=[a+step*scale*b for a,b in zip(seed,ray)];feasible(x)
+        value=F(rho)+sum(obj[a]*x[a] for a in range(1,nv+1));assert value<0
+        result={'status':'unbounded','slope':str(slope),'integer_ray_scale':scale,'steps':step,'negative_witness_value':str(value)}
+    # If the actual point is integral, reconstruct S independently from its
+    # resulting positive generators, rather than accepting Kunz inequalities alone.
+    if all(x[a].denominator==1 for a in range(1,m+1)):
+        q=int(x[m]);mu=[q]+[int(x[s]) for s in range(1,m)]
+        w=[0]+[m*(q-mu[s]-int(s>r))+s for s in range(1,m)]
+        G=sorted([m]+[w[s] for s in gr]);c=q*m-rho;N=m*max(G)+m
+        member=bytearray(N+1);member[0]=1
+        for v in range(1,N+1):member[v]=any(v>=g and member[v-g] for g in G)
+        assert max(v for v in range(N+1) if not member[v])+1==c
+        assert [next(v for v in range(s,N+1,m) if member[v]) for s in range(m)]==w
+        assert [v for v in G if not any(v>a and member[v-a] for a in G)]==G
+        genus=sum(not member[v] for v in range(c));assert sum(mu)==c-genus
+        result['witness']={'generators':G,'c':c,'g':genus,'W':e*(c-genus)-c,'y':[str(x[m+s]) for s in range(1,m)],'certificate_value':str(value),'integer_certificate':all(x[m+s].denominator==1 for s in range(1,m))}
+    out['face']=result
+    return out
+
 def audit_cone(D,out):
     m,q=D['m'],D['q'];C=D['cone'];mu=D['mu'];gr={g%m for g in D['generators'] if g!=m}
     mode=C.get('mode','cone');target=C.get('target',0);capped=mode!='cone'
@@ -130,6 +209,7 @@ def audit(D):
         height[s]=max([height[i]+height[j] for i,j,t,J,*_ in pairs if t==s and J==0],default=1)
     assert height==D['height']
     out={'generators':G,'m':m,'e':e,'c':c,'q':q,'rho':rho,'h':max(D['height']),'W':D['W'],'models':{}}
+    if 'face' in D:return audit_face(D,out)
     if 'cone' in D:return audit_cone(D,out)
     for name,M in D['models'].items():
         fixed=name in ('UA3','AM3'); exact=name in ('TX','FACE'); full=name in ('AM3','FACE')
@@ -183,6 +263,10 @@ if __name__=='__main__':
         results.append(audit(json.loads(line)))
     with open(sys.argv[2],'w') as f: json.dump(results,f,indent=2)
     for R in results:
+        if 'face' in R:
+            C=R['face'];print('JOINT-FACE seed=%s status=%s value=%s q=%s witness=%s actual_W=%s'%(R['generators'],C['status'],C.get('optimum',C.get('negative_witness_value')),C.get('q'),C.get('witness',{}).get('generators'),C.get('witness',{}).get('W')))
+            if C.get('witness',{}).get('W',0)<0:print('GENUINE WILF FAILURE: independent membership reconstruction passed',C['witness'])
+            continue
         if 'cone' in R:
             C=R['cone']
             if 'mode' in C:
@@ -190,4 +274,6 @@ if __name__=='__main__':
             else:print('CONE G=%s core=%d epsilon=%s ray_scale=%s max_unpaid=%s capped_upper=%s'%(R['generators'],len(C['core']),C['epsilon'],C['max_ray_scale'],max(map(F,C['scaled_unpaid'])),C['capped_objective_upper']))
             continue
         print('G=%s q=%s h=%s W=%s | '%(R['generators'],R['q'],R['h'],R['W'])+' '.join('%s=%s[nontight:%d,tighterror:%d]'%(name,V['optimum'],len(V['non_tight_violations']),len(V['tight_errors'])) for name,V in R['models'].items()))
-    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R) for R in results),'primal/dual optima')
+    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R)+int(R.get('face',{}).get('status')=='optimal') for R in results),'primal/dual optima')
+    rays=sum(R.get('face',{}).get('status')=='unbounded' for R in results)
+    if rays:print('EXACTLY CERTIFIED',rays,'unbounded rays and negative integer witnesses')

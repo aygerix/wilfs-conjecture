@@ -4915,3 +4915,52 @@ Validation:176 existing exact LP optima and consolidated checks pass; new13 CH/f
 diagnostics and extended C allowance-position audit pass; Lean arithmetic components checked.
 Semigroup interpretation remains on paper; global budget inequality unproved. Full goal ACTIVE,
 no genuine counterexample or full proof. Classification: PROGRESS (two concrete mechanisms excluded).
+
+## 2026-10-23 00:24 EDT — joint nonnegativity and primitive boundary sources
+
+Previous turn PROGRESS: exact allowance support/limitation and collision-only funding counterexample.
+Re-read the old chain/Theta/FAILED records: per-chain, local surplus and uniform-flow charging rules
+were already closed. Do not rediscover those as new targets. Scope remains universal BACKWARDS-WILF.
+
+**E414, discriminating test beyond generator-level descents.** Fix a saved genuine tight profile/top
+residue, and jointly vary actual mu/q and capped certificate y. Proved the actual integer domain is
+exactly that Kunz profile, q>=5 with NO upper depth/height bound; solve a continuous relaxation to
+seek a negative lower certificate. This is implemented in existing Gurobi C certprobe, not Python
+MILP. Exact rational checker rebuilds every constraint and primal=dual, including q's lower-bound
+reduced cost. It reconstructs resulting integer actual points from generators independently.
+
+All31 distinct saved profiles have positive minima; no negative primal or unbounded ray. Seven
+actual optima fractional (not semigroups),24 integral actual optima; four changed integer witnesses
+have independently checked Phi281,128,22,5027. Hard146regional optimum3070/3 at q46/3; no artificial
+integer witness is inferred. The31 duals prove bounds on whole unbounded-depth regions, but they do
+not exhaust all profiles and do NOT prove Phi_Z>=0 even in one region. They lower-bound full CapUA3.
+No family target or finite replacement of the global mission is activated.
+
+**E415, general boundary-source reduction.** Actual pair constraints follow from primitive-edge
+constraints and positive primitive values on a fixed realizable profile. Choose seed primitive
+factorizations; tight prefixes express every actual v_s as a sum of primitive v_g. This yields all
+nonprimitive positivity bounds. Appending a factorization of j to i telescopes its pair gap into
+primitive edge gaps. A seed-tight pair has all gaps0; a non-tight pair has at least one strict exit
+or positive edge into0, so the full unit margin is retained. This works over R as well as Z.
+All tight coupled CERTIFICATE rows remain; no dropping of composite target obligations.
+
+The primitive exit rows are exactly chain-boundary events, giving a concrete link from the desired
+boundary budget to global dual inputs. Five reduced/full models have equal exact minima180,452,
+3070/3,998,31. The independent checker verifies every omitted inequality at reduced optima, not
+just the optimizer's reported objective. Paper proof complete; no new full-semigroup Lean claim.
+
+**Global review — CONTINUE toward a uniform primitive-boundary dual; stop regional cataloguing.**
+The known BGOW face/game method was re-read; no novelty is claimed for face LPs, shortest paths or
+duality. The new coupled model tests a globally sufficient statement and produces explicit budget
+terms rho+A+N+K+Q-P. A is signed; primitive exits, positive primitive weights and depth give
+nonnegative credits; typed allowances give costs. Primitive count enters coefficient balance.
+Missing: a uniform way to choose these weights for ALL realizable profiles, or a genuine negative
+integer certificate exposing a failure. Do not equate31 regional proofs with a universal theorem.
+Original Phi_Z/CH sufficient criterion remains open and is not implied by positive joint minima.
+The same backwards strategy continues; no larger boxes or side-family proof program.
+
+Validation:212 exactly certified LP optima (176 previous+31 joint+5 reduced),four new integer
+assignment witnesses and all consolidated checks pass. Full/reduced C joint paths pass ASan/UBSan
+with Gurobi leak detection disabled. Data/code stay in existing p39; STATE updated in place. No
+negative ray occurred; its reconstruction path is not claimed tested. Universal goal ACTIVE,
+no full proof or genuine counterexample. Classification: PROGRESS.

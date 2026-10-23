@@ -3,6 +3,11 @@
  * usage: certprobe m g1 ... (generating list, not assumed minimal).
  * --cone: test for directions positive on every coordinate outside zero closure.
  * --cap: maximize full capped unpaid sum; --cap-max RES: maximize one coordinate.
+ * --face: continuous joint LP for Kunz coordinates and a capped certificate on
+ *   the seed's exact tight face, fixed conductor residue, unbounded depth q>=5.
+ *   Fractional optimal coordinates are not numerical semigroups.
+ * --face-primitive: equivalent actual-side constraints using primitive edges;
+ *   retains every tight coupled certificate row.
  * JSON output includes all primal/dual data for independent rational checking.
  * build: gcc -O2 certprobe.c -I.../include -L.../lib -lgurobi130 -lm -o certprobe
  */
@@ -16,7 +21,7 @@
 #define CHECK(call) do { int err=(call); if(err){fprintf(stderr,"Gurobi error %d at line %d\n",err,__LINE__);exit(2);} }while(0)
 typedef long long ll;
 typedef struct { int i,j,s,J,tau,lo,up; } Pair;
-typedef struct { int n,ind[3],pair,kind; double val[3],rhs; char sense; } Row;
+typedef struct { int n,ind[4],pair,kind; double val[4],rhs; char sense; } Row;
 static void *alloc(size_t n,size_t s){void *p=calloc(n,s);if(!p){fprintf(stderr,"allocation failed\n");exit(2);}return p;}
 static int cmp(const void *a,const void*b){int x=*(const int*)a,y=*(const int*)b;return (x>y)-(x<y);}
 static Row pairrow(Pair p,int pi,char sense,int rhs){
@@ -25,6 +30,49 @@ static Row pairrow(Pair p,int pi,char sense,int rhs){
  for(int k=0;k<3;k++){int u=0;while(u<R.n&&R.ind[u]!=ix[k])u++;
   if(u==R.n){R.ind[u]=ix[k];R.n++;}R.val[u]+=co[k];}
  return R;
+}
+static void face_report(GRBenv *env,int m,int e,int r,int np,Pair *P,int *gen,int primitive){
+ int nv=2*m-1,qi=m-1,nr=0;
+ double *obj=alloc(nv,sizeof(double)),*lb=alloc(nv,sizeof(double)),*ub=alloc(nv,sizeof(double));
+ for(int v=0;v<nv;v++)ub[v]=GRB_INFINITY;
+ lb[qi]=5;obj[qi]=e-m;for(int s=1;s<m;s++)obj[m+s-1]=e;
+ Row *rows=alloc(3*np+3*m,sizeof(Row));
+ for(int p=0;p<np;p++){
+  Pair t=P[p];Row R=pairrow(t,p,t.J?GRB_LESS_EQUAL:GRB_EQUAL,t.tau-(t.J!=0));
+  R.ind[R.n]=qi;R.val[R.n++]=-1;
+  if(!primitive||gen[t.i]||gen[t.j])rows[nr++]=R;
+  if(!t.J)for(int side=0;side<2;side++){
+   R=pairrow(t,p,side?GRB_LESS_EQUAL:GRB_GREATER_EQUAL,side?t.up:-t.lo);R.kind=1;
+   for(int a=0;a<R.n;a++)R.ind[a]+=m;
+   R.ind[R.n]=qi;R.val[R.n++]=-1;rows[nr++]=R;
+  }
+ }
+ for(int s=1;s<m;s++){
+  if(!primitive||gen[s])rows[nr++]=(Row){.n=2,.ind={s-1,qi},.val={1,-1},.pair=s,.kind=3,.sense=GRB_LESS_EQUAL,.rhs=-1-(s>r)};
+  rows[nr++]=(Row){.n=2,.ind={m+s-1,s-1},.val={1,-1},.pair=s,.kind=4,.sense=GRB_LESS_EQUAL,.rhs=0};
+  if(gen[s])rows[nr++]=(Row){.n=2,.ind={m+s-1,s-1},.val={1,-1},.pair=s,.kind=2,.sense=GRB_EQUAL,.rhs=0};
+ }
+ rows[nr++]=(Row){.n=1,.ind={r-1},.val={1},.pair=r,.kind=5,.sense=GRB_EQUAL,.rhs=0};
+ CHECK(GRBsetintparam(env,"InfUnbdInfo",1));CHECK(GRBsetintparam(env,"DualReductions",0));
+ CHECK(GRBsetdblparam(env,"TimeLimit",60));
+ GRBmodel *M=NULL;CHECK(GRBnewmodel(env,&M,"JOINT_FACE",nv,obj,lb,ub,NULL,NULL));
+ for(int a=0;a<nr;a++){Row R=rows[a];CHECK(GRBaddconstr(M,R.n,R.ind,R.val,R.sense,R.rhs,NULL));}
+ CHECK(GRBoptimize(M));int status;CHECK(GRBgetintattr(M,GRB_INT_ATTR_STATUS,&status));
+ printf("{\"relaxation\":\"continuous_kunz\",\"actual_constraints\":\"%s\",\"status\":%d,\"variables\":%d",primitive?"primitive_edges":"all_pairs",status,nv);
+ if(status==GRB_OPTIMAL){
+  double val,*X=alloc(nv,sizeof(double)),*pi=alloc(nr,sizeof(double)),*rc=alloc(nv,sizeof(double));
+  CHECK(GRBgetdblattr(M,GRB_DBL_ATTR_OBJVAL,&val));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_X,0,nv,X));
+  CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_PI,0,nr,pi));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_RC,0,nv,rc));
+  printf(",\"value\":%.17g,\"x\":[",val+m-r-1);for(int v=0;v<nv;v++)printf("%s%.17g",v?",":"",X[v]);
+  printf("],\"rc\":[");for(int v=0;v<nv;v++)printf("%s%.17g",v?",":"",rc[v]);printf("],\"rows\":[");
+  for(int a=0;a<nr;a++){Row R=rows[a];printf("%s{\"pair\":%d,\"kind\":%d,\"sense\":\"%c\",\"b\":%.17g,\"pi\":%.17g,\"a\":[",a?",":"",R.pair,R.kind,R.sense,R.rhs,pi[a]);
+   for(int k=0;k<R.n;k++)printf("%s[%d,%.17g]",k?",":"",R.ind[k]+1,R.val[k]);printf("]}");}printf("]");
+  free(X);free(pi);free(rc);
+ }else if(status==GRB_UNBOUNDED){
+  double *ray=alloc(nv,sizeof(double));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_UNBDRAY,0,nv,ray));
+  printf(",\"ray\":[");for(int v=0;v<nv;v++)printf("%s%.17g",v?",":"",ray[v]);printf("]");free(ray);
+ }
+ printf("}");GRBfreemodel(M);free(obj);free(lb);free(ub);free(rows);
 }
 static void cone_report(GRBenv *env,int m,int q,int np,Pair *P,int *mu,int *gen,int *order,int capped,int target){
  int *b=alloc(m,sizeof(int)),*rigid=alloc(m,sizeof(int));b[0]=q;
@@ -61,7 +109,9 @@ static void cone_report(GRBenv *env,int m,int q,int np,Pair *P,int *mu,int *gen,
  GRBfreemodel(M);free(b);free(rigid);free(obj);free(lb);free(ub);free(rows);free(X);free(pi);free(rc);
 }
 int main(int argc,char **argv){
- int cone=0,target=0;
+ int cone=0,target=0,face=0;
+ if(argc>1&&!strcmp(argv[1],"--face")){face=1;argc--;argv++;}
+ else if(argc>1&&!strcmp(argv[1],"--face-primitive")){face=2;argc--;argv++;}
  if(argc>1&&(!strcmp(argv[1],"--cone")||!strcmp(argv[1],"--cap"))){cone=!strcmp(argv[1],"--cap")?2:1;argc--;argv++;}
  else if(argc>2&&!strcmp(argv[1],"--cap-max")){cone=2;target=atoi(argv[2]);if(target<1)return 1;argc-=2;argv+=2;}
  if(argc<3){fprintf(stderr,"usage: certprobe m g1 ...\n");return 1;}
@@ -84,6 +134,7 @@ int main(int argc,char **argv){
   if(tau!=expected||mu[i]+mu[j]-mu[s]!=q-diff/m+tau){fprintf(stderr,"tau invariant failed\n");return 2;}
   P[np++]=(Pair){i,j,s,(int)(diff/m),tau,lo,up};if(!diff)gen[s]=0;}
  int e=1;for(int s=1;s<m;s++)e+=gen[s];ll W=(ll)e*(c-genus)-c,ell=0;for(int s=0;s<m;s++)ell+=mu[s];
+ if(face&&(c<=4LL*m||3*e>=m)){fprintf(stderr,"face seed must satisfy c>4m and 3e<m\n");return 1;}
  if(ell!=c-genus){fprintf(stderr,"ell invariant failed\n");return 2;}
  for(int a=1;a<m;a++){int s=order[a];height[s]=gen[s];for(int p=0;p<np;p++)if(P[p].s==s&&!P[p].J){int v=height[P[p].i]+height[P[p].j];if(v>height[s])height[s]=v;}}
  GRBenv *env=NULL;CHECK(GRBemptyenv(&env));CHECK(GRBsetintparam(env,"OutputFlag",0));CHECK(GRBsetintparam(env,"Threads",1));CHECK(GRBstartenv(env));
@@ -92,6 +143,7 @@ int main(int argc,char **argv){
  for(int s=1;s<m;s++)if(gen[s])printf(",%lld",w[s]);printf("],\"w\":[");for(int s=0;s<m;s++)printf("%s%lld",s?",":"",w[s]);printf("],\"mu\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",mu[s]);
  printf("],\"height\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",height[s]);printf("],\"pairs\":[");
  for(int p=0;p<np;p++){Pair t=P[p];printf("%s[%d,%d,%d,%d,%d,%d,%d]",p?",":"",t.i,t.j,t.s,t.J,t.tau,t.lo,t.up);}
+ if(face){printf("],\"face\":");face_report(env,m,e,r,np,P,gen,face==2);printf("}\n");GRBfreeenv(env);return 0;}
  if(cone){printf("],\"cone\":");cone_report(env,m,q,np,P,mu,gen,order,cone==2,target);printf("}\n");GRBfreeenv(env);return 0;}
  printf("],\"models\":{");
  const char *names[]={"RT3","UA3","TX","AM3","FACE"};

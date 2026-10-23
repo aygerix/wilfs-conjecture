@@ -1,0 +1,4 @@
+WEIGHTED ENVELOPE CERTIFIED G=[25, 35, 59, 68, 76, 77] integer=True W=281 bound=281 unpaid=0 maxU=0 residual_M=0 rounded=281
+WEIGHTED ENVELOPE CERTIFIED G=[20, 25, 41, 42, 43, 44] integer=True W=128 bound=128 unpaid=0 maxU=0 residual_M=0 rounded=128
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 33] integer=True W=22 bound=22 unpaid=0 maxU=0 residual_M=0 rounded=22
+WEIGHTED ENVELOPE CERTIFIED G=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1539] integer=True W=5654 bound=5027 unpaid=57 maxU=2 residual_M=0 rounded=5027
