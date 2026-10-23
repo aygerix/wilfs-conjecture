@@ -1,0 +1,13 @@
+# Ten recorded hard instances plus one explicit mixed-residue stress case
+# (55 60 61 68 70 73 78); discovery samples, not a restricted target.
+20 23 25 39
+25 59 60 76 93 102
+20 25 61 102 143 184
+19 26 27 48
+37 75 78 80 88 89
+55 71 78 79 93 97 99
+55 60 61 68 70 73 78
+15 37 39 40
+13 17 27 29
+34 42 53 54 56 57 67
+66 67 71 72 98 103 128

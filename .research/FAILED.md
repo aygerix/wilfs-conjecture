@@ -1,31 +1,6 @@
 # FAILED.md — registry of failed proof mechanisms (Wilf)
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Purpose: before a new conjecture gets proof effort, state why none of the mechanisms below undermines it. Each entry:
 statement, smallest/clearest counterexample, and what actually pays the deficit. Experiment IDs refer to EXPERIMENTS.md.
@@ -167,3 +142,11 @@ and MD are statements about every S and remain observations.
   Corrected in PROOFS/STATE the same day.
 | T2 (every S): J − C ≤ ρ + r + Σ_{wrapped x, λ_x = q−1} u(x) | the pool except wrapped top-1 positions | 0 failures: genus ≤ 30, e = 3 exhaustive. Annealers q = 5–7 best slack 1, 3, 1 (running). In the collision-free regular regime P = 0, so T2 = WR1 = ANCHOR = CORE₁ there. CORE₁ survives the dense n = 2 packings up to h = 14 (E343) |
 
+
+### 2026-10-22: retaining only upper-side UA3 rows is insufficient (E390)
+Claim: fixing true generator levels and retaining only A_p y <= q+up_p on tight pairs always gives a
+nonnegative Wilf bound in c>4m,3e<m. FALSE: <20,21,22>, c=200,g=100,e=3,q=10,rho=0,W=100;
+the exact upper-side closure has sum b=60 and bound -20. Full UA3 is 100, exactly rationally certified.
+The dropped lower-side split inequalities pay the deficit. This is distinct from the older one-sided R
+certificate, which kept lower-side rows and dropped upper-side rows. The DP remains a valid lower bound,
+and B<0 is a necessary condition for a Wilf counterexample; its positivity is not a theorem.

@@ -1,31 +1,6 @@
 # LIT_CL.md — literature scout for Corollary H, Tile-CL, and depth-free reductions (2026-10-17)
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Scope: three targeted questions (Q1–Q3) from PROOFS.md ("Corollary H", "CH'", "CL", "Tile-CL").
 Does not repeat LITERATURE.md. Budget about 40 tool calls; search NOT exhaustive (alphaXiv index, web search,

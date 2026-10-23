@@ -1,0 +1,11 @@
+# Canonical raw LP data are compressed under data/; summaries are reproducible.
+/*.jsonl
+/*.json
+/export.tar.gz
+/data/*probe.jsonl
+/data/*summary.json
+/__pycache__/
+/certprobe
+/upper_scan
+/repair_scan
+/enumlp3*

@@ -1,0 +1,31 @@
+G=[20, 23, 25, 39] q=5 h=5 W=70 | RT3=134/3[nontight:2,tighterror:0] UA3=70[nontight:0,tighterror:0] TX=134/3[nontight:2,tighterror:0] AM3=70[nontight:0,tighterror:0] FACE=70[nontight:0,tighterror:0]
+G=[25, 76, 102, 59, 60, 93] q=13 h=5 W=546 | RT3=72[nontight:24,tighterror:12] UA3=546[nontight:0,tighterror:0] TX=116[nontight:44,tighterror:0] AM3=546[nontight:0,tighterror:0] FACE=306[nontight:0,tighterror:0]
+G=[20, 61, 102, 143, 184, 25] q=12 h=4 W=444 | RT3=48[nontight:0,tighterror:0] UA3=390[nontight:0,tighterror:9] TX=48[nontight:0,tighterror:0] AM3=390[nontight:0,tighterror:9] FACE=156[nontight:0,tighterror:0]
+G=[19, 26, 27, 48] q=5 h=4 W=22 | RT3=22[nontight:0,tighterror:0] UA3=22[nontight:0,tighterror:0] TX=22[nontight:0,tighterror:0] AM3=22[nontight:0,tighterror:0] FACE=22[nontight:0,tighterror:0]
+G=[37, 75, 78, 80, 88, 89] q=6 h=3 W=102 | RT3=84[nontight:0,tighterror:14] UA3=102[nontight:0,tighterror:0] TX=102[nontight:0,tighterror:0] AM3=102[nontight:0,tighterror:0] FACE=102[nontight:0,tighterror:0]
+G=[55, 71, 78, 79, 93, 97, 99] q=5 h=3 W=228 | RT3=172[nontight:64,tighterror:31] UA3=214[nontight:5,tighterror:2] TX=228[nontight:0,tighterror:0] AM3=228[nontight:0,tighterror:0] FACE=228[nontight:0,tighterror:0]
+G=[55, 60, 61, 68, 70, 73, 78] q=5 h=4 W=338 | RT3=324[nontight:12,tighterror:6] UA3=324[nontight:12,tighterror:6] TX=338[nontight:0,tighterror:0] AM3=338[nontight:0,tighterror:0] FACE=338[nontight:0,tighterror:0]
+G=[15, 37, 39, 40] q=7 h=3 W=32 | RT3=32[nontight:0,tighterror:0] UA3=32[nontight:0,tighterror:0] TX=32[nontight:0,tighterror:0] AM3=32[nontight:0,tighterror:0] FACE=32[nontight:0,tighterror:0]
+G=[13, 27, 29, 17] q=5 h=3 W=41 | RT3=67/3[nontight:1,tighterror:4] UA3=37[nontight:0,tighterror:1] TX=31[nontight:0,tighterror:0] AM3=37[nontight:0,tighterror:1] FACE=31[nontight:0,tighterror:0]
+G=[34, 42, 53, 54, 56, 57, 67] q=5 h=3 W=189 | RT3=511/4[nontight:9,tighterror:24] UA3=133[nontight:3,tighterror:15] TX=189[nontight:0,tighterror:0] AM3=161[nontight:0,tighterror:10] FACE=189[nontight:0,tighterror:0]
+G=[66, 67, 71, 72, 98, 103, 128] q=5 h=5 W=451 | RT3=1184/3[nontight:127,tighterror:88] UA3=409[nontight:18,tighterror:16] TX=451[nontight:0,tighterror:0] AM3=451[nontight:0,tighterror:0] FACE=451[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 11 semigroups; 55 primal/dual optima
+G=[20, 21, 22] q=10 h=10 W=100 | RT3=100[nontight:25,tighterror:56] UA3=100[nontight:0,tighterror:0] TX=100[nontight:25,tighterror:0] AM3=100[nontight:0,tighterror:0] FACE=100[nontight:0,tighterror:0]
+G=[20, 21, 22, 39] q=8 h=8 W=148 | RT3=148[nontight:16,tighterror:0] UA3=148[nontight:0,tighterror:0] TX=148[nontight:16,tighterror:0] AM3=148[nontight:0,tighterror:0] FACE=148[nontight:0,tighterror:0]
+G=[40, 41, 42, 43] q=13 h=13 W=468 | RT3=468[nontight:101,tighterror:138] UA3=468[nontight:0,tighterror:0] TX=468[nontight:0,tighterror:0] AM3=468[nontight:0,tighterror:0] FACE=468[nontight:0,tighterror:0]
+G=[40, 41, 42, 79] q=16 h=16 W=616 | RT3=616[nontight:64,tighterror:0] UA3=616[nontight:0,tighterror:0] TX=616[nontight:64,tighterror:0] AM3=616[nontight:0,tighterror:0] FACE=616[nontight:0,tighterror:0]
+G=[40, 41, 118, 79] q=23 h=23 W=843 | RT3=843[nontight:0,tighterror:4] UA3=843[nontight:0,tighterror:0] TX=843[nontight:0,tighterror:0] AM3=843[nontight:0,tighterror:0] FACE=843[nontight:0,tighterror:0]
+G=[13, 17, 20] q=6 h=5 W=29 | RT3=37/2[nontight:0,tighterror:0] UA3=29[nontight:0,tighterror:0] TX=37/2[nontight:0,tighterror:0] AM3=29[nontight:0,tighterror:0] FACE=29[nontight:0,tighterror:0]
+G=[16, 19, 21] q=6 h=5 W=26 | RT3=26[nontight:0,tighterror:0] UA3=26[nontight:0,tighterror:0] TX=26[nontight:0,tighterror:0] AM3=26[nontight:0,tighterror:0] FACE=26[nontight:0,tighterror:0]
+G=[77, 102, 111, 121, 126, 133, 134, 137] q=5 h=3 W=239 | RT3=215[nontight:5,tighterror:7] UA3=215[nontight:5,tighterror:7] TX=239[nontight:0,tighterror:0] AM3=223[nontight:0,tighterror:5] FACE=239[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 8 semigroups; 40 primal/dual optima
+G=[64, 129, 67, 69, 77] q=7 h=7 W=467 | RT3=387[nontight:12,tighterror:151] UA3=452[nontight:0,tighterror:10] TX=467[nontight:0,tighterror:0] AM3=452[nontight:0,tighterror:10] FACE=467[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 1 semigroups; 5 primal/dual optima
+G=[146, 147, 155, 185] q=11 h=11 W=1136 | RT3=191582/201[nontight:54,tighterror:1118] UA3=968[nontight:0,tighterror:259] TX=37706/37[nontight:0,tighterror:0] AM3=968[nontight:0,tighterror:259] FACE=1136[nontight:0,tighterror:0]
+G=[60, 61, 67, 71] q=7 h=7 W=260 | RT3=2896/13[nontight:5,tighterror:229] UA3=234[nontight:3,tighterror:18] TX=260[nontight:0,tighterror:0] AM3=248[nontight:0,tighterror:14] FACE=260[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 2 semigroups; 10 primal/dual optima
+CERTIFIED G=[64, 129, 67, 69, 77] B=-33 M=152 corrected=347 UA3=452 W=467
+CERTIFIED G=[20, 21, 22] B=-20 M=80 corrected=100 UA3=100 W=100
+CERTIFIED G=[146, 147, 155, 185] B=-640 M=624 corrected=608 UA3=968 W=1136
+CERTIFIED G=[60, 61, 67, 71] B=-144 M=165 corrected=188 UA3=234 W=260
+VERIFIED 30 BASE examples (three recorded residue covers, k=1..10), with independent membership invariants and exact Apéry reconstruction.

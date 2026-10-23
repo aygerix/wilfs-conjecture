@@ -1,31 +1,6 @@
 # EXPERIMENTS.md — exact finite tests (all integer arithmetic, Python 3.14, no randomness unless seeded)
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Tools: `src/ns.py` (implementation A: membership bitsets, tree enumeration by genus),
 `src/ns_kunz.py` (implementation B: Apéry set by Dijkstra, Selmer/Brauer–Shockley, Apéry-poset generators).
@@ -439,3 +414,13 @@ Notes
   - m = 16: 24,728,522 S, min 16 at ⟨16,25,28,29⟩.
   - m = 17: 75,264,429 S, min 20 at ⟨17,36,37,41,42,44⟩; 796 s on 6 cores.
   - At every m, e·ℓ₂ − c equals W at the minimizer, i.e. the dropped cubic credits are 0 at the extremizers. | exhaustive in each listed range | each < 15 min |
+
+## 2026-10-22 — backwards certificates and repair matching
+
+| ID | Implementation | Scope and result | Evidence | Runtime |
+| --- | --- | --- | --- | --- |
+| E390 | Codex `src/scratch/p39/{certprobe.c,verify_probe.py,cases.txt,upper_dp.py}`; fejer `~/wilf/p39/`; raw/verified JSON saved alongside code | (2026-10-22) **Backwards certificate and constraint audit, no height restriction.** 10 recorded hard examples, one explicit mixed-residue stress case, and 8 structured/boundary examples; 95 RT3/UA3/TX/AM3/FACE optima exactly certified. The verifier reconstructs conductor, genus, minimal generators and Apéry via membership, reconstructs LP rows independently, rationalizes primal/dual solutions, and checks all constraints, reduced costs including finite upper bounds, and exact P=D. AM3 adds all non-tight Kunz inequalities to UA3; FACE uses exact tight equalities, non-tight integer-gap inequalities and Kunz >=1 at fixed q/r, without fixing generator levels. Results: <55,71,78,79,93,97,99> has W=228, UA3=214, AM3=228; <20,25,61,102,143,184> has W=444, UA3=AM3=390 with an integral fake violating nine tight equalities but no non-tight inequality. Upper-side generator-aware closure is positive on the first 11 cases but FALSE as a universal positivity criterion: <20,21,22>, W=100, upper bound=-20. PROOFS gives the general exact DP and repair LP. | selected exact examples, not an exhaustive parameter range | seconds of compute on e2-standard-8 |
+| E391 | `src/scratch/p37/enumlp3.c`; fejer `~/wilf/p39/enumlp3_san` | (2026-10-22) **Enumerator audit.** The existing newer C enumerator already has an optional height filter. Found/fixed a tight-key overflow: m=24 has 265 relevant pairs, exceeding its four uint64 words. Key size now derives from MAXM; input ranges/capacity are checked. Address/undefined sanitizers passed m=24,e=4,K=5,part=0/8,h4only=0 (9 accepted S, 9 keys). Old/new complete output also matches at m=16,e=4,K=6,h4only=0: 1191 S,1057 keys, including 18 S outside height>=4. | implementation validation only | seconds |
+| E392 | `src/scratch/p39/{upper_scan.c,assignment.h,verify_matching.py}`; fejer `~/wilf/p39/` | (2026-10-22) **General integer repair-assignment certificate.** PROOFS gives B<=UA3<=W and the exact repair LP, then W>=B+e ceil(M/2) by a permutation argument. The C Hungarian routine exports/checks an integer permutation and assignment-dual potentials of equal value; independent Python reconstructs the matrix and checks it against membership-audited semigroup data and rational UA3 optima. Verified: <64,67,69,77,129>, B=-33,M=152,bound347,UA3=452,W=467; <20,21,22>, -20,80,100,100,100; <146,147,155,185>, -640,624,608,968,1136; <60,61,67,71>, -144,165,188,234,260 (the last uses integer rounding). C sampling: seeds390/391, 10000 candidates each, m=20..160, six documented residue/lift modes, lifts<=8, actual e>=4,c>4m,3e<m; 8592/8638 accepted samples, 34/42 with B<0, no negative corrected bound. Largest required-credit ratio -2B/(eM) was 1280/2496 (seed390) and 288/660 (seed391). Truncation sampling seed392: 10000 cores plus explicit conductor tails, 2577 accepted, 5 with B<0, no corrected failure; maximum ratio320/1920. Exhaustive m=20,e=5,Kunz<=6,c>4m: 5023296 generator candidates, 55001 unique accepted S, B>=0 throughout, minimum baseline0. Matching is skipped when B>=0, so reported minima in these scans are the cheaper baseline certificate, not necessarily the optimum corrected bound. All sampling is heuristic and may repeat S; exhaustive claim is only for the stated m/e/K box. | exact integer certificate; selected independent checks; bounded enumeration/sampling | scans ~1.1s/seed, truncation~1.3s, exhaustive box15.1s on fejer e2-standard-8 |
+| E393 | `src/scratch/p39/base_deflation.py`; fejer `python3 base_deflation.py` | (2026-10-22) **BASE proof obligation closed on paper.** Under the exact BASE-FAMILY hypotheses, quadratic mu=k forces r<a_i+a_j<=m+r and hence a_i>r/2. These bounds exclude every newly competitive larger-degree sum after deflation k->1; shorter-degree comparisons preserve the original ordering. PROOFS supplies the general argument, c(T)<=4m, and W(S)=W(T)+3(k-1)(binom(d+3,3)-m). The script checks all hypotheses and independently reconstructs both S/T by membership and Apéry Dijkstra for the three recorded m15 residue covers and k=1..10 (30 examples). No finite check is used as the universal proof. This settles that actual BASE family only, not all fractional BASE fakes or general RT3/UA3 nonnegativity. | PROVED on paper; exact examples; not Lean formalized | <1s |
+| E394 | `lean/Wilf/RepairMatching.lean`; fejer `cd ~/wilf/lean; ~/.elan/bin/lake env lean ../p39/RepairMatching.lean`; log `src/scratch/p39/data/lean_matching.log` | (2026-10-22) **Kernel-checked matching components.** The real permutation sum inequality and integer rounding implication compile under Lean4.33.1/project Mathlib with axioms propext,Classical.choice,Quot.sound only. No sorry/added axioms. The semigroup construction and BASE deflation remain paper proofs; no full-Wilf formalization claim. Independent selected-data checks also rerun with explicit reconstruction of Apéry heights. | Lean kernel check of the exact two component statements; not the full semigroup theorem | warm-cache minimal imports |

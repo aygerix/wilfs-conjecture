@@ -1,0 +1,6 @@
+NEW_MIN corrected=2672 B=2672 M=0 W=2742 m=103 e=7 q=14 h=7
+NEW_MIN corrected=1370 B=1370 M=0 W=1474 m=68 e=8 q=10 h=5
+NEW_MIN corrected=970 B=970 M=0 W=980 m=36 e=10 q=11 h=8
+NEW_MIN corrected=840 B=840 M=0 W=840 m=48 e=14 q=7 h=6
+NEW_MIN corrected=303 B=303 M=0 W=345 m=28 e=6 q=10 h=4
+TRUNC_DONE samples=100 accepted=22 seed=392 min_corrected=303 Bnegative=0 max_repair_ratio=0/1

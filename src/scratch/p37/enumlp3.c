@@ -18,7 +18,9 @@
 #include <stdint.h>
 #include "gurobi_c.h"
 #define MAXM 24
-typedef struct { uint64_t b[4]; uint8_t r, q; } Key;
+/* m = 24 has 265 nonzero-sum unordered pairs: four words are insufficient. */
+#define KEY_WORDS ((MAXM * (MAXM - 1) / 2 + 63) / 64)
+typedef struct { uint64_t b[KEY_WORDS]; uint8_t r, q; } Key;
 typedef struct { Key k; long gen; double rt2, rt3; } Ent;
 /* the tight-pair set determines the generator residues, so keys never repeat across residue combinations: the table is
    reset per combination by a generation stamp (an entry is live iff gen == current combination number) */
@@ -63,11 +65,12 @@ static void tpush(int c, double v, const int *G, double W){
 int main(int argc, char **argv){
   if (argc < 7){ fprintf(stderr, "usage: ./enumlp3 m e K part nparts h4only\n"); return 1; }
   m = atoi(argv[1]); e = atoi(argv[2]); int K = atoi(argv[3]), part = atoi(argv[4]), np = atoi(argv[5]), h4only = atoi(argv[6]); d = e - 1;
-  if (m > MAXM || d < 1 || d > 7 || 3 * e >= m) { fprintf(stderr, "bad parameters\n"); return 1; }
+  if (m < 2 || m > MAXM || d < 1 || d > 7 || 3 * e >= m || K < 1 || K > 254 || np < 1 || part < 0 || part >= np || (h4only != 0 && h4only != 1)) { fprintf(stderr, "bad parameters\n"); return 1; }
   if (GRBloadenv(&env, NULL)){ fprintf(stderr, "no Gurobi env\n"); return 2; }
   GRBsetintparam(env, "OutputFlag", 0); GRBsetintparam(env, "Threads", 1);
   int pid[MAXM][MAXM]; int npairs = 0;
   for (int i = 1; i < m; i++) for (int j = i; j < m; j++) pid[i][j] = ((i + j) % m) ? npairs++ : -1;
+  if (npairs > 64 * KEY_WORDS) { fprintf(stderr, "tight-pair key capacity exceeded\n"); return 1; }
   double bRT2[MAXM], bUA2[MAXM]; long bW[MAXM]; int gRT2[MAXM][8], gUA2[MAXM][8], gW[MAXM][8];
   for (int x = 0; x < MAXM; x++){ bRT2[x] = bUA2[x] = 1e30; bW[x] = 1L << 60; }
   double bestUA2 = 1e30, bestRT2W = 1e30, bestUA2W = 1e30; int gRT2W[8], gUA2W[8]; long nS = 0, nUA = 0, nneg = 0, nWneg = 0, nH4 = 0;

@@ -1,0 +1,9 @@
+NEW_MIN corrected=45 B=45 M=0 W=125 m=20 e=5 q=5 h=5
+NEW_MIN corrected=40 B=40 M=0 W=120 m=20 e=5 q=5 h=5
+NEW_MIN corrected=30 B=30 M=0 W=110 m=20 e=5 q=5 h=5
+NEW_MIN corrected=25 B=25 M=0 W=105 m=20 e=5 q=5 h=5
+NEW_MIN corrected=15 B=15 M=0 W=95 m=20 e=5 q=5 h=5
+NEW_MIN corrected=10 B=10 M=0 W=90 m=20 e=5 q=5 h=5
+NEW_MIN corrected=5 B=5 M=0 W=85 m=20 e=5 q=5 h=5
+NEW_MIN corrected=0 B=0 M=0 W=75 m=20 e=5 q=5 h=5
+ENUM_DONE m=20 e=5 K=6 candidates=5023296 accepted=55001 Bnegative=0 min_corrected=0 max_repair_ratio=0/1

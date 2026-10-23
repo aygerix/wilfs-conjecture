@@ -1,0 +1,6 @@
+NEW_MIN B=6622 W=6752 m=136 e=13 q=14 h=6
+NEW_MIN B=645 W=1194 m=111 e=9 q=6 h=4
+NEW_MIN B=74 W=182 m=30 e=6 q=6 h=5
+NEW_MIN B=-33 W=467 m=64 e=5 q=7 h=7
+BOUND_FAILURE B=-33 W=467 m=64 e=5 c=448 q=7 rho=0 h=7 G=[64,129,67,69,77]
+STOP sample=30 accepted=24 seed=390 min_e=4

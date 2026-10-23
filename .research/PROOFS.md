@@ -1,31 +1,6 @@
 # PROOFS.md — precise statements, proofs, dependency graph, status
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Status legend: PROVED (on paper, here) | CHECKED (exact computation, stated range) | CONJ | FALSE | LEAN (kernel-checked)
 
@@ -5702,7 +5677,9 @@ Equality holds in the first inequality when e(S′) = e(S) and the argmax residu
     W(S) = W(S_{q=4}) + 3(k−1)M₃ ≥ 0 by the depth-4 theorem.
   - (a) holds since k′_g = 1. (c) holds since cubics drop by 3t and pairs by 2t.
   - Checked on the three chains q = 10 → 7 → 4 at m = 15: W = 47 → 32 → 17 with M₃ = 5.
-  - (b) is not proved in general.
+  - Historical gap: (b) was not proved here. For the exact BASE hypotheses it is now proved below in
+    "BASE-family deflation: the previously conditional Kunz step is automatic" (2026-10-22).
+    The general DESCENT statement still requires (b) outside that profile.
 - Scope (CHECKED, E373): among 400 random graded S with c > 4m (m = 10–30, levels 1–5):
   - descent applies (t ≥ 1) to 129;
   - the inequality held in all 129, with equality attained;
@@ -6700,3 +6677,165 @@ supply is Δ₃.
   - SIB2 (SIB + missing squares meeting y): 1 / 454 (m = 40, A = [9,14,23,25,38]) and 1 / 10,663.
 - Class-local payment fails badly (classmate.py). Most Q3 classes contain no other cube monomial with a standard parent:
   7,712 / 10,663 S at e = 7 have such a class. Δ₃ pays Q3 through other classes.
+
+## Upper-side closure and exact repair form of UA3 (2026-10-22; PROVED, E390)
+
+**Scope:** every numerical semigroup with c > m; no height, depth or embedding-dimension restriction.
+This is a lower-bound computation and an exact reformulation of the existing UA3 certificate, not a proof of
+its universal nonnegativity. Novelty is not claimed. It provides a proved filter for the full backwards search.
+
+Use the notation of TYPE / UA3. For every tight pair p = (i,j -> s), set
+L_p = q - lo_p, U_p = q + up_p, with the typed allowances lo_p, up_p in {0,1}.
+Let A_p z = z_i + z_j - z_s. Let G be the nonzero generator residues. In increasing order of w_s define
+
+    b_g = mu_g                          (g in G),
+    b_s = max(0, max_{p -> s}(b_i + b_j - U_p))  (s not in G).
+
+Put b_0 = q and B(S) = e sum_{s=0}^{m-1} b_s - c.
+
+**Proposition (upper-side closure).**
+1. b is the coordinatewise least vector satisfying z >= 0, z_g = mu_g, A_p z <= U_p on every tight pair.
+2. Every b_s is integral, 0 <= b_s <= mu_s, and B(S) <= UA3(S) <= W(S).
+3. Consequently any counterexample to Wilf must have B(S) < 0. B >= 0 is already a complete certificate
+   for that S; proving the remaining B < 0 case would cover all S, not merely a chosen family.
+
+*Proof.* In a tight pair w_i,w_j < w_s, so the recurrence is acyclic. Each constraint is
+z_s >= z_i + z_j - U_p. Induction in increasing w shows that every feasible z dominates b.
+The recurrence itself satisfies each such inequality, and generator residues have no incoming tight pair;
+thus b is feasible and least. The data are integral. The true mu is feasible by TYPE, so b <= mu.
+UA3 adds the lower inequalities A_p z >= L_p and hence its minimum is at least B. Its feasible point mu
+has objective W. The final assertion follows immediately. QED.
+
+The recurrence is O(m + number of tight pairs) once the ordered Apéry set and incoming-pair lists are known.
+It is also the exact minimum of the generator-aware certificate restricted to upper-side rows, with all
+other dual multipliers zero. A dual can be constructed without an LP: process non-generator cells in decreasing
+w; at b_s > 0 choose a maximizing parent pair, send that cell's objective mass to the two parents, and use
+the negative of that mass as the upper-row multiplier. Zero cells retain nonnegative reduced costs; generators
+use their fixed-level equality multipliers. This is the usual backwards substitution on the acyclic inequalities.
+
+**Proposition (repair form, exact).** Define d_p = L_p - A_p b and u_p = U_p - A_p b >= 0. Then
+
+    UA3(S) = B(S) + e * min sum_{s != 0} t_s,
+    subject to t >= 0, t_g = 0 (g in G), d_p <= A_p t <= u_p (every tight pair).
+
+*Proof.* Every UA3-feasible y dominates b by part 1, so set t = y - b >= 0. Substitution gives exactly the
+stated inequalities and objective. Conversely such a t gives a UA3-feasible y = b+t. The true vector mu-b
+is an integral feasible repair, so the repair LP is nonempty. QED.
+
+**What this does and does not isolate.** For B < 0, a sufficient missing lemma is
+min sum t >= -B/e. This is equivalent to UA3 >= 0 on the residual, still stronger than Wilf and unproved.
+For the actual semigroup W = B + e sum(mu-b), exactly. No finite check establishes either universal inequality.
+
+**The upper-side-only universal positivity claim is FALSE.** S = <20,21,22> has c=200, g=100, e=3,
+q=10, rho=0, W=100, but sum b=60 and B=-20. Full RT3=UA3=TX=AM3=FACE=100, all optima certified
+by rational primal/dual checks and the invariants reconstructed independently by membership (E390).
+Thus discarding all lower-side split constraints fails even on a genuine S in c > 4m, 3e < m.
+This example is in the known e=3 Wilf case; it refutes the certificate shortcut, not Wilf.
+
+### Assignment correction to upper-side closure (2026-10-22; PROVED)
+
+Keep the preceding notation. Let V be the non-generator nonzero residues (|V|=m-e). For each tight pair
+p=(i,j -> s) with positive repair demand d_p=L_p-A_p b, form a constraint on V as follows:
+- i,j in V: t_i+t_j >= d_p, with multiplicity 2 if i=j;
+- one part a in V, the other a generator: 2t_a >= 2d_p;
+- two generator parts cannot have positive demand, since b_g=mu_g and b_s<=mu_s.
+These constraints follow from A_p t>=d_p by dropping the nonnegative t_s from the right side.
+
+Make a symmetric nonnegative integer matrix H on V. For two distinct parts use H_ij=H_ji=max d_p over
+that part pair; for a repeated part use H_ii=max d_p; for one variable and one generator also impose
+H_aa>=2d_p. Zero entries impose only t_i+t_j>=0. Let
+
+    M = max_{permutations pi of V} sum_i H_{i,pi(i)}.
+
+**Theorem (general certificate bound).**
+
+    W(S) >= B(S) + e ceil(M/2),
+    UA3(S) >= B(S) + e M/2.
+
+*Proof.* Every feasible repair satisfies t_i+t_j>=H_ij. Summing the |V| inequalities indexed by any
+permutation pi gives 2 sum_i t_i >= sum_i H_{i,pi(i)}. Maximize over pi and substitute the exact repair
+form of UA3. For the actual repair t=mu-b, sum t is integral, giving the rounded W bound. QED.
+
+The assignment is an exact solution of the relaxed repair problem that keeps only these pair-cover constraints.
+Indeed, assignment dual potentials alpha_i+beta_j>=H_ij with total M give a feasible pair cover
+v_i=(alpha_i+beta_i)/2: it is nonnegative by H_ii>=0, and symmetry of H gives v_i+v_j>=H_ij.
+Its total is M/2, matching the preceding lower bound. Thus it suffices to export/check a permutation and
+integer assignment dual potentials of equal value; no floating-point LP is involved in this correction.
+
+**Necessity audit.** The bound retains the upper-side generator-aware closure and one optimal fractional
+packing of lower-side repair demands. It discards the target-repair charges t_s and all upper residual
+capacities u_p. Its nonnegativity is NOT established universally. A failure refutes this restricted
+certificate only. Any counterexample to Wilf must make this corrected bound negative, so searching that
+residual is justified by a proved reduction from the full target.
+
+**Verified example (E392).** S=<64,67,69,77,129>, c=448,g=265,e=5,q=7,rho=0,height=7,W=467.
+The baseline is B=-33. Assignment M=152 gives W>=-33+5*76=347. The full UA3=AM3=452, and TX=FACE=467.
+All five LP optima and the semigroup invariants were independently certified; a separate integer checker verifies
+H, the assignment/permutation, both assignment dual potentials and equality of primal/dual objectives.
+For <20,21,22>, B=-20,M=80, the correction gives exactly W>=100, equal to W and UA3.
+
+### BASE-family deflation: the previously conditional Kunz step is automatic (2026-10-22; PROVED on paper)
+
+This closes condition (b) in the BASE-family corollary of DESCENT above. It is an ingredient in the universal
+counterexample analysis, not a replacement research target: the general S outside this profile remain open.
+
+Assume precisely BASE-FAMILY: graded Apéry height <=3, a factorization tile containing every quadratic monomial,
+all generators HIGH, mu_g=(2q+1)/3, every quadratic relation tau=+1, and every cubic Apéry element has mu=0.
+Write q=3k+1, k>=1, g_i=km+a_i with 1<=a_i<=r, where r is the conductor residue, so
+
+    c=3km+r+1,       max Ap=(3k+1)m+r.
+
+Let T=<m,m+a_1,...,m+a_d>. Then T has the same factorization tile, with
+
+    w'_s = w_s-(k-1)m h_s,
+    e(T)=e(S),       c(T)=3m+r+1 <=4m,
+    W(S)=W(T)+3(k-1)(binom(d+3,3)-m) >=0.
+
+*Proof.* A quadratic cell has mu=k by Lemma K and tau=1. Writing its offset sum as a_i+a_j gives
+
+    r < a_i+a_j <= m+r.
+
+In particular, all squares being present implies 2a_i>r for every i. A cubic Apéry cell has mu=0, so its offset
+sum is also in (r,m+r], from c<=w_s<=c+m-1. The deflated candidates therefore have these upper bounds:
+
+    degree 1: w'<=m+r;    degree 2: w'<=3m+r;    degree 3: w'<=4m+r.
+
+Every a_i>r/2. Thus a competing sum of h>j non-m generators, where the candidate has degree j=1,2,3,
+is strictly above that candidate: for j=1, any h>=2 has value >2m+r; for j=2, any h>=3 has value >3m+r;
+for j=3, any h>=4 has value >4m+r. The same bounds handle sums of still greater length.
+
+A competing shorter-degree sum that was smaller after deflation would also be smaller before deflation,
+since lifting adds (k-1)m per summand; this contradicts the original Apéry minimality. For equal degrees,
+the comparison is unchanged. Hence each candidate remains the least non-m-generated value of its residue.
+Adding copies of m cannot improve a residue minimum. The candidates form a complete residue system, so they
+are exactly Ap(T,m). This proves all Kunz inequalities of the deflated set, without assuming condition (b).
+
+Every m+a_i lies in (m,2m), hence is primitive in T. Since max Ap has mu=0 whereas the generator and quadratic
+levels are positive, a cubic exists and attains max Ap. The degree-three candidates dominate degrees one and two,
+so their same largest offset sum gives max Ap(T,m)=4m+r and c(T)=3m+r+1.
+Let P=binom(d+1,2), C=m-1-d-P, H=d+2P+3C. Then g(S)-g(T)=(k-1)H, and
+
+    W(S)-W(T)=(k-1)(3(e-1)m-eH)
+             =3(k-1)(binom(d+3,3)-m).
+
+The final parenthesis is nonnegative because the tile is a subset of all monomials of degree <=3.
+Wilf for T follows from the previously kernel-checked c<=4m theorem. QED.
+
+**Literature comparison.** Bacher v9 section 4.3 studies forward inflation
+<m,Gamma>_c -> <m,Gamma+m>_{c+hm} for h-regular truncations (Lemma 4.7). The present argument supplies the
+inverse Apéry-minimality step under the exact BASE hypotheses, allowing missing cubic monomials; it does not
+assert an arbitrary inverse to Bacher's construction. No novelty claim is made beyond closing this project's
+previously explicit proof obligation. This does not prove RT3/UA3 nonnegativity for general S.
+
+For this genuine BASE profile, the upper closure is exactly mu: generator values are fixed, every quadratic
+upper row has its exact tau=+1 and yields b_p=k, and every cubic has b_s=0. Thus B=W and M=0. The deflation
+argument proves the matching criterion nonnegative on that profile, rather than merely certifying W by an
+unrelated bound. Fractional BASE-shaped optima at non-BASE semigroups are not covered by this observation.
+
+**Lean status of the matching component (E394).** `lean/Wilf/RepairMatching.lean` kernel-checks
+`Wilf.assignment_repair_sum_bound` (the real-valued permutation sum inequality) and
+`Wilf.rounded_assignment_repair_bound` (the integer rounding implication), Lean4.33.1 with the project's Mathlib.
+Both depend only on propext, Classical.choice and Quot.sound. The semigroup construction of b/H and the BASE
+deflation theorem have NOT been formalized here. Thus these component checks do not constitute a Lean proof
+of the full semigroup certificate or of Wilf. Reproduce on fejer from ~/wilf/lean with
+`~/.elan/bin/lake env lean ../p39/RepairMatching.lean`; the exact source is also saved under lean/Wilf/ locally.

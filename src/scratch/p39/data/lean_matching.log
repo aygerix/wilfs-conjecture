@@ -1,0 +1,2 @@
+'Wilf.assignment_repair_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Wilf.rounded_assignment_repair_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

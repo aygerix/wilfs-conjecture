@@ -1,31 +1,6 @@
 # LITERATURE.md — what is PROVED about Wilf's conjecture (as of 2026-10-17; e = 4 corrections 2026-10-18)
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 Scope: bounded literature check (Phase 0). Goal: exact hypotheses of every known result, the
 standard tools, the known-false strengthenings, and the precise uncovered region.
@@ -1052,3 +1027,25 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   a long AP with the constant needed for D6.
 - Thin bases of order 3 force a constant fraction of collisions, but that constant is far below what D6 needs. So
   D6 is not available off the shelf.
+
+### 2026-10-22 — bounded refresh for backwards certificates and repair matching
+- Reopened the primary depth-four result: https://conjectures.io/results/fd12daa7-2b0e-460f-a805-f9ba6d9fede4 .
+  Its review still states the full c<=4m target, accepted with Lean verification. Our previous local kernel audit
+  remains the project's evidence; this refresh is not a new compilation.
+- Reopened Bacher v9, dated 14 Oct 2026: https://arxiv.org/abs/2604.25051 and
+  https://arxiv.org/html/2604.25051v9 . The abstract concerns bounded verification and Farey-interval families;
+  it does not supply the missing general certificate theorem.
+- Reopened DKM v3: https://arxiv.org/abs/2501.04417 (last revision 1 Oct 2026), already in this record.
+- Exact searches for Wilf/Kunz linear programming, splitting certificates, generator levels and fractional matching
+  did not locate a source establishing universal nonnegativity of the new repair-assignment bound. This is only
+  a bounded search, not a novelty claim. The bipartite-double-cover idea is standard matching theory (e.g.
+  https://arxiv.org/abs/2303.05250 ); PROOFS gives a direct permutation/dual proof for the weighted matrix used here,
+  including the generator and repeated-parent diagonal cases, so no unverified matching theorem is an input.
+- Compared the matching step with Eliahou's graph theorem (already recorded in section 2.4):
+  https://arxiv.org/html/1909.03699 , Theorem 3.24. That bound matches raw depth demands q-1/q and counts unmatched
+  vertices at depth>=1. Our elementary certificate applies matching to residual demands after a generator-aware
+  upper-side closure, allows fractional packing, and does not claim dominance over Eliahou's bound.
+- Compared BASE deflation with Bacher section 4.3, Lemma 4.7 (forward inflation of h-regular truncations):
+  https://arxiv.org/html/2604.25051v9#S4.SS3 . The exact inverse Apéry-minimality argument under BASE hypotheses is
+  written in PROOFS; the earlier conditional obligation is closed. This does not establish an arbitrary inverse
+  inflation or universal certificate nonnegativity.

@@ -1,31 +1,6 @@
 # NOTEBOOK.md — dated research log (Wilf's conjecture)
 
-> **SCOPE RULE: NO SIDE PROJECTS (user directive, 2026-10-21; binding on every session and every agent).**
-> - **The only goal:** a proof of Wilf's inequality e·ℓ ≥ c for EVERY numerical semigroup.
->   - Work that cannot reach that goal is a side project.
->   - Side projects are forbidden unless the user explicitly approves them.
-> - **Scope line.** Before starting any target, computation or proof attempt, write:
->   "Proves Wilf for: ___. Proved reduction from all S to this case: yes (cite) / none."
->   If the answer is "none", do not start. Ask the user.
-> - **No silent deviation.** Never depart from a strategy the user has ordered. If a departure seems necessary, tell
->   the user at that moment and wait for approval.
-> - **Stop compute.** Stop compute on any line that fails this test immediately. Tokens and fejer compute cost the user
->   real money.
-> - **Proposals get a scope line first.** When the user or the advisor proposes a direction, my first reply states
->   its scope line. I never endorse a sub-case without saying whether it reduces to all S.
-> - **Why this rule exists.** From 2026-10-17 to 10-21, about two-thirds of the effort went into sub-cases with no
->   proved reduction to all S: e = 4, c ≤ 4m, height 3 and Q5.
->   - Several of these were advisor proposals that the user approved.
->   - Each time the user asked for my assessment, I endorsed them without saying that they could not reach Wilf.
->   - Q5 means depth exactly 5, every generator in (m, 2m), and Apéry height ≤ 3. No reduction connects it to all S.
->   - Q3T, SPLIT-Q3, ZT1, TRΔ, K2, MU-LO and every other E376–E389 target are Q5-only. They are NOT targets.
-> - **Standing orders and enforcement.**
->   - The standing orders are in `.research/DIRECTIVES.md`. The active target is in `.research/SCOPE.md`.
->   - Hooks in `.claude/settings.json` enforce them:
->     - every subagent launch prompts the user;
->     - compute needs a user-approved active target;
->     - a checkpoint reminder fires every 30 minutes;
->     - stopping is blocked while commits are unpushed.
+> Current handoff: [STATE.md](STATE.md). Binding user rules: [DIRECTIVES.md](DIRECTIVES.md).
 
 ## 2026-10-17 — Session 1
 
@@ -4577,3 +4552,73 @@ Consequences:
   - All of these were pipe-tested. The compute gate was tested live: it denied a test command, and it also falsely
     denied a record-keeping command whose text mentioned the ssh command. Its pattern now matches only a real
     invocation; 9 of 9 test cases give the expected decision.
+
+## 2026-10-22 — research resumed: backwards C certificates, upper closure and repair matching
+
+User resumed the universal Wilf goal and requested the number-theory research skill and fejer. Scope/approval are
+in SCOPE.md. C/C++ is preferred; the later user message also authorizes laptop calculations if fejer cannot run.
+Two starts of c2d-standard-8 failed with ZONE_RESOURCE_POOL_EXHAUSTED. The stopped fejer instance was changed to
+e2-standard-8 and started successfully; no previous research processes were found in the startup check.
+
+**Frontier.** KNOWN: SPLIT/UA duality and the depth-four complement. EXACT GAP: a uniform certificate or structural
+argument for every S with c>4m,3e<m. This session uses all heights; the old Q5 directions remain retired.
+
+**Attempt 1 — identify omitted constraints (E390).** Implemented C-API inspection of RT3/UA3/TX and two full-Kunz
+variants, exporting primal/dual vectors. Independent membership and exact Fraction checks certified 95 optima on
+19 selected S. Non-tight constraints help some examples (214 -> 228), but not the progression example
+<20,25,61,102,143,184> (UA3=AM3=390 < W=444). The latter fake is integral and violates nine tight equalities.
+Decision: adding all non-tight inequalities alone does not recover the exact invariant; retain both mechanisms.
+
+**Attempt 2 — remove the LP by an upper-side DAG (PROVED bound, positivity FALSE).** The least vector b satisfying
+fixed generator levels and upper-side split inequalities is given by an exact acyclic recurrence. It yields B<=UA3<=W.
+Positive on the original 11 hard cases, but <20,21,22> has B=-20 while W=100. A pure C sampling run, seed390,
+found B=-33 at the 30th sample, <64,67,69,77,129> (e=5,height7,W=467), so the obstruction persists beyond e=3.
+Decision: do not chase universal B>=0; the lower-side rows are essential.
+
+**Strategic review / transformation.** The exact substitution y=b+t turns UA3 into a nonnegative repair LP with
+fixed generator repairs zero. Positive lower-side demands imply pair-cover constraints. A symmetric matrix H and
+maximum-weight assignment M give the PROVED general bound W>=B+e ceil(M/2), and UA3>=B+e M/2.
+The assignment and its dual are entirely integral; the C implementation checks equality and all dual inequalities.
+Independent reconstruction checked M=152, bound347 for the e=5 example, versus UA3=452,W=467; the e=3 boundary
+has M=80, bound100=W. The correction retains a fractional packing of demands, but discards target-repair charges
+and upper residual capacities. These are the next possible failure mechanisms.
+
+**Distance to the goal.** This is a proved general certificate and a necessary filter for any Wilf counterexample,
+not a proof that the filter is nonnegative for every S. The exact new question is whether a genuine S can have
+B+e ceil(M/2)<0, and, if so, which omitted repair constraints pay its deficit. There is a proved reduction from
+all possible counterexamples to this residual. Continue with targeted C falsification and extract a mathematical
+constraint from its extremizers. Avoid larger sweeps without a new decision to make.
+
+**Implementation audit (E391).** enumlp3.c already supported all heights (h4only=0), but its 256-bit tight-pair key
+was too small at m=24 (265 pairs). Fixed the capacity and added input checks. ASan/UBSan passed a nonempty m24
+slice; old/new complete output matches at m16,e4,K6 (1191 S, 1057 keys, 18 S outside the old height>=4 filter).
+
+All current code/data: src/scratch/p39/ and fejer ~/wilf/p39/. Current handoff: STATE.md.
+
+### Checkpoint: assignment gate and the old BASE descent gap
+- E392: two 10000-candidate C samples (m20..160, six explicit modes, seeds390/391) accepted 8592/8638 samples,
+  including 34/42 baseline-negative ones. The matching correction paid every one; maximum required-credit ratio
+  was 1280/2496. A separate truncation sampler accepted 2577/10000 samples, including 5 baseline-negative ones;
+  no corrected failure. The fixed m20,e5,Kunz<=6 box contains 55001 accepted S, all with B>=0. These finite checks
+  do not prove the new criterion universally. Original LP/assignment data and integer certificates are saved.
+- Four independent assignment checks now include an odd optimum M=165 (<60,61,67,71>), verifying the integer
+  rounding: B=-144 gives fractional186 but rounded188; UA3=234,W=260. Total certified LP optima:110 on22 S.
+- Proof attempt: for every S in the exact BASE profile, write g_i=km+a_i,q=3k+1,c=3km+r+1. The quadratic
+  levels force r<a_i+a_j<=m+r, hence all a_i>r/2. Under k->1 every retained degree-j representative has upper
+  bound (j+1)m+r (or m+r for j1), while any larger-degree sum exceeds that bound. Smaller/equal-degree
+  competitors preserve original comparisons. Thus Apéry minimality is preserved automatically, closing the
+  old explicit condition(b). The deflated conductor is3m+r+1<=4m; W increases by3(k-1)(binom(d+3,3)-m).
+  Thirty examples were independently checked. The proof, not those examples, supplies the universal-in-profile claim.
+- Global review: keep the universal backwards target. The pure upper-side positivity shortcut is killed. The new
+  matching certificate has passed an initial gate and has a proved implication to Wilf, but universal positivity
+  remains the missing lemma. Genuine BASE semigroups are now discharged via depth four; fractional BASE fakes
+  at other genuine S can remain, so this does not remove all RT3 packing barriers. Next mathematical action:
+  analyze the realizability constraints on a hypothetical S with negative assignment-corrected bound, concentrating
+  on target-repair charges and upper residual capacities rather than increasing an arbitrary search box.
+- E394: the real-valued matching sum and integer rounding implication are kernel-checked in
+  lean/Wilf/RepairMatching.lean (Lean4.33.1; propext,Classical.choice,Quot.sound only). Semigroup b/H construction
+  and BASE deflation remain on-paper. Initial full-Mathlib import was slow on cold VM storage; minimal imports
+  then exposed one missing ordered-sum import, which was corrected before the final successful kernel check.
+- Goal-turn classification: PROGRESS — new general certificate/repair proof, exact falsification of its upper-only
+  shortcut, a closed preexisting deflation obligation, independently checked data/code, and two formal components.
+  Full Wilf remains unproved; the goal remains ACTIVE. STATE.md is the single resumption checkpoint.
