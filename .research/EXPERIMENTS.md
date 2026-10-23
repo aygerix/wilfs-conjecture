@@ -2022,3 +2022,67 @@ Both SAME authorized agents paper-reviewed CYCLIC-WIDTH and the net return estim
 E462 CRT normalization and E463 fixed-rank falsifier are PAPER ONLY; no35 or huge-B
 family source was computed, no extra seeds/generations were evaluated. No new Lean,
 universal sign, exhaustive-domain coverage or novelty claim. All Fejer jobs ended.
+## E464/E465 — nine cached unit orbits and one exact joint-energy control
+
+2026-10-23, Fejer ~/wilf/p39, project littlewood-paley-8375,us-east1-b. Precise
+predicates,468-image budget and the SINGLE energy input were written in SCOPE before
+launch. All completed within their60s limits; no benchmark duration was instrumented.
+No new C optimizer, solver, CUDA code, GPU rental or agent launch. SAME two agents
+performed paper work/review. Source invariants remain exact integers.
+
+E465 uses ONLY the last promoted record in each of E452's cached61/63/67/71 runs,
+the E459source38 record, and saved pointwise31/39/51/201 records. It reconstructs
+the actual source tile (not its closure tile), then evaluates every multiplicative
+unit modulo m. Every image passes explicit inversion/carry vs phase-distance
+agreement and BOTH Q/kappa mirror identities. All nine pass the nonflat/sparse/
+non-m-deletion-cofactor gates needed for normalized realizability.
+
+| Cached m | Unit images | Minimum Q | Maximum F=kappa-Dep |
+|---:|---:|---:|---:|
+|61|60|45|-5|
+|63|36|56|-3|
+|67|66|66|-21|
+|71|70|68|-16|
+|38|18|101|-62|
+|31|30|50|-31|
+|39|24|70|-63|
+|51|32|94|-85|
+|201|132|364|-268|
+
+TOTAL468 profile images, including repeats. ZERO negativeQ or nonflat positiveF;
+ZERO explicit new image semigroups reconstructed. Unit36 improves the old71 F from
+-20 to-16 but does not cross the debt threshold. Scores have the general E465
+realization proof; no per-image conductor/genus/W values or unique-profile count
+are asserted. These finite orbits are CLOSED, no automatic extra seeds/search/rental.
+
+Initial launch found the four Runpod-cache files absent on Fejer and stopped BEFORE
+scoring any image. The already-saved local files were copied to their matching
+worker paths; the single completed audit then scored all468. Reproduce from p39:
+
+    python3 verify_probe.py --unit-orbit-check ../apery_scan/data/runpod_adaptive_452/results/adaptive_61.jsonl ../apery_scan/data/runpod_adaptive_452/results/adaptive_63.jsonl ../apery_scan/data/runpod_adaptive_452/results/adaptive_67.jsonl ../apery_scan/data/runpod_adaptive_452/results/adaptive_71.jsonl ../apery_scan/data/trade_search_459.jsonl data/parity_trade_control_454.json data/cyclic_source_control_457.json data/composite_source_control_458.json data/top_cap_control_461.json data/unit_orbit_465.json
+
+E464's asymptotic energy countermechanism does not by itself enter E448's cutoff.
+Root therefore selected ONLY b4,N1003, no N sweep or adaptive search. Existing C
+support evaluator and independent membership/explicit-column/factorization DP give:
+
+    G24/27/30/1003/1004,m24,e5,c1098,g716,ell382,W812,Q84,R728
+    all leave-one-out gcds1,3e15<m24,c1098>4m96
+    M1121<=E448 cutoff16560
+    A12635,E754417,A^2/E=159643225/754417
+    e*A^2-c*E=-30133741<0.
+
+Even rounding the valid left-count bound upward gives only212, hence integer
+Wilf lower bound5*212-1098=-38. The raw uniform-energy rule fails inside the
+cutoff. The actual source is ALREADY support-covered, so this is a global auxiliary
+falsifier, not an unresolved-source discovery or negativeW. Reproduce from p39:
+
+    ./repair_scan --supp-audit 24 27 30 1003 1004 > data/energy_control_raw_464.json
+    python3 verify_probe.py --factorization-energy-check data/energy_control_raw_464.json data/energy_control_verified_464.json
+
+The independent checker compares EVERY C support field, checks source invariants,
+counts all original-generator factorizations belowc including r(0)=1, verifies their
+support has exactlyg gaps, and exports exact rational energy/margin/cutoff comparison.
+No weight fitting, bins or catalogue expansion was performed. Data files are in
+p39/data: unit_orbit_465.json,energy_control_raw_464.json,energy_control_verified_464.json.
+E464's flux/unimodality family and E466's strict-Q reduction are PAPER ONLY; no
+new family W values or Lean proof is claimed. All known diagnostic jobs are terminal.

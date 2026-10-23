@@ -952,6 +952,103 @@ def top_cap_profile(words,P,a,M,actual):
             'remaining_excess':sum(caps[s]-actual[s] for s in raw)//a,
             'cap_values_are_not_claimed_source_elements':True}
 
+def audit_unit_orbits(paths):
+    """E465: exact unit images of cached genuine lex tiles, no source sampling."""
+    seeds=[]
+    for path in paths:
+        if path.endswith('.jsonl'):
+            with open(path) as data:rows=[json.loads(line) for line in data if line.strip().startswith('{')]
+            row=next(R for R in reversed(rows) if 'w' in R)
+            seed=dict(row)
+        else:
+            with open(path) as data:R=json.load(data)
+            S=R['S'];m=R['a'];assert S['m']==m
+            w=[0]*m
+            for C in R['columns']:w[2*C['s']%m]=2*C['U_value']+m*C['lambda']
+            seed=dict(S,m=m,generators=S['G'],w=w,r=w.index(max(w)),rho=(-S['c'])%m,
+                      mu=[max(0,(S['c']-v+m-1)//m) for v in w])
+        seeds.append((path,seed))
+    report={'kind':'cached_unit_orbit_audit','orbits':[],'unit_images':0,
+            'explicit_new_sources_reconstructed':0,'universal_positivity_claim':False,
+            'realizability_dependency':'E455 strict lex realization plus E462 CRT; scalar dilation alone has cofactor',
+            'counts_include_repeated_structures':True}
+    promoted=[]
+    for path,D in seeds:
+        R=support_geometry(D);m=D['m'];d=D['e']-1;gr,z=factor_basis(D)
+        P=[D['w'][g] for g in gr]
+        deletion_gcds=[gcd(m,*(p for k,p in enumerate(P) if k!=j)) for j in range(d)]
+        eligible=3*D['e']<m and R['canonical_height']>=3 and all(g==1 for g in deletion_gcds)
+        phi={word:s for s,word in z.items()};gamma=R['gamma'];dep=R['Dep'];top=D['r']
+        columns=[]
+        for j in range(d):
+            groups=defaultdict(list)
+            for word in phi:groups[word[:j]+word[j+1:]].append(word)
+            for group in groups.values():
+                end=max(group,key=lambda word:word[j]);columns.append((group,phi[end]))
+        C=(D['e']-2)*m*(m-1)//2;images=[]
+        for unit in range(1,m):
+            if gcd(unit,m)!=1:continue
+            delta=[unit*g%m for g in gr];r=unit*top%m;rho=m-r-1
+            labels=[(unit*s+rho)%m for s in range(m)]
+            kappa=sum(sum(word[j]*delta[j]%m for j in range(d))//m for word in phi)
+            inversions=sum(labels[phi[word]]>labels[end] for group,end in columns for word in group)
+            Q=dep+inversions-kappa
+            numerator=m*dep+sum(gamma[s]*(unit*(top-s)%m) for s in range(m))-C
+            assert numerator==m*Q
+            if unit==1:
+                assert (Q,kappa,inversions)==(R['Q_full'],R['kappa'],R['inversions'])
+            image={'unit':unit,'actual_top_residue':r,'Dep':dep,'kappa':kappa,'N':inversions,
+                   'F':kappa-dep,'Q':Q,'exact_column_phase_formula_agreement':True}
+            images.append(image)
+            if eligible and (Q<0 or image['F']>0):
+                promoted.append((Q>=0,Q,-image['F'],m,unit,path,D,image))
+        by_unit={T['unit']:T for T in images}
+        for unit,T in by_unit.items():
+            opposite=by_unit[m-unit]
+            assert T['Q']+opposite['Q']==2*dep+m-1-sum(z[top])
+            assert T['kappa']+opposite['kappa']==R['support_sum']
+        orbit={'input':path,'m':m,'e':D['e'],'source_G':D['generators'],
+               'height':R['canonical_height'],'baseline_Q':R['Q_full'],'baseline_F':R['kappa']-dep,
+               'support_sum':R['support_sum'],'nonmultiplicity_deletion_gcds':deletion_gcds,
+               'normalized_nonflat_sparse_realizable':eligible,'mirror_identities_checked':True,
+               'images':images,'minimum_Q':min(T['Q'] for T in images),'maximum_F':max(T['F'] for T in images)}
+        report['orbits'].append(orbit);report['unit_images']+=len(images)
+    if promoted:
+        *_,path,seed,image=min(promoted,key=lambda T:T[:5])
+        report['selected_profile']={'input':path,'seed':seed,'image':image,
+            'promotion_reason':'negative_Q' if image['Q']<0 else 'nonflat_positive_F',
+            'explicit_normalized_source_still_required':True}
+    else:report['selected_profile']=None
+    report['negative_Q_images']=sum(T['Q']<0 for R in report['orbits'] for T in R['images'])
+    report['nonflat_positive_F_images']=sum(T['F']>0 for R in report['orbits'] if R['normalized_nonflat_sparse_realizable'] for T in R['images'])
+    return report
+
+def audit_factorization_energy(C):
+    """Exact original-word collisions; no floating point or fitted weights."""
+    S=membership_stats(C['G']);m=S['m'];e=S['e'];c=S['c'];G=S['G'];w=S['w']
+    D=dict(S,generators=G,r=w.index(max(w)),rho=(-c)%m,
+           mu=[max(0,(c-v+m-1)//m) for v in w])
+    geometry=support_geometry(D)
+    for key,value in C.items():
+        assert (sorted(value)==sorted(geometry[key]) if key=='G' else value==geometry[key]),key
+    counts=[0]*c;counts[0]=1
+    for p in G:
+        for value in range(p,c):counts[value]+=counts[value-p]
+    assert sum(n==0 for n in counts)==S['g']
+    mass=sum(counts);energy=sum(n*n for n in counts)
+    assert F(mass*mass,energy)<=c-S['g']
+    margin=e*mass*mass-c*energy;cutoff=(e-2)*m*(m-1)*(m-e+1)//2
+    return {'S':{key:S[key] for key in ('m','e','c','g','W','G')},
+            'leave_one_out_gcds':[gcd(*(G[:j]+G[j+1:])) for j in range(e)],
+            'Q':geometry['Q_full'],'R':S['W']-geometry['Q_full'],
+            'factorization_counts_below_c':counts,'factorization_mass_A':mass,
+            'collision_energy_E':energy,'cauchy_left_lower_bound':str(F(mass*mass,energy)),
+            'actual_left_count':c-S['g'],'energy_ratio':str(F(energy,mass*mass)),
+            'proposed_ratio_upper_e_over_c':str(F(e,c)),
+            'exact_margin_eA2_minus_cE':margin,'candidate_failure':margin<0,
+            'M':max(w),'E448_M_cutoff':cutoff,'within_E448_cutoff':max(w)<=cutoff,
+            'original_generator_count_retained':True,'universal_sign_claim':False}
+
 def audit_top_cap_controls(records,source,trace):
     """E461 fixed countermechanism controls, not a semigroup search."""
     result={'controls':[],'universal_positivity_claim':False,'family_census':False}
@@ -2246,6 +2343,25 @@ if __name__=='__main__':
         for a,R in result['controls'].items():
             print('TRADE-CONTROL',a,'initialL',R['initial']['L'],'exact_excess',R['exact_total_excess'])
         print('EXACTLY three saved controls; source bounds, both restoration orders, compatible exchanges and non-downset scalar shadow checked')
+        sys.exit(0)
+    if sys.argv[1]=='--factorization-energy-check':
+        assert len(sys.argv)==4, 'raw C support record output'
+        with open(sys.argv[2]) as data:C=json.load(data)
+        result=audit_factorization_energy(C)
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('FACTORIZATION-ENERGY',{key:value for key,value in result.items() if key!='factorization_counts_below_c'})
+        print('ONE fixed source; global sufficient energy rule only, no family-W claim')
+        sys.exit(0)
+    if sys.argv[1]=='--unit-orbit-check':
+        assert len(sys.argv)>=4, 'cached input paths ... output'
+        result=audit_unit_orbits(sys.argv[2:-1])
+        with open(sys.argv[-1],'w') as out:json.dump(result,out,indent=2)
+        for R in result['orbits']:
+            print('UNIT-ORBIT',R['m'],'images',len(R['images']),'minQ',R['minimum_Q'],'maxF',R['maximum_F'])
+        print('UNIT-TOTAL',result['unit_images'],'negativeQ',result['negative_Q_images'],
+              'nonflat_positiveF',result['nonflat_positive_F_images'])
+        if result['selected_profile']:print('SELECTED',result['selected_profile']['image'])
+        print('Cached lex tiles only; unit-image scores have proved realizability but no new source invariants are claimed')
         sys.exit(0)
     if sys.argv[1]=='--top-cap-check':
         assert len(sys.argv)==8, 'old31 old39 old51 new201 stall_jsonl output'

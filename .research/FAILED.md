@@ -565,3 +565,31 @@ genuinely joint coordination, all reserves and the weaker support/source target.
 E462 also guards against inferring a removable cofactor from mere sharp periodicity:
 the Z35 two-coset example has all cofactors1. The necessary full-Q one-label bridge
 remains UNKNOWN, not refuted by that periodicity guard.
+## E464 — exposure and unrestricted word counts do not supply the proposed sign shortcuts
+
+FALSE: actual-top exposure makes the outward weighted tile flux B(t) unimodal or
+makes conductor-grid samples always an upper sum. The paper cofactor1/deep/sparse
+source<5t+3,5t+4,20t+11,20t²+21t+5>,t>=2, has a strict flux drop followed by rise,
+and sampling discrepancy -(3t+2)/2. Old mirror19 gives opposite discrepancy+6.
+The new guard has Q>0,type3<e4,so it falsifies the UNCONDITIONAL helper, not the
+corrected allowance Dep+(m-1)/2 or a counterexample-conditional variant. Exact
+full-Q target is now also written as sum B(M-km)>=g-Dep; that sign is UNKNOWN.
+
+FALSE: count all original words without a rank/degree cap, then use the universal
+collision bound E/A²<=e/c. Cauchy-Schwarz ell>=A²/E is valid, but multiplicities
+can concentrate nearc. Paper family<6b,6b+3,6b+6,N,N+1>,fixedb>=4,N=1mod6 large,
+has arbitrarym and allcofactor1, yet E/A²=27/(5N)+O_b(N^-2)>5/c. This asymptotic
+claim supplies no uniform E448-cutoff comparison. One exact control DOES lie
+inside that cutoff:24/27/30/1003/1004,c1098,W812,Q84,A12635,E754417,
+eA²-cE=-30133741,M1121<=16560. Even integerceil(A²/E)=212 yields bound-38.
+It is already support-covered, not a negativeW or combined-target failure.
+
+Stop raw uniform-word energy as a universal payer. Weighted disjoint-band bounds
+remain valid but need an actual arithmetic overlap estimate; singleton bins merely
+reconstruct support. E463's catalogue obstruction and this all-rank collision
+obstruction are distinct. No family-W programme or larger source census follows.
+
+E465 is a CLOSED finite diagnostic, not a failed general theorem: all468 unit images
+of9 cached tiles have Q>0,F<=0. It gives no global exclusion. E466 strictification
+does not revive any prior staged/alias payer: their D/delta/phase countergeometry
+is retained exactly, even though canonical missing edges become genuine strict gaps.

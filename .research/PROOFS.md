@@ -12066,3 +12066,223 @@ joint coordination may have to grow with the original generator count. This does
 NOT refute sequential coupled policies, general mixed-output disjoint packings,
 full-reserve payment, or the weaker max(Q,L)>=0 target. No Q value or source W sign
 is claimed for this family, and no numerical family run or rental was performed.
+## E464 — global flux and unrestricted source-word counting: exact components, failed sign shortcuts
+
+2026-10-23. Scope: EVERY S via full actual-phase Q or a valid lower count of ell;
+E432/SUPP and the recorded complements, or E461's source lower bounds. These are
+distinct proof attempts beyond E463's fixed-rank restriction. The SAME geometric
+agent derived the flux artifact; the SAME parity agent tested joint word energy.
+Root checked the proofs and strengthened the energy obstruction to unbounded m.
+No novelty/Lean claim, no new family-W theorem. Both corrected sign targets remain open.
+
+### 1. Exact outward flux at the actual conductor grid
+
+For a genuine canonical multiplicity tile D, put d=e-1,w_z=P.z,M=max w. Give every
+internal edge u->u+e_j the integer weight u_j+1 and define
+
+    B(t)=sum_(u,u+e_j in D, w_u<=t<w_(u+e_j)) (u_j+1).
+
+For ANY down-set E inside D, discrete divergence gives
+
+    sum_(z in E) Gamma_D(z)
+      =d*|E|-sum_(u in E,u+e_j in D\E)(u_j+1).
+
+At a vertex z the divergence is Gamma_D(z)-d. A down-set has no incoming edges
+from its complement, proving the formula. Applied to weight prefixes E_t, this is
+sum_(w_z<=t)Gamma_z=d*#{w_z<=t}-B(t). Thus the Gamma measure is stochastically
+later than d times the uniform cell measure, with its deficit given explicitly.
+
+Integrating each edge interval gives
+
+    integral_0^M B(t) dt=sum_z w_z=m*(g+(m-1)/2).
+
+Indeed sum_(edges in direction j)(u_j+1)=sum_z z_j. For the anchored grid define
+S_grid=sum_(k>=1,M-km>=0) B(M-km). A word z occurs in exactly
+mu_z=floor((M-w_z)/m) grid prefixes. Therefore
+
+    S_grid=d*ell-Gamma.mu=g+N-kappa,
+    Q=Dep-g+S_grid.                                      (FLUX-Q)
+
+The desired full-Q theorem is the sampling inequality S_grid>=g-Dep, equivalently
+
+    S_grid-(integral B)/m >= -(m-1)/2-Dep.
+
+This uses the FULL tile and actual conductor phase; it does not freeze assignments
+or assert the stronger completion inequality on every proper cut. FLUX-Q is an
+exact reformulation, not a proof of the required sampling error bound.
+
+### 2. Actual exposure gives neither unimodality nor an upper-sum rule
+
+For t>=2 set m=5t+3,p=m+1,q=4m-1,A=4t+2,R=A*p-m. The genuine source
+
+    S=<m,p,q,R>
+
+has canonical tile {i*e_p:0<=i<=A-1} union {j*e_q:1<=j<=t} union {e_R},
+and actual top R=(A-1)p+1. First, p+q=5m excludes all mixed p/q Apéry words.
+For <m,p,q>, comparison of the two axes gives threshold
+floor(m*q/(p+q))=A, so its tile has p-axis through A*p and q-axis through t*q.
+Adding R replaces only A*p: R+p=A*p+1 exceeds that old maximum and p is the
+least positive nonmultiplicity primitive. R itself was a gap, hence is primitive.
+All leave-one-out gcds are1 from the pairs (m,p),(m,q),(p,q), which are coprime.
+The source has e4,3e<m,c=R-m+1=20t^2+16t+3>4m. Its unique-axis comparisons
+are strict, so this obstruction also survives the strict-boundary normalization.
+
+Put T=t*q and v=(A-2)p. Then T<v<(A-1)p<R, and direct edge counts give
+
+    B(T-)=m-2, B(T)=A-1, B(v)=A, B((A-1)p)=1, B(R)=0.
+
+A strict drop followed by a strict rise refutes universal unimodality even at a
+genuine exposed top. Every word is pure-axis, hence kappa0. Also Dep=2(m-4),N=t:
+only the q-column has inversions at this phase. Consequently
+
+    S_grid-(integral B)/m=-(3t+2)/2<0.
+
+The old mirror19 source has the OPPOSITE sign: Dep4,kappa5,N20,Q19 gives discrepancy
++6. Thus neither quadrature orientation follows from coherence/exposure alone.
+The new guard has Q=2(m-4)+t>0 and three actual maximal cells (type3<e4), so it
+is already covered. It falsifies the unconditional sampling shortcut, not the
+corrected Dep allowance, a counterexample-conditional variant, or Wilf. No new
+member of this paper family was numerically evaluated.
+
+### 3. Counting all original words is valid; a raw collision bound is too strong
+
+Let r(v) be the number of factorizations of v in ALL ORIGINAL minimal generators,
+including r(0)=1. Put A=sum_(v<c)r(v),E=sum_(v<c)r(v)^2. Cauchy-Schwarz gives
+
+    ell >= A^2/E.
+
+The candidate E/A^2<=e/c would therefore imply Wilf for every source. Unlike the
+E463 catalogues, it permits arbitrary ranks and degrees. It is nevertheless FALSE.
+
+For ANY FIXED b>=4 let H_b=<2b,2b+1,2b+2>, and for sufficiently large N=1 mod6 set
+
+    S_(b,N)=<6b,6b+3,6b+6,N,N+1>.
+
+All five are primitive: the low maximum is below twice the minimum, and the high
+values have residues1,2 modulo3 and differ by1. Every leave-one-out gcd is1:
+deleting a low value retains the consecutive high pair; deleting a high value
+leaves base gcd3 and a residue coprime to3. Thus e5,m6b is arbitrarily large,
+3e<m, and the source has mixed parity. Its three residue classes are supplied by
+3H_b,N+3H_b,N+1+3H_b. Cofiniteness of H_b and the gap N-2 give c=N+O_b(1),
+hence c>4m for sufficiently large N.
+
+Writing h=2b and f_b(n)=#{(x,y,z)>=0:h*x+(h+1)y+(h+2)z=n}, fixing z leaves
+exactly one residue class for y modulo h. Thus its count is
+(n-(h+2)z)/(h(h+1))+O(1). Summing z proves directly
+
+    f_b(n)=a_b*n^2+O_b(n), a_b=1/(2h(h+1)(h+2)).
+
+Below c=N+O_b(1), words containing a high generator contribute O_b(1) mass and
+energy, and lie outside the low-only residue class. With T=N/3+O_b(1),
+
+    A=a_b*T^3/3+O_b(T^2), E=a_b^2*T^5/5+O_b(T^4),
+    E/A^2=27/(5N)+O_b(N^-2)>5/c=5/N+O_b(N^-2).
+
+The quantifiers are forall b>=4, exists N0(b), forall sufficiently large N=1 mod6.
+This proves global auxiliary failure at arbitrarily large multiplicity. It does
+NOT place all those failures below E448's conductor cutoff; no bound on N0(b)
+relative to that cutoff has been established.
+
+Root therefore checked EXACTLY ONE cutoff-sensitive control, b4,N1003:
+
+    S=<24,27,30,1003,1004>, e5,c1098,g716,ell382,W812,
+    A12635,E754417,e*A^2-c*E=-30133741<0.
+
+Its M1121 lies below E448's cutoff16560, all cofactors are1 and c>4m,3e<m.
+The bound A^2/E=159643225/754417 is below c/e although the actual source is safe.
+Existing C and independent membership/column/factorization DP agree. Q84,R728
+already certify it, so this is a mechanism control, not a combined-target failure.
+
+For disjoint value bands and nonnegative original-word weights, the valid refinement
+is ell>=sum_t A_t^2/E_t, where E_t is the ACTUAL value-collision energy. Its sign
+quota has not been proved. Singleton bands merely reconstruct support, so no claim
+of progress toward universal positivity follows from choosing increasingly fine bins.
+Stop the unweighted global energy payer; retain value-dependent overlaps and ALL
+source/parent reserves. Exact data/reproduction: E464 EXPERIMENTS.
+
+## E465 — a fully realizable unit action on canonical tile profiles
+
+2026-10-23. General paper component plus468 finite score checks. This is a
+falsification tool for the stronger all-S full-Q target, not a new family-W theorem.
+SAME geometric reviewer checked the realization proof, including coordinate order.
+
+Let D be the lex-canonical multiplicity tile of a genuine source, under a FIXED
+coordinate order on its d>=2 actual nonmultiplicity primitives. Write phi(z)=z.delta,
+and let a be its actual top WORD. For ANY unit u modulo m, the labelled data
+
+    D, delta'=u*delta modm, top word a
+
+have a genuine realization. For positive L congruent u modulo m, <m,L*P> has
+Apéry values L*w_z and all the same factorization words/top. Scalar dilation alone
+retains old ties and creates a removable common cofactor among the non-m generators.
+
+Apply E455's strict lex perturbation while preserving the chosen top and new residues.
+All nonidentity primitive-edge rows become strict. Induction on an attaining word
+then gives UNIQUE Apéry exponent-vector factorizations, so changing the coordinate
+order to the new residue order cannot change the tile. E462's CRT construction
+stays inside this strict cone and makes gcd(all non-m primitive VALUES)=1. Other
+deletion gcds remain gcd(m,{delta_i:i!=j}), since u is a unit. Thus cofactor1 is
+achievable exactly when these original deletion gcds are1. This is a realization
+statement, NOT a preservation of W, genus or source/certificate depths.
+
+The ACTUAL new top residue is u*phi(a) modulo m. With C=(e-2)m(m-1)/2,
+
+    Q_u=Dep+(sum_z Gamma_z*[u(phi(a)-phi(z))]_m-C)/m,
+    F_u=kappa_u-Dep.
+
+Every unit image is automatically realizable, unlike an arbitrary abstract phase.
+Independent column/inversion computation and the existing mirror identities give
+
+    Q_u+Q_(-u)=2Dep+m-1-|a|,
+    kappa_u+kappa_(-u)=T_supp.
+
+The finite E465 Fejer audit scores every unit of ONLY nine cached genuine tiles,
+468 images including repeats, no new actual-image source reconstruction:
+
+    m61/63/67/71: minQ45/56/66/68, maxF-5/-3/-21/-16;
+    m38/31/39/51/201: minQ101/50/70/94/364, maxF-62/-31/-63/-85/-268.
+
+All nine satisfy the normalized nonflat sparse realization gates. Every image
+passes column/phase agreement and BOTH mirror identities. There is no negativeQ
+or positiveF image, hence ZERO explicit new image semigroups were constructed.
+At m71 the best F improves from-20 to-16 (unit36), but it does not cross the debt
+threshold. This closes ONLY those finite orbits; it proves no universal sign and
+does not justify more generations/rentals. Data: p39/data/unit_orbit_465.json.
+
+## E466 — strict-boundary normalization for the FULL-Q theorem
+
+2026-10-23. Proved conditional reduction, independently paper-reviewed; no Lean or
+novelty claim. The distinction between Q positivity and Wilf itself is essential.
+
+To prove full Q>=0 on EVERY E439-normalized source in the remaining domain, it
+suffices to prove it when EVERY Apéry element has a UNIQUE exponent-vector
+factorization and EVERY missing canonical primitive exit has gap>=m.
+
+Indeed apply E455 at u1 in E465, then E462. The resulting source retains m,D,delta,
+actual top WORD and all deletion cofactors1. Since M'=P'.a has the same residue,
+the actual conductor phase rho is unchanged. Thus Gamma,Dep,kappa,N and Q are
+EXACTLY unchanged. All nonidentity primitive-edge rows have positive integer
+same-residue excess, at least m. This includes target0, where the row is already
+positive. Every minimal excluded word is such an exit, since its immediate
+predecessors lie in D. Conversely an attaining word has attaining prefixes, so a
+noncanonical prefix would violate one of these strict rows; induction proves
+uniqueness of its exponent vector.
+
+For the ALL-S implication, a least-genus counterexample is E439-normalized and
+lies in the recorded remaining domain. W>=Q would make its Q negative. Its strict
+realization has the SAME negative Q, contradicting a proved full-Q theorem on the
+strict class. A theorem merely saying W>=0 on that class would NOT give the
+contradiction: W and the reserve R can grow in the construction.
+
+This gives permission to assume that missing canonical directions correspond to
+genuine positive arithmetic exits when attacking FULL-Q, including shapes whose
+original realization had zero-gap pair trades. It does NOT repair failed staged
+alias payments: their D/delta/phase countergeometry survives unchanged. Nor may
+canonical additive certificate rows be dropped. Relations z_i+z_j=z_s remain tight;
+only their primitive-coordinate trade vector becomes the identity0. The full
+certificate relation x_i+x_j-x_s remains a substantive constraint.
+
+The resulting finite counting/strict-exit allocation remains UNKNOWN. The new
+reduction simplifies the actual-side arithmetic hypotheses; it does not pay the
+finite correction by strictness alone. Keep the weaker combined max(Q,L)>=0 route
+and the full coupled affine-budget route if this stronger Q theorem fails.

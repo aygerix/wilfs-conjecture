@@ -5793,3 +5793,48 @@ with full reserves. Exact recovery/termination alone does not pay the finite cor
 Distinct active alternatives are joint source payment, the full-Q one-label bridge,
 and the coupled finite affine budget. One new finite source only; all fixed jobs done,
 no rental, no new agent launch, no Lean/universal proof/novelty claim. Goal remains ACTIVE.
+### 2026-10-23 — E464–E466: a strict-boundary reduction and two global counting tests
+
+Previous goal turn PROGRESS:046255a proved/reviewed fixed-rank return failure and
+corrected net-cap accounting. Continued SAME all-S backwards objective. Root checked
+old primitive-height shifts/coheight envelopes before computing; E431/E438 already
+contain those mechanisms, so no duplicate run or false new-result claim.
+
+The SAME geometric agent derived outward flux B, exact stochastic prefix dominance,
+integralB=sumAp and Q=Dep-g+sum B(M-km). A proved sampling bound would pay fullQ;
+actual-top exposure alone does not do so. Paper cofactor1/deep/sparse guard has a
+drop then rise and negative discrepancy; mirror19 has positive discrepancy. The
+guard is type-covered/Qpositive, so only the unconditional monotonicity shortcut
+is refuted. Retain the corrected Dep allowance/full phase arithmetic.
+
+The SAME parity agent tried an all-rank/all-degree source-word energy inequality.
+Cauchy lowercount is valid; the claimed universal energy upper bound is false.
+Root generalized the source family to arbitrarym, then checked ONE b4,N1003 source
+inside E448's cutoff:24/27/30/1003/1004,c1098,W812,Q84,A12635,E754417,exact margin
+-30133741. Full C/independent membership/column/count-DP pass. It is already SUPP-
+covered. No weight tuning or familyWrun; weighted overlap remains the missing theorem.
+
+Root then used a different realizability operation: multiply every primitive residue
+by a unit while retaining abstractD/topWORD. E455 strictifies, E462 normalizes all
+cofactors; actual Apéry words become unique, removing the default-lex permutation
+caveat. General proof independently audited. Exact9cached unit orbits total468
+images, column/phase/BOTHmirror identities pass; no negativeQ or positiveF. No
+explicit new image source was reconstructed.71 improvesF-20->-16 without threshold
+crossing. First launch had missingcachedworkerfiles and0images; copiedsavedinputs,
+one completed audit. These finite orbits areclosed; noautomaticlarger campaign/rental.
+
+The useful positive reduction is E466: FULL-Q may be proved on sources with UNIQUE
+Apéry exponent-vector factorizations and every canonical exit gap>=m, since every
+normalized lex tile has such a realization with identicalQ/actualphase. Wilf-on-that-
+class ALONE does not transfer (W/Rchange). Internal canonical additions still have
+nontrivial certificate rows. This links missing canonical directions to strict actual
+exits for the auxiliary Q theorem without erasing earlier countergeometry.
+
+GLOBAL REVIEW: stop unconditional flux quadrature, raw energy and these468-orbits;
+do not repair a failed rank catalogue or demand already-resistant seeds before NEW
+directed discovery. Continue strict-boundary full cyclic-label allocation as one
+universal route; joint value-weighted source payment with all reserves as the weaker
+combined route; coupled affine finite budgets as the third. No uniform sign proved,
+no genuine Wilf counterexample, no Lean/novelty claim. One new finite source only,
+same TWO agents/no new launches, no GPU rental, all known jobs ended. STATE remains
+the single current handoff and implementation inventory; goal ACTIVE.

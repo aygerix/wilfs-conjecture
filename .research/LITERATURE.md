@@ -1422,3 +1422,21 @@ result supplies their missing universal finite-budget sign, and no originality
 claim is made for interval counting, primitive vectors, CRT or the general algebra.
 These are components/guards in the ongoing ALL-S strategy, not a literature survey
 or an activation of a restricted-family Wilf theorem.
+### E464–E466: whole-profile realization, flux and factorization energy (2026-10-23)
+
+Reopened primary [BGOW1903.04342v2](https://arxiv.org/html/1903.04342v2), Sections4/6:
+Conjecture4.4 concerns emptiness of real critical regions, while Theorem6.5 gives
+a sufficient winning-game certificate. Neither is invoked as a proved uniform
+finite-payment theorem. E465/E466 instead combine this project's E455 strict lex
+realization and E462 CRT normalization, with Q/actualphase fixed; they do NOT
+claim a Wilf-sign-preserving reduction to the new semigroups or novelty for dilation.
+
+Targeted searches for flux/quadrature and denumerant/Cauchy-Wilf supplied no external
+theorem USED to pay the sign. Restricted partition polynomial parts are standard;
+primary references include [Beck-Diaz-Robins math/0204035](https://arxiv.org/abs/math/0204035)
+and [Robins-Vignat1802.07310](https://arxiv.org/abs/1802.07310) (search metadata/abstracts,
+not a full theorem audit here). E464 derives its needed quadratic leading term
+directly by counting one residue class and summing, so it depends on no unverified
+external denumerant formula. Cauchy-Schwarz, divergence and summation by parts are
+elementary tools, not claimed new. The new application/control does not establish
+a uniform overlap or phase-sampling bound. No absence-of-prior-work assertion.

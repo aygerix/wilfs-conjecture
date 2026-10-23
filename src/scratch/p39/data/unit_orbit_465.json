@@ -1,0 +1,4945 @@
+{
+  "kind": "cached_unit_orbit_audit",
+  "orbits": [
+    {
+      "input": "../apery_scan/data/runpod_adaptive_452/results/adaptive_61.jsonl",
+      "m": 61,
+      "e": 4,
+      "source_G": [
+        61,
+        330,
+        340,
+        365
+      ],
+      "height": 7,
+      "baseline_Q": 67,
+      "baseline_F": -5,
+      "support_sum": 40,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 54,
+          "Dep": 45,
+          "kappa": 40,
+          "N": 62,
+          "F": -5,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 47,
+          "Dep": 45,
+          "kappa": 38,
+          "N": 66,
+          "F": -7,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 3,
+          "actual_top_residue": 40,
+          "Dep": 45,
+          "kappa": 37,
+          "N": 63,
+          "F": -8,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 33,
+          "Dep": 45,
+          "kappa": 36,
+          "N": 63,
+          "F": -9,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 26,
+          "Dep": 45,
+          "kappa": 26,
+          "N": 33,
+          "F": -19,
+          "Q": 52,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 6,
+          "actual_top_residue": 19,
+          "Dep": 45,
+          "kappa": 34,
+          "N": 65,
+          "F": -11,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 12,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 37,
+          "F": -26,
+          "Q": 63,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 5,
+          "Dep": 45,
+          "kappa": 25,
+          "N": 54,
+          "F": -20,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 9,
+          "actual_top_residue": 59,
+          "Dep": 45,
+          "kappa": 22,
+          "N": 47,
+          "F": -23,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 52,
+          "Dep": 45,
+          "kappa": 18,
+          "N": 41,
+          "F": -27,
+          "Q": 68,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 45,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 33,
+          "F": -26,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 12,
+          "actual_top_residue": 38,
+          "Dep": 45,
+          "kappa": 32,
+          "N": 71,
+          "F": -13,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 31,
+          "Dep": 45,
+          "kappa": 28,
+          "N": 63,
+          "F": -17,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 24,
+          "Dep": 45,
+          "kappa": 12,
+          "N": 34,
+          "F": -33,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 15,
+          "actual_top_residue": 17,
+          "Dep": 45,
+          "kappa": 15,
+          "N": 39,
+          "F": -30,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 10,
+          "Dep": 45,
+          "kappa": 20,
+          "N": 49,
+          "F": -25,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 3,
+          "Dep": 45,
+          "kappa": 31,
+          "N": 76,
+          "F": -14,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 18,
+          "actual_top_residue": 57,
+          "Dep": 45,
+          "kappa": 22,
+          "N": 49,
+          "F": -23,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 50,
+          "Dep": 45,
+          "kappa": 25,
+          "N": 59,
+          "F": -20,
+          "Q": 79,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 43,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 50,
+          "F": -26,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 21,
+          "actual_top_residue": 36,
+          "Dep": 45,
+          "kappa": 15,
+          "N": 31,
+          "F": -30,
+          "Q": 61,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 29,
+          "Dep": 45,
+          "kappa": 12,
+          "N": 12,
+          "F": -33,
+          "Q": 45,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 22,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 54,
+          "F": -24,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 24,
+          "actual_top_residue": 15,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 43,
+          "F": -24,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 8,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 46,
+          "F": -26,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 1,
+          "Dep": 45,
+          "kappa": 29,
+          "N": 67,
+          "F": -16,
+          "Q": 83,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 27,
+          "actual_top_residue": 55,
+          "Dep": 45,
+          "kappa": 15,
+          "N": 31,
+          "F": -30,
+          "Q": 61,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 48,
+          "Dep": 45,
+          "kappa": 11,
+          "N": 41,
+          "F": -34,
+          "Q": 75,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 41,
+          "Dep": 45,
+          "kappa": 20,
+          "N": 52,
+          "F": -25,
+          "Q": 77,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 30,
+          "actual_top_residue": 34,
+          "Dep": 45,
+          "kappa": 9,
+          "N": 38,
+          "F": -36,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 27,
+          "Dep": 45,
+          "kappa": 31,
+          "N": 55,
+          "F": -14,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 20,
+          "Dep": 45,
+          "kappa": 20,
+          "N": 41,
+          "F": -25,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 33,
+          "actual_top_residue": 13,
+          "Dep": 45,
+          "kappa": 29,
+          "N": 52,
+          "F": -16,
+          "Q": 68,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 6,
+          "Dep": 45,
+          "kappa": 25,
+          "N": 62,
+          "F": -20,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 60,
+          "Dep": 45,
+          "kappa": 11,
+          "N": 26,
+          "F": -34,
+          "Q": 60,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 36,
+          "actual_top_residue": 53,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 47,
+          "F": -24,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 46,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 50,
+          "F": -26,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 39,
+          "Dep": 45,
+          "kappa": 19,
+          "N": 39,
+          "F": -26,
+          "Q": 65,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 39,
+          "actual_top_residue": 32,
+          "Dep": 45,
+          "kappa": 28,
+          "N": 81,
+          "F": -17,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 25,
+          "Dep": 45,
+          "kappa": 25,
+          "N": 62,
+          "F": -20,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 18,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 43,
+          "F": -24,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 42,
+          "actual_top_residue": 11,
+          "Dep": 45,
+          "kappa": 15,
+          "N": 34,
+          "F": -30,
+          "Q": 64,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 4,
+          "Dep": 45,
+          "kappa": 18,
+          "N": 44,
+          "F": -27,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 58,
+          "Dep": 45,
+          "kappa": 9,
+          "N": 17,
+          "F": -36,
+          "Q": 53,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 45,
+          "actual_top_residue": 51,
+          "Dep": 45,
+          "kappa": 20,
+          "N": 44,
+          "F": -25,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 44,
+          "Dep": 45,
+          "kappa": 25,
+          "N": 54,
+          "F": -20,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 37,
+          "Dep": 45,
+          "kappa": 28,
+          "N": 59,
+          "F": -17,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 48,
+          "actual_top_residue": 30,
+          "Dep": 45,
+          "kappa": 12,
+          "N": 30,
+          "F": -33,
+          "Q": 63,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 49,
+          "actual_top_residue": 23,
+          "Dep": 45,
+          "kappa": 8,
+          "N": 22,
+          "F": -37,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 16,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 60,
+          "F": -24,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 51,
+          "actual_top_residue": 9,
+          "Dep": 45,
+          "kappa": 22,
+          "N": 52,
+          "F": -23,
+          "Q": 75,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 52,
+          "actual_top_residue": 2,
+          "Dep": 45,
+          "kappa": 18,
+          "N": 46,
+          "F": -27,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 53,
+          "actual_top_residue": 56,
+          "Dep": 45,
+          "kappa": 15,
+          "N": 39,
+          "F": -30,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 54,
+          "actual_top_residue": 49,
+          "Dep": 45,
+          "kappa": 21,
+          "N": 56,
+          "F": -24,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 55,
+          "actual_top_residue": 42,
+          "Dep": 45,
+          "kappa": 6,
+          "N": 28,
+          "F": -39,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 56,
+          "actual_top_residue": 35,
+          "Dep": 45,
+          "kappa": 14,
+          "N": 60,
+          "F": -31,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 57,
+          "actual_top_residue": 28,
+          "Dep": 45,
+          "kappa": 4,
+          "N": 30,
+          "F": -41,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 58,
+          "actual_top_residue": 21,
+          "Dep": 45,
+          "kappa": 3,
+          "N": 30,
+          "F": -42,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 59,
+          "actual_top_residue": 14,
+          "Dep": 45,
+          "kappa": 2,
+          "N": 27,
+          "F": -43,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 60,
+          "actual_top_residue": 7,
+          "Dep": 45,
+          "kappa": 0,
+          "N": 31,
+          "F": -45,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 45,
+      "maximum_F": -5
+    },
+    {
+      "input": "../apery_scan/data/runpod_adaptive_452/results/adaptive_63.jsonl",
+      "m": 63,
+      "e": 12,
+      "source_G": [
+        63,
+        307,
+        438,
+        440,
+        454,
+        461,
+        474,
+        475,
+        477,
+        482,
+        486,
+        492
+      ],
+      "height": 3,
+      "baseline_Q": 56,
+      "baseline_F": -3,
+      "support_sum": 44,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 29,
+          "Dep": 42,
+          "kappa": 39,
+          "N": 53,
+          "F": -3,
+          "Q": 56,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 58,
+          "Dep": 42,
+          "kappa": 21,
+          "N": 43,
+          "F": -21,
+          "Q": 64,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 53,
+          "Dep": 42,
+          "kappa": 23,
+          "N": 43,
+          "F": -19,
+          "Q": 62,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 19,
+          "Dep": 42,
+          "kappa": 25,
+          "N": 53,
+          "F": -17,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 43,
+          "Dep": 42,
+          "kappa": 29,
+          "N": 65,
+          "F": -13,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 38,
+          "Dep": 42,
+          "kappa": 12,
+          "N": 42,
+          "F": -30,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 4,
+          "Dep": 42,
+          "kappa": 34,
+          "N": 74,
+          "F": -8,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 62,
+          "Dep": 42,
+          "kappa": 18,
+          "N": 40,
+          "F": -24,
+          "Q": 64,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 23,
+          "Dep": 42,
+          "kappa": 22,
+          "N": 51,
+          "F": -20,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 52,
+          "Dep": 42,
+          "kappa": 24,
+          "N": 48,
+          "F": -18,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 47,
+          "Dep": 42,
+          "kappa": 25,
+          "N": 53,
+          "F": -17,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 13,
+          "Dep": 42,
+          "kappa": 8,
+          "N": 40,
+          "F": -34,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 8,
+          "Dep": 42,
+          "kappa": 36,
+          "N": 72,
+          "F": -6,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 37,
+          "Dep": 42,
+          "kappa": 17,
+          "N": 39,
+          "F": -25,
+          "Q": 64,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 32,
+          "Dep": 42,
+          "kappa": 23,
+          "N": 53,
+          "F": -19,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 61,
+          "Dep": 42,
+          "kappa": 24,
+          "N": 57,
+          "F": -18,
+          "Q": 75,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 22,
+          "Dep": 42,
+          "kappa": 25,
+          "N": 54,
+          "F": -17,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 17,
+          "Dep": 42,
+          "kappa": 9,
+          "N": 54,
+          "F": -33,
+          "Q": 87,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 46,
+          "Dep": 42,
+          "kappa": 35,
+          "N": 50,
+          "F": -7,
+          "Q": 57,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 41,
+          "Dep": 42,
+          "kappa": 19,
+          "N": 50,
+          "F": -23,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 2,
+          "Dep": 42,
+          "kappa": 20,
+          "N": 47,
+          "F": -22,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 31,
+          "Dep": 42,
+          "kappa": 21,
+          "N": 51,
+          "F": -21,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 26,
+          "Dep": 42,
+          "kappa": 27,
+          "N": 65,
+          "F": -15,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 55,
+          "Dep": 42,
+          "kappa": 8,
+          "N": 32,
+          "F": -34,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 50,
+          "Dep": 42,
+          "kappa": 36,
+          "N": 64,
+          "F": -6,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 16,
+          "Dep": 42,
+          "kappa": 19,
+          "N": 51,
+          "F": -23,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 11,
+          "Dep": 42,
+          "kappa": 20,
+          "N": 56,
+          "F": -22,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 40,
+          "Dep": 42,
+          "kappa": 22,
+          "N": 53,
+          "F": -20,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 1,
+          "Dep": 42,
+          "kappa": 26,
+          "N": 64,
+          "F": -16,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 52,
+          "actual_top_residue": 59,
+          "Dep": 42,
+          "kappa": 10,
+          "N": 30,
+          "F": -32,
+          "Q": 62,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 53,
+          "actual_top_residue": 25,
+          "Dep": 42,
+          "kappa": 32,
+          "N": 62,
+          "F": -10,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 55,
+          "actual_top_residue": 20,
+          "Dep": 42,
+          "kappa": 15,
+          "N": 39,
+          "F": -27,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 58,
+          "actual_top_residue": 44,
+          "Dep": 42,
+          "kappa": 19,
+          "N": 51,
+          "F": -23,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 59,
+          "actual_top_residue": 10,
+          "Dep": 42,
+          "kappa": 21,
+          "N": 61,
+          "F": -21,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 61,
+          "actual_top_residue": 5,
+          "Dep": 42,
+          "kappa": 23,
+          "N": 61,
+          "F": -19,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 62,
+          "actual_top_residue": 34,
+          "Dep": 42,
+          "kappa": 5,
+          "N": 51,
+          "F": -37,
+          "Q": 88,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 56,
+      "maximum_F": -3
+    },
+    {
+      "input": "../apery_scan/data/runpod_adaptive_452/results/adaptive_67.jsonl",
+      "m": 67,
+      "e": 4,
+      "source_G": [
+        67,
+        200,
+        257,
+        325
+      ],
+      "height": 9,
+      "baseline_Q": 81,
+      "baseline_F": -21,
+      "support_sum": 45,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 8,
+          "Dep": 66,
+          "kappa": 45,
+          "N": 60,
+          "F": -21,
+          "Q": 81,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 16,
+          "Dep": 66,
+          "kappa": 33,
+          "N": 48,
+          "F": -33,
+          "Q": 81,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 3,
+          "actual_top_residue": 24,
+          "Dep": 66,
+          "kappa": 24,
+          "N": 39,
+          "F": -42,
+          "Q": 81,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 32,
+          "Dep": 66,
+          "kappa": 27,
+          "N": 43,
+          "F": -39,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 40,
+          "Dep": 66,
+          "kappa": 26,
+          "N": 42,
+          "F": -40,
+          "Q": 82,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 6,
+          "actual_top_residue": 48,
+          "Dep": 66,
+          "kappa": 0,
+          "N": 15,
+          "F": -66,
+          "Q": 81,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 56,
+          "Dep": 66,
+          "kappa": 39,
+          "N": 88,
+          "F": -27,
+          "Q": 115,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 64,
+          "Dep": 66,
+          "kappa": 23,
+          "N": 50,
+          "F": -43,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 9,
+          "actual_top_residue": 5,
+          "Dep": 66,
+          "kappa": 19,
+          "N": 58,
+          "F": -47,
+          "Q": 105,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 13,
+          "Dep": 66,
+          "kappa": 18,
+          "N": 38,
+          "F": -48,
+          "Q": 86,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 21,
+          "Dep": 66,
+          "kappa": 21,
+          "N": 52,
+          "F": -45,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 12,
+          "actual_top_residue": 29,
+          "Dep": 66,
+          "kappa": 1,
+          "N": 25,
+          "F": -65,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 37,
+          "Dep": 66,
+          "kappa": 22,
+          "N": 34,
+          "F": -44,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 45,
+          "Dep": 66,
+          "kappa": 30,
+          "N": 67,
+          "F": -36,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 15,
+          "actual_top_residue": 53,
+          "Dep": 66,
+          "kappa": 18,
+          "N": 45,
+          "F": -48,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 61,
+          "Dep": 66,
+          "kappa": 20,
+          "N": 47,
+          "F": -46,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 2,
+          "Dep": 66,
+          "kappa": 25,
+          "N": 55,
+          "F": -41,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 18,
+          "actual_top_residue": 10,
+          "Dep": 66,
+          "kappa": 6,
+          "N": 37,
+          "F": -60,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 18,
+          "Dep": 66,
+          "kappa": 30,
+          "N": 60,
+          "F": -36,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 26,
+          "Dep": 66,
+          "kappa": 15,
+          "N": 15,
+          "F": -51,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 21,
+          "actual_top_residue": 34,
+          "Dep": 66,
+          "kappa": 20,
+          "N": 53,
+          "F": -46,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 42,
+          "Dep": 66,
+          "kappa": 20,
+          "N": 54,
+          "F": -46,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 50,
+          "Dep": 66,
+          "kappa": 24,
+          "N": 48,
+          "F": -42,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 24,
+          "actual_top_residue": 58,
+          "Dep": 66,
+          "kappa": 7,
+          "N": 30,
+          "F": -59,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 66,
+          "Dep": 66,
+          "kappa": 32,
+          "N": 57,
+          "F": -34,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 7,
+          "Dep": 66,
+          "kappa": 22,
+          "N": 47,
+          "F": -44,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 27,
+          "actual_top_residue": 15,
+          "Dep": 66,
+          "kappa": 32,
+          "N": 82,
+          "F": -34,
+          "Q": 116,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 23,
+          "Dep": 66,
+          "kappa": 21,
+          "N": 49,
+          "F": -45,
+          "Q": 94,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 31,
+          "Dep": 66,
+          "kappa": 21,
+          "N": 41,
+          "F": -45,
+          "Q": 86,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 30,
+          "actual_top_residue": 39,
+          "Dep": 66,
+          "kappa": 3,
+          "N": 24,
+          "F": -63,
+          "Q": 87,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 47,
+          "Dep": 66,
+          "kappa": 32,
+          "N": 63,
+          "F": -34,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 55,
+          "Dep": 66,
+          "kappa": 22,
+          "N": 54,
+          "F": -44,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 33,
+          "actual_top_residue": 63,
+          "Dep": 66,
+          "kappa": 9,
+          "N": 30,
+          "F": -57,
+          "Q": 87,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 4,
+          "Dep": 66,
+          "kappa": 36,
+          "N": 72,
+          "F": -30,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 12,
+          "Dep": 66,
+          "kappa": 23,
+          "N": 48,
+          "F": -43,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 36,
+          "actual_top_residue": 20,
+          "Dep": 66,
+          "kappa": 13,
+          "N": 39,
+          "F": -53,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 28,
+          "Dep": 66,
+          "kappa": 42,
+          "N": 78,
+          "F": -24,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 36,
+          "Dep": 66,
+          "kappa": 24,
+          "N": 61,
+          "F": -42,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 39,
+          "actual_top_residue": 44,
+          "Dep": 66,
+          "kappa": 24,
+          "N": 53,
+          "F": -42,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 52,
+          "Dep": 66,
+          "kappa": 13,
+          "N": 20,
+          "F": -53,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 60,
+          "Dep": 66,
+          "kappa": 23,
+          "N": 55,
+          "F": -43,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 42,
+          "actual_top_residue": 1,
+          "Dep": 66,
+          "kappa": 13,
+          "N": 45,
+          "F": -53,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 9,
+          "Dep": 66,
+          "kappa": 38,
+          "N": 72,
+          "F": -28,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 17,
+          "Dep": 66,
+          "kappa": 21,
+          "N": 54,
+          "F": -45,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 45,
+          "actual_top_residue": 25,
+          "Dep": 66,
+          "kappa": 25,
+          "N": 48,
+          "F": -41,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 33,
+          "Dep": 66,
+          "kappa": 25,
+          "N": 49,
+          "F": -41,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 41,
+          "Dep": 66,
+          "kappa": 30,
+          "N": 87,
+          "F": -36,
+          "Q": 123,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 48,
+          "actual_top_residue": 49,
+          "Dep": 66,
+          "kappa": 15,
+          "N": 42,
+          "F": -51,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 49,
+          "actual_top_residue": 57,
+          "Dep": 66,
+          "kappa": 39,
+          "N": 65,
+          "F": -27,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 65,
+          "Dep": 66,
+          "kappa": 20,
+          "N": 47,
+          "F": -46,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 51,
+          "actual_top_residue": 6,
+          "Dep": 66,
+          "kappa": 25,
+          "N": 55,
+          "F": -41,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 52,
+          "actual_top_residue": 14,
+          "Dep": 66,
+          "kappa": 27,
+          "N": 57,
+          "F": -39,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 53,
+          "actual_top_residue": 22,
+          "Dep": 66,
+          "kappa": 15,
+          "N": 35,
+          "F": -51,
+          "Q": 86,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 54,
+          "actual_top_residue": 30,
+          "Dep": 66,
+          "kappa": 23,
+          "N": 68,
+          "F": -43,
+          "Q": 111,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 55,
+          "actual_top_residue": 38,
+          "Dep": 66,
+          "kappa": 44,
+          "N": 77,
+          "F": -22,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 56,
+          "actual_top_residue": 46,
+          "Dep": 66,
+          "kappa": 24,
+          "N": 50,
+          "F": -42,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 57,
+          "actual_top_residue": 54,
+          "Dep": 66,
+          "kappa": 27,
+          "N": 64,
+          "F": -39,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 58,
+          "actual_top_residue": 62,
+          "Dep": 66,
+          "kappa": 26,
+          "N": 44,
+          "F": -40,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 59,
+          "actual_top_residue": 3,
+          "Dep": 66,
+          "kappa": 22,
+          "N": 52,
+          "F": -44,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 60,
+          "actual_top_residue": 11,
+          "Dep": 66,
+          "kappa": 6,
+          "N": 14,
+          "F": -60,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 61,
+          "actual_top_residue": 19,
+          "Dep": 66,
+          "kappa": 45,
+          "N": 87,
+          "F": -21,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 62,
+          "actual_top_residue": 27,
+          "Dep": 66,
+          "kappa": 19,
+          "N": 60,
+          "F": -47,
+          "Q": 107,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 63,
+          "actual_top_residue": 35,
+          "Dep": 66,
+          "kappa": 18,
+          "N": 59,
+          "F": -48,
+          "Q": 107,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 64,
+          "actual_top_residue": 43,
+          "Dep": 66,
+          "kappa": 21,
+          "N": 63,
+          "F": -45,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 65,
+          "actual_top_residue": 51,
+          "Dep": 66,
+          "kappa": 12,
+          "N": 54,
+          "F": -54,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 66,
+          "actual_top_residue": 59,
+          "Dep": 66,
+          "kappa": 0,
+          "N": 42,
+          "F": -66,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 66,
+      "maximum_F": -21
+    },
+    {
+      "input": "../apery_scan/data/runpod_adaptive_452/results/adaptive_71.jsonl",
+      "m": 71,
+      "e": 4,
+      "source_G": [
+        71,
+        173,
+        180,
+        211
+      ],
+      "height": 8,
+      "baseline_Q": 88,
+      "baseline_F": -20,
+      "support_sum": 49,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 55,
+          "Dep": 65,
+          "kappa": 45,
+          "N": 68,
+          "F": -20,
+          "Q": 88,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 39,
+          "Dep": 65,
+          "kappa": 37,
+          "N": 52,
+          "F": -28,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 3,
+          "actual_top_residue": 23,
+          "Dep": 65,
+          "kappa": 38,
+          "N": 63,
+          "F": -27,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 7,
+          "Dep": 65,
+          "kappa": 31,
+          "N": 66,
+          "F": -34,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 62,
+          "Dep": 65,
+          "kappa": 23,
+          "N": 47,
+          "F": -42,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 6,
+          "actual_top_residue": 46,
+          "Dep": 65,
+          "kappa": 28,
+          "N": 52,
+          "F": -37,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 30,
+          "Dep": 65,
+          "kappa": 16,
+          "N": 48,
+          "F": -49,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 14,
+          "Dep": 65,
+          "kappa": 33,
+          "N": 68,
+          "F": -32,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 9,
+          "actual_top_residue": 69,
+          "Dep": 65,
+          "kappa": 42,
+          "N": 77,
+          "F": -23,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 53,
+          "Dep": 65,
+          "kappa": 21,
+          "N": 44,
+          "F": -44,
+          "Q": 88,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 37,
+          "Dep": 65,
+          "kappa": 29,
+          "N": 67,
+          "F": -36,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 12,
+          "actual_top_residue": 21,
+          "Dep": 65,
+          "kappa": 32,
+          "N": 64,
+          "F": -33,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 5,
+          "Dep": 65,
+          "kappa": 34,
+          "N": 86,
+          "F": -31,
+          "Q": 117,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 60,
+          "Dep": 65,
+          "kappa": 22,
+          "N": 63,
+          "F": -43,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 15,
+          "actual_top_residue": 44,
+          "Dep": 65,
+          "kappa": 10,
+          "N": 16,
+          "F": -55,
+          "Q": 71,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 28,
+          "Dep": 65,
+          "kappa": 36,
+          "N": 71,
+          "F": -29,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 12,
+          "Dep": 65,
+          "kappa": 10,
+          "N": 33,
+          "F": -55,
+          "Q": 88,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 18,
+          "actual_top_residue": 67,
+          "Dep": 65,
+          "kappa": 39,
+          "N": 74,
+          "F": -26,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 51,
+          "Dep": 65,
+          "kappa": 27,
+          "N": 52,
+          "F": -38,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 35,
+          "Dep": 65,
+          "kappa": 26,
+          "N": 57,
+          "F": -39,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 21,
+          "actual_top_residue": 19,
+          "Dep": 65,
+          "kappa": 19,
+          "N": 49,
+          "F": -46,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 3,
+          "Dep": 65,
+          "kappa": 24,
+          "N": 59,
+          "F": -41,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 58,
+          "Dep": 65,
+          "kappa": 9,
+          "N": 41,
+          "F": -56,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 24,
+          "actual_top_residue": 42,
+          "Dep": 65,
+          "kappa": 37,
+          "N": 67,
+          "F": -28,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 26,
+          "Dep": 65,
+          "kappa": 31,
+          "N": 67,
+          "F": -34,
+          "Q": 101,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 10,
+          "Dep": 65,
+          "kappa": 26,
+          "N": 69,
+          "F": -39,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 27,
+          "actual_top_residue": 65,
+          "Dep": 65,
+          "kappa": 30,
+          "N": 63,
+          "F": -35,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 49,
+          "Dep": 65,
+          "kappa": 31,
+          "N": 90,
+          "F": -34,
+          "Q": 124,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 33,
+          "Dep": 65,
+          "kappa": 22,
+          "N": 46,
+          "F": -43,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 30,
+          "actual_top_residue": 17,
+          "Dep": 65,
+          "kappa": 5,
+          "N": 16,
+          "F": -60,
+          "Q": 76,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 1,
+          "Dep": 65,
+          "kappa": 16,
+          "N": 48,
+          "F": -49,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 56,
+          "Dep": 65,
+          "kappa": 24,
+          "N": 59,
+          "F": -41,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 33,
+          "actual_top_residue": 40,
+          "Dep": 65,
+          "kappa": 12,
+          "N": 55,
+          "F": -53,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 24,
+          "Dep": 65,
+          "kappa": 5,
+          "N": 40,
+          "F": -60,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 8,
+          "Dep": 65,
+          "kappa": 0,
+          "N": 35,
+          "F": -65,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 36,
+          "actual_top_residue": 63,
+          "Dep": 65,
+          "kappa": 49,
+          "N": 76,
+          "F": -16,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 47,
+          "Dep": 65,
+          "kappa": 44,
+          "N": 71,
+          "F": -21,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 31,
+          "Dep": 65,
+          "kappa": 37,
+          "N": 56,
+          "F": -28,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 39,
+          "actual_top_residue": 15,
+          "Dep": 65,
+          "kappa": 25,
+          "N": 52,
+          "F": -40,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 70,
+          "Dep": 65,
+          "kappa": 33,
+          "N": 63,
+          "F": -32,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 54,
+          "Dep": 65,
+          "kappa": 44,
+          "N": 95,
+          "F": -21,
+          "Q": 116,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 42,
+          "actual_top_residue": 38,
+          "Dep": 65,
+          "kappa": 27,
+          "N": 65,
+          "F": -38,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 22,
+          "Dep": 65,
+          "kappa": 18,
+          "N": 21,
+          "F": -47,
+          "Q": 68,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 6,
+          "Dep": 65,
+          "kappa": 19,
+          "N": 48,
+          "F": -46,
+          "Q": 94,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 45,
+          "actual_top_residue": 61,
+          "Dep": 65,
+          "kappa": 23,
+          "N": 42,
+          "F": -42,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 45,
+          "Dep": 65,
+          "kappa": 18,
+          "N": 44,
+          "F": -47,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 29,
+          "Dep": 65,
+          "kappa": 12,
+          "N": 44,
+          "F": -53,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 48,
+          "actual_top_residue": 13,
+          "Dep": 65,
+          "kappa": 40,
+          "N": 70,
+          "F": -25,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 49,
+          "actual_top_residue": 68,
+          "Dep": 65,
+          "kappa": 25,
+          "N": 52,
+          "F": -40,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 52,
+          "Dep": 65,
+          "kappa": 30,
+          "N": 62,
+          "F": -35,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 51,
+          "actual_top_residue": 36,
+          "Dep": 65,
+          "kappa": 23,
+          "N": 54,
+          "F": -42,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 52,
+          "actual_top_residue": 20,
+          "Dep": 65,
+          "kappa": 22,
+          "N": 59,
+          "F": -43,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 53,
+          "actual_top_residue": 4,
+          "Dep": 65,
+          "kappa": 10,
+          "N": 37,
+          "F": -55,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 54,
+          "actual_top_residue": 59,
+          "Dep": 65,
+          "kappa": 39,
+          "N": 78,
+          "F": -26,
+          "Q": 104,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 55,
+          "actual_top_residue": 43,
+          "Dep": 65,
+          "kappa": 13,
+          "N": 40,
+          "F": -52,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 56,
+          "actual_top_residue": 27,
+          "Dep": 65,
+          "kappa": 39,
+          "N": 95,
+          "F": -26,
+          "Q": 121,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 57,
+          "actual_top_residue": 11,
+          "Dep": 65,
+          "kappa": 27,
+          "N": 48,
+          "F": -38,
+          "Q": 86,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 58,
+          "actual_top_residue": 66,
+          "Dep": 65,
+          "kappa": 15,
+          "N": 25,
+          "F": -50,
+          "Q": 75,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 59,
+          "actual_top_residue": 50,
+          "Dep": 65,
+          "kappa": 17,
+          "N": 47,
+          "F": -48,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 60,
+          "actual_top_residue": 34,
+          "Dep": 65,
+          "kappa": 20,
+          "N": 44,
+          "F": -45,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 61,
+          "actual_top_residue": 18,
+          "Dep": 65,
+          "kappa": 28,
+          "N": 67,
+          "F": -37,
+          "Q": 104,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 62,
+          "actual_top_residue": 2,
+          "Dep": 65,
+          "kappa": 7,
+          "N": 34,
+          "F": -58,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 63,
+          "actual_top_residue": 57,
+          "Dep": 65,
+          "kappa": 16,
+          "N": 43,
+          "F": -49,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 64,
+          "actual_top_residue": 41,
+          "Dep": 65,
+          "kappa": 33,
+          "N": 63,
+          "F": -32,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 65,
+          "actual_top_residue": 25,
+          "Dep": 65,
+          "kappa": 21,
+          "N": 59,
+          "F": -44,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 66,
+          "actual_top_residue": 9,
+          "Dep": 65,
+          "kappa": 26,
+          "N": 64,
+          "F": -39,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 67,
+          "actual_top_residue": 64,
+          "Dep": 65,
+          "kappa": 18,
+          "N": 45,
+          "F": -47,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 68,
+          "actual_top_residue": 48,
+          "Dep": 65,
+          "kappa": 11,
+          "N": 48,
+          "F": -54,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 69,
+          "actual_top_residue": 32,
+          "Dep": 65,
+          "kappa": 12,
+          "N": 59,
+          "F": -53,
+          "Q": 112,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 70,
+          "actual_top_residue": 16,
+          "Dep": 65,
+          "kappa": 4,
+          "N": 43,
+          "F": -61,
+          "Q": 104,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 68,
+      "maximum_F": -16
+    },
+    {
+      "input": "../apery_scan/data/trade_search_459.jsonl",
+      "m": 38,
+      "e": 5,
+      "source_G": [
+        38,
+        51,
+        67,
+        120,
+        193
+      ],
+      "height": 6,
+      "baseline_Q": 103,
+      "baseline_F": -83,
+      "support_sum": 28,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 28,
+          "Dep": 90,
+          "kappa": 7,
+          "N": 20,
+          "F": -83,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 3,
+          "actual_top_residue": 8,
+          "Dep": 90,
+          "kappa": 0,
+          "N": 13,
+          "F": -90,
+          "Q": 103,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 26,
+          "Dep": 90,
+          "kappa": 20,
+          "N": 35,
+          "F": -70,
+          "Q": 105,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 6,
+          "Dep": 90,
+          "kappa": 8,
+          "N": 28,
+          "F": -82,
+          "Q": 110,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 9,
+          "actual_top_residue": 24,
+          "Dep": 90,
+          "kappa": 11,
+          "N": 23,
+          "F": -79,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 4,
+          "Dep": 90,
+          "kappa": 19,
+          "N": 35,
+          "F": -71,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 22,
+          "Dep": 90,
+          "kappa": 16,
+          "N": 30,
+          "F": -74,
+          "Q": 104,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 15,
+          "actual_top_residue": 2,
+          "Dep": 90,
+          "kappa": 8,
+          "N": 27,
+          "F": -82,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 20,
+          "Dep": 90,
+          "kappa": 27,
+          "N": 39,
+          "F": -63,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 21,
+          "actual_top_residue": 18,
+          "Dep": 90,
+          "kappa": 1,
+          "N": 20,
+          "F": -89,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 36,
+          "Dep": 90,
+          "kappa": 20,
+          "N": 32,
+          "F": -70,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 16,
+          "Dep": 90,
+          "kappa": 12,
+          "N": 29,
+          "F": -78,
+          "Q": 107,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 27,
+          "actual_top_residue": 34,
+          "Dep": 90,
+          "kappa": 9,
+          "N": 24,
+          "F": -81,
+          "Q": 105,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 14,
+          "Dep": 90,
+          "kappa": 17,
+          "N": 36,
+          "F": -73,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 32,
+          "Dep": 90,
+          "kappa": 20,
+          "N": 31,
+          "F": -70,
+          "Q": 101,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 33,
+          "actual_top_residue": 12,
+          "Dep": 90,
+          "kappa": 8,
+          "N": 24,
+          "F": -82,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 30,
+          "Dep": 90,
+          "kappa": 28,
+          "N": 46,
+          "F": -62,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 10,
+          "Dep": 90,
+          "kappa": 21,
+          "N": 39,
+          "F": -69,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 101,
+      "maximum_F": -62
+    },
+    {
+      "input": "data/parity_trade_control_454.json",
+      "m": 31,
+      "e": 4,
+      "source_G": [
+        31,
+        33,
+        101,
+        103
+      ],
+      "height": 7,
+      "baseline_Q": 51,
+      "baseline_F": -45,
+      "support_sum": 19,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 29,
+          "Dep": 50,
+          "kappa": 5,
+          "N": 6,
+          "F": -45,
+          "Q": 51,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 27,
+          "Dep": 50,
+          "kappa": 5,
+          "N": 12,
+          "F": -45,
+          "Q": 57,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 3,
+          "actual_top_residue": 25,
+          "Dep": 50,
+          "kappa": 19,
+          "N": 24,
+          "F": -31,
+          "Q": 55,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 23,
+          "Dep": 50,
+          "kappa": 3,
+          "N": 15,
+          "F": -47,
+          "Q": 62,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 21,
+          "Dep": 50,
+          "kappa": 8,
+          "N": 23,
+          "F": -42,
+          "Q": 65,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 6,
+          "actual_top_residue": 19,
+          "Dep": 50,
+          "kappa": 16,
+          "N": 26,
+          "F": -34,
+          "Q": 60,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 17,
+          "Dep": 50,
+          "kappa": 11,
+          "N": 26,
+          "F": -39,
+          "Q": 65,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 15,
+          "Dep": 50,
+          "kappa": 3,
+          "N": 11,
+          "F": -47,
+          "Q": 58,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 9,
+          "actual_top_residue": 13,
+          "Dep": 50,
+          "kappa": 13,
+          "N": 26,
+          "F": -37,
+          "Q": 63,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 11,
+          "Dep": 50,
+          "kappa": 8,
+          "N": 25,
+          "F": -42,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 9,
+          "Dep": 50,
+          "kappa": 11,
+          "N": 22,
+          "F": -39,
+          "Q": 61,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 12,
+          "actual_top_residue": 7,
+          "Dep": 50,
+          "kappa": 10,
+          "N": 19,
+          "F": -40,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 5,
+          "Dep": 50,
+          "kappa": 14,
+          "N": 29,
+          "F": -36,
+          "Q": 65,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 3,
+          "Dep": 50,
+          "kappa": 9,
+          "N": 31,
+          "F": -41,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 15,
+          "actual_top_residue": 1,
+          "Dep": 50,
+          "kappa": 19,
+          "N": 43,
+          "F": -31,
+          "Q": 74,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 30,
+          "Dep": 50,
+          "kappa": 0,
+          "N": 0,
+          "F": -50,
+          "Q": 50,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 28,
+          "Dep": 50,
+          "kappa": 10,
+          "N": 12,
+          "F": -40,
+          "Q": 52,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 18,
+          "actual_top_residue": 26,
+          "Dep": 50,
+          "kappa": 5,
+          "N": 14,
+          "F": -45,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 24,
+          "Dep": 50,
+          "kappa": 9,
+          "N": 24,
+          "F": -41,
+          "Q": 65,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 22,
+          "Dep": 50,
+          "kappa": 8,
+          "N": 21,
+          "F": -42,
+          "Q": 63,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 21,
+          "actual_top_residue": 20,
+          "Dep": 50,
+          "kappa": 11,
+          "N": 18,
+          "F": -39,
+          "Q": 57,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 18,
+          "Dep": 50,
+          "kappa": 6,
+          "N": 17,
+          "F": -44,
+          "Q": 61,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 16,
+          "Dep": 50,
+          "kappa": 16,
+          "N": 32,
+          "F": -34,
+          "Q": 66,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 24,
+          "actual_top_residue": 14,
+          "Dep": 50,
+          "kappa": 8,
+          "N": 17,
+          "F": -42,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 12,
+          "Dep": 50,
+          "kappa": 3,
+          "N": 17,
+          "F": -47,
+          "Q": 64,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 10,
+          "Dep": 50,
+          "kappa": 11,
+          "N": 20,
+          "F": -39,
+          "Q": 59,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 27,
+          "actual_top_residue": 8,
+          "Dep": 50,
+          "kappa": 16,
+          "N": 28,
+          "F": -34,
+          "Q": 62,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 6,
+          "Dep": 50,
+          "kappa": 0,
+          "N": 19,
+          "F": -50,
+          "Q": 69,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 4,
+          "Dep": 50,
+          "kappa": 14,
+          "N": 31,
+          "F": -36,
+          "Q": 67,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 30,
+          "actual_top_residue": 2,
+          "Dep": 50,
+          "kappa": 14,
+          "N": 37,
+          "F": -36,
+          "Q": 73,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 50,
+      "maximum_F": -31
+    },
+    {
+      "input": "data/cyclic_source_control_457.json",
+      "m": 39,
+      "e": 4,
+      "source_G": [
+        39,
+        41,
+        113,
+        115
+      ],
+      "height": 22,
+      "baseline_Q": 72,
+      "baseline_F": -63,
+      "support_sum": 7,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 9,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 9,
+          "F": -63,
+          "Q": 72,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 18,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 12,
+          "F": -63,
+          "Q": 75,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 36,
+          "Dep": 70,
+          "kappa": 5,
+          "N": 14,
+          "F": -65,
+          "Q": 79,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 6,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 22,
+          "F": -63,
+          "Q": 85,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 24,
+          "Dep": 70,
+          "kappa": 5,
+          "N": 24,
+          "F": -65,
+          "Q": 89,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 33,
+          "Dep": 70,
+          "kappa": 3,
+          "N": 23,
+          "F": -67,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 12,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 15,
+          "F": -63,
+          "Q": 78,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 21,
+          "Dep": 70,
+          "kappa": 3,
+          "N": 10,
+          "F": -67,
+          "Q": 77,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 9,
+          "Dep": 70,
+          "kappa": 2,
+          "N": 18,
+          "F": -68,
+          "Q": 86,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 27,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 20,
+          "F": -70,
+          "Q": 90,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 36,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 23,
+          "F": -70,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 15,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 30,
+          "F": -70,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 24,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 7,
+          "F": -63,
+          "Q": 70,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 3,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 14,
+          "F": -63,
+          "Q": 77,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 12,
+          "Dep": 70,
+          "kappa": 7,
+          "N": 17,
+          "F": -63,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 30,
+          "Dep": 70,
+          "kappa": 5,
+          "N": 19,
+          "F": -65,
+          "Q": 84,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 18,
+          "Dep": 70,
+          "kappa": 4,
+          "N": 27,
+          "F": -66,
+          "Q": 93,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 27,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 22,
+          "F": -70,
+          "Q": 92,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 6,
+          "Dep": 70,
+          "kappa": 4,
+          "N": 14,
+          "F": -66,
+          "Q": 80,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 15,
+          "Dep": 70,
+          "kappa": 2,
+          "N": 13,
+          "F": -68,
+          "Q": 81,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 33,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 15,
+          "F": -70,
+          "Q": 85,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 3,
+          "Dep": 70,
+          "kappa": 2,
+          "N": 23,
+          "F": -68,
+          "Q": 91,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 21,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 25,
+          "F": -70,
+          "Q": 95,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 30,
+          "Dep": 70,
+          "kappa": 0,
+          "N": 28,
+          "F": -70,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 70,
+      "maximum_F": -63
+    },
+    {
+      "input": "data/composite_source_control_458.json",
+      "m": 51,
+      "e": 4,
+      "source_G": [
+        51,
+        53,
+        149,
+        151
+      ],
+      "height": 30,
+      "baseline_Q": 114,
+      "baseline_F": -85,
+      "support_sum": 9,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 9,
+          "Dep": 94,
+          "kappa": 9,
+          "N": 29,
+          "F": -85,
+          "Q": 114,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 18,
+          "Dep": 94,
+          "kappa": 8,
+          "N": 26,
+          "F": -86,
+          "Q": 112,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 36,
+          "Dep": 94,
+          "kappa": 7,
+          "N": 22,
+          "F": -87,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 45,
+          "Dep": 94,
+          "kappa": 8,
+          "N": 22,
+          "F": -86,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 12,
+          "Dep": 94,
+          "kappa": 6,
+          "N": 18,
+          "F": -88,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 21,
+          "Dep": 94,
+          "kappa": 7,
+          "N": 19,
+          "F": -87,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 39,
+          "Dep": 94,
+          "kappa": 6,
+          "N": 14,
+          "F": -88,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 48,
+          "Dep": 94,
+          "kappa": 4,
+          "N": 9,
+          "F": -90,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 15,
+          "Dep": 94,
+          "kappa": 9,
+          "N": 29,
+          "F": -85,
+          "Q": 114,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 24,
+          "Dep": 94,
+          "kappa": 4,
+          "N": 17,
+          "F": -90,
+          "Q": 107,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 42,
+          "Dep": 94,
+          "kappa": 5,
+          "N": 17,
+          "F": -89,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 18,
+          "Dep": 94,
+          "kappa": 0,
+          "N": 5,
+          "F": -94,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 27,
+          "Dep": 94,
+          "kappa": 2,
+          "N": 8,
+          "F": -92,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 45,
+          "Dep": 94,
+          "kappa": 1,
+          "N": 4,
+          "F": -93,
+          "Q": 97,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 3,
+          "Dep": 94,
+          "kappa": 1,
+          "N": 5,
+          "F": -93,
+          "Q": 98,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 21,
+          "Dep": 94,
+          "kappa": 0,
+          "N": 0,
+          "F": -94,
+          "Q": 94,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 30,
+          "Dep": 94,
+          "kappa": 9,
+          "N": 29,
+          "F": -85,
+          "Q": 114,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 48,
+          "Dep": 94,
+          "kappa": 8,
+          "N": 24,
+          "F": -86,
+          "Q": 110,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 6,
+          "Dep": 94,
+          "kappa": 8,
+          "N": 25,
+          "F": -86,
+          "Q": 111,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 24,
+          "Dep": 94,
+          "kappa": 7,
+          "N": 21,
+          "F": -87,
+          "Q": 108,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 33,
+          "Dep": 94,
+          "kappa": 9,
+          "N": 24,
+          "F": -85,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 9,
+          "Dep": 94,
+          "kappa": 4,
+          "N": 12,
+          "F": -90,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 27,
+          "Dep": 94,
+          "kappa": 5,
+          "N": 12,
+          "F": -89,
+          "Q": 101,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 36,
+          "Dep": 94,
+          "kappa": 0,
+          "N": 0,
+          "F": -94,
+          "Q": 94,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 3,
+          "Dep": 94,
+          "kappa": 5,
+          "N": 20,
+          "F": -89,
+          "Q": 109,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 12,
+          "Dep": 94,
+          "kappa": 3,
+          "N": 15,
+          "F": -91,
+          "Q": 106,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 30,
+          "Dep": 94,
+          "kappa": 2,
+          "N": 10,
+          "F": -92,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 39,
+          "Dep": 94,
+          "kappa": 3,
+          "N": 11,
+          "F": -91,
+          "Q": 102,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 6,
+          "Dep": 94,
+          "kappa": 1,
+          "N": 7,
+          "F": -93,
+          "Q": 100,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 15,
+          "Dep": 94,
+          "kappa": 2,
+          "N": 7,
+          "F": -92,
+          "Q": 99,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 49,
+          "actual_top_residue": 33,
+          "Dep": 94,
+          "kappa": 1,
+          "N": 3,
+          "F": -93,
+          "Q": 96,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 42,
+          "Dep": 94,
+          "kappa": 0,
+          "N": 0,
+          "F": -94,
+          "Q": 94,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 94,
+      "maximum_F": -85
+    },
+    {
+      "input": "data/top_cap_control_461.json",
+      "m": 201,
+      "e": 4,
+      "source_G": [
+        201,
+        203,
+        593,
+        595
+      ],
+      "height": 75,
+      "baseline_Q": 484,
+      "baseline_F": -284,
+      "support_sum": 96,
+      "nonmultiplicity_deletion_gcds": [
+        1,
+        1,
+        1
+      ],
+      "normalized_nonflat_sparse_realizable": true,
+      "mirror_identities_checked": true,
+      "images": [
+        {
+          "unit": 1,
+          "actual_top_residue": 150,
+          "Dep": 364,
+          "kappa": 80,
+          "N": 200,
+          "F": -284,
+          "Q": 484,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 2,
+          "actual_top_residue": 99,
+          "Dep": 364,
+          "kappa": 70,
+          "N": 185,
+          "F": -294,
+          "Q": 479,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 4,
+          "actual_top_residue": 198,
+          "Dep": 364,
+          "kappa": 50,
+          "N": 150,
+          "F": -314,
+          "Q": 464,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 5,
+          "actual_top_residue": 147,
+          "Dep": 364,
+          "kappa": 36,
+          "N": 131,
+          "F": -328,
+          "Q": 459,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 7,
+          "actual_top_residue": 45,
+          "Dep": 364,
+          "kappa": 51,
+          "N": 155,
+          "F": -313,
+          "Q": 468,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 8,
+          "actual_top_residue": 195,
+          "Dep": 364,
+          "kappa": 34,
+          "N": 120,
+          "F": -330,
+          "Q": 450,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 10,
+          "actual_top_residue": 93,
+          "Dep": 364,
+          "kappa": 23,
+          "N": 88,
+          "F": -341,
+          "Q": 429,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 11,
+          "actual_top_residue": 42,
+          "Dep": 364,
+          "kappa": 39,
+          "N": 128,
+          "F": -325,
+          "Q": 453,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 13,
+          "actual_top_residue": 141,
+          "Dep": 364,
+          "kappa": 61,
+          "N": 135,
+          "F": -303,
+          "Q": 438,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 14,
+          "actual_top_residue": 90,
+          "Dep": 364,
+          "kappa": 56,
+          "N": 133,
+          "F": -308,
+          "Q": 441,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 16,
+          "actual_top_residue": 189,
+          "Dep": 364,
+          "kappa": 32,
+          "N": 92,
+          "F": -332,
+          "Q": 424,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 17,
+          "actual_top_residue": 138,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 110,
+          "F": -316,
+          "Q": 426,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 19,
+          "actual_top_residue": 36,
+          "Dep": 364,
+          "kappa": 49,
+          "N": 95,
+          "F": -315,
+          "Q": 410,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 20,
+          "actual_top_residue": 186,
+          "Dep": 364,
+          "kappa": 0,
+          "N": 0,
+          "F": -364,
+          "Q": 364,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 22,
+          "actual_top_residue": 84,
+          "Dep": 364,
+          "kappa": 28,
+          "N": 99,
+          "F": -336,
+          "Q": 435,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 23,
+          "actual_top_residue": 33,
+          "Dep": 364,
+          "kappa": 25,
+          "N": 95,
+          "F": -339,
+          "Q": 434,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 25,
+          "actual_top_residue": 132,
+          "Dep": 364,
+          "kappa": 0,
+          "N": 56,
+          "F": -364,
+          "Q": 420,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 26,
+          "actual_top_residue": 81,
+          "Dep": 364,
+          "kappa": 87,
+          "N": 165,
+          "F": -277,
+          "Q": 442,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 28,
+          "actual_top_residue": 180,
+          "Dep": 364,
+          "kappa": 70,
+          "N": 141,
+          "F": -294,
+          "Q": 435,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 29,
+          "actual_top_residue": 129,
+          "Dep": 364,
+          "kappa": 56,
+          "N": 120,
+          "F": -308,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 31,
+          "actual_top_residue": 27,
+          "Dep": 364,
+          "kappa": 42,
+          "N": 103,
+          "F": -322,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 32,
+          "actual_top_residue": 177,
+          "Dep": 364,
+          "kappa": 55,
+          "N": 110,
+          "F": -309,
+          "Q": 419,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 34,
+          "actual_top_residue": 75,
+          "Dep": 364,
+          "kappa": 56,
+          "N": 129,
+          "F": -308,
+          "Q": 437,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 35,
+          "actual_top_residue": 24,
+          "Dep": 364,
+          "kappa": 46,
+          "N": 115,
+          "F": -318,
+          "Q": 433,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 37,
+          "actual_top_residue": 123,
+          "Dep": 364,
+          "kappa": 29,
+          "N": 96,
+          "F": -335,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 38,
+          "actual_top_residue": 72,
+          "Dep": 364,
+          "kappa": 68,
+          "N": 128,
+          "F": -296,
+          "Q": 424,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 40,
+          "actual_top_residue": 171,
+          "Dep": 364,
+          "kappa": 8,
+          "N": 15,
+          "F": -356,
+          "Q": 371,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 41,
+          "actual_top_residue": 120,
+          "Dep": 364,
+          "kappa": 43,
+          "N": 110,
+          "F": -321,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 43,
+          "actual_top_residue": 18,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 116,
+          "F": -316,
+          "Q": 432,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 44,
+          "actual_top_residue": 168,
+          "Dep": 364,
+          "kappa": 58,
+          "N": 116,
+          "F": -306,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 46,
+          "actual_top_residue": 66,
+          "Dep": 364,
+          "kappa": 43,
+          "N": 97,
+          "F": -321,
+          "Q": 418,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 47,
+          "actual_top_residue": 15,
+          "Dep": 364,
+          "kappa": 42,
+          "N": 103,
+          "F": -322,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 49,
+          "actual_top_residue": 114,
+          "Dep": 364,
+          "kappa": 14,
+          "N": 57,
+          "F": -350,
+          "Q": 407,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 50,
+          "actual_top_residue": 63,
+          "Dep": 364,
+          "kappa": 2,
+          "N": 41,
+          "F": -362,
+          "Q": 403,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 52,
+          "actual_top_residue": 162,
+          "Dep": 364,
+          "kappa": 77,
+          "N": 156,
+          "F": -287,
+          "Q": 443,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 53,
+          "actual_top_residue": 111,
+          "Dep": 364,
+          "kappa": 74,
+          "N": 154,
+          "F": -290,
+          "Q": 444,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 55,
+          "actual_top_residue": 9,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 115,
+          "F": -316,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 56,
+          "actual_top_residue": 159,
+          "Dep": 364,
+          "kappa": 43,
+          "N": 111,
+          "F": -321,
+          "Q": 432,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 58,
+          "actual_top_residue": 57,
+          "Dep": 364,
+          "kappa": 41,
+          "N": 100,
+          "F": -323,
+          "Q": 423,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 59,
+          "actual_top_residue": 6,
+          "Dep": 364,
+          "kappa": 52,
+          "N": 102,
+          "F": -312,
+          "Q": 414,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 61,
+          "actual_top_residue": 105,
+          "Dep": 364,
+          "kappa": 51,
+          "N": 126,
+          "F": -313,
+          "Q": 439,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 62,
+          "actual_top_residue": 54,
+          "Dep": 364,
+          "kappa": 35,
+          "N": 108,
+          "F": -329,
+          "Q": 437,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 64,
+          "actual_top_residue": 153,
+          "Dep": 364,
+          "kappa": 62,
+          "N": 123,
+          "F": -302,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 65,
+          "actual_top_residue": 102,
+          "Dep": 364,
+          "kappa": 52,
+          "N": 107,
+          "F": -312,
+          "Q": 419,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 68,
+          "actual_top_residue": 150,
+          "Dep": 364,
+          "kappa": 45,
+          "N": 115,
+          "F": -319,
+          "Q": 434,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 70,
+          "actual_top_residue": 48,
+          "Dep": 364,
+          "kappa": 45,
+          "N": 108,
+          "F": -319,
+          "Q": 427,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 71,
+          "actual_top_residue": 198,
+          "Dep": 364,
+          "kappa": 42,
+          "N": 103,
+          "F": -322,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 73,
+          "actual_top_residue": 96,
+          "Dep": 364,
+          "kappa": 23,
+          "N": 78,
+          "F": -341,
+          "Q": 419,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 74,
+          "actual_top_residue": 45,
+          "Dep": 364,
+          "kappa": 10,
+          "N": 61,
+          "F": -354,
+          "Q": 415,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 76,
+          "actual_top_residue": 144,
+          "Dep": 364,
+          "kappa": 92,
+          "N": 156,
+          "F": -272,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 77,
+          "actual_top_residue": 93,
+          "Dep": 364,
+          "kappa": 77,
+          "N": 133,
+          "F": -287,
+          "Q": 420,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 79,
+          "actual_top_residue": 192,
+          "Dep": 364,
+          "kappa": 57,
+          "N": 109,
+          "F": -307,
+          "Q": 416,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 80,
+          "actual_top_residue": 141,
+          "Dep": 364,
+          "kappa": 26,
+          "N": 50,
+          "F": -338,
+          "Q": 388,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 82,
+          "actual_top_residue": 39,
+          "Dep": 364,
+          "kappa": 60,
+          "N": 124,
+          "F": -304,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 83,
+          "actual_top_residue": 189,
+          "Dep": 364,
+          "kappa": 51,
+          "N": 118,
+          "F": -313,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 85,
+          "actual_top_residue": 87,
+          "Dep": 364,
+          "kappa": 56,
+          "N": 114,
+          "F": -308,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 86,
+          "actual_top_residue": 36,
+          "Dep": 364,
+          "kappa": 47,
+          "N": 101,
+          "F": -317,
+          "Q": 418,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 88,
+          "actual_top_residue": 135,
+          "Dep": 364,
+          "kappa": 73,
+          "N": 119,
+          "F": -291,
+          "Q": 410,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 89,
+          "actual_top_residue": 84,
+          "Dep": 364,
+          "kappa": 58,
+          "N": 92,
+          "F": -306,
+          "Q": 398,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 91,
+          "actual_top_residue": 183,
+          "Dep": 364,
+          "kappa": 49,
+          "N": 89,
+          "F": -315,
+          "Q": 404,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 92,
+          "actual_top_residue": 132,
+          "Dep": 364,
+          "kappa": 37,
+          "N": 66,
+          "F": -327,
+          "Q": 393,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 94,
+          "actual_top_residue": 30,
+          "Dep": 364,
+          "kappa": 46,
+          "N": 73,
+          "F": -318,
+          "Q": 391,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 95,
+          "actual_top_residue": 180,
+          "Dep": 364,
+          "kappa": 50,
+          "N": 66,
+          "F": -314,
+          "Q": 380,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 97,
+          "actual_top_residue": 78,
+          "Dep": 364,
+          "kappa": 35,
+          "N": 44,
+          "F": -329,
+          "Q": 373,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 98,
+          "actual_top_residue": 27,
+          "Dep": 364,
+          "kappa": 30,
+          "N": 45,
+          "F": -334,
+          "Q": 379,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 100,
+          "actual_top_residue": 126,
+          "Dep": 364,
+          "kappa": 6,
+          "N": 6,
+          "F": -358,
+          "Q": 364,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 101,
+          "actual_top_residue": 75,
+          "Dep": 364,
+          "kappa": 90,
+          "N": 215,
+          "F": -274,
+          "Q": 489,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 103,
+          "actual_top_residue": 174,
+          "Dep": 364,
+          "kappa": 66,
+          "N": 176,
+          "F": -298,
+          "Q": 474,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 104,
+          "actual_top_residue": 123,
+          "Dep": 364,
+          "kappa": 61,
+          "N": 177,
+          "F": -303,
+          "Q": 480,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 106,
+          "actual_top_residue": 21,
+          "Dep": 364,
+          "kappa": 46,
+          "N": 155,
+          "F": -318,
+          "Q": 473,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 107,
+          "actual_top_residue": 171,
+          "Dep": 364,
+          "kappa": 50,
+          "N": 148,
+          "F": -314,
+          "Q": 462,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 109,
+          "actual_top_residue": 69,
+          "Dep": 364,
+          "kappa": 59,
+          "N": 155,
+          "F": -305,
+          "Q": 460,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 110,
+          "actual_top_residue": 18,
+          "Dep": 364,
+          "kappa": 47,
+          "N": 132,
+          "F": -317,
+          "Q": 449,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 112,
+          "actual_top_residue": 117,
+          "Dep": 364,
+          "kappa": 38,
+          "N": 129,
+          "F": -326,
+          "Q": 455,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 113,
+          "actual_top_residue": 66,
+          "Dep": 364,
+          "kappa": 23,
+          "N": 102,
+          "F": -341,
+          "Q": 443,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 115,
+          "actual_top_residue": 165,
+          "Dep": 364,
+          "kappa": 49,
+          "N": 120,
+          "F": -315,
+          "Q": 435,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 116,
+          "actual_top_residue": 114,
+          "Dep": 364,
+          "kappa": 40,
+          "N": 107,
+          "F": -324,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 118,
+          "actual_top_residue": 12,
+          "Dep": 364,
+          "kappa": 45,
+          "N": 103,
+          "F": -319,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 119,
+          "actual_top_residue": 162,
+          "Dep": 364,
+          "kappa": 36,
+          "N": 97,
+          "F": -328,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 121,
+          "actual_top_residue": 60,
+          "Dep": 364,
+          "kappa": 70,
+          "N": 171,
+          "F": -294,
+          "Q": 465,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 122,
+          "actual_top_residue": 9,
+          "Dep": 364,
+          "kappa": 39,
+          "N": 112,
+          "F": -325,
+          "Q": 437,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 124,
+          "actual_top_residue": 108,
+          "Dep": 364,
+          "kappa": 19,
+          "N": 88,
+          "F": -345,
+          "Q": 433,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 125,
+          "actual_top_residue": 57,
+          "Dep": 364,
+          "kappa": 4,
+          "N": 65,
+          "F": -360,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 127,
+          "actual_top_residue": 156,
+          "Dep": 364,
+          "kappa": 86,
+          "N": 160,
+          "F": -278,
+          "Q": 438,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 128,
+          "actual_top_residue": 105,
+          "Dep": 364,
+          "kappa": 73,
+          "N": 143,
+          "F": -291,
+          "Q": 434,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 130,
+          "actual_top_residue": 3,
+          "Dep": 364,
+          "kappa": 54,
+          "N": 118,
+          "F": -310,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 131,
+          "actual_top_residue": 153,
+          "Dep": 364,
+          "kappa": 51,
+          "N": 113,
+          "F": -313,
+          "Q": 426,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 133,
+          "actual_top_residue": 51,
+          "Dep": 364,
+          "kappa": 51,
+          "N": 106,
+          "F": -313,
+          "Q": 419,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 136,
+          "actual_top_residue": 99,
+          "Dep": 364,
+          "kappa": 44,
+          "N": 114,
+          "F": -320,
+          "Q": 434,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 137,
+          "actual_top_residue": 48,
+          "Dep": 364,
+          "kappa": 34,
+          "N": 98,
+          "F": -330,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 139,
+          "actual_top_residue": 147,
+          "Dep": 364,
+          "kappa": 61,
+          "N": 113,
+          "F": -303,
+          "Q": 416,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 140,
+          "actual_top_residue": 96,
+          "Dep": 364,
+          "kappa": 45,
+          "N": 95,
+          "F": -319,
+          "Q": 414,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 142,
+          "actual_top_residue": 195,
+          "Dep": 364,
+          "kappa": 44,
+          "N": 119,
+          "F": -320,
+          "Q": 439,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 143,
+          "actual_top_residue": 144,
+          "Dep": 364,
+          "kappa": 55,
+          "N": 121,
+          "F": -309,
+          "Q": 430,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 145,
+          "actual_top_residue": 42,
+          "Dep": 364,
+          "kappa": 53,
+          "N": 110,
+          "F": -311,
+          "Q": 421,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 146,
+          "actual_top_residue": 192,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 106,
+          "F": -316,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 148,
+          "actual_top_residue": 90,
+          "Dep": 364,
+          "kappa": 22,
+          "N": 67,
+          "F": -342,
+          "Q": 409,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 149,
+          "actual_top_residue": 39,
+          "Dep": 364,
+          "kappa": 19,
+          "N": 65,
+          "F": -345,
+          "Q": 410,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 151,
+          "actual_top_residue": 138,
+          "Dep": 364,
+          "kappa": 94,
+          "N": 180,
+          "F": -270,
+          "Q": 450,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 152,
+          "actual_top_residue": 87,
+          "Dep": 364,
+          "kappa": 82,
+          "N": 164,
+          "F": -282,
+          "Q": 446,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 154,
+          "actual_top_residue": 186,
+          "Dep": 364,
+          "kappa": 54,
+          "N": 118,
+          "F": -310,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 155,
+          "actual_top_residue": 135,
+          "Dep": 364,
+          "kappa": 53,
+          "N": 124,
+          "F": -311,
+          "Q": 435,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 157,
+          "actual_top_residue": 33,
+          "Dep": 364,
+          "kappa": 38,
+          "N": 105,
+          "F": -326,
+          "Q": 431,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 158,
+          "actual_top_residue": 183,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 105,
+          "F": -316,
+          "Q": 421,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 160,
+          "actual_top_residue": 81,
+          "Dep": 364,
+          "kappa": 53,
+          "N": 111,
+          "F": -311,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 161,
+          "actual_top_residue": 30,
+          "Dep": 364,
+          "kappa": 88,
+          "N": 206,
+          "F": -276,
+          "Q": 482,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 163,
+          "actual_top_residue": 129,
+          "Dep": 364,
+          "kappa": 28,
+          "N": 93,
+          "F": -336,
+          "Q": 429,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 164,
+          "actual_top_residue": 78,
+          "Dep": 364,
+          "kappa": 67,
+          "N": 125,
+          "F": -297,
+          "Q": 422,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 166,
+          "actual_top_residue": 177,
+          "Dep": 364,
+          "kappa": 50,
+          "N": 106,
+          "F": -314,
+          "Q": 420,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 167,
+          "actual_top_residue": 126,
+          "Dep": 364,
+          "kappa": 40,
+          "N": 92,
+          "F": -324,
+          "Q": 416,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 169,
+          "actual_top_residue": 24,
+          "Dep": 364,
+          "kappa": 41,
+          "N": 111,
+          "F": -323,
+          "Q": 434,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 170,
+          "actual_top_residue": 174,
+          "Dep": 364,
+          "kappa": 54,
+          "N": 118,
+          "F": -310,
+          "Q": 428,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 172,
+          "actual_top_residue": 72,
+          "Dep": 364,
+          "kappa": 40,
+          "N": 101,
+          "F": -324,
+          "Q": 425,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 173,
+          "actual_top_residue": 21,
+          "Dep": 364,
+          "kappa": 26,
+          "N": 80,
+          "F": -338,
+          "Q": 418,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 175,
+          "actual_top_residue": 120,
+          "Dep": 364,
+          "kappa": 9,
+          "N": 56,
+          "F": -355,
+          "Q": 411,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 176,
+          "actual_top_residue": 69,
+          "Dep": 364,
+          "kappa": 96,
+          "N": 165,
+          "F": -268,
+          "Q": 433,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 178,
+          "actual_top_residue": 168,
+          "Dep": 364,
+          "kappa": 71,
+          "N": 126,
+          "F": -293,
+          "Q": 419,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 179,
+          "actual_top_residue": 117,
+          "Dep": 364,
+          "kappa": 68,
+          "N": 122,
+          "F": -296,
+          "Q": 418,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 181,
+          "actual_top_residue": 15,
+          "Dep": 364,
+          "kappa": 96,
+          "N": 221,
+          "F": -268,
+          "Q": 489,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 182,
+          "actual_top_residue": 165,
+          "Dep": 364,
+          "kappa": 47,
+          "N": 126,
+          "F": -317,
+          "Q": 443,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 184,
+          "actual_top_residue": 63,
+          "Dep": 364,
+          "kappa": 48,
+          "N": 111,
+          "F": -316,
+          "Q": 427,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 185,
+          "actual_top_residue": 12,
+          "Dep": 364,
+          "kappa": 64,
+          "N": 129,
+          "F": -300,
+          "Q": 429,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 187,
+          "actual_top_residue": 111,
+          "Dep": 364,
+          "kappa": 40,
+          "N": 88,
+          "F": -324,
+          "Q": 412,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 188,
+          "actual_top_residue": 60,
+          "Dep": 364,
+          "kappa": 35,
+          "N": 86,
+          "F": -329,
+          "Q": 415,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 190,
+          "actual_top_residue": 159,
+          "Dep": 364,
+          "kappa": 57,
+          "N": 93,
+          "F": -307,
+          "Q": 400,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 191,
+          "actual_top_residue": 108,
+          "Dep": 364,
+          "kappa": 73,
+          "N": 133,
+          "F": -291,
+          "Q": 424,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 193,
+          "actual_top_residue": 6,
+          "Dep": 364,
+          "kappa": 62,
+          "N": 101,
+          "F": -302,
+          "Q": 403,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 194,
+          "actual_top_residue": 156,
+          "Dep": 364,
+          "kappa": 45,
+          "N": 66,
+          "F": -319,
+          "Q": 385,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 196,
+          "actual_top_residue": 54,
+          "Dep": 364,
+          "kappa": 60,
+          "N": 90,
+          "F": -304,
+          "Q": 394,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 197,
+          "actual_top_residue": 3,
+          "Dep": 364,
+          "kappa": 46,
+          "N": 71,
+          "F": -318,
+          "Q": 389,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 199,
+          "actual_top_residue": 102,
+          "Dep": 364,
+          "kappa": 26,
+          "N": 36,
+          "F": -338,
+          "Q": 374,
+          "exact_column_phase_formula_agreement": true
+        },
+        {
+          "unit": 200,
+          "actual_top_residue": 51,
+          "Dep": 364,
+          "kappa": 16,
+          "N": 21,
+          "F": -348,
+          "Q": 369,
+          "exact_column_phase_formula_agreement": true
+        }
+      ],
+      "minimum_Q": 364,
+      "maximum_F": -268
+    }
+  ],
+  "unit_images": 468,
+  "explicit_new_sources_reconstructed": 0,
+  "universal_positivity_claim": false,
+  "realizability_dependency": "E455 strict lex realization plus E462 CRT; scalar dilation alone has cofactor",
+  "counts_include_repeated_structures": true,
+  "selected_profile": null,
+  "negative_Q_images": 0,
+  "nonflat_positive_F_images": 0
+}

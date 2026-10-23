@@ -1,66 +1,66 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 17:40 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 18:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
 
-**E461–E463 checkpoint: free cap accounted; fixed-rank one-pass returns REFUTED.**
-For EVERY source/pivot, constructed same-residue values may first be capped at the
-largest integer of that residue <=actual M. Capped values need not belong to S;
-this is a scalar bound, not a source-word/downset operation. Trade credit thereafter
-must be NET after the cap. This already pays ALL four recent raw-negative controls:
-31:-156->156,39:-144->324,51:-192->564,38:-8->262. On the38source, raw22-shadow
-credit adds only ONE pivot credit after cap, giving267. Do not overstate raw policy
-repairs as an unpaid capped/combined Wilf obstruction.
-This is the existing max(0,column count) safeguard: Lcap=e*Ccap-c with Ccap<=ell.
-It corrects the raw comparisons; it is NOT a new positivity theorem. Full reconstruction
-would simply recover the original objective, so uniform payment remains essential.
+**E464–E466 checkpoint: strict-boundary full-Q reduction; exact unit orbits closed.**
+For the STRONGER full-Q theorem, E455/E462 allow us to assume every Apéry element
+has a UNIQUE exponent-vector factorization and every missing canonical direction /
+minimal excluded word has a genuine gap>=m. D,residues,actualtop,conductorphase,Q
+and all cofactor1 conditions are retained. Thus proving Q>=0 on this strict class
+would prove Q>=0 on ALL normalized sources, hence Wilf with the recorded complements.
+This does NOT reduce Wilf merely to Wilf-on-unique-factorization sources: W/R change.
+Canonical additions z_i+z_j=z_s remain tight; their certificate rows MUST remain.
+Failed staged payers keep the SAME countergeometry after strictification. Root and
+the SAME geometric agent independently checked all quantifiers; no Lean/novelty claim.
 
-The natural CAP-TRANSFER (W(U)>=0 implies Lcap>=0) is FALSE. New single fixed control
-S=<201,203,593,595>,U=N,allunits/cofactor1/deep/sparse: c15025,g7585,W14735,M15225;
-rawL-31809,free capcredit7400,Lcap-2209.36 explicit backward source words supply
-NET2090credits, givingL6151 while leavingexcess2146; exact reconstruction unnecessary.
-It is ALREADY SUPP-covered (Q484,R14251), not a resistant Wilf source or combined
-target falsifier. Existing C and independent coin/ideal-power/column checks pass.
-Only this ONE new source was evaluated; no census, policy feedback or GPU rental.
+**New realizable profile action:** ANY unit u modulo m can multiply all primitive
+residues while preserving the abstract tile and actual top WORD. Scalar dilation
+plus strictification/CRT guarantees a genuine cofactor1 realization, unlike arbitrary
+phase scores. Every image of ONLY nine cached tiles was checked on Fejer:468 images,
+including repeats, BOTH column/phase formulas and mirror identities agree. No negativeQ
+or nonflatF>0. MinQ at m61/63/67/71 is45/56/66/68; maxF-5/-3/-21/-16. Othercached
+m38/31/39/51/201 minQ101/50/70/94/364. ZERO explicit new image sources reconstructed.
+At71, unit36 improvesF-20->-16, still support-covered. These finite orbits are CLOSED;
+no automatic new seeds/counts/feedback/rental. Data: p39/data/unit_orbit_465.json.
 
-**New GENERAL paper component:** choose signed lifts h_j of unit-relabeled P_j mod a,
-alpha=min_(h>0)P/h,beta=min_(h<0)P/(-h), missing sign infinity. Distinct Apéry residues
-force floor(M/alpha)+floor(M/beta)+1>=a. On the201 control it gives q>=74, and explicit
-returns plus net-cap accounting prove L>=4814 symbolically (exact6151). The width
-lemma alone does not pay a universal finite correction. No novelty/Lean claim.
+**Full-Q flux artifact:** outward weighted edge flux B(t) satisfies exact prefix
+dominance, integralB=sumAp, and Q=Dep-g+sum_(k>=1)B(M-km). The unresolved theorem
+is an anchored sampling bound with allowance Dep+(m-1)/2. Actual-top exposure does
+NOT force unimodality or either quadrature sign: the reviewed paper guard
+<5t+3,5t+4,20t+11,20t²+21t+5> has a drop then rise and negative discrepancy.
+It has Q>0 and type3<e4, so it falsifies ONLY that unconditional shortcut, not the
+corrected full-Q target or a hypothetical-counterexample variant. No family run.
 
-**E463 uniform mechanism falsifier, independently reviewed by BOTH SAME agents:**
-For EVERY fixed r>=1, the envelope consisting of ALL z+sum_(j in I)k_j*e_j with
-z in the INITIAL canonical D_U,|I|<=r,k_j UNBOUNDED, plus the arithmetic cap, can
-still have L<0 on genuine cofactor1/deep/sparse sources. Construction d=r+2,
-a=B^d+2, original labels a+2,3a-2B,...,3a-2B^(d-1),Bodd sufficientlylarge. DU has
-<=1 backward occurrence; M lies[aB,(3d-2)aB]. At mostO(B^(d-1)) ofa~B^d residues
-have a return <=M, so the others remain capped nearM and L<0. This is a PAPER
-counterexample to a global payer, not a family-W theorem or numerical family run.
-It does NOT refute sequential/evolving coupled returns, coordination growing with e,
-general mixed-output packings, full reserves, or the combined max(Q,L)>=0 target.
-Stop one-pass fixed-rank catalogue patches; don't implement/rent for this false claim.
+**Joint raw-word energy payer REFUTED:** counting ALL original factorizations gives
+ell>=A²/E, but the sufficient E/A²<=e/c is false, even inside E448's conductor
+cutoff. One fixed Fejer C/independent membership/column/count-DP control:
+S=<24,27,30,1003,1004>,c1098,g716,W812,Q84,R728,A12635,E754417;
+eA²-cE=-30133741. M1121<=cutoff16560,allcofactors1/deep/sparse. It is already
+SUPP-covered, not a combined-target/Wilf failure. Paper S_(b,N)=<6b,6b+3,6b+6,N,N+1>
+shows global energy failure at arbitrarily large m (fixedb then Nlarge); that
+asymptotic proof alone supplies NO cutoff comparison. Only the24control was computed.
+Weighted disjoint-value-band Cauchy bounds remain valid but need a uniform overlap
+estimate; refining to singleton bands merely reconstructs ell. No sign theorem there.
 
-**E462 general Q-normalization:** any genuine multiplicity canonical tile with d>=2
-can retain D,primitive residues,e,actualtop,Q at arbitrarilyhigh realizations while
-making gcd(ALL non-m primitives)=1. E455 strict lex buffering plus a primitive
-interior direction and finite-prime CRT avoidance proves it; all OTHER leave-one-out
-gcds stay fixed. W sign is NOT preserved. Thus the proposed Q<0=>cofactor bridge
-reduces to: some prime p|m has EXACTLY ONE original primitive residue nonzero modp.
-This remains UNKNOWN. Sharp Kneser/popular periodicity alone fails that bridge on
-the paperZ35 two-coset guard, which has all cofactors1; no Q<0 is asserted there.
+**Retained E461–E463 guards:** free arithmetic caps are the EXISTING nonnegative
+column-count safeguard, not a new positivity principle; net credits avoid overlap.
+All four old raw-negative controls become cap-positive. CAP-TRANSFER fails at201,
+where36 explicit returns repair-2209->6151 (alreadyQ484-covered). Every fixed-rank
+one-pass return catalogue fails uniformly even with unbounded powers. Neither result
+refutes evolving joint constructions/full reserves. E462's alternative one-ORIGINAL-
+label subgroup bridge for Q<0 remains UNKNOWN; sharp periodicity is insufficient.
 
-**Next universal obligations:** (1) prove a quantitative JOINT original-word payment
-after cap, keeping ALL reserves and Q fallback; neither a fixed degree nor a fixed
-number of one-pass free coordinates suffices; (2) full actual-phase Q<0 must imply
-the one-original-label subgroup obstruction, not just periodicity; (3) the all-profile
-coupled finite affine budget remains available, without claiming LP exactness proves
-its sign. Stop the named failed payers, not directed discovery. A new compute campaign
-requires a precise changed predicate/budget after proof attempt, not the old resistant-
-seed prerequisite. All fixed Fejer jobs finished; no rental or agent job remains.
+**Next universal obligations:** full cyclic-label payment on the strict-boundary
+class (strongQ target), genuinely joint source-value overlaps with ALL reserves
+(weaker max(Q,L) target), and the full coupled finite affine budget remain distinct
+active lines. Stop unconditional flux monotonicity, raw uniform word-energy and the
+closed orbit test. No universal sign or actual counterexample; all fixed Fejer jobs
+finished, same TWO agents done, no GPU rental/new launch. Directed NEW-predicate
+discovery remains authorized; do not reinstate the old resistant-seed prerequisite.
 
 **E457–E460 checkpoint: standalone unit/corner payer REFUTED; compatible shadow verified.**
 The latest advisor's51 control and both31 restoration orders are correct. A new proof
@@ -802,18 +802,29 @@ top_cap_support_verified_461.json. No new C optimizer, CUDA kernel or search mod
 The E462 CRT and E463 fixed-rank theorems are paper proofs, independently reviewed;
 no numerical family data or Lean formalization is claimed.
 
+**E464/E465 implementations:** verify_probe.py --unit-orbit-check INPUTS... OUTPUT
+loads ONLY cached promoted lex tiles, checks each unit image by explicit columns,
+phase distances and both mirror identities; it reports normalized realization gates,
+including all non-m deletion gcds. --factorization-energy-check RAW_SUPPORT OUTPUT
+independently reconstructs one source, compares ALL C support fields and counts all
+original-generator words belowc, with exact rational energy and E448-cutoff checks.
+Data: p39/data/unit_orbit_465.json,energy_control_raw_464.json,
+energy_control_verified_464.json. No new C search, solver, CUDA or optimizer path.
+E466 strict-boundary normalization is PAPER ONLY; actual primitive values or W signs
+are not claimed preserved. Exact reproduction is in EXPERIMENTS E464/E465.
+
 ## Current attempt and next action
 
-**Next proof task:** derive a uniform JOINT credit quota after the FREE arithmetic
-top cap, using ORIGINAL source relations, macroscopic mixed inputs and composite
-outputs, and full reserves. Quantify before optimizing a policy: E463 refutes every
-fixed-rank one-pass return envelope, even with unbounded powers. An evolving construction
-may coordinate arbitrarily many original labels; its validity/termination alone does
-not prove payment. The weakest combined sufficient target remains
-`max(Q(S),best valid capped/trade L(S))>=0` throughout the normalized domain. E462
-sharpens the distinct full-Q alternative to the one-original-label subgroup bridge;
-ordinary/popular periodicity is insufficient. The original coupled finite-budget
-route is the third active mathematical alternative. No special-e Wilf programme.
+**Next proof task:** exploit E466's strict-exit/unique-Apéry-factorization normalization
+for the STRONGER full-Q theorem, retaining cyclic labels and actual-top exposure.
+Any resulting theorem must assert Q>=0 (or sufficient allocation), not merely Wilf on
+the new source; W sign does not transfer. FLUX-Q needs the corrected phase-sampling
+bound, not unimodality or stochastic dominance alone. In parallel the weakest combined
+target remains `max(Q,best valid capped/tradeL)>=0`, using original joint relations and
+full reserves. E464 rules out raw factorization energy even inside the cutoff; a
+weighted source count needs an arithmetic estimate, not finer bins/exact reconstruction.
+The original coupled affine finite-budget problem is the third active alternative.
+No special-e/m/depth Wilf programme, no automatic larger orbit/profile census.
 
 Directed discovery remains authorized, with a named predicate and budget; the old
 resistant-seed prerequisite stays superseded. Any new policy search should report both
