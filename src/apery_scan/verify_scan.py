@@ -35,15 +35,11 @@ def verify_exchanges(record):
             'full_covers': len(full), 'one_hole_covers': len(one), 'affine_orbit_size': len(orbit)}
 
 
-def verify(record):
-    m = record['m']
-    supplied = record['input_generators']
-    w = record['w']
+def coin_reconstruct(m, supplied, bound):
+    """Finite unbounded-coin closure, independent of the cyclic scan."""
     assert m >= 2 and all(p > m for p in supplied)
-    assert len(w) == m and w[0] == 0 and all(v >= 0 and v % m == s for s, v in enumerate(w))
     # Exact unbounded coin closure: binary copies of each coin realize all counts
     # needed below the finite bound. This algorithm does not use shortest paths.
-    bound = max(max(w) + m, max(supplied, default=m))
     assert bound <= 5000000, 'finite-membership audit bound exceeded; do not accept unchecked'
     mask = (1 << (bound + 1)) - 1
     bits = 1
@@ -58,12 +54,25 @@ def verify(record):
     member = bits.to_bytes((bound + 8) // 8, 'little')
     contains = lambda x: bool(member[x // 8] & (1 << (x % 8)))
     actual_w = [next(v for v in range(s, bound + 1, m) if contains(v)) for s in range(m)]
-    assert actual_w == w and minimal == record['generators']
     gaps = (~bits) & mask
     c = gaps.bit_length()
     g = gaps.bit_count()
     e = len(minimal)
     assert ((bits >> c) & ((1 << m) - 1)) == (1 << m) - 1
+    return {'m':m,'e':e,'c':c,'g':g,'W':e*(c-g)-c,'generators':minimal,'w':actual_w}
+
+
+def verify(record):
+    m = record['m']
+    supplied = record['input_generators']
+    w = record['w']
+    assert m >= 2 and all(p > m for p in supplied)
+    assert len(w) == m and w[0] == 0 and all(v >= 0 and v % m == s for s, v in enumerate(w))
+    bound = max(max(w) + m, max(supplied, default=m))
+    reconstructed = coin_reconstruct(m, supplied, bound)
+    actual_w, minimal = reconstructed['w'], reconstructed['generators']
+    assert actual_w == w and minimal == record['generators']
+    e,c,g = (reconstructed[k] for k in ('e','c','g'))
     assert (e, c, g, e * (c - g) - c) == tuple(record[k] for k in ('e', 'c', 'g', 'W'))
     for s in range(m):
         for p in supplied:

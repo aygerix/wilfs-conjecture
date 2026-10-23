@@ -1440,3 +1440,24 @@ directly by counting one residue class and summing, so it depends on no unverifi
 external denumerant formula. Cauchy-Schwarz, divergence and summation by parts are
 elementary tools, not claimed new. The new application/control does not establish
 a uniform overlap or phase-sampling bound. No absence-of-prior-work assertion.
+
+### E467–E469: exact ray exits and constructive carry pairing (2026-10-23)
+
+Checked the existing E432–E437 support/Hall record BEFORE adopting a whole-kernel
+capacity bound; E435 already refutes it. That is reuse of prior project evidence,
+not a new result. RAW-Q follows directly from those cardinality identities with the
+previously discarded residue reserve restored.
+
+Targeted web searches for Wilf/cyclic carry/column inequalities and primitive Kunz
+coordinates supplied no external theorem USED to pay the remaining sign. The relevant
+primary primitive-region framework remains [Brower–McDonough–O'Neill2401.06025](https://arxiv.org/abs/2401.06025),
+already read in E453–E455. E468 uses this project's E455 exact lex rows directly,
+including a separately explicit primitive-target strictness guard; it is not claimed
+a complete implementation of their fan walk. First integer failure of an affine
+inequality is elementary, not a new general algorithm.
+
+E469's reverse-indexed ceiling pairing and actual-top residue reflection are proved
+directly. The numerical axis/inversion count was already SUPP-WILF/E432; only an
+explicit physical slot assignment is added. No Beatty-sequence theorem, unverified
+external matching theorem, priority or absence-of-prior-work assertion is used.
+The reflection capacity controls refute a specified local rule, not global payment.

@@ -1,66 +1,62 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 18:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 18:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
 
-**E464–E466 checkpoint: strict-boundary full-Q reduction; exact unit orbits closed.**
-For the STRONGER full-Q theorem, E455/E462 allow us to assume every Apéry element
-has a UNIQUE exponent-vector factorization and every missing canonical direction /
-minimal excluded word has a genuine gap>=m. D,residues,actualtop,conductorphase,Q
-and all cofactor1 conditions are retained. Thus proving Q>=0 on this strict class
-would prove Q>=0 on ALL normalized sources, hence Wilf with the recorded complements.
-This does NOT reduce Wilf merely to Wilf-on-unique-factorization sources: W/R change.
-Canonical additions z_i+z_j=z_s remain tight; their certificate rows MUST remain.
-Failed staged payers keep the SAME countergeometry after strictification. Root and
-the SAME geometric agent independently checked all quantifiers; no Lean/novelty claim.
+**E467–E469 checkpoint: explicit axis payment; one exact boundary probe closed.**
+Retaining the FULL missing-residue reserve cancels the alias accounting:
 
-**New realizable profile action:** ANY unit u modulo m can multiply all primitive
-residues while preserving the abstract tile and actual top WORD. Scalar dilation
-plus strictification/CRT guarantees a genuine cofactor1 realization, unlike arbitrary
-phase scores. Every image of ONLY nine cached tiles was checked on Fejer:468 images,
-including repeats, BOTH column/phase formulas and mirror identities agree. No negativeQ
-or nonflatF>0. MinQ at m61/63/67/71 is45/56/66/68; maxF-5/-3/-21/-16. Othercached
-m38/31/39/51/201 minQ101/50/70/94/364. ZERO explicit new image sources reconstructed.
-At71, unit36 improvesF-20->-16, still support-covered. These finite orbits are CLOSED;
-no automatic new seeds/counts/feedback/rental. Data: p39/data/unit_orbit_465.json.
+    Q=Dep+V-K, K=sum_D floor(z.delta/m),
+    V=sum_(internal edges u->u+ej)(u_j+1)*[phase edge wraps].
 
-**Full-Q flux artifact:** outward weighted edge flux B(t) satisfies exact prefix
-dominance, integralB=sumAp, and Q=Dep-g+sum_(k>=1)B(M-km). The unresolved theorem
-is an anchored sampling bound with allowance Dep+(m-1)/2. Actual-top exposure does
-NOT force unimodality or either quadrature sign: the reviewed paper guard
-<5t+3,5t+4,20t+11,20t²+21t+5> has a drop then rise and negative discrepancy.
-It has Q>0 and type3<e4, so it falsifies ONLY that unconditional shortcut, not the
-corrected full-Q target or a hypothetical-counterexample variant. No family run.
+The universal full-Q obligation is K<=Dep+V. E469 now explicitly injects EVERY
+single-coordinate carry into physical wrapped-edge slots by a reverse-indexed
+Beatty pairing. It pays all descendants, not just a first wrap. Leftover slots
+number EXACTLYN, the old numerical identity; this is a constructive component,
+not a new numerical bound or a positivity theorem. Root/SAME parity agent checked
+the paper proof. Mixedkappa still needs a JOINT assignment to unused wraps andDep.
 
-**Joint raw-word energy payer REFUTED:** counting ALL original factorizations gives
-ell>=A²/E, but the sufficient E/A²<=e/c is false, even inside E448's conductor
-cutoff. One fixed Fejer C/independent membership/column/count-DP control:
-S=<24,27,30,1003,1004>,c1098,g716,W812,Q84,R728,A12635,E754417;
-eA²-cE=-30133741. M1121<=cutoff16560,allcofactors1/deep/sparse. It is already
-SUPP-covered, not a combined-target/Wilf failure. Paper S_(b,N)=<6b,6b+3,6b+6,N,N+1>
-shows global energy failure at arbitrarily large m (fixedb then Nlarge); that
-asymptotic proof alone supplies NO cutoff comparison. Only the24control was computed.
-Weighted disjoint-value-band Cauchy bounds remain valid but need a uniform overlap
-estimate; refining to singleton bands merely reconstructs ell. No sign theorem there.
+**Reflection diagnosis:** actual-top involution h has isotone
+tau=(w_z+w_hz-M)/m and self-dual order-convex blocks D intersect(C-D). Under E466,
+tau increases strictly at reflected missing edges. However forced edgewise Dep
+transport fails: reflected parents may be maximal or undersized. OLD19 already
+shows both; no new old19 computation. On cached NONFLAT63, the genuine mixed token
+454+492=946 reflects to maximal784=477+307, regardless of last generator order.
+This stops ONLY the last-edge-reflection-to-Dep rule; unused wraps/other slots/full
+reserves may pay. Q56,W708 cover the source. The axis map remains valid.
 
-**Retained E461–E463 guards:** free arithmetic caps are the EXISTING nonnegative
-column-count safeguard, not a new positivity principle; net credits avoid overlap.
-All four old raw-negative controls become cap-positive. CAP-TRANSFER fails at201,
-where36 explicit returns repair-2209->6151 (alreadyQ484-covered). Every fixed-rank
-one-pass return catalogue fails uniformly even with unbounded powers. Neither result
-refutes evolving joint constructions/full reserves. E462's alternative one-ORIGINAL-
-label subgroup bridge for Q<0 remains UNKNOWN; sharp periodicity is insufficient.
+**E468 complete on Fejer:** ONLY cached63 endpoint,242 exact signed support1/2
+directions,397 targets,349distinct vectors/309eligible; all349 evaluated, no skipped
+or truncated points. BestF stays-3,minimumQ52,0negativeW/eligibleQ orpositiveF.
+Full primitive-target guards are included; all242 first-exit formulas and all349
+source invariants/canonical/support scores pass independent unbounded-coin checks.
+C++ wall92.1152ms, not a GPU benchmark. Four full exports pass physical axis-slot
+checks; reflection ONLY on the origin. No full fan-adjacency/neutral-component claim.
+Data: apery_scan/data/boundary_468.jsonl,p39/data/boundary_verified_468.json.
+This bounded recipe is CLOSED; no new anchors/directions/generations/rental implied.
 
-**Next universal obligations:** full cyclic-label payment on the strict-boundary
-class (strongQ target), genuinely joint source-value overlaps with ALL reserves
-(weaker max(Q,L) target), and the full coupled finite affine budget remain distinct
-active lines. Stop unconditional flux monotonicity, raw uniform word-energy and the
-closed orbit test. No universal sign or actual counterexample; all fixed Fejer jobs
-finished, same TWO agents done, no GPU rental/new launch. Directed NEW-predicate
-discovery remains authorized; do not reinstate the old resistant-seed prerequisite.
+**Next proof task:** construct mixed-carry augmentations retaining BOTH residual
+wrapped slots and nonmaximal missing-direction slots, allowing earlier assignments
+to move. A fixed reflected last edge is insufficient even on a real mixed token.
+Do not substitute exact source reconstruction or a new identity for the sign proof.
+Distinct alternatives remain genuinely joint source-value/full-reserve payment
+(weaker max(Q,L)>=0) and the full coupled finite affine budget. Goal ACTIVE; no
+universal proof or genuine Wilf counterexample. All fixed Fejer jobs finished,
+SAME TWO agents done, no GPU rental/new launch. Directed NEW-predicate discovery
+remains authorized; do not reinstate the old resistant-seed prerequisite.
+
+**Retained E464–E466 reductions/guards:** full-Q may be proved on UNIQUE Apéry
+factorization/strict-exit sources while preserving D,delta,actualtop,phase,Q and
+cofactor1. This is NOT a W-sign-preserving reduction; canonical additive certificate
+rows remain. All468 unit images of9cached tiles are CLOSED and Qpositive,F<=0;
+no explicit new image sources. Raw all-word energy payer fails even inside cutoff
+at24/27/30/1003/1004 (margin-30133741,Q84). Flux anchored sampling target remains
+UNKNOWN; unconditional monotonicity/quadrature fail. Retain full reserves and net
+cap accounting from E461; fixed-rank frozen returns and standalone cap-transfer
+remain false. Detailed statements/results are in PROOFS E461–E469 and EXPERIMENTS.
 
 **E457–E460 checkpoint: standalone unit/corner payer REFUTED; compatible shadow verified.**
 The latest advisor's51 control and both31 restoration orders are correct. A new proof
@@ -813,18 +809,31 @@ energy_control_verified_464.json. No new C search, solver, CUDA or optimizer pat
 E466 strict-boundary normalization is PAPER ONLY; actual primitive values or W signs
 are not claimed preserved. Exact reproduction is in EXPERIMENTS E464/E465.
 
+**E468/E469 implementation:** [boundary.hpp](../src/apery_scan/boundary.hpp), exposed by
+`scan_cpu --boundary threads 63 supplied...`, is restricted to the EXACT cached63
+source. It computes all242 ray thresholds with primitive guards, deduplicates target
+vectors, parallel-scores them and exports all witnesses/stop metadata. No adaptive
+search or GPU dependency. `verify_probe.py --boundary-check SCAN_VERIFIER INPUT OUTPUT`
+replays bounds and ALL evaluated source invariants/words/scores through independent
+coin closure; on four selected full records it checks the physical axis map, on
+ONLY origin the reflected mixed-edge guards. Reproduction: EXPERIMENTS E468.
+Raw/verified files: apery_scan/data/boundary_468.jsonl,p39/data/boundary_verified_468.json.
+The generic coin closure was factored out as verify_scan.py::coin_reconstruct; no
+independence between two uses of that SAME coin algorithm is claimed. Scan, heap
+and finite coin closure are the distinct reconstruction methods used here.
+
 ## Current attempt and next action
 
-**Next proof task:** exploit E466's strict-exit/unique-Apéry-factorization normalization
-for the STRONGER full-Q theorem, retaining cyclic labels and actual-top exposure.
+**Next proof task (E467–E469):** pay mixedkappa jointly by Dep and the unused wrapped
+slots N after the explicit axis injection, allowing augmentations to reassign earlier
+slots. Exact target K<=Dep+V on E466 strict sources retains cyclic labels and actual
+top. Forced last-edge reflection toDep fails even for a mixed token; it is not the
+next policy. E468349point ray probe is CLOSED and is not full chamber adjacency.
 Any resulting theorem must assert Q>=0 (or sufficient allocation), not merely Wilf on
-the new source; W sign does not transfer. FLUX-Q needs the corrected phase-sampling
-bound, not unimodality or stochastic dominance alone. In parallel the weakest combined
-target remains `max(Q,best valid capped/tradeL)>=0`, using original joint relations and
-full reserves. E464 rules out raw factorization energy even inside the cutoff; a
-weighted source count needs an arithmetic estimate, not finer bins/exact reconstruction.
-The original coupled affine finite-budget problem is the third active alternative.
-No special-e/m/depth Wilf programme, no automatic larger orbit/profile census.
+the strict realization; W sign does not transfer. Weaker max(Q,best valid capped/tradeL)
+and coupled finite affine budgets remain distinct alternatives. Retain ALL source/
+parent reserves; raw word energy, fixed-rank return catalogues and unconditional
+flux monotonicity remain stopped. No special-e/m/depth programme or automatic census.
 
 Directed discovery remains authorized, with a named predicate and budget; the old
 resistant-seed prerequisite stays superseded. Any new policy search should report both

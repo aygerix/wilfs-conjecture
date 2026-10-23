@@ -2086,3 +2086,88 @@ No weight fitting, bins or catalogue expansion was performed. Data files are in
 p39/data: unit_orbit_465.json,energy_control_raw_464.json,energy_control_verified_464.json.
 E464's flux/unimodality family and E466's strict-Q reduction are PAPER ONLY; no
 new family W values or Lean proof is claimed. All known diagnostic jobs are terminal.
+
+## E468/E469 — exact one-anchor boundary exits and physical carry-slot verification
+
+2026-10-23, Fejer ~/wilf/apery_scan and ~/wilf/p39, project littlewood-paley-8375,
+zoneus-east1-b. Scope,242 directions and target rules recorded BEFORE the run;
+primitive-target strictness clarified before implementation/execution. No new source
+anchor, adaptive generation, solver, CUDA code, rental or agent launch. The SAME
+geometric agent implemented boundary.hpp; root integrated CLI/checker. SAME parity
+agent supplied and paper-reviewed the general axis map/reflection attempt with root.
+
+ONLY source: E452 cached endpoint m63 with supplied input
+307,474,482,438,486,461,475,492,440,477,454. Its actual minimal set includes63 and
+has e12,c912,g777,W708,canonicalheight3,Dep42,kappa39,N53,Q56,R652, allcofactors1.
+The fixed original coordinate order is increasing residue:
+
+    delta=(13,20,33,34,36,41,45,51,55,60,62),
+    P=(454,461,474,475,477,482,486,492,307,438,440).
+
+For ALL242 support-one/two signed unit directions, compute exact first integer
+canonical-D/e exit t_D, original-top-row exit t_T, positivity and numeric horizons.
+The110 primitive-target guards are included in t_D. Generate t_D-1 ifpositive,
+t_D, and t_T only when it precedes t_D. These are ray exits, not full fan adjacency.
+
+397 target proposals deduplicate to349 vectors; all349cofinite/evaluated and309
+eligible (e>=4,c>4m,3e<m,allcofactors1,height>=3). ZERO positivity or numeric skips,
+ZERO unevaluated points, no discovery/in-flight stop. Complete C++ wall92.1152ms
+includes this small diagnostic's setup/scoring, not a CPU/GPU performance comparison.
+No negativeW/eligibleQ or eligibleF>0; bestF remains-3. Selected PROPOSED cases:
+
+| Export | Actual non-m primitives | c | g | W | Dep | kappa | N | Q | R |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+|bestF|307,391,438,440,461,474,475,477,482,486,492|912|770|792|42|39|53|56|736|
+|minQ|307,440,454,461,474,477,482,486,492,564,601|1103|815|2353|42|39|49|52|2301|
+|minW/c|307,454,461,474,475,477,482,486,492,501,503|942|798|786|42|37|68|73|713|
+
+All have m63,e12. The original endpoint was not part of proposed-vector selection:
+its W/c=708/912 is LOWER than the selected proposed minimum786/942. Do not call
+that export an improvement over the origin. The minimumQ52 changes the actual
+conductor phase while retaining the tile; it remains fully support-covered.
+
+Independent Python replay checks EVERY exact exit threshold, witness row, final
+valid point, positivity/range horizon, target dedup/reference and selection rule.
+Finite unbounded-coin bitset closure reconstructs ALL349 source Apéry arrays and
+minimal generators, independently of scan/Dijkstra; explicit canonical columns
+recompute all349 Dep,kappa,N,Q,R,F and gates. Four full exports also pass the old
+predecessor certificate, all-generator inequalities and O(m^2) abstract-phase checks.
+Checks passed on Fejer, all subprocesses exited0. No exhaustive claim for unexecuted
+early-discovery branches or for the whole neighboring fan.
+
+E469 physical reverse-wrap map is verified on ONLY the four full exports:
+
+| Export | Axis tokens | Wrap slots V | Unused N | Raw K | Mixed kappa |
+|---|---:|---:|---:|---:|---:|
+|origin|8|61|53|47|39|
+|bestF|8|61|53|47|39|
+|minQ|8|57|49|47|39|
+|minW/c|8|76|68|45|37|
+
+Each token gets a distinct actually existing edge slot. Q=Dep+V-K checked in all
+four. Reflection is audited ONLY on the origin, not349 extra reflection analyses.
+It has19 self-dual blocks,106 canonical edges,85 failures of the forced all-edge
+Dep transport. Restricting to kappa-increment1 gives78 edges,66 such failures.
+These counts are not a matching obstruction or the total39 mixed tokens. A first
+mixed witness is454->946 by492; reflected parent784=477+307 is maximal and the
+exit gap is784+492-961=315. Both orders of this two-generator word encounter that
+maximal reflected parent. Extra bookkeeping from already verified origin arrays
+was first inspected locally, then the repeatable checker recorded it on Fejer;
+no new semigroup reconstruction or larger search was introduced.
+
+Build/run from apery_scan (the adjacent p39 headers are existing dependencies):
+
+    g++ -O3 -std=c++17 -Wall -Wextra -Werror -pthread driver.cpp -o scan_cpu
+    timeout 60s ./scan_cpu --boundary 7 63 307 474 482 438 486 461 475 492 440 477 454 > data/boundary_468.jsonl
+
+Independent audit from p39:
+
+    timeout 60s python3 verify_probe.py --boundary-check ../apery_scan/verify_scan.py ../apery_scan/data/boundary_468.jsonl data/boundary_verified_468.json
+
+The audit was rerun only after adding the mixed-increment relevance guard to the
+reflection checker; it repeats the SAME fixed data, not new candidate evaluations.
+Files: apery_scan/data/boundary_468.jsonl and p39/data/boundary_verified_468.json.
+Engine schema logs all directions/targets/evaluated/skipped metadata and full selected
+cases. Native and WILF_CUDA translation syntax checks pass; no GPU execution claim.
+The finite probe is CLOSED. General mixed payment, full-Q sign and weaker combined
+source/support target remain UNKNOWN; the new axis map supplies only its proved part.

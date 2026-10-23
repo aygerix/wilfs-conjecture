@@ -1049,6 +1049,202 @@ def audit_factorization_energy(C):
             'M':max(w),'E448_M_cutoff':cutoff,'within_E448_cutoff':max(w)<=cutoff,
             'original_generator_count_retained':True,'universal_sign_claim':False}
 
+def audit_axis_slots(D,reflection=False):
+    """E469 reverse pairing; physical capacity, not a new numerical bound."""
+    m=D['m'];gr,z=factor_basis(D);inv={word:s for s,word in z.items()};d=len(gr)
+    geometry=support_geometry(D);axis=wrapped=inversions=columns=0
+    for j,delta in enumerate(gr):
+        groups=defaultdict(list)
+        for word in inv:groups[word[:j]+word[j+1:]].append(word)
+        for group in groups.values():
+            group.sort(key=lambda word:word[j]);L=len(group);columns+=1
+            assert [word[j] for word in group]==list(range(L))
+            b=(inv[group[0]]+D['rho'])%m;qprime=(b+(L-1)*delta)//m
+            available={(n,h) for n in range(1,L) if (b+(n-1)*delta)%m+delta>=m for h in range(n)}
+            used=set();count=0
+            for n in range(L):
+                for k in range(1,n*delta//m+1):
+                    start=(k*m+delta-1)//delta;ell=qprime+1-k
+                    edge=(ell*m-b+delta-1)//delta;slot=(edge,n-start)
+                    assert 1<=ell<=qprime and edge+start>=L
+                    assert slot in available and slot not in used
+                    used.add(slot);count+=1
+            label_top=(b+(L-1)*delta)%m
+            inversion=sum((b+n*delta)%m>label_top for n in range(L))
+            assert len(available)-count==inversion
+            axis+=count;wrapped+=len(available);inversions+=inversion
+    raw=sum(sum(word[j]*gr[j] for j in range(d))//m for word in inv)
+    assert raw-axis==geometry['kappa']
+    assert inversions==geometry['inversions'] and geometry['Q_full']==geometry['Dep']+wrapped-raw
+    result={'columns':columns,'axis_carry_tokens_injected':axis,'wrapped_slots':wrapped,
+            'unused_wrapped_slots_N':inversions,'raw_carry_K':raw,'mixed_carry_kappa':geometry['kappa'],
+            'Dep':geometry['Dep'],'Q':geometry['Q_full'],'exact_physical_injection_checked':True,
+            'universal_mixed_payment_claim':False}
+    if not reflection:return result
+    nonmax={word for word in inv if any(tuple(word[k]+int(k==j) for k in range(d)) in inv for j in range(d))}
+    top=D['r'];P=[D['w'][g] for g in gr];M=max(D['w']);blocks=defaultdict(list);tau={}
+    for word,s in inv.items():
+        reflected=z[(top-s)%m];C=tuple(a+b for a,b in zip(word,reflected))
+        gap=D['w'][s]+D['w'][(top-s)%m]-M;assert gap>=0 and gap%m==0
+        tau[s]=gap//m;blocks[C].append(s)
+    obstructions=[];mixed_obstructions=[];bad=edges=mixed_edges=mixed_bad=0
+    mixed=lambda word:sum((word[j]*gr[j])%m for j in range(d))//m
+    unique=unique_apery_factorizations({'m':m,'generators':D['generators'],'w':D['w']})
+    for u,s in inv.items():
+        for j in range(d):
+            v=tuple(u[k]+int(k==j) for k in range(d))
+            if v not in inv:continue
+            edges+=1;t=inv[v];hv=z[(top-t)%m];hu=z[(top-s)%m]
+            mixed_increment=mixed(v)-mixed(u)==1
+            mixed_edges+=mixed_increment
+            reflected_child=tuple(hv[k]+int(k==j) for k in range(d))
+            gap=D['w'][(top-t)%m]+P[j]-D['w'][(top-s)%m]
+            assert gap==m*(tau[t]-tau[s])>=0
+            missing=reflected_child not in inv
+            if not missing:assert reflected_child==hu and gap==0
+            if unique:assert (gap>0)==missing
+            if missing and (hv not in nonmax or hv[j]+1<u[j]+1):
+                bad+=1
+                witness={'u':list(u),'v':list(v),'j':j,
+                    'reflected_v':list(hv),'reflected_u':list(hu),'demand':u[j]+1,
+                    'reflected_capacity':hv[j]+1,'reflected_parent_maximal':hv not in nonmax,
+                    'actual_gap':gap,'mixed_carry_increment':mixed_increment,
+                    'capacity_obstruction_persists_after_strictification':True}
+                if len(obstructions)<8:obstructions.append(witness)
+                if mixed_increment:
+                    mixed_bad+=1
+                    if len(mixed_obstructions)<8:mixed_obstructions.append(witness)
+    result.update({'reflection_blocks':len(blocks),'reflection_edges':edges,'unique_apery_factorizations':unique,
+            'reflection_capacity_obstructions':bad,'reflection_examples':obstructions,
+            'mixed_increment_edges':mixed_edges,'mixed_increment_capacity_obstructions':mixed_bad,
+            'mixed_increment_examples':mixed_obstructions,
+            'universal_mixed_payment_claim':False})
+    return result
+
+def audit_boundary_probe(records,scan_module):
+    origin=next(R for R in records if R['kind']=='boundary_origin')
+    setup=next(R for R in records if R['kind']=='boundary_setup')
+    finish=next(R for R in records if R['kind']=='boundary_complete')
+    full_cases=[R for R in records if 'w' in R]
+    full_checks=[scan_module.verify(R) for R in full_cases]
+    m=origin['m'];gr,z=factor_basis(origin);d=len(gr);P=[origin['w'][g] for g in gr]
+    assert m==63 and d==11 and setup['origin_P']==P and setup['origin_residues']==gr
+    rows=[]
+    for s in range(m):
+        for j in range(d):
+            target=(s+gr[j])%m;row=tuple(z[s][k]+int(k==j)-z[target][k] for k in range(d))
+            first=next((a for a in row if a),0)
+            if not first:continue
+            primitive=bool(s and target in gr);rhs=int(first<0 or primitive)
+            margin=sum(a*p for a,p in zip(row,P))//m-rhs
+            assert margin>=0
+            rows.append((s,j,target,row,margin,primitive,rhs))
+    assert setup['canonical_row_count']==len(rows)
+    assert setup['primitive_guard_rows']==sum(R[5] for R in rows) and setup['primitive_guard_in_t_D']
+    directions=[R for R in records if R['kind']=='boundary_direction']
+    points=[R for R in records if R['kind']=='boundary_point'];by_id={R['point_id']:R for R in points}
+    expected=[]
+    for j in range(d):
+        for sign in (-1,1):expected.append(tuple(sign if k==j else 0 for k in range(d)))
+    for j in range(d):
+        for k in range(j+1,d):
+            for a in (-1,1):
+                for b in (-1,1):expected.append(tuple(a if h==j else b if h==k else 0 for h in range(d)))
+    assert len(directions)==242 and [tuple(R['v']) for R in directions]==expected
+    safe_max=((1<<60)-1)//(8*m*m);seen={};references=defaultdict(list)
+    total=positive=valid=duplicates=0
+    for identifier,R in enumerate(directions):
+        assert R['direction_id']==identifier;v=R['v'];choices=[]
+        for entry in rows:
+            slope=sum(a*b for a,b in zip(entry[3],v))
+            if slope<0:choices.append((entry[4]//(-slope)+1,len(choices),entry,slope))
+        bound=min((C[0] for C in choices),default=None);assert R['t_D']==bound
+        if bound is not None:
+            chosen=next(C for C in choices if C[0]==bound);entry,slope=chosen[2:]
+            witness=R['tile_witness']
+            assert (witness['source'],witness['generator_index'],witness['target'])==entry[:3]
+            assert witness['row']==list(entry[3]) and witness['margin_units']==entry[4]
+            assert witness['threshold']==m*entry[6] and witness['slope_units']==slope
+            assert witness['primitive_guard']==entry[5]
+            assert entry[4]+(bound-1)*slope>=0>entry[4]+bound*slope
+            assert all(C[4]+(bound-1)*sum(a*b for a,b in zip(C[3],v))>=0 for C in rows)
+        top_choices=[]
+        for s in range(m):
+            if s==origin['r']:continue
+            row=tuple(a-b for a,b in zip(z[origin['r']],z[s]));slope=sum(a*b for a,b in zip(row,v))
+            margin=(sum(a*p for a,p in zip(row,P))-(origin['r']-s)%m)//m
+            if slope<0:top_choices.append((margin//(-slope)+1,s,margin,slope))
+        top_bound=min((C[0] for C in top_choices),default=None);assert R['t_T']==top_bound
+        if top_bound is not None:
+            _,target,margin,slope=next(C for C in top_choices if C[0]==top_bound)
+            assert R['top_witness']=={'target':target,'distance':(origin['r']-target)%m,
+                                      'margin_units':margin,'slope_units':slope}
+        horizon=min(((P[j]-m-1)//(-m*v[j])+1 for j in range(d) if v[j]<0),default=None)
+        numeric=min(((safe_max-P[j])//(m*v[j]) for j in range(d) if v[j]>0),default=None)
+        assert (R['first_nonpositive_generator_t'],R['maximum_range_t'])==(horizon,numeric)
+        targets=[]
+        if bound is not None:
+            if bound>1:targets.append(('tile_before',bound-1))
+            targets.append(('tile_exit',bound))
+        if top_bound is not None and (bound is None or top_bound<bound):targets.append(('top_exit',top_bound))
+        assert [(T['reason'],T['t']) for T in R['targets']]==targets
+        for T in R['targets']:
+            total+=1;t=T['t'];pos=horizon is None or t<horizon;ranged=numeric is None or t<=numeric
+            assert (T['within_positive'],T['within_range'])==(pos,ranged);positive+=pos;valid+=pos and ranged
+            if not (pos and ranged):assert T['point_id'] is None;continue
+            values=tuple(p+m*t*a for p,a in zip(P,v));is_new=values not in seen
+            point_id=seen.setdefault(values,len(seen));duplicates+=not is_new
+            assert point_id==T['point_id'] and by_id[point_id]['P']==list(values)
+            references[point_id].append({'direction_id':identifier,'t':t,'reason':T['reason']})
+    assert (setup['target_count'],setup['positive_targets'],setup['range_valid_targets'],setup['duplicate_targets'])==(total,positive,valid,duplicates)
+    assert len(points)==len(seen)==setup['unique_points']
+    checked={};eligible_ids=[];codes=[]
+    for identifier,R in enumerate(points):
+        assert R['point_id']==identifier and R['references']==references[identifier]
+        first=R['references'][0];assert R['t']==first['t'] and R['v']==directions[first['direction_id']]['v']
+        if not R['evaluated']:assert R['finite'] is None;continue
+        S=scan_module.coin_reconstruct(m,R['P'],m*max(R['P'])+m)
+        S.update(r=S['w'].index(max(S['w'])),rho=(-S['c'])%m,
+                 mu=[max(0,(S['c']-w+m-1)//m) for w in S['w']])
+        G=S['generators'];geometry=support_geometry(S);gcds=[gcd(*(G[:j]+G[j+1:])) for j in range(len(G))]
+        residues,words=factor_basis(S);same=residues==gr and words==z
+        for key in ('e','c','g','W'):assert R[key]==S[key]
+        for key,sourcekey in (('Dep','Dep'),('kappa','kappa'),('N','inversions'),('Q','Q_full'),('height','canonical_height')):assert R[key]==geometry[sourcekey]
+        assert R['R']==S['W']-R['Q'] and R['F']==R['kappa']-R['Dep']
+        domain=S['e']>=4 and 3*S['e']<m and S['c']>4*m;cofactor=all(g==1 for g in gcds)
+        eligible=domain and cofactor and R['height']>=3
+        assert R['finite'] and (R['domain_gate'],R['cofactor1'],R['eligible'])==(domain,cofactor,eligible)
+        assert R['actual_generators']==G and R['primitive_residues']==residues
+        assert R['same_tile']==same and R['top']==S['r'] and R['same_top_residue']==(S['r']==origin['r'])
+        for ref in R['references']:
+            if ref['reason']=='tile_before':assert same
+            elif ref['reason']=='tile_exit':assert not same
+            else:assert same and S['r']!=origin['r']
+        code=4 if S['W']<0 else 3 if eligible and R['Q']<0 else 5 if eligible and R['F']>0 else 0
+        assert R['promotion_code']==code;codes.append((identifier,code));checked[identifier]=S
+        if eligible:eligible_ids.append(identifier)
+    assert [i for i,_ in codes]==list(range(finish['evaluated']))
+    assert finish['evaluated']==len(checked) and finish['eligible']==len(eligible_ids)
+    assert finish['cofinite']==len(checked) and finish['unique_points']==len(points)
+    assert finish['target_count']==total and finish['positivity_skipped_targets']==total-positive
+    assert finish['range_skipped_targets']==positive-valid and finish['unevaluated']==len(points)-len(checked)
+    if not any(code for _,code in codes):
+        assert finish['complete'] and finish['evaluated']==len(points) and finish['promoted_point']==-1
+    if eligible_ids:
+        assert finish['best_F_point']==min(eligible_ids,key=lambda i:(-by_id[i]['F'],i))
+        assert finish['min_Q_point']==min(eligible_ids,key=lambda i:(by_id[i]['Q'],i))
+        assert finish['min_W_ratio_point']==min(eligible_ids,key=lambda i:(F(by_id[i]['W'],by_id[i]['c']),i))
+    slot_checks=[]
+    for R in full_cases:
+        slot_checks.append({'kind':R['kind'],'G':R['generators'],**audit_axis_slots(R,reflection=R['kind']=='boundary_origin')})
+    return {'directions_checked':len(directions),'proposals_before_dedup':total,'unique_points':len(points),
+            'all_evaluated_points_independently_coin_checked':len(checked),'eligible_points':len(eligible_ids),
+            'primitive_guard_rows_checked':setup['primitive_guard_rows'],'exact_first_exit_bounds_checked':True,
+            'full_cases':full_checks,'axis_slot_and_reflection_checks':slot_checks,
+            'best_F':max((by_id[i]['F'] for i in eligible_ids),default=None),
+            'minimum_Q':min((by_id[i]['Q'] for i in eligible_ids),default=None),
+            'complete':finish['complete'],'no_full_fan_adjacency_claim':True,'universal_sign_claim':False}
+
 def audit_top_cap_controls(records,source,trace):
     """E461 fixed countermechanism controls, not a semigroup search."""
     result={'controls':[],'universal_positivity_claim':False,'family_census':False}
@@ -2315,6 +2511,21 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--boundary-check':
+        import importlib.util
+        assert len(sys.argv)==5, 'scan verifier input JSONL output'
+        spec=importlib.util.spec_from_file_location('independent_boundary_scan_audit',sys.argv[2])
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        with open(sys.argv[3]) as data:records=[json.loads(line) for line in data if line.strip().startswith('{')]
+        result=audit_boundary_probe(records,module)
+        with open(sys.argv[4],'w') as out:json.dump(result,out,indent=2)
+        print('BOUNDARY-CHECK',{key:value for key,value in result.items() if key not in ('full_cases','axis_slot_and_reflection_checks')})
+        for R in result['axis_slot_and_reflection_checks']:
+            print('AXIS-SLOTS',{key:value for key,value in R.items() if key not in ('reflection_examples','mixed_increment_examples')})
+            if R.get('reflection_examples'):print('REFLECTION-EXAMPLE',R['reflection_examples'][0])
+            if R.get('mixed_increment_examples'):print('MIXED-REFLECTION-EXAMPLE',R['mixed_increment_examples'][0])
+        print('Finite scoped ray coverage only; exact bounds and independent coin/canonical checks, no full adjacency or universal sign')
+        sys.exit(0)
     if sys.argv[1]=='--trade-policy-check':
         import importlib.util
         assert len(sys.argv)==5

@@ -5838,3 +5838,46 @@ combined route; coupled affine finite budgets as the third. No uniform sign prov
 no genuine Wilf counterexample, no Lean/novelty claim. One new finite source only,
 same TWO agents/no new launches, no GPU rental, all known jobs ended. STATE remains
 the single current handoff and implementation inventory; goal ACTIVE.
+
+### 2026-10-23 — E467–E469: axis carries paid constructively, mixed assignment still joint
+
+Previous goal turn PROGRESS:c494db2. Continued the SAME universal backwards target,
+using E466 strict-Q normalization. Root and SAME parity agent independently noticed
+that the proposed whole-alias-kernel/Gamma bound was ALREADY refuted by E435 OLD19.
+Stopped the duplicate before compute. Keeping the missing-residue reserve cancels
+the entire full-tile alias bookkeeping to Q=Dep+V-K. This is a cleaner target,
+not a numerical improvement, and makes stronger frozen/all-cut requirements optional.
+
+SAME geometric agent implemented an EXACT E455 directional-exit operator from ONLY
+cached63. Root caught the primitive-status guard omitted in the abbreviated threshold
+description; it was fixed in scope BEFORE run.242 signed support1/2 directions gave
+397targets/349distinct/309eligible, all evaluated on Fejer in92.1152ms. BestF stays-3,
+minQ52,0negativeW/eligibleQ orpositiveF. All242 formulas and ALL349 source membership,
+actualgenerators,canonicalwords/supportscores independently replay through coin closure.
+Four full exports additionally pass heap/predecessor/phase checks. One complete run;
+audit repeated only after adding the mixed-edge reflection relevance predicate.
+No larger search, new anchor, GPU rental or performance conclusion. Probe CLOSED.
+
+SAME parity agent/root proved a reverse-indexed Beatty map from all single-coordinate
+carry descendants into PHYSICAL wrapped slots. Every level k uses wrap q'+1-k and
+capacity follows from t_k+t'_ell>=L. Unused capacity is EXACTLY oldN. This is a
+constructive component, not a stronger numerical bound or a proof of mixed payment.
+Verified on only origin/three selected exports; no extra semigroup search.
+
+A distinct reflection attempt uses actual-top involution h and isotone tau. Its
+blocks D intersect(C-D) are self-dual/order-convex, but forced reflected missing-slot
+payment fails on maximal/undersized parents. OLD19 paper edge already exposes the
+general issue. Root imposed a relevance check: does it affect genuine MIXED increments
+in the NONFLAT63 source? Yes:454+492=946 has kappa1 and reflected784=477+307 maximal,
+so neither last-generator order yields aDep slot.66of78 mixed-increment edges have
+the local obstruction; these are NOT66independent mixed tokens or a global matching
+failure. Other wraps/slots may pay, and actualQ56/W708 arepositive.
+
+GLOBAL REVIEW: no compute scaleup follows from a plateau or a closed first-ray test.
+Stop duplicate alias capacity and forced last-edge-reflection-toDep. Retain explicit
+axis injection but allow it to be reassigned when proving mixed payment. The exact
+missing theorem is a JOINT allocation ofkappa to unusedV andDep, with actual cyclic
+labels/exposedtop. Keep genuinely joint source/fullreserve max(Q,L) and coupled finite
+affine payment as the other active universal lines. New identities/exact reconstruction
+alone cannot force the sign. Same TWO agents done; no new launches/Lean/noveltyclaim;
+all jobs terminal, no universal proof or genuine Wilf counterexample, goal ACTIVE.

@@ -12286,3 +12286,186 @@ The resulting finite counting/strict-exit allocation remains UNKNOWN. The new
 reduction simplifies the actual-side arithmetic hypotheses; it does not pay the
 finite correction by strictness alone. Keep the weaker combined max(Q,L)>=0 route
 and the full coupled affine-budget route if this stronger Q theorem fails.
+
+## E467 — retain the full residue reserve and cancel the alias accounting
+
+2026-10-23. Scope: Proves Wilf for EVERY S if full actual-phase Q>=0 is proved
+on E466-normalized sources; proved reduction yes, SUPP-WILF/E466 and the recorded
+complements/E439. This is an exact simplification, not a positivity theorem.
+
+The proposed auxiliary bound on the WHOLE alias kernel,
+F_in+L_out<=Gamma_D(P), is ALREADY false on E435's old19 source. There P is the
+nonmaximal part of the full tile, Gamma4, F_in4,L_out8. This existing counterexample
+was found in the record before any new kernel calculation. Do not report it as a
+new failure or resume that stronger payer.
+
+For E=D retain the missing-residue reserve m-|U| from E444. Write A_alias for
+F_in+L_out, C for unused directional starts, and
+
+    K=sum_(z in D) floor(z.delta/m),
+    V=sum_(internal edges u->u+e_j) (u_j+1)*[r(u)+delta_j>=m].
+
+Here r(u)=(phi(u)+rho) modm and rho=(-c) modm is the ACTUAL phase. The alias
+cardinality identity is A_alias=m+C-|U|. Substituting in the exact full-tile budget
+and using Gamma_D(P)=Dep gives
+
+    Q=C+Dep+V-A_alias-K+(m-|U|)=Dep+V-K.                (RAW-Q)
+
+Equivalently, with A_ax=sum_z sum_j floor(z_j*delta_j/m), E432 gives
+
+    K=A_ax+kappa, V=A_ax+N, Q=Dep+N-kappa.
+
+Thus the full-tile allocation target is just K<=Dep+V. Its combinatorial slots
+are the wrapped internal edge slots and the missing directions at NONMAXIMAL
+cells, the latter of capacity u_j+1. Proper-cut, frozen-parent and pool-only
+extensions are stronger obligations; no such extension is required for RAW-Q.
+Old19 has K6,V7,Dep4 and hence Q5; its frozen margin1 discarded four unused
+residue labels. Cancelling these terms does NOT construct the required injection.
+
+## E468 — exact first integer exits of one canonical height region
+
+2026-10-23. General ray-exit formula, plus a CLOSED finite diagnostic on ONE cached
+source. Same all-S full-Q target/reduction as E467; no reduction of Wilf to m63.
+
+Let z_s be the canonical word of residue s, P the ordered actual nonmultiplicity
+primitive values, and delta their residues. For a generator edge s,j with target
+t=s+delta_j modm put l=z_s+e_j-z_t. Identity rows are omitted. The necessary and
+sufficient E455 integer region for the SAME D and actual primitive alphabet has
+
+    l.P>=m*b_l,
+    b_l=1 if the first nonzero coefficient of l is negative,
+          OR if s!=0 and t is an old primitive residue;
+        =0 otherwise.
+
+The first clause enforces lex tie order. The second is essential even for a
+lex-positive row: equality would decompose a purported primitive. Along
+P(t)=P+m*t*v set h_l=l.P/m-b_l>=0 and a_l=l.v. The EXACT first positive integer
+violation is
+
+    t_D=min_(a_l<0) (floor(h_l/(-a_l))+1),             (no such row => infinity).
+
+Every earlier integer satisfies every row; the selected row fails at t_D. For
+the original top f, its rows are (z_f-z_s).P>=[phi(f)-s]_m, yielding the same
+formula t_T. This describes the actual top change ONLY while D/e is unchanged.
+One must also retain P_j(t)>m and the implementation's numeric bounds. No claim
+that these rays enumerate facets, adjacent chambers or a whole neutral component.
+
+Fejer evaluated all support-one/two directions v_j in{-1,0,1} at the saved E452
+m63 endpoint: exactly2d^2=242 directions for d11,397 proposed target points,
+349 distinct vectors,309 passing all deep/sparse/cofactor1/height>=3 gates. Targets
+are t_D-1 when positive, t_D, and t_T only if it precedes t_D. No point was skipped
+by positivity/range caps; all349 were evaluated. Best eligible F=-3, minimumQ52;
+no negativeQ,negativeW or eligibleF>0. The bestF ties the old endpoint; it is not an
+improvement. Four full exports, all242 exit formulas and ALL349 source invariants,
+canonical tiles and support scores pass independent finite coin-closure checks.
+
+The diagnostic is CLOSED: no new anchors, directions, generations or rental are
+implied. The general formula is a directed discovery operator, not a sign proof.
+Code/data/reproduction and precise selected cases: EXPERIMENTS E468.
+
+## E469 — a constructive payment of every axis carry; reflection needs joint resources
+
+2026-10-23. Scope: Proves Wilf for EVERY S if the remaining mixed-carry assignment
+establishes E467 RAW-Q universally; proved reduction yes, E466/SUPP-WILF and recorded
+complements/E439. The axis injection below is proved on paper and independently
+reviewed by root and the SAME authorized parity agent. It is not Lean checked.
+Its residual count N was already known; this supplies an explicit physical map,
+not a new numerical inequality or a claim of novelty.
+
+### Reverse-indexed wrap assignment — PROVED for every coordinate column
+
+Take a column of length L, residue increment 1<=delta<m and base phase 0<=b<m.
+A wrap edge at position n',1<=n'<L, has n' slots, indexed0,...,n'-1. Set
+
+    q=floor((L-1)*delta/m), q'=floor((b+(L-1)*delta)/m).
+
+Raw axis tokens are pairs(n,k) with0<=n<L and1<=k<=floor(n*delta/m). For each
+k=1,...,q the first such n is t_k=ceil(k*m/delta). Pair this level with wrap
+
+    ell=q'+1-k, t'_ell=ceil((ell*m-b)/delta),
+    (n,k) -> (edge t'_ell, slot n-t_k).
+
+Since q'>=q, 1<=ell<=q', and t'_ell is an actual wrap between positions1 andL-1.
+Moreover
+
+    t_k+t'_ell>=ceil(((q'+1)*m-b)/delta)>=L.
+
+The last inequality follows from (q'+1)*m>b+(L-1)*delta. Thus
+0<=n-t_k<=L-1-t_k<=t'_ell-1, so the assigned slot exists. Different levels use
+different wraps, and tokens within a level use different slots. Applying this
+separately to every column/direction is a global injection of ALL A_ax tokens.
+No constant bound on the descendants of a first wrap is assumed.
+
+For completeness let r_n=(b+n*delta) modm. Direct subtraction gives
+
+    floor((L-1-n)*delta/m)
+      =q'-floor((b+n*delta)/m)-[r_n>r_(L-1)].
+
+The sum of the first two terms on the right counts each wrap position n' exactly
+n' times. The left sums to sum_n floor(n*delta/m). Thus unused wrapped capacity
+is precisely #{n:r_n>r_(L-1)}. Globally it is N, recovering the old count V-A_ax=N.
+The unproved obligation is still a JOINT payment of kappa by Dep and these N slots.
+Keeping this particular axis assignment fixed is not required; augmentations may
+reassign it. The existence/count of the axis map alone gives no mixed payment.
+
+### Actual-top residue reflection — PROVED structural facts, not a capacity theorem
+
+Let f be the actual top word, M=P.f, and define h by
+
+    phi(h(z))=phi(f)-phi(z) modm,
+    tau(z)=(P.z+P.h(z)-M)/m.
+
+This is an involution. Apéry minimality gives integral tau>=0. On an internal
+edge u->v=u+e_j,
+
+    m*(tau(v)-tau(u))=P.h(v)+p_j-P.h(u)>=0.
+
+Under E466 strictification, equality holds exactly when the reflected edge
+h(v)+e_j=h(u) lies in D. If the edge exists the equality follows even without
+strictification; the converse may fail with multiple Apéry factorizations.
+For every occurring C, the block
+
+    D_C={z:z+h(z)=C}=D intersect(C-D)
+
+is self-dual, order-convex, and tau is constant on it. Indeed residue injectivity
+identifies the reflected word C-z whenever it belongs to D; downset intersect
+reflected-downset is order-convex. Also tau(h(z))=tau(z), so each tau sublevel
+is an h-invariant downset. These facts alone give no numerical capacity bound.
+
+The SPECIFIC rule sending each weighted internal edge to the corresponding
+reflected missing direction fails: the reflected parent may be maximal, or its
+capacity h(v)_j+1 may be less than u_j+1. OLD19 already supplies a paper witness:
+f=2e53, u=e39,v=2e39, h(v)=2e52,h(u)=e52+e53. Incoming demand2 meets a maximal
+parent of raw capacity1; the actual exit gap is104+39-105=38>0. This only refutes
+that edgewise rule, not arbitrary reflection-based allocation.
+
+To ensure this is not merely an irrelevant non-carry edge or flat geometry,
+inspect ONLY the independently certified cached63 origin from E468. It has
+K47,A_ax8,V61,N53,kappa39,Dep42,Q56. There are106 canonical edges and85 failures
+of the all-edge reflected rule. Of78 edges with kappa(v)-kappa(u)=1,66 have the
+same obstruction. These edge counts are NOT the number of kappa tokens: summing
+increments over all edges double-counts possible paths.
+
+A single concrete mixed token is enough to isolate the restricted rule:
+
+    u=e454, v=e454+e492, phi(v)=13+51=1 mod63,
+    kappa(v)=1, h(v)=e477+e307 (value784),
+    h(u)=e475+e486 (value961), 784+492-961=315.
+
+The reflected parent h(v) is maximal. Reversing the order of454 and492 still
+reflects the final edge from this SAME maximal parent. Thus this token cannot be
+assigned solely to its last-edge reflected Dep slot, whichever prefix order is
+chosen. It could use unused wrapped slots or other resources; Q56 and W708 are
+positive, so no global matching, full-Q or Wilf failure is asserted. The geometric
+obstruction survives strictification because D/residues/top and maximality do.
+
+### Strategic review
+
+Stop the duplicate whole-kernel/Gamma claim and the forced edgewise reflection
+transport. Close the bounded E468 ray probe; no automatic larger search/rental.
+Retain the new constructive axis payment as a component. The next useful theorem
+must jointly allocate mixed carries to unused wraps AND nonmaximal missing slots,
+allowing reallocation rather than freezing either resource. Proving exact recovery
+of source values, or another equivalent budget identity, would not establish its
+sign. The weaker combined support/source target and the coupled finite affine
+budget remain distinct alternatives; neither is refuted by these local controls.

@@ -593,3 +593,28 @@ E465 is a CLOSED finite diagnostic, not a failed general theorem: all468 unit im
 of9 cached tiles have Q>0,F<=0. It gives no global exclusion. E466 strictification
 does not revive any prior staged/alias payer: their D/delta/phase countergeometry
 is retained exactly, even though canonical missing edges become genuine strict gaps.
+
+## E467/E469 — stop duplicate alias capacity and forced reflected-edge transport
+
+The candidate WHOLE alias-kernel bound F_in+L_out<=Gamma_D(P) is ALREADY refuted by
+E435 OLD19:12>4. No new counterexample or calculation is claimed. The correct full
+budget retains m-|U|; all alias terms cancel to Q=Dep+V-K. A larger alias forest
+does not by itself improve this margin. Do not relaunch the duplicate stronger bound.
+
+FALSE: every weighted canonical edge can be paid by its reflected missing direction
+at the actual-top residue involution h. OLD19 edge e39->2e39 has demand2, reflected
+parent2e52 maximal with raw capacity1, and strict actual gap38. Strictification cannot
+change the maximality/capacity. This is an edgewise rule, not a global matching failure.
+
+The issue also affects a genuine mixed-carry increment in the NONFLAT cofactor1
+cached63 origin:454+492=946 has kappa1; h(e454+e492)=e477+e307, value784, is maximal.
+Both prefix orders therefore reflect their final edge from a parent excluded from
+Dep. The492 exit gap is315>0. This refutes even the LAST-EDGE-REFLECTION-TO-DEP rule
+for this token, not joint use of wrapped slots, other missing directions or full
+source reserves. Q56,W708 already cover it. No negativeQ/W or all-routing obstruction.
+
+E468 is a CLOSED finite diagnostic, not a failed general theorem:349 distinct ray
+targets/309eligible, bestF-3,minQ52,0negativeW/eligibleQ orpositiveF. No inference to
+full chamber adjacency, longer neutral paths or all support-two starting directions.
+The general axis-carry injection remains valid; stop forced reflected-edge allocation,
+retain joint mixed-carry augmentation with BOTH unused wraps and Dep available.
