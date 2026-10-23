@@ -4,6 +4,34 @@ No LP solver. Input: certprobe JSONL. Exact integer/rational arithmetic.
 import json,sys
 from fractions import Fraction as F
 from verify_probe import open_text
+if len(sys.argv)>1 and sys.argv[1]=='--chain-budget':
+ # Analyze already audited semigroup/certificate data against the recorded CH
+ # identity. This is an exact diagnostic, not a new semigroup membership audit.
+ certificates={}
+ for path in sys.argv[3:]:
+  for line in open_text(path):
+   C=json.loads(line);key=tuple(sorted(C['G']))
+   assert C.get('integer') and 'residual_matching' in C
+   if key not in certificates or C['residual_matching']['rounded_bound']>certificates[key]['residual_matching']['rounded_bound']:certificates[key]=C
+ for line in open_text(sys.argv[2]):
+  D=json.loads(line);G=sorted(D['generators']);C=certificates[tuple(G)]
+  m,e=D['m'],D['e'];w=D['w'];M=max(w);total=sum(w);deficits=[];excess=-total
+  order=sorted(range(1,m),key=w.__getitem__);counts=[0]*m;counts[0]=1
+  for g in G[1:]:
+   nu=sum(max(k for k in range(v//g+1) if w[(v-k*g)%m]==v-k*g) for v in w)
+   deficits.append(m*M-total-g*nu);excess+=g*nu
+   # Coin-change by generator order counts each commutative factorization once.
+   for s in order:
+    t=(s-g)%m
+    if w[t]+g==w[s]:counts[s]+=counts[t]
+  correction=(e-2)*m*(m-1)//2
+  assert min(deficits)>=0 and excess>=0 and all(v>0 for v in counts)
+  unique=all(v==1 for v in counts);assert unique==(excess==0)
+  assert sum(deficits)+excess-correction==m*D['W']
+  R=C['unpaid']-(C['residual_matching']['M']+1)//2
+  assert sum(deficits)+excess-correction-e*m*R==m*C['residual_matching']['rounded_bound']
+  print(json.dumps({'G':G,'m':m,'e':e,'c':D['c'],'g':D['g'],'W':D['W'],'unique_apery_factorizations':unique,'excess':excess,'chain_deficits':deficits,'correction':correction,'unpaid_remainder':R,'proposed_excess_payment':e*m*R,'bound':C['residual_matching']['rounded_bound'],'max_factorizations':max(counts)}))
+ sys.exit(0)
 propagate=len(sys.argv)>1 and sys.argv[1]=='--propagate'
 rigid=len(sys.argv)>1 and sys.argv[1]=='--rigid'
 for line in open_text(sys.argv[2] if propagate or rigid else sys.argv[1]):

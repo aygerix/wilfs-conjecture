@@ -4877,3 +4877,41 @@ Validation: consolidated176 exact LP optima and all existing checks pass; new fi
 pass; ASan/UBSan handles nontrivial equality completion, empty core and integer65case. Logs and
 raw certificates in existing p39/data; STATE updated in place. Universal Wilf remains unproved,
 no genuine counterexample found, full goal ACTIVE. Classification: PROGRESS.
+
+## 2026-10-22 23:54 EDT — two funding routes ruled out; full boundary budget retained
+
+Previous turn PROGRESS: class-weighted payment theorem/certificates, new genuine local optima,
+exact capped optimum998. Current state re-read. Full universal backwards scope unchanged; no agents.
+
+**Attempt1, E412.** Try to turn equality-class multiplicities into the main global counting rule.
+Derived the exact alpha support formula [LL,i+j>r]+[HH,i+j>m+2r+1], complementary to E401 kappa.
+All mixed-side rows are exact; same-side exact ranges are the middle intervals in PROOFS. Lean
+checks the general alpha formula and the rho0 exact-target implication with no sorry/extra axioms.
+C redundantly checks all33,375,552 admissible residue pairs throughm128/every r.
+
+This reveals a limitation: at rho0, every alpha=kappa0 row targets r=m-1, whose unpaid bound0 forces
+both parents0. Thus E411's SPECIFIC zero-anchor construction cannot merge any active coordinates;
+H_eq=H. This does not rule out other equalities from combinations of constraints. It neither solves
+Wilf at rho0 nor makes that subcase an authorized standalone target. The attempted class-merging-only
+universal mechanism is discontinued; the lemma remains auxiliary.
+
+**Attempt2, E413.** Seek a distinct global budget in the recorded CH identity: can the factorization
+excess E pay e*m*R? No. The saved <13,17,27,29> has c63,g37,W41 and all13 Apéry factorizations unique,
+E0,integer U2=1,M0,R1,so proposed payment0<52. Multiples-of-primitive subtraction computes nu and
+generator-order coin DP independently counts commutative factorizations. The chain deficits195,281,213
+sum689; correction156;13W533 and13Phi481. The larger saved <146,147,155,185> likewise E0,R42.
+The exact diagnostic on13 saved S checks CH and E0 iff uniqueness. No new enumeration or LP run.
+
+**Global review — PIVOT to primitive-chain boundary payments, retaining the same universal criterion.**
+The class-merging-only and collision-only funding mechanisms fail. Unpaid loss can exist without
+factorization redundancy, so boundary room must participate. The exact identity
+m Phi_Z=sum Def+E-C-e*m*R places the existing criterion in a global budget with primitive count and
+complete residue correction explicit. This algebra is a restatement, not a new positivity theorem.
+Next needs an actual allocation/injection for the boundary deficits, not another certificate accuracy
+benchmark. Old tile/partial-tile failures still apply; do not delete paid cells or reactivate family
+targets. No universal lower bound on a class size, no guessed W/c constant.
+
+Validation:176 existing exact LP optima and consolidated checks pass; new13 CH/factorization
+diagnostics and extended C allowance-position audit pass; Lean arithmetic components checked.
+Semigroup interpretation remains on paper; global budget inequality unproved. Full goal ACTIVE,
+no genuine counterexample or full proof. Classification: PROGRESS (two concrete mechanisms excluded).

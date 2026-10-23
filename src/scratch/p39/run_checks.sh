@@ -32,4 +32,6 @@ python3 upper_dp.py --rigid data/climb_probe.jsonl.gz > rigid_closure.log
 python3 upper_dp.py --rigid data/residual_probe.jsonl.gz >> rigid_closure.log
 python3 upper_dp.py --rigid data/margin_probe.jsonl.gz >> rigid_closure.log
 cat rigid_closure.log
+python3 upper_dp.py --chain-budget data/probe.jsonl.gz data/integer_weighted_matching.jsonl
+python3 upper_dp.py --chain-budget data/stress_probe.jsonl.gz data/integer_weighted_matching.jsonl
 python3 base_deflation.py

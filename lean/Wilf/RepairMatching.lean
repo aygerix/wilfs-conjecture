@@ -53,6 +53,32 @@ theorem upper_penalty_position (m r i j s rp : ℤ)
         (if i > r ∧ j > r ∧ i + j ≤ m + r then (1 : ℤ) else 0) := by
   split_ifs at * <;> omega
 
+/-- The lower-row allowance occupies the opposite ends of the two same-side
+sum ranges. Mixed-side sums always have zero allowance. -/
+theorem lower_allowance_position (m r i j s rp : ℤ)
+    (_hm : 2 ≤ m) (hr0 : 0 ≤ r) (hrm : r < m)
+    (hi0 : 0 < i) (him : i < m) (hj0 : 0 < j) (hjm : j < m)
+    (_hne : i + j ≠ m)
+    (hs : s = if i + j > m then i + j - m else i + j)
+    (hrp : rp = if s > r then s - r - 1 else s + m - r - 1) :
+    ((if i + j > m then (1 : ℤ) else 0) +
+      (if s > r then (1 : ℤ) else 0) -
+      (if i > r then (1 : ℤ) else 0) -
+      (if j > r then (1 : ℤ) else 0)) +
+      (if rp ≥ r + 1 ∧ i > r ∧ j > r then (1 : ℤ) else 0) =
+      (if i ≤ r ∧ j ≤ r ∧ i + j > r then (1 : ℤ) else 0) +
+        (if i > r ∧ j > r ∧ i + j > m + 2 * r + 1 then (1 : ℤ) else 0) := by
+  split_ifs at * <;> omega
+
+/-- At zero conductor shift, a row with both allowances zero must target m-1.
+These are the simplified allowances when all nonzero residues are low. -/
+theorem zero_shift_exact_target (m i j s : ℤ)
+    (_hm : 2 ≤ m) (hs : 0 < s ∧ s < m)
+    (ha : (if i + j > m then (1 : ℤ) else 0) = 0)
+    (hk : (if s ≤ m - 2 then (1 : ℤ) else 0) -
+      (if i + j > m then (1 : ℤ) else 0) = 0) : s = m - 1 := by
+  split_ifs at * <;> omega
+
 /-- A tight split into the largest Apéry residue has no lower-row allowance. -/
 theorem lower_allowance_at_top (m r i j : ℤ)
     (_hm : 2 ≤ m) (hr0 : 0 < r) (hrm : r < m)
@@ -108,6 +134,8 @@ end Wilf
 #print axioms Wilf.assignment_repair_sum_bound
 #print axioms Wilf.rounded_assignment_repair_bound
 #print axioms Wilf.upper_penalty_position
+#print axioms Wilf.lower_allowance_position
+#print axioms Wilf.zero_shift_exact_target
 #print axioms Wilf.lower_allowance_at_top
 #print axioms Wilf.unpaid_vanishes_at_exact_split
 #print axioms Wilf.normalized_unpaid_direction_feasible

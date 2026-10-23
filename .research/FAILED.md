@@ -194,3 +194,13 @@ and it has no outgoing tight pair. The full vector and proof are recorded in PRO
 src/scratch/p39/data/capped_core_probe.jsonl.gz. Five tested coordinates on the older saved examples
 had optimum1; this stronger adversarial example shows those checks cannot justify unit weights.
 This refutes a certificate simplification, not Wilf; weighted residual mass must be retained.
+
+### Factorization excess pays every unpaid unit (FALSE, E413)
+
+The candidate E>=e*m*(sum U-ceil(M_U/2)), with E the recorded CH factorization-excess term,
+fails at S=<13,17,27,29>: c63,g37,e4,W41,unique Apéry factorizations,E0,U2=1,M_U0.
+The right side is52. Its equality class is singleton, so equality completion does not change this.
+Independent coin-change factor counts and primitive-multiple subtraction verify uniqueness/E0 and
+the CH identity. The saved <146,147,155,185> likewise has E0 and residual42. This is not a Wilf
+counterexample. Global charging must also use primitive-chain boundary deficits and retain the
+discrete correction; loss cannot be identified with factorization redundancy alone.

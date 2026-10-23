@@ -283,6 +283,11 @@ int main(int argc,char **argv){
    int tau=(i+j>m)+(s>r)-(i>r)-(j>r),k=up-tau;
    int closed=(i<=r&&j<=r&&i+j<=2*r-m)+(i>r&&j>r&&i+j<=m+r);
    assert(k==closed);
+   int lo=rp>=r+1&&i>r&&j>r,a=tau+lo;
+   int lower=(i<=r&&j<=r&&i+j>r)+(i>r&&j>r&&i+j>m+2*r+1);
+   assert(a==lower);
+   if((i<=r)!=(j<=r))assert(a==0&&k==0);
+   if(r==m-1&&a==0&&k==0)assert(s==r);
    if((i<=r&&i>=2*r-m)||(j<=r&&j>=2*r-m))assert(k==0);
    if(j==m-1&&k)assert(s==r);
    checks++;

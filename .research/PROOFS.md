@@ -7403,3 +7403,77 @@ That comparison must still use the full arithmetic/residue structure and the pri
 original Phi_Z positivity target has not been proved or falsified; replacing it by its stronger
 equality-completed bound is not automatically a proof. No further box enlargement or guessed
 W/c threshold is justified by these three local searches.
+
+### Exact allowance positions and a limit of zero-anchor equality completion (E412)
+
+**Universal arithmetic formula kernel checked; semigroup consequences proved on paper.** For all
+admissible residues, with t=i+j and L={1,...,r}, H={r+1,...,m-1},
+
+    alpha(i,j)=[i,j in L and t>r]+[i,j in H and t>m+2r+1],
+    kappa(i,j)=[i,j in L and t<=2r-m]+[i,j in H and t<=m+r].
+
+The second identity is E401; the first follows by splitting the same carry/shift cases in
+tau+lo. Both are Lean checked, with no sorry or extra axioms (RepairMatching.lean,
+lower_allowance_position / upper_penalty_position). In particular ALL mixed-side tight pairs have
+alpha=kappa=0. The other exact rows have
+
+    LL: 2r-m < i+j <= r;        HH: m+r < i+j <= m+2r+1.
+
+This is an exact classification, not a restriction to semigroups whose pairs have a selected form.
+
+If rho=0, then r=m-1 and every nonzero residue is low. The only rows with BOTH allowances zero
+target s=m-1. The simplified carry/upper-flag arithmetic implication is separately kernel checked
+as zero_shift_exact_target. That target has mu_s=U_s=0, and alpha=0 forces both parent bounds0.
+Consequently NO equality edge in the E411 zero-anchor construction can meet J={s:U_s>0}: all of
+its active classes are singletons and H_eq=H. The equality-completed bound equals Phi_Z.
+
+This limitation concerns the specific E411 construction; it does not rule out additional equalities
+derivable from combinations of other constraints. It does not prove or disprove Wilf at rho0 and
+does not activate a restricted-family research target. It rules out relying on this particular
+class-merging step as the sole new universal counting mechanism. The saved <60,67,71,121> has rho0,
+integer unpaid mass14 and all active classes singleton, so residual loss persists there without
+any E411 merge. General positivity still requires a principle that also covers this situation.
+
+C independently checks both allowance formulas, the mixed-side identity and the rho0 implication
+on all33,375,552 admissible unordered residue pairs for2<=m<=128 and every r. This finite audit is
+separate from the universal kernel-checked arithmetic statements.
+
+### A collision-only repair budget fails; the exact global chain budget (E413)
+
+Return to the recorded CH identity (KNOWN, Zhai-equivalent; no novelty claimed): for every primitive
+g other than m let nu_g(w)=max{k:w-kg in S}; define
+
+    D_g=m*max(Ap)-sum_w w-g*sum_w nu_g(w),
+    E=sum_w(sum_g g*nu_g(w)-w),
+    C=(e-2)m(m-1)/2.
+
+Then D_g>=0,E>=0 and mW=sum_g D_g+E-C. For the integer propagated/assignment remainder
+R=sum U-ceil(M_U/2), exact substitution yields
+
+    m Phi_Z=sum_g D_g+E-C-e*m*R.
+
+The analogous identity holds for the completed assignment, using its M_eq. This is an identity,
+not a new positivity theorem: the missing inequality is sum D_g+E>=C+e*m*R.
+
+**FALSE candidate funding rule: E>=e*m*R.** In the genuine remaining-domain semigroup
+S=<13,17,27,29>, c63,g37,e4,W41, the Apéry representatives (residue order) are
+
+    [0,27,54,29,17,44,58,46,34,61,75,63,51].
+
+Every one has a unique factorization in17,27,29, so E=0. Independent generator-order coin DP
+counts those factorizations; subtraction by multiples of each primitive independently computes nu.
+The integer envelope has only U_2=1 and residual assignment0. Its singleton class cannot merge,
+so R=1 for either original or completed assignment. Thus the proposed E payment is0 versus52.
+The three chain deficits are195,281,213; their sum689, correction156, and
+
+    13*41=689-156,          13*37=689-156-52.
+
+All original semigroup/LP/assignment data were independently audited; these calculations reconstruct
+the known CH quantities exactly. The larger saved <146,147,155,185> also has unique Apéry
+factorizations and R42, so the issue is not confined to small multiplicity. No Wilf failure occurs.
+
+**Strategic consequence.** Unpaid loss is not synonymous with factorization collisions. Any budget
+argument based on CH must allow primitive-chain end deficits to pay part of the residual loss,
+while also retaining the discrete correction C and the complete residue count. The E-only charging
+rule and E411-merging-only global route are discontinued. The next universal obligation is an
+actual allocation of those boundary deficits, not another accurate reconstruction of individual W.

@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 23:38 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-22 23:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -66,6 +66,12 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   completing the assignment graph computes that weighted fractional cover exactly. On the new146case
   an8-residue class raises990->998, matching the full capped optimum. This is a local counting lemma;
   a general comparison with c/e is still missing. No class-size bound is assumed.
+- **Limits/global budget (E412/E413):** the E411 zero-anchor merging rule has no active merges when
+  rho0; it cannot be the sole universal mechanism. The general alpha position formula and rho0
+  arithmetic implication are Lean checked. Factorization surplus E cannot pay all residual loss:
+  <13,17,27,29> has unique Apéry factorizations,E0,R1. The global CH identity gives
+  m Phi_Z=sum Def+E-C-e*m*R, so chain-end deficits and the discrete correction must be retained.
+  This identity is a restatement of the positivity gap, not a newly proved lower bound on it.
 
 ## Existing implementations
 
@@ -78,7 +84,7 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
 | [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX, full-Kunz relaxations, residual cone/capped models; export primal/dual data. | Gurobi C API; no height restriction. `--cone` tests residual support, `--cap` maximizes unpaid sum, `--cap-max RES` one coordinate. Independent membership/rational checker: verify_probe.py. |
 | [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--cover` is an UPPER certificate, not a Wilf lower bound. |
-| [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity and transport-path audit. | `--standalone` needs no Gurobi data. upper_dp.py implements rational propagation and `--rigid` exact-zero closure. |
+| [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity, equality and transport audits. | `--standalone` needs no Gurobi data. upper_dp.py has rational propagation, `--rigid` closure, and `--chain-budget INPUT MATCHING...` for exact CH/primitive-factorization budgets on audited data. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
 [Experiment E375](EXPERIMENTS.md) records 108 matching certificate minima against the MILP and C timings of
@@ -126,24 +132,30 @@ integer propagated baseline plus e ceil(M_U/2), with positive overflow demands o
 does not warrant rerunning it. Work backwards from saved low-W/weak-certificate examples to an
 arithmetic/residue-counting inequality comparing baseline and residual demand with c. Exactness of
 a semigroup-dependent relaxation is not such an inequality. Use the E411 class-weighted payment
-lemma to retain actual residue multiplicities; the missing step is an arithmetic relation between
-those class sizes/layer sums, primitive count and conductor. A stronger completed certificate is
-valid, but its universal positivity is also unproved. No bound on the size of a single class may
-be assumed. All12 saved nonempty REAL cores admit
+lemma only as an auxiliary tool: E412 proves it adds nothing at rho0. The missing step is a global
+allocation of primitive-chain boundary deficits, retaining residue multiplicities and the discrete
+correction. Specifically, with R=sum U-ceil(M_U/2), prove or refute
+sum_g Def_g+E >= (e-2)m(m-1)/2+e*m*R. This is exactly the original Phi_Z positivity target in CH
+coordinates, NOT a new theorem. E413 rules out paying e*m*R from E alone; even unique-factorization
+Apéry sets can have R>0. Do not spend another cycle on class-completion-only or collision-only
+funding. A stronger completed certificate remains valid but has unproved universal sign. No class
+size bound may be assumed. All12 saved nonempty REAL cores admit
 positive directions; integer floors can still create extra zeros, as verified on the60cases. Do not
 conflate these models. A single top ideal, a bounded core or unit weights cannot be assumed. Do not
 delete paid cells and apply the false partial-tile lemma. Any negative W forces Phi_Z negative, so
 the necessary-counterexample reduction is universal. No larger boxes or restricted-family targets.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E411 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E413 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
 Latest consolidated checks pass135 existing LP optima,27 cone optima,9 capped/coordinate optima and5
 fresh normal-model optima (176 total), plus existing envelope/assignment witnesses,3 final descent
 witnesses,3 equality-completed witnesses, and existing matching/transport/BASE checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_411_checks.log) and data/unpaid_cone_lean.log.
+[validation log](../src/scratch/p39/data/checkpoint_413_checks.log) and data/allowance_lean.log.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
 New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
+The new allowance audit checks33,375,552 residue pairs;13 saved S pass exact CH and independent
+factorization-count diagnostics. General semigroup consequences and CH budget allocation remain paper/open.
 
 ## Supporting records — consult as needed
 
