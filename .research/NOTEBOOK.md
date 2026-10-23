@@ -5756,3 +5756,40 @@ us which operation must be added, without demanding exact individual reconstruct
 Hall fullQ/R and actual-coordinate arithmetic remain distinct alternatives. No proof
 of the universal sign, no genuine Wilf counterexample. All fixeddiagnostic jobs ended;
 only the same two authorized agents were used. STATE remains solehandoff/inventory.
+### 2026-10-23 17:40 EDT — E461–E463: pay after the free cap; independent directions fail
+
+Previous turn produced new paper/payment components and a precise corner-only
+falsifier; continued the SAME all-S goal rather than rerunning that closed policy.
+Root first applied the free actual-top arithmetic cap before charging source trades.
+This already makes ALL four recent raw-negative controls positive. On38 source the
+compatible raw22-credit shadow supplies only net1 aftercap. This corrects the
+evidential emphasis: it tests compatibility, not an unpaid capped Wilf obstruction.
+
+Natural CAP-TRANSFER then failed on a paper201/203/593/595 control supplied by the
+SAME parity agent. Root derived the GENERAL signed-residue-width lemma, which bounds
+the possible actual M, and used36 explicit backward words to pay NET credit. Exact
+Fejer C and independent coin/ideal-power/column checks give capL-2209->6151,W14735.
+This is still SUPP-covered,Q484; no combined-target failure or new frontier positivity.
+
+Rather than implement another axis-return search, root tested that proposed universal
+payer on paper. E463 disproves it for ANY fixed number r of free original directions,
+even with unbounded powers, using source d=r+2,a=B^d+2 and signedbase-B relations.
+Actual M is O(aB), but onlyO(B^(d-1)) ofa~B^d residues have an allowed below-top word.
+The scalar cap on the others forces L<0. BOTH same agents independently checked source
+primitivity/cofactor1, maximum bounds, all-candidate count and cap sign. This is a
+global-mechanism falsifier, not a family-W programme, numerical census or negative W.
+
+Parallel geometric work gave E462: preserve a genuine canonical D/residues/e/actualtop/Q
+while making gcd(non-m primitives)=1, via lex interior buffering and finite-prime CRT.
+Thus the Q<0=>cofactor candidate reduces to a precise one-ORIGINAL-label subgroup
+implication. Sharp Kneser/popular periodicity alone is insufficient: Z35 with two
+five-point cosets gives sharp popular bounds but a genuine all-cofactor1 source.
+Primary theorem hypotheses were checked; no Q<0 asserted on that guard.
+
+GLOBAL REVIEW: discontinue standalone cap transfer and frozen one-pass fixed-rank
+return programmes before spending GPU effort. They miss genuinely joint arithmetic,
+not just longer inputs. Continue the weaker max(Q,best valid capped/tradeL)>=0 target
+with full reserves. Exact recovery/termination alone does not pay the finite correction.
+Distinct active alternatives are joint source payment, the full-Q one-label bridge,
+and the coupled finite affine budget. One new finite source only; all fixed jobs done,
+no rental, no new agent launch, no Lean/universal proof/novelty claim. Goal remains ACTIVE.

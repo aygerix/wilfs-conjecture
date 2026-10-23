@@ -936,6 +936,79 @@ def constructed_tile_profile(words,P,a,M,require_downset=True):
             'units_present':[j for j in range(d) if tuple(int(i==j) for i in range(d)) in D],
             'downset':not missing,'missing_immediate_predecessors':[list(z) for z in sorted(missing)]}
 
+def top_cap_profile(words,P,a,M,actual):
+    """Arithmetic upper bounds only: capped values need not belong to S."""
+    D=set(map(tuple,words));e=len(P)+1
+    raw={sum(p*n for p,n in zip(P,z))%a:sum(p*n for p,n in zip(P,z)) for z in D}
+    assert len(raw)==a and len(actual)==a and max(actual)==M
+    caps={s:min(v,M-(M-s)%a) for s,v in raw.items()}
+    assert all(actual[s]%a==s and 0<=actual[s]<=caps[s]<=raw[s]
+               and (caps[s]-actual[s])%a==0 for s in raw)
+    credit=sum(raw[s]-caps[s] for s in raw)//a
+    bound=F((e-1)*M)-F(e*sum(caps.values()),a)-F((e-2)*(a-1),2)
+    assert bound.denominator==1
+    return {'raw_L':constructed_tile_profile(D,P,a,M,require_downset=False)['L'],
+            'free_cap_credit':credit,'Lcap':int(bound),'cap_values_by_source_residue':[caps[s] for s in range(a)],
+            'remaining_excess':sum(caps[s]-actual[s] for s in raw)//a,
+            'cap_values_are_not_claimed_source_elements':True}
+
+def audit_top_cap_controls(records,source,trace):
+    """E461 fixed countermechanism controls, not a semigroup search."""
+    result={'controls':[],'universal_positivity_claim':False,'family_census':False}
+    for R in records:
+        S=R['S'];a=R['a'];P=R['original_source_labels'];M=S['c']+a-1
+        D={tuple(C['U_word']) for C in R['columns']};actual=[0]*a
+        for C in R['columns']:actual[2*C['s']%a]=2*C['U_value']+a*C['lambda']
+        B=top_cap_profile(D,P,a,M,actual)
+        assert B['Lcap']==S['W']-S['e']*B['remaining_excess']
+        entry={'S':S,'a':a,**B}
+        if S['G']==[201,203,593,595]:
+            assert P==[203,593,595] and R['U']['G']==[1]
+            assert D=={(s,0,0) for s in range(196)}|{(0,1,0),(0,0,1),(1,0,1),(2,0,1),(3,0,1)}
+            q=M//a;assert 74<=q<=78
+            assert M//203+(5*M)//593+1>=201
+            assert B['Lcap']<0 and B['Lcap']>=2*q*q-179*q-1044
+            new_caps=B['cap_values_by_source_residue'][:];returns=[];lambdas=0
+            for s in range(160,196):
+                n=201-s;t=(n+4)//5;x=5*t-n;word=(x,t,0)
+                value=203*x+593*t;lam=(value-2*s)//a;r=2*s%a
+                assert (value-2*s)%a==0 and 0<=lam<=29
+                oldcap=new_caps[r];assert (oldcap-2*s)//a>=q-2
+                assert actual[r]<=value<oldcap
+                new_caps[r]=value;lambdas+=lam
+                returns.append({'closure_residue':s,'word':list(word),'source_value':value,
+                                'lambda':lam,'net_cap_credit':(oldcap-value)//a})
+            assert lambdas==554
+            net=sum(C['net_cap_credit'] for C in returns)
+            improved=B['Lcap']+S['e']*net
+            assert net>=36*(q-2)-554 and improved>=4814 and improved<=S['W']
+            assert B['Lcap']<=2*q*q-187*q+1172<=-1246
+            entry['weighted_returns']={'count':len(returns),'lambda_sum':lambdas,
+                'net_cap_credit':net,'improved_L':improved,'words':returns,
+                'not_an_apery_reconstruction':True,'paper_only_minimum_improved_bound':4814}
+        result['controls'].append(entry)
+    assert source['generators']==[38,51,67,120,193]
+    a=trace['a'];P=trace['P'];D=set(map(tuple,trace['initial_words']));M=trace['M_actual']
+    S=membership_stats(source['generators'],a)
+    assert all(S[k]==source[k] for k in ('m','e','c','g','W'))
+    B=top_cap_profile(D,P,a,M,S['w']);assert B['Lcap']==S['W']-S['e']*B['remaining_excess']
+    shadows=[]
+    for trade in positive_tile_borders(D,P,a):
+        x,y=trade['x'],trade['y'];out=set();copies=0
+        for z in D:
+            q=min(z[j]//x[j] for j in range(len(P)) if x[j]);copies+=q
+            out.add(tuple(z[j]+q*(y[j]-x[j]) for j in range(len(P))))
+        C=top_cap_profile(out,P,a,M,S['w']);rawcredit=trade['sigma']*copies
+        net=(C['Lcap']-B['Lcap'])//S['e']
+        assert C['Lcap']-B['Lcap']==S['e']*net
+        assert net==rawcredit-B['free_cap_credit']+C['free_cap_credit']>=0
+        shadows.append({'input':list(x),'output':list(y),'raw_pivot_credit':rawcredit,
+                        'net_after_cap_credit':net,'Lcap_after_shadow':C['Lcap']})
+    assert (B['raw_L'],B['free_cap_credit'],B['Lcap'])==(-8,54,262)
+    result['controls'].append({'S':{k:S[k] for k in ('m','e','c','g','W','G')},'a':a,
+                               **B,'support_Q':source['Q'],'shadow_comparisons':shadows})
+    return result
+
 def fresh_unit_shadow(words,P,a,k):
     D=set(map(tuple,words));d=len(P);unit=tuple(int(i==k) for i in range(d))
     assert unit not in D and all(z[k]==0 for z in D)
@@ -2173,6 +2246,23 @@ if __name__=='__main__':
         for a,R in result['controls'].items():
             print('TRADE-CONTROL',a,'initialL',R['initial']['L'],'exact_excess',R['exact_total_excess'])
         print('EXACTLY three saved controls; source bounds, both restoration orders, compatible exchanges and non-downset scalar shadow checked')
+        sys.exit(0)
+    if sys.argv[1]=='--top-cap-check':
+        assert len(sys.argv)==8, 'old31 old39 old51 new201 stall_jsonl output'
+        records=[]
+        for path in sys.argv[2:6]:
+            with open(path) as data:records.append(json.load(data))
+        with open(sys.argv[6]) as data:traces=[json.loads(line) for line in data if line.strip()]
+        source=next(R for R in traces if R['kind']=='trade_source')
+        trace=next(R for R in traces if R['kind']=='trade_policy_trace')
+        result=audit_top_cap_controls(records,source,trace)
+        with open(sys.argv[7],'w') as out:json.dump(result,out,indent=2)
+        for R in result['controls']:
+            print('TOP-CAP',R['S']['G'],'rawL',R['raw_L'],'cap_credit',R['free_cap_credit'],'Lcap',R['Lcap'])
+            if 'weighted_returns' in R:
+                T=R['weighted_returns'];print('WEIGHTED-RETURN','net_credit',T['net_cap_credit'],'improvedL',T['improved_L'])
+            if 'shadow_comparisons' in R:print('NET-SHADOWS',R['shadow_comparisons'])
+        print('FOUR cached controls plus ONE cap-transfer falsifier; no semigroup search or universal sign claim')
         sys.exit(0)
     if sys.argv[1]=='--pointwise-death-check':
         import subprocess

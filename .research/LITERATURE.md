@@ -1405,3 +1405,20 @@ standard in character methods; no novelty claim is made. Its application uses E4
 already proved cofactor descent, not an external unproved finite-correction result.
 The advisor's corner exchange and31/51 controls are credited in PROOFS E458; E459's
 additional witness is a separately certified policy falsifier, not a Wilf counterexample.
+### E461–E463: covering and periodicity guards (2026-10-23)
+
+Rechecked primary [DeVos, short proof of Kneser's theorem](https://arxiv.org/abs/1303.3539)
+and [Grynkiewicz-Wang2601.17922v1](https://arxiv.org/html/2601.17922v1), Theorem1.8.
+Its EXACT threshold is t|A|+t|B|+ceil(-4t^2/3+2t/3), with |A|,|B|>=t>=2.
+For t2,A=B=H union(1+H) inZ35,|H|5, the popular sum30 is below threshold36 and
+attains t|A|+t|B|-t|H|. This theorem proves periodic structure, not that the one
+nonzero quotient coset contains a single ORIGINAL primitive label. E462's source
+guard retains five such labels and all leave-one-out gcds1. No negativeQ is claimed.
+
+E461 CYCLIC-WIDTH is proved directly by placing signed lifts of a residue transversal
+in one integer interval; E462 uses elementary CRT after the existing E455 strict
+lex buffer; E463 counts all source words in fixed-rank return cylinders. No external
+result supplies their missing universal finite-budget sign, and no originality
+claim is made for interval counting, primitive vectors, CRT or the general algebra.
+These are components/guards in the ongoing ALL-S strategy, not a literature survey
+or an activation of a restricted-family Wilf theorem.

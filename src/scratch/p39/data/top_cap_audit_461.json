@@ -1,0 +1,955 @@
+{
+  "controls": [
+    {
+      "S": {
+        "m": 31,
+        "e": 4,
+        "c": 588,
+        "g": 312,
+        "W": 516,
+        "G": [
+          31,
+          33,
+          101,
+          103
+        ]
+      },
+      "a": 31,
+      "raw_L": -156,
+      "free_cap_credit": 78,
+      "Lcap": 156,
+      "cap_values_by_source_residue": [
+        0,
+        528,
+        33,
+        561,
+        66,
+        594,
+        99,
+        596,
+        132,
+        598,
+        165,
+        600,
+        198,
+        602,
+        231,
+        604,
+        264,
+        606,
+        297,
+        608,
+        330,
+        610,
+        363,
+        612,
+        396,
+        614,
+        429,
+        616,
+        462,
+        618,
+        495
+      ],
+      "remaining_excess": 90,
+      "cap_values_are_not_claimed_source_elements": true
+    },
+    {
+      "S": {
+        "m": 39,
+        "e": 4,
+        "c": 868,
+        "g": 456,
+        "W": 780,
+        "G": [
+          39,
+          41,
+          113,
+          115
+        ]
+      },
+      "a": 39,
+      "raw_L": -144,
+      "free_cap_credit": 117,
+      "Lcap": 324,
+      "cap_values_by_source_residue": [
+        0,
+        820,
+        41,
+        861,
+        82,
+        902,
+        123,
+        904,
+        164,
+        906,
+        205,
+        869,
+        246,
+        871,
+        287,
+        873,
+        328,
+        875,
+        369,
+        877,
+        410,
+        879,
+        451,
+        881,
+        492,
+        883,
+        533,
+        885,
+        574,
+        887,
+        615,
+        889,
+        656,
+        891,
+        697,
+        113,
+        738,
+        115,
+        779
+      ],
+      "remaining_excess": 114,
+      "cap_values_are_not_claimed_source_elements": true
+    },
+    {
+      "S": {
+        "m": 51,
+        "e": 4,
+        "c": 1540,
+        "g": 780,
+        "W": 1500,
+        "G": [
+          51,
+          53,
+          149,
+          151
+        ]
+      },
+      "a": 51,
+      "raw_L": -192,
+      "free_cap_credit": 189,
+      "Lcap": 564,
+      "cap_values_by_source_residue": [
+        0,
+        1378,
+        53,
+        1431,
+        106,
+        1484,
+        159,
+        1537,
+        212,
+        1590,
+        265,
+        1541,
+        318,
+        1543,
+        371,
+        1545,
+        424,
+        1547,
+        477,
+        1549,
+        530,
+        1551,
+        583,
+        1553,
+        636,
+        1555,
+        689,
+        1557,
+        742,
+        1559,
+        795,
+        1561,
+        848,
+        1563,
+        901,
+        1565,
+        954,
+        1567,
+        1007,
+        1569,
+        1060,
+        1571,
+        1113,
+        1573,
+        1166,
+        1575,
+        1219,
+        149,
+        1272,
+        151,
+        1325
+      ],
+      "remaining_excess": 234,
+      "cap_values_are_not_claimed_source_elements": true
+    },
+    {
+      "S": {
+        "m": 201,
+        "e": 4,
+        "c": 15025,
+        "g": 7585,
+        "W": 14735,
+        "G": [
+          201,
+          203,
+          593,
+          595
+        ]
+      },
+      "a": 201,
+      "raw_L": -31809,
+      "free_cap_credit": 7400,
+      "Lcap": -2209,
+      "cap_values_by_source_residue": [
+        0,
+        15076,
+        203,
+        15078,
+        406,
+        15080,
+        609,
+        15082,
+        812,
+        15084,
+        1015,
+        15086,
+        1218,
+        15088,
+        1421,
+        15090,
+        1624,
+        15092,
+        1827,
+        15094,
+        2030,
+        15096,
+        2233,
+        15098,
+        2436,
+        15100,
+        2639,
+        15102,
+        2842,
+        15104,
+        3045,
+        15106,
+        3248,
+        15108,
+        3451,
+        15110,
+        3654,
+        15112,
+        3857,
+        15114,
+        4060,
+        15116,
+        4263,
+        15118,
+        4466,
+        15120,
+        4669,
+        15122,
+        4872,
+        15124,
+        5075,
+        15126,
+        5278,
+        15128,
+        5481,
+        15130,
+        5684,
+        15132,
+        5887,
+        15134,
+        6090,
+        15136,
+        6293,
+        15138,
+        6496,
+        15140,
+        6699,
+        15142,
+        6902,
+        15144,
+        7105,
+        15146,
+        7308,
+        15148,
+        7511,
+        15150,
+        7714,
+        15152,
+        7917,
+        15154,
+        8120,
+        15156,
+        8323,
+        15158,
+        8526,
+        15160,
+        8729,
+        15162,
+        8932,
+        15164,
+        9135,
+        15166,
+        9338,
+        15168,
+        9541,
+        15170,
+        9744,
+        15172,
+        9947,
+        15174,
+        10150,
+        15176,
+        10353,
+        15178,
+        10556,
+        15180,
+        10759,
+        15182,
+        10962,
+        15184,
+        11165,
+        15186,
+        11368,
+        15188,
+        11571,
+        15190,
+        11774,
+        15192,
+        11977,
+        15194,
+        12180,
+        15196,
+        12383,
+        15198,
+        12586,
+        15200,
+        12789,
+        15202,
+        12992,
+        15204,
+        13195,
+        15206,
+        13398,
+        15208,
+        13601,
+        15210,
+        13804,
+        15212,
+        14007,
+        15214,
+        14210,
+        15216,
+        14413,
+        15218,
+        14616,
+        15220,
+        14819,
+        15222,
+        15022,
+        15224,
+        15225,
+        15025,
+        15026,
+        15027,
+        15028,
+        15029,
+        15030,
+        15031,
+        15032,
+        15033,
+        15034,
+        15035,
+        15036,
+        15037,
+        15038,
+        15039,
+        15040,
+        15041,
+        15042,
+        15043,
+        15044,
+        15045,
+        15046,
+        15047,
+        15048,
+        15049,
+        15050,
+        15051,
+        15052,
+        15053,
+        15054,
+        15055,
+        15056,
+        15057,
+        15058,
+        15059,
+        15060,
+        15061,
+        15062,
+        15063,
+        15064,
+        593,
+        15066,
+        595,
+        15068,
+        798,
+        15070,
+        1001,
+        15072,
+        1204,
+        15074
+      ],
+      "remaining_excess": 4236,
+      "cap_values_are_not_claimed_source_elements": true,
+      "weighted_returns": {
+        "count": 36,
+        "lambda_sum": 554,
+        "net_cap_credit": 2090,
+        "improved_L": 6151,
+        "words": [
+          {
+            "closure_residue": 160,
+            "word": [
+              4,
+              9,
+              0
+            ],
+            "source_value": 6149,
+            "lambda": 29,
+            "net_cap_credit": 45
+          },
+          {
+            "closure_residue": 161,
+            "word": [
+              0,
+              8,
+              0
+            ],
+            "source_value": 4744,
+            "lambda": 22,
+            "net_cap_credit": 52
+          },
+          {
+            "closure_residue": 162,
+            "word": [
+              1,
+              8,
+              0
+            ],
+            "source_value": 4947,
+            "lambda": 23,
+            "net_cap_credit": 51
+          },
+          {
+            "closure_residue": 163,
+            "word": [
+              2,
+              8,
+              0
+            ],
+            "source_value": 5150,
+            "lambda": 24,
+            "net_cap_credit": 50
+          },
+          {
+            "closure_residue": 164,
+            "word": [
+              3,
+              8,
+              0
+            ],
+            "source_value": 5353,
+            "lambda": 25,
+            "net_cap_credit": 49
+          },
+          {
+            "closure_residue": 165,
+            "word": [
+              4,
+              8,
+              0
+            ],
+            "source_value": 5556,
+            "lambda": 26,
+            "net_cap_credit": 48
+          },
+          {
+            "closure_residue": 166,
+            "word": [
+              0,
+              7,
+              0
+            ],
+            "source_value": 4151,
+            "lambda": 19,
+            "net_cap_credit": 55
+          },
+          {
+            "closure_residue": 167,
+            "word": [
+              1,
+              7,
+              0
+            ],
+            "source_value": 4354,
+            "lambda": 20,
+            "net_cap_credit": 54
+          },
+          {
+            "closure_residue": 168,
+            "word": [
+              2,
+              7,
+              0
+            ],
+            "source_value": 4557,
+            "lambda": 21,
+            "net_cap_credit": 53
+          },
+          {
+            "closure_residue": 169,
+            "word": [
+              3,
+              7,
+              0
+            ],
+            "source_value": 4760,
+            "lambda": 22,
+            "net_cap_credit": 52
+          },
+          {
+            "closure_residue": 170,
+            "word": [
+              4,
+              7,
+              0
+            ],
+            "source_value": 4963,
+            "lambda": 23,
+            "net_cap_credit": 51
+          },
+          {
+            "closure_residue": 171,
+            "word": [
+              0,
+              6,
+              0
+            ],
+            "source_value": 3558,
+            "lambda": 16,
+            "net_cap_credit": 58
+          },
+          {
+            "closure_residue": 172,
+            "word": [
+              1,
+              6,
+              0
+            ],
+            "source_value": 3761,
+            "lambda": 17,
+            "net_cap_credit": 57
+          },
+          {
+            "closure_residue": 173,
+            "word": [
+              2,
+              6,
+              0
+            ],
+            "source_value": 3964,
+            "lambda": 18,
+            "net_cap_credit": 56
+          },
+          {
+            "closure_residue": 174,
+            "word": [
+              3,
+              6,
+              0
+            ],
+            "source_value": 4167,
+            "lambda": 19,
+            "net_cap_credit": 55
+          },
+          {
+            "closure_residue": 175,
+            "word": [
+              4,
+              6,
+              0
+            ],
+            "source_value": 4370,
+            "lambda": 20,
+            "net_cap_credit": 54
+          },
+          {
+            "closure_residue": 176,
+            "word": [
+              0,
+              5,
+              0
+            ],
+            "source_value": 2965,
+            "lambda": 13,
+            "net_cap_credit": 60
+          },
+          {
+            "closure_residue": 177,
+            "word": [
+              1,
+              5,
+              0
+            ],
+            "source_value": 3168,
+            "lambda": 14,
+            "net_cap_credit": 59
+          },
+          {
+            "closure_residue": 178,
+            "word": [
+              2,
+              5,
+              0
+            ],
+            "source_value": 3371,
+            "lambda": 15,
+            "net_cap_credit": 58
+          },
+          {
+            "closure_residue": 179,
+            "word": [
+              3,
+              5,
+              0
+            ],
+            "source_value": 3574,
+            "lambda": 16,
+            "net_cap_credit": 57
+          },
+          {
+            "closure_residue": 180,
+            "word": [
+              4,
+              5,
+              0
+            ],
+            "source_value": 3777,
+            "lambda": 17,
+            "net_cap_credit": 56
+          },
+          {
+            "closure_residue": 181,
+            "word": [
+              0,
+              4,
+              0
+            ],
+            "source_value": 2372,
+            "lambda": 10,
+            "net_cap_credit": 63
+          },
+          {
+            "closure_residue": 182,
+            "word": [
+              1,
+              4,
+              0
+            ],
+            "source_value": 2575,
+            "lambda": 11,
+            "net_cap_credit": 62
+          },
+          {
+            "closure_residue": 183,
+            "word": [
+              2,
+              4,
+              0
+            ],
+            "source_value": 2778,
+            "lambda": 12,
+            "net_cap_credit": 61
+          },
+          {
+            "closure_residue": 184,
+            "word": [
+              3,
+              4,
+              0
+            ],
+            "source_value": 2981,
+            "lambda": 13,
+            "net_cap_credit": 60
+          },
+          {
+            "closure_residue": 185,
+            "word": [
+              4,
+              4,
+              0
+            ],
+            "source_value": 3184,
+            "lambda": 14,
+            "net_cap_credit": 59
+          },
+          {
+            "closure_residue": 186,
+            "word": [
+              0,
+              3,
+              0
+            ],
+            "source_value": 1779,
+            "lambda": 7,
+            "net_cap_credit": 66
+          },
+          {
+            "closure_residue": 187,
+            "word": [
+              1,
+              3,
+              0
+            ],
+            "source_value": 1982,
+            "lambda": 8,
+            "net_cap_credit": 65
+          },
+          {
+            "closure_residue": 188,
+            "word": [
+              2,
+              3,
+              0
+            ],
+            "source_value": 2185,
+            "lambda": 9,
+            "net_cap_credit": 64
+          },
+          {
+            "closure_residue": 189,
+            "word": [
+              3,
+              3,
+              0
+            ],
+            "source_value": 2388,
+            "lambda": 10,
+            "net_cap_credit": 63
+          },
+          {
+            "closure_residue": 190,
+            "word": [
+              4,
+              3,
+              0
+            ],
+            "source_value": 2591,
+            "lambda": 11,
+            "net_cap_credit": 62
+          },
+          {
+            "closure_residue": 191,
+            "word": [
+              0,
+              2,
+              0
+            ],
+            "source_value": 1186,
+            "lambda": 4,
+            "net_cap_credit": 69
+          },
+          {
+            "closure_residue": 192,
+            "word": [
+              1,
+              2,
+              0
+            ],
+            "source_value": 1389,
+            "lambda": 5,
+            "net_cap_credit": 68
+          },
+          {
+            "closure_residue": 193,
+            "word": [
+              2,
+              2,
+              0
+            ],
+            "source_value": 1592,
+            "lambda": 6,
+            "net_cap_credit": 67
+          },
+          {
+            "closure_residue": 194,
+            "word": [
+              3,
+              2,
+              0
+            ],
+            "source_value": 1795,
+            "lambda": 7,
+            "net_cap_credit": 66
+          },
+          {
+            "closure_residue": 195,
+            "word": [
+              4,
+              2,
+              0
+            ],
+            "source_value": 1998,
+            "lambda": 8,
+            "net_cap_credit": 65
+          }
+        ],
+        "not_an_apery_reconstruction": true,
+        "paper_only_minimum_improved_bound": 4814
+      }
+    },
+    {
+      "S": {
+        "m": 38,
+        "e": 5,
+        "c": 333,
+        "g": 209,
+        "W": 287,
+        "G": [
+          38,
+          51,
+          67,
+          120,
+          193
+        ]
+      },
+      "a": 51,
+      "raw_L": -8,
+      "free_cap_credit": 54,
+      "Lcap": 262,
+      "cap_values_by_source_residue": [
+        0,
+        307,
+        257,
+        105,
+        361,
+        158,
+        210,
+        364,
+        263,
+        315,
+        367,
+        266,
+        114,
+        268,
+        269,
+        219,
+        67,
+        272,
+        120,
+        172,
+        377,
+        225,
+        277,
+        380,
+        228,
+        76,
+        383,
+        231,
+        181,
+        335,
+        234,
+        286,
+        134,
+        339,
+        187,
+        239,
+        240,
+        190,
+        38,
+        345,
+        193,
+        143,
+        348,
+        196,
+        248,
+        351,
+        301,
+        353,
+        201,
+        304,
+        152
+      ],
+      "remaining_excess": 5,
+      "cap_values_are_not_claimed_source_elements": true,
+      "support_Q": 103,
+      "shadow_comparisons": [
+        {
+          "input": [
+            0,
+            13,
+            0,
+            0
+          ],
+          "output": [
+            5,
+            0,
+            1,
+            0
+          ],
+          "raw_pivot_credit": 22,
+          "net_after_cap_credit": 1,
+          "Lcap_after_shadow": 267
+        },
+        {
+          "input": [
+            0,
+            11,
+            0,
+            0
+          ],
+          "output": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "raw_pivot_credit": 36,
+          "net_after_cap_credit": 2,
+          "Lcap_after_shadow": 272
+        },
+        {
+          "input": [
+            0,
+            10,
+            0,
+            0
+          ],
+          "output": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "raw_pivot_credit": 35,
+          "net_after_cap_credit": 1,
+          "Lcap_after_shadow": 267
+        }
+      ]
+    }
+  ],
+  "universal_positivity_claim": false,
+  "family_census": false
+}

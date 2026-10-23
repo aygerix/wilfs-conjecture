@@ -1,10 +1,66 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 17:03 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 17:40 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+
+**E461–E463 checkpoint: free cap accounted; fixed-rank one-pass returns REFUTED.**
+For EVERY source/pivot, constructed same-residue values may first be capped at the
+largest integer of that residue <=actual M. Capped values need not belong to S;
+this is a scalar bound, not a source-word/downset operation. Trade credit thereafter
+must be NET after the cap. This already pays ALL four recent raw-negative controls:
+31:-156->156,39:-144->324,51:-192->564,38:-8->262. On the38source, raw22-shadow
+credit adds only ONE pivot credit after cap, giving267. Do not overstate raw policy
+repairs as an unpaid capped/combined Wilf obstruction.
+This is the existing max(0,column count) safeguard: Lcap=e*Ccap-c with Ccap<=ell.
+It corrects the raw comparisons; it is NOT a new positivity theorem. Full reconstruction
+would simply recover the original objective, so uniform payment remains essential.
+
+The natural CAP-TRANSFER (W(U)>=0 implies Lcap>=0) is FALSE. New single fixed control
+S=<201,203,593,595>,U=N,allunits/cofactor1/deep/sparse: c15025,g7585,W14735,M15225;
+rawL-31809,free capcredit7400,Lcap-2209.36 explicit backward source words supply
+NET2090credits, givingL6151 while leavingexcess2146; exact reconstruction unnecessary.
+It is ALREADY SUPP-covered (Q484,R14251), not a resistant Wilf source or combined
+target falsifier. Existing C and independent coin/ideal-power/column checks pass.
+Only this ONE new source was evaluated; no census, policy feedback or GPU rental.
+
+**New GENERAL paper component:** choose signed lifts h_j of unit-relabeled P_j mod a,
+alpha=min_(h>0)P/h,beta=min_(h<0)P/(-h), missing sign infinity. Distinct Apéry residues
+force floor(M/alpha)+floor(M/beta)+1>=a. On the201 control it gives q>=74, and explicit
+returns plus net-cap accounting prove L>=4814 symbolically (exact6151). The width
+lemma alone does not pay a universal finite correction. No novelty/Lean claim.
+
+**E463 uniform mechanism falsifier, independently reviewed by BOTH SAME agents:**
+For EVERY fixed r>=1, the envelope consisting of ALL z+sum_(j in I)k_j*e_j with
+z in the INITIAL canonical D_U,|I|<=r,k_j UNBOUNDED, plus the arithmetic cap, can
+still have L<0 on genuine cofactor1/deep/sparse sources. Construction d=r+2,
+a=B^d+2, original labels a+2,3a-2B,...,3a-2B^(d-1),Bodd sufficientlylarge. DU has
+<=1 backward occurrence; M lies[aB,(3d-2)aB]. At mostO(B^(d-1)) ofa~B^d residues
+have a return <=M, so the others remain capped nearM and L<0. This is a PAPER
+counterexample to a global payer, not a family-W theorem or numerical family run.
+It does NOT refute sequential/evolving coupled returns, coordination growing with e,
+general mixed-output packings, full reserves, or the combined max(Q,L)>=0 target.
+Stop one-pass fixed-rank catalogue patches; don't implement/rent for this false claim.
+
+**E462 general Q-normalization:** any genuine multiplicity canonical tile with d>=2
+can retain D,primitive residues,e,actualtop,Q at arbitrarilyhigh realizations while
+making gcd(ALL non-m primitives)=1. E455 strict lex buffering plus a primitive
+interior direction and finite-prime CRT avoidance proves it; all OTHER leave-one-out
+gcds stay fixed. W sign is NOT preserved. Thus the proposed Q<0=>cofactor bridge
+reduces to: some prime p|m has EXACTLY ONE original primitive residue nonzero modp.
+This remains UNKNOWN. Sharp Kneser/popular periodicity alone fails that bridge on
+the paperZ35 two-coset guard, which has all cofactors1; no Q<0 is asserted there.
+
+**Next universal obligations:** (1) prove a quantitative JOINT original-word payment
+after cap, keeping ALL reserves and Q fallback; neither a fixed degree nor a fixed
+number of one-pass free coordinates suffices; (2) full actual-phase Q<0 must imply
+the one-original-label subgroup obstruction, not just periodicity; (3) the all-profile
+coupled finite affine budget remains available, without claiming LP exactness proves
+its sign. Stop the named failed payers, not directed discovery. A new compute campaign
+requires a precise changed predicate/budget after proof attempt, not the old resistant-
+seed prerequisite. All fixed Fejer jobs finished; no rental or agent job remains.
 
 **E457–E460 checkpoint: standalone unit/corner payer REFUTED; compatible shadow verified.**
 The latest advisor's51 control and both31 restoration orders are correct. A new proof
@@ -736,16 +792,28 @@ CLI SCAN_VERIFIER points to apery_scan/verify_scan.py. Data: p39/data/{cyclic_so
 composite_source_control_458,advisor_trade_audit_458}.json; engine traces/audits in
 apery_scan/data/trade_*459*. No new C/Gurobi implementation, GPU or broad suite run.
 
+**E461 arithmetic cap/return audit:** same verify_probe.py now has
+`--top-cap-check OLD31 OLD39 OLD51 NEW201 STALL_JSONL OUTPUT`. It checks exact scalar
+cap values and net shadow credit on four cached controls plus one new CAP-TRANSFER
+falsifier, including36 explicit return words and a symbolic-bound check. New source
+still uses existing C --odd-audit and independent --pointwise-death-check. Data under
+p39/data/: top_cap_control_461.json,top_cap_audit_461.json,top_cap_support_461.json,
+top_cap_support_verified_461.json. No new C optimizer, CUDA kernel or search mode.
+The E462 CRT and E463 fixed-rank theorems are paper proofs, independently reviewed;
+no numerical family data or Lean formalization is claimed.
+
 ## Current attempt and next action
 
-**Next proof task:** derive a uniform compatible-shadow or scalar-packing quota using
-ORIGINAL source relations, with macroscopic inputs and mixed/composite outputs allowed.
-The precise weakest combined sufficient target is `max(Q(S),sup_admissible_D L(D))>=0`
-throughout the normalized remaining domain; each is a valid lower bound for W. Unit
-restoration alone, fixed input degree, primitive-only outputs, and single corners are
-now explicitly refuted as standalone universal payers. E459's genuine starting tile
-requires a simultaneous shadow, not a different move ordering. Seek a GLOBAL credit
-selection/payment lemma; exact recovery of more individual Apéry tables is not the goal.
+**Next proof task:** derive a uniform JOINT credit quota after the FREE arithmetic
+top cap, using ORIGINAL source relations, macroscopic mixed inputs and composite
+outputs, and full reserves. Quantify before optimizing a policy: E463 refutes every
+fixed-rank one-pass return envelope, even with unbounded powers. An evolving construction
+may coordinate arbitrarily many original labels; its validity/termination alone does
+not prove payment. The weakest combined sufficient target remains
+`max(Q(S),best valid capped/trade L(S))>=0` throughout the normalized domain. E462
+sharpens the distinct full-Q alternative to the one-original-label subgroup bridge;
+ordinary/popular periodicity is insufficient. The original coupled finite-budget
+route is the third active mathematical alternative. No special-e Wilf programme.
 
 Directed discovery remains authorized, with a named predicate and budget; the old
 resistant-seed prerequisite stays superseded. Any new policy search should report both

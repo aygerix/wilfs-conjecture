@@ -1963,3 +1963,62 @@ multi-cell shadows, and seek a uniform quantitative rule with full reserves/supp
 fallback. A fresh search needs a new explicit policy/lemma and budget; no automatic
 512 rerun, sample increase or rental. E460's general no-box normalization is PAPER ONLY;
 no extra box cases were calculated.
+## E461 — free-cap accounting and one exact weighted-return control
+
+2026-10-23, Fejer (existing project littlewood-paley-8375,us-east1-b,~/wilf/p39).
+Scope/predicates were written in SCOPE before launch. Existing C repair_scan and
+Python stdlib checker only; no solver, policy campaign, new CUDA work or rental.
+All commands completed normally inside their60s limits; no benchmark timings were
+instrumented, so this is mathematical verification, not a performance comparison.
+
+Exactly ONE new source was evaluated:201/203/593/595. Existing C --odd-audit was
+independently checked by coin membership, ideal powers, multiplication, pointwise
+lambda=nu+2D and original-label U-word reconstruction. Results:
+
+    m=a201,e4,c15025,g7585,ell7440,W14735,M15225,U=N
+    sum_nu4485,sum_D1500,sum_lambda7485,raw_odd_moment19121
+    rawL-31809,free_cap_credit7400,Lcap-2209
+    36 backward words:lambda_sum554,NET_cap_credit2090,improvedL6151
+    remaining_excess2146 (so improved certificate is not the actual Apéry vector).
+
+This refutes CAP-TRANSFER (W(U)>=0=>Lcap>=0). The weighted-width/return paper proof
+gives the weaker but independently useful symbolic lower bound4814 on this control.
+Reproduce from p39:
+
+    python3 verify_probe.py --pointwise-death-check ./repair_scan data/top_cap_control_461.json 201 203 593 595
+    python3 verify_probe.py --top-cap-check data/parity_trade_control_454.json data/cyclic_source_control_457.json data/composite_source_control_458.json data/top_cap_control_461.json ../apery_scan/data/trade_search_459.jsonl data/top_cap_audit_461.json
+
+The second command uses FOUR previously saved controls plus the new201 record:
+
+| Source | raw L | free cap credit | Lcap |
+|---|---:|---:|---:|
+|31,33,101,103|-156|78|156|
+|39,41,113,115|-144|117|324|
+|51,53,149,151|-192|189|564|
+|38,51,67,120,193|-8|54|262|
+|201,203,593,595|-31809|7400|-2209|
+
+On38 source all three old shadows were evaluated only for NET accounting:
+raw22->net1/L267 (compatible),raw36->net2/L272,raw35->net1/L267. No additional
+policy search or neighbor scan ran. Values after cap are NOT claimed attainable
+source representatives; all source-word return values are attainable and checked.
+
+The SAME201 source was labelled by the existing C support evaluator, then an
+independent explicit-column support_geometry replay using its ALREADY certified
+Apéry values (no new source membership run):
+
+    ./repair_scan --supp-audit 201 203 593 595 > data/top_cap_support_461.json
+
+The replay reconstructs w_(2s)=2u_s+a*lambda_s from top_cap_control_461.json,
+sets r=argmax(w),rho=-c mod a,mu_s=max(0,ceil((c-w_s)/a)), and compares EVERY
+reported C field with support_geometry. Output top_cap_support_verified_461.json
+gives Dep364,kappa80,N200,Q484,R14251,W14735. Thus it is already SUPP-covered,
+NOT a resistant Wilf source or a falsifier of the weaker combined target.
+
+Files: top_cap_control_461.json,top_cap_audit_461.json,top_cap_support_461.json,
+top_cap_support_verified_461.json in p39/data. The only new executable behavior is
+the generic scalar-cap checker and fixed-control --top-cap-check CLI in verify_probe.py.
+Both SAME authorized agents paper-reviewed CYCLIC-WIDTH and the net return estimate.
+E462 CRT normalization and E463 fixed-rank falsifier are PAPER ONLY; no35 or huge-B
+family source was computed, no extra seeds/generations were evaluated. No new Lean,
+universal sign, exhaustive-domain coverage or novelty claim. All Fejer jobs ended.

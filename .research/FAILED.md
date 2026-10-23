@@ -537,3 +537,31 @@ positive bounds with non-downset images. Thus stop corner-only as a universal ru
 not source trades generally. ActualW287 and SUPP Q103 are positive: the combined
 [SUPP OR source policy] statement is NOT refuted, and this is not a resistant Wilf case.
 Full exact witnesses/independent audits are trade_search_459*.json in apery_scan/data.
+## E461/E463 — cap transfer and fixed-rank one-pass returns are insufficient
+
+FALSE: W(U)>=0 implies the arithmetic-capped original D_U lower bound Lcap>=0.
+Genuine S=<201,203,593,595> has U=N,allunits,cofactor1,c15025>4m,e4,3e<m and
+Lcap=-2209 although W14735. Paper estimates already give Lcap<=-1246 without
+using exact invariants.36 explicit backward words supply NET2090 additional
+credits and give valid L6151. Do not count their raw savings on top of cap credit.
+This source is ALREADY SUPP-covered,Q484,so combined max(Q,L) is not refuted.
+
+The old four raw-negative controls ALL have positive free-capped bounds. The38
+corner-stall repair's raw22 credit becomes net1 after cap. Keep the original move
+policy falsifications, but do not call them an unpaid capped/combined obstruction.
+
+FALSE FOR EVERY FIXED r>=1: from the INITIAL D_U, allowing arbitrary nonnegative
+extensions on ANY at most r original coordinates, plus arithmetic caps, always
+gives a nonnegative scalar Wilf lower bound. E463 gives a proof-only family with
+d=r+2,a=B^d+2 and genuine cofactor1/deep/sparse source<a,a+2,3a-2B,...,3a-2B^(d-1)>.
+All source units are present. Even with UNBOUNDED return lengths, only O(B^(d-1))
+of a~B^d residues get a candidate <=M; most retain caps nearM, forcing Lr<0.
+Both independent paper reviews pass. No W sign, negativeQ or numerical family
+search is asserted. The statement concerns one frozen-tile pass; sequential or
+evolving coupled constructions and general mixed-output packings are NOT refuted.
+
+Stop fixed-rank catalogue patches as standalone payers. Retain original labels,
+genuinely joint coordination, all reserves and the weaker support/source target.
+E462 also guards against inferring a removable cofactor from mere sharp periodicity:
+the Z35 two-coset example has all cofactors1. The necessary full-Q one-label bridge
+remains UNKNOWN, not refuted by that periodicity guard.

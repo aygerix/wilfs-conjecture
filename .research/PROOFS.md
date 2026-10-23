@@ -11784,3 +11784,285 @@ not arbitrary tilings. E439's least-genus counterexample therefore forces at lea
 maximal cells in EVERY full-source-unit constructed residue downset. The actual E459
 corner-stalled initial tile has seven maxima and survives this necessary restriction.
 No claim that two-or-more-max tiles admit a corner or adequate shadow follows.
+## E461 — arithmetic top caps, net trade credit and a weighted cyclic-width bound
+
+2026-10-23. Scope: EVERY S through E441/E453, conditional on a uniform credit
+quota. The cap and width lemmas below are proved directly; CAP-TRANSFER is false.
+No novelty/Lean claim. The SAME two authorized agents review the paper components.
+
+### 1. A free arithmetic cap, with no attainability assertion
+
+Use E441's least odd primitive a, other ORIGINAL primitives P_j=2 beta_j+a chi_j,
+U=<a,beta>, u_s=Ap(U,a)_s, and canonical original-label words z_s. Put n_s=chi.z_s,
+M=c(S)+a-1. The source representative in residue 2s is v_(2s)=2u_s+a lambda_s.
+Its construction and maximality give
+
+    0<=lambda_s<=n_s,
+    lambda_s<=H_s:=floor((M-2u_s)/a).
+
+Consequently lambda_cap(s)=min(n_s,H_s) is a valid upper bound, and
+
+    Lcap=(e-1)c(S)-e*(2g(U)+(a-1)/2+sum_s lambda_cap(s)) <= W(S).
+
+Equivalently, for ANY constructed same-residue source-word values V_r>=v_r, replace
+them by B_r=min(V_r,M-[(M-r) mod a]). These B_r still majorize v_r. They need NOT
+belong to S and do NOT define a new word tile/downset. This is an arithmetic bound,
+not a legal source substitution. The free pivot credit is sum_r(V_r-B_r)/a.
+
+For a same-residue trade V_r->V'_r<=V_r, its ADDITIONAL credit after the cap is
+
+    sum_r(min(V_r,cap_r)-min(V'_r,cap_r))/a,
+
+not its raw word saving. It equals raw_credit-old_cap_credit+new_cap_credit and is
+nonnegative. Summing raw trade credit on top of the old cap counts overlap twice.
+
+This cap is exactly the EXISTING nonnegative-column safeguard, not a new positivity
+principle. With cap_r=M-[(M-r) mod a], put C(B)=sum_r(cap_r-B_r)/a. The same Apéry
+identity simplifies the capped lower bound to
+
+    L(B)=e*C(B)-c,    0<=C(B)<=ell(S).
+
+For capped constructed values, each summand is max(0,ceil((c-V_r)/a)); for actual
+values their sum is ell. Thus the global quota still requires a substantive lower
+count of left elements. Reconstructing every B_r=v_r would merely recover Wilf's
+original objective. The purpose of the return controls is to test a PAYMENT rule,
+not to present this exact restatement as a new proof mechanism.
+
+### 2. A general signed-residue covering requirement
+
+Let a be ANY positive primitive pivot of a proper source, P its other primitives,
+and u a unit modulo a. Choose ANY integer lifts h_j congruent u*P_j modulo a. Define
+
+    alpha=min_(h_j>0) P_j/h_j,
+    beta =min_(h_j<0) P_j/(-h_j),
+
+with a missing sign interpreted as infinity. Then
+
+    floor(M/alpha)+floor(M/beta)+1 >= a.                 (CYCLIC-WIDTH)
+
+Indeed P_j>=alpha*h_j and P_j>=-beta*h_j for every j, including those of the
+opposite sign. A pivot-free Apéry factorization z of value at most M has signed sum
+t=h.z in the integer interval [-M/beta,M/alpha]. The a Apéry words have distinct
+residues t modulo a because u is a unit. That interval must contain at least a integers.
+Zero h_j and a missing sign cause no exception. This is an elementary necessary
+covering condition; no positive Wilf budget follows from it alone.
+
+### 3. CAP-TRANSFER is false, even with U=N and every unit present
+
+The candidate was W(U)>=0 => Lcap>=0. A paper countermechanism is
+
+    S=<201,203,593,595>, a=201, beta=(1,196,197), chi=(1,1,1), U=N.
+
+All four source generators are odd and below 3a, hence primitive. Every leave-one-out
+gcd is one (201/203 and 593/595 are odd pairs differing by two). The canonical D_U has
+axis words s*e203 for 0<=s<=195, then the five words
+e593,e595,e203+e595,2e203+e595,3e203+e595. Their odd-count sum is 19121.
+
+Write q=floor(M/201). A source Apéry word has at most q factors; in normalized
+residue coordinates these have signed steps 1,-5,-4. Thus 6q+1>=201, so q>=34.
+For s>0 put n=201-s,t=ceil(n/5),x=5t-n. The source word x*203+t*593 has normalized
+residue s and value at most (593/5)(201-s)+6432/5. Comparing with the forward word
+203s gives M<=203*(625/8), hence q<=78. In particular c>4m, as q>=34.
+
+For the first 196 closure columns, lambda_cap>=min(s,q-2), giving
+
+    sum lambda_cap >=196(q-2)-(q-2)(q-1)/2,
+    Lcap<=2q^2-187q+1172<=-1246  (34<=q<=78).
+
+This proves failure of CAP-TRANSFER without using exact source invariants.
+
+### 4. Explicit weighted returns pay this control beyond the cap
+
+CYCLIC-WIDTH with h=(1,-5,-4), alpha=203,beta=593/5 sharpens q>=34 to q>=74:
+if q<=73 then M<=14873, and the interval has at most 73+125+1=199 integers.
+Conversely lambda_cap<=min(s,q) for s<=195; the other five n_s sum to 11. Therefore
+
+    Lcap>=2q^2-179q-1044>=-3338  (74<=q<=78).
+
+For ONLY the 36 columns 160<=s<=195, use the backward words x*203+t*593 above.
+Their lift values are 8t-n-2<=29 and sum to 554. The previous cap lifts on these
+columns are at least q-2. Their NET additional credit is therefore at least
+
+    36(q-2)-554 >=2038.
+
+Replacing those 36 scalar bounds gives L>=-3338+4*2038=4814>0. This is not exact
+Apéry reconstruction, and proves no universal return quota. It illustrates which
+weighted cyclic information the cap discarded. The fixed control is already
+SUPP-covered, so it does not refute or newly test the weaker combined target.
+
+Exact C and independent coin/ideal-power/source-word checks give c15025,g7585,
+W14735,M15225,q75. Raw L=-31809; free cap credit7400 gives Lcap=-2209; net return
+credit2090 gives L=6151, leaving excess2146. Independent column replay gives
+Dep364,kappa80,N200,Q484,R14251. Data and reproduction: E461 EXPERIMENTS.
+
+For the FOUR cached controls, the free cap already makes the raw negative bounds
+positive: 31control -156->156,39control -144->324,51control -192->564,38control
+-8->262. On the last source the compatible raw22-credit shadow adds only ONE pivot
+credit after the cap, giving267. These controls refute their explicitly named raw
+move policies, but are not evidence of an unpaid capped or combined-Wilf obstruction.
+
+## E462 — remove the multiplicity-deletion cofactor without changing a genuine tile
+
+2026-10-23. A proof-only normalization component in the universal full-Q route;
+it preserves Q, NOT the sign of W. SAME authorized geometric agent supplied the
+construction; root checked finite edge rows and CRT. No numerical run or Lean claim.
+
+### 1. Primitive-height normalization at a fixed actual top
+
+Fix ANY genuine multiplicity tile D, its primitive residues delta_1,...,delta_d,
+d=e-1>=2, and actual top r. There are arbitrarily high genuine realizations with
+the SAME D,delta,e,r,Q and gcd(P_1,...,P_d)=1. Every OTHER leave-one-out gcd is fixed.
+
+E455 gives a positive integer interior direction v0 for ALL nonidentity canonical
+primitive-edge rows, including positivity and fixed-top rows. To see why old inner
+equalities cause no obstruction, a seed-tied row z_s+e_j-z_t is lex-positive. A
+sufficiently separated positive lex vector makes all finitely many such rows strict;
+a large seed-weight multiple handles the rows already strict. Actual-top inequalities
+were already strict because distinct residues have distinct values. No old tight
+pattern is claimed preserved.
+
+Make this direction primitive. Let g=gcd(v0_2,...,v0_d), take N a sufficiently large
+multiple of g, and put v=N*v0+e_1. All directional strict inequalities persist. Every
+common prime divisor of the coordinates other than the first divides N*g, hence N, while
+N*v0_1+1 is coprime to N. Thus gcd(v)=1.
+
+Choose a buffered feasible integer VALUE vector A congruent delta modulo m and not
+proportional to v. A sufficiently deep point on the feasible ray has enough margin
+that adding m*e_1 preserves all required rows and, if necessary, breaks proportionality.
+Then P(T)=A+m*T*v stays feasible for T>=0. Some nonzero minor C=v_i*A_j-v_j*A_i exists.
+Any prime dividing all P_j(T) must divide C. Primes dividing m are excluded by
+gcd(m,delta)=1. For a prime p|C with p not dividing m, the primitive vector v has a
+nonzero coordinate modulo p, so simultaneous divisibility of every P_j(T) forbids
+at most ONE residue class of T modulo p. Choose another class for each such p. CRT
+gives arbitrarily large T avoiding all of them, proving gcd(P(T))=1.
+
+For each nonmultiplicity coordinate j, its leave-one-out gcd remains
+
+    gcd(m,{P_i(T):i!=j})=gcd(m,{delta_i:i!=j}).
+
+The tile/top and hence Q remain fixed; c can be made >4m. Source W is not fixed or
+asserted to retain its sign. This is not a Wilf-sign-preserving semigroup descent.
+
+### 2. The exact missing subgroup bridge
+
+For the normalized full-Q strategy, the candidate that Q<0 forces SOME removable
+cofactor is therefore equivalent to the more precise claim
+
+    Q(D)<0 => some prime p|m has EXACTLY ONE original delta_j nonzero modulo p.
+
+The forward implication is still UNKNOWN. If the one-label conclusion fails, all
+nonmultiplicity deletions already have gcd1; the construction above removes the only
+possible remaining cofactor, that obtained by deleting m, without changing Q. With
+E439, a proved one-label implication would settle the least-genus counterexample
+route, using the recorded height/depth/density complements. Merely finding a proper
+periodic primitive sumset does not establish it.
+
+For a concrete guard let G=Z/35Z,H=7G,A=H union (1+H). A+A is three H-cosets with
+representation counts5,10,5, so its stabilizer is H. For t2 the popular-sum sum is
+30<36 and equals 2|A|+2|A|-2|H|. This satisfies the EXACT hypotheses and attains the
+H-bound in Grynkiewicz-Wang Theorem1.8 (primary arXiv2601.17922v1). Yet the source
+
+    <35, 35+delta : delta in A\{0}>
+
+has ten primitives in (35,70),3e30<m35,all leave-one-out gcds1. The gap174 has
+residue6 modulo7 and would require at least six outside-coset generators, each>=36;
+hence c>=175>4m. Deleting35 leaves42,43; deleting another generator leaves35 and
+multiple primitives outside each prime-index subgroup. A nonzero quotient COSET
+can contain several ORIGINAL generator labels. Ordinary or popular periodicity,
+even sharp, does not force the single-label condition. No Q<0 assertion is made
+on this guard and no source was numerically evaluated here.
+
+## E463 — no fixed number of independent return directions pays uniformly
+
+2026-10-23. Proof-only falsification of a proposed UNIVERSAL source-envelope payer;
+not a fixed-e Wilf programme and not a claim about the sign of the family's W.
+The allowed return lengths and degrees are UNBOUNDED, so E457's fixed-degree
+obstruction alone does not settle this claim. Root derived the counting proof below;
+BOTH SAME authorized agents independently checked it and found no gap. No Lean or
+novelty claim is made.
+
+### Statement
+
+For any fixed integer r>=1 consider, from the genuine original-label closure tile,
+ALL words
+
+    z+sum_(j in I) k_j*e_j,  z in D_U, |I|<=r, k_j>=0.
+
+Take the minimum source value per residue among these words and the arithmetic cap
+cap_s=M-[(M-s) mod a]. This is a VALID upper envelope B_s of the true Apéry values.
+Nevertheless its constructed Wilf lower bound can be negative on normalized sources
+in c>4m,3e<m, even though every source unit is already present. Thus no FIXED return
+rank r gives a standalone universal nonnegative certificate of this form.
+
+### Construction and source guards
+
+Put d=r+2>=3 and K_d=d*2^d*(3d-1)^(d-1). Choose an odd integer
+
+    B>=2(d+1)K_d+d+5,    a=B^d+2,
+    S=<a,a+2,3a-2B,3a-2B^2,...,3a-2B^(d-1)>.
+
+There are e=d+1 generators. All are odd and lie in [a,3a), hence primitive: an odd
+nontrivial sum would require at least three generators and be >=3a. The source has
+gcd1 from a,a+2. Removing any backward generator leaves that same coprime pair.
+Removing a+2 leaves gcd(a,2B,...)=1. For deletion of a, an odd common prime divisor
+would divide 2B(B-1), using the first two backward labels. A prime dividing B
+contradicts a+2=B^d+4; a prime dividing B-1 contradicts
+(3a-2B)-(a+2)=2(B^d-B+1), which is2 modulo that prime. Thus ALL cofactor gcds are1.
+
+The closure has labels 1,a-B,...,a-B^(d-1), so U=N. Since 2(a-B^(d-1))>a, every
+word representing a U-Apéry value s<a uses at most ONE backward coordinate in total.
+This applies to the prescribed canonical D_U; all its original units are retained.
+
+### The actual maximum has scale aB
+
+For s>0 write n=a-s in base B:
+
+    n=t0+B*t1+...+B^(d-1)*t_(d-1),
+    0<=t_i<B for i<d-1, 0<=t_(d-1)<=B.
+
+If t0=0, use forward count0 and backward counts t1,...,t_(d-1). Otherwise use
+forward count B-t0 and first backward count t1+1, leaving the others unchanged.
+The signed residue is -n, hence the required normalized residue s. Forward count
+is <=B-1; each backward count is <=B. The source value is <(3d-2)*a*B. Every
+residue therefore has an attaining source word below this quantity, giving
+
+    M<=(3d-2)*a*B.
+
+Conversely an Apéry word of value<=M has at most q=floor(M/a) factors. Signed
+normalized steps are 1,-B,...,-B^(d-1), so all a distinct residues must fit in
+[-B^(d-1)*q,q]. Thus (B^(d-1)+1)q+1>=a, which forces q>=B. Therefore M>=aB,
+and c=M-a+1>4m; the chosen size also gives 3e<m.
+
+### Most residue caps cannot be reached by fixed-rank returns
+
+For a fixed I, every coordinate outside I among the backward coordinates is zero,
+except possibly ONE coordinate equal to one: this is forced by the initial D_U.
+There are at most d possibilities for that outside-I vector. Forward and I
+coordinates have at most (q+1)^(r+1) assignments for a word of value<=M. Summing
+over I gives at most
+
+    K<=d*2^d*(q+1)^(r+1)
+      <=K_d*B^(d-1),       K/a<=1/(2(d+1)).
+
+Here q<=(3d-2)B and r+1=d-1; overcounting repeated words only strengthens the bound.
+At least a-K residue labels have NO allowed word of value<=M. On those labels the
+envelope is exactly cap_s>=M-a+1; it is nonnegative on the remaining labels. Hence
+
+    L_r=d*M-(d+1)/a*sum_s B_s-(d-1)(a-1)/2
+       <=[-1+(d+1)K/a]*M
+         +[(d+1)(1-K/a)-(d-1)/2]*(a-1)
+       <=-M/2+(d+3)(a-1)/2
+       <=-a*B/2+(d+3)(a-1)/2 <0.
+
+This counts EVERY allowed length and original direction subset, not a finite
+catalogue or empirical sampler. The r1 version has d3,a=B^3+2 and already works
+with odd B>=2001 using K<=4(7B+1)^2<=a/8 and L1<=-M/2+3(a-1)<0.
+
+### Consequence for the research target
+
+Do not repair the false cap payer by simply allowing one, two or any other fixed
+number of independent original directions. Unbounded lengths alone are insufficient;
+joint coordination may have to grow with the original generator count. This does
+NOT refute sequential coupled policies, general mixed-output disjoint packings,
+full-reserve payment, or the weaker max(Q,L)>=0 target. No Q value or source W sign
+is claimed for this family, and no numerical family run or rental was performed.
