@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 23:24 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-22 23:38 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -50,7 +50,7 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   graph/semigroup closure proofs remain on paper. Universal nonnegativity is not established.
 - **Residual support/weights (E405/E406):** the normalized homogeneous zero-side cone scales by1/2 into
   the full capped model; this scaling component is Lean checked. All12 nonempty cores among27 saved S
-  have exact strictly positive directions, so there are no further forced-zero coordinates in those cases.
+  have exact strictly positive directions, so there are no further forced zeros in those REAL capped models.
   A universal unpaid-coordinate bound1 is FALSE: an independently audited e11 semigroup has max x23=2.
   Residual counting must retain weights. These results do not prove universal certificate positivity.
 - **Constructor correction (E407):** NS.from_gapset formerly accepted {0}, creating a false W=-1 object.
@@ -61,6 +61,11 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   yields W>=Phi=W-e sum U+e ceil(M_U/2). Integer repeated-parent floors give a separate valid
   W>=IntCap>=Phi_Z, not a real-LP bound. User-supplied65case independently verifies integer1402->1407
   and exact real capped value1407. The central missing theorem remains global Phi_Z>=0.
+- **Class-count payment (E411, paper lemma):** zero-allowance splits with a fixed-zero parent force
+  equality of unpaid values. Give each equality class its actual residue multiplicity in pair cover;
+  completing the assignment graph computes that weighted fractional cover exactly. On the new146case
+  an8-residue class raises990->998, matching the full capped optimum. This is a local counting lemma;
+  a general comparison with c/e is still missing. No class-size bound is assumed.
 
 ## Existing implementations
 
@@ -72,7 +77,7 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
 | [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX, full-Kunz relaxations, residual cone/capped models; export primal/dual data. | Gurobi C API; no height restriction. `--cone` tests residual support, `--cap` maximizes unpaid sum, `--cap-max RES` one coordinate. Independent membership/rational checker: verify_probe.py. |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds repeated-parent floors (integer model only). `--weighted-search NS SEED` tests the weaker propagation bound. `--unit-search` is a diagnostic, not a full-model counterexample. `--cover` gives an UPPER certificate, not a Wilf lower bound. |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--cover` is an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity and transport-path audit. | `--standalone` needs no Gurobi data. upper_dp.py implements rational propagation and `--rigid` exact-zero closure. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
@@ -108,27 +113,37 @@ on the two saved60cases. Integer propagation alone captures both increases. On t
 real CapUA3=1407. This confirms that individual upper bounds need not be jointly feasible even after
 integer propagation. The new stage is a valid strengthening, not a global counting theorem.
 
+New backwards descent (E410): three deterministic local searches find no negative Phi_Z. Two new
+local optima are <64,69,77,129,149>,W284,Phi274,c446; and <146,155,184,535>,W1334,Phi990,c2334.
+The latter has real/ integer capped optimum998, exactly certified. Its forced-equal class
+{76,85,94,103,114,123,132,141} has size8; class-weighted cover raises residual assignment18->22,
+giving998. This explains the missing8 as a residue-multiplicity payment, not a uniform positivity proof.
+
 **Next mathematical action:** prove or falsify Phi_Z(S)>=0 on all remaining S, where Phi_Z is the
 integer propagated baseline plus e ceil(M_U/2), with positive overflow demands on the residual core
 (PROOFS/E409). The weaker no-floor propagation bound survived the reused10000-candidate sample,
 8592 accepted,34 B-negative; this already implies the stronger bound passes that SAME sample, and
 does not warrant rerunning it. Work backwards from saved low-W/weak-certificate examples to an
 arithmetic/residue-counting inequality comparing baseline and residual demand with c. Exactness of
-a semigroup-dependent relaxation is not such an inequality. All12 saved nonempty REAL cores admit
+a semigroup-dependent relaxation is not such an inequality. Use the E411 class-weighted payment
+lemma to retain actual residue multiplicities; the missing step is an arithmetic relation between
+those class sizes/layer sums, primitive count and conductor. A stronger completed certificate is
+valid, but its universal positivity is also unproved. No bound on the size of a single class may
+be assumed. All12 saved nonempty REAL cores admit
 positive directions; integer floors can still create extra zeros, as verified on the60cases. Do not
 conflate these models. A single top ideal, a bounded core or unit weights cannot be assumed. Do not
 delete paid cells and apply the false partial-tile lemma. Any negative W forces Phi_Z negative, so
 the necessary-counterexample reduction is universal. No larger boxes or restricted-family targets.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E409 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E411 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass135 existing LP optima,27 cone optima,8 capped/coordinate optima and5
-fresh normal-model optima (175 total), plus58 new envelope/assignment certificates and9 sampled
-envelope witnesses, and existing matching/transport/BASE checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_409_checks.log) and data/unpaid_cone_lean.log.
+Latest consolidated checks pass135 existing LP optima,27 cone optima,9 capped/coordinate optima and5
+fresh normal-model optima (176 total), plus existing envelope/assignment witnesses,3 final descent
+witnesses,3 equality-completed witnesses, and existing matching/transport/BASE checks. See the
+[validation log](../src/scratch/p39/data/checkpoint_411_checks.log) and data/unpaid_cone_lean.log.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
-New weighted/empty-core/integer paths pass C ASan/UBSan; log data/weighted_sanitizer.log.
+New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
 
 ## Supporting records — consult as needed
 

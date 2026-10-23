@@ -86,6 +86,27 @@ def envelope_audit(C,w,mu,b,q,r,rho):
    if d<=0:continue
    assert i in ix and j in ix
    t,z=ix[i],ix[j];H[t][z]=H[z][t]=max(H[t][z],d)
+  if C.get('equality'):
+   # Independent undirected reachability, rather than the producer's union-find.
+   adj=[set() for _ in range(m)]
+   for i,j,s,a,k in pairs:
+    if a or k:continue
+    for zero,v in ((i,j),(j,i)):
+     if not U[zero]:adj[v].add(s);adj[s].add(v)
+   cls={}
+   for v in res:
+    if v in cls:continue
+    todo=[v];seen={v}
+    while todo:
+     for t in adj[todo.pop()]:
+      if t not in seen:seen.add(t);todo.append(t)
+    assert all(U[t]==U[v] for t in seen)
+    for t in seen:cls[t]=v
+   weights={}
+   for a in range(n):
+    for z in range(n):
+     key=(cls[res[a]],cls[res[z]]);weights[key]=max(weights.get(key,0),H[a][z])
+   H=[[weights[(cls[a],cls[z])] for z in res] for a in res]
   p=R['permutation'];alpha=R['alpha'];beta=R['beta']
   assert sorted(p)==list(range(n)) and len(alpha)==len(beta)==n
   assert all(type(v) is int for v in alpha+beta)

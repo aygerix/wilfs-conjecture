@@ -1,0 +1,256 @@
+G=[20, 23, 25, 39] q=5 h=5 W=70 | RT3=134/3[nontight:2,tighterror:0] UA3=70[nontight:0,tighterror:0] TX=134/3[nontight:2,tighterror:0] AM3=70[nontight:0,tighterror:0] FACE=70[nontight:0,tighterror:0]
+G=[25, 76, 102, 59, 60, 93] q=13 h=5 W=546 | RT3=72[nontight:24,tighterror:12] UA3=546[nontight:0,tighterror:0] TX=116[nontight:44,tighterror:0] AM3=546[nontight:0,tighterror:0] FACE=306[nontight:0,tighterror:0]
+G=[20, 61, 102, 143, 184, 25] q=12 h=4 W=444 | RT3=48[nontight:0,tighterror:0] UA3=390[nontight:0,tighterror:9] TX=48[nontight:0,tighterror:0] AM3=390[nontight:0,tighterror:9] FACE=156[nontight:0,tighterror:0]
+G=[19, 26, 27, 48] q=5 h=4 W=22 | RT3=22[nontight:0,tighterror:0] UA3=22[nontight:0,tighterror:0] TX=22[nontight:0,tighterror:0] AM3=22[nontight:0,tighterror:0] FACE=22[nontight:0,tighterror:0]
+G=[37, 75, 78, 80, 88, 89] q=6 h=3 W=102 | RT3=84[nontight:0,tighterror:14] UA3=102[nontight:0,tighterror:0] TX=102[nontight:0,tighterror:0] AM3=102[nontight:0,tighterror:0] FACE=102[nontight:0,tighterror:0]
+G=[55, 71, 78, 79, 93, 97, 99] q=5 h=3 W=228 | RT3=172[nontight:64,tighterror:31] UA3=214[nontight:5,tighterror:2] TX=228[nontight:0,tighterror:0] AM3=228[nontight:0,tighterror:0] FACE=228[nontight:0,tighterror:0]
+G=[55, 60, 61, 68, 70, 73, 78] q=5 h=4 W=338 | RT3=324[nontight:12,tighterror:6] UA3=324[nontight:12,tighterror:6] TX=338[nontight:0,tighterror:0] AM3=338[nontight:0,tighterror:0] FACE=338[nontight:0,tighterror:0]
+G=[15, 37, 39, 40] q=7 h=3 W=32 | RT3=32[nontight:0,tighterror:0] UA3=32[nontight:0,tighterror:0] TX=32[nontight:0,tighterror:0] AM3=32[nontight:0,tighterror:0] FACE=32[nontight:0,tighterror:0]
+G=[13, 27, 29, 17] q=5 h=3 W=41 | RT3=67/3[nontight:1,tighterror:4] UA3=37[nontight:0,tighterror:1] TX=31[nontight:0,tighterror:0] AM3=37[nontight:0,tighterror:1] FACE=31[nontight:0,tighterror:0]
+G=[34, 42, 53, 54, 56, 57, 67] q=5 h=3 W=189 | RT3=511/4[nontight:9,tighterror:24] UA3=133[nontight:3,tighterror:15] TX=189[nontight:0,tighterror:0] AM3=161[nontight:0,tighterror:10] FACE=189[nontight:0,tighterror:0]
+G=[66, 67, 71, 72, 98, 103, 128] q=5 h=5 W=451 | RT3=1184/3[nontight:127,tighterror:88] UA3=409[nontight:18,tighterror:16] TX=451[nontight:0,tighterror:0] AM3=451[nontight:0,tighterror:0] FACE=451[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 11 semigroups; 55 primal/dual optima
+G=[20, 21, 22] q=10 h=10 W=100 | RT3=100[nontight:25,tighterror:56] UA3=100[nontight:0,tighterror:0] TX=100[nontight:25,tighterror:0] AM3=100[nontight:0,tighterror:0] FACE=100[nontight:0,tighterror:0]
+G=[20, 21, 22, 39] q=8 h=8 W=148 | RT3=148[nontight:16,tighterror:0] UA3=148[nontight:0,tighterror:0] TX=148[nontight:16,tighterror:0] AM3=148[nontight:0,tighterror:0] FACE=148[nontight:0,tighterror:0]
+G=[40, 41, 42, 43] q=13 h=13 W=468 | RT3=468[nontight:101,tighterror:138] UA3=468[nontight:0,tighterror:0] TX=468[nontight:0,tighterror:0] AM3=468[nontight:0,tighterror:0] FACE=468[nontight:0,tighterror:0]
+G=[40, 41, 42, 79] q=16 h=16 W=616 | RT3=616[nontight:64,tighterror:0] UA3=616[nontight:0,tighterror:0] TX=616[nontight:64,tighterror:0] AM3=616[nontight:0,tighterror:0] FACE=616[nontight:0,tighterror:0]
+G=[40, 41, 118, 79] q=23 h=23 W=843 | RT3=843[nontight:0,tighterror:4] UA3=843[nontight:0,tighterror:0] TX=843[nontight:0,tighterror:0] AM3=843[nontight:0,tighterror:0] FACE=843[nontight:0,tighterror:0]
+G=[13, 17, 20] q=6 h=5 W=29 | RT3=37/2[nontight:0,tighterror:0] UA3=29[nontight:0,tighterror:0] TX=37/2[nontight:0,tighterror:0] AM3=29[nontight:0,tighterror:0] FACE=29[nontight:0,tighterror:0]
+G=[16, 19, 21] q=6 h=5 W=26 | RT3=26[nontight:0,tighterror:0] UA3=26[nontight:0,tighterror:0] TX=26[nontight:0,tighterror:0] AM3=26[nontight:0,tighterror:0] FACE=26[nontight:0,tighterror:0]
+G=[77, 102, 111, 121, 126, 133, 134, 137] q=5 h=3 W=239 | RT3=215[nontight:5,tighterror:7] UA3=215[nontight:5,tighterror:7] TX=239[nontight:0,tighterror:0] AM3=223[nontight:0,tighterror:5] FACE=239[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 8 semigroups; 40 primal/dual optima
+G=[64, 129, 67, 69, 77] q=7 h=7 W=467 | RT3=387[nontight:12,tighterror:151] UA3=452[nontight:0,tighterror:10] TX=467[nontight:0,tighterror:0] AM3=452[nontight:0,tighterror:10] FACE=467[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 1 semigroups; 5 primal/dual optima
+G=[146, 147, 155, 185] q=11 h=11 W=1136 | RT3=191582/201[nontight:54,tighterror:1118] UA3=968[nontight:0,tighterror:259] TX=37706/37[nontight:0,tighterror:0] AM3=968[nontight:0,tighterror:259] FACE=1136[nontight:0,tighterror:0]
+G=[60, 61, 67, 71] q=7 h=7 W=260 | RT3=2896/13[nontight:5,tighterror:229] UA3=234[nontight:3,tighterror:18] TX=260[nontight:0,tighterror:0] AM3=248[nontight:0,tighterror:14] FACE=260[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 2 semigroups; 10 primal/dual optima
+G=[146, 155, 175, 184] q=14 h=13 W=1130 | RT3=11950/13[nontight:1,tighterror:716] UA3=1130[nontight:0,tighterror:0] TX=22054/23[nontight:0,tighterror:0] AM3=1130[nontight:0,tighterror:0] FACE=1130[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 1 semigroups; 5 primal/dual optima
+G=[60, 121, 67, 71] q=8 h=7 W=236 | RT3=689/4[nontight:30,tighterror:199] UA3=180[nontight:0,tighterror:34] TX=236[nontight:0,tighterror:0] AM3=180[nontight:0,tighterror:34] FACE=236[nontight:0,tighterror:0]
+G=[60, 121, 71, 143] q=11 h=10 W=237 | RT3=2403/11[nontight:38,tighterror:106] UA3=237[nontight:0,tighterror:0] TX=237[nontight:0,tighterror:0] AM3=237[nontight:0,tighterror:0] FACE=237[nontight:0,tighterror:0]
+G=[43, 184, 193, 155] q=22 h=6 W=366 | RT3=1697/5[nontight:7,tighterror:0] UA3=366[nontight:0,tighterror:0] TX=1697/5[nontight:7,tighterror:0] AM3=366[nontight:0,tighterror:0] FACE=3760/11[nontight:0,tighterror:0]
+G=[66, 71, 72, 361, 98, 103, 128] q=5 h=5 W=346 | RT3=325[nontight:80,tighterror:81] UA3=339[nontight:0,tighterror:3] TX=346[nontight:0,tighterror:0] AM3=339[nontight:0,tighterror:3] FACE=346[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 4 semigroups; 20 primal/dual optima
+CONE G=[20, 23, 25, 39] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=70
+CONE G=[25, 76, 102, 59, 60, 93] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=546
+CONE G=[20, 61, 102, 143, 184, 25] core=9 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=390
+CONE G=[19, 26, 27, 48] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=22
+CONE G=[37, 75, 78, 80, 88, 89] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=102
+CONE G=[55, 71, 78, 79, 93, 97, 99] core=2 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=214
+CONE G=[55, 60, 61, 68, 70, 73, 78] core=2 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=324
+CONE G=[15, 37, 39, 40] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=32
+CONE G=[13, 27, 29, 17] core=1 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=37
+CONE G=[34, 42, 53, 54, 56, 57, 67] core=8 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=133
+CONE G=[66, 67, 71, 72, 98, 103, 128] core=6 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=409
+CONE G=[20, 21, 22] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=100
+CONE G=[20, 21, 22, 39] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=148
+CONE G=[40, 41, 42, 43] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=468
+CONE G=[40, 41, 42, 79] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=616
+CONE G=[40, 41, 118, 79] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=843
+CONE G=[13, 17, 20] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=29
+CONE G=[16, 19, 21] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=26
+CONE G=[77, 102, 111, 121, 126, 133, 134, 137] core=3 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=215
+CONE G=[64, 129, 67, 69, 77] core=3 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=452
+CONE G=[146, 147, 155, 185] core=42 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=968
+CONE G=[60, 61, 67, 71] core=7 epsilon=1/2 ray_scale=1 max_unpaid=1 capped_upper=234
+CONE G=[146, 155, 175, 184] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=1130
+CONE G=[60, 121, 67, 71] core=15 epsilon=1/2 ray_scale=1 max_unpaid=1 capped_upper=182
+CONE G=[60, 121, 71, 143] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=237
+CONE G=[43, 184, 193, 155] core=0 epsilon=0 ray_scale=0 max_unpaid=0 capped_upper=366
+CONE G=[66, 71, 72, 361, 98, 103, 128] core=1 epsilon=1 ray_scale=1 max_unpaid=1 capped_upper=339
+EXACTLY CERTIFIED 27 semigroups; 27 primal/dual optima
+CORE-LP G=[60, 121, 67, 71] mode=coordinate target=28 core=15 optimum=-1 max_unpaid=1 capped_witness=188
+CORE-LP G=[64, 129, 67, 69, 77] mode=coordinate target=7 core=3 optimum=-1 max_unpaid=1 capped_witness=462
+CORE-LP G=[60, 121, 67, 71] mode=capped target=0 core=15 optimum=-14 max_unpaid=1 capped_witness=180
+CORE-LP G=[60, 61, 67, 71] mode=coordinate target=5 core=7 optimum=-1 max_unpaid=1 capped_witness=244
+CORE-LP G=[60, 121, 67, 71] mode=coordinate target=35 core=15 optimum=-1 max_unpaid=1 capped_witness=192
+CORE-LP G=[146, 147, 155, 185] mode=coordinate target=122 core=42 optimum=-1 max_unpaid=1 capped_witness=1040
+CORE-LP G=[153, 766, 921, 617, 925, 1080, 317, 166, 474, 170, 325] mode=coordinate target=23 core=51 optimum=-2 max_unpaid=2 capped_witness=5335
+EXACTLY CERTIFIED 7 semigroups; 7 primal/dual optima
+CORE-LP G=[65, 265, 82, 214, 217] mode=capped target=0 core=11 optimum=-9 max_unpaid=1 capped_witness=1407
+EXACTLY CERTIFIED 1 semigroups; 1 primal/dual optima
+CORE-LP G=[146, 155, 184, 535] mode=capped target=0 core=73 optimum=-84 max_unpaid=3 capped_witness=998
+EXACTLY CERTIFIED 1 semigroups; 1 primal/dual optima
+G=[20, 21, 22] q=10 h=10 W=100 | RT3=100[nontight:25,tighterror:56] UA3=100[nontight:0,tighterror:0] TX=100[nontight:25,tighterror:0] AM3=100[nontight:0,tighterror:0] FACE=100[nontight:0,tighterror:0]
+EXACTLY CERTIFIED 1 semigroups; 5 primal/dual optima
+CERTIFIED G=[64, 129, 67, 69, 77] B=-33 M=152 corrected=347 UA3=452 W=467
+CERTIFIED G=[20, 21, 22] B=-20 M=80 corrected=100 UA3=100 W=100
+CERTIFIED G=[146, 147, 155, 185] B=-640 M=624 corrected=608 UA3=968 W=1136
+CERTIFIED G=[60, 61, 67, 71] B=-144 M=165 corrected=188 UA3=234 W=260
+INDEPENDENTLY CERTIFIED G=[20, 23, 25, 39] c=98 B=14 M=18 loss=14 bound=50 W=70 free_generators=1 active_budget=15
+INDEPENDENTLY CERTIFIED G=[25, 59, 60, 76, 93, 102] c=318 B=546 M=0 loss=0 bound=546 W=546 free_generators=2 active_budget=0
+INDEPENDENTLY CERTIFIED G=[20, 25, 61, 102, 143, 184] c=240 B=312 M=10 loss=22 bound=342 W=444 free_generators=0 active_budget=22
+INDEPENDENTLY CERTIFIED G=[19, 26, 27, 48] c=90 B=22 M=0 loss=0 bound=22 W=22 free_generators=3 active_budget=0
+INDEPENDENTLY CERTIFIED G=[37, 75, 78, 80, 88, 89] c=222 B=18 M=28 loss=14 bound=102 W=102 free_generators=0 active_budget=14
+INDEPENDENTLY CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] c=241 B=137 M=18 loss=13 bound=200 W=228 free_generators=1 active_budget=19
+INDEPENDENTLY CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] c=229 B=170 M=44 loss=24 bound=324 W=338 free_generators=2 active_budget=24
+INDEPENDENTLY CERTIFIED G=[15, 37, 39, 40] c=104 B=32 M=0 loss=0 bound=32 W=32 free_generators=0 active_budget=6
+INDEPENDENTLY CERTIFIED G=[13, 17, 27, 29] c=63 B=25 M=6 loss=4 bound=37 W=41 free_generators=0 active_budget=7
+INDEPENDENTLY CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] c=140 B=133 M=0 loss=8 bound=133 W=189 free_generators=1 active_budget=15
+INDEPENDENTLY CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] c=326 B=115 M=82 loss=48 bound=402 W=451 free_generators=0 active_budget=59
+INDEPENDENTLY CERTIFIED G=[20, 21, 22] c=200 B=-20 M=80 loss=40 bound=100 W=100 free_generators=0 active_budget=40
+INDEPENDENTLY CERTIFIED G=[20, 21, 22, 39] c=156 B=52 M=48 loss=24 bound=148 W=148 free_generators=1 active_budget=24
+INDEPENDENTLY CERTIFIED G=[40, 41, 42, 43] c=520 B=36 M=216 loss=108 bound=468 W=468 free_generators=0 active_budget=108
+INDEPENDENTLY CERTIFIED G=[40, 41, 42, 79] c=632 B=168 M=224 loss=112 bound=616 W=616 free_generators=1 active_budget=112
+INDEPENDENTLY CERTIFIED G=[40, 41, 79, 118] c=905 B=423 M=210 loss=105 bound=843 W=843 free_generators=1 active_budget=151
+INDEPENDENTLY CERTIFIED G=[13, 17, 20] c=76 B=29 M=0 loss=0 bound=29 W=29 free_generators=1 active_budget=7
+INDEPENDENTLY CERTIFIED G=[16, 19, 21] c=88 B=26 M=0 loss=0 bound=26 W=26 free_generators=2 active_budget=0
+INDEPENDENTLY CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] c=329 B=103 M=28 loss=17 bound=215 W=239 free_generators=0 active_budget=30
+INDEPENDENTLY CERTIFIED G=[64, 67, 69, 77, 129] c=448 B=-33 M=152 loss=100 bound=347 W=467 free_generators=0 active_budget=100
+INDEPENDENTLY CERTIFIED G=[146, 147, 155, 185] c=1604 B=-640 M=624 loss=444 bound=608 W=1136 free_generators=0 active_budget=444
+INDEPENDENTLY CERTIFIED G=[60, 61, 67, 71] c=420 B=-144 M=165 loss=101 bound=188 W=260 free_generators=0 active_budget=101
+INDEPENDENTLY CERTIFIED G=[146, 155, 175, 184] c=2034 B=-526 M=430 loss=414 bound=334 W=1130 free_generators=0 active_budget=479
+INDEPENDENTLY CERTIFIED G=[146, 155, 175, 184] c=2034 B=-526 M=430 loss=414 bound=334 W=1130 free_generators=0 active_budget=479
+INDEPENDENTLY CERTIFIED G=[86, 89, 103, 148, 173] c=601 B=-146 M=177 loss=105 bound=299 W=379 free_generators=0 active_budget=112
+INDEPENDENTLY CERTIFIED G=[23, 24, 26, 32] c=110 B=42 M=22 loss=11 bound=86 W=86 free_generators=0 active_budget=21
+INDEPENDENTLY CERTIFIED G=[23, 24, 26, 31] c=114 B=2 M=40 loss=24 bound=82 W=98 free_generators=0 active_budget=24
+INDEPENDENTLY CERTIFIED G=[23, 26, 27, 32] c=121 B=87 M=10 loss=5 bound=107 W=107 free_generators=2 active_budget=5
+INDEPENDENTLY CERTIFIED G=[158, 168, 171, 192] c=1754 B=590 M=208 loss=147 bound=1006 W=1178 free_generators=2 active_budget=150
+INDEPENDENTLY CERTIFIED G=[1148, 1200, 1205, 1280] c=26828 B=17228 M=0 loss=0 bound=17228 W=17228 free_generators=3 active_budget=0
+INDEPENDENTLY CERTIFIED G=[191, 200, 208, 210, 250] c=1714 B=-484 M=678 loss=457 bound=1211 W=1801 free_generators=0 active_budget=463
+INDEPENDENTLY CERTIFIED G=[191, 201, 210, 212, 246] c=1747 B=1448 M=148 loss=92 bound=1818 W=1908 free_generators=3 active_budget=95
+INDEPENDENTLY CERTIFIED G=[191, 200, 207, 211, 246] c=1773 B=1507 M=150 loss=107 bound=1882 W=2042 free_generators=3 active_budget=107
+INDEPENDENTLY CERTIFIED G=[191, 211, 212, 216, 250] c=1834 B=2136 M=0 loss=0 bound=2136 W=2136 free_generators=1 active_budget=393
+INDEPENDENTLY CERTIFIED G=[2063, 2160, 2220, 2222, 2232, 2592] c=29314 B=29966 M=1384 loss=1357 bound=34118 W=38108 free_generators=4 active_budget=1658
+INDEPENDENTLY CERTIFIED G=[2063, 2165, 2220, 2231, 2248, 2561] c=29607 B=39369 M=0 loss=0 bound=39369 W=39369 free_generators=5 active_budget=0
+INDEPENDENTLY CERTIFIED G=[2063, 2165, 2218, 2232, 2249, 2567] c=29912 B=40870 M=0 loss=0 bound=40870 W=40870 free_generators=5 active_budget=0
+INDEPENDENTLY CERTIFIED G=[2063, 2160, 2213, 2218, 2243, 2561] c=30145 B=38891 M=1050 loss=578 bound=42041 W=42359 free_generators=1 active_budget=8133
+INDEPENDENTLY CERTIFIED G=[2063, 2243, 2248, 2249, 2279, 2592] c=30810 B=-8556 M=9296 loss=8691 bound=19332 W=43590 free_generators=0 active_budget=9401
+VERIFIED ASSIGNMENT UPPER CERTIFICATE G=[27574, 28855, 29401, 29414, 29492, 29675, 33314] c=567338 B=862811 loss=2640 cover_sum=2616 matching_bound_upper=881123 W=881291
+INDEPENDENTLY CERTIFIED G=[20, 23, 25, 39] c=98 B=14 M=18 loss=14 bound=50 W=70 free_generators=1 active_budget=15 bounded_cover_twice=18 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[25, 59, 60, 76, 93, 102] c=318 B=546 M=0 loss=0 bound=546 W=546 free_generators=2 active_budget=0 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[20, 25, 61, 102, 143, 184] c=240 B=312 M=10 loss=22 bound=342 W=444 free_generators=0 active_budget=22 bounded_cover_twice=10 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[19, 26, 27, 48] c=90 B=22 M=0 loss=0 bound=22 W=22 free_generators=3 active_budget=0 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[37, 75, 78, 80, 88, 89] c=222 B=18 M=28 loss=14 bound=102 W=102 free_generators=0 active_budget=14 bounded_cover_twice=28 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] c=241 B=137 M=18 loss=13 bound=200 W=228 free_generators=1 active_budget=19 bounded_cover_twice=18 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] c=229 B=170 M=44 loss=24 bound=324 W=338 free_generators=2 active_budget=24 bounded_cover_twice=44 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[15, 37, 39, 40] c=104 B=32 M=0 loss=0 bound=32 W=32 free_generators=0 active_budget=6 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[13, 17, 27, 29] c=63 B=25 M=6 loss=4 bound=37 W=41 free_generators=0 active_budget=7 bounded_cover_twice=6 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] c=140 B=133 M=0 loss=8 bound=133 W=189 free_generators=1 active_budget=15 bounded_cover_twice=0 capacity_gap_twice=0
+INDEPENDENTLY CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] c=326 B=115 M=82 loss=48 bound=402 W=451 free_generators=0 active_budget=59 bounded_cover_twice=84 capacity_gap_twice=2
+INDEPENDENTLY CERTIFIED G=[60, 67, 71, 121] c=480 B=-164 M=156 loss=100 bound=148 W=236 free_generators=0 active_budget=100
+INDEPENDENTLY CERTIFIED G=[43, 155, 184, 193] c=926 B=334 M=16 loss=8 bound=366 W=366 free_generators=2 active_budget=20
+INDEPENDENTLY CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] c=326 B=59 M=70 loss=41 bound=304 W=346 free_generators=0 active_budget=52
+INDEPENDENTLY CERTIFIED G=[60, 71, 121, 143] c=655 B=-111 M=150 loss=87 bound=189 W=237 free_generators=0 active_budget=101
+INDEPENDENTLY CERTIFIED G=[146, 155, 175, 184] c=2034 B=-526 M=430 loss=414 bound=334 W=1130 free_generators=0 active_budget=479 individual_bound=514 bounded_cover_twice=548 capacity_gap_twice=118
+INDEPENDENTLY CERTIFIED G=[60, 71, 121, 143] c=655 B=-111 M=150 loss=87 bound=189 W=237 free_generators=0 active_budget=101 individual_bound=209 bounded_cover_twice=160 capacity_gap_twice=10
+INDEPENDENTLY CERTIFIED G=[64, 67, 69, 77, 129] c=448 B=-33 M=152 loss=100 bound=347 W=467 free_generators=0 active_budget=100 individual_bound=447 bounded_cover_twice=192 capacity_gap_twice=40
+INDEPENDENTLY CERTIFIED G=[64, 69, 77, 129, 237] c=510 B=-40 M=116 loss=103 bound=250 W=475 free_generators=0 active_budget=105 individual_bound=300 bounded_cover_twice=138 capacity_gap_twice=22
+INDEPENDENTLY CERTIFIED G=[20, 21, 22, 199] c=180 B=16 M=64 loss=32 bound=144 W=144 free_generators=1 active_budget=32
+TRANSPORT CERTIFIED G=[20, 21, 22, 199] W=144 top_ideal=2 | generators=144[unpaid:0,composites:0] zero_loss=144[unpaid:0,composites:0] capped_pairs=144[unpaid:0,composites:14]
+WEIGHTED ENVELOPE CERTIFIED G=[20, 23, 25, 39] integer=False W=70 bound=70 unpaid=0 maxU=0 residual_M=0 rounded=70
+WEIGHTED ENVELOPE CERTIFIED G=[25, 59, 60, 76, 93, 102] integer=False W=546 bound=546 unpaid=0 maxU=0 residual_M=0 rounded=546
+WEIGHTED ENVELOPE CERTIFIED G=[20, 25, 61, 102, 143, 184] integer=False W=444 bound=390 unpaid=9 maxU=1 residual_M=0 rounded=390
+WEIGHTED ENVELOPE CERTIFIED G=[19, 26, 27, 48] integer=False W=22 bound=22 unpaid=0 maxU=0 residual_M=0 rounded=22
+WEIGHTED ENVELOPE CERTIFIED G=[37, 75, 78, 80, 88, 89] integer=False W=102 bound=102 unpaid=0 maxU=0 residual_M=0 rounded=102
+WEIGHTED ENVELOPE CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] integer=False W=228 bound=214 unpaid=2 maxU=1 residual_M=0 rounded=214
+WEIGHTED ENVELOPE CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] integer=False W=338 bound=324 unpaid=2 maxU=1 residual_M=0 rounded=324
+WEIGHTED ENVELOPE CERTIFIED G=[15, 37, 39, 40] integer=False W=32 bound=32 unpaid=0 maxU=0 residual_M=0 rounded=32
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 27, 29] integer=False W=41 bound=37 unpaid=1 maxU=1 residual_M=0 rounded=37
+WEIGHTED ENVELOPE CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] integer=False W=189 bound=133 unpaid=8 maxU=1 residual_M=0 rounded=133
+WEIGHTED ENVELOPE CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] integer=False W=451 bound=409 unpaid=6 maxU=1 residual_M=0 rounded=409
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22] integer=False W=100 bound=100 unpaid=0 maxU=0 residual_M=0 rounded=100
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22, 39] integer=False W=148 bound=148 unpaid=0 maxU=0 residual_M=0 rounded=148
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 43] integer=False W=468 bound=468 unpaid=0 maxU=0 residual_M=0 rounded=468
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 79] integer=False W=616 bound=616 unpaid=0 maxU=0 residual_M=0 rounded=616
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 79, 118] integer=False W=843 bound=843 unpaid=0 maxU=0 residual_M=0 rounded=843
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 20] integer=False W=29 bound=29 unpaid=0 maxU=0 residual_M=0 rounded=29
+WEIGHTED ENVELOPE CERTIFIED G=[16, 19, 21] integer=False W=26 bound=26 unpaid=0 maxU=0 residual_M=0 rounded=26
+WEIGHTED ENVELOPE CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] integer=False W=239 bound=215 unpaid=3 maxU=1 residual_M=0 rounded=215
+WEIGHTED ENVELOPE CERTIFIED G=[64, 67, 69, 77, 129] integer=False W=467 bound=452 unpaid=3 maxU=1 residual_M=0 rounded=452
+WEIGHTED ENVELOPE CERTIFIED G=[146, 147, 155, 185] integer=False W=1136 bound=968 unpaid=42 maxU=1 residual_M=0 rounded=968
+WEIGHTED ENVELOPE CERTIFIED G=[60, 61, 67, 71] integer=False W=260 bound=232 unpaid=7 maxU=1 residual_M=1 rounded=236
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 175, 184] integer=False W=1130 bound=1130 unpaid=0 maxU=0 residual_M=0 rounded=1130
+WEIGHTED ENVELOPE CERTIFIED G=[60, 67, 71, 121] integer=False W=236 bound=176 unpaid=15 maxU=1 residual_M=2 rounded=180
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=False W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+WEIGHTED ENVELOPE CERTIFIED G=[43, 155, 184, 193] integer=False W=366 bound=366 unpaid=0 maxU=0 residual_M=0 rounded=366
+WEIGHTED ENVELOPE CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] integer=False W=346 bound=339 unpaid=1 maxU=1 residual_M=0 rounded=339
+WEIGHTED ENVELOPE CERTIFIED G=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1080] integer=False W=5687 bound=5060 unpaid=57 maxU=2 residual_M=0 rounded=5060
+WEIGHTED ENVELOPE CERTIFIED G=[65, 82, 214, 217, 265] integer=False W=1452 bound=1397 unpaid=11 maxU=1 residual_M=4 rounded=1407
+WEIGHTED ENVELOPE CERTIFIED G=[20, 23, 25, 39] integer=True W=70 bound=70 unpaid=0 maxU=0 residual_M=0 rounded=70
+WEIGHTED ENVELOPE CERTIFIED G=[25, 59, 60, 76, 93, 102] integer=True W=546 bound=546 unpaid=0 maxU=0 residual_M=0 rounded=546
+WEIGHTED ENVELOPE CERTIFIED G=[20, 25, 61, 102, 143, 184] integer=True W=444 bound=390 unpaid=9 maxU=1 residual_M=0 rounded=390
+WEIGHTED ENVELOPE CERTIFIED G=[19, 26, 27, 48] integer=True W=22 bound=22 unpaid=0 maxU=0 residual_M=0 rounded=22
+WEIGHTED ENVELOPE CERTIFIED G=[37, 75, 78, 80, 88, 89] integer=True W=102 bound=102 unpaid=0 maxU=0 residual_M=0 rounded=102
+WEIGHTED ENVELOPE CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] integer=True W=228 bound=214 unpaid=2 maxU=1 residual_M=0 rounded=214
+WEIGHTED ENVELOPE CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] integer=True W=338 bound=324 unpaid=2 maxU=1 residual_M=0 rounded=324
+WEIGHTED ENVELOPE CERTIFIED G=[15, 37, 39, 40] integer=True W=32 bound=32 unpaid=0 maxU=0 residual_M=0 rounded=32
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 27, 29] integer=True W=41 bound=37 unpaid=1 maxU=1 residual_M=0 rounded=37
+WEIGHTED ENVELOPE CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] integer=True W=189 bound=133 unpaid=8 maxU=1 residual_M=0 rounded=133
+WEIGHTED ENVELOPE CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] integer=True W=451 bound=409 unpaid=6 maxU=1 residual_M=0 rounded=409
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22] integer=True W=100 bound=100 unpaid=0 maxU=0 residual_M=0 rounded=100
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22, 39] integer=True W=148 bound=148 unpaid=0 maxU=0 residual_M=0 rounded=148
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 43] integer=True W=468 bound=468 unpaid=0 maxU=0 residual_M=0 rounded=468
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 79] integer=True W=616 bound=616 unpaid=0 maxU=0 residual_M=0 rounded=616
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 79, 118] integer=True W=843 bound=843 unpaid=0 maxU=0 residual_M=0 rounded=843
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 20] integer=True W=29 bound=29 unpaid=0 maxU=0 residual_M=0 rounded=29
+WEIGHTED ENVELOPE CERTIFIED G=[16, 19, 21] integer=True W=26 bound=26 unpaid=0 maxU=0 residual_M=0 rounded=26
+WEIGHTED ENVELOPE CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] integer=True W=239 bound=215 unpaid=3 maxU=1 residual_M=0 rounded=215
+WEIGHTED ENVELOPE CERTIFIED G=[64, 67, 69, 77, 129] integer=True W=467 bound=452 unpaid=3 maxU=1 residual_M=0 rounded=452
+WEIGHTED ENVELOPE CERTIFIED G=[146, 147, 155, 185] integer=True W=1136 bound=968 unpaid=42 maxU=1 residual_M=0 rounded=968
+WEIGHTED ENVELOPE CERTIFIED G=[60, 61, 67, 71] integer=True W=260 bound=236 unpaid=6 maxU=1 residual_M=0 rounded=236
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 175, 184] integer=True W=1130 bound=1130 unpaid=0 maxU=0 residual_M=0 rounded=1130
+WEIGHTED ENVELOPE CERTIFIED G=[60, 67, 71, 121] integer=True W=236 bound=180 unpaid=14 maxU=1 residual_M=0 rounded=180
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=True W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+WEIGHTED ENVELOPE CERTIFIED G=[43, 155, 184, 193] integer=True W=366 bound=366 unpaid=0 maxU=0 residual_M=0 rounded=366
+WEIGHTED ENVELOPE CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] integer=True W=346 bound=339 unpaid=1 maxU=1 residual_M=0 rounded=339
+WEIGHTED ENVELOPE CERTIFIED G=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1080] integer=True W=5687 bound=5060 unpaid=57 maxU=2 residual_M=0 rounded=5060
+WEIGHTED ENVELOPE CERTIFIED G=[65, 82, 214, 217, 265] integer=True W=1452 bound=1402 unpaid=10 maxU=1 residual_M=2 rounded=1407
+WEIGHTED ENVELOPE CERTIFIED G=[136, 232, 248, 403, 410, 584, 657, 882, 917, 920, 951, 993, 1084] integer=False W=6752 bound=6687 unpaid=5 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[111, 132, 139, 146, 152, 158, 172, 197, 220] integer=False W=1194 bound=1185 unpaid=1 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[30, 31, 47, 97, 101, 106] integer=False W=182 bound=176 unpaid=1 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[28, 33, 35, 37, 45, 85] integer=False W=141 bound=117 unpaid=4 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[24, 31, 34, 51, 63, 81, 88] integer=False W=115 bound=115 unpaid=0 maxU=0
+WEIGHTED ENVELOPE CERTIFIED G=[22, 23, 121, 126] integer=False W=120 bound=104 unpaid=4 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 29, 51] integer=False W=78 bound=78 unpaid=0 maxU=0
+WEIGHTED ENVELOPE CERTIFIED G=[21, 26, 27, 28, 40] integer=False W=83 bound=73 unpaid=2 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[21, 22, 27, 35] integer=False W=56 bound=56 unpaid=0 maxU=0
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=True W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+WEIGHTED ENVELOPE CERTIFIED G=[64, 69, 77, 129, 149] integer=True W=284 bound=274 unpaid=2 maxU=1 residual_M=0 rounded=274
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 184, 535] integer=True W=1334 bound=954 unpaid=95 maxU=3 residual_M=18 rounded=990
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 184, 535] integer=True W=1334 bound=954 unpaid=95 maxU=3 residual_M=22 rounded=998
+WEIGHTED ENVELOPE CERTIFIED G=[65, 82, 214, 217, 265] integer=True W=1452 bound=1402 unpaid=10 maxU=1 residual_M=2 rounded=1407
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=True W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+TRANSPORT CERTIFIED G=[20, 23, 25, 39] W=70 top_ideal=12 | generators=70[unpaid:0,composites:0] zero_loss=70[unpaid:0,composites:3] capped_pairs=70[unpaid:0,composites:11]
+TRANSPORT CERTIFIED G=[25, 59, 60, 76, 93, 102] W=546 top_ideal=10 | generators=546[unpaid:0,composites:0] zero_loss=546[unpaid:0,composites:15] capped_pairs=546[unpaid:0,composites:15]
+TRANSPORT CERTIFIED G=[20, 25, 61, 102, 143, 184] W=444 top_ideal=8 | generators=390[unpaid:9,composites:0] zero_loss=390[unpaid:9,composites:0] capped_pairs=390[unpaid:9,composites:10]
+TRANSPORT CERTIFIED G=[19, 26, 27, 48] W=22 top_ideal=5 | generators=22[unpaid:0,composites:0] zero_loss=22[unpaid:0,composites:9] capped_pairs=22[unpaid:0,composites:9]
+TRANSPORT CERTIFIED G=[37, 75, 78, 80, 88, 89] W=102 top_ideal=6 | generators=102[unpaid:0,composites:0] zero_loss=102[unpaid:0,composites:0] capped_pairs=102[unpaid:0,composites:14]
+TRANSPORT CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] W=228 top_ideal=6 | generators=214[unpaid:2,composites:0] zero_loss=214[unpaid:2,composites:12] capped_pairs=214[unpaid:2,composites:21]
+TRANSPORT CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] W=338 top_ideal=8 | generators=324[unpaid:2,composites:0] zero_loss=324[unpaid:2,composites:15] capped_pairs=324[unpaid:2,composites:37]
+TRANSPORT CERTIFIED G=[15, 37, 39, 40] W=32 top_ideal=6 | generators=32[unpaid:0,composites:0] zero_loss=32[unpaid:0,composites:6] capped_pairs=32[unpaid:0,composites:6]
+TRANSPORT CERTIFIED G=[13, 17, 27, 29] W=41 top_ideal=6 | generators=37[unpaid:1,composites:0] zero_loss=37[unpaid:1,composites:1] capped_pairs=37[unpaid:1,composites:4]
+TRANSPORT CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] W=189 top_ideal=6 | generators=133[unpaid:8,composites:0] zero_loss=133[unpaid:8,composites:8] capped_pairs=133[unpaid:8,composites:13]
+TRANSPORT CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] W=451 top_ideal=20 | generators=409[unpaid:6,composites:0] zero_loss=409[unpaid:6,composites:11] capped_pairs=409[unpaid:6,composites:44]
+TRANSPORT CERTIFIED G=[20, 21, 22] W=100 top_ideal=20 | generators=100[unpaid:0,composites:0] zero_loss=100[unpaid:0,composites:0] capped_pairs=100[unpaid:0,composites:16]
+TRANSPORT CERTIFIED G=[20, 21, 22, 39] W=148 top_ideal=16 | generators=148[unpaid:0,composites:0] zero_loss=148[unpaid:0,composites:2] capped_pairs=148[unpaid:0,composites:14]
+TRANSPORT CERTIFIED G=[40, 41, 42, 43] W=468 top_ideal=14 | generators=468[unpaid:0,composites:0] zero_loss=468[unpaid:0,composites:0] capped_pairs=468[unpaid:0,composites:33]
+TRANSPORT CERTIFIED G=[40, 41, 42, 79] W=616 top_ideal=32 | generators=616[unpaid:0,composites:0] zero_loss=616[unpaid:0,composites:6] capped_pairs=616[unpaid:0,composites:34]
+TRANSPORT CERTIFIED G=[40, 41, 79, 118] W=843 top_ideal=9 | generators=843[unpaid:0,composites:0] zero_loss=843[unpaid:0,composites:12] capped_pairs=843[unpaid:0,composites:33]
+TRANSPORT CERTIFIED G=[13, 17, 20] W=29 top_ideal=10 | generators=29[unpaid:0,composites:0] zero_loss=29[unpaid:0,composites:8] capped_pairs=29[unpaid:0,composites:8]
+TRANSPORT CERTIFIED G=[16, 19, 21] W=26 top_ideal=10 | generators=26[unpaid:0,composites:0] zero_loss=26[unpaid:0,composites:11] capped_pairs=26[unpaid:0,composites:11]
+TRANSPORT CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] W=239 top_ideal=6 | generators=215[unpaid:3,composites:0] zero_loss=215[unpaid:3,composites:13] capped_pairs=215[unpaid:3,composites:28]
+TRANSPORT CERTIFIED G=[64, 67, 69, 77, 129] W=467 top_ideal=30 | generators=452[unpaid:3,composites:0] zero_loss=452[unpaid:3,composites:0] capped_pairs=452[unpaid:3,composites:51]
+TRANSPORT CERTIFIED G=[146, 147, 155, 185] W=1136 top_ideal=72 | generators=968[unpaid:42,composites:0] zero_loss=968[unpaid:42,composites:0] capped_pairs=968[unpaid:42,composites:136]
+TRANSPORT CERTIFIED G=[60, 61, 67, 71] W=260 top_ideal=30 | generators=232[unpaid:7,composites:0] zero_loss=232[unpaid:7,composites:0] capped_pairs=232[unpaid:7,composites:49]
+TRANSPORT CERTIFIED G=[146, 155, 175, 184] W=1130 top_ideal=24 | generators=374[unpaid:189,composites:0] zero_loss=374[unpaid:189,composites:0] capped_pairs=602[unpaid:132,composites:121]
+TRANSPORT CERTIFIED G=[60, 67, 71, 121] W=236 top_ideal=30 | generators=176[unpaid:15,composites:0] zero_loss=176[unpaid:15,composites:0] capped_pairs=176[unpaid:15,composites:47]
+TRANSPORT CERTIFIED G=[60, 71, 121, 143] W=237 top_ideal=15 | generators=221[unpaid:4,composites:0] zero_loss=221[unpaid:4,composites:0] capped_pairs=237[unpaid:0,composites:46]
+TRANSPORT CERTIFIED G=[43, 155, 184, 193] W=366 top_ideal=12 | generators=366[unpaid:0,composites:0] zero_loss=366[unpaid:0,composites:23] capped_pairs=366[unpaid:0,composites:29]
+TRANSPORT CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] W=346 top_ideal=10 | generators=339[unpaid:1,composites:0] zero_loss=339[unpaid:1,composites:10] capped_pairs=339[unpaid:1,composites:40]
+POSITION_IDENTITY_CHECKED max_m=128 pairs=33375552
+INDEPENDENTLY CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] c=326 B=115 M=82 loss=48 bound=402 W=451 free_generators=0 active_budget=59 individual_bound=409 bounded_cover_twice=84 capacity_gap_twice=2
+VERIFIED ASSIGNMENT UPPER CERTIFICATE G=[64, 67, 69, 77, 129] c=448 B=-33 loss=100 cover_sum=83 matching_bound_upper=382 W=467
+G=[146, 155, 175, 184] W=1130 UPPER=-526 missing_lower=870
+RIGID initial=10 fixed=146/146 sweeps=4 bound=1130 remaining=[]
+G=[64, 129, 67, 69, 77] W=467 UPPER=-33 missing_lower=186
+RIGID initial=10 fixed=61/64 sweeps=2 bound=447 remaining=[(2, 1), (7, 2), (62, 1)]
+G=[60, 121, 67, 71] W=236 UPPER=-164 missing_lower=158
+RIGID initial=9 fixed=45/60 sweeps=2 bound=108 remaining=[(21, 2), (28, 3), (32, 3), (35, 3), (39, 3), (42, 2), (43, 3), (46, 2), (49, 1), (50, 2), (53, 1), (54, 2), (55, 3), (56, 1), (57, 1)]
+G=[60, 121, 71, 143] W=237 UPPER=-111 missing_lower=132
+RIGID initial=11 fixed=60/60 sweeps=3 bound=237 remaining=[]
+G=[43, 184, 193, 155] W=366 UPPER=334 missing_lower=11
+RIGID initial=37 fixed=43/43 sweeps=2 bound=366 remaining=[]
+G=[66, 71, 72, 361, 98, 103, 128] W=346 UPPER=59 missing_lower=85
+RIGID initial=33 fixed=65/66 sweeps=2 bound=339 remaining=[(58, 1)]
+VERIFIED 30 BASE examples (three recorded residue covers, k=1..10), with independent membership invariants and exact Apéry reconstruction.

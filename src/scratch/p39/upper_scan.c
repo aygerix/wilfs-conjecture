@@ -14,6 +14,8 @@
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
  * --integer-weighted-audit m g...: additionally floor repeated-parent bounds;
  *   this certifies the integer capped model and actual W, not the real capped LP.
+ * --equality-weighted-audit m g...: complete pair demands across forced-equal classes.
+ * --combined-climb-wide m g...: minimize the integer combined bound/c, retaining B<0.
  * This is sampling, not exhaustive enumeration and not a proof of Wilf.
  */
 #include <stdio.h>
@@ -32,11 +34,45 @@ static ll ratio_num,ratio_den=1;
 static int need_e,kunz_cap;
 static int individual_audit;
 static int unit_audit;
+static int combined_audit;
 static ll last_num,last_den,last_corrected,last_B,last_M,last_W;
 static ll last_individual;
+static ll last_propagated;
 static int last_e,last_c,last_q,last_h;
 static uint64_t rnd(void){state^=state>>12;state^=state<<25;state^=state>>27;return state*2685821657736338717ULL;}
 static int pick(int n){return (int)(rnd()%(unsigned)n);}
+static int root(int *p,int a){while(p[a]!=a){p[a]=p[p[a]];a=p[a];}return a;}
+static ll residual_assignment(int m,int *w,int *mu,int *U,int q,int rho,int r,
+ int *count,int *res,int *perm,ll *alpha,ll *beta,int equality){
+ int ix[MM],n=0;for(int s=0;s<m;s++){ix[s]=-1;if(U[s]){ix[s]=n;res[n++]=s;}}
+ int cls[MM];for(int s=0;s<m;s++)cls[s]=s;
+ if(equality)for(int i=1;i<m;i++)for(int j=i;j<m;j++){
+  int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
+  int rp=(w[s]-(q*m-rho))%m;if(rp<0)rp+=m;
+  int lo=rp>=m-rho&&i>r&&j>r,up=rp<=m-rho-2&&i<=r&&j<=r,tau=mu[i]+mu[j]-mu[s]-q;
+  if(tau+lo||up-tau)continue;
+  if(!U[i])cls[root(cls,j)]=root(cls,s);
+  if(!U[j])cls[root(cls,i)]=root(cls,s);
+ }
+ int (*H)[MM]=calloc(MM,sizeof(*H));if(!H){perror("residual assignment");exit(2);}
+ for(int i=1;i<m;i++)for(int j=i;j<m;j++){
+  int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
+  int rp=(w[s]-(q*m-rho))%m;if(rp<0)rp+=m;
+  int lo=rp>=m-rho&&i>r&&j>r,tau=mu[i]+mu[j]-mu[s]-q;
+  int d=U[i]+U[j]-U[s]-tau-lo;if(d<=0)continue;assert(ix[i]>=0&&ix[j]>=0);
+  if(d>H[ix[i]][ix[j]])H[ix[i]][ix[j]]=H[ix[j]][ix[i]]=d;
+ }
+ if(equality){
+  int (*Q)[MM]=calloc(MM,sizeof(*Q));if(!Q){perror("equality assignment");exit(2);}
+  for(int a=0;a<n;a++)for(int b=0;b<n;b++){
+   int x=root(cls,res[a]),y=root(cls,res[b]);assert(U[x]==U[res[a]]&&U[y]==U[res[b]]);
+   if(H[a][b]>Q[x][y])Q[x][y]=H[a][b];
+  }
+  for(int a=0;a<n;a++)for(int b=0;b<n;b++)H[a][b]=Q[root(cls,res[a])][root(cls,res[b])];
+  free(Q);
+ }
+ ll M=assignment(n,H,perm,alpha,beta);free(H);*count=n;return M;
+}
 static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  int w[MM],done[MM]={0},ord[MM],gen[MM],mu[MM],z[MM],h[MM]={0};
  w[0]=0;for(int s=1;s<m;s++)w[s]=1<<28;
@@ -55,11 +91,11 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
- if(unit_audit||dump==6||dump==7||dump==8){
+ if(unit_audit||combined_audit||dump==6||dump==7||dump==8||dump==9){
   /* Nonnegative capped x obeys xi<=xs+alpha, xj<=xs+alpha and
    * xs<=xi+xj+kappa. Starting at delta gives valid integer upper bounds.
-   * For repeated parents we deliberately use the weaker xi<=xs+alpha;
-   * no integrality assumption on the actual LP variables is made. */
+   * Real mode uses the weaker repeated-parent rule xi<=xs+alpha.
+   * Integer modes additionally floor the exact repeated-parent constraint. */
   int U[MM],changed=1,sweeps=0;for(int s=0;s<m;s++)U[s]=mu[s]-z[s];
   while(changed){changed=0;sweeps++;
    for(int i=1;i<m;i++)for(int j=i;j<m;j++){
@@ -70,36 +106,33 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
     if(U[i]>U[s]+a){U[i]=U[s]+a;changed=1;}
     if(U[j]>U[s]+a){U[j]=U[s]+a;changed=1;}
     if(U[s]>U[i]+U[j]+k){U[s]=U[i]+U[j]+k;changed=1;}
-    if(dump==8&&i==j&&U[i]>(U[s]+a)/2){U[i]=(U[s]+a)/2;changed=1;}
+    if((dump==8||dump==9||combined_audit)&&i==j&&U[i]>(U[s]+a)/2){U[i]=(U[s]+a)/2;changed=1;}
    }
   }
   ll unpaid=0;int target=0;for(int s=1;s<m;s++){unpaid+=U[s];if(U[s]>U[target])target=s;}
   ll bound=W-e*unpaid;
-  if(dump==6||dump==7||dump==8||(unit_audit==1&&U[target]>1)||(unit_audit==2&&(bound<*best||bound<0))){
-   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"integer\":%s,\"bound\":%lld,\"unpaid\":%lld,\"target\":%d,\"max_upper\":%d,\"sweeps\":%d,\"G\":[%d",m,e,c,W,B,dump==8?"true":"false",bound,unpaid,target,U[target],sweeps,m);
+  int n=0,res[MM],perm[MM];ll alpha[MM],beta[MM],M=0;
+  if(dump==7||dump==8||dump==9||combined_audit)M=residual_assignment(m,w,mu,U,q,rho,r,&n,res,perm,alpha,beta,dump==9);
+  ll phi=bound+e*((M+1)/2);
+  if(dump==6||dump==7||dump==8||dump==9||(unit_audit==1&&U[target]>1)||(unit_audit==2&&(bound<*best||bound<0))){
+   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"integer\":%s,\"equality\":%s,\"bound\":%lld,\"unpaid\":%lld,\"target\":%d,\"max_upper\":%d,\"sweeps\":%d,\"G\":[%d",m,e,c,W,B,(dump==8||dump==9)?"true":"false",dump==9?"true":"false",bound,unpaid,target,U[target],sweeps,m);
    for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("],\"b\":[");
    for(int s=0;s<m;s++)printf("%s%d",s?",":"",z[s]);printf("],\"u\":[");
    for(int s=0;s<m;s++)printf("%s%d",s?",":"",U[s]);printf("]");
-   if(dump==7||dump==8){
-    int ix[MM],res[MM],n=0,perm[MM];ll alpha[MM],beta[MM];
-    for(int s=0;s<m;s++){ix[s]=-1;if(U[s]){ix[s]=n;res[n++]=s;}}
-    int (*H)[MM]=calloc(MM,sizeof(*H));if(!H){perror("residual assignment");exit(2);}
-    for(int i=1;i<m;i++)for(int j=i;j<m;j++){
-     int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
-     int rp=(w[s]-c)%m;if(rp<0)rp+=m;
-     int lo=rp>=m-rho&&i>r&&j>r,tau=mu[i]+mu[j]-mu[s]-q;
-     int d=U[i]+U[j]-U[s]-tau-lo;if(d<=0)continue;
-     assert(ix[i]>=0&&ix[j]>=0);
-     if(d>H[ix[i]][ix[j]])H[ix[i]][ix[j]]=H[ix[j]][ix[i]]=d;
-    }
-    ll M=assignment(n,H,perm,alpha,beta);
+   if(dump==7||dump==8||dump==9){
     printf(",\"residual_matching\":{\"M\":%lld,\"rounded_bound\":%lld,\"residues\":[",M,bound+e*((M+1)/2));
     for(int a=0;a<n;a++)printf("%s%d",a?",":"",res[a]);printf("],\"permutation\":[");
     for(int a=0;a<n;a++)printf("%s%d",a?",":"",perm[a]);printf("],\"alpha\":[");
     for(int a=0;a<n;a++)printf("%s%lld",a?",":"",alpha[a]);printf("],\"beta\":[");
-    for(int a=0;a<n;a++)printf("%s%lld",a?",":"",beta[a]);printf("]}");free(H);
+    for(int a=0;a<n;a++)printf("%s%lld",a?",":"",beta[a]);printf("]}");
    }
    printf("}\n");fflush(stdout);
+  }
+  if(combined_audit){
+   last_W=W;last_B=B;last_M=M;last_corrected=last_individual=phi;last_propagated=bound;
+   last_e=e;last_c=c;last_q=q;last_h=hh;last_num=0;last_den=1;
+   if(phi<0){printf("COMBINED_BOUND_FAILURE phi=%lld W=%lld G=[%d",phi,W,m);for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("]\n");return -5;}
+   return 1;
   }
   if(unit_audit==2){if(bound<*best)*best=bound;if(B<0)nbneg++;return bound<0?-4:1;}
   return unit_audit==1&&U[target]>1?-3:1;
@@ -256,10 +289,11 @@ int main(int argc,char **argv){
   }
   printf("POSITION_IDENTITY_CHECKED max_m=%d pairs=%lld\n",maxm,checks);return 0;
  }
- if(argc>4&&(!strcmp(argv[1],"--climb")||!strcmp(argv[1],"--climb-wide")||!strcmp(argv[1],"--wilf-climb")||!strcmp(argv[1],"--wilf-climb-wide")||!strcmp(argv[1],"--wilf-negative-wide")||!strcmp(argv[1],"--individual-climb-wide"))){
-  int indiv=strstr(argv[1],"individual")!=NULL;
+ if(argc>4&&(!strcmp(argv[1],"--climb")||!strcmp(argv[1],"--climb-wide")||!strcmp(argv[1],"--wilf-climb")||!strcmp(argv[1],"--wilf-climb-wide")||!strcmp(argv[1],"--wilf-negative-wide")||!strcmp(argv[1],"--individual-climb-wide")||!strcmp(argv[1],"--combined-climb-wide"))){
+  combined_audit=strstr(argv[1],"combined")!=NULL;
+  int indiv=strstr(argv[1],"individual")!=NULL||combined_audit;
   int wide=strstr(argv[1],"wide")!=NULL,wilf=strstr(argv[1],"wilf")!=NULL||indiv,negative=strstr(argv[1],"negative")!=NULL||indiv;
-  if(indiv)individual_audit=1;
+  if(indiv&&!combined_audit)individual_audit=1;
   int ng=argc-2,G0[GG],m=atoi(argv[2]);if(ng>GG||m<2||m>=MM)return 1;
   for(int a=0;a<ng;a++)G0[a]=atoi(argv[a+2]);
   ll best0=1LL<<60;
@@ -269,8 +303,9 @@ int main(int argc,char **argv){
   for(;;){
    int ret=eval(m,G0,ng,4,0,&best0);if(ret<0)return 0;
    ll num=last_num,den=last_den,W0=last_W,I0=last_individual;int c0=last_c;
-   printf("%s iter=%d ratio=%lld/%lld corrected=%lld B=%lld M=%lld W=%lld c=%d q=%d h=%d G=[",indiv?"INDIVIDUAL_CLIMB":wilf?"WILF_CLIMB":"CLIMB",iter,num,den,last_corrected,last_B,last_M,last_W,last_c,last_q,last_h);
-   for(int a=0;a<ng;a++)printf("%s%d",a?",":"",G0[a]);printf("]");if(indiv)printf(" individual=%lld",I0);printf("\n");fflush(stdout);
+   if(combined_audit)printf("COMBINED_CLIMB iter=%d phi=%lld propagated=%lld residual_M=%lld W=%lld c=%d q=%d h=%d G=[",iter,last_individual,last_propagated,last_M,last_W,last_c,last_q,last_h);
+   else printf("%s iter=%d ratio=%lld/%lld corrected=%lld B=%lld M=%lld W=%lld c=%d q=%d h=%d G=[",indiv?"INDIVIDUAL_CLIMB":wilf?"WILF_CLIMB":"CLIMB",iter,num,den,last_corrected,last_B,last_M,last_W,last_c,last_q,last_h);
+   for(int a=0;a<ng;a++)printf("%s%d",a?",":"",G0[a]);printf("]");if(indiv&&!combined_audit)printf(" individual=%lld",I0);printf("\n");fflush(stdout);
    if(negative&&!indiv&&2*last_W<last_c&&!announced){printf("NEGATIVE_BASELINE_DICHOTOMY_FAILURE\n");announced=1;}
    if(iter++>=100){printf("ITERATION_LIMIT calls=%ld\n",calls);return 0;}
    int BG[GG],found=0;
@@ -324,11 +359,11 @@ int main(int argc,char **argv){
   }
   printf("ENUM_DONE m=%d e=%d K=%d candidates=%ld accepted=%ld Bnegative=%ld min_corrected=%lld max_repair_ratio=%lld/%lld\n",m,e,K,cand,acc,nbneg,best0,ratio_num,ratio_den);return 0;
  }
- if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit")||!strcmp(argv[1],"--unit-audit")||!strcmp(argv[1],"--weighted-audit")||!strcmp(argv[1],"--integer-weighted-audit"))){
+ if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit")||!strcmp(argv[1],"--unit-audit")||!strcmp(argv[1],"--weighted-audit")||!strcmp(argv[1],"--integer-weighted-audit")||!strcmp(argv[1],"--equality-weighted-audit"))){
   int ng=argc-2,G0[MM+GG],m0=INT_MAX;if(ng>MM+GG)return 1;for(int k=0;k<ng;k++){G0[k]=atoi(argv[k+2]);if(G0[k]<m0)m0=G0[k];}
   if(m0<2||m0>=MM)return 1;
   int at=0;while(G0[at]!=m0)at++;int tmp=G0[0];G0[0]=G0[at];G0[at]=tmp;
-  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:!strcmp(argv[1],"--unit-audit")?6:!strcmp(argv[1],"--weighted-audit")?7:!strcmp(argv[1],"--integer-weighted-audit")?8:2;
+  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:!strcmp(argv[1],"--unit-audit")?6:!strcmp(argv[1],"--weighted-audit")?7:!strcmp(argv[1],"--integer-weighted-audit")?8:!strcmp(argv[1],"--equality-weighted-audit")?9:2;
   ll best0=1LL<<60;return eval(m0,G0,ng,2,mode,&best0)==0?1:0;
  }
  if(argc<3)return 1;long N=atol(argv[1]);state=strtoull(argv[2],NULL,10);if(!state)state=1;int mine=argc>3?atoi(argv[3]):4;

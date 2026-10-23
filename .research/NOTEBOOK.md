@@ -4833,3 +4833,47 @@ Validation:175 exact LP optima;58 real/integer envelope+assignment witnesses on2
 sampled envelopes; existing checks pass. Reverse-order independent propagation gives the same
 fixed points. Empty-core, weighted51-cell-core and integer65case pass ASan/UBSan. Artifacts remain
 in the existing p39 data folder; STATE updated in place. Goal remains ACTIVE. Classification: PROGRESS.
+
+## 2026-10-22 23:38 EDT — backwards descent and equality-class residue payments
+
+Previous goal turn: PROGRESS (valid residual assignment composition, integer-model distinction,
+independently verified advisor65case). Current source/records re-read; no previous live job resumed.
+The universal scope remains unchanged. No subagents used.
+
+**Attempt1, E410.** Try to falsify Phi_Z>=0, rather than run another broad sample. Adapt existing
+deterministic local descent to Phi_Z/c, retaining B<0 (necessary for Phi_Z<0), actual e and previous
+neighborhoods. Three starts terminate in0.32/0.37/3.23s (60s ceilings),2619/3681/6403 evaluations.
+No failure. The60case returns the existing actual-W local minimum;64e5 reaches
+<64,69,77,129,149>,c446,g300,W284,Phi274;hard146 reaches <146,155,184,535>,c2334,g1417,W1334,
+propagation954,unpaid95,residualM18,Phi990. Only LOCAL optimality. Independent full capped LP on
+the new146case gives maximum unpaid84, objective998, with integer primal/max coordinate3.
+Thus no guessed unit/two-unit cap should be substituted. The8-point gap has a specific dual cause.
+
+**Attempt2, E411.** Inspect that dual: eight coordinates
+{76,85,94,103,114,123,132,141} are forced equal by exact alpha=kappa0 rows with a fixed-zero
+summand. The ordinary residual graph treats them as independent. Derived the general class-weighted
+payment lemma: U is constant on each class; class pair demands apply to every copy; assignment on
+the completed graph equals the fractional pair-cover minimum weighted by class residue counts.
+Proof by assignment duality and within-class averaging; caps can be retained since H<=min U.
+Actual integer repair gives the rounded bound. This is a symmetry/counting argument, not a novel
+assignment theorem. No single-class size bound and no deletion of paid cells is used.
+
+On the new146case, equality completion M18->22 yields998, exactly the full capped optimum. There
+are73 active residues partitioned into66 classes (one size8,65 singletons). C union-find and
+independent graph reachability check the classes/complete demands and the assignment primal/dual.
+The same new path passes on the supplied65case and an empty-core case. General validity is a
+paper proof; the existing Lean assignment step applies, but no new full semigroup Lean claim.
+
+**Global review — CONTINUE with class multiplicity, stop local-search repetition.** The descents
+did not falsify Phi_Z and give no reason to enlarge the parameter box. A real local payment was
+identified: equality forces costs to be counted with the number of distinct residues sharing a
+value. This is closer to the global-counting gap than just another accuracy benchmark. Still absent:
+an arithmetic relation comparing the propagated baseline plus these class-weighted costs to c/e,
+using primitive count and complete residue coverage. Exact998 in this example does not provide
+that relation. Preserve Phi_Z as an unproved sufficient target; the stronger class-completed bound
+also has unproved universal sign. No presumed W/c constant, bounded core or large class.
+
+Validation: consolidated176 exact LP optima and all existing checks pass; new final/equality witnesses
+pass; ASan/UBSan handles nontrivial equality completion, empty core and integer65case. Logs and
+raw certificates in existing p39/data; STATE updated in place. Universal Wilf remains unproved,
+no genuine counterexample found, full goal ACTIVE. Classification: PROGRESS.

@@ -7333,3 +7333,73 @@ Do not describe the new matching stage as recovering a missing global counting t
 counterexample makes this valid lower bound negative. The unchanged universal backwards scope applies.
 The missing proof must use arithmetic/residue completeness to compare the propagated baseline and
 remaining pair cost to c; more exact reconstruction of an individual W does not supply that comparison.
+
+### Counting forced-equal unpaid coordinates together (E410/E411)
+
+**General on-paper payment lemma, not a universal positivity theorem.** Let U be the integer
+propagation envelope from E409. All following claims concern P_Z; no real-LP validity is inferred
+from integer floors. If a tight pair has alpha=kappa=0 and U_i=0, then every feasible unpaid vector
+satisfies x_j=x_s. The analogous rule holds with i,j reversed. Form the equivalence classes generated
+by these equalities on J={s:U_s>0}. The propagated U is constant on each class: its zero-cost rules give
+both U_j<=U_s and U_s<=U_j+U_i=U_j. Hence z=U-x is also constant on each class.
+
+Write n_C=|C|, u_C=U_s for s in C. These n_C count distinct Apéry RESIDUES; nothing is deleted
+from the semigroup. Let H be the positive-overflow matrix from E409, and define
+
+    G_CD=max{H_ij : i in C,j in D},
+    H_eq(i,j)=G_[i],[j].
+
+The exact row that supplies each H_ij and equality within C,D imply z_C+z_D>=G_CD. Thus the
+following weighted pair-cover problem gives a lower bound on the total remaining repair:
+
+    min sum_C n_C z_C; z_C>=0, z_C+z_D>=G_CD for every C,D.
+
+Its fractional optimum is M_eq/2, where M_eq is the maximum assignment weight of H_eq on the
+original J coordinates. Proof: an assignment uses every coordinate twice, giving the lower bound.
+Conversely the symmetric assignment dual supplies a feasible cover on the expanded matrix of cost
+M_eq/2 (E392). Average its entries within each class. Because the completed matrix is constant on
+class pairs, averaging every pair inequality preserves feasibility, including C=D; the total objective
+is unchanged. This produces a feasible class-constant cover of the same cost. This is an elementary
+symmetry reduction of weighted pair cover; no novelty is claimed for assignment duality.
+
+The fixed-point bounds also give H_ij<=min(U_i,U_j): subtract U_s+alpha from either parent bound.
+Thus G_CD<=min(u_C,u_D). Clipping any class cover at u_C preserves every demand, so the same
+fractional optimum is achievable with0<=z_C<=u_C. This does NOT assert feasibility of that cover
+for all full target rows. Actual integer unpaid vectors satisfy integer z_C, and their total
+sum_C n_C z_C is an integer. Therefore
+
+    W >= IntCap >= W-e sum U+e ceil(M_eq/2) >= Phi_Z.
+
+The last inequality follows from H_eq>=H. A single demand between distinct classes already forces
+cost at least min(n_C,n_D)G_CD. A self-class demand forces n_C G_CC/2 in the real cover and
+n_C ceil(G_CC/2) for integer class repair. Such residue multiplicities are lost when equal coordinates
+are treated as unrelated vertices. No uniform lower bound on class sizes is assumed.
+
+**Diagnostic from backwards descent, independently verified.** The three E410 searches retain B<0,
+actual e, c>4m,3e<m and the previous one-coordinate neighborhood (m>=20; other generator candidates
+m+1 through8m; no new parameter box). They minimize Phi_Z/c, with actual W/c as tie breaker.
+From <60,67,71,121> they reach the existing <60,71,121,143> (Phi_Z237,c655); from
+<64,67,69,77,129> they reach <64,69,77,129,149> (c446,g300,e5,W284,Phi_Z274); from
+<146,155,175,184> they reach <146,155,184,535> (c2334,g1417,e4,W1334).
+All are LOCAL optima only; no negative Phi_Z found. The final146case has unpaid envelope mass95,
+propagation954,residual assignment18, hence Phi_Z990. A full capped LP certifies maximum unpaid84,
+value998. This is not a genuine Wilf counterexample.
+
+In that case J has73 residues, and there is one nontrivial equality class
+
+    C={76,85,94,103,114,123,132,141}, all with U=1.
+
+There are65 other singleton classes. Equality completion raises the exact assignment value18->22,
+giving954+4*11=998, coinciding with the independent full real capped optimum in this instance.
+Integer equality completion is not claimed to bound that real optimum in general. The full capped
+optimum has a feasible integer witness here; therefore IntCap=998 as well. Its maximum unpaid
+coordinate is3, reinforcing that arbitrary unit/two-unit caps are unjustified. The class construction,
+completed matrix and assignment dual are independently reconstructed in verify_matching.py, using
+undirected reachability rather than the C union-find implementation.
+
+**Remaining global obligation.** Class multiplicity supplies a genuine local counting/payment
+ingredient. It does not imply that the propagated baseline plus this payment reaches c/e in general.
+That comparison must still use the full arithmetic/residue structure and the primitive count. The
+original Phi_Z positivity target has not been proved or falsified; replacing it by its stronger
+equality-completed bound is not automatically a proof. No further box enlargement or guessed
+W/c threshold is justified by these three local searches.
