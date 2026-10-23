@@ -9746,10 +9746,10 @@ the specific lost-primitive cost of E440, but the remaining correction can be ne
 
 Two logically distinct goals are:
 
-    MON1: W(S)>=W(U);                                UNKNOWN.
+    MON1: W(S)>=W(U);                                FALSE unrestricted (E442).
     TRANSFER: W(U)>=0 implies W(S)>=0;                UNKNOWN.
 
-Each would prove universal Wilf by OC-DESC and genus induction. MON1 is stronger than
+Either, if true universally, would prove Wilf by OC-DESC and genus induction. MON1 is stronger than
 necessary. In OC-W, proving TRANSFER may use BOTH copies of W(U); there is no reason to
 require the other three terms to be nonnegative separately. The still stronger
 W(S)>=2W(U) is FALSE even on the old cofactor1 remaining-domain example
@@ -9792,3 +9792,152 @@ A proof that merely reconstructs lambda exactly would leave its sign unexplained
 the weaker transfer if MON1 fails; retain E435/E437 cyclic payment and the full weighted
 certificate line as the other universal approaches. No universal proof or genuine Wilf
 counterexample has been obtained.
+
+## E442 — full monotonicity fails; ideal-power algebra retains a different generator count
+
+2026-10-23. Scope: Proves Wilf for every S IF E441's full nonnegativity transfer holds;
+proved reduction from all S: YES, OC-DESC and genus induction. This section refutes an
+OPTIONAL strengthening and proves a structural ingredient for paying the full OC-W budget.
+It does not establish that budget's sign. General arguments are ON PAPER, not Lean checked.
+
+### 1. Unrestricted MON1 is FALSE, with an unbounded deficit
+
+For m=2b+1>=3 and t>=2 take the classical Wilf-equality semigroup
+
+    S=<m,2tm+1,2tm+2,...,2tm+m-1>.
+
+Its least odd element is m, e(S)=m,c(S)=2tm,ell(S)=2t,W(S)=0. These source invariants are
+standard (e.g. Eliahou1703.01761 introduction; Marashdeh2608.12531 Lemma2.3). E441 gives
+
+    U=<m,tm-b,...,tm-1,tm+1,...,tm+b>.
+
+The non-m generators occupy all nonzero residues, and any sum of two is larger than the
+largest one since tm>3b. Thus they are exactly U's nonzero Apéry representatives modulo m,
+are all primitive, and
+
+    e(U)=m, c(U)=tm-b, g(U)=(2t-1)b, ell(U)=t, W(U)=b.
+
+Hence W(S)-W(U)=-b is unbounded below. Every positive-multiple payer W(S)>=eta*W(U),
+eta>0, fails on ALL S. The example m5,t2 is independently audited:
+
+    S=<5,21,22,23,24>, c20,g16,e5,W0;
+    U=<5,8,9,11,12>, c8,g6,e5,W2.
+
+All five leave-one-out primitive gcds are1. This is NOT a Wilf counterexample. These
+witnesses have e=m, so they do NOT refute MON1 restricted to the remaining domain3e<m.
+For t>=3 they do have c>4m; density, not depth, is the excluded hypothesis.
+No fixed-family proof programme or new search is activated by this falsification.
+
+In fact I=U here, since I contains each U Apéry representative, so L_s=0 and sum K=b.
+OC-W has terms 2b,0,2b(m-1),-2bm, summing to0. Even with NO common lift L, the full
+surplus2W(U) is spent. The target must retain the binary part as well as common height;
+closure rigidity or a unit cap by itself cannot prove the needed sign.
+
+### 2. The ideal-power layers form a finite standard graded algebra
+
+Use E441's T,I,U and set 0I=T (the identity for relative-ideal sums). For n>=1 define
+
+    H_n=nI minus (n-1)I,          h_n=|H_n|.
+
+These layers are finite, disjoint and eventually empty; their union is U minus T. Put
+F_n=span_k{t^u:u in nI} inside k[t], with F_0=k[T]. These are vector spaces, not
+necessarily subrings. Products satisfy F_n F_j subset F_(n+j), so
+
+    B=k plus direct_sum_(n>=1) F_n/F_(n-1)
+
+is a graded k-algebra, with the evident scalar identity. Multiplication of positive
+classes is well-defined because F_(n-1)F_j subset F_(n+j-1). It is associative for the
+same reason. It is finite-dimensional since the ideal sums stabilize at U.
+
+Moreover B is generated in degree1. Each monomial of F_n factors into n monomials of F_1.
+In each factor separate its k[T] part from the span of the gaps H_1. Any product containing
+a k[T] factor belongs to F_(n-1), since the other n-1 ideals are T-stable. Therefore the
+degree-n quotient is spanned by products of n gap classes from H_1. In particular
+
+    Hilbert(B)=(1,h_1,h_2,...),
+    h_n<=binom(h_1+n-1,n),
+    sum h_n=g(T)-g(U),
+    sum_(n>=2) h_n=g(I)-g(U),
+    sum_s(K_s+L_s)=h_1+2*sum_(n>=2)h_n.              (LAYER-COST)
+
+Standard Macaulay theory consequently applies to THIS algebra with embedding dimension
+h_1=|I minus T|. It does NOT apply with e(S)-1 substituted. No novelty is claimed for
+associated graded constructions or Macaulay's theorem; the construction and exact cost
+are proved here to keep the relevant dimensions explicit.
+
+The two-step arithmetic constraint is also retained: a+I subset T and, for n>=2,
+
+    a+nI subset (n-2)I.
+
+It follows by grouping two I factors and using a+I+I subset T. This is a relation between
+the VALUE labels of layers, not monotonicity of their cardinalities. For example the
+admissible data T={0} union[10,infinity), I={0,1,3}+T,a11 give h=(2,3,3,1). This is a
+paper set calculation below10; E440 ensures a genuine S. There was no computation or
+search on this example. Thus later layer growth need not be bounded by the first layer.
+
+### 3. Why replacing the original generator count by a Hilbert dimension is unsafe
+
+The OLD boundary control S=<5,7> already exposes the issue. Here a5,T=<5,6,7>,
+I={0,1}+T,U=N. The layers are
+
+    H_1={1,8}, H_2={2,9}, H_3={3}, H_4={4}.
+
+So B has Hilbert function(1,2,2,1,1), despite e(S)-1=1 and just ONE nonzero odd-ideal
+generator. A polynomial ring in that one generator cannot have this Hilbert function.
+The missing action is a genuine quotient primitive: 7=a+1+1 acts nontrivially in degree1,
+sending the gap class1 to8. Therefore the paired quotient primitives cannot simply be
+discarded from the coefficient action on the layers, even though the closure U has no
+more generators than S. The analogous degree2 action sends2 to9.
+
+The discrepancy is unbounded at FIXED source embedding dimension, not just a small
+off-by-one. This is a calibration of the universal payment, not a two-generator target.
+For the classical equality source S=<a,a+2>, a=2b+1, we have T=<a,a+1,a+2>,
+I={0,1}+T,U=N. Its ideal-power representatives for 0<=s<a are
+
+    w_(nI,s)=s+a*ceil(max(0,s-n)/2),   n>=0.
+
+For T, using residues1 and2 minimizes the number of generators to ceil(s/2); wrapping
+adds a and cannot lower the cost. For nI=T+[0,n], the cheapest k is min(n,s). Choices
+k>s wrap and cost at least s+a, whereas k=s costs s. This proves the displayed formula.
+Its successive genus differences give
+
+    h_n=b+1-ceil(n/2), 1<=n<=2b;      h_n=0 after2b.
+
+In particular h_1=b with e(S)=2, and H_n={n+j(a+2):0<=j<h_n}. The latter formula
+follows by taking the residues s=n,n+2,... that lose one a-unit at step n. Multiplication
+by the paired quotient primitive a+2 gives ONE nilpotent chain through each H_n; it is
+not a new degree-one algebra generator for every point in that chain. Finally
+
+    h_1+2*sum_(n>=2)h_n=ab,
+    E*(b+ab)=2b(a+1)=a^2-1=c(S).
+
+Thus the conductor term pays the entire cost exactly, with W(U)=0. This explicitly
+identifies the missing ingredient as a VALUE-SENSITIVE allocation of these operator
+orbits; a cardinality bound in terms of e(S) alone cannot replace it. For multiple
+primitive actions the orbits can overlap, and no universal disjoint allocation has been
+constructed. No new experiment or claim of a new two-generator Wilf theorem is made.
+
+One may represent these actions by retaining addition by H, addition by the A offsets,
+and the physical a-shift that drops ideal-power degree. This is an EXACT operator
+description, not a rank/positivity theorem. Merely applying Macaulay with h_1 in place
+of e(S)-1 would lose the generator budget the descent was designed to control.
+
+### 4. Verification, review and next action
+
+Fejer used existing C --odd-audit plus independent stdlib membership. The new
+--odd-layer-check audits ONLY the two saved E441 cases, the two old controls, and the
+single predicted MON1 witness. For each it checks all modulo-a ideal-power entries by
+convolution AND finite membership, product spanning of every layer, the a-shift, and
+LAYER-COST. Hilbert functions are respectively(1,7,6,3),(1,7,3,2),(1,2,2,1,1),
+(1,3,1),(1,2); the first two stabilize at power3. No new C search, solver or census.
+The existing E441 mixed-identity audit also passes. Data and reproduction are in STATE
+and EXPERIMENTS. Neither these finite checks nor the standard algebra is a sign proof.
+
+Decision: stop unrestricted MON1 and any scalar first-layer/Macaulay substitution of
+e(S)-1 for h_1. Do not enlarge the layer table or classify its O-sequences. The next
+arithmetic proof must retain the original-source coefficient actions and their value labels
+to pay h_1+2*sum_(n>=2)h_n from the FULL OC-W budget. The concrete missing lemma is a
+uniform joint bound involving those actions, conductor growth and actual W(U), not
+exact reconstruction of the powers. If that ingredient supplies no finite sign, return
+to E435/E437 cyclic payment or the full weighted-certificate alternative, without another
+local-accuracy optimizer. All three universal lines remain active; Wilf remains unproved.

@@ -5434,3 +5434,37 @@ a GLOBAL common-height bound from typed input relations plus cyclic residue comp
 not another shortest-path implementation or a positive-fixture tally. Keep the boundary
 cycle/carry and genuinely weighted certificate alternatives active. All statements here
 are paper proofs/audited finite calculations, not Lean claims or a universal Wilf proof.
+
+### 2026-10-23 11:20 EDT — E442: remove unrestricted monotonicity; keep coefficient actions
+
+Previous turn was progress (E441 proof/identities and bounded C checks pushed f07ffc3).
+Worked on the full finite cost rather than re-running its closed local search. The
+classical equality source5/21/22/23/24 gives WS0 and closure5/8/9/11/12 WU2. Derived
+the paper extension m=2b+1,t>=2, source<m,2tm+1,...,2tm+m-1>, closure WU=b. Thus all-S
+MON1 has an unbounded negative margin. These sources have e=m, so the sparse-domain
+version is NOT refuted; weaker nonnegativity transfer is retained. L=0 in the family,
+showing that even binary lifts can consume both copies of WU. Verified ONE predicted
+witness with existing Fejer C and independent membership, not another search.
+
+Tried organizing the common cost by ideal powers. Proved the finite standard-graded
+algebra with positive pieces span(nI)/span((n-1)I); its Hilbert function is(1,h_1,h_2,...)
+and sum(K+L)=h_1+2*sum_(n>=2)h_n. This is a standard algebra construction, not a new
+positivity theorem. Later h can grow (paper admissible example2,3,3,1), and the algebra's
+embedding dimension h_1 is not the source eS-1. OLD5/7 already has(1,2,2,1,1), eS-1=1.
+Paired quotient primitive7 acts1->8 and2->9 in fixed degrees. Discarding that action
+would silently recreate the lost-generator problem. No such false substitution was used.
+
+Pushed the source-count test further on paper using the SAME control's known family
+<a,a+2>, a=2b+1: h_n=b+1-ceil(n/2), n1..2b, so h_1 is unbounded with eS2. Each layer
+is ONE nilpotent chain under value shift a+2, and the original conductor pays all chains
+exactly. This identifies value increments as essential; counting every chain point as
+a new generator loses the budget. It is a calibration of the all-S mechanism, not a
+two-generator research target, novelty claim or family computation.
+
+Global review: a real stronger auxiliary target was refuted and a tempting algebraic
+shortcut was caught. Standard Hilbert growth alone has not advanced the required sign.
+Continue only with a generator-sensitive, value-labeled joint bound for overlapping
+coefficient actions, conductor growth and actual WU. No new layer census, source variant,
+profile solver or local-accuracy optimizer. If no finite inequality emerges, return to
+the existing cyclic boundary or full weighted-repair lines. Five fixed-case layer audits
+and the old E441 audit pass on Fejer. No universal proof or genuine Wilf counterexample.

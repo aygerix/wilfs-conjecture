@@ -3,7 +3,7 @@ Uses only Python stdlib; floats are discovery data until every constraint and ob
 usage: python3 verify_probe.py probe.jsonl summary.json
 """
 import json, sys, gzip
-from math import gcd
+from math import comb, gcd
 from fractions import Fraction as F
 from collections import defaultdict
 
@@ -638,6 +638,47 @@ def audit_odd_comparison(C):
             'apery_modulus':a,'T_lifts':K,'I_lifts':L,'binary_difference':[k-l for k,l in zip(K,L)],
             'W_parts':parts,'margin':C['margin'],'leave_one_out_gcds':cofactors,
             'genuine_negative_W':min(S['W'],T['W'],U['W'])<0}
+
+def audit_odd_layers(C):
+    """E442: audit ideal powers by independent sets and Apéry convolution."""
+    R=audit_odd_comparison(C);a=R['least_odd'];A=R['ideal_generators']
+    T=membership_stats(R['T']['G'],a);U=membership_stats(R['U']['G'],a)
+    c=T['c'];base={x for x in range(c) if x>=T['w'][x%a]}
+    target={x for x in range(c) if x>=U['w'][x%a]}
+    sets=[base];tables=[T['w']];layers=[]
+    for n in range(1,T['g']+2):
+        nxt={x+y for x in A for y in sets[-1] if x+y<c}
+        # The finite slice excludes the tail; nonnegative offsets cannot bring it back.
+        table=[min(x+tables[-1][(s-x)%a] for x in A) for s in range(a)]
+        assert nxt=={x for x in range(c) if x>=table[x%a]}
+        assert table==[next(x for x in range(s,c+a,a) if x>=c or x in nxt) for s in range(a)]
+        assert sets[-1]<=nxt<=target
+        if nxt==sets[-1]:
+            assert nxt==target and table==U['w'];break
+        layers.append(nxt-sets[-1]);sets.append(nxt);tables.append(table)
+    else:raise AssertionError('ideal powers did not stabilize within the exact genus bound')
+    assert sum(map(len,layers))==T['g']-U['g']
+    assert sum(map(len,layers[1:]))==R['ideal_genus']-U['g']
+    mass=sum(R['T_lifts'])+sum(R['I_lifts'])
+    assert mass==(len(layers[0])+2*sum(map(len,layers[1:])) if layers else 0)
+    degree1=layers[0] if layers else set();products={0}
+    for n,layer in enumerate(layers,1):
+        products={x+y for x in products for y in degree1 if x+y in layer}
+        assert products==layer  # Each graded piece is spanned by degree-one products.
+        assert len(layer)<=comb(len(degree1)+n-1,n)
+        for x in layer:
+            lower=sets[max(0,n-2)]
+            assert x+a>=c or x+a in lower  # a+nI subset (n-2)I, with the n=1 boundary.
+    paired=sorted({a+x+y for x in A for y in A});action=[]
+    for n,layer in enumerate(layers,1):
+        for p in paired:
+            hit=next((x for x in sorted(layer) if x+p in layer),None)
+            if hit is not None:action.append({'degree':n,'paired_T_element':p,'x':hit,'image':hit+p})
+    return {'S':R['S'],'U':R['U'],'least_odd':a,'source_embedding_dimension':R['S']['e'],
+            'odd_ideal_generator_count':len(A),'Hilbert_function':[1]+[len(L) for L in layers],
+            'power_layers':[sorted(L) for L in layers],'stabilization_power':len(layers),
+            'weighted_lift_mass':sum(R['T_lifts'])+sum(R['I_lifts']),
+            'paired_quotient_actions':action,'all_modulus_entries_and_products_checked':True}
 
 def audit_residue_comparison(C):
     S=membership_stats(C.get('input_G',C['G']));m=S['m']
@@ -1562,6 +1603,24 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--odd-layer-check':
+        import subprocess
+        records=[json.loads(line) for line in open(sys.argv[2]) if line.startswith('{')]
+        cases={tuple(sorted(C['G'])) for C in records}
+        cases.update(((5,7),(6,7,11),(5,21,22,23,24)))
+        result=[]
+        for G in sorted(cases):
+            C=json.loads(subprocess.check_output([sys.argv[3],'--odd-audit',*map(str,G)],text=True))
+            result.append(audit_odd_layers(C))
+        with open(sys.argv[4],'w') as out:json.dump(result,out,indent=2)
+        for R in result:print('ODD-LAYERS',R)
+        control=next(R for R in result if R['S']['G']==[5,7])
+        assert control['Hilbert_function']==[1,2,2,1,1]
+        assert {'degree':1,'paired_T_element':7,'x':1,'image':8} in control['paired_quotient_actions']
+        witness=next(R for R in result if R['S']['G']==[5,21,22,23,24])
+        assert witness['S']['W']==0 and witness['U']['W']==2
+        print('EXACTLY AUDITED five fixed cases; no new search or universal payment claim')
+        sys.exit(0)
     if sys.argv[1]=='--odd-closure-check':
         import subprocess
         records=[]

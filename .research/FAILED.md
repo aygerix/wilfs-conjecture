@@ -401,3 +401,21 @@ injective: exterior images2 and3 in this SAME witness both charge the one-unit e
 u_14+e_(j_0), canonically replaced by2u_7. Stop independent least-root assignment and
 the C-only stage. No more witnesses or root-weight optimizers are next; a joint exchange
 with unused starts, unreserved missing slots and wrapped capacity is still required.
+
+## E442 — unrestricted closure monotonicity and a Hilbert-dimension substitution (2026-10-23)
+
+FALSE on all S: W(S)>=W(U), U the E441 normalized odd-ideal closure. The exact witness
+S=<5,21,22,23,24> has c20,g16,e5,W0; U=<5,8,9,11,12> has c8,g6,e5,W2. All source
+leave-one-out gcds are1. More generally classical S=<m,2tm+1,...,2tm+m-1>, m=2b+1,
+t>=2, gives W(S)=0,W(U)=b, so the gap is unbounded. Proof in E442, one C/membership
+witness audit only. These examples have e=m and DO NOT refute MON1 restricted by3e<m.
+They refute neither Wilf nor full nonnegativity transfer. No family search is next.
+
+Also FALSE: applying Macaulay to E442's ideal-power algebra with embedding dimension
+e(S)-1, or merely the number of nonzero odd-ideal generators. The OLD S=<5,7> has
+eS-1=1 and one nonzero ideal generator, but layer Hilbert function(1,2,2,1,1). The paired
+quotient primitive7 acts in degree1 by1->8 (and degree2 by2->9), so it cannot simply be
+discarded from coefficient actions. Actual algebra embedding dimension is |I minus T|=2.
+The standard-graded construction itself is valid; its generator-sensitive positivity
+application remains missing. Neither counting layer support nor a generic O-sequence
+bound can silently substitute for the source generator budget.

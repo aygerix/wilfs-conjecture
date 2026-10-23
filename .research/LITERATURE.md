@@ -1267,3 +1267,23 @@ arXiv and GitHub, alongside the repository's existing records. These sources are
 invoked as proving the missing nonnegativity transfer or a universal common-height payer.
 No completeness or priority claim is made. The documentation's standard terminology
 must prevent presenting this closure as a newly discovered parametrization.
+
+### E442: classical equality family and Hilbert-function hypotheses (2026-10-23)
+
+Reopened primary [Eliahou1703.01761](https://arxiv.org/html/1703.01761), introduction
+and section5, and [Marashdeh2608.12531](https://arxiv.org/html/2608.12531), Lemma2.3.
+The equality family <m,km+1,...,km+m-1> is classical. E442 uses its explicit odd-ideal
+closure to refute unrestricted MON1; no novelty claim for the family or its Wilf values.
+The elementary positive-layer algebra is standard graded by the proof supplied in E442;
+Macaulay consequently uses its ACTUAL degree-one dimension |I minus T|, not e(S)-1.
+The existing two-generator equality formula and its ideal-power calibration are also
+self-contained, not a new Wilf theorem.
+
+Opened primary [Barucci–Strazzanti1710.07586](https://arxiv.org/html/1710.07586), section2,
+to check applicability: their dilatation translates the entire positive semigroup and
+its embedding dimension changes with the translation. It is different from shifting
+only selected primitive generators in E441; no conditional-transfer theorem is imported.
+Searches for ideal-power/Hilbert-function/normalized-ideal statements, arXiv and GitHub
+and conjectures.io discovery produced no external theorem USED to pay the new finite
+budget. That is not an absence or priority claim. Generic Hilbert-function theory must
+not silently remove the paired quotient coefficient actions exhibited by the OLD5/7 control.

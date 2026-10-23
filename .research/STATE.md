@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 10:50 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 11:20 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -22,11 +22,35 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 
 ## Where the mathematics stands
 
+**E442, current correction:** unrestricted MON1, WS>=WU, is FALSE. The classical equality
+source S=<5,21,22,23,24> has WS0 and closure U=<5,8,9,11,12> has WU2. All primitive
+leave-one-out gcds are1. More generally m=2b+1,t>=2 gives WS0,WU=b, so the deficit is
+unbounded. These witnesses have e=m and do NOT refute MON1 on the remaining sparse domain.
+Full nonnegativity TRANSFER remains UNKNOWN and would still prove ALL Wilf by E441.
+Here L=0 already: the binary lift cost can consume ALL2WU, not only the common-height cost.
+
+**E442 ideal-power ingredient:** for 0I=T, the finite layers H_n=nI minus(n-1)I form
+the positive pieces of a standard graded algebra with Hilbert function(1,h_1,h_2,...).
+The exact E441 lift mass is h_1+2*sum_(n>=2)h_n. This exposes global growth constraints,
+but its embedding dimension is h_1=|I minus T|, NOT eS-1. Even the old S=<5,7> has
+Hilbert function(1,2,2,1,1) while eS-1=1. Quotient primitive7 acts nontrivially within
+its first layer,1->8, and cannot be discarded from the coefficient action. A paper
+admissible example also shows layers can grow2->3. Stop a scalar first-layer payment or
+Macaulay substitution of eS-1 for h_1. No universal sign is proved by this standard algebra.
+Indeed the classical source <2b+1,2b+3> has eS2 but h_1=b, unbounded. Its layers are
+single nilpotent chains under quotient primitive2b+3, paid EXACTLY by the original
+conductor; E442 proves this calibration on paper, without a family computation. The
+next allocation must use value increments and handle overlaps between different actions.
+Five FIXED cases pass independent finite-membership/modulo-a convolution/product/shift
+audits on Fejer. No new search. Next: retain source-generator actions AND value labels in
+a bound on the FULL weighted layer mass; if no finite sign emerges, return to E435/E437
+or full weighted repair instead of adding another local reconstruction optimizer.
+
 **E441, current arithmetic attempt:** for every proper S with least odd primitive a, let
 H be the halves of even primitives and A+ the positive half differences (p-a)/2 of odd
 primitives. U=<a,H,A+> is the additive closure of the normalized odd ideal I from E440.
 It contains S/2, has eU<=eS and gU<gS. Thus conditional transfer WU>=0 => WS>=0 would
-prove ALL Wilf by genus induction. That transfer and the stronger WS>=WU are UNKNOWN.
+prove ALL Wilf by genus induction. Transfer is UNKNOWN; unrestricted WS>=WU is false (E442).
 This is standard normalized ideal blowup, not a new representation or a proved Wilf descent.
 
 **Paper-proved mixed identity:** modulo a (not necessarily the multiplicity), the Apéry
@@ -362,6 +386,15 @@ ASan/UBSan search output matches normal SHA256
 The old quotient audit also passed; no broad LP suite or new profile census. run_checks.sh
 includes the targeted saved-case replay. All new mathematical statements are paper proofs.
 
+**E442 implementation:** `verify_probe.py --odd-layer-check SEARCH_LOG ./repair_scan OUTPUT`
+reuses C --odd-audit, then independently checks each ideal-power representative by finite
+membership and modulo-a convolution, spans each layer by products of first-layer gap classes,
+and verifies the two-step a-shift and exact weighted mass. It uses ONLY the two saved cases,
+two old controls and the one paper-predicted unrestricted MON1 witness. No C source changed,
+optimizer/search ran or new sanitizer path needed. The old E441 audit passed after the change.
+Data: data/odd_closure_monotonicity_audit.json, odd_layer_audit.json, checkpoint_442_checks.log.
+run_checks.sh includes this targeted replay. General algebra arguments remain paper proofs.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -408,13 +441,16 @@ component to pay itself. No new solver run is warranted without a proof-derived 
 that distinguishes a source of finite surplus. If no such inequality emerges, return to
 actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
 
-**Actual-arithmetic task after E441:** keep E439's cofactor1 normalization for a least-genus
+**Actual-arithmetic task after E442:** keep E439's cofactor1 normalization for a least-genus
 counterexample. Replace uncontrolled quotient generator growth by U=<I>=<a,H,A+>, with
 eU<=eS and smaller genus. PROOFS E441 gives the exact mixed Apéry budget and typed H/A
 constraints. Seek a uniform bound on the WEIGHTED common lifts sum(K+L), using residue
-completeness and actual WU, sufficient to force WS>=0 when WU>=0. MON1 (WS>=WU) is
-stronger than necessary and must not become sacred; the factor2 correction already fails.
-Only epsilon=K-L is binary. Do not replace L by support size, infer a unit cap from the
+completeness and actual WU, sufficient to force WS>=0 when WU>=0. Unrestricted MON1 is
+FALSE; its sparse-domain restriction is unknown and optional. E442 now expresses the mass
+as h_1+2*sum_(n>=2)h_n of the ideal-power algebra. Retain its original-source coefficient
+actions (including paired quotient primitives); the algebra's embedding dimension h_1
+cannot be replaced by eS-1. No O-sequence census or layer optimizer is next. Only epsilon
+=K-L is binary. Do not replace L by support size, infer a unit cap from the
 two search cases, or run a new closure/shortest-path optimizer that merely reconstructs
 the instance. The bounded C falsification is CLOSED with no failure, not a theorem.
 This is standard normalized-ideal blowup; no novelty claim. All ranks/heights/depths
@@ -523,7 +559,11 @@ E441 adds the standard odd-ideal closure, generator/genus bounds, mixed Apéry i
 exact common-height budget. Its two saved C cases and two boundary controls pass independent
 membership, fresh-output and ASan/UBSan checks; data and modes are inventoried above.
 The only search stopped at a local optimum; no negative margin and no universal sign claim.
-All E432–E441 general mathematical statements remain paper-proved, not Lean checked. No universal
+E442 refutes unrestricted MON1 using one exact predicted witness and a paper unbounded family;
+it does not refute the sparse-domain version or full transfer. The ideal-power algebra and
+weighted-cost formula are proved on paper; its five fixed-case audits are inventoried above.
+The generator-count mismatch is checked on the OLD5/7 control; no new search or solver.
+All E432–E442 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

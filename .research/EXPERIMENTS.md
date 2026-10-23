@@ -1322,3 +1322,55 @@ python3 verify_probe.py --odd-closure-check data/odd_closure_search.log ./repair
 Decision: CLOSED discriminator, no failure of MON1 found in these bounded neighborhoods.
 No universal monotonicity or Wilf theorem follows. The next work is a proof of weighted
 common-height payment in OC-W, not expanded computation or another reconstruction solver.
+
+### 2026-10-23 — E442: predicted MON1 failure and ideal-power audit, no new search
+
+Scope: the E441 full nonnegativity transfer implies ALL Wilf by genus induction. This
+checks an OPTIONAL stronger all-S payer and a global-cost ingredient; no restricted-family
+Wilf target. On Fejer, existing C --odd-audit plus independent membership verified
+
+    S=<5,21,22,23,24>: m5,e5,c20,g16,W0;
+    U=<5,8,9,11,12>: m5,e5,c8,g6,W2; margin-2.
+
+All leave-one-out primitive gcds are1. OC-W parts(4,0,16,-20) sum0. I=U, so common L
+is identically0; binary lift mass is2. This refutes unrestricted MON1, NOT its3e<m version,
+full TRANSFER or Wilf. A paper unbounded family is in PROOFS E442; it was not enumerated.
+Saved single-witness report: data/odd_closure_monotonicity_audit.json.
+
+Added --odd-layer-check to verify_probe.py (stdlib exact set/Apéry audit only). It checks
+ONLY the two E441 saved cases, old controls5/7 and6/7/11, and this predicted witness.
+For each: reconstruct T,I,U from source primitives; iterate nI by finite Minkowski sets
+below c(T); independently compute EVERY representative modulo a by convolution and compare
+with the finite set plus the known conductor tail; check exact stabilization at U, each
+layer's spanning by first-layer products, the binomial dimension bound and the physical
+a-shift into the layer two steps below. It also checks weighted lift mass
+h_1+2*sum_(n>=2)h_n=sum(K+L). It does not run a polynomial optimizer or infer a sign.
+
+| Source | Hilbert function including degree0 | Stabilization power | Weighted mass |
+| --- | --- | ---: | ---: |
+|5,7|1,2,2,1,1|4|10|
+|5,21,22,23,24|1,2|1|2|
+|6,7,11|1,3,1|2|5|
+|19,39,41,50,52,53|1,7,6,3|3|25|
+|19,41,50,52,53,58|1,7,3,2|3|17|
+
+For the OLD5/7 control it verifies nonzero degree-preserving paired-quotient actions
+7:1->8 and7:2->9. Thus replacing the algebra's embedding dimension2 by e(S)-1=1 or
+the one nonzero ideal generator is invalid. The paper extension to <2b+1,2b+3> shows
+this dimension mismatch is unbounded with source e2 and prices its chains by conductor
+exactly; NO new computation was done on that family. The separate paper growth example
+T ordinary10,I={0,1,3}+T,a11 is likewise a set calculation, not a compute seed.
+
+All five audits passed; the old E441 mixed-identity audit also passed after the change.
+No C code changed, new C sanitizer path existed, broad LP suite or search ran. Runtime
+was not instrumented; launch ETA was under a minute. Same Fejer/compiler/Python as E441.
+Data: data/odd_layer_audit.json and checkpoint_442_checks.log. run_checks.sh includes:
+
+```sh
+python3 verify_probe.py --odd-layer-check data/odd_closure_search.log ./repair_scan /tmp/wilf-p39-odd-layers.json
+```
+
+Decision: stop unrestricted MON1 and the wrong generator-count substitution. Do not
+expand O-sequence/profile checks. A sign proof must couple the ORIGINAL generator actions,
+their value increments and the conductor/WU budget. Macaulay and these finite results
+do not themselves pay that budget. The universal transfer remains UNKNOWN.
