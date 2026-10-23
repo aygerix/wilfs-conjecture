@@ -5468,3 +5468,38 @@ coefficient actions, conductor growth and actual WU. No new layer census, source
 profile solver or local-accuracy optimizer. If no finite inequality emerges, return to
 the existing cyclic boundary or full weighted-repair lines. Five fixed-case layer audits
 and the old E441 audit pass on Fejer. No universal proof or genuine Wilf counterexample.
+
+### 2026-10-23 11:55 EDT — E443/E444: advisor steering toward actual source multiplication
+
+Previous turn was progress, pushed807346d. Tried a distinct global primitive-trade bound:
+dim(Omega_R/C*Omega_R)>=c would imply Wilf with the ORIGINAL e generators. Derived its
+exact projected-binomial rank presentation, then the Euler decomposition into ell+m-1
+image dimensions plus a torsion quotient. The missing torsion bound is g-m+1, the rank
+of multiplication by t^m on the gap module. Three OLD fixed cases pass the bound, but
+the natural single-shift graded reflection mechanism is refuted on OLD19 and6/7/11.
+Independent exact ranks and ASan/UBSan replays pass. No rank/census expansion is justified.
+
+The user supplied the advisor's review through807346d while this was running. Verified
+the new four-generator calibration on paper, including sparse/deep/cofactor1 conditions,
+h_1=3k, and the prior support exclusion. ONE k2 audit checks its stated values; this is
+not a fixed-e proof programme. Verified the source Apéry algebra parity decomposition,
+dimension a and exactly eS-1 algebra generators. Flagged that factorization-length
+standard grading is not automatic; value grading must stay explicit.
+
+Derived ODD-PRODUCT: products of n odd classes are the source-Apéry survivors of the
+scalar H_n under u -> n*a+2u. The first two dimensions equal h_1,h_2; later products
+can die. OLD19 is the discriminating case: scalar(7,6,3), source odd products(7,6,0).
+This identifies actual pivot relations absent from scalar counts; it is NOT a proof
+that those deaths pay the cost. Full multiplication, not an ordered surrogate, is retained.
+
+Also verified the advisor's reserve correction Q=frozen+Leak+m-pool from the prior
+identities and seven OLD cut/control audits. Whole19's useful support budget is5, not
+frozen1; selected114 is75, not6. Keep both reserves, reversible assignments and the
+full-tile support target; all-cut and frozen conditions are optional strengthenings.
+
+Review/decision: advisor's main diagnosis is applicable, including to the just-tested
+stronger differential bound. Correct counts or positive fixed examples do not establish
+a route to the finite sign. Prioritize the parity source algebra's quantitative value
+gain; retain weaker full-tile Hall and full weighted coupling. Stop unrestricted MON1,
+scalar Hilbert substitutions, further forest cancellation/rank accuracy and profile
+enumeration. E439 remains a proved normalization. No universal proof or Lean claim.

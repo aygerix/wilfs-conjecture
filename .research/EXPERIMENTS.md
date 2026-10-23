@@ -1374,3 +1374,49 @@ Decision: stop unrestricted MON1 and the wrong generator-count substitution. Do 
 expand O-sequence/profile checks. A sign proof must couple the ORIGINAL generator actions,
 their value increments and the conductor/WU budget. Macaulay and these finite results
 do not themselves pay that budget. The universal transfer remains UNKNOWN.
+
+### 2026-10-23 — E443/E444: closed rank diagnostic and advisor parity/reserve audit
+
+All-S scope: the proposed conductor differential lower bound implies Wilf because its
+module is a quotient of (R/C)^e. It is a stronger UNKNOWN claim. Pure-C
+--differential-audit enumerates factorization trades by degree and exports independent
+projected derivative rows. Only OLD19/39/41/50/52/53, OLD5/7 and OLD6/7/11 were tested,
+hard cap60seconds each. No failure found; diagnostics are CLOSED, not enlarged.
+Complete independent coin-DP factorization enumeration and Fraction row ranks verify:
+
+| S | e*ell | relation rank | dim Omega/C*Omega | c | torsion quotient / required g-m+1 |
+| --- | ---: | ---: | ---: | ---: | --- |
+|19/39/41/50/52/53|120|19|101|88|63 / 50|
+|5/7|24|0|24|24|8 / 8|
+|6/7/11|21|3|18|17|6 / 5|
+
+The proposed SINGLE-SHIFT graded reflection of gaps>=m into the torsion quotient is
+FALSE on OLD19 (no shift145..152) and6/7/11 (no shift29..31);5/7 admits35. All missing
+degree witnesses are saved. This refutes neither the ungraded bound nor Wilf. New C
+ASan/UBSan runs match all three normal JSON outputs byte-for-byte. No optimizer/search.
+Data: differential_{probe,control,boundary,audit}.json, checkpoint_443_checks.log.
+
+Advisor audit E444 uses ONE new calibration, <13,15,17,19> (k2), and OLD5/7,19. Existing
+C --odd-audit/--axis-seed/--supp-audit and independent membership/Apéry convolution verify
+c64,g36,W48,h=(6,6,3,3),Dep14,support5. The all-k formulas and three-chain structure are
+proved on paper, not enumerated. Every ordered source-algebra basis product is compared
+with the parity decomposition:169/25/361 products for the three cases. Scalar h versus
+dimensions of products of odd classes are (6,6,3,3)/(6,6,3,3), (2,2,1,1)/(2,2,1,1), and
+(7,6,3)/(7,6,0). The OLD19 third-layer offsets31,32,33 are killed in the source quotient.
+
+Seven OLD cut/control selections verify Q=frozen+Leak+m-pool, using existing frozen/original
+certificates without a new flow solve. Whole19:5=1+0+4. Selected114:75=6+0+69.
+Selected40:35=2+0+33. The old40 two-cell control additionally verifies positive Leak2.
+Data: advisor_parity_audit.json, checkpoint_444_checks.log. The old ideal-layer audit
+passes after the changes. Same Fejer/gcc/Python as E441; runtimes not instrumented, launch
+ETAs under a minute. No broad LP suite, new source-family census or stronger monotonicity test.
+
+Both modes are in run_checks.sh. From src/scratch/p39 on Fejer:
+
+```sh
+python3 verify_probe.py --differential-check data/differential_probe.json data/differential_control.json data/differential_boundary.json /tmp/wilf-diff.json
+python3 verify_probe.py --advisor-parity-check ./repair_scan data/completion_frozen_probe.jsonl.gz data/completion_cut_probe.jsonl.gz /tmp/wilf-advisor.json
+```
+
+These results verify formulations and a failed pairing; they do not prove the missing
+finite gain. Retain source multiplication/value labels and BOTH Hall reserves.

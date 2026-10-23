@@ -1,0 +1,1 @@
+{"G":[6,7,11],"c":17,"g":10,"e":3,"ell":7,"W":4,"free_dimension":21,"blocks":[{"N":18,"active":[1,1,1],"base":[0,1,1],"trades":[[3,0,0]],"rank":1},{"N":24,"active":[0,0,1],"base":[1,1,1],"trades":[[4,0,0]],"rank":1},{"N":25,"active":[0,0,1],"base":[0,2,1],"trades":[[3,1,0]],"rank":1}],"selected_relation_rank":3,"differential_dimension_upper_bound":18,"stopped_at_failure":false}

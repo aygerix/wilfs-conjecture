@@ -419,3 +419,15 @@ discarded from coefficient actions. Actual algebra embedding dimension is |I min
 The standard-graded construction itself is valid; its generator-sensitive positivity
 application remains missing. Neither counting layer support nor a generic O-sequence
 bound can silently substitute for the source generator budget.
+
+## E443 — a single graded reflection cannot supply the torsion gap payment (2026-10-23)
+
+Optional sufficient mechanism: reflect every gap n>=m into one nonzero degree D-n of
+the conductor differential torsion quotient, using one common integer shift D. FALSE
+even for OLD S=<19,39,41,50,52,53>. The only possible shifts145..152 all fail by explicit
+zero torsion degrees; its total torsion dimension63 nonetheless exceeds the required50.
+OLD6/7/11 also admits no shift29..31; OLD5/7 admits35. Exact witnesses are in
+data/differential_audit.json, independently reconstructed using all factorization trades.
+This refutes even a graded vector-space reflection injection, NOT the ungraded torsion
+bound, the conductor differential inequality or Wilf. Do not repair it by merely choosing
+another common shift or enumerate more positive differential examples.

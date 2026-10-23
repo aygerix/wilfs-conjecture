@@ -9941,3 +9941,158 @@ uniform joint bound involving those actions, conductor growth and actual W(U), n
 exact reconstruction of the powers. If that ingredient supplies no finite sign, return
 to E435/E437 cyclic payment or the full weighted-certificate alternative, without another
 local-accuracy optimizer. All three universal lines remain active; Wilf remains unproved.
+
+## E443 — a conductor differential target and a failed reflection mechanism
+
+2026-10-23. Scope: Proves Wilf for EVERY S if dim_Q(Omega_R/C*Omega_R)>=c, R=Q[S],
+C=t^c Q[t]. Proved reduction: YES, this module is a quotient of (R/C)^e, of dimension
+e*ell. The proposed lower bound is UNKNOWN and stronger than Wilf. The following
+presentations/identities are paper-proved; the three fixed tests are not universal evidence.
+
+For P=(p_j), the standard differential presentation is R^e modulo differentiated binomial
+relations. At weighted degree N, let A_N={j:N-p_j in S and 0<=N-p_j<c}. A trade
+z.P=z'.P=N gives the row (z_j-z'_j) projected to A_N. All such rows span the degree-N
+relation space after tensoring with R/C. Multiples of lower relations are included by
+adding a common factorization. No active columns remain at N>=c+max(P). Thus, writing
+r_N for the rational row rank,
+
+    dim(Omega_R/C*Omega_R)=e*ell-sum_N r_N.
+
+This standard presentation follows from Stacks00RM Lemma10.131.9/14; no new differential
+theory is claimed. The initial Euler map to R/C only gives ell-1 image dimensions and
+does not prove the proposed bound. A more useful exact version is as follows.
+
+Let M=(t^p:p in P), and Tors=ker(Omega_R -> M) under Euler contraction
+d(t^p)->p*t^p. In characteristic0 this kernel is precisely differential torsion, since
+the map is an isomorphism after passing to the fraction field. It is surjective onto M.
+Moreover C*M=t^(c+m)Q[t]. Taking quotients gives an exact sequence
+
+    0 -> Tors/(Tors intersect C*Omega_R) -> Omega_R/C*Omega_R -> M/(C*M) -> 0.
+
+To check its kernel, lift each summand c_i*m_i of an image in C*M to c_i*omega_i;
+subtracting those lifts leaves torsion. Counting monomials gives dim(M/C*M)=ell+m-1.
+Consequently the missing global lower bound is exactly
+
+    dim(Tors/(Tors intersect C*Omega_R)) >= g-m+1.       (DIFF-GAP, UNKNOWN)
+
+The right side equals rank(t^m:Q[t]/R -> Q[t]/R): every gap>=m is m plus another gap,
+and the m-1 initial gap chains are the kernel. This identifies a candidate source of
+dimensions; it does NOT construct an injection or establish the inequality.
+
+The optional single-shift graded reflection mechanism is FALSE. For OLD
+S=<19,39,41,50,52,53>, complete independent rational calculation gives differential
+dimension101, Euler image38, torsion quotient63, while g-m+1=50. Yet no integer shift D
+has a torsion component at EVERY D-n for gaps n>=m. The only possible shifts are145..152,
+and every one fails; exact missing degrees are saved. Thus even a graded VECTOR-SPACE
+reflection injection with one common shift is impossible. This does not refute DIFF-GAP.
+
+The OLD5/7 control has dimensions24=16+8, required gap rank8, and reflection shift35.
+The OLD6/7/11 control has18=12+6, required5, but again no common reflection shift.
+Three C trade audits are verified independently by coin DP enumerating ALL factorizations
+in the required degree ranges and exact Fraction row ranks. Their relation ranks are19,0,3.
+New C ASan/UBSan outputs match normal outputs byte-for-byte. No new search or census.
+See STATE/EXPERIMENTS for code/data. These standard-algebra identities are not Lean checked.
+
+Decision after advisor review: diagnostics CLOSED, no expansion of this stronger bound
+without a new sign argument. No all-pairs rank/accuracy optimizer. Preserve the exact
+identities and reflection obstruction; prioritize the existing source-parity and weaker
+full-tile Hall payment in E444. DIFF-GAP is not treated as an established route to Wilf.
+
+## E444 — advisor audit: source parity multiplication and restoring the Hall reserves
+
+2026-10-23. Credit: user's advisor for the four-generator family, source-algebra
+decomposition and explicit reserve recommendation. Scope: Proves Wilf for EVERY S if the
+parity value inequality below holds. Proved reduction: YES, its difference is exactly W.
+This section verifies the proposal and derives a multiplication consequence. It supplies
+NO universal finite sign theorem. All general arguments remain paper proofs, not Lean checked.
+
+### Four-generator obstruction, all parameters — advisor calculation verified on paper
+
+Put a=6k+1,k>=2,S=<a,a+2,a+4,a+6>. All four values are primitive, and every leave-one-out
+gcd is1. The parity data are T=<a,a+1,...,a+6>, I=[0,3]+T,U=N. With 0I=T,
+
+    w_(nI,s)=s+a*ceil(max(0,s-3n)/6), 0<=s<a,
+    h_n=3*(k+1-ceil(n/2)), 1<=n<=2k, then0,
+    cS=(2k+1)a-1=12k^2+8k, gS=6k(k+1), WS=12k^2.
+
+For T an offset s uses ceil(s/6) generators; adding a wrap increases both offset and
+cost. For nI=[0,3n]+T, choose offset min(s,3n); wrapped choices again cost more. Summing
+the representatives and taking successive differences gives the formulas. Thus h_1=3k
+is unbounded while eS-1=3, even with c>4m,3e<m and the E439 cofactor normalization.
+
+H_1={r+j(a+6):r1..3,j0..k-1}, three coefficient chains under paired primitive a+6.
+This is a calibration, not a new difficult Wilf family. The lex canonical tile consists
+of (0,0,j),j0..2k; (0,1,j),j0..2k-1; (0,2,j),j0..2k-2; and(1,0,0).
+The support sum is(2k-1)+(2k-2)=4k-3. Its four maximal cells have total omega6k+13,
+so Dep=3(6k+1)-(6k+13)=12k-10. It is already shape-excluded with margin8k-7.
+ONLY k2 was computed: c64,g36,W48,h=(6,6,3,3),Dep14,support5. No family enumeration.
+
+### Correct source algebra — advisor construction verified
+
+Over any field, put x=t^2,z=t^a,R=k[x^T],M=span{x^i:i in I}. Then k[S]=R plus zM,
+and its ideal generated by z is x^aM plus zR. Hence the source quotient A=k[S]/(t^a) has
+
+    A_even=R/x^aM,       A_odd=z(M/R),
+    dim A_even=a-h_1,    dim A_odd=h_1,      dim A=a.
+
+Here a+I subset T ensures x^aM subset R; counting T minus(a+I) gives a+gI-gT=a-h_1.
+The original primitives other than a generate A, and remain independent modulo its
+maximal ideal squared, so the algebra generator count is exactly e(S)-1. It is the
+original Apéry algebra, not a newly smaller object. It is positively VALUE-graded and
+Z/2-graded; a standard grading by factorization length is NOT automatic. Passing to a
+standard associated graded algebra would require tracking the value information again.
+Although the class of z is zero, not every z*x^i is zero: x^i need not lie in R.
+
+Let V_n be the span of products of n elements of A_odd. Then precisely
+
+    basis(V_n)={t^(n*a+2u):u in H_n, n*a+2u in Ap(S,a)}. (ODD-PRODUCT)
+
+Proof: sums of n I exponents give nI. If a sum belongs to(n-1)I, subtracting one a from
+its source value leaves an S element, using a+qI subset(q-2)I and the n1/2 boundary
+conditions; the product vanishes. Conversely any u in H_n factors into n elements of
+I minus T, since a T factor would put it in(n-1)I. It survives exactly when its source
+value is Apéry. For n1 this is all H_1. For n2, a+H_2 subset T but H_2 disjoint I, so
+all survive. Therefore dim V_1=h_1 and dim V_2=h_2. Also V_(n+2) subset V_n: odd times
+odd is even, and V_n is stable under multiplication by A_even.
+
+Higher scalar layers can be killed. On OLD19, h=(7,6,3) but dim V=(7,6,0): u31,32,33
+would give source values119,121,123 above its maximum Apéry value106. Their products
+are divisible by t^a. These are actual arithmetic relations involving the pivot; they
+are NOT automatically payments for the lost scalar-layer mass. Distinct such relations
+can still share resources. For the advisor's k2 and OLD5/7 controls all recorded layers
+survive. Exact basis-product audits cover169,361,25 ordered products respectively.
+
+Writing Mv=max Ap(S,a), meanv=(sum Ap)/a, the exact target remains
+
+    W=(e-1)Mv-e*meanv-(e-2)(a-1)/2 >=0.
+
+Zhai's weighted-downset lemma gives only e*meanv<=(e-1)Mv. Correct multiplication and
+generator count do not yet supply the missing finite improvement. Choosing a>m increases
+that correction; parity must earn its use. The new consequence ODD-PRODUCT identifies
+compatibility that can be quantified, not a proof that it is sufficient.
+
+### Hall route: restore BOTH reserves; frozen allocation is optional
+
+For any nonempty cut E let F_res be its E434 frozen margin, U_pool its directional
+residue pool, and Leak the nonnegative capacity frozen to outside children. The E432
+completion budget and E434 identity give EXACTLY
+
+    Q(E)=F_res(E)+Leak(E)+m-|U_pool(E)|.
+
+E437's all-alias forest rewrites F_res=C+(Gamma-p_*)+V-K-beta_* without changing its
+value. Thus the original completion claim allows both reserves; imposing F_res>=0
+discards them. At E=D, Leak=0 and Q(D)>=0 alone suffices for the support proof of Wilf;
+requiring every down-set or discarding omitted residue units is a stronger optional target.
+Q(D)>=0 itself is still a SUFFICIENT strengthening of Wilf, not an established theorem.
+The empty cut is separate and has Q=m; do not apply the nonempty forest formula there.
+
+Audits reuse old19/40/114 whole tiles and selected cuts. On whole19 frozen margin1 becomes
+original budget5 because four residue units were omitted. On selected114 it is6+69=75;
+on selected40 it is2+33=35. The old40 two-cell control checks positive Leak2 as well.
+No new flow solve or census. The uniform sign remains UNKNOWN.
+
+Current priority: derive a quantitative value inequality from source odd/even multiplication,
+with E439 as a normalization. Keep full-tile Q with both reserves as the Hall alternative.
+Stop repairing optional monotonicity, scalar Hilbert counts or forest cancellation merely
+to make them more exact. User's advisor is not credited with the ODD-PRODUCT deduction;
+the general identity/proof and finite audit were developed here in response to the advice.

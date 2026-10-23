@@ -1287,3 +1287,23 @@ Searches for ideal-power/Hilbert-function/normalized-ideal statements, arXiv and
 and conjectures.io discovery produced no external theorem USED to pay the new finite
 budget. That is not an absence or priority claim. Generic Hilbert-function theory must
 not silently remove the paired quotient coefficient actions exhibited by the OLD5/7 control.
+
+### E443/E444: differential presentations and the advisor's value-bound reference
+
+Primary [Stacks Project00RM](https://stacks.math.columbia.edu/tag/00RM), Lemmas10.131.9/14,
+supplies the standard differential presentation for a polynomial quotient. E443 derives
+the conductor projection and Euler/torsion count directly; no external theorem is invoked
+for its unknown lower bound. Opened Geller–Maloo–Patil–Roberts, Kähler Differentials of
+Affine Monomial Curves (Beitr. Algebra Geom.41(2000)67–84), primary journal PDF
+https://www.emis.de/ft/21862, introduction/graded relation discussion. Their differential
+and de Rham quotients are not confused with the conductor quotient in E443. Searches
+covered Wilf/Kähler/conductor/cotangent, arXiv and GitHub; no priority/absence claim.
+
+The advisor's [1804.06146](https://arxiv.org/abs/1804.06146) is Hellus–Waldi,
+Distributions of weights and a question of Wilf. It explicitly attributes the weighted
+down-set lemma to [Zhai1111.2779, Lemma3](https://arxiv.org/html/1111.2779). Both primary
+sources were checked. The lemma supplies the homogeneous mean-maximum inequality,
+not the finite correction. The E444 source algebra is the original Apéry algebra, with
+its standard monomial basis; its parity description is credited to the user's advisor,
+not claimed new. The four-generator arithmetic family is a calibration of a failed
+Hilbert-dimension substitution, not a claimed new Wilf family or a literature novelty.

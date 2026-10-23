@@ -27,6 +27,7 @@
  *   the weighted support budget or proposed cycle-excess bound; no LP solver.
  * --residue-audit G...: reconstruct S and T from MINIMAL-generator residues.
  * --odd-audit G...: exact S and additive closure of its normalized odd ideal.
+ * --differential-audit G...: independent binomial derivative rows modulo conductor.
  * --odd-climb STEPS G...: one bounded falsification of W(S)>=W(odd closure).
  * --residue-climb ITER m g...: bounded general RD falsification, all heights/
  *   depths, retaining c>4m,3e<m,W(T)>0 and the necessary genus-bound filter.
@@ -127,6 +128,45 @@ static int residue_compare(int *G,int ng,ResidueStats *S,ResidueStats *T){
  return 1;
 }
 static void print_odd_stats(ResidueStats *S,ResidueStats *U,int a);
+/* E443: selected exact relation witnesses. A rank exceeding W alone refutes the
+ * proposed conductor differential bound; no completeness claim is needed then. */
+typedef struct {int e,c,N,P[10],z[10],first[10],chosen[10][10],active[10],seen,rank;ll basis[10][10];unsigned char *member;} DiffAudit;
+static ll diff_gcd(ll a,ll b){if(a<0)a=-a;if(b<0)b=-b;while(b){ll t=a%b;a=b;b=t;}return a;}
+static void diff_factor(DiffAudit *D,int j,int left){
+ if(j==D->e){
+  if(left)return;
+  if(!D->seen){memcpy(D->first,D->z,D->e*sizeof(int));D->seen=1;return;}
+  ll row[10];for(int k=0;k<D->e;k++)row[k]=D->active[k]?D->z[k]-D->first[k]:0;
+  for(int k=0;k<D->e;k++)if(row[k]){
+   if(!D->basis[k][k]){memcpy(D->basis[k],row,D->e*sizeof(ll));memcpy(D->chosen[D->rank++],D->z,D->e*sizeof(int));return;}
+   ll x=row[k],p=D->basis[k][k];
+   for(int l=k;l<D->e;l++){__int128 v=(__int128)row[l]*p-(__int128)D->basis[k][l]*x;if(v>=LLONG_MAX||v<=-LLONG_MAX){fprintf(stderr,"differential integer overflow\n");exit(3);}row[l]=(ll)v;}
+   ll g=0;for(int l=0;l<D->e;l++)g=diff_gcd(g,row[l]);if(g>1)for(int l=0;l<D->e;l++)row[l]/=g;
+  }return;
+ }
+ for(int n=0;n<=left/D->P[j];n++){D->z[j]=n;diff_factor(D,j+1,left-n*D->P[j]);}
+}
+static int differential_audit(int *G,int ng){
+ ResidueStats S;if(!residue_stats(G,ng,&S)||S.m==1||S.e>10)return 2;
+ if(S.W<0){fprintf(stderr,"POTENTIAL_NEGATIVE_W requires independent membership audit\n");return 4;}
+ int mx=0;for(int j=0;j<S.e;j++)if(S.G[j]>mx)mx=S.G[j];int cap=S.c+mx;
+ if(cap>4096)return 2;unsigned char member[4096]={0};member[0]=1;
+ for(int n=1;n<cap;n++)for(int j=0;j<S.e;j++)if(n>=S.G[j]&&member[n-S.G[j]]){member[n]=1;break;}
+ int ell=0;for(int n=0;n<S.c;n++)ell+=member[n];assert(S.W==(ll)S.e*ell-S.c);
+ printf("{\"G\":[");for(int j=0;j<S.e;j++)printf("%s%d",j?",":"",S.G[j]);
+ printf("],\"c\":%d,\"g\":%lld,\"e\":%d,\"ell\":%d,\"W\":%lld,\"free_dimension\":%d,\"blocks\":[",S.c,S.genus,S.e,ell,S.W,S.e*ell);
+ int count=0,total=0,stopped=0;
+ for(int N=S.m;N<cap;N++){
+  DiffAudit D={.e=S.e,.c=S.c,.N=N,.member=member};memcpy(D.P,S.G,S.e*sizeof(int));
+  int active=0;for(int j=0;j<S.e;j++)if(N>=S.G[j]&&N-S.G[j]<S.c&&member[N-S.G[j]]){D.active[j]=1;active++;}
+  if(!active)continue;diff_factor(&D,0,N);assert(D.seen);if(!D.rank)continue;
+  printf("%s{\"N\":%d,\"active\":[",count++?",":"",N);for(int j=0;j<S.e;j++)printf("%s%d",j?",":"",D.active[j]);
+  printf("],\"base\":[");for(int j=0;j<S.e;j++)printf("%s%d",j?",":"",D.first[j]);printf("],\"trades\":[");
+  for(int k=0;k<D.rank;k++){printf("%s[",k?",":"");for(int j=0;j<S.e;j++)printf("%s%d",j?",":"",D.chosen[k][j]);printf("]");}printf("],\"rank\":%d}",D.rank);
+  total+=D.rank;if(total>S.W){stopped=1;break;}
+ }
+ printf("],\"selected_relation_rank\":%d,\"differential_dimension_upper_bound\":%d,\"stopped_at_failure\":%s}\n",total,S.e*ell-total,stopped?"true":"false");return 0;
+}
 static int odd_compare(int *G,int ng,ResidueStats *S,ResidueStats *U,int *least_odd){
  if(!residue_stats(G,ng,S))return 0;
  if(S->m==1)return 0; /* The descent is for proper S; U=N is allowed. */
@@ -552,6 +592,9 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>2&&!strcmp(argv[1],"--differential-audit")){
+  int ng=argc-2,G[MM];if(ng>MM)return 2;for(int j=0;j<ng;j++)G[j]=atoi(argv[j+2]);return differential_audit(G,ng);
+ }
  if(argc>2&&!strcmp(argv[1],"--odd-audit")){
   int G[MM],ng=argc-2,a;if(ng>MM)return 2;for(int j=0;j<ng;j++)G[j]=atoi(argv[j+2]);
   ResidueStats S,U;if(!odd_compare(G,ng,&S,&U,&a))return 2;print_odd_stats(&S,&U,a);return 0;

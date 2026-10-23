@@ -1,0 +1,550 @@
+{
+  "parity_algebras": [
+    {
+      "S": {
+        "m": 13,
+        "e": 4,
+        "c": 64,
+        "g": 36,
+        "W": 48,
+        "G": [
+          13,
+          15,
+          17,
+          19
+        ]
+      },
+      "a": 13,
+      "even_dimension": 7,
+      "odd_dimension": 6,
+      "source_algebra_generator_count": 3,
+      "value_basis": [
+        0,
+        15,
+        17,
+        19,
+        34,
+        36,
+        38,
+        53,
+        55,
+        57,
+        72,
+        74,
+        76
+      ],
+      "odd_product_dimensions": [
+        6,
+        6,
+        3,
+        3
+      ],
+      "odd_product_value_bases": [
+        [
+          15,
+          17,
+          19,
+          53,
+          55,
+          57
+        ],
+        [
+          34,
+          36,
+          38,
+          72,
+          74,
+          76
+        ],
+        [
+          53,
+          55,
+          57
+        ],
+        [
+          72,
+          74,
+          76
+        ]
+      ],
+      "scalar_layer_dimensions": [
+        6,
+        6,
+        3,
+        3
+      ],
+      "killed_scalar_layers": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "nonzero_odd_products": [
+        [
+          15,
+          19,
+          34
+        ],
+        [
+          15,
+          57,
+          72
+        ],
+        [
+          17,
+          17,
+          34
+        ],
+        [
+          17,
+          19,
+          36
+        ],
+        [
+          17,
+          55,
+          72
+        ],
+        [
+          17,
+          57,
+          74
+        ],
+        [
+          19,
+          15,
+          34
+        ],
+        [
+          19,
+          17,
+          36
+        ],
+        [
+          19,
+          19,
+          38
+        ],
+        [
+          19,
+          53,
+          72
+        ],
+        [
+          19,
+          55,
+          74
+        ],
+        [
+          19,
+          57,
+          76
+        ],
+        [
+          53,
+          19,
+          72
+        ],
+        [
+          55,
+          17,
+          72
+        ],
+        [
+          55,
+          19,
+          74
+        ],
+        [
+          57,
+          15,
+          72
+        ],
+        [
+          57,
+          17,
+          74
+        ],
+        [
+          57,
+          19,
+          76
+        ]
+      ],
+      "mean_value": "42",
+      "maximum_value": 76,
+      "finite_correction": 12,
+      "all_basis_products_checked": 169
+    },
+    {
+      "S": {
+        "m": 5,
+        "e": 2,
+        "c": 24,
+        "g": 12,
+        "W": 0,
+        "G": [
+          5,
+          7
+        ]
+      },
+      "a": 5,
+      "even_dimension": 3,
+      "odd_dimension": 2,
+      "source_algebra_generator_count": 1,
+      "value_basis": [
+        0,
+        7,
+        14,
+        21,
+        28
+      ],
+      "odd_product_dimensions": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "odd_product_value_bases": [
+        [
+          7,
+          21
+        ],
+        [
+          14,
+          28
+        ],
+        [
+          21
+        ],
+        [
+          28
+        ]
+      ],
+      "scalar_layer_dimensions": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "killed_scalar_layers": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "nonzero_odd_products": [
+        [
+          21,
+          7,
+          28
+        ],
+        [
+          7,
+          21,
+          28
+        ],
+        [
+          7,
+          7,
+          14
+        ]
+      ],
+      "mean_value": "14",
+      "maximum_value": 28,
+      "finite_correction": 0,
+      "all_basis_products_checked": 25
+    },
+    {
+      "S": {
+        "m": 19,
+        "e": 6,
+        "c": 88,
+        "g": 68,
+        "W": 32,
+        "G": [
+          19,
+          39,
+          41,
+          50,
+          52,
+          53
+        ]
+      },
+      "a": 19,
+      "even_dimension": 12,
+      "odd_dimension": 7,
+      "source_algebra_generator_count": 5,
+      "value_basis": [
+        0,
+        39,
+        41,
+        50,
+        52,
+        53,
+        78,
+        80,
+        82,
+        89,
+        92,
+        93,
+        94,
+        100,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "odd_product_dimensions": [
+        7,
+        6,
+        0
+      ],
+      "odd_product_value_bases": [
+        [
+          39,
+          41,
+          53,
+          89,
+          93,
+          103,
+          105
+        ],
+        [
+          78,
+          80,
+          82,
+          92,
+          94,
+          106
+        ],
+        []
+      ],
+      "scalar_layer_dimensions": [
+        7,
+        6,
+        3
+      ],
+      "killed_scalar_layers": [
+        [],
+        [],
+        [
+          31,
+          32,
+          33
+        ]
+      ],
+      "nonzero_odd_products": [
+        [
+          39,
+          39,
+          78
+        ],
+        [
+          39,
+          41,
+          80
+        ],
+        [
+          39,
+          53,
+          92
+        ],
+        [
+          41,
+          39,
+          80
+        ],
+        [
+          41,
+          41,
+          82
+        ],
+        [
+          41,
+          53,
+          94
+        ],
+        [
+          53,
+          39,
+          92
+        ],
+        [
+          53,
+          41,
+          94
+        ],
+        [
+          53,
+          53,
+          106
+        ]
+      ],
+      "mean_value": "77",
+      "maximum_value": 106,
+      "finite_correction": 36,
+      "all_basis_products_checked": 361
+    }
+  ],
+  "advisor_k2_support": {
+    "m": 13,
+    "e": 4,
+    "c": 64,
+    "g": 36,
+    "W": 48,
+    "canonical_height": 4,
+    "Dep": 14,
+    "support_sum": 5,
+    "kappa": 3,
+    "gamma_mu": 47,
+    "low_maximal": 1,
+    "G": [
+      13,
+      15,
+      17,
+      19
+    ],
+    "gamma": [
+      0,
+      4,
+      4,
+      1,
+      1,
+      1,
+      1,
+      7,
+      4,
+      7,
+      1,
+      7,
+      1
+    ],
+    "inversions": 4,
+    "shape_excluded": true,
+    "residue_excluded": true,
+    "phase_support_bound": 15,
+    "phase_excluded": true,
+    "flat_excluded": false,
+    "weighted_budget": 42
+  },
+  "Hall_reserves": [
+    {
+      "G": [
+        114,
+        305,
+        307,
+        310
+      ],
+      "cut": "whole",
+      "size": 114,
+      "original_completion_budget": 296,
+      "frozen_margin": 296,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 0,
+      "forest_paid": 54,
+      "cycle_rank": 16
+    },
+    {
+      "G": [
+        114,
+        305,
+        307,
+        310
+      ],
+      "cut": "old_selected",
+      "size": 34,
+      "original_completion_budget": 75,
+      "frozen_margin": 6,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 69,
+      "forest_paid": 1,
+      "cycle_rank": 3
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "cut": "whole",
+      "size": 40,
+      "original_completion_budget": 68,
+      "frozen_margin": 68,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 0,
+      "forest_paid": 12,
+      "cycle_rank": 1
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "cut": "old_selected",
+      "size": 7,
+      "original_completion_budget": 35,
+      "frozen_margin": 2,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 33,
+      "forest_paid": 1,
+      "cycle_rank": 0
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "cut": "old_leak_control",
+      "size": 2,
+      "original_completion_budget": 40,
+      "frozen_margin": 0,
+      "leak_reserve": 2,
+      "unused_residue_reserve": 38,
+      "forest_paid": 0,
+      "cycle_rank": 0
+    },
+    {
+      "G": [
+        19,
+        39,
+        41,
+        50,
+        52,
+        53
+      ],
+      "cut": "whole",
+      "size": 19,
+      "original_completion_budget": 5,
+      "frozen_margin": 1,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 4,
+      "forest_paid": 2,
+      "cycle_rank": 10
+    },
+    {
+      "G": [
+        19,
+        39,
+        41,
+        50,
+        52,
+        53
+      ],
+      "cut": "old_selected",
+      "size": 19,
+      "original_completion_budget": 5,
+      "frozen_margin": 1,
+      "leak_reserve": 0,
+      "unused_residue_reserve": 4,
+      "forest_paid": 2,
+      "cycle_rank": 10
+    }
+  ]
+}

@@ -639,6 +639,114 @@ def audit_odd_comparison(C):
             'W_parts':parts,'margin':C['margin'],'leave_one_out_gcds':cofactors,
             'genuine_negative_W':min(S['W'],T['W'],U['W'])<0}
 
+def audit_source_parity(C):
+    R=audit_odd_comparison(C);layers=audit_odd_layers(C);a=R['least_odd'];h1=layers['Hilbert_function'][1] if layers['power_layers'] else 0
+    S=membership_stats(R['S']['G'],a);T=membership_stats(R['T']['G'],a);A=R['ideal_generators']
+    iw=[min(x+T['w'][(s-x)%a] for x in A) for s in range(a)]
+    contains_T=lambda x:x>=0 and x>=T['w'][x%a]
+    contains_I=lambda x:x>=0 and x>=iw[x%a]
+    even={n for n in range(a+R['ideal_conductor']) if contains_T(n) and not contains_I(n-a)}
+    odd={n for n in range(T['c']) if contains_I(n) and not contains_T(n)}
+    values=set(S['w']);assert {2*n for n in even}|{a+2*n for n in odd}==values
+    assert len(odd)==h1 and len(even)==a-h1 and len(values)==a
+    typed={2*n:(0,n) for n in even};typed.update({a+2*n:(1,n) for n in odd})
+    nonzero_odd_products=[]
+    for v,(p,x) in typed.items():
+        for w,(q,y) in typed.items():
+            parity=(p+q)%2;exponent=x+y+(a if p and q else 0)
+            target=even if parity==0 else odd
+            result=2*exponent+(a if parity else 0) if exponent in target else None
+            assert result==(v+w if v+w in values else None)
+            if p and q and result is not None:nonzero_odd_products.append([v,w,result])
+    generated={0};others=[p for p in S['G'] if p!=a]
+    while True:
+        nxt=generated|{v+p for v in generated for p in others if v+p in values}
+        if nxt==generated:break
+        generated=nxt
+    assert generated==values and len(others)==S['e']-1
+    oddvalues={a+2*x for x in odd};power={0};powers=[];killed=[]
+    for n,layer in enumerate(layers['power_layers'],1):
+        power={v+w for v in power for w in oddvalues if v+w in values}
+        surviving={n*a+2*x for x in layer if n*a+2*x in values}
+        assert power==surviving
+        if n<=2:assert len(power)==len(layer)
+        if n>=3:assert power<=set(powers[n-3])
+        powers.append(sorted(power));killed.append([x for x in layer if n*a+2*x not in values])
+    mean=F(sum(values),a);maximum=max(values);correction=(S['e']-2)*(a-1)//2
+    assert S['W']==(S['e']-1)*maximum-S['e']*mean-correction
+    return {'S':R['S'],'a':a,'even_dimension':len(even),'odd_dimension':len(odd),
+            'source_algebra_generator_count':len(others),'value_basis':sorted(values),
+            'odd_product_dimensions':[len(V) for V in powers],'odd_product_value_bases':powers,
+            'scalar_layer_dimensions':layers['Hilbert_function'][1:],'killed_scalar_layers':killed,
+            'nonzero_odd_products':nonzero_odd_products,'mean_value':str(mean),'maximum_value':maximum,
+            'finite_correction':correction,'all_basis_products_checked':a*a}
+
+def rational_row_rank(rows,width):
+    basis={}
+    for values in rows:
+        row=list(map(F,values));assert len(row)==width
+        for k in range(width):
+            if not row[k]:continue
+            if k in basis:
+                q=row[k];row=[a-q*b for a,b in zip(row,basis[k])]
+            else:
+                q=row[k];basis[k]=[a/q for a in row];break
+    return len(basis)
+
+def audit_differential(C):
+    """E443: C trade witnesses plus independent factorization DP over Q."""
+    G=C['G'];S=membership_stats(G);m=S['m'];e=S['e'];c=S['c'];ell=c-S['g'];cap=c+max(G)
+    assert sorted(G)==S['G'] and all(C[k]==S[k] for k in ('c','g','e','W'))
+    assert C['ell']==ell and C['free_dimension']==e*ell
+    member=[n>=S['w'][n%m] for n in range(cap)]
+    facts=[set() for _ in range(cap)];facts[0].add((0,)*e)
+    for j,p in enumerate(G):
+        for N in range(p,cap):
+            for z in facts[N-p]:
+                v=list(z);v[j]+=1;facts[N].add(tuple(v))
+    blocks={B['N']:B for B in C['blocks']};assert len(blocks)==len(C['blocks'])
+    selected=0;total=0;torsion={};dimensions={};degree_ranks={}
+    for N in range(1,cap):
+        active=[int(0<=N-p<c and member[N-p]) for p in G]
+        allfacts=sorted(facts[N]);rows=[]
+        if allfacts:
+            base=allfacts[0]
+            rows=[[a*(z[j]-base[j]) for j,a in enumerate(active)] for z in allfacts[1:]]
+        rank=rational_row_rank(rows,e);total+=rank;degree_ranks[N]=rank
+        dim=sum(active)-rank;dimensions[N]=dim
+        image=int(N<c+m and member[N]);q=dim-image
+        assert q>=0
+        if q:torsion[N]=q
+        if N in blocks:
+            B=blocks[N];assert B['active']==active and tuple(B['base']) in facts[N]
+            assert all(tuple(z) in facts[N] for z in B['trades'])
+            witness=[[a*(z[j]-B['base'][j]) for j,a in enumerate(active)] for z in B['trades']]
+            assert rational_row_rank(witness,e)==B['rank']==len(B['trades'])
+            selected+=B['rank'];assert B['rank']==rank
+        elif not C['stopped_at_failure'] or N<=max(blocks):assert rank==0
+    assert selected==C['selected_relation_rank']
+    assert C['differential_dimension_upper_bound']==e*ell-selected
+    if not C['stopped_at_failure']:assert total==selected
+    dim=e*ell-total;q=sum(torsion.values())
+    assert dim==sum(dimensions.values())==ell+m-1+q
+    assert C['stopped_at_failure']==(selected>C['W'])
+    gaps=[n for n in range(m,c) if not member[n]];assert len(gaps)==S['g']-m+1
+    shifts=[];failures=[]
+    if gaps and torsion:
+        lo=max(gaps)+min(torsion);hi=min(gaps)+max(torsion)
+        for shift in range(lo,hi+1):
+            absent=next((n for n in gaps if not torsion.get(shift-n)),None)
+            if absent is None:shifts.append(shift)
+            else:failures.append({'shift':shift,'unpaid_gap':absent,'torsion_degree':shift-absent})
+    else:lo=hi=None
+    return {'S':{k:S[k] for k in ('G','m','e','c','g','W')},'ell':ell,
+            'C_selected_rank':selected,'full_rational_relation_rank':total,'differential_dimension':dim,
+            'conductor_bound_margin':dim-c,'Euler_image_dimension':ell+m-1,
+            'torsion_quotient_dimension':q,'required_gap_rank':len(gaps),'torsion_degrees':torsion,
+            'possible_reflection_shift_range':[lo,hi],'admissible_reflection_shifts':shifts,
+            'reflection_failure_witnesses':failures,'independently_enumerated_factorizations':sum(map(len,facts)),
+            'genuine_negative_W':S['W']<0}
+
 def audit_odd_layers(C):
     """E442: audit ideal powers by independent sets and Apéry convolution."""
     R=audit_odd_comparison(C);a=R['least_odd'];A=R['ideal_generators']
@@ -1603,6 +1711,52 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--advisor-parity-check':
+        import subprocess
+        parity=[]
+        for G in ([13,15,17,19],[5,7],[19,39,41,50,52,53]):
+            C=json.loads(subprocess.check_output([sys.argv[2],'--odd-audit',*map(str,G)],text=True))
+            parity.append(audit_source_parity(C))
+        source=json.loads(subprocess.check_output([sys.argv[2],'--axis-seed','13','15','17','19'],text=True))
+        audit(source);support=support_geometry(source)
+        raw_support=json.loads(subprocess.check_output([sys.argv[2],'--supp-audit','13','15','17','19'],text=True))
+        assert all(raw_support[k]==support[k] for k in raw_support)
+        assert (source['c'],source['g'],source['W'])==(64,36,48)
+        assert parity[0]['scalar_layer_dimensions']==[6,6,3,3]
+        assert support['Dep']==14 and support['support_sum']==5
+        old={tuple(sorted(C['seed']['generators'])):C for C in
+             (json.loads(line) for line in open_text(sys.argv[4]) if line.strip())}
+        cuts=[]
+        for line in open_text(sys.argv[3]):
+            if not line.strip():continue
+            D=json.loads(line)['seed'];key=tuple(sorted(D['generators']))
+            selections=[('whole',list(range(D['m']))),('old_selected',old[key]['cut']['kept'])]
+            if key==(40,41,42,43):selections.append(('old_leak_control',[0,factor_basis(D)[0][0]]))
+            for label,E in selections:
+                if len(E)<2:continue
+                Q=partial_support_geometry(D,E);FZ=frozen_payment_geometry(D,E);forest=exterior_forest_geometry(D,E,True)
+                reserve=FZ['nonwrap_leakage']+D['m']-FZ['pool_size']
+                assert Q['budget']==forest['joint_margin']+reserve
+                if label=='whole':assert FZ['nonwrap_leakage']==0
+                cuts.append({'G':list(key),'cut':label,'size':len(E),'original_completion_budget':Q['budget'],
+                    'frozen_margin':forest['joint_margin'],'leak_reserve':FZ['nonwrap_leakage'],
+                    'unused_residue_reserve':D['m']-FZ['pool_size'],'forest_paid':forest['paid'],
+                    'cycle_rank':forest['cycle_rank']})
+        R={'parity_algebras':parity,'advisor_k2_support':support,'Hall_reserves':cuts}
+        with open(sys.argv[5],'w') as out:json.dump(R,out,indent=2)
+        for V in parity:print('PARITY-ALGEBRA',{k:v for k,v in V.items() if k not in ('value_basis','odd_product_value_bases','nonzero_odd_products')})
+        print('ADVISOR-K2-SUPPORT',support)
+        for V in cuts:print('HALL-RESERVES',V)
+        print('EXACTLY AUDITED advisor calibration, original-source products and old-cut reserves; no new sign theorem')
+        sys.exit(0)
+    if sys.argv[1]=='--differential-check':
+        result=[]
+        for path in sys.argv[2:-1]:
+            with open(path) as source:result.append(audit_differential(json.load(source)))
+        with open(sys.argv[-1],'w') as out:json.dump(result,out,indent=2)
+        for R in result:print('DIFFERENTIAL',R)
+        print('EXACTLY AUDITED three fixed semigroups and rational trade ranks; no universal sign claim')
+        sys.exit(0)
     if sys.argv[1]=='--odd-layer-check':
         import subprocess
         records=[json.loads(line) for line in open(sys.argv[2]) if line.startswith('{')]

@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 11:20 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 11:55 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,38 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E444, current priority / advisor audit:** the four-generator family <6k+1,6k+3,6k+5,6k+7>
+has h_1=3k with eS-1=3, even in c>4m,3e<m and cofactor1. All formulas, including the
+support exclusion, verify on paper; ONLY k2 was computed. It is a calibration, not a
+new restricted-family target. The advisor's source algebra k[S]/(t^a) has parity pieces
+R/x^aM and z(M/R), dimensions a-h_1 and h_1, and EXACTLY eS-1 algebra generators.
+It is the original Apéry algebra, not a new smaller object; value grading is retained,
+whereas a standard grading by factorization length is not automatic.
+
+**New multiplication consequence:** V_n, the span of n odd-class products, is obtained
+from H_n by u -> n*a+2u, keeping only source-Apéry values. Thus dim V_1=h_1,
+dim V_2=h_2 and V_(n+2) subset V_n; higher layers can die in the source quotient. OLD19
+has h=(7,6,3) but dim V=(7,6,0), killing u31/32/33. This is concrete compatibility
+missing from scalar ideal powers; it does NOT automatically pay their cost. The next
+all-S proof target is the finite gain (e-2)(a-1)/2 in the source value mean-maximum
+inequality. Its difference is exactly W. Do not merely reconstruct another Hilbert function.
+
+**Hall alternative weakened to the useful budget:** for nonempty cuts exactly
+Q=F_res+Leak+m-pool_size. BOTH discarded reserves must remain available. At the whole
+tile Leak=0 and Q(D)>=0 already suffices for SUPP-WILF; optional all-cut, pool-only and
+frozen targets are stronger. OLD19 whole budget is5, not its frozen margin1; selected114
+is75 versus6, selected40 is35 versus2. The old40 leak control checks positive Leak2.
+No new flow solve. The universal full-tile sign is still UNKNOWN. Forest cancellation
+does not improve its numerical margin. E439 normalization remains proved and active.
+
+**E443 diagnostic CLOSED:** a conductor differential bound would imply Wilf directly,
+but is UNKNOWN and not prioritized on the basis of three positive fixed cases. The
+exact Euler/torsion decomposition leaves the candidate torsion bound g-m+1. A single
+graded reflection of the gaps is FALSE even on OLD19: no shift145..152 works, despite
+torsion quotient dimension63 versus required50. All three rational trade-rank audits
+and C ASan/UBSan replays pass. No new search/profile census or rank optimizer is next.
+Preserve this alternative without mistaking another stronger invariant for a sign proof.
 
 **E442, current correction:** unrestricted MON1, WS>=WU, is FALSE. The classical equality
 source S=<5,21,22,23,24> has WS0 and closure U=<5,8,9,11,12> has WU2. All primitive
@@ -395,6 +427,21 @@ optimizer/search ran or new sanitizer path needed. The old E441 audit passed aft
 Data: data/odd_closure_monotonicity_audit.json, odd_layer_audit.json, checkpoint_442_checks.log.
 run_checks.sh includes this targeted replay. General algebra arguments remain paper proofs.
 
+**E443/E444 implementation:** upper_scan.c adds `--differential-audit G...`, a bounded
+pure-C factorization/trade-rank export (e<=10,c+maxP<=4096), stopping if selected rank>W.
+`verify_probe.py --differential-check PROBE CONTROL BOUNDARY OUTPUT` independently enumerates
+all factorizations by coin DP, uses exact rational ranks, checks Euler/torsion dimensions
+and all possible reflection shifts. The THREE old inputs only have module dimensions
+101/24/18 at c88/24/17; no theorem follows. Normal and ASan/UBSan outputs are byte-identical.
+Data: differential_{probe,control,boundary,audit}.json and checkpoint_443_checks.log.
+
+`verify_probe.py --advisor-parity-check EXE FROZEN_LOG ORIGINAL_LOG OUTPUT` audits source
+algebra bases and ALL ordered basis products on k2 and old5/7,19 (169/25/361 products),
+compares scalar layers with source odd products, checks k2 support via existing C
+--axis-seed/--supp-audit, and restores reserves on seven OLD cut/control selections.
+Data: advisor_parity_audit.json, checkpoint_444_checks.log. run_checks.sh includes both
+targeted modes. The old layer audit also passes; no broad LP suite/new optimizer ran.
+
 ## Current attempt and next action
 
 **Current exact target (E432):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
@@ -441,15 +488,18 @@ component to pay itself. No new solver run is warranted without a proof-derived 
 that distinguishes a source of finite surplus. If no such inequality emerges, return to
 actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
 
-**Actual-arithmetic task after E442:** keep E439's cofactor1 normalization for a least-genus
+**Actual-arithmetic task after E444:** keep E439's cofactor1 normalization for a least-genus
 counterexample. Replace uncontrolled quotient generator growth by U=<I>=<a,H,A+>, with
 eU<=eS and smaller genus. PROOFS E441 gives the exact mixed Apéry budget and typed H/A
 constraints. Seek a uniform bound on the WEIGHTED common lifts sum(K+L), using residue
 completeness and actual WU, sufficient to force WS>=0 when WU>=0. Unrestricted MON1 is
 FALSE; its sparse-domain restriction is unknown and optional. E442 now expresses the mass
 as h_1+2*sum_(n>=2)h_n of the ideal-power algebra. Retain its original-source coefficient
-actions (including paired quotient primitives); the algebra's embedding dimension h_1
-cannot be replaced by eS-1. No O-sequence census or layer optimizer is next. Only epsilon
+actions (including paired quotient primitives); the scalar algebra's dimension h_1
+cannot be replaced by eS-1. Use the ORIGINAL source Apéry algebra, with its eS-1 generators,
+and the exact ODD-PRODUCT correspondence to quantify the finite value gain. Source relations
+kill higher scalar layers, but that is not a payment without a global inequality. No
+O-sequence census or layer optimizer is next. Only epsilon
 =K-L is binary. Do not replace L by support size, infer a unit cap from the
 two search cases, or run a new closure/shortest-path optimizer that merely reconstructs
 the instance. The bounded C falsification is CLOSED with no failure, not a theorem.
@@ -563,7 +613,11 @@ E442 refutes unrestricted MON1 using one exact predicted witness and a paper unb
 it does not refute the sparse-domain version or full transfer. The ideal-power algebra and
 weighted-cost formula are proved on paper; its five fixed-case audits are inventoried above.
 The generator-count mismatch is checked on the OLD5/7 control; no new search or solver.
-All E432–E442 general mathematical statements remain paper-proved, not Lean checked. No universal
+E443's standard differential presentation/Euler decomposition and E444's source-parity,
+ODD-PRODUCT and reserve identities are proved on paper; their universal finite signs
+remain UNKNOWN. Advisor family/support formulas verify on paper and k2 is independently
+checked; no family search. All general lemmas recorded as proved in E432–E444 remain
+paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 
