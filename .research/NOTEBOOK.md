@@ -5334,3 +5334,31 @@ but global exchange and raw carries must be handled together. Continue full JD+,
 positive examples or another root optimizer. The source construction is classical; novelty
 of this semigroup application is unassessed. Other universal lines remain weighted repair
 coupling and actual arithmetic/integrality. No narrower-family proof target or Lean claim.
+
+### 2026-10-23 09:28 EDT — E437: forest exchange, with the sign gap preserved
+
+Repaired E436's concrete two-edge collision: use the two alternative noncanonical pair
+words as slot holders instead of charging their common word twice. The two slots are
+distinct and valid. Generalized this to a word multigraph: root each component's spanning
+tree at an exhausted vertex if present, and every positive-capacity nonroot vertex pays
+its parent edge. Exact unpaid count is cycle_rank+sum(q-1)_+, q exhausted vertices.
+
+Then undid the internal reservations and included those aliases as edges to their canonical
+words. Every noncanonical vertex has a parent in nonmax E and therefore FULL Gamma capacity;
+each component has at most one canonical word by residue injectivity. All forest edges
+are now paid. The leftover debt is cycles PLUS raw carries, not an arbitrary rank deficit.
+The proof is elementary and recorded in E437; no novelty or Lean claim.
+
+Fejer audited only the old19/40/114 cuts, in both accountings, and the local two-edge MSTD
+block. All distinct-slot/cycle checks and the old joint-defect replay pass. The reserved
+forest pays0/1/1 exterior edges respectively. The all-alias forests pay2/1/1 tree edges
+and leave10/0/3 cycles. Joint margins remain1/2/6. At19 the old internal injection already
+paid4 aliases, so this normal form is NOT a stronger numeric certificate.
+
+Global review: this resolves an actual local collision and distinguishes reserved-slot
+exhaustion from a cyclic obstruction, but does not advance the unknown finite sign. Stop
+graph/root optimizer refinements now; increasing tree or matched-edge counts alone would
+repeat the advisor's concern. The next proof must derive a global source paying cycles
+AND carries using cyclic labels/actual conductor arithmetic, or pivot within the standing
+weighted-repair and actual-integrality lines. Do not demand componentwise positivity or
+launch another profile census. No universal proof or genuine counterexample has emerged.

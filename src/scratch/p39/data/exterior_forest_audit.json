@@ -1,0 +1,1081 @@
+{
+  "cuts": [
+    {
+      "G": [
+        19,
+        39,
+        41,
+        50,
+        52,
+        53
+      ],
+      "cut_size": 19,
+      "all_aliases": false,
+      "relation_edges": 8,
+      "graph_vertices": 3,
+      "components": [
+        {
+          "vertices": 3,
+          "edges": 8,
+          "zero_capacity_vertices": 3,
+          "cycle_rank": 6,
+          "paid": 0,
+          "unpaid": 8
+        }
+      ],
+      "paid": 0,
+      "unpaid": 8,
+      "cycle_rank": 6,
+      "extra_zero_vertex_debt": 2,
+      "remaining_carry_debt": 6,
+      "remaining_missing_capacity": 0,
+      "remaining_total_debt": 14,
+      "remaining_total_resources": 15,
+      "joint_margin": 1,
+      "edges": [
+        {
+          "image": 2,
+          "start": [
+            14,
+            2
+          ],
+          "root": [
+            3,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 5,
+          "start": [
+            1,
+            4
+          ],
+          "root": [
+            0,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 7,
+          "start": [
+            3,
+            4
+          ],
+          "root": [
+            0,
+            2
+          ],
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 8,
+          "start": [
+            1,
+            2
+          ],
+          "root": [
+            3,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 11,
+          "start": [
+            14,
+            1
+          ],
+          "root": [
+            12,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 16,
+          "start": [
+            12,
+            4
+          ],
+          "root": [
+            0,
+            1
+          ],
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 17,
+          "start": [
+            1,
+            1
+          ],
+          "root": [
+            12,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 18,
+          "start": [
+            14,
+            4
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [],
+      "unpaid_edges": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "cut_size": 7,
+      "all_aliases": false,
+      "relation_edges": 1,
+      "graph_vertices": 2,
+      "components": [
+        {
+          "vertices": 2,
+          "edges": 1,
+          "zero_capacity_vertices": 1,
+          "cycle_rank": 0,
+          "paid": 1,
+          "unpaid": 0
+        }
+      ],
+      "paid": 1,
+      "unpaid": 0,
+      "cycle_rank": 0,
+      "extra_zero_vertex_debt": 0,
+      "remaining_carry_debt": 0,
+      "remaining_missing_capacity": 1,
+      "remaining_total_debt": 0,
+      "remaining_total_resources": 2,
+      "joint_margin": 2,
+      "edges": [
+        {
+          "image": 39,
+          "start": [
+            2,
+            2
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [
+        {
+          "edge": 0,
+          "word": [
+            1,
+            1,
+            0
+          ],
+          "slot": [
+            2,
+            0,
+            0
+          ]
+        }
+      ],
+      "unpaid_edges": []
+    },
+    {
+      "G": [
+        114,
+        305,
+        307,
+        310
+      ],
+      "cut_size": 34,
+      "all_aliases": false,
+      "relation_edges": 2,
+      "graph_vertices": 2,
+      "components": [
+        {
+          "vertices": 2,
+          "edges": 2,
+          "zero_capacity_vertices": 1,
+          "cycle_rank": 1,
+          "paid": 1,
+          "unpaid": 1
+        }
+      ],
+      "paid": 1,
+      "unpaid": 1,
+      "cycle_rank": 1,
+      "extra_zero_vertex_debt": 0,
+      "remaining_carry_debt": 54,
+      "remaining_missing_capacity": 1,
+      "remaining_total_debt": 55,
+      "remaining_total_resources": 61,
+      "joint_margin": 6,
+      "edges": [
+        {
+          "image": 35,
+          "start": [
+            3,
+            2
+          ],
+          "root": [
+            0,
+            1
+          ],
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 37,
+          "start": [
+            5,
+            2
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [
+        {
+          "edge": 0,
+          "word": [
+            3,
+            1,
+            0
+          ],
+          "slot": [
+            5,
+            0,
+            1
+          ]
+        }
+      ],
+      "unpaid_edges": [
+        1
+      ]
+    }
+  ],
+  "all_alias_cuts": [
+    {
+      "G": [
+        19,
+        39,
+        41,
+        50,
+        52,
+        53
+      ],
+      "cut_size": 19,
+      "all_aliases": true,
+      "relation_edges": 12,
+      "graph_vertices": 3,
+      "components": [
+        {
+          "vertices": 3,
+          "edges": 12,
+          "zero_capacity_vertices": 1,
+          "cycle_rank": 10,
+          "paid": 2,
+          "unpaid": 10
+        }
+      ],
+      "paid": 2,
+      "unpaid": 10,
+      "cycle_rank": 10,
+      "extra_zero_vertex_debt": 0,
+      "remaining_carry_debt": 6,
+      "remaining_missing_capacity": 2,
+      "remaining_total_debt": 16,
+      "remaining_total_resources": 17,
+      "joint_margin": 1,
+      "edges": [
+        {
+          "image": 2,
+          "start": [
+            14,
+            2
+          ],
+          "root": [
+            3,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 5,
+          "start": [
+            1,
+            4
+          ],
+          "root": [
+            0,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 7,
+          "start": [
+            3,
+            4
+          ],
+          "root": [
+            0,
+            2
+          ],
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 8,
+          "start": [
+            1,
+            2
+          ],
+          "root": [
+            3,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 11,
+          "start": [
+            14,
+            1
+          ],
+          "root": [
+            12,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 16,
+          "start": [
+            12,
+            4
+          ],
+          "root": [
+            0,
+            1
+          ],
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 17,
+          "start": [
+            1,
+            1
+          ],
+          "root": [
+            12,
+            3
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "image": 18,
+          "start": [
+            14,
+            4
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            15,
+            0
+          ],
+          "image": 14,
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            15,
+            1
+          ],
+          "image": 12,
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            15,
+            2
+          ],
+          "image": 3,
+          "ends": [
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            15,
+            3
+          ],
+          "image": 1,
+          "ends": [
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [
+        {
+          "edge": 1,
+          "word": [
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "slot": [
+            14,
+            0,
+            0
+          ]
+        },
+        {
+          "edge": 2,
+          "word": [
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          "slot": [
+            12,
+            1,
+            0
+          ]
+        }
+      ],
+      "unpaid_edges": [
+        0,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "G": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "cut_size": 7,
+      "all_aliases": true,
+      "relation_edges": 1,
+      "graph_vertices": 2,
+      "components": [
+        {
+          "vertices": 2,
+          "edges": 1,
+          "zero_capacity_vertices": 1,
+          "cycle_rank": 0,
+          "paid": 1,
+          "unpaid": 0
+        }
+      ],
+      "paid": 1,
+      "unpaid": 0,
+      "cycle_rank": 0,
+      "extra_zero_vertex_debt": 0,
+      "remaining_carry_debt": 0,
+      "remaining_missing_capacity": 1,
+      "remaining_total_debt": 0,
+      "remaining_total_resources": 2,
+      "joint_margin": 2,
+      "edges": [
+        {
+          "image": 39,
+          "start": [
+            2,
+            2
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [
+        {
+          "edge": 0,
+          "word": [
+            1,
+            1,
+            0
+          ],
+          "slot": [
+            2,
+            0,
+            0
+          ]
+        }
+      ],
+      "unpaid_edges": []
+    },
+    {
+      "G": [
+        114,
+        305,
+        307,
+        310
+      ],
+      "cut_size": 34,
+      "all_aliases": true,
+      "relation_edges": 4,
+      "graph_vertices": 2,
+      "components": [
+        {
+          "vertices": 2,
+          "edges": 4,
+          "zero_capacity_vertices": 1,
+          "cycle_rank": 3,
+          "paid": 1,
+          "unpaid": 3
+        }
+      ],
+      "paid": 1,
+      "unpaid": 3,
+      "cycle_rank": 3,
+      "extra_zero_vertex_debt": 0,
+      "remaining_carry_debt": 54,
+      "remaining_missing_capacity": 3,
+      "remaining_total_debt": 57,
+      "remaining_total_resources": 63,
+      "joint_margin": 6,
+      "edges": [
+        {
+          "image": 35,
+          "start": [
+            3,
+            2
+          ],
+          "root": [
+            0,
+            1
+          ],
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "image": 37,
+          "start": [
+            5,
+            2
+          ],
+          "root": [
+            0,
+            0
+          ],
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            82,
+            0
+          ],
+          "image": 5,
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "internal": true,
+          "start": [
+            82,
+            1
+          ],
+          "image": 3,
+          "ends": [
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "assignments": [
+        {
+          "edge": 0,
+          "word": [
+            3,
+            1,
+            0
+          ],
+          "slot": [
+            5,
+            0,
+            0
+          ]
+        }
+      ],
+      "unpaid_edges": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "MSTD_two_edge_repair": {
+    "checked_edges": 2,
+    "paid": 2,
+    "distinct_slots": 2,
+    "internal_reservations": 0,
+    "method": "root two-edge tree at shared word; use one slot at each other endpoint",
+    "witnesses": [
+      {
+        "image": 2,
+        "common_word": [
+          0,
+          7
+        ],
+        "alternative_word": [
+          1,
+          6
+        ],
+        "slot": [
+          12197,
+          6,
+          0
+        ]
+      },
+      {
+        "image": 3,
+        "common_word": [
+          0,
+          7
+        ],
+        "alternative_word": [
+          2,
+          5
+        ],
+        "slot": [
+          12198,
+          5,
+          0
+        ]
+      }
+    ],
+    "full_MSTD_graph_audited": false
+  }
+}

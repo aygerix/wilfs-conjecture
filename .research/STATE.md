@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 08:57 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 09:32 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -22,7 +22,21 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 
 ## Where the mathematics stands
 
-**E436, stopped stages / current repair:** the separate claim L_out<=C is FALSE even with
+**E437, exchange proved / finite sign still unknown:** the previous two-to-one exit collision
+is repaired by rooting its two-edge positive-word tree at the shared word and charging its
+two other endpoints to DISTINCT missing slots. More generally, a reserved exterior graph's
+forest leaves exactly cycle_rank+sum(zero_capacity_vertices-1)_+ unpaid. Including internal
+aliases removes the exhausted-vertex term: every noncanonical vertex has a full Gamma slot,
+and each component has at most one canonical vertex. A rooted forest pays ALL tree edges;
+only cycle edges remain. These are constructive paper lemmas, not a stronger positivity bound.
+After p tree payments the exact remaining target is K+cycle_rank<=C+Gamma-p+V, still UNKNOWN.
+The19 all-alias graph pays2 of12 aliases and leaves10 cycle units; the original internal
+injection already paid4 aliases, so the new normal form is NOT numerically superior.
+Stop graph/root optimizer refinements here. The next proof must supply finite surplus for
+cycles AND carries jointly; no new profile census. Fejer audited only the old19/40/114 cuts
+and the two-edge block, with distinct-slot witnesses and unchanged joint margins1/2/6.
+
+**E436, stopped stages:** the separate claim L_out<=C is FALSE even with
 K=F_in=0. A classical special-MSTD lift gives a genuine remaining-domain S with m97558,e513,
 c623660,g383166,W122749762>0; its lex pair cut fails the stage by13924. A lower bound1440
 holds for EVERY choice of pair representatives, so changing the tie order does not fix it.
@@ -307,15 +321,23 @@ starts, unreserved missing slots and wrapped slots. A dimension comparison or an
 rank bound alone would only restate the inequality. The scalar lowering trial fails even on
 the safe height1 control (rank2 versus a d+1-dimensional domain), so do not tune its coefficients.
 
-**E436 correction to the next construction:** do NOT first require L_out<=C; the MSTD lift
+**E436 correction, now partially repaired by E437:** do NOT first require L_out<=C; the MSTD lift
 refutes that stage on every representative choice. For an exterior group, choosing its
 least signed word by actual primitive weight then lex order proves that every other start
 (v,j) has a canonical cross-exit v+e_k in the root's direction k. This is a concrete map,
 but it can overload the same exit: the checked images2 and3 both choose (u_14,j_0), of
-capacity1. Construct the missing GLOBAL exchange rule, coordinating roots/unused starts,
-remaining missing slots and wrapped capacity while retaining raw carry copies. No such
-rule is established. All Gamma slots in the pair witness arise from zero actual-gap trades,
-so a proof cannot silently reinterpret them as strict positive arithmetic margins.
+capacity1. E437 repairs THIS collision and constructs a uniform forest exchange, but does
+not fund the remaining cycles and carries. All Gamma slots in the pair witness arise from
+zero actual-gap trades, so a proof cannot reinterpret them as strict positive arithmetic margins.
+
+**First unresolved proof step after E437:** use the labeled cycle relations and actual
+conductor phase to derive or refute a GLOBAL payment of K+beta_* from C+Gamma-p_*+V.
+Here the all-alias graph has F_in+L_out edges, p_*=vertices-components tree edges are already
+paid, and beta_*=edges-p_* remains. The exact equivalence to JD is proved; its sign is NOT.
+Do not merely improve the forest/edge assignment, assert a rank theorem, or require each
+component to pay itself. No new solver run is warranted without a proof-derived inequality
+that distinguishes a source of finite surplus. If no such inequality emerges, return to
+actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
 
 The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
 C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
@@ -406,7 +428,13 @@ E436 adds one constructed staged-claim counterexample, checked in C++ and indepe
 membership DP through818775. All97558 Apéry entries agree; the new C++ sanitizer replay
 matches the normal output exactly. The root-map collision is checked in the SAME witness.
 This is a stopped-stage audit, not another positive Wilf census. Data paths are above.
-All E432–E436 general mathematical statements remain paper-proved, not Lean checked. No universal
+E437 extends verify_probe.py with --exterior-forest-check, using existing C certificates as
+inputs and Python stdlib exact graph/slot auditing only. It checks3 OLD cuts in each of2
+accountings (internal slots retained/all aliases together) plus the local two-edge MSTD
+repair. Data: exterior_forest_audit.json, checkpoint_437_checks.log. The original E435 audit
+also passed after the change; no C source changed, new optimizer ran, or large witness
+membership computation was repeated. run_checks.sh includes the new targeted replay.
+All E432–E437 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

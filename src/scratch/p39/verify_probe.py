@@ -241,6 +241,124 @@ def joint_defect_geometry(D,kept):
             'zero_raw_carry_interior':zero_raw_carry_interior,'zero_resource':zero_resource,
             'raw_carry_excess_over_wrapped':max(0,G['raw_carry_sum']-G['wrapped_capacity'])}
 
+def exterior_forest_geometry(D,kept,all_aliases=False):
+    """E437: explicit partial exchange, not an optimizer or positivity test."""
+    J=joint_defect_geometry(D,kept);gr,z=factor_basis(D);m=D['m']
+    lookup={v:s for s,v in z.items()};P=partial_support_geometry(D,kept)['nonmax']
+    reserved=set() if all_aliases else {tuple(W['slot']) for W in J['internal_slot_witnesses']}
+    def plus(v,j):
+        a=list(v);a[j]+=1;return tuple(a)
+    def root_key(start):
+        s,j=start;a=list(z[s]);a[j]-=1
+        return D['w'][s]-D['w'][gr[j]],tuple(a)
+    edges=[];adj=defaultdict(list)
+    for image,group in J['outside_groups'].items():
+        w,k=min(group,key=root_key)
+        for v,j in sorted(group):
+            if [v,j]==[w,k]:continue
+            a,b=plus(z[v],k),plus(z[w],j)
+            assert j!=k and a!=b and a not in lookup
+            assert sum(a[t]*gr[t] for t in range(len(gr)))%m==sum(b[t]*gr[t] for t in range(len(gr)))%m
+            eid=len(edges);edges.append({'image':int(image),'start':[v,j],'root':[w,k],
+                                         'ends':[list(a),list(b)]})
+            adj[a].append((b,eid));adj[b].append((a,eid))
+    if all_aliases:
+        for W in J['internal_slot_witnesses']:
+            v,j,u=W['start_base'],W['direction'],W['image']
+            a,b=plus(z[u],j),z[v]
+            assert a not in lookup and b in lookup and a!=b
+            assert sum(a[t]*gr[t] for t in range(len(gr)))%m==v
+            eid=len(edges);edges.append({'internal':True,'start':[v,j],'image':u,'ends':[list(a),list(b)]})
+            adj[a].append((b,eid));adj[b].append((a,eid))
+    assert len(edges)==J['exterior_alias_debt']+(J['internal_aliases'] if all_aliases else 0)
+    slots={}
+    for n in adj:
+        available=[]
+        if n not in lookup:
+            for j,nj in enumerate(n):
+                if not nj:continue
+                parent=list(n);parent[j]-=1;u=lookup.get(tuple(parent))
+                if u in P:
+                    available.extend((u,j,h) for h in range(nj) if (u,j,h) not in reserved)
+        slots[n]=available
+        if all_aliases:assert n in lookup or available
+    assignments=[];unpaid=[];components=[];seen=set();tree_edges=set()
+    for first in sorted(adj):
+        if first in seen:continue
+        todo=[first];seen.add(first);vertices=[];component_edges=set()
+        while todo:
+            v=todo.pop();vertices.append(v)
+            for w,eid in adj[v]:
+                component_edges.add(eid)
+                if w not in seen:seen.add(w);todo.append(w)
+        zeros=[v for v in vertices if not slots[v]]
+        if all_aliases:
+            assert len(zeros)<=1
+            assert len({sum(v[j]*gr[j] for j in range(len(gr)))%m for v in vertices})==1
+        root=min(zeros or vertices);visited={root};todo=[root];paid=0;tree_unpaid=[]
+        while todo:
+            v=todo.pop()
+            for w,eid in sorted(adj[v],key=lambda pair:pair[1]):
+                if w in visited:continue
+                visited.add(w);todo.append(w);tree_edges.add(eid)
+                if slots[w]:
+                    assignments.append({'edge':eid,'word':list(w),'slot':list(slots[w][0])});paid+=1
+                else:tree_unpaid.append(eid)
+        assert len(visited)==len(vertices)
+        cycles=sorted(component_edges-tree_edges);unpaid.extend(tree_unpaid+cycles)
+        beta=len(component_edges)-len(vertices)+1
+        assert len(cycles)==beta and len(tree_unpaid)==max(0,len(zeros)-1)
+        components.append({'vertices':len(vertices),'edges':len(component_edges),'zero_capacity_vertices':len(zeros),
+                           'cycle_rank':beta,'paid':paid,'unpaid':len(tree_unpaid)+len(cycles)})
+    used={tuple(W['slot']) for W in assignments}
+    assert len(used)==len(assignments) and not used&reserved
+    assert len({W['edge'] for W in assignments})==len(assignments)
+    assert {W['edge'] for W in assignments}.isdisjoint(unpaid)
+    assert len(assignments)+len(unpaid)==len(edges)
+    for W in assignments:
+        n=tuple(W['word']);u,j,h=W['slot']
+        assert n not in lookup and u in P and plus(z[u],j)==n and 0<=h<=z[u][j]
+        assert list(n) in edges[W['edge']]['ends']
+    paid=len(assignments);remainder=len(unpaid)
+    missing=J['remaining_missing_capacity']+(J['internal_aliases'] if all_aliases else 0)
+    assert paid<=missing
+    debt=J['raw_carry_debt']+remainder
+    resources=J['unused_column_starts']+missing-paid+J['wrapped_capacity']
+    assert resources-debt==J['joint_margin']
+    return {'G':sorted(D['generators']),'cut_size':len(set(kept)),'all_aliases':all_aliases,
+            'relation_edges':len(edges),'graph_vertices':len(adj),'components':components,
+            'paid':paid,'unpaid':remainder,'cycle_rank':sum(C['cycle_rank'] for C in components),
+            'extra_zero_vertex_debt':sum(max(0,C['zero_capacity_vertices']-1) for C in components),
+            'remaining_carry_debt':J['raw_carry_debt'],'remaining_missing_capacity':missing-paid,
+            'remaining_total_debt':debt,'remaining_total_resources':resources,'joint_margin':resources-debt,
+            'edges':edges,'assignments':assignments,'unpaid_edges':sorted(unpaid)}
+
+def audit_mstd_two_edge_exchange(R):
+    """Only the saved two-edge collision: no reconstruction of the large tile."""
+    H0=[0,2,3,4,7,11,12,14]
+    H=sorted(a+29*b+29**2*c for a in H0 for b in H0 for c in H0)
+    T=R['shift'];m=R['m'];assert len(H)==512 and T==max(H)+1==12195 and m==97558
+    # P={0} union (T+H). Nonzero H-differences and negatives of T+H
+    # cannot meet P, so no internal reservation is present in this pair cut.
+    assert m>4*T and R['internal_aliases']==0
+    def pair(a,b):return tuple(sorted((H.index(a),H.index(b))))
+    def lex_key(p):return tuple(int(j in p)+int(p[0]==p[1]==j) for j in range(len(H)))
+    def canonical(total):return min((pair(a,total-a) for a in H if total-a in H),key=lex_key)
+    assert canonical(14)==pair(7,7)
+    for a,b in ((14,12),(2,0),(14,11),(3,0)):
+        assert canonical(a+b)==pair(a,b)
+    common=pair(14,0);used=set();witnesses=[]
+    for image,a,b in ((2,2,12),(3,3,11)):
+        alternative=pair(a,b);slot=(T+a,H.index(b),0)
+        assert alternative!=canonical(a+b) and a+b==14
+        assert canonical(2*a)==pair(a,a)  # its unit parent is nonmaximal in E
+        assert slot not in used;used.add(slot)
+        assert ((T+14)-(T+b))%m==((T+a)-T)%m==image
+        witnesses.append({'image':image,'common_word':list(common),'alternative_word':list(alternative),'slot':list(slot)})
+    return {'checked_edges':2,'paid':2,'distinct_slots':2,'internal_reservations':0,
+            'method':'root two-edge tree at shared word; use one slot at each other endpoint',
+            'witnesses':witnesses,'full_MSTD_graph_audited':False}
+
 def audit_completion_pool_cut(C):
     D,R=C['seed'],C['cut'];audit(D);frozen=R.get('frozen_nonwrap',False)
     G=completion_graph(D,True,frozen);m=D['m'];n=3*m+2
@@ -1317,6 +1435,20 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--exterior-forest-check':
+        old={tuple(sorted(C['seed']['generators'])):C for C in
+             (json.loads(line) for line in open_text(sys.argv[2]) if line.strip())}
+        selected=[(19,39,41,50,52,53),(40,41,42,43),(114,305,307,310)];results=[];all_alias_results=[]
+        for key in selected:
+            C=old[key];audit_completion_cut(C)
+            results.append(exterior_forest_geometry(C['seed'],C['cut']['kept']))
+            all_alias_results.append(exterior_forest_geometry(C['seed'],C['cut']['kept'],True))
+        with open(sys.argv[3]) as source:local=audit_mstd_two_edge_exchange(json.load(source))
+        with open(sys.argv[4],'w') as out:json.dump({'cuts':results,'all_alias_cuts':all_alias_results,'MSTD_two_edge_repair':local},out,indent=2)
+        for R in results+all_alias_results:print('ALIAS-FOREST',{k:v for k,v in R.items() if k not in ('edges','assignments','unpaid_edges')})
+        print('MSTD-TWO-EDGE-REPAIR',local)
+        print('EXACTLY AUDITED three saved cuts and one two-edge exchange; no universal sign claim')
+        sys.exit(0)
     if sys.argv[1]=='--mstd-shadow-check':
         with open_text(sys.argv[2]) as source:R=audit_mstd_shadow(json.load(source))
         with open(sys.argv[3],'w') as out:json.dump(R,out,indent=2)

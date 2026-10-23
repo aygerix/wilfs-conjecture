@@ -9352,3 +9352,114 @@ witness as a positive census or implement another numerical root optimizer witho
 uniform lemma. Keep JD+/unfrozen POOL/E432 and the other two universal lines available.
 All general statements are paper proofs, not Lean checked; novelty of this application
 has not been established. Exact code/data and reproduction are in EXPERIMENTS E436/STATE.
+
+## E437 — a forest exchange and the cycle remainder (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF the remaining cycle-and-carry
+budget below holds for every genuine tile cut in the remaining domain. Proved reduction
+from all S to this case: yes, exact cancellation gives E435 JD+, followed by
+E434/E433/E432/SUPP and the recorded complements. The forest payment is PROVED on paper;
+the sign of the remaining budget is UNKNOWN. This is a constructive partial allocation,
+not a new positivity bound, proof of Wilf, or claim that each component pays itself.
+Spanning-tree orientation and cycle rank are elementary graph facts; no novelty is claimed.
+
+### Cross-word graph with the internal reservations retained
+
+Keep D,E,P,F,F_in,L_out,C,Gamma,V,K as in E435; |E|>=2. For each exterior image group
+choose the least signed word w-e_k by actual primitive weight, then lex, as in E436.
+For every other start (v,j) in that group, put one labeled edge between the positive words
+
+    n=v+e_k,             n'=w+e_j.
+
+These words are distinct, have the same cyclic residue, and j!=k. Indeed j=k would imply
+phi(v)=phi(w), hence v=w. The j-coordinate is0 on n and positive on n'. E436 proves n
+noncanonical. Both endpoints have a canonical parent in P: v and w are negative-start
+bases, so each has a successor in E. Edges with the same endpoints are RETAINED separately.
+There are exactly L_out edges. Vertices are words, not residue labels; merging by residue
+would destroy the capacity information.
+
+For a noncanonical graph word n, its available slots are
+
+    (u,j,h), where u in P, n=u+e_j, 0<=h<=u_j,
+
+excluding E435's reserved internal slots. A canonical word has no such slot. Slots belonging
+to distinct positive words are disjoint, since a slot determines u+e_j. Write cap(n) for
+their number, and q_B for the number of zero-capacity vertices in component B. Let
+
+    beta_1(G)=number_of_edges-number_of_vertices+number_of_components.
+
+Choose a spanning tree in each component, root at a zero-capacity vertex if one exists,
+and otherwise at any vertex. Each positive-capacity nonroot vertex pays its parent edge
+with ONE of its slots. Distinct vertices use distinct slots; each tree edge has only one
+child. The only unpaid tree edges are those with zero-capacity nonroot child, exactly
+(q_B-1)_+. All nonforest edges remain unpaid. Thus this construction leaves EXACTLY
+
+    R_ext=beta_1(G)+sum_B(q_B-1)_+
+
+exterior relations unpaid. With p=L_out-R_ext paid slots, p<=Gamma-F_in and JD+ becomes
+
+    K+R_ext <= C+(Gamma-F_in-p)+V.                         (FOREST-BUDGET, UNKNOWN)
+
+Both sides lose p from the original JD inequality. This is an equivalent accounting
+after a specific valid cancellation; the forest construction alone proves no sign.
+Unused capacity at an individual word is not assumed to pay arbitrary other edges.
+
+### Including internal aliases removes the exhausted-vertex term
+
+There is a cleaner alternative normal form. Undo all internal reservations and add their
+relations to the same graph. For an internal start (v,j) with image u=phi(v)-delta_j in P,
+add the edge between noncanonical word u+e_j and canonical word v. Its first endpoint is
+noncanonical by E435. The all-alias graph G_* has F_in+L_out labeled edges.
+
+Give every noncanonical vertex ALL its Gamma slots. Every such vertex has at least one
+parent in P, so has positive capacity. Every component has a single cyclic residue,
+and D contains at most one canonical word of that residue. Therefore a component has
+at most one zero-capacity vertex. Root a spanning tree there if present; otherwise root
+anywhere. The same assignment now pays EVERY forest edge. In particular, with
+
+    p_*=|vertices(G_*)|-|components(G_*)|,
+    beta_*=F_in+L_out-p_*,
+
+we have an explicit injection of p_* alias relations into distinct Gamma slots and
+
+    JD+ <=> K+beta_* <= C+(Gamma-p_*)+V.                   (CYCLE-BUDGET, UNKNOWN)
+
+This does not make beta_* free or discard it as a dependence. Each nonforest edge is
+still one unpaid alias unit. Edges can connect words of different actual weights; no
+tightness or positive strict-exit margin is assumed. The normal form is valid even in
+the presence of zero actual-gap factorization trades. It can pay fewer aliases than
+the original internal injection; neither construction is claimed optimal or stronger
+in numerical margin. Their value here is to locate the residual obstruction as cycles
+jointly with carries, rather than call exhausted reserved slots an intrinsic obstacle.
+
+### Repair of the E436 collision and its limitation
+
+In the SAME saved MSTD witness, the two relations have positive-word endpoints
+
+    u_14+u_0 -- u_2+u_12,
+    u_14+u_0 -- u_3+u_11.
+
+The three words all represent the sum14 in H; their canonical pair is2u_7. Root this
+two-edge tree at u_14+u_0. The first edge uses slot(u_2,j_12,0), the second uses
+slot(u_3,j_11,0). Both parents are nonmaximal in E, both words are noncanonical, and the
+slots are distinct and unreserved because F_in=0. Thus the previous two-to-one capacity
+collision is repaired constructively, without changing the semigroup or optimizing roots.
+Only this two-edge block of the large witness is audited; no full large graph is claimed.
+
+On the three OLD selected cuts the reserved-graph exchange pays0 of8 exterior relations
+at19,1 of1 at40, and1 of2 at114. At19 the graph has3 exhausted vertices and cycle rank6,
+so all8 remain. This is not a failure of the lemma or of JD: its original margin is1.
+The other margins remain2 and6. These checks audit the construction, not universal sign.
+
+### Global review / stop refinement here
+
+The prior concrete collision is resolved, and the all-alias forest has no exhausted-child
+obstruction. But neither normal form supplies a parameter-independent source for the
+remaining finite budget. Do NOT build a graph/root/matching optimizer merely to pay more
+individual edges, or enlarge the closed profile list. The exact next proof question is
+whether cyclic residue completeness and the actual conductor phase force C+Gamma-p_*+V
+to cover K+beta_* globally, allowing compensation between components and debt types.
+It is the SAME unresolved JD sign in a constructive normal form. The old19 and114 cuts
+still require adaptive sharing of unused starts. If this stronger frozen target fails,
+retain unfrozen POOL or E432, and keep weighted full repair and actual arithmetic/integrality
+as the other universal lines. All general assertions here are paper-proved, not Lean checked.

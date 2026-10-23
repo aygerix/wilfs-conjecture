@@ -11,6 +11,7 @@ python3 verify_probe.py --completion-structure-check data/completion_cut_probe.j
 python3 verify_probe.py --completion-pool-check data/completion_pool_probe.jsonl.gz /tmp/wilf-p39-completion-pool.json
 python3 verify_probe.py --completion-pool-check data/completion_frozen_probe.jsonl.gz /tmp/wilf-p39-completion-frozen.json
 python3 verify_probe.py --joint-defect-check data/completion_frozen_probe.jsonl.gz data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-joint-defect.json
+python3 verify_probe.py --exterior-forest-check data/completion_cut_probe.jsonl.gz data/mstd_shadow_audit.json /tmp/wilf-p39-exterior-forest.json
 python3 verify_probe.py --mstd-shadow-check data/mstd_shadow_probe.json.gz /tmp/wilf-p39-mstd-shadow.json
 python3 verify_probe.py --partial-support-check data/partial_support_probe.jsonl.gz /tmp/wilf-p39-partial-support.json
 python3 verify_probe.py --residue-check data/residue_descent_audit.jsonl.gz /tmp/wilf-p39-residue-summary.json

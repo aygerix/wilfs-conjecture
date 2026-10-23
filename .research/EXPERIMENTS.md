@@ -1135,3 +1135,59 @@ python3 verify_probe.py --mstd-shadow-check /tmp/mstd-shadow.json /tmp/mstd-shad
 For the sanitizer compile with -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer,
 then compare its full stdout to the normal result. Main JD+ remains unproved; next is the
 joint exchange lemma, not more instances or independent-root optimization.
+
+## E437 — exact forest-slot exchange audit (2026-10-23)
+
+**Scope:** audit a uniform constructive partial cancellation for E435 JD+. The remaining
+cycle-and-carry inequality would imply JD+/Wilf with the recorded reductions. No sign
+theorem is inferred from these cases. This uses ONLY the old selected cuts at19,40,114
+and the existing MSTD witness's two-edge collision block; no new profile or optimizer.
+
+Fejer, project littlewood-paley-8375, us-east1-b, ~/wilf/p39, Python3.12.3 stdlib.
+Inputs are existing exact C flow certificates in completion_cut_probe.jsonl.gz and the
+previous independently checked mstd_shadow_audit.json. The checker independently rebuilds
+membership and canonical factorizations for the three small S, rechecks the saved flow/cut
+certificates, builds word vertices/parallel labeled edges, constructs a spanning forest,
+and explicitly exports each edge-to-slot assignment. It verifies slot eligibility, no slot
+reuse, no internal-reservation reuse, cycle counts, exhausted-vertex counts and exact
+preservation of the joint margin. It performs no root/forest optimization.
+
+Reserved exterior graph results:
+
+| Old cut | Edge debt | Paid | Cycles | Extra exhausted vertices | Unpaid | JD margin |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+|19, whole tile|8|0|6|2|8|1|
+|40,7 cells|1|1|0|0|0|2|
+|114,34 cells|2|1|1|0|1|6|
+
+All-alias graph, internal reservations undone:
+
+| Old cut | All alias edges | Vertices | Components | Tree payments | Remaining cycles | Gamma left |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+|19|12|3|1|2|10|2|
+|40|1|2|1|1|0|1|
+|114|4|2|1|1|3|3|
+
+Every component has at most one canonical vertex and every noncanonical vertex has
+positive FULL Gamma capacity, as the general paper proof requires. Raw carry debts
+remain6,0,54. The resulting total debt/resource pairs are16/17,0/2,57/63. These are exactly
+the same joint margins, not improved inequalities. In particular the simple all-alias
+forest pays fewer relations at19 than the earlier4-slot internal injection.
+
+For the MSTD block, root at u_14+u_0 and use distinct slots(u_2,j_12,0) and(u_3,j_11,0).
+The local check verifies the four relevant canonical mixed pairs, the noncanonical target
+words and their canonical replacement2u_7, the nonmaximal unit parents via canonical squares,
+and disjointness from internal reservations. No full MSTD graph or new large membership
+computation was run. The existing large-S membership proof remains E436's saved audit.
+
+The new mode and the old --joint-defect-check both passed. There is no RNG, solver, new C
+code or new sanitizer path. Runtime was not instrumented; the launch ETA was under a minute.
+Data are exterior_forest_audit.json and checkpoint_437_checks.log. run_checks.sh includes
+the new audit. Reproduce on Fejer:
+
+```sh
+python3 verify_probe.py --exterior-forest-check data/completion_cut_probe.jsonl.gz data/mstd_shadow_audit.json /tmp/wilf-p39-forest.json
+```
+
+Stop at this structural accounting; do not launch more profile/graph optimizers to increase
+paid-edge counts without a candidate uniform surplus inequality.

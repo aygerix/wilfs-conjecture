@@ -1208,3 +1208,16 @@ Base29 suffices here by a direct digit argument; the semigroup lift and its repr
 independent obstruction to L_out<=C are proved in E436. Novelty of that application has
 not been established. The failed ETH mirror returned404; the official journal PDF was read.
 The source is used for the classical construction, not to assert Wilf or JD+ positivity.
+
+### E437: elementary forest payment, no external positivity theorem (2026-10-23)
+
+The spanning-forest orientation, cycle count edges-vertices+components and distinct-slot
+argument are elementary and proved directly in PROOFS E437. No novelty is claimed for
+these graph principles. Record searches for forest/cycle/cross-word statements found the
+older restricted-dimensional forest work and E430's DIFFERENT canonical Hasse-graph cycle
+count; neither is substituted for the present all-alias graph. Web queries covered Wilf
+boundary/difference-set/forest and monomial-order-ideal formulations, plus GitHub, arXiv
+and conjectures.io discovery. They supplied no external theorem USED for the remaining
+cycle-and-carry sign. This is not an exhaustive-search or absence-of-literature claim.
+The general partial allocation and its limitations are self-contained; the classical
+MSTD construction remains attributed in E436 above.
