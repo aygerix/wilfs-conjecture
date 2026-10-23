@@ -783,3 +783,79 @@ independent support reconstructions, alongside the unchanged264 prior LP optima 
 ray/witness/flow audits. The new C geometry path passed ASan/UBSan on the63 weighted endpoint,
 the42 cycle endpoint and a zero-step weighted-climb seed. Logs: data/checkpoint_430_checks.log
 and data/support_sanitizer.log. No E430 paper statement is newly Lean checked.
+
+## E431 — direct residue-descent audit and primitive tangent realizations (2026-10-23)
+
+Scope: the universal BACKWARDS-WILF arithmetic/descent line. General RD, if proved on the
+remaining domain, implies Wilf by multiplicity induction and the proved complements. No Q5
+descendant or restricted positive-family theorem is activated. No new LP optimization was used.
+
+New pure-C paths in upper_scan.c:
+- `--residue-audit G...` reconstructs m,e,c,g,W and MINIMAL generators of S, then forms T from
+  only those generators' residues and reconstructs T at its actual smaller multiplicity.
+  It supports S=ℕ and redundant input lists. A potentially negative W stops with an explicit
+  independent-audit message before the search's diagnostic filters can discard it.
+- `--residue-climb ITER m g...` is bounded local falsification of general RD, retaining
+  c>4m,3e<m,W(T)>0 and the necessary failure condition 2W(S)<(e(T)-2)c(T). Neighbors change
+  one nonmultiplicity input to each integer in [m+1,8m], or change the multiplicity to each
+  integer from3 through min(255,smallest_other_input-1), keeping it the least input and requiring
+  the reconstructed open-domain conditions. It minimizes (W(S)-W(T))/c(S), then W(S)/c(S).
+  Actual minimal e may change. It has no height/depth filter; these generator/step bounds ARE
+  finite and no completeness is claimed outside them.
+
+A scan of EXISTING36 transport seeds has13 with W(T)>0. The elementary genus bound alone
+excludes12 of them from an RD failure. The sole survivor of that bound is the existing77case.
+The corrected8-step-cap descent from <77,102,111,121,126,133,134,137> terminates immediately
+at a local optimum:3,864 attempted neighbors,0 passing the filter; W239,W(T)110,margin129.
+This supplies no meaningful evidence for RD and is CLOSED. A preliminary unfiltered19case
+test also stopped immediately (418 attempts,359 accepted), but was already covered by the
+generic bound; its historical log predates the new bound filter and the current command
+intentionally rejects that seed. No enlargement of either positive diagnostic is proposed.
+Raw logs: data/residue_filtered_climb.log and data/residue_descent_climb.log.
+
+`verify_probe.py --residue-check INPUT OUTPUT` uses independent integer membership DP, extracts
+minimal generators from the input list, reconstructs Apéry sets at the common original modulus,
+and checks the direct combined payment identity. Nine saved regressions include ℕ,2-generators,
+ordinary S, the old RD′ failure, the old margin1 example, the77case and redundant input96=2*48
+for <19,26,27,48>. The last must NOT contribute residue1 to T. The audit also checks K_s>=1
+for s!=0 and the generic genus bound. Exact data: data/residue_descent_audit.jsonl.gz and data/residue_descent_audit_report.json. These are definition/accounting regressions, not9 new cases supporting universal RD.
+
+### Primitive tangent lemma and monotonicity counterexample
+
+The paper lemma in PROOFS E431 gives a uniform sufficient bound
+L=1 mod m, L>2m(m-1)||v||_infinity. It preserves all primitive/tight data, largest residue,
+canonical factorizations and feasibility of every seed unpaid vector. Exact change is H.v.
+The independent `--tangent-check INPUT OUTPUT` checks membership, every tight/non-tight pair,
+the canonical tile, explicit representative formulas, objective differences and repair caps
+and inequalities. Four saved cases:
+
+| seed | L | v in primitive residue order | before W | after W | unpaid mass |
+| --- | ---: | --- | ---: | ---: | ---: |
+| 10,17,41 | 11 | 1,1 | 573 | 570 | 0 |
+| 10,17,41 | 181 | 1,1 | 9498 | 9495 | 0 |
+| 10,17,41 | 181 | 0,-1 | 9498 | 9525 | 0 |
+| 13,17,27,29 | 313 | 1,1,1 | 16577 | 16594 | 1 |
+
+The first satisfies all assertions by direct audit although below the coarse sufficient bound.
+The last uses x_2=1, all other x_s=0, already feasible at the seed; certificate objectives are
+16573 and16590, respectively. All other cases satisfy the coarse bound. Raw bundled seeds and
+actual realizations: data/primitive_tangent.jsonl.gz; exact derived tables: data/primitive_tangent_audit.json.
+No solver status or float is used for these conclusions. The unbounded -3N drop is a paper
+consequence of the general lemma, not a finite sample promoted to a theorem.
+
+Reproduce in ~/wilf/p39:
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+./repair_scan --residue-audit 19 26 27 48 96
+./repair_scan --residue-climb 8 77 102 111 121 126 133 134 137
+python3 verify_probe.py --residue-check data/residue_descent_audit.jsonl.gz /tmp/residue-summary.json
+python3 verify_probe.py --tangent-check data/primitive_tangent.jsonl.gz /tmp/tangent-summary.json
+```
+
+The new checks are in run_checks.sh. The existing264 LP optima are not being rerun to inflate
+this result: their model/audit paths were not changed. C ASan/UBSan checks passed on ℕ,
+redundant inputs, a deep realization and all3,864 neighbors of the corrected bounded diagnostic.
+Logs: data/checkpoint_431_checks.log and data/residue_sanitizer.log. The old C seed-export path
+also passed a fresh independent reconstruction; these are not additional LP optimizer calls.
+E431 general mathematical statements remain paper proofs, not Lean checked or novelty claims.

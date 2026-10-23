@@ -1,0 +1,165 @@
+[
+  {
+    "seed": [
+      10,
+      17,
+      41
+    ],
+    "L": 11,
+    "v": [
+      1,
+      1
+    ],
+    "H": [
+      24,
+      -27
+    ],
+    "h": [
+      0,
+      1,
+      2,
+      3,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3
+    ],
+    "before_W": 573,
+    "after_W": 570,
+    "change": -3,
+    "unpaid_mass": "0",
+    "before_J": "573",
+    "after_J": "570",
+    "negative_strict_primitive_rows": [],
+    "negative_cap_residues": [
+      6
+    ],
+    "coarse_bound_applies": false
+  },
+  {
+    "seed": [
+      10,
+      17,
+      41
+    ],
+    "L": 181,
+    "v": [
+      1,
+      1
+    ],
+    "H": [
+      24,
+      -27
+    ],
+    "h": [
+      0,
+      1,
+      2,
+      3,
+      2,
+      3,
+      4,
+      1,
+      2,
+      3
+    ],
+    "before_W": 9498,
+    "after_W": 9495,
+    "change": -3,
+    "unpaid_mass": "0",
+    "before_J": "9498",
+    "after_J": "9495",
+    "negative_strict_primitive_rows": [],
+    "negative_cap_residues": [
+      6
+    ],
+    "coarse_bound_applies": true
+  },
+  {
+    "seed": [
+      10,
+      17,
+      41
+    ],
+    "L": 181,
+    "v": [
+      0,
+      -1
+    ],
+    "H": [
+      24,
+      -27
+    ],
+    "h": [
+      0,
+      0,
+      0,
+      0,
+      -2,
+      -2,
+      -2,
+      -1,
+      -1,
+      -1
+    ],
+    "before_W": 9498,
+    "after_W": 9525,
+    "change": 27,
+    "unpaid_mass": "0",
+    "before_J": "9498",
+    "after_J": "9525",
+    "negative_strict_primitive_rows": [
+      5,
+      23,
+      27,
+      31
+    ],
+    "negative_cap_residues": [],
+    "coarse_bound_applies": true
+  },
+  {
+    "seed": [
+      13,
+      17,
+      27,
+      29
+    ],
+    "L": 313,
+    "v": [
+      1,
+      1,
+      1
+    ],
+    "H": [
+      -20,
+      50,
+      -13
+    ],
+    "h": [
+      0,
+      1,
+      2,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3
+    ],
+    "before_W": 16577,
+    "after_W": 16594,
+    "change": 17,
+    "unpaid_mass": "1",
+    "before_J": "16573",
+    "after_J": "16590",
+    "negative_strict_primitive_rows": [],
+    "negative_cap_residues": [],
+    "coarse_bound_applies": true
+  }
+]

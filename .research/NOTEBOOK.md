@@ -5151,3 +5151,39 @@ weighted full coupling, and boundary/residue counting as distinct lines. Require
 actual candidate report to state the shape, conductor-phase SUPP, and flat exclusions separately.
 This is a policy correction within BACKWARDS-WILF, not a return to false CASEB-FLAT or a fixed
 height/depth program. Exact statements and reproduction are in PROOFS/EXPERIMENTS E430.
+
+
+## 2026-10-23 05:29 EDT — E431: actual integer directions, not sign-preserving scaling
+
+Progress: proved a general integer-realization lemma for primitive directions annihilating
+inner primitive trades. L=1 mod m and L>2m(m-1)||v||∞ preserve canonical words, all tight data,
+largest residue and every seed unpaid vector. Exact objective change is H.v. The proof uses
+length<=m-1 minimum words, strict seed gaps>=m and the explicit largest-value gap. It applies
+without embedding-dimension, height or depth bounds; the four checks include signed v and a
+nonzero repair. Scaling does NOT transfer the sign of a finite real LP value: C is not scaled.
+
+New verified failure: common positive primitive shifts can decrease W even with all these
+invariants fixed. <10,187,451> -> <10,197,461> gives573->570. The general lemma yields a
+-3N decrease for every N>=1, while both defects stay positive. This is a diagnostic against
+universal monotonicity, not a new e3 project or a Wilf/RD failure. Negative directions in
+this example are forced to use another maximal-residue cap in any actual-domain coefficient
+allocation; primitive positivity and strict exits alone cannot match H. The necessary cap
+inequality is recorded separately from the unresolved finite constant payment.
+
+General RD was audited through the direct Apéry-shift budget, with no Q5 restriction. The
+first19seed diagnostic was redundant by the elementary genus bound, and the corrected77case
+has0 admissible neighbors. Both are closed; no positive count is offered as new evidence for
+RD. Minimal generators must be extracted before reducing residues (redundant96 would falsely
+add residue1). Also clarified the older NoWrap reference: U=T=ℕ supplies that Lean hypothesis;
+T=ℕ alone does not. Neither original Lean code nor an established theorem was changed.
+
+Global review after the two attempts: actual arithmetic now provides an exact way to test
+coefficient/directional shortcuts on genuine semigroups, rather than excuse failures as
+fractional artifacts. That does NOT settle the finite sign or yield a uniform allocation.
+Kill primitive-monotone lifting, source-only allocation without mandatory cap loads, and more
+RD positive examples. Continue the advisor's global primitive boundary/residue programme:
+construct cap loads and boundary/trade weights meeting both coefficient matching AND the
+finite budget C+weighted repair loss. Do not let the realization lemma become another
+recession-only project. The three standing lines (boundary/residue counting, full weighted
+coupling and actual arithmetic/integrality) remain distinct and active. No new subagents or
+solver optimization, no new manuscript, no universal proof/counterexample claim.

@@ -17,6 +17,9 @@
  * --supp-audit m g...: canonical support/column counts and SUPP-WILF identities.
  * --supp-climb weighted|cycle ITER m g...: bounded local falsification of
  *   the weighted support budget or proposed cycle-excess bound; no LP solver.
+ * --residue-audit G...: reconstruct S and T from MINIMAL-generator residues.
+ * --residue-climb ITER m g...: bounded general RD falsification, all heights/
+ *   depths, retaining c>4m,3e<m,W(T)>0 and the necessary genus-bound filter.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * --weighted-search NS SEED [MIN_E]: test W-e sum U>=0, stopping at first failure.
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
@@ -83,6 +86,43 @@ static int last_e,last_c,last_q,last_h;
 static uint64_t rnd(void){state^=state>>12;state^=state<<25;state^=state>>27;return state*2685821657736338717ULL;}
 static int pick(int n){return (int)(rnd()%(unsigned)n);}
 static int root(int *p,int a){while(p[a]!=a){p[a]=p[p[a]];a=p[a];}return a;}
+typedef struct {int m,e,c,G[MM];ll genus,W;} ResidueStats;
+/* Generic generator reconstruction, also when the multiplicity drops below the
+ * original m. Extract MINIMAL generators before forming their residues: residues
+ * of redundant input generators would define a different, generally larger T. */
+static int residue_stats(int *G,int ng,ResidueStats *R){
+ int m=INT_MAX;for(int j=0;j<ng;j++){if(G[j]<=0)return 0;if(G[j]<m)m=G[j];}
+ if(m<1||m>=MM)return 0;int w[MM],done[MM]={0},primitive[MM]={0};
+ for(int s=0;s<m;s++)w[s]=s?INT_MAX/4:0;
+ for(int k=0;k<m;k++){
+  int u=-1;for(int s=0;s<m;s++)if(!done[s]&&(u<0||w[s]<w[u]))u=s;
+  if(w[u]==INT_MAX/4)return 0;done[u]=1;
+  for(int j=0;j<ng;j++){if(G[j]>=INT_MAX/4-w[u])return 0;int v=w[u]+G[j],s=v%m;if(v<w[s])w[s]=v;}
+ }
+ int M=0;ll genus=0;for(int s=1;s<m;s++){if(w[s]>M)M=w[s];genus+=w[s]/m;primitive[s]=1;}
+ for(int i=1;i<m;i++)for(int j=i;j<m;j++){int s=(i+j)%m;if(s&&w[i]+w[j]==w[s])primitive[s]=0;}
+ *R=(ResidueStats){.m=m,.e=1,.c=M-m+1,.genus=genus};R->G[0]=m;
+ for(int s=1;s<m;s++)if(primitive[s])R->G[R->e++]=w[s];
+ R->W=(ll)R->e*(R->c-genus)-R->c;return 1;
+}
+static int residue_compare(int *G,int ng,ResidueStats *S,ResidueStats *T){
+ if(!residue_stats(G,ng,S))return 0;int A[MM];A[0]=S->m;
+ for(int j=1;j<S->e;j++)A[j]=S->G[j]%S->m;
+ if(!residue_stats(A,S->e,T))return 0;
+ if(S->W<0||T->W<0){
+  ResidueStats *R=S->W<0?S:T;
+  fprintf(stderr,"POTENTIAL_NEGATIVE_W needs independent membership audit: W=%lld G=[",R->W);
+  for(int j=0;j<R->e;j++)fprintf(stderr,"%s%d",j?",":"",R->G[j]);fprintf(stderr,"]\n");exit(4);
+ }
+ return 1;
+}
+static void print_residue_stats(ResidueStats *S,ResidueStats *T){
+ printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"G\":[",S->m,S->e,S->c,S->genus,S->W);
+ for(int j=0;j<S->e;j++)printf("%s%d",j?",":"",S->G[j]);
+ printf("],\"residue\":{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"G\":[",T->m,T->e,T->c,T->genus,T->W);
+ for(int j=0;j<T->e;j++)printf("%s%d",j?",":"",T->G[j]);
+ printf("]},\"margin\":%lld}\n",S->W-T->W);fflush(stdout);
+}
 /* Canonical tile uses primitive RESIDUE order and first-coordinate lex minimum,
  * matching verify_probe.factor_basis. No restriction on factorization height. */
 static ll supp_dep,supp_support,supp_credit,supp_kappa;
@@ -375,6 +415,33 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>2&&!strcmp(argv[1],"--residue-audit")){
+  int G[MM],ng=argc-2;if(ng>MM)return 2;for(int j=0;j<ng;j++)G[j]=atoi(argv[j+2]);
+  ResidueStats S,T;if(!residue_compare(G,ng,&S,&T))return 2;print_residue_stats(&S,&T);return 0;
+ }
+ if(argc>5&&!strcmp(argv[1],"--residue-climb")){
+  int limit=atoi(argv[2]),ng=argc-3,G[MM];if(limit<0||limit>30||ng>MM)return 2;
+  for(int j=0;j<ng;j++)G[j]=atoi(argv[j+3]);long calls=0,accepted=0;
+  for(int iter=0;;iter++){
+   ResidueStats S,T;if(!residue_compare(G,ng,&S,&T)||S.m!=G[0]||3*S.e>=S.m||S.c<=4*S.m||T.W<=0||2*S.W>=(ll)(T.e-2)*T.c)return 2;
+   ll num=S.W-T.W;int den=S.c;ll W0=S.W;int c0=S.c;
+   printf("RESIDUE_CLIMB iter=%d calls=%ld accepted=%ld score=%lld/%d\n",iter,calls,accepted,num,den);print_residue_stats(&S,&T);
+   if(num<0||iter==limit){printf("RESIDUE_STOP reason=%s\n",num<0?"descent_inequality_failure":"iteration_limit");return 0;}
+   int found=0,BG[MM];
+   for(int a=0;a<ng;a++){
+    int lo=a?G[0]+1:3,hi=a?8*G[0]:MM-1;if(!a)for(int b=1;b<ng;b++)if(G[b]-1<hi)hi=G[b]-1;
+    for(int v=lo;v<=hi;v++){
+     if(v==G[a])continue;int A[MM];memcpy(A,G,ng*sizeof(int));A[a]=v;calls++;
+     if(!residue_compare(A,ng,&S,&T)||S.m!=A[0]||3*S.e>=S.m||S.c<=4*S.m||T.W<=0||2*S.W>=(ll)(T.e-2)*T.c)continue;accepted++;
+     ll nn=S.W-T.W;int dd=S.c;
+     if((__int128)nn*den<(__int128)num*dd||((__int128)nn*den==(__int128)num*dd&&(__int128)S.W*c0<(__int128)W0*S.c)){num=nn;den=dd;W0=S.W;c0=S.c;memcpy(BG,A,ng*sizeof(int));found=1;}
+     if(nn<0){print_residue_stats(&S,&T);printf("RESIDUE_STOP reason=descent_inequality_failure calls=%ld\n",calls);return 0;}
+    }
+   }
+   if(!found){printf("RESIDUE_STOP reason=local_optimum calls=%ld accepted=%ld\n",calls,accepted);return 0;}
+   memcpy(G,BG,ng*sizeof(int));
+  }
+ }
  if(argc>6&&!strcmp(argv[1],"--supp-climb")){
   /* Bounded falsification only. mode=cycle tests Delta<=binom(d,2);
    * mode=weighted tests Gamma.mu>=support_sum after the proved shape/flat

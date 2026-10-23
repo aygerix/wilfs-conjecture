@@ -985,6 +985,11 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
     Eliahou-type and Kunz-face arguments is UNVERIFIED; the Kunz-face method of BGOW is computational and per face.
 
 ### Search 2026-10-21: residue reduction T = ⟨m, g_i mod m⟩, descent below the multiplicity, truncated sumsets
+- Rechecked 2026-10-23 for E431: exact residue-reduction/primitive-monotonicity queries and
+  Wilf plus blowup/Lipman/shifted-family queries supplied no theorem used to establish RD.
+  Ordinary shifted-family results cannot be substituted for the fixed-m operation which
+  shifts only the OTHER primitives. The E431 identity, integer tangent realization and
+  counterexample are checked directly; no novelty or exhaustive-literature claim is made.
 - Queries: "Wilf conjecture numerical semigroup generators reduced modulo multiplicity"; "Wilf shifted family
   ⟨n, n+r_1, …⟩"; "Wilf induction on multiplicity, smaller multiplicity, oversemigroup"; site:conjectures.io OR
   site:preprints.org "Wilf 2026"; GitHub `gh search repos "wilf conjecture"` (only our own private repo).

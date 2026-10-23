@@ -34,6 +34,75 @@ def factor_basis(D):
         z[s]=min(candidates)  # lex-least factorization, a monomial order
     return gr,z
 
+def membership_stats(G,apery_modulus=None):
+    """Membership DP independent of the C shortest-path reconstruction."""
+    G=sorted(set(G));m=G[0];assert m>0
+    common=0
+    for g in G:common=gcd(common,g)
+    assert common==1
+    n=apery_modulus or m;N=max(m,n)*max(G)+max(m,n)
+    member=bytearray(N+1);member[0]=1
+    for x in range(1,N+1):member[x]=any(x>=g and member[x-g] for g in G)
+    lastgap=max((x for x in range(N+1) if not member[x]),default=-1);c=lastgap+1
+    assert N-lastgap>=m and member[n]
+    genus=sum(not v for v in member[:c])
+    minimal=[g for g in G if not any(member[a] and member[g-a] for a in range(1,g//2+1))]
+    w=[next(x for x in range(s,N+1,n) if member[x]) for s in range(n)]
+    return {'m':m,'e':len(minimal),'c':c,'g':genus,'W':len(minimal)*(c-genus)-c,'G':minimal,'w':w}
+
+def audit_residue_comparison(C):
+    S=membership_stats(C.get('input_G',C['G']));m=S['m']
+    T=membership_stats([m]+[g%m for g in S['G'] if g!=m],m)
+    for actual,reported in [(S,C),(T,C['residue'])]:
+        for key in ('m','e','c','g','W','G'):
+            assert actual[key]==(sorted(reported[key]) if key=='G' else reported[key]),(key,actual,reported)
+    assert T['e']<=S['e'] and (m==1 or T['m']<m)
+    K=[]
+    for w,tau in zip(S['w'],T['w']):
+        k,rem=divmod(w-tau,m);assert rem==0 and k>=0;K.append(k)
+    assert all(k>=1 for k in K[1:])
+    cost=S['e']*sum(K)
+    credit=(S['e']-1)*(S['c']-T['c'])+(S['e']-T['e'])*(T['c']-T['g'])
+    assert C['margin']==S['W']-T['W']==credit-cost
+    assert 2*T['W']<=(T['e']-2)*T['c']
+    return {'G':S['G'],'residue_G':T['G'],'margin':C['margin'],'shifts':K,'cost':cost,'credit':credit,
+            'generic_bound_excludes_failure':2*S['W']>=(T['e']-2)*T['c']}
+
+def audit_primitive_tangent(C):
+    D,B,A=C['seed'],C['before'],C['after'];L=C['L'];v=C['v']
+    assert type(L) is int and all(type(a) is int for a in v)
+    for S in (D,B,A):audit(S)
+    m,e,r=D['m'],D['e'],D['r'];gr,z=factor_basis(D);d=e-1
+    assert len(v)==d and L>0 and L%m==1
+    assert sorted(B['generators'])==sorted([m]+[L*D['w'][g] for g in gr])
+    assert sorted(A['generators'])==sorted([m]+[L*D['w'][g]+m*v[j] for j,g in enumerate(gr)])
+    h=[sum(z[s][j]*v[j] for j in range(d)) for s in range(m)]
+    for i,j,s,J,*_ in D['pairs']:
+        if not J:assert h[i]+h[j]==h[s]
+    for S in (B,A):
+        assert (S['m'],S['e'],S['r'])==(m,e,r)
+        assert [(i,j,s,J==0) for i,j,s,J,*_ in S['pairs']]==[(i,j,s,J==0) for i,j,s,J,*_ in D['pairs']]
+        assert factor_basis(S)==(gr,z)
+    assert B['w']==[L*w for w in D['w']]
+    assert A['w']==[L*w+m*h[s] for s,w in enumerate(D['w'])]
+    H=[d*m*z[r][j]-e*sum(z[s][j] for s in range(m)) for j in range(d)]
+    change=sum(a*b for a,b in zip(H,v));assert A['W']-B['W']==change
+    x=list(map(F,C.get('unpaid',[0]*m)));assert len(x)==m and x[0]==0
+    for S in (D,B,A):
+        assert all(0<=x[s]<=S['mu'][s] for s in range(m))
+        assert all(x[g]==0 for g in gr)
+        for i,j,s,J,tau,lo,up in S['pairs']:
+            if not J:assert -(up-tau)<=x[i]+x[j]-x[s]<=tau+lo
+    if L>2*m*(m-1)*max(map(abs,v),default=0):
+        assert all(B['mu'][s]>=D['mu'][s] and A['mu'][s]>=D['mu'][s] for s in range(m))
+    negative_strict=[p for p,(i,j,s,J,*_) in enumerate(D['pairs']) if J and (i in gr or j in gr) and h[i]+h[j]-h[s]<0]
+    return {'seed':sorted(D['generators']),'L':L,'v':v,'H':H,'h':h,'before_W':B['W'],'after_W':A['W'],
+            'change':change,'unpaid_mass':str(sum(x)),'before_J':str(B['W']-e*sum(x)),
+            'after_J':str(A['W']-e*sum(x)),
+            'negative_strict_primitive_rows':negative_strict,
+            'negative_cap_residues':[s for s in range(m) if h[s]>h[r]],
+            'coarse_bound_applies':L>2*m*(m-1)*max(map(abs,v),default=0)}
+
 def support_geometry(D):
     """Independent column enumeration for the proved SUPP-WILF filter."""
     m,e,r=D['m'],D['e'],D['r'];gr,z=factor_basis(D);d=e-1
@@ -812,6 +881,13 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1] in ('--residue-check','--tangent-check'):
+        check=audit_residue_comparison if sys.argv[1]=='--residue-check' else audit_primitive_tangent
+        results=[check(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
+        with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)
+        for R in results:print(sys.argv[1],R)
+        print('EXACTLY AUDITED',len(results),'residue comparisons' if sys.argv[1]=='--residue-check' else 'primitive tangent realizations')
+        sys.exit(0)
     if sys.argv[1]=='--lo-only-check':
         count=0
         for line in open_text(sys.argv[2]):

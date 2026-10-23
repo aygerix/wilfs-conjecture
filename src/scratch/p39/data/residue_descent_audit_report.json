@@ -1,0 +1,328 @@
+[
+  {
+    "G": [
+      1
+    ],
+    "residue_G": [
+      1
+    ],
+    "margin": 0,
+    "shifts": [
+      0
+    ],
+    "cost": 0,
+    "credit": 0,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      13,
+      17
+    ],
+    "residue_G": [
+      4,
+      13
+    ],
+    "margin": 0,
+    "shifts": [
+      0,
+      10,
+      7,
+      4,
+      1,
+      11,
+      8,
+      5,
+      2,
+      12,
+      9,
+      6,
+      3
+    ],
+    "cost": 156,
+    "credit": 156,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "residue_G": [
+      1
+    ],
+    "margin": 0,
+    "shifts": [
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "cost": 20,
+    "credit": 20,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      7,
+      11,
+      13,
+      23
+    ],
+    "residue_G": [
+      2,
+      7
+    ],
+    "margin": 4,
+    "shifts": [
+      0,
+      2,
+      3,
+      2,
+      1,
+      2,
+      1
+    ],
+    "cost": 44,
+    "credit": 48,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      7,
+      11,
+      34
+    ],
+    "residue_G": [
+      4,
+      6,
+      7
+    ],
+    "margin": 1,
+    "shifts": [
+      0,
+      2,
+      4,
+      5,
+      1,
+      3,
+      4
+    ],
+    "cost": 57,
+    "credit": 58,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      10,
+      17,
+      41
+    ],
+    "residue_G": [
+      1
+    ],
+    "margin": 48,
+    "shifts": [
+      0,
+      4,
+      8,
+      12,
+      3,
+      7,
+      11,
+      1,
+      5,
+      9
+    ],
+    "cost": 180,
+    "credit": 228,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      19,
+      26,
+      27,
+      48
+    ],
+    "residue_G": [
+      7,
+      8,
+      10,
+      19
+    ],
+    "margin": 20,
+    "shifts": [
+      0,
+      4,
+      3,
+      3,
+      3,
+      3,
+      4,
+      1,
+      1,
+      4,
+      2,
+      4,
+      4,
+      4,
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "cost": 208,
+    "credit": 228,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      19,
+      26,
+      27,
+      48
+    ],
+    "residue_G": [
+      7,
+      8,
+      10,
+      19
+    ],
+    "margin": 20,
+    "shifts": [
+      0,
+      4,
+      3,
+      3,
+      3,
+      3,
+      4,
+      1,
+      1,
+      4,
+      2,
+      4,
+      4,
+      4,
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "cost": 208,
+    "credit": 228,
+    "generic_bound_excludes_failure": true
+  },
+  {
+    "G": [
+      77,
+      102,
+      111,
+      121,
+      126,
+      133,
+      134,
+      137
+    ],
+    "residue_G": [
+      25,
+      34,
+      44,
+      49,
+      56,
+      57,
+      60,
+      77
+    ],
+    "margin": 129,
+    "shifts": [
+      0,
+      2,
+      3,
+      3,
+      2,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      2,
+      3,
+      2,
+      2,
+      3,
+      2,
+      2,
+      3,
+      3,
+      3,
+      2,
+      3,
+      2,
+      2,
+      1,
+      3,
+      2,
+      2,
+      2,
+      3,
+      3,
+      2,
+      3,
+      1,
+      2,
+      2,
+      2,
+      3,
+      2,
+      2,
+      3,
+      3,
+      2,
+      1,
+      3,
+      3,
+      3,
+      3,
+      1,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      3,
+      2,
+      1,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      2,
+      3,
+      3
+    ],
+    "cost": 1488,
+    "credit": 1617,
+    "generic_bound_excludes_failure": false
+  }
+]

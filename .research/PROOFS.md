@@ -5814,8 +5814,10 @@ Then
   (depth four, kernel-checked).
   - Here mult(T) = least element of ⟨A⟩ ∪ {m} = min A, and c(T) = c(S) − mK*. So the class contains S of every
     multiplicity, e.g. any (U=T)&(ALIGN) S with a generator ≡ a (mod m), a ≤ 19.
-- T = ℕ (some a_i = 1) is the NoWrap corollary (2026-10-19, Lean, lean/Wilf/NoWrap.lean), which does not even need
-  (ALIGN). So the new content is T ≠ ℕ.
+- Under the retained hypothesis U=T, the case T=ℕ has σ_s=s and is the NoWrap corollary
+  (2026-10-19, Lean, lean/Wilf/NoWrap.lean), without needing (ALIGN). **Clarification 2026-10-23:**
+  T=ℕ alone is not the Lean NoWrap hypothesis; <10,17,41> has T=ℕ but w_4=34=2*17 has only
+  the residue sum14>=10. The reference here concerns U=T=ℕ, not every S with a generator of residue1.
 - Scope (E379, exhaustive genus ≤ 36): (U=T) holds on ≈ 74% of all S and (U=T)&(ALIGN) on ≈ 25%, with T ≠ ℕ in about
   half of the latter. The identity was asserted on every one.
 
@@ -8498,3 +8500,173 @@ optimizer statuses. They refute this simple decomposition only. The larger conje
 ordinary cost bound P<=rho+T was not refuted by the36 saved examples, but has NO proof and
 the failed L<=rho argument cannot establish it. Do not turn the positive sample into a claim.
 Reproduction, data and the closed search neighborhoods are in EXPERIMENTS E430.
+
+## E431 — integer realization of primitive tangent directions and a descent audit (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup if the general finite allocation, or RD
+on the remaining domain, is proved. Proved reduction from all S to this case: yes (E417/E429
+and the recorded complements; RD implies Wilf by induction on multiplicity). This section
+audits arithmetic/descent ingredients for those universal targets. It proves a general
+realization lemma and refutes primitive-value monotonicity, NOT Wilf or RD. No fixed-height,
+fixed-e or Q5 proof target is activated; concrete examples below falsify universal shortcuts.
+
+### A direct, unsplit residue-descent budget — PROVED identity, sign UNKNOWN
+
+For a proper S let m,e,p_j be its multiplicity, embedding dimension and other MINIMAL
+generators. Put T=<m,p_j mod m>, e_T=e(T), and use Apéry representatives w_s of S and tau_s
+of T with respect to the SAME element m (which need not be T's multiplicity). Define
+
+    K_s=(w_s-tau_s)/m,   Delta_c=c(S)-c(T).
+
+Then K_0=0, K_s>=1 for s!=0, g(S)-g(T)=sum K_s, and
+
+    W(S)-W(T)=(e-1)*Delta_c-e*sum K_s+(e-e_T)*ell(T).       (RD-DIRECT)
+
+Proof: S subset T and both contain m, so the shifts are nonnegative integers. Any factorization
+of w_s over p_j has positive level sum and residue sum at least tau_s, giving K_s>=1. Selmer's
+formula at the common modulus m gives the genus difference; substitute into W=(e-1)c-e*g.
+This is the earlier combined RD identity with the auxiliary U eliminated, not a new sign bound.
+Its advantage is that it cannot silently require either of the previously refuted separate
+payers to be nonnegative. T has smaller multiplicity and e_T<=e, so RD on the remaining domain
+would imply universal Wilf by induction and the proved complements. It remains CONJECTURED.
+
+**Necessary failure filter.** For any numerical semigroup V, ell(V)<=c(V)/2: for each n in
+[0,c-1], n and c-1-n cannot both belong to V, or c-1 would. Thus
+
+    2W(T) <= (e_T-2)c(T).
+
+A failure of RD with W(T)>0 must have 2W(S)<(e_T-2)c(T). This excludes12 of the13 saved
+transport anchors with W(T)>0 from failing RD by this generic bound alone. It is not a new
+Wilf theorem. One corrected bounded C diagnostic from the sole surviving anchor77 has no
+accepted neighbor and is CLOSED. A preliminary19 run was already covered by this generic
+bound. Neither diagnostic supports a general sign claim; do not enlarge them.
+
+Taking residues of REDUNDANT input generators is incorrect. For <19,26,27,48,96>, first remove
+96=2*48; the proper T is <7,8,10,19>, with W(T)=2. Reducing96 as if it were primitive would
+add residue1 and produce a spurious T=ℕ. The new C path extracts minimal generators first.
+
+### Integer realization of zero-trade directions — PROVED on paper
+
+Let S be any proper numerical semigroup of multiplicity m>=2, with primitives p_1,...,p_d
+other than m, d=e-1. Choose a canonical factorization tile z_s, s=0,...,m-1, with z_0=0 and
+w_s=z_s.p. Let r be the largest-Apéry residue. Take an INTEGER vector v in Z^d, and put
+
+    h_s=z_s.v,  V=max_j |v_j|.
+
+Assume v annihilates every INNER PRIMITIVE trade:
+
+    (z_s+e_j-z_t).v=0 whenever w_s+p_j=w_t.                (TANGENT)
+
+For every integer L congruent1 modulo m with L>2m(m-1)V, the two generator sets
+
+    S_L=<m,Lp_1,...,Lp_d>,
+    S_(L,v)=<m,Lp_1+mv_1,...,Lp_d+mv_d>
+
+are genuine numerical semigroups of multiplicity m and embedding dimension e. They have
+exactly the original tight-pair pattern, the same canonical tile and largest residue r, and
+
+    w_s(S_L)=Lw_s,       w_s(S_(L,v))=Lw_s+mh_s.           (REALIZE)
+
+If H=d*m*z_r-e*sum_s z_s (E417), then exactly
+
+    W(S_(L,v))-W(S_L)=H.v.                               (CHANGE)
+
+**Proof.** Every minimum positive-weight word in a nonzero residue has length<=m-1. Otherwise
+two prefix residues repeat; removing their positive-cost cycle produces a cheaper word in
+the same residue. This remains true for the perturbed positive primitive costs. Consequently
+it suffices to compare words in the finite set of length<=m-1 in each residue.
+
+Every factorization of w_s has tight primitive prefixes. Induction on those prefixes and
+(TANGENT) shows its v-weight equals h_s. In particular all equal-cost seed words stay tied;
+this also proves h_i+h_j=h_t for EVERY tight pair, including composite parents.
+Every other candidate word z has seed cost at least w_s+m. Its perturbed excess over z_s is
+
+    L*(z.p-w_s)+m*(z.v-h_s) >= Lm-2m(m-1)V >0.
+
+All costs Lp_j+mv_j exceed m under the stated bound. Thus (REALIZE) follows, and all minimum
+factorizations (hence the canonical tile) are unchanged. A non-tight pair has perturbed gap
+at least m*(L-3(m-1)V)>0, while tight gaps stay0. This preserves minimal primitive residues
+and embedding dimension. Residues are unchanged because L=1 mod m, so gcd remains1.
+For s!=r, the largest-value gap is at least
+
+    L*(w_r-w_s)+m*(h_r-h_s) >= L-2m(m-1)V >0.
+
+Thus r stays largest. Substitute (REALIZE) into E417's exact formula mW=H.p-C; the perturbation
+of p is mv, giving (CHANGE). All quantifiers allow arbitrary m,e,height and depth. The coarse
+bound is sufficient, not necessary; smaller L may be verified directly. No novelty claim is made.
+
+### Feasible unpaid repairs persist — PROVED consequence
+
+Under the same bound, each actual coordinate mu_s of BOTH constructed semigroups is at least
+its seed value. The unperturbed scaling is immediate. For the perturbation, writing M=w_r,
+
+    mu'_s-mu_s=(L-1)*(M-w_s)/m+h_r-h_s.
+
+This is0 for s=r. Otherwise M-w_s>=1, |h_r-h_s|<=2(m-1)V, and L-1>=2m(m-1)V, proving
+nonnegativity. The unpaid tight-row allowances alpha,kappa depend only on m,r, and the tight
+pattern is unchanged. Therefore EVERY real feasible seed unpaid vector x remains feasible
+for both actual integer semigroups, with certificate y'=mu'-x. In particular
+
+    J(S_(L,v),x)-J(S_L,x)=H.v.
+
+This realizes finite directional differences and existing weighted repairs at arbitrarily
+large depth. It does NOT preserve the SIGN of a fractional actual/certificate objective under
+scaling: the actual objective acquires a large homogeneous contribution. A negative real
+finite LP minimum still cannot be called a genuine counterexample by clearing denominators.
+In fact mW(S_L)=L*(mW(S)+C)-C, with C=(e-2)m(m-1)/2. The affine correction is not multiplied
+by L, which is exactly why scaling is not a sign-preserving integrality argument.
+
+### Common positive primitive shifts need not increase W — REFUTED, unbounded drops
+
+Use the genuine seed <10,17,41>. In increasing primitive RESIDUE order p=(41,17), its canonical
+tile has largest residue r=3, z_r=(3,0), sum z_s=(12,9), so H=(24,-27). All Apéry factorizations
+are unique. For v=(1,1), h=(0,1,2,3,2,3,4,1,2,3) and H.v=-3.
+
+The small directly checked realization L11 gives
+
+    <10,187,451>: c1344,g705,e3,W573,
+    <10,197,461>: c1374,g726,e3,W570.
+
+Both nonmultiplicity primitives increased by10 while W decreased by3, with the tight pattern
+and largest residue unchanged. The coarse theorem applies at L181, giving W9498->9495.
+More generally take v=(N,N), L=180N+1 for ANY N>=1. The theorem gives genuine pairs with
+
+    before W=9450N+48,     after W=9447N+48,
+
+an arbitrarily large decrease -3N. Both numbers are positive. These examples are diagnostics
+for a universal monotonicity assertion, not resistant Wilf cases (e3 is already known).
+The direction eventually leaves the fixed-largest-residue region: h_6=4>h_r=3. Hence a
+negative finite direction does not contradict E416's positive recession theorem.
+
+The primitive affine objective can therefore have negative coefficients and decrease when
+ALL primitive values increase. An allocation must retain the other largest-value/residue
+constraints; neither positive primitive lower bounds alone nor a monotone lift argument pays
+the finite correction. This does not refute RD, whose full residue reduction is a different
+comparison. Do not turn the failed monotonicity into an unsupported claim that RD is impossible.
+
+### A necessary cap load in an actual-coordinate allocation — PROVED linear consequence
+
+Write a primitive actual-domain coefficient certificate as
+
+    H=sum_strict lambda_b*n_b+sum_tight lambda_b*n_b
+        +sum_j eta_j*e_j+beta*z_r+sum_s nu_s*(z_r-z_s),
+
+where strict lambda,eta,beta,nu are nonnegative and tight lambda are signed. Let v annihilate
+the tight trades and satisfy v_j>=0, n_b.v>=0 on strict primitive exits, z_r.v>=0. Taking
+the dot product with v gives the necessary inequality
+
+    sum_s nu_s*max(0,(z_s-z_r).v) >= -H.v.
+
+Every other contribution is nonnegative; retain the negative cap terms on the left. This is
+a necessary coefficient test, not a proof that any finite constants are paid. For the10seed
+and v=(1,1), every strict primitive row has nonnegative dot product, and the ONLY negative
+cap direction is residue6, with (z_6-z_r).v=1. Thus every such actual-domain certificate
+requires nu_6>=3. A source-only allocation omitting these cap rows cannot even match H.
+The checker independently reports all negative strict/cap directions. This concrete obstruction
+explains why primitive positivity/strict exits must be coupled to other maximal Apéry residues;
+it does not supply the still-missing uniform allocation or a new regional sign theorem.
+
+**Checks/status.** Nine independent membership-based residue comparisons and four tangent
+realizations are saved, including a signed v and a nonzero seed repair x_2=1 for <13,17,27,29>.
+The last persists at L313 and after shifting all three primitives by13; its mass is1 in both.
+Paper statements are not Lean checked. Reproduction and exact data are in EXPERIMENTS E431.

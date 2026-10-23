@@ -283,3 +283,22 @@ cannot prove it.
 criterion. Their positive certificate values are not evidence from unresolved actual Wilf cases.
 The old63 height3 case survives the shape-only filter but is also excluded by the residue-aware
 SUPP bound (kappa8<Dep42). Always distinguish those criteria. No enlarged positive-anchor survey.
+
+## E431 — common primitive-lift monotonicity is false (2026-10-23)
+
+Increasing EVERY nonmultiplicity primitive by m, keeping m fixed, need not increase W even
+when e, the exact tight pattern, the canonical tile and the largest residue remain unchanged:
+<10,187,451> has c1344,g705,W573, while <10,197,461> has c1374,g726,W570. Both have e3.
+The primitive coefficient vector is H=(24,-27), so the direction(1,1) changes W by-3.
+
+This failure is arbitrarily large. From the seed <10,17,41>, put L=180N+1, then compare
+<10,17L,41L> and <10,17L+10N,41L+10N>. For all N>=1 the exact Wilf numbers are9450N+48
+and9447N+48. PROOFS E431's general zero-trade integer-realization lemma proves the claim;
+independent membership/Apéry audits check the explicit small and coarse-bound realizations.
+This is a failure of the universal monotonicity shortcut, not of Wilf, RD, or positive recession:
+the direction leaves the fixed-largest-residue region eventually. All these e3 examples are
+known Wilf cases; they are not passed off as resistant actual candidates.
+
+Also do not equate T=ℕ with the Lean NoWrap hypothesis without U=T. In <10,17,41>, T=ℕ,
+but w4=34 has only factorization2*17 and residue sum14>=10. The earlier general descent text
+has been clarified to retain U=T when applying NoWrap. The Lean theorem itself is unchanged.

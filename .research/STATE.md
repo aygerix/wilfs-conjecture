@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 04:56 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 05:32 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,15 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E431, new general paper lemma:** any integer primitive direction annihilating the inner
+primitive trades can be realized by genuine semigroups after L=1 mod m, L>2m(m-1)||v||_infinity.
+The tight pattern, largest residue and canonical tile persist, all seed unpaid repairs remain
+feasible, and the exact change is H.v. This realizes DIRECTIONS, not the sign of a fractional
+LP objective. A common positive primitive shift can decrease W by an arbitrarily large amount
+(-3N in an explicit genuine family). Thus monotone primitive lifts cannot fund the finite
+correction. A necessary cap-load inequality now identifies negative primitive directions that
+strict boundary/primitive/depth sources alone cannot match. No global positivity was proved.
 
 **E430 strategy correction:** all36 saved transport anchors already satisfy the proved SUPP-WILF
 shape exclusion. Their later positive certificate values are not evidence from resistant actual
@@ -182,7 +191,7 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
 | [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--linear-lp FILE` solves a sparse nonnegative-variable CONTINUOUS model and exports primal/dual arrays; upper_dp.py `--axis-face INPUT OUTPUT [SOLVER] [EPSILON=0]` generates E429's exact integer matrix (stdlib, no Python optimizer), and verify_probe.py `--axis-face` audits it. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. `--cap-int-max RES` exports an integer feasibility witness without an LP dual; the checker pairs it with a separate real LP bound when available. `--face-free`, `--face-free-oriented`, and `--face-zero-unpaid` are explicitly weaker diagnostics, never full-model counterexample checks. Independent checker: verify_probe.py (now also audits primitive projection and affine boundary rewriting). |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--axis-seed m g...` exports full seed invariants/tight rows without a solver; upper_dp.py `--axis-climb OUTPUT m g...` performs bounded deterministic generator +/-m descent in Omega/c using this exporter and the C flow solver. `--axis-flow FILE` returns an integer min-cost flow and exact residual dual potentials for E422–E424; `upper_dp.py --axis-transport INPUT OUTPUT [SOLVER] [--zero-aware]` builds the network and `verify_probe.py --axis-transport INPUT SUMMARY` independently checks it. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--interior-unit-search` filters targets to actual cells extendible by every non-multiplicity primitive; the new104case refutes its proposed unit cap. `--cover` is an UPPER certificate, not a Wilf lower bound. |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport, unpaid-envelope and arithmetic audits. | Pure C. `--residue-audit G...` reconstructs S and its minimal-generator residue semigroup; `--residue-climb ITER m g...` is a bounded RD falsification diagnostic with the necessary genus-bound filter (E431, closed). `--axis-seed m g...` exports full seed invariants/tight rows without a solver; upper_dp.py `--axis-climb OUTPUT m g...` performs bounded deterministic generator +/-m descent in Omega/c using this exporter and the C flow solver. `--axis-flow FILE` returns an integer min-cost flow and exact residual dual potentials for E422–E424; `upper_dp.py --axis-transport INPUT OUTPUT [SOLVER] [--zero-aware]` builds the network and `verify_probe.py --axis-transport INPUT SUMMARY` independently checks it. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--interior-unit-search` filters targets to actual cells extendible by every non-multiplicity primitive; the new104case refutes its proposed unit cap. `--cover` is an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity, equality and transport audits. | `--standalone` needs no Gurobi data. upper_dp.py has rational propagation, `--rigid` closure, and `--chain-budget INPUT MATCHING...` for exact CH/primitive-factorization budgets on audited data. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
@@ -231,6 +240,21 @@ Try to derive a global allocation before any further diagnostic; an abstract tor
 count does not prove the proposed cycle injection. A failed auxiliary inequality must be
 classified separately from an actual Wilf failure. Continue the advisor's finite-surplus strategy.
 
+E431 adds a precise coefficient test: if v>=0 annihilates inner trades and is nonnegative on
+strict primitive exits/depth, then every actual-domain dual requires
+sum_s nu_s*max(0,(z_s-z_r).v)>=-H.v. For the10seed this forces a cap load nu_6>=3. Use such
+mandatory cap directions to constrain a GLOBAL allocation, then prove its COMPLETE finite
+credit pays C plus weighted repair loss; coefficient matching alone remains insufficient.
+Do not require source-only or coordinatewise primitive monotonicity. The integer-realization
+lemma shows these negative directions have genuine arithmetic realizations; integrality does
+not remove the directional obstruction. It still does not transfer a negative finite real value.
+
+The general RD comparison remains unproved and stronger than necessary. Its direct budget is
+(e-1)(c-c_T)+(e-e_T)ell(T)-e*sum((w_s-tau_s)/m). Both short RD diagnostics are CLOSED: the19seed
+was covered by the elementary genus bound; the77seed had0 accepted neighbors after that filter.
+No positive search expansion. Also retain U=T when identifying T=ℕ with the Lean NoWrap branch;
+T=ℕ alone does not satisfy that theorem's hypothesis. The historical text is clarified in E431.
+
 Three distinct lines remain within BACKWARDS-WILF: (1) actual primitive boundary and complete
 cyclic residue payment; (2) full weighted repair coupling and order ideals; (3) arithmetic and
 integrality of the actual domain, including any proposed descent. No fixed embedding dimension,
@@ -247,6 +271,11 @@ The new C modes are --supp-audit and bounded --supp-climb weighted|cycle. They n
 verify_probe.py --support-audit independently checks their geometry. All general semigroup and
 E430 order statements are paper proofs, not newly Lean checked. No complete universal proof or
 genuine counterexample has been obtained. Existing code inventory above remains authoritative.
+E431 adds --residue-audit/--residue-climb,9 independent membership comparisons and4 exact tangent
+realizations, including a signed direction and a nonzero repair. Those checks are now in
+run_checks.sh; C sanitizer checks exercise the new reconstruction and all3,864 filtered neighbors.
+The unchanged264 LP certificates were not rerun merely to inflate this checkpoint. E431's
+paper lemma and necessary cap-load statement are not Lean checked. Logs/data remain under p39/data/.
 
 ## Supporting records — consult as needed
 
