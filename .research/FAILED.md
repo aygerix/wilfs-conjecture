@@ -204,3 +204,15 @@ Independent coin-change factor counts and primitive-multiple subtraction verify 
 the CH identity. The saved <146,147,155,185> likewise has E0 and residual42. This is not a Wilf
 counterexample. Global charging must also use primitive-chain boundary deficits and retain the
 discrete correction; loss cannot be identified with factorization redundancy alone.
+
+### E418: sourcewise nonnegative actual-tight dual contributions after dropping allowance costs — FALSE
+
+In a,q coordinates, discard every nonzero-RHS typed certificate side, and orient each actual tight
+row with RHS tau toward pi*tau>=0. This proposed sourcewise-positive dual rule fails on the genuine
+profile of <19,26,27,48> (m19,e4,c90,W22): Q1 and A=Y indicator{7,8,10} is an exact negative ray of
+that weakened model, slope-3. It violates original actual equalities, e.g.7+7->14; eight steps from
+the seed give diagnostic objective-2 but do NOT give a semigroup. The original full joint and free-side
+joint minima are both22. The65case provides a second diagnostic ray. Do not call either a Wilf or
+full-certificate counterexample. Data/checking: PROOFS E418 and p39/data/allowance_source_probe.jsonl.gz.
+Signed tight-row RHS costs depend on parametrization; E417 primitive coordinates put actual trades
+at RHS0. Discontinue this sourcewise a,q sign restriction rather than patching its examples.

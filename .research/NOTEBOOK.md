@@ -4964,3 +4964,19 @@ assignment witnesses and all consolidated checks pass. Full/reduced C joint path
 with Gurobi leak detection disabled. Data/code stay in existing p39; STATE updated in place. No
 negative ray occurred; its reconstruction path is not claimed tested. Universal goal ACTIVE,
 no full proof or genuine counterexample. Classification: PROGRESS.
+
+### 2026-10-23 00:52 EDT — E416–E418, advisor review incorporated
+
+The advisor's strict recession argument is correct on paper, including the difference-set count
+excluding full-simplex residue tiles for d,H>=2. Credit them explicitly. It settles the behavior at
+infinity, not the finite minimum. The primitive-coordinate formulas also check exactly at fractional
+optima. Added a canonical boundary rewriting proof that preserves affine gaps>=m, plus independent
+integer rewriting audits of every primitive translation. No universal allocation or proof of Wilf.
+
+A proposed shortcut based on nonnegative individual a,q actual-tight RHS contributions is false:
+19case has an exact negative diagnostic ray after also discarding allowance-cost sides. Such points
+violate original actual equalities and are never reified as semigroups. It is a failure of that proposed
+source rule, consistent with the advisor's warning about coordinates. Keep the full coupled target
+provisional; stop accuracy-only matching refinements and profile-list expansion. Next work is an adaptive
+primitive-boundary/residue allocation paying C plus certificate loss, retaining global compensation.
+All proof statements and exact tests are in existing records; STATE remains the sole handoff.

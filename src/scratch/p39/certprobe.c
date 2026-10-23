@@ -8,6 +8,11 @@
  *   Fractional optimal coordinates are not numerical semigroups.
  * --face-primitive: equivalent actual-side constraints using primitive edges;
  *   retains every tight coupled certificate row.
+ * --face-free: diagnostic relaxation retaining only certificate sides with
+ *   zero allowance RHS. A negative value does not refute the full certificate.
+ * --face-free-oriented: additionally orient nonzero-RHS tight actual rows so
+ *   every permitted dual RHS contribution is nonnegative. This diagnostic no
+ *   longer reconstructs numerical semigroups from arbitrary integral points.
  * JSON output includes all primal/dual data for independent rational checking.
  * build: gcc -O2 certprobe.c -I.../include -L.../lib -lgurobi130 -lm -o certprobe
  */
@@ -31,7 +36,7 @@ static Row pairrow(Pair p,int pi,char sense,int rhs){
   if(u==R.n){R.ind[u]=ix[k];R.n++;}R.val[u]+=co[k];}
  return R;
 }
-static void face_report(GRBenv *env,int m,int e,int r,int np,Pair *P,int *gen,int primitive){
+static void face_report(GRBenv *env,int m,int e,int r,int np,Pair *P,int *gen,int primitive,int freeonly,int oriented){
  int nv=2*m-1,qi=m-1,nr=0;
  double *obj=alloc(nv,sizeof(double)),*lb=alloc(nv,sizeof(double)),*ub=alloc(nv,sizeof(double));
  for(int v=0;v<nv;v++)ub[v]=GRB_INFINITY;
@@ -39,9 +44,11 @@ static void face_report(GRBenv *env,int m,int e,int r,int np,Pair *P,int *gen,in
  Row *rows=alloc(3*np+3*m,sizeof(Row));
  for(int p=0;p<np;p++){
   Pair t=P[p];Row R=pairrow(t,p,t.J?GRB_LESS_EQUAL:GRB_EQUAL,t.tau-(t.J!=0));
+  if(oriented&&!t.J&&t.tau)R.sense=t.tau>0?GRB_GREATER_EQUAL:GRB_LESS_EQUAL;
   R.ind[R.n]=qi;R.val[R.n++]=-1;
   if(!primitive||gen[t.i]||gen[t.j])rows[nr++]=R;
   if(!t.J)for(int side=0;side<2;side++){
+   if(freeonly&&(side?t.up:t.lo))continue;
    R=pairrow(t,p,side?GRB_LESS_EQUAL:GRB_GREATER_EQUAL,side?t.up:-t.lo);R.kind=1;
    for(int a=0;a<R.n;a++)R.ind[a]+=m;
    R.ind[R.n]=qi;R.val[R.n++]=-1;rows[nr++]=R;
@@ -58,7 +65,7 @@ static void face_report(GRBenv *env,int m,int e,int r,int np,Pair *P,int *gen,in
  GRBmodel *M=NULL;CHECK(GRBnewmodel(env,&M,"JOINT_FACE",nv,obj,lb,ub,NULL,NULL));
  for(int a=0;a<nr;a++){Row R=rows[a];CHECK(GRBaddconstr(M,R.n,R.ind,R.val,R.sense,R.rhs,NULL));}
  CHECK(GRBoptimize(M));int status;CHECK(GRBgetintattr(M,GRB_INT_ATTR_STATUS,&status));
- printf("{\"relaxation\":\"continuous_kunz\",\"actual_constraints\":\"%s\",\"status\":%d,\"variables\":%d",primitive?"primitive_edges":"all_pairs",status,nv);
+ printf("{\"relaxation\":\"continuous_kunz\",\"actual_constraints\":\"%s\",\"certificate_constraints\":\"%s\",\"status\":%d,\"variables\":%d",oriented?"oriented_primitive_edges":primitive?"primitive_edges":"all_pairs",freeonly?"zero_rhs_only":"full",status,nv);
  if(status==GRB_OPTIMAL){
   double val,*X=alloc(nv,sizeof(double)),*pi=alloc(nr,sizeof(double)),*rc=alloc(nv,sizeof(double));
   CHECK(GRBgetdblattr(M,GRB_DBL_ATTR_OBJVAL,&val));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_X,0,nv,X));
@@ -112,6 +119,8 @@ int main(int argc,char **argv){
  int cone=0,target=0,face=0;
  if(argc>1&&!strcmp(argv[1],"--face")){face=1;argc--;argv++;}
  else if(argc>1&&!strcmp(argv[1],"--face-primitive")){face=2;argc--;argv++;}
+ else if(argc>1&&!strcmp(argv[1],"--face-free")){face=3;argc--;argv++;}
+ else if(argc>1&&!strcmp(argv[1],"--face-free-oriented")){face=4;argc--;argv++;}
  if(argc>1&&(!strcmp(argv[1],"--cone")||!strcmp(argv[1],"--cap"))){cone=!strcmp(argv[1],"--cap")?2:1;argc--;argv++;}
  else if(argc>2&&!strcmp(argv[1],"--cap-max")){cone=2;target=atoi(argv[2]);if(target<1)return 1;argc-=2;argv+=2;}
  if(argc<3){fprintf(stderr,"usage: certprobe m g1 ...\n");return 1;}
@@ -143,7 +152,7 @@ int main(int argc,char **argv){
  for(int s=1;s<m;s++)if(gen[s])printf(",%lld",w[s]);printf("],\"w\":[");for(int s=0;s<m;s++)printf("%s%lld",s?",":"",w[s]);printf("],\"mu\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",mu[s]);
  printf("],\"height\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",height[s]);printf("],\"pairs\":[");
  for(int p=0;p<np;p++){Pair t=P[p];printf("%s[%d,%d,%d,%d,%d,%d,%d]",p?",":"",t.i,t.j,t.s,t.J,t.tau,t.lo,t.up);}
- if(face){printf("],\"face\":");face_report(env,m,e,r,np,P,gen,face==2);printf("}\n");GRBfreeenv(env);return 0;}
+ if(face){printf("],\"face\":");face_report(env,m,e,r,np,P,gen,face>=2,face>=3,face==4);printf("}\n");GRBfreeenv(env);return 0;}
  if(cone){printf("],\"cone\":");cone_report(env,m,q,np,P,mu,gen,order,cone==2,target);printf("}\n");GRBfreeenv(env);return 0;}
  printf("],\"models\":{");
  const char *names[]={"RT3","UA3","TX","AM3","FACE"};

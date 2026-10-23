@@ -445,3 +445,35 @@ Notes
 | E413 | `upper_dp.py --chain-budget INPUT MATCHING...`; `data/{chain_budget.jsonl,checkpoint_413_checks.log}` | (2026-10-22) **Collision-only funding FALSE.** Exact CH budget diagnostic on13 saved S (probe11+stress2). Primitive-multiple subtraction computes nu/chain deficits/excess; independent generator-order coin DP counts commutative Apéry factorizations, verifying E0 iff unique. At <13,17,27,29>,c63,g37,e4,W41,E0,all factor counts1,U2=1,M0,R1: candidate E>=e*m*R fails0<52. Deficits195,281,213 sum689; correction156;13*41=689-156 and13*37=689-156-52. Larger <146,147,155,185> likewise E0,R42. The general exact identity m Phi_Z=sum Def+E-C-e*m*R identifies the global budget but is explicitly NOT a new positivity proof. Charge must include primitive-chain end deficits and the discrete residue correction. E-only and E411-merging-only routes discontinued. | exact structural counterexample to a global charging ingredient; verified budget identity | small exact data analysis; no LP or expanded search |
 | E414 | `certprobe.c --face`; `verify_probe.py`; `data/{joint_face_probe.jsonl.gz,joint_face_verified.log,joint_witness_matching.jsonl}` | (2026-10-23) **Joint actual/capped-certificate LP, no upper depth bound.** Fix each saved genuine tight profile and top residue; optimize actual mu/q and capped y jointly, q>=5, exact actual tight equalities/non-tight gaps>=1, positive Kunz bounds, mu_r0, all tight typed y rows, generator links and y<=mu. Continuous relaxation: fractional actual coordinates are NOT semigroups.31 distinct saved profiles, all positive exact primal=dual minima; examples180,452,3070/3,998,31,60673/44,5027. Seven actual optima fractional;24 integral actual optima independently reconstructed from generators. Four changed integral witnesses have independently checked Phi values281,128,22,5027. Positive regional LP bounds imply CapUA3>=bound and Wilf only on that profile, not Phi_Z>=0 and not all S. No reduction of all S to these31 profiles is claimed. All are diagnostics of a globally quantified dual rule. | general model/duality proof;31 exact unbounded-depth regional optima; no negative primal/ray | recorded first30 LPs each <1s;60s solver ceiling; no expanded genus box |
 | E415 | `certprobe.c --face-primitive`; `verify_probe.py`; `data/{primitive_face_probe.jsonl.gz,primitive_face_verified.log,checkpoint_415_checks.log,joint_face_sanitizer.log}` | (2026-10-23) **Primitive-edge reduction of actual constraints.** On a fixed realizable profile, primitive actual-edge equalities/strict gaps and positive primitive weights imply every actual pair row and all nonprimitive positivity bounds, over R as well as Z. Proof chooses seed primitive factorizations and telescopes; a tight pair has only tight path steps, a non-tight pair has a strict exit or positive edge into0. All coupled certificate rows remain. This identifies O(e*m) primitive-chain exits as sufficient actual-side sources for the dual budget. Five reduced/full LP values match exactly:180,452,3070/3,998,31. Checker verifies all omitted actual inequalities, including at fractional optima. General statement is on paper, not full Lean. No novelty claim for shortest paths or Kunz face machinery. | parameter-independent actual-domain equivalence and boundary-source interpretation;5 exact comparison certificates | small LPs; full/reduced C paths pass ASan/UBSan, Gurobi leak detection disabled |
+
+### E416–E418 — 2026-10-23: advisor recession lemma, affine projection, source-sign falsification
+
+Scope unchanged: universal BACKWARDS-WILF; no family target or profile enumeration. Theory and exact
+counterexample are in PROOFS E416–E418. The user's advisor supplied the strict recession/equality-case
+argument; independently checked on paper. The separate canonical-boundary rewriting lemma preserves
+all affine strict gaps and supports projection into primitive values; not yet Lean formalized.
+
+Fejer, existing Gurobi C API, each discovery LP time limit60s (actual observed runtime .007–.072s).
+`./certprobe --face-free GENERATORS...` removes only allowance-cost certificate sides; all31 existing
+joint-profile seeds passed with positive rational minima. `<13,17>` gives exact0. No universal positivity
+claim follows. `--face-free-oriented` additionally orients actual tight rows by RHS sign. On five selected
+saved profiles this gives3 exact optima and2 unbounded rays.19case slope-3 has Q1,A=Y indicator{7,8,10};
+65case slope-265/2. The oriented model no longer characterizes actual semigroups, and the verifier does
+NOT reconstruct them. Raw data combined in `data/allowance_source_probe.jsonl.gz` (37 model records).
+
+Reproduce the consequential diagnostic:
+
+    ./certprobe --face-free-oriented 19 26 27 48 > /tmp/wilf-oriented.jsonl
+    python3 verify_probe.py /tmp/wilf-oriented.jsonl /tmp/wilf-oriented-summary.json
+
+The upgraded independent verifier constructs lex-least primitive factorizations and their down-set;
+checks H.p, the full column identity, residue/cap distances and depth-independent full-certificate loss;
+and proves every primitive translation from minimal excluded boundary rows by exact integer rewriting.
+It audits68 saved genuine-domain joint points (36 earlier full/reduced,32 new zero-cost diagnostics),
+including rational actual optima. These are not68 distinct profiles. The diagnostic oriented points
+are excluded from this equivalence/reconstruction audit. Separate actual-objective minimization has
+not been added; reported actual values at joint optima must not be mislabeled as actual minima.
+
+`bash run_checks.sh` on fejer passes247 exact primal/dual optima and2 exact diagnostic rays, plus all
+existing assignment/transport/equality, primitive/full comparison, position and BASE checks. The canonical
+log is `data/checkpoint_418_checks.log`. No new large enumeration or backwards-climb run was launched.

@@ -12,19 +12,117 @@ def open_text(path):
 def rat(v):
     return F(str(v)).limit_denominator(1000000)
 
+def primitive_projection(D,x,value,full_certificate):
+    """Audit primitive trades, the column objective, and residue/cap distances.
+
+    x is the one-based (actual a,q,certificate y) vector. Its actual entries
+    may be rational: this calculation does not assert they are a semigroup.
+    """
+    m,e,r=D['m'],D['e'],D['r'];d=e-1
+    gr=sorted(g%m for g in D['generators'] if g!=m)
+    z={0:(0,)*d}
+    for s in sorted(range(1,m),key=lambda s:D['w'][s]):
+        candidates=[]
+        for j,g in enumerate(gr):
+            t=(s-g)%m
+            if D['w'][t]+D['w'][g]==D['w'][s]:
+                v=list(z[t]);v[j]+=1;candidates.append(tuple(v))
+        assert candidates
+        z[s]=min(candidates)  # lex-least factorization, a monomial order
+    cells=set(z.values());assert len(cells)==m
+    for v in cells:
+        for j in range(d):
+            if v[j]:
+                u=list(v);u[j]-=1;assert tuple(u) in cells
+    p=[m*(x[m]-x[g]-int(g>r))+g for g in gr]
+    assert all(v>=m+g for v,g in zip(p,gr))
+    w=[sum(a*b for a,b in zip(z[s],p)) for s in range(m)]
+    unpaid=[F(0)]+[x[s]-x[m+s] for s in range(1,m)]
+    for s in range(1,m):
+        assert w[s]==m*(x[m]-x[s]-int(s>r))+s
+        dist=(r-s)%m
+        assert w[r]-w[s]==m*x[s]+dist
+        assert w[r]-w[s]>=dist+m*unpaid[s]
+    for i,j,s,J,tau,lo,up in D['pairs']:
+        gap=w[i]+w[j]-w[s]
+        assert gap==0 if not J else gap>=m
+    # Minimal excluded words of the canonical down-set give affine boundary
+    # rows. Verify a rewriting certificate for every primitive translation.
+    inverse={v:s for s,v in z.items()};corners={}
+    for v in cells:
+        for j in range(d):
+            b=list(v);b[j]+=1;b=tuple(b)
+            if b in cells or b in corners:continue
+            if not all(tuple(t-int(k==j) for k,t in enumerate(b)) in cells for j in range(d) if b[j]):continue
+            s=sum(t*g for t,g in zip(b,gr))%m
+            gap=sum(t*D['w'][g] for t,g in zip(b,gr))-D['w'][s]
+            assert gap>=0 and gap%m==0
+            newgap=sum(t*v for t,v in zip(b,p))-w[s]
+            assert newgap==0 if not gap else newgap>=m
+            corners[b]=(s,bool(gap))
+    rewrites=0
+    for v in cells:
+        for j in range(d):
+            start=list(v);start[j]+=1;start=tuple(start);word=start
+            seedgap=sum(t*D['w'][g] for t,g in zip(start,gr))
+            target=sum(t*g for t,g in zip(start,gr))%m
+            seedgap-=D['w'][target];strict=0;balance=[0]*d
+            while word not in cells:
+                b=next(b for b in sorted(corners) if all(t<=u for t,u in zip(b,word)))
+                s,is_strict=corners[b];strict+=is_strict;rewrites+=1
+                nextword=tuple(u-t+a for u,t,a in zip(word,b,z[s]))
+                oldweight=sum(t*D['w'][g] for t,g in zip(word,gr))
+                newweight=sum(t*D['w'][g] for t,g in zip(nextword,gr))
+                assert (newweight,nextword)<(oldweight,word)
+                for k in range(d):balance[k]+=b[k]-z[s][k]
+                word=nextword
+            assert inverse[word]==target and balance==[t-u for t,u in zip(start,word)]
+            assert strict==0 if seedgap==0 else strict>=1
+            gap=sum(t*v for t,v in zip(balance,p))
+            assert gap==0 if seedgap==0 else gap>=strict*m
+    H=[d*m*z[r][j]-e*sum(v[j] for v in cells) for j in range(d)]
+    C=F((e-2)*m*(m-1),2);surplus=sum(a*b for a,b in zip(H,p))
+    column_surplus=F(0)
+    for j in range(d):
+        columns=defaultdict(list)
+        for v in cells:columns[v[:j]+v[j+1:]].append(v)
+        for column in columns.values():
+            top=max(column,key=lambda v:v[j])
+            deficit=w[r]-sum(a*b for a,b in zip(top,p));assert deficit>=0
+            column_surplus+=len(column)*deficit
+    assert column_surplus==surplus
+    assert (surplus-C-e*m*sum(unpaid))/m==value
+    if full_certificate:
+        hmin={0:0}
+        for s in sorted(range(1,m),key=lambda s:D['w'][s]):
+            hmin[s]=1+min(hmin[(s-g)%m] for g in gr if D['w'][(s-g)%m]+D['w'][g]==D['w'][s])
+            assert unpaid[s]<=hmin[s]-1
+    return {'primitive_residues':gr,'objective_coefficients':H,'correction':str(C),
+            'column_surplus':str(surplus),'unpaid_sum':str(sum(unpaid)),
+            'actual_objective_at_joint_point':str((surplus-C)/m),
+            'affine_boundary_rows':len(corners),'strict_boundary_rows':sum(t for _,t in corners.values()),
+            'primitive_translation_rewrite_steps':rewrites}
+
 def audit_face(D,out):
     m,e,r=D['m'],D['e'],D['r'];C=D['face'];nv=2*m-1
     assert C['variables']==nv and C['status'] in (2,5)
-    primitive=C.get('actual_constraints','all_pairs')=='primitive_edges'
+    actual=C.get('actual_constraints','all_pairs')
+    assert actual in ('all_pairs','primitive_edges','oriented_primitive_edges')
+    oriented=actual=='oriented_primitive_edges'
+    primitive=actual!='all_pairs'
+    coverage=C.get('certificate_constraints','full')
+    assert coverage in ('full','zero_rhs_only')
     expected=[];gr={g%m for g in D['generators'] if g!=m}
     for p,(i,j,s,J,tau,lo,up) in enumerate(D['pairs']):
         coeff=defaultdict(int)
         for a,v in ((i,1),(j,1),(s,-1)):coeff[a]+=v
         A=dict(coeff);A[m]=-1
-        if not primitive or i in gr or j in gr:expected.append((p,0,'<' if J else '=',tau-int(bool(J)),A))
+        sense='<' if J else ('>' if tau>0 else '<') if oriented and tau else '='
+        if not primitive or i in gr or j in gr:expected.append((p,0,sense,tau-int(bool(J)),A))
         if not J:
             B={m+a:v for a,v in coeff.items()};B[m]=-1
-            expected.extend(((p,1,'>',-lo,B),(p,1,'<',up,B)))
+            if coverage=='full' or not lo:expected.append((p,1,'>',-lo,B))
+            if coverage=='full' or not up:expected.append((p,1,'<',up,B))
     for s in range(1,m):
         if not primitive or s in gr:expected.append((s,3,'<',-1-int(s>r),{s:1,m:-1}))
         expected.append((s,4,'<',0,{m+s:1,s:-1}))
@@ -40,7 +138,7 @@ def audit_face(D,out):
             assert val==b if sense=='=' else val<=b if sense=='<' else val>=b
         # Also audit every omitted actual-side constraint independently. These
         # are implied by primitive paths, not omitted from the claimed domain.
-        if primitive:
+        if primitive and not oriented:
             for s in range(1,m):assert x[s]-x[m]<= (0 if ray else -1-int(s>r))
             for i,j,s,J,tau,lo,up in D['pairs']:
                 val=x[i]+x[j]-x[s]-x[m];b=0 if ray else tau-int(bool(J))
@@ -65,7 +163,8 @@ def audit_face(D,out):
         assert value==dual and abs(float(value)-C['value'])<1e-6
         costs['conductor_shift']=F(rho);costs['depth_lower_bound']=5*rc[m-1]
         assert sum(costs.values())==value
-        result={'status':'optimal','optimum':str(value),'q':str(x[m]),'actual_constraints':'primitive_edges' if primitive else 'all_pairs','dual_costs':{k:str(v) for k,v in costs.items()}}
+        result={'status':'optimal','optimum':str(value),'q':str(x[m]),'actual_constraints':actual,'dual_costs':{k:str(v) for k,v in costs.items()}}
+        if oriented:assert all(v>=0 for v in costs.values()) and value>=rho
     else:
         import math
         ray=[F(0)]+list(map(rat,C['ray']));feasible(ray,True)
@@ -75,9 +174,12 @@ def audit_face(D,out):
         x=[a+step*scale*b for a,b in zip(seed,ray)];feasible(x)
         value=F(rho)+sum(obj[a]*x[a] for a in range(1,nv+1));assert value<0
         result={'status':'unbounded','slope':str(slope),'integer_ray_scale':scale,'steps':step,'negative_witness_value':str(value)}
+    result['certificate_constraints']=coverage
+    result['actual_constraints']=actual
+    if not oriented:result['primitive_projection']=primitive_projection(D,x,value,coverage=='full')
     # If the actual point is integral, reconstruct S independently from its
     # resulting positive generators, rather than accepting Kunz inequalities alone.
-    if all(x[a].denominator==1 for a in range(1,m+1)):
+    if not oriented and all(x[a].denominator==1 for a in range(1,m+1)):
         q=int(x[m]);mu=[q]+[int(x[s]) for s in range(1,m)]
         w=[0]+[m*(q-mu[s]-int(s>r))+s for s in range(1,m)]
         G=sorted([m]+[w[s] for s in gr]);c=q*m-rho;N=m*max(G)+m
@@ -276,4 +378,4 @@ if __name__=='__main__':
         print('G=%s q=%s h=%s W=%s | '%(R['generators'],R['q'],R['h'],R['W'])+' '.join('%s=%s[nontight:%d,tighterror:%d]'%(name,V['optimum'],len(V['non_tight_violations']),len(V['tight_errors'])) for name,V in R['models'].items()))
     print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R)+int(R.get('face',{}).get('status')=='optimal') for R in results),'primal/dual optima')
     rays=sum(R.get('face',{}).get('status')=='unbounded' for R in results)
-    if rays:print('EXACTLY CERTIFIED',rays,'unbounded rays and negative integer witnesses')
+    if rays:print('EXACTLY CERTIFIED',rays,'unbounded rays and negative integer model points; numerical semigroups only when independently reconstructed')

@@ -1069,3 +1069,20 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   no new general projection theorem or novelty claim is inferred from a similarity of terminology.
 - The31 regional certificates do not exhaust all faces/multiplicities. The missing theorem is a
   uniform nonnegative budget for all realizable profiles; no new external theorem is assumed for it.
+
+### 2026-10-23: advisor strict recession deduction and primitive boundary source check
+
+Re-read Zhai [1111.2779v1](https://arxiv.org/html/1111.2779v1), Lemma3/Thm1, and BGOW
+[1903.04342](https://arxiv.org/html/1903.04342), Sections4/6. The homogeneous column bound is known;
+E416's application to the coupled model and strict equality-case proof are credited to the user's
+advisor, not claimed novel. The factorization simplex obstruction uses Delta_1-Delta_{H-1}, with a
+self-contained count in PROOFS; no classification of perfect codes is required.
+
+Read Brower–McDonough–O'Neill [2401.06025v3](https://arxiv.org/html/2401.06025v3), Definitions4.1,
+Lemma4.5, Proposition4.6, Example4.7 and Theorems4.8/4.9. The latter do give a homogeneous primitive
+projection through inner trades and outer Betti inequalities, with strict feasibility characterizing
+Kunz realizability. They do not by statement alone preserve each affine gap>=m. E417 supplies a
+separate canonical monomial-boundary rewriting proof retaining those margins; it does not claim that
+its boundary is a minimal presentation/outer Betti set. Generic Groebner/LP methodology is not a
+novelty claim. Searches on arXiv, GitHub and conjectures.io for primitive duals/poset games did not
+supply a uniform finite-correction payment theorem; this limited search is not a nonexistence claim.

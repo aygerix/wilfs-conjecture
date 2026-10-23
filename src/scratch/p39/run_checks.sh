@@ -9,7 +9,7 @@ gcc -O3 upper_scan.c -o repair_scan
 for name in probe structural_probe residual_probe stress_probe climb_probe margin_probe; do
   python3 verify_probe.py "data/$name.jsonl.gz" "/tmp/wilf-p39-$name-summary.json"
 done
-for name in cone_survey capped_core_probe coupling_probe combined_probe joint_face_probe primitive_face_probe; do
+for name in cone_survey capped_core_probe coupling_probe combined_probe joint_face_probe primitive_face_probe allowance_source_probe; do
   python3 verify_probe.py "data/$name.jsonl.gz" "/tmp/wilf-p39-$name-summary.json"
 done
 ./certprobe 20 21 22 > /tmp/wilf-p39-fresh-probe.jsonl

@@ -7573,3 +7573,165 @@ The remaining task is genuinely global: construct a uniform nonnegative dual bud
 boundary exits, positive primitive weights and coupled certificate rows, or find an independently
 decoded negative integer witness. Neither31 regional duals nor this encoding equivalence supplies
 that uniform construction. Do not replace the universal goal with further face enumeration.
+
+### Strict positivity at infinity of the full joint model (E416)
+
+**PROVED on paper; deduction and decisive equality-case counting argument supplied by the user's
+advisor on 2026-10-23. Not a finite-minimum positivity theorem or a novelty claim.** For any fixed
+realizable E414 profile with 3<=e<m, every nonzero recession direction has strictly positive objective
+slope. Every objective sublevel set is therefore bounded and the nonempty LP attains its finite minimum.
+
+Write a recession direction as (Q,A,Y). Tight actual equations give A_i+A_j-A_s=Q; both finite
+certificate sides give Y_i+Y_j-Y_s=Q. Generator links make A_g-Y_g=0. Induction along a primitive
+factorization with tight prefixes gives A_s=Y_s for every s. In particular unpaid mass has no recession
+component. At finite points, the same induction using x_s<=x_i+x_j+kappa gives
+x_s<=h_min(s)-1 independently of depth (already implicit in E396).
+
+Set h_0=0,h_s=Q-A_s. Homogeneous actual bounds give 0<=h_s<=Q,h_r=Q; tight additions make h additive.
+Choose the seed's lex-least factorization down-set D in N^d, d=e-1. It has m cells, contains each unit
+vector, and maps bijectively onto Z/m. On D, h(z)=z.sigma with sigma_j>=0. The slope is
+
+    dot J=d*m*Q-(d+1)*sum_D h
+         =sum_j sum_{j-columns C} |C|*(Q-h(top C)) >=0.
+
+The equality is the already recorded CH' column identity, equivalently Zhai's homogeneous inequality.
+This application adds the fact that the coupled certificate has no recession loss.
+
+If dot J=0 and the direction is nonzero, Q>0: Q=0 would force A=Y=0. All column tops must have weight Q.
+Let n_j e_j be the last point on the j-axis. Then n_j sigma_j=Q, hence each sigma_j>0. At the point
+(n_i-1)e_i, the j-column top has weight (n_i-1)sigma_i+k sigma_j=Q=n_i sigma_i, with integer k>=1.
+Thus sigma_i/sigma_j is a positive integer; exchanging i,j forces all primitive weights equal. Every
+column ends at the same total degree H. Downward closure gives D=Delta_H={z:|z|<=H}: a minimal missing
+point of degree<=H would have a predecessor whose column ends below H. No point of degree>H can occur
+because h<=Q.
+
+For d,H>=2 this is incompatible with residue injectivity. Put E=Delta_1-Delta_{H-1}. If two elements
+u-v,u'-v' have equal residues, then u+v',u'+v are in Delta_H with equal residues. Injectivity there
+forces equality of these vectors, hence equality of the two differences. Thus E also injects into Z/m.
+Its nonpositive vectors number binom(H+d-1,d); the vectors whose unique positive coordinate is1 number
+ d*binom(H+d-2,d-1). Therefore
+
+    |E|=binom(H+d-1,d)+d*binom(H+d-2,d-1)
+       >binom(H+d-1,d)+binom(H+d-1,d-1)=|Delta_H|=m,
+
+since the strict comparison is exactly (d-1)(H-1)>0. Contradiction. The remaining possibilities d=1
+or H=1 mean e=2 or e=m, excluded by the statement. Hence dot J>0. An unbounded nonempty sublevel of a
+polyhedron would have a nonzero recession direction with dot J<=0, proving the conclusion.
+
+This supplies no uniform depth bound, no integrality of the minimizer and no sign of the finite minimum.
+Absence of negative rays in full joint LP experiments is consequently not additional empirical evidence
+for positivity. The proof does NOT apply to diagnostic models that drop a side of a certificate relation
+or replace an actual tight equality by an inequality. It is not yet Lean formalized.
+
+### Primitive projection and affine boundary margins (E417)
+
+**General equivalence proved on paper; primitive objective/cap identities and explicit boundary
+rewriting certificates independently audited at all saved joint optima.** The advisor proposed
+eliminating actual variables completely. Here is an affine version using canonical factorization
+boundaries; it does not assume that an arbitrary homogeneous facet reduction preserves unit margins.
+
+Let z_s be the lex-least factorization of seed w_s in primitive generators p_1,...,p_d other than m.
+D={z_s} is the down-set in CH', with z_0=0 and z_g a unit vector. Set
+
+    H=d*m*z_r-e*sum_s z_s,        C=(e-2)*m*(m-1)/2,
+    d_s=[r-s]_m,                w_s=z_s.p.
+
+Eliminating q=(w_r-r)/m and a_s=(w_r-w_s-d_s)/m, the full joint objective is exactly
+
+    m*J=H.p-C-e*m*sum_s x_s,       x_s=a_s-y_s.
+
+The projected constraints are positive primitive bounds p_j>=m+g_j; depth w_r>=5m+r; actual tight
+trades and strict gaps; and
+
+    x>=0, x_g=0,
+    w_r-w_s>=d_s+m*x_s,
+    -kappa<=x_i+x_j-x_s<=alpha                 (all original tight pairs).
+
+The displayed top/cap inequality includes the actual a_s>=0 bound and the y_s>=0 bound together.
+The all-tight-pair certificate system is retained. These equations are equivalent over R to E414;
+integer semigroups additionally require p_j congruent to g_j modulo m. Fractional p are not semigroups.
+Actual tight trades now have RHS0. Their signed RHS contribution in the earlier a,q dual is a coordinate
+artifact, not an intrinsic source of arithmetic credit. The finite negative terms are C and certificate
+allowances, while strict exits, primitive positivity, depth and residue/cap distances provide credit.
+No inequality asserting those credits suffice has been proved.
+
+There is a general affine boundary reduction. Let B be the componentwise minimal vectors outside D.
+For b in B, put t=its residue, and retain just
+
+    (b-z_t).p=0       if seed b.p=w_t,
+    (b-z_t).p>=m      otherwise.
+
+This is a finite set with at most d*m members, constructed from primitive translations z_s+e_j. Each
+row with nonzero target is an actual primitive-edge row, since every predecessor b-e_j is in D.
+Rows with target0 have positive gap and follow already from p_j>=m+g_j. Thus the full actual model
+implies all these boundary rows.
+
+Conversely, start with any word v outside D. Choose b in B with b<=v and replace
+
+    v -> v-b+z_t.
+
+This replacement preserves residue. If b is a strict boundary word it decreases the seed weight by
+at least m. If it is a tight boundary word it preserves seed weight but decreases lexicographic order,
+since z_t is the lex-least factorization. Seed primitive weights are positive, so only finitely many
+words lie below the starting seed weight. Rewriting terminates in the unique word z_s of the same
+residue. Telescoping the replacement vectors yields an INTEGER nonnegative combination of the retained
+boundary vectors equal to v-z_s. If v is tight in the seed, every replacement is tight; if v is non-tight,
+at least one replacement is strict. Thus the retained equations give gap0 on every seed tight word and
+the retained strict inequalities give gap>=m on every seed non-tight word. In particular every original
+primitive or composite actual pair row, with its affine unit margin, follows. No coefficient-sum loss
+is hidden in a homogeneous Farkas reduction.
+
+This is a canonical monomial-boundary/Groebner rewriting argument, not a novelty claim. The boundary
+set need not be a minimal presentation or exactly the outer Betti set. Brower-McDonough-O'Neill,
+arXiv:2401.06025v3, Theorems4.8/4.9 describe the homogeneous projection through inner trades/outer Betti
+inequalities. Compressing further to that set must still preserve the affine margins; no such additional
+compression is claimed here. Their Proposition4.6 explicitly needs strict feasibility, and Example4.7
+warns against omitting it.
+
+verify_probe.py now independently constructs D, checks down-closure, all primitive-coordinate identities,
+the column surplus H.p, every residue/cap distance, and full-certificate depth-independent loss bounds.
+It also constructs B and audits a terminating rewriting decomposition of EVERY primitive translation,
+including the number of strict steps and its full margin at fractional actual optima. It computes the
+actual objective AT the joint optimum; this is not a separately minimized actual objective.
+
+### A failed sourcewise sign rule and the next allocation question (E418)
+
+**Exact diagnostic; not a counterexample to Wilf, full CapUA3 or Phi_Z.** Before receiving the latest
+advisor message, the working test was whether every allowance-cost certificate side could be discarded
+and actual tight rows used only in orientations contributing nonnegative a,q-coordinate dual budget.
+
+First remove certificate sides with nonzero allowance RHS, retaining all other joint constraints.
+The31 existing profiles have positive exact minima in this weaker model; e.g.60case180,64case432,
+hard146case3058/3,new146case922,supplied65case76371/88. The boundary check <13,17> has minimum0.
+These are falsification tests of one proposed simplification, not a new profile catalogue or a theorem.
+
+Next, for each retained actual tight row with RHS tau, retain equality if tau=0, the >= orientation if
+tau>0, and the <= orientation if tau<0. In this still weaker model every allowed actual-row RHS dual
+contribution is nonnegative. Every remaining certificate-row RHS is0, so boundedness would supply a
+sourcewise nonnegative dual. This simplification is FALSE.
+
+For S=<19,26,27,48>, m19,e4,r13,q5,c90,g62,W22, the full joint minimum and the zero-allowance-cost minimum
+are both22. But the additionally oriented model has the exact ray
+
+    Q=1, A=Y=1 on {7,8,10}, A=Y=0 elsewhere,
+    dot J=(4-19)*1+4*3=-3.
+
+The actual tight row 7+7->14 has tau1 and ray value A7+A7-A14-Q=1, violating its original equality.
+The retained oriented >= row permits that value. Other original tight equalities are also lost.
+Adding eight copies of the ray to the seed gives objective22-24=-2 in the diagnostic model, not a
+semigroup in the original profile. The independent verifier checks every retained row and the ray
+exactly and deliberately disables semigroup reconstruction for this oriented relaxation.
+The65case has a second negative ray, slope -265/2. Three controls remain bounded:20case190/3,
+new146case922,60case180. Canonical data: allowance_source_probe.jsonl.gz (35 exact optima and2 exact
+rays in37 model records, including the two-generator boundary check).
+
+**Project review / decision.** The strict recession theorem eliminates a structural uncertainty but
+leaves the finite correction entirely open. Better propagation and another list of positive profiles
+will not settle it. Discontinue the sourcewise a,q sign rule; its failure is consistent with the advisor's
+observation that signed tight costs are coordinate artifacts. Keep the full coupled model as a sufficient
+universal target, not as an indispensable conjecture. Adopt E417 primitive coordinates, retain ALL tight
+certificate rows, and seek an adaptive allocation from affine primitive boundaries and residue/cap
+credits paying C plus weighted certificate loss. Do not require individual chains or rows to pay for
+themselves. When a negative certificate appears, compare separately minimized actual and joint objectives
+on the SAME domain before deciding whether integrality or certificate coupling is responsible. No such
+negative full-model point or universal allocation has yet been found.
