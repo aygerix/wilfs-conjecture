@@ -21,6 +21,8 @@
  *   this tile, with a maximum-flow/minimum-cut certificate (no LP solver).
  * --support-pool-cut m g...: falsify the E433 directional residue-pool payment
  *   on every down-set of this tile; a negative result is not a Wilf failure.
+ * --support-frozen-cut m g...: test extension of the fixed NONWRAPPING partial
+ *   allocation (E434); negative means this stronger allocation fails, not Wilf.
  * --supp-climb weighted|cycle ITER m g...: bounded local falsification of
  *   the weighted support budget or proposed cycle-excess bound; no LP solver.
  * --residue-audit G...: reconstruct S and T from MINIMAL-generator residues.
@@ -153,7 +155,7 @@ static ll closure_dfs(ClosureGraph *G,int u,int sink,ll amount){
  }}return 0;
 }
 static void completion_cut(int m,int e,int c,int r,int *w,int *gr,int F[MM][MM],int pool){
- int d=e-1,rho=m-r-1,inv[MM][MM],next[MM][MM],co[MM],omega[MM];ll benefit=0;
+ int d=e-1,rho=m-r-1,inv[MM][MM],next[MM][MM],co[MM],omega[MM],original_co[MM],original_omega[MM];ll benefit=0;
  for(int s=0;s<m;s++)for(int j=0;j<d;j++){
   inv[s][j]=0;for(int k=1;k<=F[s][j];k++){int u=(s-(k*gr[j])%m+m)%m;inv[s][j]+=(u+rho)%m>(s+rho)%m;}
   int t=(s+gr[j])%m;next[s][j]=t;
@@ -163,6 +165,16 @@ static void completion_cut(int m,int e,int c,int r,int *w,int *gr,int F[MM][MM],
   int eta=0,degree=0,axes=0;for(int j=0;j<d;j++){
    int p=(s-gr[j]+m)%m;eta+=inv[s][j]-(F[s][j]?inv[p][j]:0);degree+=F[s][j];axes+=(F[s][j]*gr[j])%m;
   }omega[s]=d+degree;co[s]=eta-axes/m-degree-1;assert(co[s]<0);benefit-=co[s];
+ }
+ for(int s=0;s<m;s++){original_co[s]=co[s];original_omega[s]=omega[s];}
+ if(pool==2){
+  benefit=0;
+  for(int s=0;s<m;s++){
+   int raw=0;for(int j=0;j<d;j++)raw+=F[s][j]*gr[j];
+   co[s]=s?-(1+raw/m):0;benefit-=co[s];
+   for(int j=0;j<d;j++)if(next[s][j]>=0&&(s+rho)%m+gr[j]<m)omega[s]-=F[s][j]+1;
+   assert(omega[s]>=0);
+  }
  }
  int n=(pool?3:2)*m+2,source=n-2,sink=source+1;ll infinity=benefit+1;
  ClosureGraph G={.n=n};G.head=malloc(n*sizeof(int));G.level=malloc(n*sizeof(int));G.it=malloc(n*sizeof(int));G.queue=malloc(n*sizeof(int));G.edge=calloc((size_t)(6*m+8*d*m+8),sizeof(ClosureEdge));
@@ -177,11 +189,12 @@ static void completion_cut(int m,int e,int c,int r,int *w,int *gr,int F[MM][MM],
  ll flow=0;while(closure_bfs(&G,source,sink)){for(int v=0;v<n;v++)G.it[v]=G.head[v];ll sent;while((sent=closure_dfs(&G,source,sink,LLONG_MAX/4)))flow+=sent;}
  ll cut=0,selected_cost=0;int size=0;for(int a=0;a<G.ne;a+=2){ClosureEdge E=G.edge[a];if(G.level[E.u]>=0&&G.level[E.v]<0)cut+=E.initial;}
  for(int s=0;s<m;s++){if(G.level[s]>=0){selected_cost+=co[s];size++;}if(G.level[m+s]>=0)selected_cost+=omega[s];}
- ll global_budget=m+selected_cost;
+ ll global_budget=m;
+ for(int s=0;s<m;s++){if(G.level[s]>=0)global_budget+=original_co[s];if(G.level[m+s]>=0)global_budget+=original_omega[s];}
  if(pool)for(int s=1;s<m;s++)if(G.level[2*m+s]>=0)selected_cost++;
- ll constant=pool?1:m;
+ ll constant=pool==2?0:pool?1:m;
  assert(cut==flow&&constant+selected_cost==constant+flow-benefit);
- printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"rho\":%d,\"pool_mode\":%s,\"global_completion_budget\":%lld,\"budget\":%lld,\"size\":%d,\"negative_mass\":%lld,\"cut_capacity\":%lld,\"weights\":[",m,e,c,rho,pool?"true":"false",global_budget,constant+flow-benefit,size,benefit,flow);
+ printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"rho\":%d,\"pool_mode\":%s,\"frozen_nonwrap\":%s,\"global_completion_budget\":%lld,\"budget\":%lld,\"size\":%d,\"negative_mass\":%lld,\"cut_capacity\":%lld,\"weights\":[",m,e,c,rho,pool?"true":"false",pool==2?"true":"false",global_budget,constant+flow-benefit,size,benefit,flow);
  for(int s=0;s<m;s++)printf("%s%d",s?",":"",co[s]);printf("],\"omega\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",omega[s]);printf("],\"kept\":[");int printed=0;
  for(int s=0;s<m;s++)if(G.level[s]>=0)printf("%s%d",printed++?",":"",s);printf("],\"cut\":[");printed=0;for(int v=0;v<n;v++)if(G.level[v]>=0)printf("%s%d",printed++?",":"",v);printf("],\"arcs\":[");
  for(int a=0;a<G.ne;a+=2){ClosureEdge E=G.edge[a];printf("%s[%d,%d,%lld,%lld]",a?",":"",E.u,E.v,E.initial,E.initial-E.cap);}printf("]}\n");fflush(stdout);
@@ -239,7 +252,7 @@ static void supp_geometry(int m,int e,int c,int r,int *w,int *mu,int *ord,int *g
   }assert(found);
  }
  if(dump==2){partial_support(m,e,c,r,w,ord,gr,F);return;}
- if(dump==3||dump==4){completion_cut(m,e,c,r,w,gr,F,dump==4);return;}
+ if(dump==3||dump==4||dump==5){completion_cut(m,e,c,r,w,gr,F,dump==5?2:dump==4);return;}
  supp_dep=supp_support=supp_credit=supp_kappa=0;supp_height=supp_lowmax=0;
  ll dist_credit=0;
  for(int s=0;s<m;s++){
@@ -313,7 +326,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
- if(dump==11||dump==12||dump==13||dump==14||dump==15){supp_geometry(m,e,c,r,w,mu,ord,gen,dump==15?4:dump==14?3:dump==13?2:dump==11);last_e=e;last_c=c;last_W=W;return 1;}
+ if(dump>=11&&dump<=16){supp_geometry(m,e,c,r,w,mu,ord,gen,dump==16?5:dump==15?4:dump==14?3:dump==13?2:dump==11);last_e=e;last_c=c;last_W=W;return 1;}
  if(dump==10){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"q\":%d,\"rho\":%d,\"r\":%d,\"generators\":[%d",m,e,c,genus,W,q,rho,r,m);
   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);
@@ -578,11 +591,11 @@ int main(int argc,char **argv){
    memcpy(G,BG,ng*sizeof(int));
   }
  }
- if(argc>3&&(!strcmp(argv[1],"--supp-audit")||!strcmp(argv[1],"--partial-support-audit")||!strcmp(argv[1],"--support-cut")||!strcmp(argv[1],"--support-pool-cut"))){
+ if(argc>3&&(!strcmp(argv[1],"--supp-audit")||!strcmp(argv[1],"--partial-support-audit")||!strcmp(argv[1],"--support-cut")||!strcmp(argv[1],"--support-pool-cut")||!strcmp(argv[1],"--support-frozen-cut"))){
   int G[MM],ng=argc-2;ll unused=LLONG_MAX;if(ng>MM)return 2;
   for(int a=0;a<ng;a++)G[a]=atoi(argv[a+2]);if(G[0]<2||G[0]>=MM)return 2;
   for(int a=1;a<ng;a++)if(G[a]<=G[0])return 2;
-  return eval(G[0],G,ng,2,!strcmp(argv[1],"--support-pool-cut")?15:!strcmp(argv[1],"--support-cut")?14:!strcmp(argv[1],"--partial-support-audit")?13:11,&unused)?0:2;
+  return eval(G[0],G,ng,2,!strcmp(argv[1],"--support-frozen-cut")?16:!strcmp(argv[1],"--support-pool-cut")?15:!strcmp(argv[1],"--support-cut")?14:!strcmp(argv[1],"--partial-support-audit")?13:11,&unused)?0:2;
  }
  if(argc==3&&!strcmp(argv[1],"--axis-flow"))return axis_flow(argv[2]);
  if(argc>1&&!strcmp(argv[1],"--weighted-search")){unit_audit=2;argc--;argv++;}

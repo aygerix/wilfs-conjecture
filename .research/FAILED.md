@@ -338,3 +338,19 @@ E433 counts separate ray starts and their actual cyclic aliases; its global paym
 UNKNOWN. Two exact all-cut checks are diagnostics, not a new positivity theorem. Also stop
 the generic supported-matrix idea unless an arithmetic operator is actually constructed:
 mere existence of a high-rank supported matrix is equivalent to the same Hall condition.
+
+## E434 — one slot per formal boundary alias is too strong (2026-10-23)
+
+In genuine <19,39,41,50,52,53> (m19,e6,c88,W32), the full tile has6 nonmaximal cells and
+21 directional negative starts. Their27 formal Laurent monomials map onto15 residue basis
+vectors, with kernel dimension12. Missing-direction capacity is4; even all residual auxiliary
+capacity (missing4+wrapped7=11) is smaller than12. Therefore a separate injection of EVERY
+alias relation into either of those slot spaces is FALSE.
+
+This does NOT refute the E434 residual flow: actual expanded demand including the reserved
+origin is25, not27. Its24 nonzero units fit into4+7+14=25 slots, with margin1. Independent
+membership, C flow/cut and definition-level counts are in completion_frozen_audit.json.
+Do not overcount all formal aliases as additional source debt. Carry charges and alias
+compensation must share a single budget; at least6 wrapped units are required on this tile.
+Also do not assume the integer lift set is closed under every primitive residue subtraction:
+this is the old U=T condition (E379/E431), not automatic. The10 seed already refutes it.

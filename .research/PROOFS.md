@@ -8970,3 +8970,123 @@ which fails even with kappa=N=0. Continue the directional/global residue routing
 not additional reconstruction accuracy. Weighted repair coupling and actual arithmetic/
 integrality remain the other two universal lines; no restricted-family programme is opened.
 The two pool certificate bundles are saved as data/completion_pool_probe.jsonl.gz.
+
+## E434 — a nonnegative partial allocation and a joint carry/alias budget (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup IF the fixed partial allocation below
+can always be extended in the remaining domain c>4m,3e<m. Proved reduction from all S to
+this case: yes, extension implies E433 POOL, then E432/SUPP and the recorded complements.
+The extension is a STRONGER, UNKNOWN claim. This section proves the partial allocation and
+its exact residual identities, not extension or Wilf. No fixed height/e family is a target.
+
+### A genuinely feasible partial flow — PROVED
+
+Use E432's genuine canonical D, delta, phase rho, labels r, benefit beta and omega=d+degree.
+Put K_z=floor(z.delta/m). On an edge u->z=u+e_j call the edge nonwrapping when
+
+    r(u)+delta_j<m, equivalently delta_j<=r(z).
+
+Assign u_j+1=z_j units from source z directly to its proper-parent auxiliary u on every
+such edge. At source z this consumes exactly
+
+    A_z=sum_(j:delta_j<=r(z)) z_j,
+
+so beta_z-A_z=1+K_z is positive. At parent u the consumed components are a subset of
+the disjoint components u_j+1 whose total is omega_u. Thus every source and sink capacity
+is respected; this is a feasible PARTIAL flow, unlike the signed preflows in E432. The
+origin's unit is reserved separately and has no outgoing proper-divisor arc.
+
+Define capacities on the WHOLE D,
+
+    Gamma_u=sum_(j:u+e_j notin D)(u_j+1),
+    V_u=sum_(j:u+e_j in D, r(u)+delta_j>=m)(u_j+1),
+    R_u=omega_u-sum_(nonwrapping children)(u_j+1)=Gamma_u+V_u>=0.
+
+The remaining nonzero source demands are d_z=1+K_z (d_0=0). Keep E433's parent implications
+and directional pool with unit capacities at nonzero residues. A flow meeting all d_z extends
+the partial allocation; prescribed nonwrap amounts may not be reversed in this stronger
+model. No claim that this freezing is without loss is made.
+
+### Residual cuts, leakage and required wrap use — PROVED
+
+For any nonempty down-set E, P=nonmax(E), S_E=sum_(z in E\{0})(1+K_z), define
+
+    F_res(E)=sum_(u in P) R_u+|U(E)|-1-S_E.
+
+For E empty set F_res=0. The residual network's exact minimum is maxflow-sum_(z!=0)d_z.
+All source demands can be met iff F_res(E)>=0 for every E. This sign remains UNKNOWN.
+
+The new claim is stronger than POOL by an explicit boundary term:
+
+    F_res(E)=|U(E)|-h(E)-Leak(E),
+    Leak(E)=sum_(u in P,j:u+e_j in D\E, nonwrapping)(u_j+1)>=0.
+
+Proof: internal nonwrap assignments with children in E are exactly sum_E A_z. Residual
+sink capacities at P subtract those assignments AND the assignments to outside children,
+whereas the source demands subtract only the internal ones. beta_0=1 cancels the reserved
+origin unit. This gives the identity. At E empty the pool margin is1 and the residual
+margin0; do not apply the nonempty formula there.
+
+Any residual allocation must use at least
+
+    max(0,S_E-sum_P Gamma_u-(|U(E)|-1))                    (WRAP-LOAD)
+
+wrapped capacity for sources in E. Their parent paths stay inside E; all accessible auxiliary
+nodes lie in P and all accessible free residues lie in U(E). Missing-direction and pool
+capacities cover at most the two subtracted amounts. This is necessary, not sufficient.
+
+### Why aliases cannot be paid separately — exact remaining-domain obstruction
+
+Take the recorded S=<19,39,41,50,52,53>, m19,e6,c88,g68,W32, rho7. Its unique canonical tile
+has height2:0, all5 units, and13 pairs. The missing pairs are e_1+e_4 and e_2+e_3 in residue
+order delta=(1,3,12,14,15). All5 squares occur. Thus P has6 cells and Gamma_D(P)=Dep4.
+
+Let F be the set of directional starts (u,j) with u_j=0 and u+e_j in D. There are5 origin
+starts and2 for each of the8 mixed pairs, so |F|=21. The formal Laurent monomials indexed
+by P together with u-e_j for these starts are27 distinct words. Their map to k[Z/19],
+sending a word to its residue basis vector, has image U(D), of cardinality15:
+
+    U(D)={0,1,2,3,4,5,7,8,11,12,14,15,16,17,18}.
+
+Its kernel therefore has dimension12. A proposed injection of ALL these alias relations
+into the4 missing-direction slots is impossible. Even all11 residual auxiliary slots
+would not inject that12-dimensional kernel. This refutes that SEPARATE rank payer, not the
+residual allocation: the formal27 credits also exceed the actual expanded demand25 by2.
+One cannot treat each formal relation as an independent additional debt.
+
+The exact actual residual accounting is
+
+    sum K=6,  nonzero demand=18+6=24,
+    sum_P Gamma=4,  sum_P V=7,  |U|-1=14,
+    whole-tile residual margin=4+7+14-24=1.
+
+WRAP-LOAD forces at least6 of the7 wrapped units to be used. The missing-direction, carry
+and cyclic-alias contributions must therefore be coupled. This example is an already
+settled Wilf case, selected as a sharp auxiliary-budget obstruction, not presented as a
+new resistant semigroup or a proof for a restricted family.
+
+### Checks, duplicate shortcut and next proof obligation
+
+Pure C --support-frozen-cut exports exact residual flows/cuts. Independent membership and
+definition-level audits certify extension on ALL cuts of the existing40 and114 tiles.
+The19 tile above was added ONLY to test the separate-alias obstruction; its all-cut residual
+minimum is also0. In all three residual certificates the smallest optimal cut is EMPTY,
+unlike the original POOL minimum at {0}. The full19 cut has margin1, not0. These three
+diagnostics are CLOSED. No positive-profile census is warranted.
+
+Residual charges can be indexed by nonnegative integers z.delta-km, 0<=k<=K_z, with the
+origin removed. Distinct residue classes make this representation injective. Even after
+adding back0, the lift set need not be closed under subtracting an arbitrary primitive residue. Such closure is
+equivalent to z_s.delta being the actual Apéry values of T=<m,delta>, the earlier U=T
+hypothesis, not a consequence of a genuine S. In the old <10,17,41> example the raw values
+in residue order are(0,1,2,3,14,15,16,7,8,9);14 occurs among the lifts but13=14-1 does not.
+Do not reuse numerical-semigroup closure arguments on this lift set without that hypothesis.
+
+**Global review.** The positive partial flow removes the old signed source debt and isolates
+the exact joint target S_E<=Gamma_D(P)+V_D(P)+|U(E)|-1. It does not explain that sign.
+Stop the phase-insensitive alias payer and the duplicate U=T shortcut. The next proof task
+is a SINGLE joint allocation of the actual lift charges using wrapped capacities and residue
+aliases together; do not give each alias relation, column or phase layer its own budget.
+No more positive instances are next. If freezing proves too strong, retain the unfrozen
+E433 pool or weaker E432 allowance. Full weighted coupling and actual arithmetic/integrality
+remain the other universal lines. All general proofs here are on paper, not Lean checked.

@@ -1172,3 +1172,15 @@ Web searches for Wilf with linear algebra, Hall/monomial matching, and negative 
 residue matching supplied no theorem USED to prove the proposed directional-pool allocation.
 This is not a priority claim or an exhaustive literature exclusion. The new closure test
 uses the same standard Picard reduction cited above. Its universal sign remains UNKNOWN.
+
+### E434 bookkeeping and duplication check (2026-10-23)
+
+Searched PROOFS/FAILED for wrapped-parent allocations, power tokens, residue descent and
+boundary rank arguments. The E320 power-token carry mechanisms use actual levels/orders;
+they do not prove the new raw-carry residual sign. E434's fixed nonwrap allocation and
+leakage identity are proved directly, without an external theorem or a novelty claim.
+The attempted all-primitive closure of the lift set is precisely the earlier U=T assumption
+from E379/E431; it is not a new reduction and is false without that hypothesis. A separate
+boundary-alias kernel payer is refuted by the existing19 tile, not justified by E420's
+valid joint-interior injection. Broad Wilf/Hall/monomial-boundary/differential searches
+supplied no theorem USED to infer universal extendability. No priority claim follows.

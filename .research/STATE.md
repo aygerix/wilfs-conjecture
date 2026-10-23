@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 07:01 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 07:41 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -21,6 +21,15 @@ use a solver where weight optimization needs it. Every target needs an explicit 
 Bounded searches remain evidence. Agent launches each require the user's explicit approval.
 
 ## Where the mathematics stands
+
+**E434, current proof obligation:** assigning every nonwrapping occurrence to its own parent
+component is a PROVED feasible partial flow. The remaining nonzero demands are1+floor(z.delta/m),
+and residual capacities are Gamma_D(u)+V_u, where V counts weighted wrapped child edges.
+Universal extendability is UNKNOWN and stronger than E433 POOL. Its exact cut budget is
+|U(E)|-h(E)-Leak(E). Three all-cut diagnostics pass and are CLOSED. The old19 tile gives
+a sharp full-cut budget: demand24 versus missing4+wrapped7+free residues14, margin1. At least6
+of7 wrap units must be used. Its alias kernel dimension12 cannot inject into missing4 or
+even all11 auxiliary slots; actual source charges and aliases must be coupled. No universal sign proof.
 
 **E433, current allocation test:** the joint-interior difference-set payment is FALSE,
 including a zero-carry cut in <40,41,42,43> (Hall demand5, interior credit4). The62 cut
@@ -216,7 +225,7 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 3.5-6.2 seconds versus 25-55 minutes for tested e = 4 instances. These are previous results, not new benchmarks.
 Audit height filters, fixed-size limits and exact certificate coverage before adapting the existing code.
 
-**E433 inventory additions:** `upper_scan.c --support-pool-cut m g...` is pure C and exports
+**E433/E434 inventory additions:** `upper_scan.c --support-pool-cut m g...` is pure C and exports
 an exact all-down-set minimum of |U(E)|-h(E), with flow/cut certificate; exit5 means a failed
 POOL claim, not Wilf. `verify_probe.py --completion-pool-check INPUT OUTPUT` independently
 reconstructs membership, pool residues, full graph and integer certificate.
@@ -225,6 +234,13 @@ reconstructs membership, pool residues, full graph and integer certificate.
 identities. The41-fixture reports completion_interior_test.json and completion_pool_test.json
 are selected-cut falsification diagnostics; only completion_pool_probe.jsonl.gz checks every
 cut for the NEW pool objective, on TWO tiles. Do not conflate those coverages.
+`upper_scan.c --support-frozen-cut m g...` tests extension of the fixed nonwrap partial flow,
+exporting the exact residual min-cut. Its exit5 refutes this STRONGER allocation, not Wilf.
+`verify_probe.py --completion-pool-check` also handles frozen_nonwrap=true, independently
+checking residual capacities both by subtraction and by missing+wrapped components, the
+leakage identity and full-tile budget/alias/wrap-load counts. Its `residual_budget` is the
+frozen objective; `pool_budget` is the ORIGINAL pool budget at that selected cut. The three
+frozen bundles are data/completion_frozen_probe.jsonl.gz and completion_frozen_audit.json.
 
 ## Current attempt and next action
 
@@ -242,17 +258,25 @@ proofs, not positivity. The uniform deficiency<=m theorem remains UNKNOWN and is
 than the complete-tile support bound, itself stronger than Wilf. A negative proper cut need
 not refute Wilf. No reduction from all S to the41 diagnostic profiles is claimed.
 
-**First precise next proof task (E433):** construct a simultaneous routing of every NONZERO
-cell's beta units into proper-divisor capacities omega and the permitted nonzero directional
-pool units. For each canonical edge u->z=u+e_j, source z can reach the free residue phi(u),
-and also phi(u)-delta_j when u_j=0; parent implications permit further descent. Each nonzero
-free residue has capacity1, with aliases counted ONCE. The origin's benefit1 is reserved.
-Equivalently prove h(E)<=|U(E)|, where U={0} union phi(nonmax E) union the negative boundary
-starts above. Height<=1 cuts satisfy it, but a maximal-cell induction can add charge without
-enlarging U when all parents were already nonmaximal. Retain and redistribute earlier slack;
-do not launch more positive-profile checks or treat the two passing tiles as global evidence.
+**First precise next proof task (E434):** extend the feasible nonwrapping occurrence flow by
+routing every NONZERO cell's remaining1+K_z units into proper-divisor capacities
+R_u=Gamma_D(u)+V_u and the permitted nonzero directional pool units. On u->z=u+e_j the
+pool choices are phi(u), and also phi(u)-delta_j if u_j=0; ancestor paths allow descent.
+Every nonzero free residue has capacity1, aliases counted ONCE; the origin's unit is reserved.
+For ALL nonempty down-sets E prove
 
-The older global degree/inversion identity may help: the degree allocation respects parent capacities; its unused
+    sum_(z in E\{0})(1+K_z) <= sum_(u in nonmax E)(Gamma_D(u)+V_u)+|U(E)|-1.
+
+This is a SINGLE JOINT inequality, not separate payers for alias rank, carry units or
+boundary. The19 full tile forces wrapped usage>=6 with only7 available: formal credits27
+map to15 residues, losing12 dimensions, but the actual demand including the origin is25.
+Charging one slot per formal relation overstates what must be paid. Keep the actual source
+count. Do not assume the lift integers are closed under ALL primitive subtraction: that is
+the old U=T hypothesis, false in the saved10 example. If freezing is too strong, revert to
+the unfrozen E433 beta flow / E432 global m allowance, not a restricted family.
+Do not launch more positive-profile checks; all three diagnostic tiles are closed.
+
+The older global degree/inversion identity is recorded for comparison: that degree allocation respects parent capacities; its unused
 amount at a nonmaximal parent is Gamma. The explicit inversion flux cancels eta in the source
 balances and leaves1+kappa(z)-sum_(missing directions)I_j(z). Those balances can be negative;
 neither construction is asserted feasible under the actual beta source capacities. Resolve
@@ -304,7 +328,13 @@ E433 adds4 exact structure audits,2 pool-flow certificates and one pool ASan/UBS
 the changed original completion path was also re-audited on40. Files are
 data/completion_structure_audit.json, completion_pool_probe.jsonl.gz, completion_pool_audit.json,
 completion_pool_sanitizer.jsonl and checkpoint_433_checks.log. No new solver LP or census.
-All E432/E433 general mathematical statements remain paper-proved, not Lean checked. No universal
+E434 adds3 fixed-allocation all-cut certificates and one ASan/UBSan19 replay, with exact
+source/capacity component checks. Files are completion_frozen_{probe.jsonl.gz,audit.json},
+completion_frozen_sanitizer.jsonl.gz and checkpoint_434_checks.log. Whole-tile19 has margin1;
+the minimum over all cuts is0 at the EMPTY cut. Neither is an E432 minimum. No new census.
+The extra nonempty40 control verifies leakage2 exactly; a fresh original-pool40 C result
+also passes the changed checker, so the old path remains compatible.
+All E432/E433/E434 general mathematical statements remain paper-proved, not Lean checked. No universal
 Wilf proof or genuine counterexample has been obtained. The implementation inventory above
 and this section are the single current code/handoff record.
 

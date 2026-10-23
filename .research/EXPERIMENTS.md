@@ -981,3 +981,59 @@ For new outputs, bundle the C JSON as cut beside the existing seed from the same
 Exit5 means a negative proposed POOL budget, not negative actual W. Every reported actual
 semigroup invariant is checked by independent membership reconstruction. General CRIT/PHASE/
 MEAN/POOL-CUT proofs and the UNKNOWN uniform routing claim are in PROOFS E433.
+
+## E434 — fixed nonwrap allocation and a sharp shared budget (2026-10-23)
+
+**Scope/target:** universal extension of the proved nonwrap partial flow implies E433 POOL,
+then E432/SUPP-WILF with the recorded complement. Stronger than needed; sign UNKNOWN.
+No fixed height/e programme, new semigroup census or broader positive-profile scan.
+
+Used Fejer, littlewood-paley-8375, us-east1-b, ~/wilf/p39. Deterministic pure C Dinic,
+gcc -O3, no Gurobi or Python optimizer. The Python stdlib checks independently reconstruct
+membership, canonical words, every arc, integral capacities/flows/conservation, minimum cuts,
+the direct missing+wrapped capacity split, source1+K formula and leakage identity.
+The C mode retains the finite m<256 implementation limit; paper statements have no such bound.
+
+First tested the same40/41/42/43 and114/305/307/310 fixtures as E433. Both residual minima
+are0. Then selected ONLY the already-recorded19/39/41/50/52/53 tile, because its negative
+boundary formal credits exceed the missing-direction alias budget. That residual minimum
+is also0. The three bundles are consolidated in completion_frozen_probe.jsonl.gz and
+the reports in completion_frozen_audit.json. These tests optimize over ALL down-sets of
+the3 tiles, without enumerating a new semigroup population. They are closed diagnostics.
+
+The smallest optimal residual cuts are EMPTY, with residual_budget0; the original pool
+margin at that empty set is1. Report pool_budget is the unfrozen pool value AT THE SELECTED
+cut, not the minimized residual objective. global_completion_budget likewise evaluates
+E432 at that cut, not its separate minimum. whole_tile_geometry is a DIFFERENT explicitly
+named diagnostic and must not be mistaken for the minimizing cut.
+Because the minimizing cuts are empty, an additional NONEMPTY leakage control is checked
+on the40 tile: E={0,e_1} has original pool budget2, leakage2 and residual budget0.
+This prevents the nonempty leakage identity from being tested only on a vacuous empty cut.
+
+The19 whole tile has size19,P6,21 negative starts,U15,Ksum6. Its24 nonzero source units
+face missing4+wrapped7+free14, margin1, requiring at least6 wrapped units. Formal evaluation
+has dimension27 and rank15, so alias kernel12>missing4 and even12>all auxiliary11. This
+refutes a separate one-slot-per-alias proof, not the joint allocation. Actual W is32.
+The40 and114 whole-tile margins are68 and296, respectively; these easy positive values
+are not additional evidence of a uniform sign. No more positive fixtures are next.
+
+ASan/UBSan passed the NEW frozen branch on19, with no stderr diagnostic; certificate
+completion_frozen_sanitizer.jsonl.gz was independently audited. The instrumented sanitized
+subprocess invocation took10,237,328ns including process launch/output; compilation and
+normal-run times were not instrumented. Two old E433 pool certificates were re-audited
+after the checker changes to confirm format compatibility. checkpoint_434_checks.log
+records the residual/sanitizer checks, final nonempty leakage control and a fresh original
+--support-pool-cut40 replay. No unchanged broad LP suite or Lean result is claimed.
+
+Reproduce:
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+./repair_scan --support-frozen-cut 19 39 41 50 52 53
+python3 verify_probe.py --completion-pool-check data/completion_frozen_probe.jsonl.gz /tmp/frozen-audit.json
+python3 verify_probe.py --completion-pool-check data/completion_frozen_sanitizer.jsonl.gz /tmp/frozen-san-audit.json
+```
+
+Bundle any new C output beside the SAME existing seed before auditing. Exit5 denotes a
+failed fixed-allocation extension, NOT a genuine negative W. General proofs, the separate
+alias counterexample and the remaining joint inequality are in PROOFS E434.

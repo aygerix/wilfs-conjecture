@@ -5256,3 +5256,27 @@ old-path40 regression pass. These checks are closed. No more positive-tile censu
 The uniform routing theorem is UNKNOWN. All proof/status/data links and the first next
 action are in the single STATE handoff. Other universal lines remain full weighted coupling
 and actual arithmetic/integrality; no narrower family or unapproved subagent was activated.
+
+### 2026-10-23 07:35 EDT — E434: feasible nonwrap flow; aliases and carries share the budget
+
+Proved a positive partial allocation: nonwrapping occurrence z_j goes to its own parent's
+j-component. Exactly1+floor(z.delta/m) remains at each nonzero source, and residual sink
+capacity is Gamma_D+weighted wrapped edges. This avoids the negative balances in the earlier
+degree/inversion preflow. Freezing it is an UNKNOWN strengthening of POOL, not a completed flow.
+Derived the exact cut penalty Leak for assignments to outside children, and a necessary lower
+bound on wrapped usage. Proofs are in E434; the target remains all S with the complement reduction.
+
+Attempted separate payment of boundary-start aliases. The recorded19 tile refutes it sharply:
+formal credits27, residue rank15, alias kernel12, missing4, wrapped7. Even all11 auxiliary
+slots cannot inject12 formal relations. But actual expanded demand is25 including the origin;
+only24 units need routing, and free residues14 plus missing4+wrapped7 leave margin1. Thus
+at least6 of7 wrap units must be used. This is an exact obstruction to separate bookkeeping,
+not a counterexample to the joint model or Wilf (actual W32).
+
+Pure C fixed-allocation all-cut tests on the SAME40/114 fixtures pass. Added only the old19
+fixture to discriminate the new alias obstruction; it passes too. Independent integer audits
+and ASan/UBSan19 pass. These three diagnostics are closed; do not expand a positive census.
+The expanded-lift subtraction shortcut would require the earlier U=T condition; stop that
+duplicate assumption. The next mathematical operation is the joint carry/alias allocation
+for actual source counts. Retain unfrozen POOL/E432 if freezing fails. The other universal
+lines remain weighted repair coupling and arithmetic/integrality. No new Lean proof.

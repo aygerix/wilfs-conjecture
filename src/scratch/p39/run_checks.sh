@@ -9,6 +9,7 @@ gcc -O3 upper_scan.c -o repair_scan
 python3 verify_probe.py --completion-cut-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-cut.json
 python3 verify_probe.py --completion-structure-check data/completion_cut_probe.jsonl.gz /tmp/wilf-p39-completion-structure.json
 python3 verify_probe.py --completion-pool-check data/completion_pool_probe.jsonl.gz /tmp/wilf-p39-completion-pool.json
+python3 verify_probe.py --completion-pool-check data/completion_frozen_probe.jsonl.gz /tmp/wilf-p39-completion-frozen.json
 python3 verify_probe.py --partial-support-check data/partial_support_probe.jsonl.gz /tmp/wilf-p39-partial-support.json
 python3 verify_probe.py --residue-check data/residue_descent_audit.jsonl.gz /tmp/wilf-p39-residue-summary.json
 python3 verify_probe.py --tangent-check data/primitive_tangent.jsonl.gz /tmp/wilf-p39-tangent-summary.json

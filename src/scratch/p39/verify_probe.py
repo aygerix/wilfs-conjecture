@@ -56,7 +56,7 @@ def partial_support_geometry(D,kept):
     return {'size':len(kept),'missing':m-len(kept),'Dep':dep,'N':N,'kappa':kappa,
             'budget':dep+N-kappa+m-len(kept),'nonmax':nonmax}
 
-def completion_graph(D,pool=False):
+def completion_graph(D,pool=False,frozen=False):
     m=D['m'];gr,z=factor_basis(D);d=len(gr);inv={v:s for s,v in z.items()};eta=[0]*m
     for j in range(d):
         cols=defaultdict(list)
@@ -73,6 +73,16 @@ def completion_graph(D,pool=False):
           sum(z[s][j] for j in range(d) if gr[j]<=(s+D['rho'])%m) for s in range(m)]
     assert co==[-v for v in beta] and all(v>=1 for v in beta)
     omega=[d+sum(z[s]) for s in range(m)];benefit=-sum(v for v in co if v<0)
+    original_co=co[:];original_omega=omega[:]
+    if frozen:
+        assert pool
+        co=[-(1+sum(z[s][j]*gr[j] for j in range(d))//m) if s else 0 for s in range(m)]
+        for s in range(m):
+            for j in range(d):
+                v=list(z[s]);v[j]+=1
+                if tuple(v) in inv and (s+D['rho'])%m+gr[j]<m:omega[s]-=z[s][j]+1
+            assert omega[s]>=0
+        benefit=-sum(co)
     source=(3 if pool else 2)*m;sink=source+1;arcs=[]
     for s in range(m):
         if co[s]<0:arcs.append([source,s,-co[s]])
@@ -88,7 +98,9 @@ def completion_graph(D,pool=False):
                 if pool:
                     arcs.append([t,2*m+s,benefit+1])
                     if not z[s][j]:arcs.append([t,2*m+(s-gr[j])%m,benefit+1])
-    return {'m':m,'gr':gr,'z':z,'eta':eta,'co':co,'beta':beta,'omega':omega,'benefit':benefit,'arcs':arcs,'source':source,'sink':sink}
+    return {'m':m,'gr':gr,'z':z,'eta':eta,'co':co,'beta':beta,'omega':omega,
+            'original_co':original_co,'original_omega':original_omega,
+            'benefit':benefit,'arcs':arcs,'source':source,'sink':sink}
 
 def audit_completion_cut(C):
     D,R=C['seed'],C['cut'];audit(D);G=completion_graph(D);m=D['m']
@@ -143,8 +155,49 @@ def audit_partial_support(C):
     return {**{k:v for k,v in P.items() if k!='nonmax'},'G':D['generators'],'actual_W':D['W'],
             'genuine_negative_W':D['W']<0,'tested_patterns':R['checked']}
 
+def frozen_payment_geometry(D,kept):
+    """Count residual resources directly as missing and wrapped components."""
+    gr,z=factor_basis(D);m=D['m'];d=len(gr);lookup={v:s for s,v in z.items()};E=set(kept)
+    P=partial_support_geometry(D,E)['nonmax'];gamma=[0]*m;wrapped=[0]*m;pool={0};starts=[]
+    for s in range(m):
+        for j,g in enumerate(gr):
+            v=list(z[s]);v[j]+=1;t=lookup.get(tuple(v));capacity=z[s][j]+1
+            if t is None:gamma[s]+=capacity
+            elif (s+D['rho'])%m+g>=m:wrapped[s]+=capacity
+            if s in E and t in E:
+                pool.add(s)
+                if not z[s][j]:starts.append([s,j,(s-g)%m]);pool.add((s-g)%m)
+    K=[sum(z[s][j]*gr[j] for j in range(d))//m for s in range(m)]
+    residual=[1+K[s] if s else 0 for s in range(m)]
+    nonwrap=[sum(z[s][j] for j in range(d) if gr[j]<=(s+D['rho'])%m) for s in range(m)]
+    original=completion_graph(D);frozen=completion_graph(D,True,True)
+    assert all(original['beta'][s]==1+K[s]+nonwrap[s] for s in range(m))
+    assert all(gamma[s]+wrapped[s]==frozen['omega'][s] for s in range(m))
+    assert frozen['co']==[-v for v in residual]
+    source=sum(residual[s] for s in E);G=sum(gamma[s] for s in P);W=sum(wrapped[s] for s in P)
+    leakage=0
+    for s in P:
+        for j,g in enumerate(gr):
+            v=list(z[s]);v[j]+=1;t=lookup.get(tuple(v))
+            if t is not None and t not in E and (s+D['rho'])%m+g<m:leakage+=z[s][j]+1
+    original_margin=len(pool)-sum(original['beta'][s] for s in E)+sum(original['omega'][s] for s in P)
+    residual_margin=G+W+len(pool)-1-source
+    assert residual_margin==(original_margin-leakage if E else 0)
+    # In a nonempty down-set, the origin is reserved separately. Negative
+    # boundary starts cannot have residue0, by primitive residue uniqueness.
+    assert all(r!=0 for _,_,r in starts)
+    return {'size':len(E),'nonmaximal':len(P),'negative_starts':len(starts),
+            'pool_size':len(pool),'pool':sorted(pool),'raw_carry_sum':sum(K[s] for s in E),
+            'residual_nonzero_demand':source,'missing_direction_capacity':G,
+            'wrapped_capacity':W,'free_nonzero_pool_capacity':len(pool)-1,
+            'residual_budget':residual_margin,'original_pool_budget':original_margin,'nonwrap_leakage':leakage,
+            'alias_loss':len(P)+len(starts)-len(pool),
+            'required_wrapped_usage':max(0,source-G-(len(pool)-1)),
+            'capacity_components':{'missing':gamma,'wrapped':wrapped}}
+
 def audit_completion_pool_cut(C):
-    D,R=C['seed'],C['cut'];audit(D);G=completion_graph(D,True);m=D['m'];n=3*m+2
+    D,R=C['seed'],C['cut'];audit(D);frozen=R.get('frozen_nonwrap',False)
+    G=completion_graph(D,True,frozen);m=D['m'];n=3*m+2
     assert R['pool_mode'] and all(R[k]==D[k] for k in ('m','e','c','rho'))
     assert [a[:3] for a in R['arcs']]==G['arcs']
     assert R['weights']==G['co'] and R['omega']==G['omega'] and R['negative_mass']==G['benefit']
@@ -173,16 +226,37 @@ def audit_completion_pool_cut(C):
                 if not z[s][j]:pool.add((s-g)%m)
     assert {s for s in range(m) if m+s in cut}==P['nonmax']
     assert {0}|{s for s in range(m) if 2*m+s in cut}==pool
-    deficiency=sum(G['beta'][s] for s in E)-sum(G['omega'][s] for s in P['nonmax'])
+    deficiency=sum(G['beta'][s] for s in E)-sum(G['original_omega'][s] for s in P['nonmax'])
     # E432 value at THIS pool-optimal cut, not the separate E432 minimum.
     assert P['budget']==R['global_completion_budget']==m-deficiency
-    assert R['budget']==1+value-G['benefit']==len(pool)-deficiency
-    return {'G':D['generators'],'m':m,'e':D['e'],'c':D['c'],'actual_W':D['W'],
-            'pool_budget':R['budget'],'pool_size':len(pool),'deficiency':deficiency,
+    leakage=0
+    for s in P['nonmax']:
+        for j,g in enumerate(G['gr']):
+            v=list(z[s]);v[j]+=1;t=lookup.get(tuple(v))
+            if t is not None and t not in E and (s+D['rho'])%m+g<m:leakage+=z[s][j]+1
+    if frozen:
+        assert R['budget']==value-G['benefit']
+        direct=sum(G['omega'][s] for s in P['nonmax'])+len(pool)-1+sum(G['co'][s] for s in E)
+        assert R['budget']==direct==(len(pool)-deficiency-leakage if E else 0)
+    else:assert R['budget']==1+value-G['benefit']==len(pool)-deficiency
+    report={'G':D['generators'],'m':m,'e':D['e'],'c':D['c'],'actual_W':D['W'],
+            'pool_budget':len(pool)-deficiency,'residual_budget':R['budget'],
+            'frozen_nonwrap':frozen,'nonwrap_leakage':leakage,
+            'pool_size':len(pool),'deficiency':deficiency,
             'global_completion_budget':P['budget'],'size':len(E),'pool':sorted(pool),
-            'kept':sorted(E),'pool_payment_failure':R['budget']<0,
+            'kept':sorted(E),'pool_payment_failure':len(pool)-deficiency<0,
+            'frozen_allocation_failure':frozen and R['budget']<0,
             'completion_failure':P['budget']<0,'genuine_negative_W':D['W']<0,
             'global_optimum_over_downsets':True}
+    if frozen:
+        direct=frozen_payment_geometry(D,E);assert direct['residual_budget']==R['budget']
+        full=frozen_payment_geometry(D,range(m));full.pop('capacity_components')
+        report['whole_tile_geometry']=full
+        if sorted(D['generators'])==[40,41,42,43]:
+            control=frozen_payment_geometry(D,{0,G['gr'][0]});control.pop('capacity_components')
+            assert control['nonwrap_leakage']==control['original_pool_budget']==2 and control['residual_budget']==0
+            report['nonempty_leak_control']=control
+    return report
 
 def audit_completion_structure(C):
     """Audit E433 on an existing C flow, without a new search or optimization."""
@@ -1111,7 +1185,7 @@ if __name__=='__main__':
         for R in results:
             print('COMPLETION-POOL',R)
             if R['genuine_negative_W']:print('GENUINE NEGATIVE W: independent membership audit passed',R)
-        print('EXACTLY CERTIFIED',len(results),'directional-pool minima; negative pool budget is not a Wilf failure')
+        print('EXACTLY CERTIFIED',len(results),'pool / fixed-allocation minima; a negative model budget is not a Wilf failure')
         sys.exit(0)
     if sys.argv[1]=='--completion-structure-check':
         # Reuse the 114 witness, a boundary control and two falsifications of
