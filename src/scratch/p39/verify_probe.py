@@ -915,6 +915,205 @@ def audit_pointwise_death(C):
             'packing':packing,'full_budget_lower_bounds':bounds,'overlap_guard':'disjoint original inputs; strict-death combined by MAX'}
     return result
 
+def constructed_tile_profile(words,P,a,M,require_downset=True):
+    """Exact source-word bound; geometry is required only when explicitly used."""
+    D=set(map(tuple,words));d=len(P);assert len(D)==a and d>=1
+    assert all(len(z)==d and all(n>=0 for n in z) for z in D)
+    value=lambda z:sum(p*n for p,n in zip(P,z))
+    assert {value(z)%a for z in D}==set(range(a))
+    missing=set()
+    for z in D:
+        for j,n in enumerate(z):
+            if n:
+                v=list(z);v[j]-=1
+                if tuple(v) not in D:missing.add(tuple(v))
+    if require_downset:assert not missing
+    total=sum(map(value,D));e=d+1
+    lower=F((e-1)*M)-F(e*total,a)-F((e-2)*(a-1),2)
+    assert lower.denominator==1
+    return {'words':[list(z) for z in sorted(D)],'source_value_sum':total,
+            'constructed_maximum':max(map(value,D)),'L':int(lower),
+            'units_present':[j for j in range(d) if tuple(int(i==j) for i in range(d)) in D],
+            'downset':not missing,'missing_immediate_predecessors':[list(z) for z in sorted(missing)]}
+
+def fresh_unit_shadow(words,P,a,k):
+    D=set(map(tuple,words));d=len(P);unit=tuple(int(i==k) for i in range(d))
+    assert unit not in D and all(z[k]==0 for z in D)
+    value=lambda z:sum(p*n for p,n in zip(P,z))
+    x=next(z for z in D if value(z)%a==P[k]%a)
+    gap=value(x)-P[k];assert gap>0 and gap%a==0
+    sigma=gap//a;out=set();copies=0
+    for z in D:
+        q=min(z[j]//x[j] for j in range(d) if x[j]);copies+=q
+        v=tuple(z[j]-q*x[j]+q*int(j==k) for j in range(d))
+        assert value(z)-value(v)==q*sigma*a;out.add(v)
+    assert len(out)==a
+    return out,{'input':list(x),'restored_unit':k,'saving_per_copy':sigma,
+                'copies':copies,'pivot_credit':copies*sigma}
+
+def corner_exchange(words,P,a,x,y):
+    D=set(map(tuple,words));x=tuple(x);y=tuple(y);d=len(P)
+    assert x in D and y not in D
+    assert all(tuple(x[i]+int(i==j) for i in range(d)) not in D for j in range(d))
+    assert all(tuple(y[i]-int(i==j) for i in range(d)) in D for j in range(d) if y[j])
+    assert not any(v and w for v,w in zip(x,y))
+    gap=sum(p*(v-w) for p,v,w in zip(P,x,y));assert gap>0 and gap%a==0
+    return (D-{x})|{y},{'input':list(x),'output':list(y),'pivot_credit':gap//a}
+
+def audit_advisor_trade_controls(records):
+    """E457/E458: ONLY saved31/39/51 audits, no sampling or family enumeration."""
+    by_pivot={R['a']:R for R in records};assert set(by_pivot)=={31,39,51}
+    states={};result={'controls':{},'universal_sign_claim':False,'search_campaign':False}
+    for a,R in sorted(by_pivot.items()):
+        P=R['original_source_labels'];S=R['S'];M=S['c']+a-1
+        actual=[2*C['U_value']+a*C['lambda'] for C in R['columns']]
+        assert max(actual)==M and F(sum(actual),a)-F(a-1,2)==S['g']
+        assert (S['e']-1)*S['c']-S['e']*S['g']==S['W']
+        D={tuple(C['U_word']) for C in R['columns']}
+        profile=constructed_tile_profile(D,P,a,M)
+        excess=(profile['source_value_sum']-sum(actual))//a
+        assert profile['source_value_sum']-sum(actual)==a*excess>=0
+        assert profile['L']==S['W']-S['e']*excess
+        states[a]=(D,P,M);result['controls'][str(a)]={'S':S,'actual_maximum':M,
+            'initial':profile,'exact_total_excess':excess}
+    D,P,M=states[31];assert result['controls']['31']['initial']['L']==-156
+    orders=[]
+    for order,credits,expected in [([1,2],[105,35],404),([2,1],[162,6],516)]:
+        current=set(D);steps=[];previous=-156
+        for k,credit in zip(order,credits):
+            current,step=fresh_unit_shadow(current,P,31,k)
+            profile=constructed_tile_profile(current,P,31,M)
+            assert step['pivot_credit']==credit and profile['L']-previous==4*credit
+            previous=profile['L'];steps.append({'trade':step,'result':profile})
+        assert previous==expected and len(profile['units_present'])==3
+        orders.append({'restore_values':[P[k] for k in order],'total_credit':sum(credits),
+                       'final_L':previous,'steps':steps})
+    result['controls']['31']['restoration_orders']=orders
+    D,P,M=states[39];profile=result['controls']['39']['initial']
+    assert (M,profile['L'],profile['source_value_sum'])==(906,-144,27534)
+    assert len(profile['units_present'])==3 and sum(C['U_odd_count'] for C in by_pivot[39]['columns'])==668
+    assert M<=F((39+2)*(3*39-1),5)
+    B=22;assert 5*B-3*39+4<2
+    result['controls']['39']['bounded_input_obstruction']={'degree_cap':B,
+        'twice_upper_saving':5*B-3*39+4,'minimum_necessary_positive_degree':(3*39-2+4)//5}
+    D,P,M=states[51];profile=result['controls']['51']['initial'];assert profile['L']==-192
+    assert (M,profile['source_value_sum'])==(1590,62628)
+    steps=[];previous=profile['L'];current=set(D)
+    for x,y,credit,expected in [((48,0,0),(0,1,1),44,-16),((47,0,0),(0,2,0),43,156)]:
+        current,step=corner_exchange(current,P,51,x,y)
+        profile=constructed_tile_profile(current,P,51,M)
+        assert step['pivot_credit']==credit and profile['L']-previous==4*credit
+        assert profile['L']==expected and len(profile['units_present'])==3
+        previous=profile['L'];steps.append({'trade':step,'result':profile})
+    result['controls']['51']['compatible_corner_exchanges']=steps
+    out=set();copies=0
+    for z in D:
+        q=z[0]//47;copies+=q;v=(z[0]-47*q,z[1]+2*q,z[2])
+        assert sum(p*(v0-v1) for p,v0,v1 in zip(P,z,v))==43*51*q
+        out.add(v)
+    scalar=constructed_tile_profile(out,P,51,M,require_downset=False)
+    assert copies==2 and scalar['L']==152 and not scalar['downset']
+    assert [1,1,0] in scalar['missing_immediate_predecessors']
+    result['controls']['51']['scalar_47_shadow']={'pivot_credit':43*copies,'result':scalar}
+    return result
+
+def positive_tile_borders(words,P,a):
+    D=set(map(tuple,words));d=len(P);value=lambda z:sum(p*n for p,n in zip(P,z))
+    residues={value(z)%a:z for z in D};maximal=set();border=set()
+    for z in D:
+        children=[tuple(z[i]+int(i==j) for i in range(d)) for j in range(d)]
+        if not any(y in D for y in children):maximal.add(z)
+        for y in children:
+            if y not in D and all(tuple(y[i]-int(i==j) for i in range(d)) in D for j in range(d) if y[j]):border.add(y)
+    positive=[]
+    for y in border:
+        x=residues[value(y)%a];gap=value(x)-value(y)
+        if gap>0:
+            assert gap%a==0
+            positive.append({'x':x,'y':y,'sigma':gap//a,'corner':x in maximal})
+    return sorted(positive,key=lambda s:(-s['sigma'],s['x'],s['y']))
+
+def audit_trade_policy_trace(source,T,source_verifier):
+    independently_checked=source_verifier(source)
+    assert T['actual_generators']==source['generators'] and T['m']==source['m']
+    if source['W']<0:
+        assert T['status']=='negative_W'
+        return {'source':independently_checked,'policy_not_evaluated':True,'negative_W':True}
+    if not T['accepted']:
+        assert T['status']=='rejected'
+        return {'source':independently_checked,'policy_not_evaluated':True,'negative_W':False}
+    a=min(p for p in source['generators'] if p%2);assert a==T['a']<=256
+    P=[p for p in source['generators'] if p!=a];d=len(P);e=d+1
+    beta=[(p-a)//2 if p%2 else p//2 for p in P]
+    assert T['P']==P and T['beta']==beta
+    U=membership_stats([a]+beta,a);assert U['w']==T['closure_apery']
+    words={0:(0,)*d};odd={0:0}
+    for s in sorted(range(1,a),key=lambda s:U['w'][s]):
+        candidates=[]
+        for j,b in enumerate(beta):
+            parent=(s-b)%a
+            if U['w'][parent]+b==U['w'][s]:
+                word=list(words[parent]);word[j]+=1
+                candidates.append((odd[parent]+P[j]%2,tuple(word)))
+        assert candidates
+        odd[s],words[s]=min(candidates)
+    D=set(words.values());assert D==set(map(tuple,T['initial_words']))
+    M=source['c']+a-1;assert M==T['M_actual']
+    profile=constructed_tile_profile(D,P,a,M);assert profile['L']==T['initial_L']<=source['W']
+    total=0;corners=0;initial=profile['L']
+    for step in T['steps']:
+        missing=[j for j in range(d) if tuple(int(i==j) for i in range(d)) not in D]
+        if step['kind']=='unit':
+            choices=[]
+            for j in missing:
+                candidate,trade=fresh_unit_shadow(D,P,a,j)
+                choices.append((-trade['pivot_credit'],j,candidate,trade))
+            assert choices
+            _,j,next_D,trade=min(choices,key=lambda v:(v[0],v[1]))
+            assert step['x']==trade['input'] and step['y']==[int(i==j) for i in range(d)]
+            assert step['sigma']==trade['saving_per_copy'] and step['copies']==trade['copies']
+            assert step['credit']==trade['pivot_credit']
+        else:
+            assert step['kind']=='corner' and not missing and profile['L']<0
+            choices=[v for v in positive_tile_borders(D,P,a) if v['corner']];assert choices
+            best=choices[0]
+            assert tuple(step['x'])==best['x'] and tuple(step['y'])==best['y'] and step['sigma']==best['sigma']
+            next_D,trade=corner_exchange(D,P,a,step['x'],step['y'])
+            assert step['copies']==1 and step['credit']==trade['pivot_credit'];corners+=1
+        next_profile=constructed_tile_profile(next_D,P,a,M)
+        assert next_profile['L']-profile['L']==e*step['credit'] and next_profile['L']<=source['W']
+        assert set(profile['units_present'])<=set(next_profile['units_present'])
+        total+=step['credit'];D=next_D;profile=next_profile
+    assert D==set(map(tuple,T['final_words'])) and len(profile['units_present'])==d
+    assert total==T['total_credit'] and initial+e*total==profile['L']==T['final_L']
+    assert corners==T['corner_steps']
+    positive=positive_tile_borders(D,P,a);corner_count=sum(v['corner'] for v in positive)
+    if T['status']=='negative_L_corner_stall':
+        assert profile['L']<0 and corner_count==T['terminal_positive_corners']==0
+    elif T['status']=='step_cap_unresolved':
+        assert profile['L']<0 and corners==T['step_cap']==1000
+    else:assert T['status']=='nonnegative_L' and profile['L']>=0
+    result={'source':independently_checked,'a':a,'initial_L':initial,'final_L':profile['L'],
+            'total_credit':total,'steps_replayed':len(T['steps']),'corners':corners,
+            'terminal_positive_corners':corner_count,'terminal_positive_borders':len(positive),
+            'status':T['status'],'exact_initial_U_words':True,'all_states_and_policy_choices_checked':True,
+            'universal_sign_claim':False}
+    if T['status']=='negative_L_corner_stall':
+        shadows=[]
+        for move in positive:
+            x,y=move['x'],move['y'];out=set();copies=0
+            for z in D:
+                q=min(z[j]//x[j] for j in range(d) if x[j]);copies+=q
+                out.add(tuple(z[j]-q*x[j]+q*y[j] for j in range(d)))
+            shadow=constructed_tile_profile(out,P,a,M,require_downset=False)
+            credit=copies*move['sigma']
+            assert shadow['L']-profile['L']==e*credit
+            shadows.append({'x':list(x),'y':list(y),'sigma':move['sigma'],'copies':copies,
+                            'pivot_credit':credit,'new_L':shadow['L'],'downset':shadow['downset'],
+                            'missing_predecessors':shadow['missing_immediate_predecessors']})
+        result['noncorner_shadow_diagnostics']=sorted(shadows,key=lambda v:-v['pivot_credit'])
+    return result
+
 def rational_row_rank(rows,width):
     basis={}
     for values in rows:
@@ -1946,6 +2145,35 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--trade-policy-check':
+        import importlib.util
+        assert len(sys.argv)==5
+        spec=importlib.util.spec_from_file_location('independent_scan_audit',sys.argv[2])
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        result=[];source=None
+        with open(sys.argv[3]) as inp:
+            for line in inp:
+                if not line.startswith('{'):continue
+                R=json.loads(line)
+                if R.get('kind')=='trade_source':source=R
+                elif R.get('kind')=='trade_policy_trace':
+                    assert source is not None
+                    result.append(audit_trade_policy_trace(source,R,module.verify));source=None
+        assert result
+        with open(sys.argv[4],'w') as out:json.dump({'results':result,'universal_sign_claim':False},out,indent=2)
+        for R in result:print('POLICY-REPLAY',{k:v for k,v in R.items() if k not in ('source','noncorner_shadow_diagnostics')})
+        sys.exit(0)
+    if sys.argv[1]=='--advisor-trade-check':
+        assert len(sys.argv)==6
+        records=[]
+        for path in sys.argv[2:5]:
+            with open(path) as source:records.append(json.load(source))
+        result=audit_advisor_trade_controls(records)
+        with open(sys.argv[5],'w') as out:json.dump(result,out,indent=2)
+        for a,R in result['controls'].items():
+            print('TRADE-CONTROL',a,'initialL',R['initial']['L'],'exact_excess',R['exact_total_excess'])
+        print('EXACTLY three saved controls; source bounds, both restoration orders, compatible exchanges and non-downset scalar shadow checked')
+        sys.exit(0)
     if sys.argv[1]=='--pointwise-death-check':
         import subprocess
         G=list(map(int,sys.argv[4:]));assert G

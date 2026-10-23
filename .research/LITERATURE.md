@@ -1386,3 +1386,22 @@ The paper proof applies to any primitive pivot; no external result is invoked to
 assert a nonnegative completed-tile mean–maximum budget. Its exact remaining quota
 and an explicit noncanonical-tile limitation are recorded, so restoration of original
 generator count is not mistaken for a proof of the finite correction.
+
+### E457–E460: current source-trade and normalization checks (2026-10-23)
+
+Reopened [Marashdeh2608.12531](https://arxiv.org/html/2608.12531), which was ALREADY READ
+in this record. Its exact defect/type reduction remains an available alternative;
+this was not a newly discovered dependency or a new proof of its conjectural sign.
+No new type-policy programme was activated. Searches for the E457 four-generator
+formula supplied no theorem USED in its direct certificate falsification; no absence
+or novelty assertion follows.
+
+Primary [Huang–Jafari1808.10616](https://arxiv.org/html/1808.10616), Section4, studies
+rectangular Apéry monomial structures and related complete-intersection questions.
+E460 instead states and directly proves a cyclic box factorization/gcd consequence
+for ANY full-source-unit constructed word transversal, without assuming actual Apéry
+values or an algebra classification. The geometric-series subgroup argument is
+standard in character methods; no novelty claim is made. Its application uses E439's
+already proved cofactor descent, not an external unproved finite-correction result.
+The advisor's corner exchange and31/51 controls are credited in PROOFS E458; E459's
+additional witness is a separately certified policy falsifier, not a Wilf counterexample.

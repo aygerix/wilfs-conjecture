@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "source": {
+        "kind": "trade_source",
+        "m": 31,
+        "e": 4,
+        "c": 588,
+        "g": 312,
+        "W": 516,
+        "Q": 51,
+        "R": 465,
+        "Qmin": 51,
+        "F": -45,
+        "height": 7,
+        "leave_one_out_gcds": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "all_apery_entries_checked": 31,
+        "coin_membership_bound": 649,
+        "exact_predecessors": true,
+        "canonical_columns": true,
+        "abstract_phases_are_not_realizations": true
+      },
+      "a": 31,
+      "initial_L": -156,
+      "final_L": 516,
+      "total_credit": 168,
+      "steps_replayed": 2,
+      "corners": 0,
+      "terminal_positive_corners": 0,
+      "terminal_positive_borders": 0,
+      "status": "nonnegative_L",
+      "exact_initial_U_words": true,
+      "all_states_and_policy_choices_checked": true,
+      "universal_sign_claim": false
+    },
+    {
+      "source": {
+        "kind": "trade_source",
+        "m": 39,
+        "e": 4,
+        "c": 868,
+        "g": 456,
+        "W": 780,
+        "Q": 72,
+        "R": 708,
+        "Qmin": 72,
+        "F": -63,
+        "height": 22,
+        "leave_one_out_gcds": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "all_apery_entries_checked": 39,
+        "coin_membership_bound": 945,
+        "exact_predecessors": true,
+        "canonical_columns": true,
+        "abstract_phases_are_not_realizations": true
+      },
+      "a": 39,
+      "initial_L": -144,
+      "final_L": 108,
+      "total_credit": 63,
+      "steps_replayed": 2,
+      "corners": 2,
+      "terminal_positive_corners": 1,
+      "terminal_positive_borders": 2,
+      "status": "nonnegative_L",
+      "exact_initial_U_words": true,
+      "all_states_and_policy_choices_checked": true,
+      "universal_sign_claim": false
+    },
+    {
+      "source": {
+        "kind": "trade_source",
+        "m": 51,
+        "e": 4,
+        "c": 1540,
+        "g": 780,
+        "W": 1500,
+        "Q": 114,
+        "R": 1386,
+        "Qmin": 96,
+        "F": -85,
+        "height": 30,
+        "leave_one_out_gcds": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "all_apery_entries_checked": 51,
+        "coin_membership_bound": 1641,
+        "exact_predecessors": true,
+        "canonical_columns": true,
+        "abstract_phases_are_not_realizations": true
+      },
+      "a": 51,
+      "initial_L": -192,
+      "final_L": 156,
+      "total_credit": 87,
+      "steps_replayed": 2,
+      "corners": 2,
+      "terminal_positive_corners": 1,
+      "terminal_positive_borders": 2,
+      "status": "nonnegative_L",
+      "exact_initial_U_words": true,
+      "all_states_and_policy_choices_checked": true,
+      "universal_sign_claim": false
+    }
+  ],
+  "universal_sign_claim": false
+}

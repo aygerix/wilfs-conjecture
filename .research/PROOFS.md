@@ -11429,3 +11429,358 @@ G_tilde but does NOT automatically pay this excess and the finite correction. No
 universal quota or positivity has been proved. Keep the FULL OC-W surplus, parent
 reserve and mixed/composite trades; closure U=N or all-odd inputs are not reductions.
 This is the next quantitative target, not permission for another positive census.
+
+## E457 — unit completion and every fixed input-degree trade catalogue fail as universal payers
+
+2026-10-23 16:43 EDT. Scope: Proves Wilf for EVERY S IF E456 SOURCE-QUOTA is paid uniformly;
+reduction yes, E453/E444 and complements. This is a falsification of a UNIVERSAL certificate
+mechanism, not a four-generator Wilf programme. Root derived the family before the latest
+advisor supplied its a51 control. Same authorized parity agent independently audited all
+arguments. Paper-proved; no Lean or novelty claim. Only ONE a39 member was computed.
+
+For odd a>=39 let
+
+    S_a=<a,a+2,3a-4,3a-2>,   p=a+2,q=3a-4,r=3a-2.
+
+All four generators are primitive: they are odd and below3a, whereas a nontrivial odd
+sum needs at least three positive generators. They have m=a,e=4,3e<a, and every
+leave-one-out gcd is1 (either the remaining a,a+2 or q,r differ by2 and are odd).
+Also5a-1 is a gap. A representation would use two or four odd generators: two low
+ones are too small; one high+one low is<=4a; two high ones are>=6a-8>5a-1; four low
+ones are<=4a+8<5a-1; and four with a high one are>=6a-4>5a-1. Six terms are too large.
+Thus c>=5a>4m. These are genuine remaining-domain guards, not asserted Wilf difficulty.
+
+The normalized labels are beta=(1,a-2,a-1),chi=(1,1,1), so U=N. Its prescribed
+minimum-odd-count/lex closure tile is EXACTLY
+
+    D_U={s*e_1:0<=s<=a-3} union{e_2,e_3},
+    Z=sum chi.z=(a-3)(a-2)/2+2.
+
+ALL original units are already present, so E456 unit restoration cannot move at all.
+Writing M=max Ap(S_a,a), the constructed bound is
+
+    L(D_U)=3M-5(a-1)-4Z=3M-2a^2+5a-15.
+
+For source residue2s,0<=s<a, the forward word s*p is available. With n=a-s the backward
+word floor(n/2)*q+(n mod2)*r also attains that residue, and its value is at most
+((3a-4)/2)*(a-s)+3a/2. The minimum of these increasing/decreasing real lines is never
+larger than their common intersection height. Their crossing has s=(3a-1)/5, so
+
+    M <= (a+2)(3a-1)/5,
+    L(D_U) <= (-a^2+40a-81)/5 <0.                    (CANONICAL-UNIT-COMPLETION FAILS)
+
+The last polynomial is already negative at39 and strictly decreases thereafter.
+No exact family c,g,W was computed or used. Any integer pivot credit sufficient to
+make this bound nonnegative must total AT LEAST
+
+    ceil((a^2-40a+81)/20).
+
+Thus an order-a^2 payment may remain even when every source unit is present.
+
+More strongly, NO positive primitive-output trade fits this D_U. A nonunit input is
+N*e_1 with1<=N<=a-3. Its residue matches q only if N=a-2, r only if N=a-1, and p only
+if N1, with zero saving. The two other words are units and cannot reduce by primitivity.
+This rules out that entire payer class here, not just the absent-unit algorithm.
+
+### No fixed input-degree cap can give a universal first-stage payer
+
+Fix ANY integer B>=1 and choose odd a>=39 with3a-2>5B. A positive applicable input of
+degree<=B must again be N copies of p. Cancel any common p from the output. The residual
+input has1<=N'<=B<a; its output is x*q+y*r with t=x+y>=1. Equal residues force
+
+    N'+2x+y=k*a,   k>=1,
+    sigma=(N'p-xq-yr)/a=N'-3t+2k.
+
+Since2x+y<=2t,
+
+    sigma <= (5N'-k(3a-4))/2 <= (5B-3a+4)/2 <1.
+
+Positive saving is an integer>=1, a contradiction. Thus even allowing ARBITRARY
+composite output words, every fixed input-degree catalogue eventually supplies ZERO
+credit on these canonical tiles while L<0. Any positive axis input must satisfy
+
+    N >= ceil((3a-2)/5).
+
+This is a necessary bound, not always the attained first input size. It refutes the
+specified frozen-tile bounded-degree payer, not arbitrary recursive or evolving-tile
+algorithms. In particular short border OUTPUTS can correspond to long INPUTS.
+For an axis input s, the displayed backward word gives the explicit cyclic trade
+
+    s*p -> floor((a-s)/2)*q+((a-s) mod2)*r,
+    sigma_s=s-3ceil((a-s)/2)+2,
+
+whenever sigma_s>0. Its normalized lift is K=ceil((a-s)/2)-1. These outputs are composite
+where they fit the axis segment. A trade selected around4a/5 has saving and descendant
+shadow both of order a. This shows the relevant scale of a possible payment, not that
+a chosen shadow pays the actual full quota. Global compatible selection remains open.
+
+**Fixed exact control.** Existing Fejer C plus independent membership/ideal/source audit
+on ONLY S=<39,41,113,115> gives M906,c868,g456,W780,U=N,Z668,L(D_U)=-144 and total
+source excess231. Degree<=22 positive blocks cannot apply. This is not a negative Wilf
+number. Data: p39/data/cyclic_source_control_457.json; exact details in EXPERIMENTS.
+
+### Parallel full-tile attempt: exact construction barriers, not a sign theorem
+
+The proposed nonflat kappa<=Dep remains UNKNOWN. For a genuine product realization
+D=D_1 x{0,...,h-1}, with gcd(h,m_1*t)=1 and sufficient primitive height, direct columns give
+
+    Dep=(h-1)d_1*m_1+Dep_1+h*(m_1-|MaxD_1|),
+    kappa=h*kappa_1+(m_1-1)(h-1)/2.
+
+The old flat mirror19 extended with h2 has Dep111,kappa19, destroying its F>0 advantage.
+For the different full-pair wedge D=Delta_2 union{3e_i,...,He_i},
+
+    m=binom(d+2,2)+H-2, Dep=(d-1)(H-2), T=binom(d,2).
+
+Residue injectivity on Delta_2 makes all d(d+1) ordered nonzero differences of
+A={0,delta_1,...,delta_d} distinct: equal differences cross-add to two equal-residue
+pair words, which must be identical. Hence m>=d(d+1)+1 and H-2>=binom(d,2), so
+Dep>=T>=kappa. This excludes that CONSTRUCTION in all dimensions, not all nonflat tiles.
+With omitted pairs, repeated differences may concentrate in the same missing relation;
+a global weighted bound on this concentration is still missing.
+
+Mirror symmetry kappa_delta+kappa_(-delta)=T makes the sufficient target equivalent to
+kappa>=T-Dep. E455 can buffer any genuine counterexample to have UNIQUE Apery
+factorizations, preserving D,e,F and reaching c>4m: nonidentity primitive rows become
+strict. Extra inner trades or small heights therefore cannot protect this stronger
+conjecture. No genuine nonflat F>0 witness or proof emerged. Stop these two construction
+recipes, retain actual N and full R, and keep the source-quota work primary.
+
+## E458 — advisor composite exchanges, order effects and the necessary quantifiers
+
+2026-10-23 16:43 EDT. Scope: Proves Wilf for EVERY S IF a uniform admissible augmentation
+or packing pays E456 SOURCE-QUOTA; proved reduction yes L<=W and the decreasing integer
+potential. Latest advisor independently supplied the a51 member of E457, two compatible
+exchanges and31 order calculations. Root and SAME two authorized agents checked the
+statements below; fixed Fejer audits pass. Paper-proved components, not Lean or novelty.
+
+### Exact excess and residue-preserving scalar replacement
+
+For any constructed residue-bijective tile D of source words, let v_s be the true
+Apery representatives and define E(D)=sum_s(P.z_s-v_s)/a. Each divided difference
+is a nonnegative integer. Comparing the mean-maximum identities gives EXACTLY
+
+    L(D)=W(S)-e*E(D).
+
+A wordwise same-residue replacement is automatically injective on D: equal output
+words would have equal residues, hence their distinct inputs could not have distinct
+residues. Thus the FRESH-coordinate assumption in E456 is unnecessary for injectivity.
+It is what supplies its AUTOMATIC DOWNSET proof. A general scalar packing or shadow
+still gives a valid lower bound without a downset; retain geometry only when using it.
+
+### Maximal-cell/minimal-excluded corner exchange — PROVED (advisor)
+
+Let x be maximal in D, let y be minimal outside D, and suppose P.x-P.y=sigma*a>0.
+Then D'=(D minus{x}) union{y} is a residue-bijective downset and
+
+    L(D')-L(D)=e*sigma.
+
+Deleting a maximal cell preserves downward closure. All proper divisors of y are in D;
+the removed x cannot be one, since x<y would imply P.x<P.y. Equal residues preserve
+the transversal. In fact supports of x,y are DISJOINT: a shared coordinate j would
+put x-e_j,y-e_j in D with the same residue, forcing x=y. A positive move cannot remove
+an original primitive unit, because its cheaper representative plus pivots would
+decompose that primitive. Thus existing source units persist.
+
+### Fixed51 calibration and a scalar shadow with different geometry
+
+For S=<51,53,149,151>,a51,beta=(1,49,50), the prescribed D_U is the axis0..48 plus
+the other two units. It already contains all units. Independently checked source data:
+
+    M1590,c1540,g780,ell760,W1500,
+    sum_DU P.z=62628, Z1178, L=-192, E=423.
+
+The advisor's paper formula for residue2s is min(53s,149floor((51-s)/2)+151*((51-s) mod2)).
+Forward wins through30; sum actual representatives41055. The relations53+149=151+51,
+53+151=4*51 and2*151=149+3*51 reduce mixed words and justify that formula.
+The two successive compatible corners are
+
+    48e_1 -> e_2+e_3,   sigma44,  L:-192 -> -16,
+    47e_1 -> 2e_2,      sigma43,  L:-16 -> 156.
+
+Each input is maximal at its step and every proper divisor of the output is present.
+The final axis0..46 plus e2,e3,2e2,e2+e3 is still a complete downset with all units.
+Credit87 supplies a positive certificate without exact recovery of the total excess423.
+
+Alternatively the47-block on the INITIAL tile fits47e1 and48e1, giving scalar credit86
+and L152. Its image is residue-bijective but NOT a downset: old48 becomes e1+2e2,
+whose predecessor e1+e2 is missing. This is a geometric failure, not a scalar-credit
+failure or a collision of residue outputs. Both valid choices are retained.
+
+### Unit restoration is order-dependent (advisor; verified)
+
+On ONLY old S=<31,33,101,103>, initial L=-156. Restoring101 first saves
+sum_(s=0)^30 floor(s/4)=105; restoring103 next uses input e1+e101 and adds
+sum min(s mod4,floor(s/4))=35. Total140 gives L404. Restoring103 first saves
+2sum floor(s/5)=162; restoring101 next uses4e1 in the six remainder4 cells and
+adds6. Total168 gives L516. Both are valid fresh-unit restorations, all geometry
+and residues persist, and order independence is FALSE. The full fixed audit is
+p39/data/advisor_trade_audit_458.json; no new31 membership run was needed.
+
+### Unrestricted single-corner augmentation is FALSE; reachable version still open
+
+One must specify the starting/reachable class and permitted augmentations. The following
+PAPER guard refutes a guarantee for EVERY arbitrary residue tile, even in the broad
+sparse/deep domain; it is NOT asserted to arise from canonical D_U or survive E439.
+Take S=<24,40,195,396,402>, pivot24, source coordinate orderP=(195,402,396,40), and
+
+    D={0,1}^3 x{0,1,2}.
+
+Residue labels(3,18,12,16) give all24 residues: the last coordinate distinguishes
+mod3 and the first three reduce to the8-cube labels(1,6,4). Its unique maximal word
+has residue17. Its only minimal excluded words2e1,2e2,2e3,3e4 have residues6,12,0,0.
+There is NO same-residue single corner exchange at all. Yet actualM677,c654,g423,W501,
+constructed mean536.5,C_a34.5 give L=-9. These invariants follow on paper from
+S_0=<8,65,134,132>, with actual Apery(0,65,130,195,132,197,134,199), and the rank-one
+construction <3S_0,40>, whose Apery representatives are3w+40k,0<=k<=2. Source
+primitivity follows from the old primitives and3*40=5*24; all guards were reviewed.
+
+A SIMULTANEOUS shadow replacement(e2+e3)->2e1 moves six words with sigma17, credit102
+and L improvement5*102=510, reaching501. The exchanged base pairs are
+{e2+e3,e1+e2+e3}->{2e1,3e1}, with the same three-element chain factor. This preserves
+downsets/residues/units, but cannot be decomposed into the allowed single corners.
+It demonstrates the possible need for multi-cell moves. The example has even pivot
+and leave-one-out gcd3, and has NOT been established as reachable from the least-odd
+closure construction; it does not refute that weaker existential policy target.
+A tentative odd-pivot box from the reviewer did not establish negative L and is UNCLAIMED.
+
+The weakest useful claim is forall S exists D in R(S) with L(D)>=0, where R starts
+at the canonical original-label closure tile and uses specified proved moves. A
+stronger 'EVERY reachable negative-L tile has an improving move' would also suffice.
+Every positive move decreases the nonnegative integer source-value sum; that proves
+termination, NOT the terminal sign. E459 tests one explicit policy, not that universal
+existence statement. Scalar packings, compatible multi-cell moves, full W(U), parent
+and Hall reserves stay available if the policy fails. No finite positive collection
+establishes the required augmentation theorem.
+
+## E459 — a genuine initial closure tile stalls every single corner; a compatible shadow repairs it
+
+2026-10-23 16:56 EDT. Scope: Proves Wilf for EVERY S IF a uniform augmentation/packing
+pays the full constructed bound; reduction yes E458 L<=W and complements. This is an
+exact counterexample to the SPECIFIED unit-plus-corner mechanism, not Wilf. The bounded
+C++ policy stopped at its first witness; root's independent membership/U/word/border
+checker verifies it. SAME parity agent adversarially checked the saved words/repair.
+No GPU rental, family Wilf claim, Lean or novelty claim.
+
+The C++ policy constructs canonical original-label D_U (minimum odd count, then lex),
+restores missing units by maximum full-shadow credit (coordinate tie), then chooses the
+largest-credit positive maximal-cell/minimal-excluded corner (input/output lex tie).
+It stops at L>=0, exhaustive absence of positive corners, or1000 corner steps. A cap
+is explicitly UNRESOLVED. The initial31/39/51 controls independently replay with final
+L516/108/156. See EXPERIMENTS for the exact bounded search, not a universal inference.
+
+### Certified corner-stalled INITIAL tile in the normalized domain
+
+The first witness is
+
+    S=<38,51,67,120,193>, m38,e5,c333,g209,ell124,W287,
+    a51, P=(38,67,120,193), beta=(19,8,60,71), chi=(0,1,0,1).
+
+Every leave-one-out primitive gcd is1,3e15<m38,c333>4m152. Its ORIGINAL canonical closure
+U=<51,19,8,60,71> tile has size51 and ALL four original units. It is the downset generated
+by these seven maximal words (coordinates in P order):
+
+    (0,1,2,0), (0,14,0,0), (2,0,0,1), (4,1,1,0),
+    (4,3,0,0), (5,1,0,0), (8,0,0,0).
+
+The full51-word array and independently reconstructed U representatives are saved.
+The source sum is14943, actual M383, C_a75, so
+
+    L(D_U)=4*383-(5/51)*14943-75=-8,
+    E(D_U)=59,             W=-8+5*59=287.
+
+There are NO positive same-residue maximal-cell/minimal-excluded corners. Exhaustive
+border enumeration gives exactly these THREE profitable minimal-excluded outputs:
+
+    x=11e_67 -> y=e_38+2e_120,    sigma9;
+    x=10e_67 -> y=e_120+e_193,    sigma7;
+    x=13e_67 -> y=5e_38+e_120,    sigma11.
+
+All three inputs are nonmaximal (the67-axis continues through14). Thus unit restoration
+cannot start, and no corner can start: the class reachable from THIS genuine prescribed
+initial tile using only those moves is the singleton D_U. This refutes even the weaker
+existential unit-plus-corner payer, not merely one unfortunate restoration order or an
+arbitrary noncanonical-tile claim. Broader scalar/compatible-shadow augmentation remains open.
+
+The source is already settled by SUPP: Dep90,kappa7,N20,Q103,R184,W287. Its role is a
+counterexample to a universal certificate policy, NOT a newly resistant Wilf shape.
+No support filter was silently used to claim frontier positivity.
+
+### Compatible full shadow gives a positive certificate without full recovery
+
+The last relation is
+
+    13*67=5*38+120+11*51.
+
+Exactly two current words fit its input:13e67 and14e67. Replace them SIMULTANEOUSLY by
+5e38+e120 and5e38+e67+e120. All proper predecessors of the first new word already
+belong to D: (4,0,1,0),(5,0,0,0). For the second, (4,1,1,0),(5,1,0,0) were old,
+and(5,0,1,0) is the first new word. Removing the full upper13-axis shadow preserves
+downward closure. Residues and all units persist. The total pivot credit is22, hence
+
+    L(D')=-8+5*22=102>0,       E(D')=37.
+
+This does not recover every actual Apery value. Neither constituent replacement can
+be performed first as a legal single corner:13e67 is nonmaximal, while the new word
+for14e67 needs the absent predecessor introduced by the other replacement.
+
+The other two positive border relations give valid alternative SCALAR shadows:
+11-block fits4 words, credit36,L172;10-block fits5 words,credit35,L167. Both images
+are residue-bijective but fail the downset test, with explicit missing predecessors
+in the independent audit. They are not added together or to the22-credit repair.
+
+Exact data: src/apery_scan/data/trade_search_459.jsonl and
+trade_search_verified_459.json. Finite source membership, actual minimal generators,
+all U words, complete corner absence and each diagnostic shadow are independently
+checked. The full source record also exports actual support columns/phases.
+
+**Decision:** the single-corner theorem is FALSE on the actual starting class, even
+after E439 normalization. Stop that as a universal payer. A useful constructor must
+permit compatible multi-cell shadows or broader scalar packings; E459 supplies a
+precise control. Universal existence/sufficient total credit remains UNKNOWN. No
+larger run of the falsified policy is justified.
+
+## E460 — cofactor normalization excludes every single-maximal full-unit tile
+
+2026-10-23 16:56 EDT. Scope: a necessary restriction on a least-genus Wilf counterexample;
+proved reduction from all S YES, E439. SAME parity agent supplied the argument; root
+strengthened it to ANY primitive pivot and the SAME geometric agent independently
+reviewed the complete proof. Paper-proved; no Lean or novelty claim. This explains why
+the unrestricted box stalls in E458 fail normalization; it is not a multi-max payment.
+
+Let S be proper and a>1 ANY primitive pivot. Let P_1,...,P_d list ALL other source
+primitives. Suppose a downset D of size a is residue-bijective under z->P.z mod a,
+contains every original unit and has exactly ONE maximal word. Then for some k,
+
+    gcd(a,{P_i:i!=k})=N_k>=2,
+
+where D=product_i{0,...,N_i-1}. Consequently deleting P_k from the original source
+leaves a nontrivial gcd. Such a D is impossible under E439 cofactor1, whether or not
+it is an actual Apery tile, canonical/coherent, or built by the parity construction.
+
+Proof. Unique maximality and downward closure make D its principal box; every unit
+ensures N_i>=2. The Cartesian residue map is bijective, hence product N_i=a. For a
+primitive a-th root of unity zeta,
+
+    0=sum_(z in D)zeta^(P.z)
+     =product_i sum_(r=0)^(N_i-1)zeta^(r P_i).
+
+One factor vanishes. A geometric series can vanish only when ord_a(P_i) divides N_i;
+it cannot vanish if zeta^(P_i)=1. Axis injectivity gives N_i<=ord_a(P_i), so equality
+holds and that axis is the ENTIRE subgroup H_i=<P_i> of Z/a.
+
+The remaining Cartesian word choices map bijectively to (Z/a)/H_i. Indeed, if two
+choices differ by an element of H_i, the full H_i-axis supplies offsets giving two
+distinct full-box words with the same residue, impossible. Cardinality gives
+surjectivity. Repeat the primitive-root argument in successive CYCLIC quotients.
+The accumulated subgroup is exactly the subgroup generated by the removed original
+P_i. Immediately before the last factor k, that subgroup H has index N_k>=2. In
+Z/a this index is gcd(a,{P_i:i!=k}), proving the claim.
+
+Unit completion is essential to the stated consequence: it makes every factor length
+at least two. Parity is unnecessary; using source residues directly avoids any factor2
+assumption. This proof is specific to boxes/arithmetic-progression Cartesian factors,
+not arbitrary tilings. E439's least-genus counterexample therefore forces at least TWO
+maximal cells in EVERY full-source-unit constructed residue downset. The actual E459
+corner-stalled initial tile has seven maxima and survives this necessary restriction.
+No claim that two-or-more-max tiles admit a corner or adequate shadow follows.

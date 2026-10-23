@@ -1,10 +1,54 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 16:00 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 17:03 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+
+**E457–E460 checkpoint: standalone unit/corner payer REFUTED; compatible shadow verified.**
+The latest advisor's51 control and both31 restoration orders are correct. A new proof
+family S=<a,a+2,3a-4,3a-2>, odda>=39, shows that canonical D_U may already have ALL
+source units while L<0, needing order-a^2 credit. Every primitive-output catalogue
+fails there; every fixed INPUT-degree cap eventually fails even with composite outputs.
+Long inputs must be synthesized from arithmetic, not excluded by a fixed local grammar.
+This is a universal-mechanism falsification, not a fixed-e Wilf programme. One39 member
+was computed; the advisor's51 member was independently checked. No family W census.
+
+**New exact policy obstruction:** S=<38,51,67,120,193>,m38,e5,c333,g209,W287,a51,
+P=(38,67,120,193),beta=(19,8,60,71). Its initial canonical closure tile has all4units,
+seven maxima,L=-8, and ZERO positive maximal/minimal-excluded corner exchanges.
+No unit/corner move can start. This refutes the standalone existential unit+corner
+policy on its ACTUAL starting class, even under cofactor1/deep/sparse normalization.
+It is ALREADY SUPP-certified (Q103,R184); the weaker combined [SUPP OR source policy]
+claim is NOT refuted. Do not call it a resistant Wilf case or counterexample to Wilf.
+
+Exactly three profitable border outputs exist, with nonmaximal inputs. The compatible
+shadow13*67 ->5*38+120 (saving11 pivots51) moves13e67 and14e67 together, preserving
+all geometry/residues/units; credit22 gives L102 and leaves excess37. Scalar alternatives
+give L172/167 with non-downset images. Credits are alternatives, not added. The SAME
+parity agent checked the51saved words/13borders and repair independently.
+
+**E459 bounded run:** prepared4x128 feedback proposals; stopped in generation0 after
+37 evaluations/29accepted/128proposed. ZERO adaptive feedback generations ran. No
+corner cap; no GPU rental. C++ source/exact U construction, complete corner absence
+and all policy choices replay independently. Three controls31/39/51 end at516/108/156.
+Raw traces and independent audits are under apery_scan/data/trade_*459*; the engine is
+retained as a CLOSED falsified-policy diagnostic, not a positivity theorem/campaign.
+No automatic rerun, larger count or rental. All Fejer jobs finished; both same agents done.
+
+**E460 general normalization lemma:** at ANY primitive pivot, a residue-bijective
+full-source-unit downset with ONE maximal cell is a box. Cyclic character/quotient
+factorization forces some source generator whose removal leaves gcd>=2. E439 thus
+excludes every such box from a least-genus Wilf counterexample, even as a constructed
+rather than actual Apéry tile. Independent paper review passes, not Lean/no novelty.
+It does not pay multi-max states; the new corner obstruction has seven maxima.
+
+**Next uniform obligation:** compatible NONMAXIMAL-input border shadows/general scalar
+packings must provide sufficient credit, retaining all reserves. Prefer the weaker
+combined target max(Q, best admissible L)>=0 over requiring each route separately.
+The old corner-only rule is false; directed discovery remains authorized for a NEW
+explicit lemma/policy and budget, with support-covered mechanism controls labelled.
 **E453–E456 checkpoint: neutral archive repaired; finite exits checked; general components proved on paper.**
 The archive now groups by EXACT (e, primitive residues, canonical words), preserving up
 to4 distinct height representatives per group, including the W/c winner and height/
@@ -554,6 +598,7 @@ The lo-only cost<=rho payment proposal is FALSE on3 saved genuine S; discontinue
 | Code | Purpose | Coverage and dependencies |
 | --- | --- | --- |
 | [apery.hpp / driver.cpp](../src/apery_scan/driver.cpp) | Exact cyclic-scan Apéry reconstruction, O(mk) actual primitive detection, certified predecessors and canonical support/phase analysis. | C++17, no solver. `--self-test N` compares every generator prefix with independent heap Dijkstra; `--warm B REPEATS SEED THREADS m k` compares batch evaluation, excluding generation/archive; `--adaptive B GENS SEED THREADS m p...` is scored-parent discovery. `adaptive.hpp` retains up to4 distinct heights per EXACT tile group and selects groups before representatives. `--archive-test` checks the advisor's neutral pair and collision separation. `--neighbors THREADS m p...` diagnoses one-input plateaus; `--neutral THREADS m p...` audits all19 saved first-step ties and their bounded exits; `--exchange THREADS m p...` enumerates proper two-atom cover changes (bitset m<=64, cap2million). Old `--bench`/`--mutate` remain closed pilot diagnostics. Never universal coverage. CPU m<=8192; pilot/GPU m<=1024. Signed64 arithmetic guarded by host128 bound8*m*m*max(p)<2^60. |
+| [trade_policy.hpp](../src/apery_scan/trade_policy.hpp) | Exact original-label closure construction, unit-shadow restoration and exhaustive corner-policy falsification. | C++17 CPU. `--trade-policy m p...` exports source plus full word trace; `--trade-search 7` is the CLOSED E4594x128-at-most diagnostic, stopped at37 on its first certified failure. Least odd a<=256;1000corners is unresolved, not a stall; source-filter/cofactor/domain/rejection counts explicit. No device acceleration or general policy theorem. |
 | [scan_cuda.cu](../src/apery_scan/scan_cuda.cu) | Batched CUDA/CUB segmented prefix/suffix minima and primitive/invariant extraction. | One block per candidate; same exact integer algorithm as CPU. GPU outputs compared with CPU arrays/statistics and O(mk) witnesses; Reusable GpuWorkspace supports warmed/feedback runs. E450/E452 provide actual CUDA and repeated-workspace checks, not just compilation. |
 | [verify_scan.py](../src/apery_scan/verify_scan.py) | Independent coin-membership and explicit-column verifier for promoted records, including all conductor phases, exact neutral grouping/paths and complete two-atom set-sum coverage. | Python stdlib, no shortest-path dependency; bounded exact membership cap fails closed. Canonical lex ties checked explicitly. E453/E454 raw and independent results are in `src/apery_scan/data/cover_exchange_*453*`, `neutral_neighborhood_*454*`, `archive_control_454.jsonl`, `archive_integration_*454*`. |
 | [run_pilot.py](../src/apery_scan/run_pilot.py) | User-authorized one-pod Runpod orchestration, bounded jobs, result download and confirmed cleanup. | runpodctl CLI; own task SSH key stays outside repository. Uses requested server deadline and detached cleanup watchdog. Price<=1USD/hour,<=20minutes, no persistent volume, never touches unrelated pods. Not a standing authorization to rerent or enlarge searches. |
@@ -682,25 +727,32 @@ Only the advisor's31/33/101/103 input was run; its4/5-block packing is independe
 verified column by column in `src/scratch/p39/data/parity_trade_control_454.json`.
 No new C optimizer or source family. E455/E456 are paper proofs, not executable claims.
 
+**E458/E459 independent word/policy audit:** `verify_probe.py --advisor-trade-check
+OLD31 NEW39 NEW51 OUTPUT` verifies the exact saved controls, both unit orders, corner
+geometry and scalar non-downset example. `--trade-policy-check SCAN_VERIFIER INPUT_JSONL
+OUTPUT` independently checks source coin membership, U representatives/min-odd/lex words,
+EVERY policy choice and update, all final corners, and diagnostic noncorner shadows.
+CLI SCAN_VERIFIER points to apery_scan/verify_scan.py. Data: p39/data/{cyclic_source_control_457,
+composite_source_control_458,advisor_trade_audit_458}.json; engine traces/audits in
+apery_scan/data/trade_*459*. No new C/Gurobi implementation, GPU or broad suite run.
+
 ## Current attempt and next action
 
-**E453–E456 next action:** the exact two-atom recipe and all19 neutral one-step exit
-audits are complete without a promotion; the archive correction and integration check
-are complete. No rental/job is pending. E455 supplies a GENERAL coordinated neutral
-access construction, but does not preserve W or stay in the tested box. Do not scale
-either finite diagnostic automatically. Directed discovery remains allowed for a named
-predicate; do not reinstate the old resistant-seed prerequisite. A future search should
-target an attainable boundary using its exact inequalities, not merely a low abstract
-phase, and must state a bounded discrimination question before computing.
+**Next proof task:** derive a uniform compatible-shadow or scalar-packing quota using
+ORIGINAL source relations, with macroscopic inputs and mixed/composite outputs allowed.
+The precise weakest combined sufficient target is `max(Q(S),sup_admissible_D L(D))>=0`
+throughout the normalized remaining domain; each is a valid lower bound for W. Unit
+restoration alone, fixed input degree, primitive-only outputs, and single corners are
+now explicitly refuted as standalone universal payers. E459's genuine starting tile
+requires a simultaneous shadow, not a different move ordering. Seek a GLOBAL credit
+selection/payment lemma; exact recovery of more individual Apéry tables is not the goal.
 
-**Primary finite-payment proof task:** construct enough E453 SOURCE-TRADE credit C_s
-from ORIGINAL-label words, with componentwise disjoint inputs and mixed/composite
-relations, to make TRADE-BUDGET nonnegative UNIFORMLY. Keep full W(U), the mixed coefficient
-ring and all reserves. The single31 calibration is now paid exactly, but this does not
-supply a universal quota. Axis-only inputs, primitive-only outputs and alpha/J-only
-substitutions have explicit paper counterexamples and are stopped as complete mechanisms.
-E456 studies the primitive blocks forced when D_U omits original units; this is a
-component of the same allocation, not permission to discard other trade types.
+Directed discovery remains authorized, with a named predicate and budget; the old
+resistant-seed prerequisite stays superseded. Any new policy search should report both
+its own failure and the combined support/source margin. Do not enlarge the stopped
+corner policy or the earlier cover/neutral recipes. E455 connectivity is not a W-sign
+preserving reduction; E460 no-box normalization is a proved necessary restriction,
+not a multi-max payment. All resources/jobs are finished, and the same two agents done.
 
 **Parallel proof obligation:** exploit E451's POINTWISE-DEATH/VALUE-DEATH while retaining
 the full distribution of original odd increments and mixed coefficient ring B. The

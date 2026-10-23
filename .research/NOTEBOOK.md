@@ -5712,3 +5712,47 @@ precisely the credit still needed. Hall at the actual top/full Q+R and full actu
 coordinate arithmetic remain distinct alternatives; no all-cut/frozen strengthening,
 all-odd reduction, cutoff optimization or positive census is activated. Universal
 Wilf goal ACTIVE, no proof or genuine counterexample; STATE is the sole handoff.
+
+### 2026-10-23 16:56 EDT — E457–E460: macroscopic inputs, a genuine corner stall and its shadow repair
+
+Previous turn was PROGRESS: d0492fd changed code/state and established reviewed E456
+compression. Continuing the SAME all-S backwards/finite-payment target, root derived
+S_a=<a,a+2,3a-4,3a-2> as a counterexample to canonical unit-completion positivity.
+All units already present; L<=(-a²+40a-81)/5<0 for odda>=39. Primitive-output credits
+arezero, fixed inputdegreeB eventually unusable, and necessary total credit isquadratic.
+The SAME parity agent independently reviewed; only39 member was computed (W780,L-144).
+
+User's latest advisor independently supplieda51 in that family. All exact claims,
+cornerlemma and31 order effects pass paper and Fejer audits.51 has W1500,L-192;
+compatible corners44+43 giveL156, scalar47-shadow86 givesL152 but not a downset.
+31 orders recover140vs168 credits/L404vs516. Freshness is needed for automatic
+DOWNSET preservation; residue preservation already guarantees injectivity generally.
+
+Proof-first recipe became the explicit E459unit+corner policy. Native/CUDAhostsyntax
+passes; three controls independently replayL516/108/156. Budget512 proposals with
+scored-parent futuregenerations, but firstobstruction stopped generation0:128proposed,
+37evaluated,29accepted, ZEROfeedback executed. NoGPUrental. S=<38,51,67,120,193>,a51,
+canonicalDUallunits,L-8, exactly3profitable borders and0positivecorners. Independent
+coin membership/Uwords/allmoves confirm. This refutes even existential success of
+fresh-unit+single-corner moves from the exactstartingclass: there is no firstmove.
+
+Exploit rather than merely stop:13*67=5*38+120+11*51 moves two shadowwords together.
+All predecessors/residues/units check;22 credits giveL102, still37excess above actual
+Apéry values. Two larger scalar credits givepositivebounds withoutgeometry; don'tsum
+alternatives. The sourceW287 and oldSUPP Q103 are positive, so it is a mechanismfalsifier,
+NOT a resistantWilf case and NOT a counterexample to the combined SUPP/source strategy.
+
+A parallel F>0 attempt failed product and full-pair-wedge constructions on paper; no
+new search/profilecensus. The useful general result is E460: any fullunit cyclic-residue
+box forces a nontrivial leave-one-out gcd, by primitive-character factorization and
+quotientinduction. Thus E439 normalized sources have>=2maxima in ANY constructed fullunit
+tile. Root/otheragent audited ANYpivot strengthening. NoLean/novelty; newcornerstallhas7maxima.
+
+GLOBAL REVIEW: discontinue standaloneunit/corner/fixeddegree/primitive-output rules.
+Do not repair them with more positivecases or generations. Continue compatible nonmaximal
+border shadows and general packings, with a uniform quota and support fallback; the
+weakest current combined target is max(Q,best admissible L)>=0. E459 immediately tells
+us which operation must be added, without demanding exact individual reconstruction.
+Hall fullQ/R and actual-coordinate arithmetic remain distinct alternatives. No proof
+of the universal sign, no genuine Wilf counterexample. All fixeddiagnostic jobs ended;
+only the same two authorized agents were used. STATE remains solehandoff/inventory.

@@ -1,0 +1,3653 @@
+{
+  "S": {
+    "m": 51,
+    "e": 4,
+    "c": 1540,
+    "g": 780,
+    "W": 1500,
+    "G": [
+      51,
+      53,
+      149,
+      151
+    ]
+  },
+  "U": {
+    "m": 1,
+    "e": 1,
+    "c": 0,
+    "g": 0,
+    "W": 0,
+    "G": [
+      1
+    ]
+  },
+  "a": 51,
+  "original_source_labels": [
+    53,
+    149,
+    151
+  ],
+  "normalized_labels": [
+    1,
+    49,
+    50
+  ],
+  "odd_flags": [
+    1,
+    1,
+    1
+  ],
+  "columns": [
+    {
+      "s": 0,
+      "U_value": 0,
+      "K": 0,
+      "L": 0,
+      "lambda": 0,
+      "nu": 0,
+      "D": 0,
+      "U_word": [
+        0,
+        0,
+        0
+      ],
+      "U_odd_count": 0,
+      "positions": []
+    },
+    {
+      "s": 1,
+      "U_value": 1,
+      "K": 1,
+      "L": 0,
+      "lambda": 1,
+      "nu": 1,
+      "D": 0,
+      "U_word": [
+        1,
+        0,
+        0
+      ],
+      "U_odd_count": 1,
+      "positions": [
+        {
+          "k": 0,
+          "u": 1,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 2,
+      "U_value": 2,
+      "K": 1,
+      "L": 1,
+      "lambda": 2,
+      "nu": 2,
+      "D": 0,
+      "U_word": [
+        2,
+        0,
+        0
+      ],
+      "U_odd_count": 2,
+      "positions": [
+        {
+          "k": 0,
+          "u": 2,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 3,
+      "U_value": 3,
+      "K": 2,
+      "L": 1,
+      "lambda": 3,
+      "nu": 3,
+      "D": 0,
+      "U_word": [
+        3,
+        0,
+        0
+      ],
+      "U_odd_count": 3,
+      "positions": [
+        {
+          "k": 0,
+          "u": 3,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 54,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 4,
+      "U_value": 4,
+      "K": 2,
+      "L": 2,
+      "lambda": 4,
+      "nu": 4,
+      "D": 0,
+      "U_word": [
+        4,
+        0,
+        0
+      ],
+      "U_odd_count": 4,
+      "positions": [
+        {
+          "k": 0,
+          "u": 4,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 55,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 5,
+      "U_value": 5,
+      "K": 3,
+      "L": 2,
+      "lambda": 5,
+      "nu": 5,
+      "D": 0,
+      "U_word": [
+        5,
+        0,
+        0
+      ],
+      "U_odd_count": 5,
+      "positions": [
+        {
+          "k": 0,
+          "u": 5,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 56,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 107,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 6,
+      "U_value": 6,
+      "K": 3,
+      "L": 3,
+      "lambda": 6,
+      "nu": 6,
+      "D": 0,
+      "U_word": [
+        6,
+        0,
+        0
+      ],
+      "U_odd_count": 6,
+      "positions": [
+        {
+          "k": 0,
+          "u": 6,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 57,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 108,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 7,
+      "U_value": 7,
+      "K": 4,
+      "L": 3,
+      "lambda": 7,
+      "nu": 7,
+      "D": 0,
+      "U_word": [
+        7,
+        0,
+        0
+      ],
+      "U_odd_count": 7,
+      "positions": [
+        {
+          "k": 0,
+          "u": 7,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 58,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 109,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 160,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 8,
+      "U_value": 8,
+      "K": 4,
+      "L": 4,
+      "lambda": 8,
+      "nu": 8,
+      "D": 0,
+      "U_word": [
+        8,
+        0,
+        0
+      ],
+      "U_odd_count": 8,
+      "positions": [
+        {
+          "k": 0,
+          "u": 8,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 59,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 110,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 161,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 9,
+      "U_value": 9,
+      "K": 5,
+      "L": 4,
+      "lambda": 9,
+      "nu": 9,
+      "D": 0,
+      "U_word": [
+        9,
+        0,
+        0
+      ],
+      "U_odd_count": 9,
+      "positions": [
+        {
+          "k": 0,
+          "u": 9,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 60,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 111,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 162,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 213,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 10,
+      "U_value": 10,
+      "K": 5,
+      "L": 5,
+      "lambda": 10,
+      "nu": 10,
+      "D": 0,
+      "U_word": [
+        10,
+        0,
+        0
+      ],
+      "U_odd_count": 10,
+      "positions": [
+        {
+          "k": 0,
+          "u": 10,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 61,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 112,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 163,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 214,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 11,
+      "U_value": 11,
+      "K": 6,
+      "L": 5,
+      "lambda": 11,
+      "nu": 11,
+      "D": 0,
+      "U_word": [
+        11,
+        0,
+        0
+      ],
+      "U_odd_count": 11,
+      "positions": [
+        {
+          "k": 0,
+          "u": 11,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 62,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 113,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 164,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 215,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 266,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 12,
+      "U_value": 12,
+      "K": 6,
+      "L": 6,
+      "lambda": 12,
+      "nu": 12,
+      "D": 0,
+      "U_word": [
+        12,
+        0,
+        0
+      ],
+      "U_odd_count": 12,
+      "positions": [
+        {
+          "k": 0,
+          "u": 12,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 63,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 114,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 165,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 216,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 267,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 13,
+      "U_value": 13,
+      "K": 7,
+      "L": 6,
+      "lambda": 13,
+      "nu": 13,
+      "D": 0,
+      "U_word": [
+        13,
+        0,
+        0
+      ],
+      "U_odd_count": 13,
+      "positions": [
+        {
+          "k": 0,
+          "u": 13,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 64,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 115,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 166,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 217,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 268,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 319,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 14,
+      "U_value": 14,
+      "K": 7,
+      "L": 7,
+      "lambda": 14,
+      "nu": 14,
+      "D": 0,
+      "U_word": [
+        14,
+        0,
+        0
+      ],
+      "U_odd_count": 14,
+      "positions": [
+        {
+          "k": 0,
+          "u": 14,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 65,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 116,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 167,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 218,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 269,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 320,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 15,
+      "U_value": 15,
+      "K": 8,
+      "L": 7,
+      "lambda": 15,
+      "nu": 15,
+      "D": 0,
+      "U_word": [
+        15,
+        0,
+        0
+      ],
+      "U_odd_count": 15,
+      "positions": [
+        {
+          "k": 0,
+          "u": 15,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 66,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 117,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 168,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 219,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 270,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 321,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 372,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 16,
+      "U_value": 16,
+      "K": 8,
+      "L": 8,
+      "lambda": 16,
+      "nu": 16,
+      "D": 0,
+      "U_word": [
+        16,
+        0,
+        0
+      ],
+      "U_odd_count": 16,
+      "positions": [
+        {
+          "k": 0,
+          "u": 16,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 67,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 118,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 169,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 220,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 271,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 322,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 373,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 17,
+      "U_value": 17,
+      "K": 9,
+      "L": 8,
+      "lambda": 17,
+      "nu": 17,
+      "D": 0,
+      "U_word": [
+        17,
+        0,
+        0
+      ],
+      "U_odd_count": 17,
+      "positions": [
+        {
+          "k": 0,
+          "u": 17,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 68,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 119,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 170,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 221,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 272,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 323,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 374,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 425,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 18,
+      "U_value": 18,
+      "K": 9,
+      "L": 9,
+      "lambda": 18,
+      "nu": 18,
+      "D": 0,
+      "U_word": [
+        18,
+        0,
+        0
+      ],
+      "U_odd_count": 18,
+      "positions": [
+        {
+          "k": 0,
+          "u": 18,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 69,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 120,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 171,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 222,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 273,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 324,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 375,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 426,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 19,
+      "U_value": 19,
+      "K": 10,
+      "L": 9,
+      "lambda": 19,
+      "nu": 19,
+      "D": 0,
+      "U_word": [
+        19,
+        0,
+        0
+      ],
+      "U_odd_count": 19,
+      "positions": [
+        {
+          "k": 0,
+          "u": 19,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 70,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 121,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 172,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 223,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 274,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 325,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 376,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 427,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 478,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 20,
+      "U_value": 20,
+      "K": 10,
+      "L": 10,
+      "lambda": 20,
+      "nu": 20,
+      "D": 0,
+      "U_word": [
+        20,
+        0,
+        0
+      ],
+      "U_odd_count": 20,
+      "positions": [
+        {
+          "k": 0,
+          "u": 20,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 71,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 122,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 173,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 224,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 275,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 326,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 377,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 428,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 479,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 21,
+      "U_value": 21,
+      "K": 11,
+      "L": 10,
+      "lambda": 21,
+      "nu": 21,
+      "D": 0,
+      "U_word": [
+        21,
+        0,
+        0
+      ],
+      "U_odd_count": 21,
+      "positions": [
+        {
+          "k": 0,
+          "u": 21,
+          "birth": 21,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 72,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 123,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 174,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 225,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 276,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 327,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 378,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 429,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 480,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 531,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 22,
+      "U_value": 22,
+      "K": 11,
+      "L": 11,
+      "lambda": 22,
+      "nu": 22,
+      "D": 0,
+      "U_word": [
+        22,
+        0,
+        0
+      ],
+      "U_odd_count": 22,
+      "positions": [
+        {
+          "k": 0,
+          "u": 22,
+          "birth": 22,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 73,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 124,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 175,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 226,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 277,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 328,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 379,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 430,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 481,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 532,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 23,
+      "U_value": 23,
+      "K": 12,
+      "L": 11,
+      "lambda": 23,
+      "nu": 23,
+      "D": 0,
+      "U_word": [
+        23,
+        0,
+        0
+      ],
+      "U_odd_count": 23,
+      "positions": [
+        {
+          "k": 0,
+          "u": 23,
+          "birth": 23,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 74,
+          "birth": 21,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 125,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 176,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 227,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 278,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 329,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 380,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 431,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 482,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 533,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 584,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 24,
+      "U_value": 24,
+      "K": 12,
+      "L": 12,
+      "lambda": 24,
+      "nu": 24,
+      "D": 0,
+      "U_word": [
+        24,
+        0,
+        0
+      ],
+      "U_odd_count": 24,
+      "positions": [
+        {
+          "k": 0,
+          "u": 24,
+          "birth": 24,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 75,
+          "birth": 22,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 126,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 177,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 228,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 279,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 330,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 381,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 432,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 483,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 534,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 585,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 25,
+      "U_value": 25,
+      "K": 13,
+      "L": 12,
+      "lambda": 25,
+      "nu": 25,
+      "D": 0,
+      "U_word": [
+        25,
+        0,
+        0
+      ],
+      "U_odd_count": 25,
+      "positions": [
+        {
+          "k": 0,
+          "u": 25,
+          "birth": 25,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 76,
+          "birth": 23,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 127,
+          "birth": 21,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 178,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 229,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 280,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 331,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 382,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 433,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 484,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 535,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 586,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 637,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 26,
+      "U_value": 26,
+      "K": 13,
+      "L": 13,
+      "lambda": 26,
+      "nu": 26,
+      "D": 0,
+      "U_word": [
+        26,
+        0,
+        0
+      ],
+      "U_odd_count": 26,
+      "positions": [
+        {
+          "k": 0,
+          "u": 26,
+          "birth": 26,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 77,
+          "birth": 24,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 128,
+          "birth": 22,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 179,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 230,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 281,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 332,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 383,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 434,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 485,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 536,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 587,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 638,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 27,
+      "U_value": 27,
+      "K": 14,
+      "L": 13,
+      "lambda": 27,
+      "nu": 27,
+      "D": 0,
+      "U_word": [
+        27,
+        0,
+        0
+      ],
+      "U_odd_count": 27,
+      "positions": [
+        {
+          "k": 0,
+          "u": 27,
+          "birth": 27,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 78,
+          "birth": 25,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 129,
+          "birth": 23,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 180,
+          "birth": 21,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 231,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 282,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 333,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 384,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 435,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 486,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 537,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 588,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 639,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 690,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 28,
+      "U_value": 28,
+      "K": 14,
+      "L": 14,
+      "lambda": 28,
+      "nu": 28,
+      "D": 0,
+      "U_word": [
+        28,
+        0,
+        0
+      ],
+      "U_odd_count": 28,
+      "positions": [
+        {
+          "k": 0,
+          "u": 28,
+          "birth": 28,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 79,
+          "birth": 26,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 130,
+          "birth": 24,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 181,
+          "birth": 22,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 232,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 283,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 334,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 385,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 436,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 487,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 538,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 589,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 640,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 691,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 29,
+      "U_value": 29,
+      "K": 15,
+      "L": 14,
+      "lambda": 29,
+      "nu": 29,
+      "D": 0,
+      "U_word": [
+        29,
+        0,
+        0
+      ],
+      "U_odd_count": 29,
+      "positions": [
+        {
+          "k": 0,
+          "u": 29,
+          "birth": 29,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 80,
+          "birth": 27,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 131,
+          "birth": 25,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 182,
+          "birth": 23,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 233,
+          "birth": 21,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 284,
+          "birth": 19,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 335,
+          "birth": 17,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 386,
+          "birth": 15,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 437,
+          "birth": 13,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 488,
+          "birth": 11,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 539,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 590,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 641,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 692,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 14,
+          "u": 743,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 30,
+      "U_value": 30,
+      "K": 15,
+      "L": 15,
+      "lambda": 30,
+      "nu": 30,
+      "D": 0,
+      "U_word": [
+        30,
+        0,
+        0
+      ],
+      "U_odd_count": 30,
+      "positions": [
+        {
+          "k": 0,
+          "u": 30,
+          "birth": 30,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 1,
+          "u": 81,
+          "birth": 28,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 2,
+          "u": 132,
+          "birth": 26,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 183,
+          "birth": 24,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 234,
+          "birth": 22,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 285,
+          "birth": 20,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 336,
+          "birth": 18,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 387,
+          "birth": 16,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 438,
+          "birth": 14,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 489,
+          "birth": 12,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 540,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 591,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 642,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 693,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 14,
+          "u": 744,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 31,
+      "U_value": 31,
+      "K": 14,
+      "L": 14,
+      "lambda": 28,
+      "nu": 10,
+      "D": 9,
+      "U_word": [
+        31,
+        0,
+        0
+      ],
+      "U_odd_count": 31,
+      "positions": [
+        {
+          "k": 0,
+          "u": 31,
+          "birth": 31,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 82,
+          "birth": 29,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 133,
+          "birth": 27,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 184,
+          "birth": 25,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 235,
+          "birth": 23,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 286,
+          "birth": 21,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 337,
+          "birth": 19,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 388,
+          "birth": 17,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 8,
+          "u": 439,
+          "birth": 15,
+          "excess": 3,
+          "killed": true
+        },
+        {
+          "k": 9,
+          "u": 490,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 541,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 592,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 643,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 694,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 32,
+      "U_value": 32,
+      "K": 14,
+      "L": 14,
+      "lambda": 28,
+      "nu": 10,
+      "D": 9,
+      "U_word": [
+        32,
+        0,
+        0
+      ],
+      "U_odd_count": 32,
+      "positions": [
+        {
+          "k": 0,
+          "u": 32,
+          "birth": 32,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 83,
+          "birth": 30,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 134,
+          "birth": 28,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 185,
+          "birth": 26,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 236,
+          "birth": 24,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 287,
+          "birth": 22,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 338,
+          "birth": 20,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 389,
+          "birth": 18,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 8,
+          "u": 440,
+          "birth": 16,
+          "excess": 4,
+          "killed": true
+        },
+        {
+          "k": 9,
+          "u": 491,
+          "birth": 10,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 542,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 593,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 644,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 13,
+          "u": 695,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 33,
+      "U_value": 33,
+      "K": 13,
+      "L": 12,
+      "lambda": 25,
+      "nu": 9,
+      "D": 8,
+      "U_word": [
+        33,
+        0,
+        0
+      ],
+      "U_odd_count": 33,
+      "positions": [
+        {
+          "k": 0,
+          "u": 33,
+          "birth": 33,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 84,
+          "birth": 31,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 135,
+          "birth": 29,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 186,
+          "birth": 27,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 237,
+          "birth": 25,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 288,
+          "birth": 23,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 339,
+          "birth": 21,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 390,
+          "birth": 19,
+          "excess": 8,
+          "killed": true
+        },
+        {
+          "k": 8,
+          "u": 441,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 492,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 543,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 594,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 645,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 34,
+      "U_value": 34,
+      "K": 13,
+      "L": 12,
+      "lambda": 25,
+      "nu": 9,
+      "D": 8,
+      "U_word": [
+        34,
+        0,
+        0
+      ],
+      "U_odd_count": 34,
+      "positions": [
+        {
+          "k": 0,
+          "u": 34,
+          "birth": 34,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 85,
+          "birth": 32,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 136,
+          "birth": 30,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 187,
+          "birth": 28,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 238,
+          "birth": 26,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 289,
+          "birth": 24,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 340,
+          "birth": 22,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 391,
+          "birth": 20,
+          "excess": 9,
+          "killed": true
+        },
+        {
+          "k": 8,
+          "u": 442,
+          "birth": 9,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 493,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 544,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 11,
+          "u": 595,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 12,
+          "u": 646,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 35,
+      "U_value": 35,
+      "K": 11,
+      "L": 11,
+      "lambda": 22,
+      "nu": 8,
+      "D": 7,
+      "U_word": [
+        35,
+        0,
+        0
+      ],
+      "U_odd_count": 35,
+      "positions": [
+        {
+          "k": 0,
+          "u": 35,
+          "birth": 35,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 86,
+          "birth": 33,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 137,
+          "birth": 31,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 188,
+          "birth": 29,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 239,
+          "birth": 27,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 290,
+          "birth": 25,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 341,
+          "birth": 23,
+          "excess": 13,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 392,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 443,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 494,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 545,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 36,
+      "U_value": 36,
+      "K": 11,
+      "L": 11,
+      "lambda": 22,
+      "nu": 8,
+      "D": 7,
+      "U_word": [
+        36,
+        0,
+        0
+      ],
+      "U_odd_count": 36,
+      "positions": [
+        {
+          "k": 0,
+          "u": 36,
+          "birth": 36,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 87,
+          "birth": 34,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 138,
+          "birth": 32,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 189,
+          "birth": 30,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 240,
+          "birth": 28,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 291,
+          "birth": 26,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 342,
+          "birth": 24,
+          "excess": 14,
+          "killed": true
+        },
+        {
+          "k": 7,
+          "u": 393,
+          "birth": 8,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 444,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 495,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 10,
+          "u": 546,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 37,
+      "U_value": 37,
+      "K": 10,
+      "L": 9,
+      "lambda": 19,
+      "nu": 7,
+      "D": 6,
+      "U_word": [
+        37,
+        0,
+        0
+      ],
+      "U_odd_count": 37,
+      "positions": [
+        {
+          "k": 0,
+          "u": 37,
+          "birth": 37,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 88,
+          "birth": 35,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 139,
+          "birth": 33,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 190,
+          "birth": 31,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 241,
+          "birth": 29,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 292,
+          "birth": 27,
+          "excess": 18,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 343,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 394,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 445,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 496,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 38,
+      "U_value": 38,
+      "K": 10,
+      "L": 9,
+      "lambda": 19,
+      "nu": 7,
+      "D": 6,
+      "U_word": [
+        38,
+        0,
+        0
+      ],
+      "U_odd_count": 38,
+      "positions": [
+        {
+          "k": 0,
+          "u": 38,
+          "birth": 38,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 89,
+          "birth": 36,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 140,
+          "birth": 34,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 191,
+          "birth": 32,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 242,
+          "birth": 30,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 293,
+          "birth": 28,
+          "excess": 19,
+          "killed": true
+        },
+        {
+          "k": 6,
+          "u": 344,
+          "birth": 7,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 395,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 8,
+          "u": 446,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 9,
+          "u": 497,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 39,
+      "U_value": 39,
+      "K": 8,
+      "L": 8,
+      "lambda": 16,
+      "nu": 6,
+      "D": 5,
+      "U_word": [
+        39,
+        0,
+        0
+      ],
+      "U_odd_count": 39,
+      "positions": [
+        {
+          "k": 0,
+          "u": 39,
+          "birth": 39,
+          "excess": 23,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 90,
+          "birth": 37,
+          "excess": 23,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 141,
+          "birth": 35,
+          "excess": 23,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 192,
+          "birth": 33,
+          "excess": 23,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 243,
+          "birth": 31,
+          "excess": 23,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 294,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 345,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 396,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 40,
+      "U_value": 40,
+      "K": 8,
+      "L": 8,
+      "lambda": 16,
+      "nu": 6,
+      "D": 5,
+      "U_word": [
+        40,
+        0,
+        0
+      ],
+      "U_odd_count": 40,
+      "positions": [
+        {
+          "k": 0,
+          "u": 40,
+          "birth": 40,
+          "excess": 24,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 91,
+          "birth": 38,
+          "excess": 24,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 142,
+          "birth": 36,
+          "excess": 24,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 193,
+          "birth": 34,
+          "excess": 24,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 244,
+          "birth": 32,
+          "excess": 24,
+          "killed": true
+        },
+        {
+          "k": 5,
+          "u": 295,
+          "birth": 6,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 346,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 7,
+          "u": 397,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 41,
+      "U_value": 41,
+      "K": 7,
+      "L": 6,
+      "lambda": 13,
+      "nu": 5,
+      "D": 4,
+      "U_word": [
+        41,
+        0,
+        0
+      ],
+      "U_odd_count": 41,
+      "positions": [
+        {
+          "k": 0,
+          "u": 41,
+          "birth": 41,
+          "excess": 28,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 92,
+          "birth": 39,
+          "excess": 28,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 143,
+          "birth": 37,
+          "excess": 28,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 194,
+          "birth": 35,
+          "excess": 28,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 245,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 296,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 347,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 42,
+      "U_value": 42,
+      "K": 7,
+      "L": 6,
+      "lambda": 13,
+      "nu": 5,
+      "D": 4,
+      "U_word": [
+        42,
+        0,
+        0
+      ],
+      "U_odd_count": 42,
+      "positions": [
+        {
+          "k": 0,
+          "u": 42,
+          "birth": 42,
+          "excess": 29,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 93,
+          "birth": 40,
+          "excess": 29,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 144,
+          "birth": 38,
+          "excess": 29,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 195,
+          "birth": 36,
+          "excess": 29,
+          "killed": true
+        },
+        {
+          "k": 4,
+          "u": 246,
+          "birth": 5,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 5,
+          "u": 297,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 6,
+          "u": 348,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 43,
+      "U_value": 43,
+      "K": 5,
+      "L": 5,
+      "lambda": 10,
+      "nu": 4,
+      "D": 3,
+      "U_word": [
+        43,
+        0,
+        0
+      ],
+      "U_odd_count": 43,
+      "positions": [
+        {
+          "k": 0,
+          "u": 43,
+          "birth": 43,
+          "excess": 33,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 94,
+          "birth": 41,
+          "excess": 33,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 145,
+          "birth": 39,
+          "excess": 33,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 196,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 247,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 44,
+      "U_value": 44,
+      "K": 5,
+      "L": 5,
+      "lambda": 10,
+      "nu": 4,
+      "D": 3,
+      "U_word": [
+        44,
+        0,
+        0
+      ],
+      "U_odd_count": 44,
+      "positions": [
+        {
+          "k": 0,
+          "u": 44,
+          "birth": 44,
+          "excess": 34,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 95,
+          "birth": 42,
+          "excess": 34,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 146,
+          "birth": 40,
+          "excess": 34,
+          "killed": true
+        },
+        {
+          "k": 3,
+          "u": 197,
+          "birth": 4,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 4,
+          "u": 248,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 45,
+      "U_value": 45,
+      "K": 4,
+      "L": 3,
+      "lambda": 7,
+      "nu": 3,
+      "D": 2,
+      "U_word": [
+        45,
+        0,
+        0
+      ],
+      "U_odd_count": 45,
+      "positions": [
+        {
+          "k": 0,
+          "u": 45,
+          "birth": 45,
+          "excess": 38,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 96,
+          "birth": 43,
+          "excess": 38,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 147,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 198,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 46,
+      "U_value": 46,
+      "K": 4,
+      "L": 3,
+      "lambda": 7,
+      "nu": 3,
+      "D": 2,
+      "U_word": [
+        46,
+        0,
+        0
+      ],
+      "U_odd_count": 46,
+      "positions": [
+        {
+          "k": 0,
+          "u": 46,
+          "birth": 46,
+          "excess": 39,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 97,
+          "birth": 44,
+          "excess": 39,
+          "killed": true
+        },
+        {
+          "k": 2,
+          "u": 148,
+          "birth": 3,
+          "excess": 0,
+          "killed": false
+        },
+        {
+          "k": 3,
+          "u": 199,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 47,
+      "U_value": 47,
+      "K": 2,
+      "L": 2,
+      "lambda": 4,
+      "nu": 2,
+      "D": 1,
+      "U_word": [
+        47,
+        0,
+        0
+      ],
+      "U_odd_count": 47,
+      "positions": [
+        {
+          "k": 0,
+          "u": 47,
+          "birth": 47,
+          "excess": 43,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 98,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 48,
+      "U_value": 48,
+      "K": 2,
+      "L": 2,
+      "lambda": 4,
+      "nu": 2,
+      "D": 1,
+      "U_word": [
+        48,
+        0,
+        0
+      ],
+      "U_odd_count": 48,
+      "positions": [
+        {
+          "k": 0,
+          "u": 48,
+          "birth": 48,
+          "excess": 44,
+          "killed": true
+        },
+        {
+          "k": 1,
+          "u": 99,
+          "birth": 2,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 49,
+      "U_value": 49,
+      "K": 1,
+      "L": 0,
+      "lambda": 1,
+      "nu": 1,
+      "D": 0,
+      "U_word": [
+        0,
+        1,
+        0
+      ],
+      "U_odd_count": 1,
+      "positions": [
+        {
+          "k": 0,
+          "u": 49,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    },
+    {
+      "s": 50,
+      "U_value": 50,
+      "K": 1,
+      "L": 0,
+      "lambda": 1,
+      "nu": 1,
+      "D": 0,
+      "U_word": [
+        0,
+        0,
+        1
+      ],
+      "U_odd_count": 1,
+      "positions": [
+        {
+          "k": 0,
+          "u": 50,
+          "birth": 1,
+          "excess": 0,
+          "killed": false
+        }
+      ]
+    }
+  ],
+  "sum_nu": 575,
+  "sum_D": 90,
+  "J": 18,
+  "sum_lambda": 755,
+  "U_odd_moment_Z": 1178,
+  "alpha_min": 1,
+  "A_alpha": 1275,
+  "alpha_strict_upper": 1257,
+  "zero_death_column_upper": 1160,
+  "full_parent_reserve": 36358,
+  "parent_primitive_credit": 2287,
+  "full_parent_scaled_W": 229500,
+  "pointwise_initial_segments_checked": 51,
+  "universal_sign_claim": false
+}

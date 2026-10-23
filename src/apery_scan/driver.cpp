@@ -355,6 +355,7 @@ int neighbor_audit(int threads,int m,const std::vector<i64>& anchor) {
 #include "adaptive.hpp"
 #include "exchange.hpp"
 #include "neutral.hpp"
+#include "trade_policy.hpp"
 int main(int argc,char**argv) {
     try {
 #ifdef WILF_CUDA
@@ -364,6 +365,11 @@ int main(int argc,char**argv) {
 #endif
         if(argc>=2 && std::string(argv[1])=="--self-test") {self_test(argc>2?std::stoi(argv[2]):1000);return 0;}
         if(argc==2 && std::string(argv[1])=="--archive-test") {adaptive_archive_selftest();return 0;}
+        if(argc==3 && std::string(argv[1])=="--trade-search") return trade_policy_search(std::stoi(argv[2]));
+        if(argc>=4 && std::string(argv[1])=="--trade-policy") {
+            std::vector<i64> G;for(int i=3;i<argc;++i)G.push_back(std::stoll(argv[i]));
+            return trade_policy_case(std::stoi(argv[2]),G);
+        }
         if(argc>=3 && std::string(argv[1])=="--case") {
             const int m=std::stoi(argv[2]);std::vector<i64>G;
             for(int i=3;i<argc;++i)G.push_back(std::stoll(argv[i]));
@@ -394,7 +400,7 @@ int main(int argc,char**argv) {
             std::vector<i64>anchor;for(int i=6;i<argc;++i)anchor.push_back(std::stoll(argv[i]));
             return benchmark(std::stoi(argv[2]),std::stoull(argv[3]),std::stoi(argv[4]),std::stoi(argv[5]),static_cast<int>(anchor.size()),anchor);
         }
-        std::cerr<<"usage: --self-test [lists] | --archive-test | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators... | --warm batch repeats seed threads m k | --adaptive batch generations seed threads m generators... | --neighbors threads m generators... | --exchange threads m generators... | --neutral threads m generators...\n";
+        std::cerr<<"usage: --self-test [lists] | --archive-test | --trade-policy m generators... | --trade-search 7 | --case m generators... | --bench batch seed threads m k | --mutate batch seed threads m generators... | --warm batch repeats seed threads m k | --adaptive batch generations seed threads m generators... | --neighbors threads m generators... | --exchange threads m generators... | --neutral threads m generators...\n";
         return 2;
     } catch(const std::exception& error) {std::cerr<<"ERROR "<<error.what()<<'\n';return 2;}
 }

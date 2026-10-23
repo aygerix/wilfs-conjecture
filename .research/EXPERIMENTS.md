@@ -1860,3 +1860,106 @@ Hall full-Q/R and coupled actual-coordinate routes remain alternatives. E452's1.
 measurement is specifically BATCH EVALUATION: generation/selection/archive are excluded.
 There is still no matched CPU/GPU comparison of the entire adaptive campaign, and no
 new GPU rental or benchmark in E453/E454.
+
+## E457–E459 — original-source quota falsification and exact composite augmentation controls
+
+2026-10-23 16:56 EDT. Scope: EVERY S IF a uniform trade/augmentation quota holds; reduction
+yes E453/E458 L<=W and complements. These are falsifiers of specified universal mechanisms,
+not additional Wilf verification ranges. SAME TWO authorized agents; no new GPU rental.
+
+**Single39 source check.** Existing Fejer C `--odd-audit` and independent
+`verify_probe.py --pointwise-death-check ./repair_scan data/cyclic_source_control_457.json
+39 41 113 115` give m39,e4,c868,g456,W780,M906,U=N,Z668,sum_nu325,sum_D56,J14,Lambda437.
+The exact closure tile already contains every unit. Source word sum27534 gives
+L=3*906-(4/39)*27534-38=-144; exact total excess231. Paper E457 proves the global
+family/input-degree obstruction; this one calculation only checks its translation.
+Positive blocks of input degree<=22 cannot fit by the paper residue/cost bound. No
+family c/g/W census, optimizer, new C path or broad regression was run.
+
+**Latest advisor control and order effects.** The same existing C/Python path on ONLY
+51/53/149/151 gives m51,e4,c1540,g780,W1500,M1590,U=N,Z1178,Lambda755,nu_sum575,D_sum90.
+Its constructed sum62628 gives L-192,E423. The new GENERAL exact word helpers in
+verify_probe.py audit downsets/residue bijections, fresh-unit shadow maps, max/min-excluded
+corners and scalar images. `--advisor-trade-check OLD31 NEW39 NEW51 OUTPUT` reuses the
+saved source audits; no extra31 membership run was needed. Both31 orders independently
+verify credit105+35=140/L404 and162+6=168/L516. Advisor51 corners48->(149+151), then
+47->2*149 save44,43 and give L-192->-16->156. The scalar47-block fits2 initial words,
+credit86,L152, with missing predecessor e53+e149, so it is NOT a downset. All source
+values and per-step e*credit identities are integer checked. Data under p39/data:
+`composite_source_control_458.json`, `advisor_trade_audit_458.json`, plus the old454
+control and new457 record above. All checks were performed on Fejer; no policy was
+inferred from successful calibrations.
+
+**E459 C++ policy, exact specification.** New src/apery_scan/trade_policy.hpp reuses
+existing scan/certificate/invariant/mutation code. It extracts ACTUAL primitives before
+choosing least odd pivot a<=256; P is sorted original primitives other than a, and
+D_U uses minimum odd count then lex. Missing units are restored by largest exact
+sigma*sum q shadow credit (coordinate tie). After ALL units are present, it enumerates
+ALL minimal excluded words and same-residue current representatives, keeps positive
+corners with maximal inputs, and chooses largest sigma (input/output lex tie).
+Every change checks downset, full residue bijection, preserved units and exact e*credit.
+It stops at nonnegativeL, exhaustive zero-corner negativeL, or1000 corner steps; the
+last is explicitly UNRESOLVED. Actual negativeW has priority over all policy results.
+
+Before any discovery run, three C++ controls31/39/51 independently replayed through
+coin-membership verification and freshly reconstructed U words, with all choices/steps
+checked by the Python verifier. Final L516,108,156, credits168,63,87 respectively.
+The39 control uses two corners32,31. Native C++17 and CUDA-host syntax both pass
+-Wall -Wextra -Werror. No new NVCC/device/sanitizer benchmark is claimed.
+Files in src/apery_scan/data: `trade_controls_459.jsonl`, `trade_controls_verified_459.json`.
+
+**Bounded discovery — STOPPED at first failure, not512 completed.** Prepared budget:
+4*128 proposals,seed4590,7 Fejer CPUthreads, m25..96, raw generatorcount3..11, heights1..12,
+actuale>=4,c>4m,3e<m, every leave-one-out gcd1,a<=256. Anchors31/39/51/old63, forced
+migrants and scored-parent next-generation selection; exact initial structure/height
+archive capped32states/4perstructure. The counterexample occurred in GENERATION ZERO:
+128 proposals were generated,37 evaluated,29 accepted. Rejections: cofactor3,
+embedding_dimension2,pivot_cap3. Recorded distinct supplied states37 and actual minimal-
+generator semigroups37. ZERO feedback generations/parent-dependent proposals ran,
+ZERO repeated elites or corner caps. Do NOT describe this as an executed adaptive campaign.
+Parallel cancellation can vary the evaluation prefix; the saved witness is directly
+reproducible and independently certified. External timeout60s bounded the process;
+exit6 means an intentional policy-obstruction promotion. Stop records lack a CPU duration,
+so no measured throughput/runtime speedup is asserted.
+
+Raw supplied witness at m38:
+
+    301 439 193 51 67 372 348 120
+
+Actual generators are38,51,67,120,193. Source c333,g209,e5,W287; leastodd a51,
+P38/67/120/193,beta19/8/60/71. Initial D_U has allunits, seven maxima, source sum14943,
+L-8 and NO positive corners. The C++ path takes ZERO moves. Independent coin membership,
+all U words, all initial/final states, thirteen minimal excluded words and complete
+corner absence pass. This refutes the specified standalone unit+corner policy even
+from the INITIAL canonical tile, not merely a poor choice of move order.
+
+The independent checker additionally tests every profitable minimal-border shadow on
+this SAME saved witness (no new semigroup search). Exactly three positive borders:
+
+| Input | Output | sigma | shadow copies | credit | new L | image downset |
+|---|---|---:|---:|---:|---:|---|
+|11*67|38+2*120|9|4|36|172|no|
+|10*67|120+193|7|5|35|167|no|
+|13*67|5*38+120|11|2|22|102|yes|
+
+The compatible repair removes13e67,14e67 together and inserts5e38+e120 and
+5e38+e67+e120. Every new predecessor and all residues/units check exactly. It supplies
+22 credits, positive L102 and leaves excess37; full Apéry reconstruction is unnecessary.
+Alternative credits are NOT added together. SAME parity agent independently inspected
+the saved51 words/13 borders and the two-cell predecessor proof.
+
+This source was already support-certified: Dep90,kappa7,N20,Q103,R184,W287. It is NOT
+a resistant Wilf case or a counterexample to the weaker COMBINED strategy
+[SUPP succeeds OR the source augmentation succeeds]. It is a valid counterexample to
+the standalone universal move policy as proposed. No further generations were run.
+Files: `trade_search_459.jsonl`, `trade_search_verified_459.json`.
+Reproduce the selected witness (expected exit6) and independent replay from p39:
+
+    ../apery_scan/scan_cpu --trade-policy 38 301 439 193 51 67 372 348 120
+    python3 verify_probe.py --trade-policy-check ../apery_scan/verify_scan.py INPUT_JSONL OUTPUT
+
+Decision: STOP the falsified corner-only policy. Keep scalar packings and compatible
+multi-cell shadows, and seek a uniform quantitative rule with full reserves/support
+fallback. A fresh search needs a new explicit policy/lemma and budget; no automatic
+512 rerun, sample increase or rental. E460's general no-box normalization is PAPER ONLY;
+no extra box cases were calculated.

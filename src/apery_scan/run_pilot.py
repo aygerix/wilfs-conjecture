@@ -24,7 +24,7 @@ import time
 IMAGE = "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04"
 DEFAULT_GPU = "NVIDIA GeForce RTX 3090"
 CAP = 1.0
-FILES = ("apery.hpp", "gpu.hpp", "scan_cuda.cu", "driver.cpp", "verify_scan.py", "warm.hpp", "adaptive.hpp", "exchange.hpp", "neutral.hpp")
+FILES = ("apery.hpp", "gpu.hpp", "scan_cuda.cu", "driver.cpp", "verify_scan.py", "warm.hpp", "adaptive.hpp", "exchange.hpp", "neutral.hpp", "trade_policy.hpp")
 LEASE_FIELDS = {"id", "name", "created", "deadline", "gpu", "price", "watchdogPID"}
 REMOTE = "/workspace/wilf-apery"
 

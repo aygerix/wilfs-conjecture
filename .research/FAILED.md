@@ -508,3 +508,32 @@ of substituting the constructed maximum for actual M without retaining the exces
 Also, all units may be present in D_U while deaths remain (old paper31/33/43/91).
 Therefore missing-unit primitive blocks are a proved component, not a complete
 source-trade catalogue; mixed/composite relations and full reserves remain necessary.
+
+## E457 — complete units/primitive outputs/bounded input degrees cannot pay uniformly
+
+For odda>=39, canonical closure tile of S=<a,a+2,3a-4,3a-2> has EVERY source unit,
+but L<=(-a²+40a-81)/5<0. All deep/sparse/cofactor1 guards hold. Thus the actual
+closure construction, not merely an arbitrary completed tile, refutes unit restoration
+as a sufficient payer. Primitive-output trades give ZERO credit on this D_U. For ANY
+fixed inputdegree capB, choose3a-2>5B: after cancellation the source-saving bound
+sigma<=(5B-3a+4)/2<1 rules out every positive applicable block, even with composite
+outputs. A successful input may need degree>=ceil((3a-2)/5), and the required total
+credit grows quadratically. This is a universal-mechanism falsifier, not an e4 Wilf
+programme; only a39 was computed (actualW780,L-144). Keep cyclic/macroscopic relations.
+
+## E458/E459 — single corners fail even from canonical D_U
+
+The arbitrary-tile guard S24/40/195/396/402, box-times-chainD, has L-9 and no corner
+exchange; a six-word shadow repairs it. It has cofactor3 and is NOT asserted reachable
+from the odd closure. Its role is to reject an unrestricted quantifier, not the
+normalized target. E460 proves why every full-unit one-max box fails cofactor1.
+
+The stronger REACHABLE falsifier is S=<38,51,67,120,193>,a51. Canonical original-label
+D_U already has allunits and L-8, but exhaustive13-border enumeration finds NO positive
+corner. There is no first restoration/corner move, so even the existential standalone
+unit+single-corner payer fails. It has cofactor1,c333>4m152,3e15<m38. A compatible
+TWO-cell13*67->5*38+120 shadow gives credit22,L102; scalar alternatives give valid
+positive bounds with non-downset images. Thus stop corner-only as a universal rule,
+not source trades generally. ActualW287 and SUPP Q103 are positive: the combined
+[SUPP OR source policy] statement is NOT refuted, and this is not a resistant Wilf case.
+Full exact witnesses/independent audits are trade_search_459*.json in apery_scan/data.
