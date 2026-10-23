@@ -4750,3 +4750,46 @@ individual-payment witnesses, the top-primitive example and exact-zero closure. 
 paths pass ASan/UBSan. Lean kernel checks both added rigidity components, only the three standard axioms;
 semigroup constructions and zero-closure induction remain paper proofs. Log: data/checkpoint_404_checks.log
 under src/scratch/p39/. Turn classification: **PROGRESS**; keep the full goal ACTIVE.
+
+## 2026-10-22 23:12 EDT — residual support, weighted obstruction, constructor audit
+
+**Frontier.** KNOWN: every capped unpaid vector vanishes on K; W>=CapUA3. GAP: a universal
+nonnegative bound paying for the fixed boundary and the remaining unpaid mass. CANDIDATE MECHANISMS:
+additional forced zeros, or unit-weight residual counting. DISCRIMINATING TESTS: homogeneous cone LP
+positive on all nonrigid coordinates, then coordinate-max LPs rather than a single sum-optimal vector.
+
+**E405.** Proved the exact cone/support reduction: normalized zero-side directions scale by1/2 into
+the full capped polytope. Formalized the full abstract scaling construction, including caps and both
+pair sides; Lean kernel checks it with only the three recorded standard axioms. All27 saved cone LPs
+have exact rational primal/dual certificates. Fifteen empty cores; all12 nonempty cores admit a vector
+positive throughout, ten epsilon1 and two epsilon1/2. Thus further zero forcing cannot improve those12
+models. No assertion of universal completeness of Boolean closure.
+
+**E406.** Five suspicious saved coordinates maximize to1, and one sum LP yields CapUA3=180. A new
+C envelope diagnostic uses the existing parameter policy, seed405, ceiling2000; stops at sample12.
+Exact LP disproves a universal coordinate bound1: e11 S=<153,166,170,317,325,474,617,766,921,925,1080>
+has max x23=2. Independent membership and all full tight-pair/cap checks certify the mass32 witness;
+actual W5687 remains positive. The exceptional maximal Apéry cell has no tight successor. No numerical
+adjustment of the unit bound is proposed. All7 capped/coordinate LPs saved with full primal/dual data.
+
+**Global review — PIVOT from extra zeros and unit weights to weighted mass.** Two distinct candidate
+simplifications have now been tested. Support positivity excludes extra zeros on the saved cores, and
+the new maximal cell refutes unit-coordinate counting. Continue the universal backwards strategy;
+stop these shortcuts. Next exact candidate: nonnegativity of W-e sum U for the proved monotone
+pair-propagation envelope U. This is a stronger-than-Wilf sufficient statement, not an assumed theorem.
+Analyze its dual/payment on existing weak-certificate and low-W examples, retaining maximal cells and
+full residue completeness. A negative W necessarily makes this bound negative, so the reduction still
+covers every possible counterexample. Do not enlarge boxes or introduce a special-family target.
+
+**E407, user interruption.** Reproduced screenshot defect in NS.from_gapset: {0} admits a zero-free
+object with W-1; {-1} silently returns N. Fixed positive-integer validation and explicit zero membership,
+added meaningful regression coverage to existing crosscheck.py, committed/pushed f93f460. All1413
+semigroups through genus12 round-trip from gap sets and match independent Kunz invariants/counts.
+Before new tests, repository search finds no callers of from_gapset. Older scripts import NS; current
+p39 C and independent checkers do not use it and explicitly include zero. No unsupported claim about
+all historical executions. This invalid input is not a genuine Wilf counterexample.
+
+Validation: consolidated run passes135 previous optima,27 cone,7 capped/coordinate,5 fresh normal-model
+optima (174 total), existing matching/transport/BASE checks. No sanitizer claim for the new unit branch.
+Logs: data/checkpoint_406_checks.log and data/unpaid_cone_lean.log. Mathematical goal remains ACTIVE;
+neither a universal proof nor a genuine counterexample has been found. Classification: **PROGRESS**.

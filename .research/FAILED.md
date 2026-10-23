@@ -183,3 +183,14 @@ Apéry element and is primitive, so its divisor ideal is exactly {0,nm-1}, of si
 These S have c>4m,3e<m. PROOFS gives exact Apéry/conductor/genus formulas. Thus no uniform positive
 fraction of the residues is controlled by that SINGLE top ideal. This does not disprove top-divisor
 rigidity; it requires a counting proof to retain other maximal elements and the full residue bijection.
+
+### Every full capped unpaid coordinate is at most one (FALSE, E406)
+
+S=<153,166,170,317,325,474,617,766,921,925,1080> has c1683,g1013,e11,W5687.
+An exactly verified feasible capped unpaid vector has x_23=2 (its actual cap delta_23 is2),
+thirty other coordinates equal1 and all others0. Thus max x_23=2, with a bound-only dual certificate.
+The Apéry element w_23=1400 is maximal: its four incoming tight pairs all have alpha0,kappa1,
+and it has no outgoing tight pair. The full vector and proof are recorded in PROOFS/E406 and
+src/scratch/p39/data/capped_core_probe.jsonl.gz. Five tested coordinates on the older saved examples
+had optimum1; this stronger adversarial example shows those checks cannot justify unit weights.
+This refutes a certificate simplification, not Wilf; weighted residual mass must be retained.

@@ -3,6 +3,7 @@ import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.SplitIfs
+import Mathlib.Tactic.Linarith
 import Lean.Elab.Tactic.Omega
 
 /-!
@@ -69,6 +70,39 @@ theorem unpaid_vanishes_at_exact_split (x y : ℝ)
   exact ⟨le_antisymm (le_trans (le_add_of_nonneg_right hy) hxy) hx,
     le_antisymm (le_trans (le_add_of_nonneg_left hx) hxy) hy⟩
 
+/-- A normalized direction satisfying every zero-allowance side scales into
+the full capped pair system. The support/cap hypotheses are explicit; this
+does not assert the semigroup construction or positivity of Wilf's defect. -/
+theorem normalized_unpaid_direction_feasible {ι π : Type*}
+    (v delta : ι → ℝ) (i j s : π → ι) (alpha kappa : π → ℝ)
+    (hv : ∀ a, 0 ≤ v a ∧ v a ≤ 1)
+    (hd : ∀ a, 0 ≤ delta a)
+    (hcap : ∀ a, v a = 0 ∨ 1 ≤ delta a)
+    (ha : ∀ p, alpha p = 0 ∨ alpha p = 1)
+    (hk : ∀ p, kappa p = 0 ∨ kappa p = 1)
+    (hupper : ∀ p, alpha p = 0 → v (i p) + v (j p) - v (s p) ≤ 0)
+    (hlower : ∀ p, kappa p = 0 → 0 ≤ v (i p) + v (j p) - v (s p)) :
+    (∀ a, 0 ≤ v a / 2 ∧ v a / 2 ≤ delta a) ∧
+    (∀ p, -kappa p ≤ v (i p) / 2 + v (j p) / 2 - v (s p) / 2 ∧
+      v (i p) / 2 + v (j p) / 2 - v (s p) / 2 ≤ alpha p) := by
+  constructor
+  · intro a
+    have hv0 := (hv a).1
+    have hv1 := (hv a).2
+    have hd0 := hd a
+    rcases hcap a with hz | hge <;> constructor <;> linarith
+  · intro p
+    obtain ⟨hi0, hi1⟩ := hv (i p)
+    obtain ⟨hj0, hj1⟩ := hv (j p)
+    obtain ⟨hs0, hs1⟩ := hv (s p)
+    constructor
+    · rcases hk p with hz | hone
+      · have h := hlower p hz; linarith
+      · linarith
+    · rcases ha p with hz | hone
+      · have h := hupper p hz; linarith
+      · linarith
+
 end Wilf
 
 #print axioms Wilf.assignment_repair_sum_bound
@@ -76,3 +110,4 @@ end Wilf
 #print axioms Wilf.upper_penalty_position
 #print axioms Wilf.lower_allowance_at_top
 #print axioms Wilf.unpaid_vanishes_at_exact_split
+#print axioms Wilf.normalized_unpaid_direction_feasible

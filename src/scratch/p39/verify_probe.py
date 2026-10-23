@@ -12,6 +12,89 @@ def open_text(path):
 def rat(v):
     return F(str(v)).limit_denominator(1000000)
 
+def audit_cone(D,out):
+    m,q=D['m'],D['q'];C=D['cone'];mu=D['mu'];gr={g%m for g in D['generators'] if g!=m}
+    mode=C.get('mode','cone');target=C.get('target',0);capped=mode!='cone'
+    assert mode in ('cone','capped','coordinate') and (0<target<m if mode=='coordinate' else target==0)
+    b=[0]*m;b[0]=q
+    for s in sorted(range(1,m),key=lambda s:D['w'][s]):
+        b[s]=mu[s] if s in gr else max([0]+[b[i]+b[j]-q-u for i,j,t,J,tau,l,u in D['pairs'] if not J and t==s])
+    assert b==C['baseline'];delta=[u-v for u,v in zip(mu,b)]
+    fixed={s for s in range(m) if not delta[s]}
+    while True:
+        old=fixed.copy()
+        for i,j,s,J,tau,l,u in D['pairs']:
+            if J:continue
+            if tau+l==0 and s in fixed:fixed.update((i,j))
+            if u-tau==0 and i in fixed and j in fixed:fixed.add(s)
+        if old==fixed:break
+    assert C['rigid']==[int(s in fixed) for s in range(m)]
+    core=[s for s in range(1,m) if s not in fixed];assert C['core_size']==len(core)
+    # Independent integer envelope for all real capped unpaid vectors. The
+    # repeated-parent upper rule is deliberately weakened, never rounded.
+    envelope=delta.copy()
+    while True:
+        old=envelope.copy()
+        for i,j,s,J,tau,l,u in D['pairs']:
+            if J:continue
+            envelope[i]=min(envelope[i],envelope[s]+tau+l)
+            envelope[j]=min(envelope[j],envelope[s]+tau+l)
+            envelope[s]=min(envelope[s],envelope[i]+envelope[j]+u-tau)
+        if old==envelope:break
+    assert {s for s,v in enumerate(envelope) if not v}==fixed
+    upper=[F(0 if s in fixed else delta[s] if capped else 1) for s in range(1,m)]+[F(bool(core) and not capped)]
+    assert list(map(rat,C['ub']))==upper
+    expected=[]
+    for p,(i,j,s,J,tau,l,u) in enumerate(D['pairs']):
+        if J:continue
+        coeff=defaultdict(int)
+        for k,v in ((i,1),(j,1),(s,-1)):coeff[k]+=v
+        if capped or tau+l==0:expected.append((p,0,'<',tau+l if capped else 0,dict(coeff)))
+        if capped or u-tau==0:expected.append((p,0,'>',tau-u if capped else 0,dict(coeff)))
+    if not capped:expected.extend((-1,2,'>',0,{s:1,m:-1}) for s in core)
+    assert len(expected)==len(C['rows'])
+    x=[F(0)]+list(map(rat,C['x']));rc=list(map(rat,C['rc']));load=[F(0)]*(m+1)
+    assert len(x)==m+1 and len(rc)==m and all(0<=x[s]<=upper[s-1] for s in range(1,m+1))
+    used=[];dual=F(0)
+    for (p,kind,sense,rhs,coeff),R in zip(expected,C['rows']):
+        assert (R['pair'],R['kind'],R['sense'],rat(R['b']),dict(R['a']))==(p,kind,sense,rhs,coeff)
+        value=sum(v*x[s] for s,v in coeff.items());pi=rat(R['pi'])
+        assert value<=rhs if sense=='<' else value>=rhs
+        assert pi<=0 if sense=='<' else pi>=0
+        for s,v in coeff.items():load[s]+=pi*v
+        dual+=pi*rhs
+        if pi:used.append({'pair':p,'kind':kind,'sense':sense,'pi':str(pi)})
+    for s in range(1,m+1):
+        coefficient=-int(s==m) if not capped else -int(s<m and (mode=='capped' or s==target))
+        assert F(coefficient)-load[s]==rc[s-1]
+        if rc[s-1]<0:dual+=rc[s-1]*upper[s-1]
+    primal=-x[m] if not capped else -sum(x[1:m]) if mode=='capped' else -x[target]
+    assert primal==dual and abs(float(dual)-C['value'])<1e-6
+    if capped:
+        assert all(x[s]<=envelope[s] for s in range(m))
+        for i,j,s,J,tau,l,u in D['pairs']:
+            if not J:assert -(u-tau)<=x[i]+x[j]-x[s]<=tau+l
+        out['cone']={'mode':mode,'target':target,'core':core,'optimum':str(primal),'unpaid':[str(v) for v in x[:m]],'capped_objective':str(F(D['W'])-D['e']*sum(x[:m])),'dual_nonzero':used}
+        return out
+    for s in core:assert x[s]>=x[m]
+    ray=x[:m];finite=[v/2 for v in ray]
+    assert all(0<=finite[s]<=delta[s] for s in range(m))
+    for i,j,s,J,tau,l,u in D['pairs']:
+        if not J:assert -(u-tau)<=finite[i]+finite[j]-finite[s]<=tau+l
+    scales=[F(delta[s])/ray[s] for s in range(m) if ray[s]>0]
+    for i,j,s,J,tau,l,u in D['pairs']:
+        if J:continue
+        value=ray[i]+ray[j]-ray[s]
+        if value>0:scales.append(F(tau+l)/value)
+        elif value<0:scales.append(F(u-tau)/(-value))
+    scale=min(scales) if scales else F(0);scaled=[scale*v for v in ray]
+    assert all(scaled[s]<=envelope[s] for s in range(m))
+    assert all(0<=scaled[s]<=delta[s] for s in range(m))
+    for i,j,s,J,tau,l,u in D['pairs']:
+        if not J:assert -(u-tau)<=scaled[i]+scaled[j]-scaled[s]<=tau+l
+    out['cone']={'epsilon':str(x[m]),'core':core,'ray':[str(v) for v in ray],'finite_unpaid':[str(v) for v in finite],'max_ray_scale':str(scale),'scaled_unpaid':[str(v) for v in scaled],'capped_objective_upper':str(F(D['W'])-D['e']*sum(scaled)),'dual_nonzero':used}
+    return out
+
 def audit(D):
     m, e, c, q, rho, r = (D[k] for k in ('m','e','c','q','rho','r'))
     G = D['generators']
@@ -47,6 +130,7 @@ def audit(D):
         height[s]=max([height[i]+height[j] for i,j,t,J,*_ in pairs if t==s and J==0],default=1)
     assert height==D['height']
     out={'generators':G,'m':m,'e':e,'c':c,'q':q,'rho':rho,'h':max(D['height']),'W':D['W'],'models':{}}
+    if 'cone' in D:return audit_cone(D,out)
     for name,M in D['models'].items():
         fixed=name in ('UA3','AM3'); exact=name in ('TX','FACE'); full=name in ('AM3','FACE')
         expected=[]
@@ -99,5 +183,11 @@ if __name__=='__main__':
         results.append(audit(json.loads(line)))
     with open(sys.argv[2],'w') as f: json.dump(results,f,indent=2)
     for R in results:
+        if 'cone' in R:
+            C=R['cone']
+            if 'mode' in C:
+                print('CORE-LP G=%s mode=%s target=%d core=%d optimum=%s max_unpaid=%s capped_witness=%s'%(R['generators'],C['mode'],C['target'],len(C['core']),C['optimum'],max(map(F,C['unpaid'])),C['capped_objective']))
+            else:print('CONE G=%s core=%d epsilon=%s ray_scale=%s max_unpaid=%s capped_upper=%s'%(R['generators'],len(C['core']),C['epsilon'],C['max_ray_scale'],max(map(F,C['scaled_unpaid'])),C['capped_objective_upper']))
+            continue
         print('G=%s q=%s h=%s W=%s | '%(R['generators'],R['q'],R['h'],R['W'])+' '.join('%s=%s[nontight:%d,tighterror:%d]'%(name,V['optimum'],len(V['non_tight_violations']),len(V['tight_errors'])) for name,V in R['models'].items()))
-    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models']) for R in results),'primal/dual optima')
+    print('EXACTLY CERTIFIED',len(results),'semigroups;',sum(len(R['models'])+int('cone' in R) for R in results),'primal/dual optima')

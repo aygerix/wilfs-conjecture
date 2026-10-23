@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 22:40 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-22 23:12 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -48,6 +48,15 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   of27 saved cases. Exact-zero closure fixes146/146 in that case. Top-divisor unpaid repair is always zero,
   but that ideal can have size2 for arbitrarily large m. Arithmetic rigidity components are Lean checked;
   graph/semigroup closure proofs remain on paper. Universal nonnegativity is not established.
+- **Residual support/weights (E405/E406):** the normalized homogeneous zero-side cone scales by1/2 into
+  the full capped model; this scaling component is Lean checked. All12 nonempty cores among27 saved S
+  have exact strictly positive directions, so there are no further forced-zero coordinates in those cases.
+  A universal unpaid-coordinate bound1 is FALSE: an independently audited e11 semigroup has max x23=2.
+  Residual counting must retain weights. These results do not prove universal certificate positivity.
+- **Constructor correction (E407):** NS.from_gapset formerly accepted {0}, creating a false W=-1 object.
+  Fixed/pushed in f93f460. Current p39 C search and independent checkers do not use this method or NS.
+  The fixed constructor passes invalid-input regressions and round trips all1413 S of genus<=12 against
+  generator/tree data and the independent Kunz implementation. No historical-use claim beyond the audit.
 
 ## Existing implementations
 
@@ -58,8 +67,8 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [enumlp3.c](../src/scratch/p37/enumlp3.c) | Newer C enumeration plus RT3/UA3, with optional height filter. | Pass h4only=0 for all heights. Audit found a 256-bit key overflow at m=24; key capacity is now derived from MAXM. |
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
-| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX and full-Kunz relaxations; export primal/dual data. | Gurobi C API; no height restriction. Independent membership/rational checker: verify_probe.py alongside it. |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity and target-transport audits. | Pure C. `--transport-audit` exports shortest-path witnesses; `--individual-climb-wide` tests one-step payments. `--cover` gives an UPPER certificate, not a Wilf lower bound. |
+| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX, full-Kunz relaxations, residual cone/capped models; export primal/dual data. | Gurobi C API; no height restriction. `--cone` tests residual support, `--cap` maximizes unpaid sum, `--cap-max RES` one coordinate. Independent membership/rational checker: verify_probe.py. |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--transport-audit` exports paths; `--unit-search NS SEED` stops on an envelope above1, which needs a full-model feasibility check. `--cover` gives an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity and transport-path audit. | `--standalone` needs no Gurobi data. upper_dp.py implements rational propagation and `--rigid` exact-zero closure. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
@@ -82,22 +91,31 @@ New actual-W search: <43,155,184,193>, c926,W366,matching bound366 (q22,height6)
 <60,67,71,121> already refutes B>=0 or2W>=c. At <66,67,71,72,98,103,128>, unrestricted cover41 versus
 actual-capped42 refutes the nonnegative-unpaid optimal-cover normal form. Exact data: E399/E400.
 
-Latest structural test: one-step integer payments survive the reused sample/local descents (UNPROVED
-positivity). Capped transport recovers237=W on the low-W60 example; exact-zero closure leaves3 variables
-on the e5 example and15 on another e4 example. Rigidity gives capped-model value W, not a proof of its sign.
+Latest structural test: all12 saved nonempty cores have genuine positive residual directions. Five
+targeted coordinate LPs on saved S each have maximum1, but a fresh C diagnostic stops at candidate12
+with an actual maximum2 at residue23 of <153,166,170,317,325,474,617,766,921,925,1080>.
+Its c1683,g1013,e11,W5687 and full feasible vector are independently checked. Discontinue unit-weight
+counting. A maximal Apéry cell with no tight successor can carry two unpaid units; all maximal elements
+and their weights must be retained. No genuine Wilf failure or universal proof has been obtained.
 
-**Next mathematical action:** analyze the remaining zero-face constraints after exact-zero closure. Derive a
-residue-counting inequality paying for BOTH the fixed boundary and residual paired costs, using all relevant
-maximal elements and the full residue bijection. A single top ideal has no uniform size; a bounded core size
-cannot be assumed. Do not delete paid cells and apply the already-false partial-tile lemma. Zero-loss-summand
-transport alone did not explain the gap. Any negative W forces the proved capped bounds negative, so this
-residual still covers every possible counterexample. No larger boxes or guessed W/c constants.
+**Next mathematical action:** derive or falsify universal nonnegativity of the weighted propagated bound
+W-e sum U, where U starts at delta and closes xi<=xs+alpha, xj<=xs+alpha,
+xs<=xi+xj+kappa (PROOFS/E406). This is a valid lower bound for full capped repair and actual W;
+positivity is unproved. Work backwards from the existing low-W/weak-certificate examples, retaining
+maximal cells with U>1. All12 saved residual cores already admit positive directions, so further zero
+forcing cannot improve them. A single top ideal has no uniform size; neither bounded core size nor
+unit weights can be assumed. Do not delete paid cells and apply the false partial-tile lemma. Any
+negative W forces this proved lower bound negative, so the necessary-counterexample reduction remains
+universal. No larger boxes, guessed W/c constants or restricted-family targets.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E404 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E407 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks and the new C ASan/UBSan paths passed. See the [validation log](../src/scratch/p39/data/checkpoint_404_checks.log)
-and data/top_rigidity_lean.log alongside it. E404 records the two added Lean components.
+Latest consolidated checks pass135 existing LP optima,27 cone optima,7 capped/coordinate optima and5
+fresh normal-model optima, plus existing matching/transport/BASE checks. See the
+[validation log](../src/scratch/p39/data/checkpoint_406_checks.log) and data/unpaid_cone_lean.log.
+The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
+Earlier C ASan/UBSan checks are in checkpoint_404_checks.log; no sanitizer claim for the new unit branch.
 
 ## Supporting records — consult as needed
 

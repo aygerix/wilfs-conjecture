@@ -7175,3 +7175,92 @@ actual deltas1,2,1. The e4 example <60,67,71,121> leaves15 coordinates, so a cor
 cannot be assumed. These are exact finite diagnostics of the general closure, not a universal bounded-core
 theorem. Future counting must retain the full residue bijection: deleting paid cells does not preserve the
 tile hypotheses (see the recorded FALSE partial-tile extensions).
+
+### The exact unpaid tangent cone and a weighted-core obstruction (E405/E406)
+
+**Status: general lemmas proved on paper; finite LP witnesses independently checked over Q.**
+The full normalized-direction scaling construction (caps and all pair inequalities) is kernel checked
+as `normalized_unpaid_direction_feasible` in RepairMatching.lean. Its support/cap assumptions are explicit;
+the semigroup translation and support equivalence remain on paper. Only propext,Classical.choice,Quot.sound,
+no sorry or additional axioms; see data/unpaid_cone_lean.log.
+Keep the full capped unpaid polytope
+
+    P={x: 0<=x<=delta, -kappa_p<=A_p x<=alpha_p for every tight pair},
+    A_p x=x_i+x_j-x_s.
+
+The coordinates in the exact-zero closure K vanish throughout P. Define the homogeneous cone
+
+    C={v>=0: v_K=0, A_p v<=0 if alpha_p=0, A_p v>=0 if kappa_p=0}.
+
+Then P contains a nonzero point if and only if C does. More precisely, every v in C with all
+coordinates <=1 has v/2 in P. On a zero allowance side this follows from the cone inequality. On
+an alpha=1 side, A_p(v/2)<=(v_i+v_j)/2<=1, including repeated parents. On a kappa=1 side,
+-A_p(v/2)<=(v_s)/2<=1/2. Outside K the integer delta_s is at least1, and v_K=0, so all caps hold.
+Conversely any point in P satisfies all homogeneous zero-side constraints. An arbitrary nonzero
+cone vector can be normalized into the unit box, proving the equivalence.
+
+There exists a point of P positive at EVERY coordinate outside K if and only if the LP
+
+    maximize epsilon; 0<=v<=1, v in C, v_s>=epsilon for s outside K
+
+has positive optimum. One implication follows from v/2. For the reverse implication normalize a
+point positive on the finite core. Also, if each core coordinate is positive in some feasible point,
+their average is positive on all of the core. Thus epsilon=0 for a nonempty core would certify
+additional forced zeros beyond Boolean closure; epsilon>0 certifies that none remain in that instance.
+This is a support test, not a proof of any uniform bound on core size, coordinate weights or W.
+
+On the27 previously saved S,15 have complete K and12 have nonempty cores. All12 have epsilon>0:
+ten optima1 and two optima1/2, the latter at <60,61,67,71> and <60,67,71,121>. The largest core
+in this dataset has42 cells at <146,147,155,185>. All27 exported primal/dual pairs are exactly
+audited in data/cone_survey.jsonl.gz. Hence trying to force more coordinates to zero cannot improve
+these12 capped models. No claim is made that Boolean closure is universally complete.
+
+**A useful upper propagation, without integrality leakage.** Start U=delta. For each tight pair
+repeatedly decrease the three indicated bounds as follows, using the current entries:
+
+    U_i <- min(U_i,U_s+alpha), U_j <- min(U_j,U_s+alpha),
+    U_s <- min(U_s,U_i+U_j+kappa).
+
+Every real point x of P satisfies x<=U at every step: the first two rules drop the nonnegative
+other parent from A_p x<=alpha; the third is the other side of the same pair constraint. This
+also holds for repeated parents; the rule deliberately forgoes the stronger division by2, so
+no floor is imposed on a real LP variable. Entries stay nonnegative integers and decrease only
+finitely often. Its zero set is exactly K. The only ways to create a zero are a zero target with
+alpha0 or two zero parents with kappa0; these are precisely the Boolean rules. At termination
+the zero set is closed under those rules, giving the reverse inclusion as well. Therefore
+
+    W >= CapUA3 >= W-e sum U.
+
+This U need not itself lie in P; summing its entries is a relaxation. It is a cheap diagnostic,
+not an exact replacement for the full LP. C --unit-search stops when this envelope exceeds1;
+only the following exact full-model witness refutes the unit-coordinate claim.
+
+**FALSE: every capped unpaid coordinate is <=1.** The genuine semigroup
+
+    S=<153,166,170,317,325,474,617,766,921,925,1080>
+
+has e11,c1683,g1013,W5687,q11,rho0 and a51-coordinate core. In its full capped model,
+max x_23=2. The cap delta_23=2 gives the matching upper certificate; a feasible integer x has
+x_23=2 and x_s=1 at
+
+    {10,12,18,21,22,25,29,31,33,35,40,42,44,46,48,59,61,72,89,106,
+     123,130,134,138,140,143,145,147,149,151},
+
+with every other coordinate0. Its total unpaid mass is32, hence its repair objective is5335.
+This is a feasible objective for this coordinate LP, NOT the minimum of the sum-objective
+capped model and NOT an upper bound on actual W. Independent membership reconstruction and exact
+checking of every tight row/cap and primal-dual equality are in data/capped_core_probe.jsonl.gz.
+
+Here w_23=1400 is maximal in the Apéry poset. Its four incoming tight pairs are(1,22),(5,18),
+(10,13),(11,12), all with alpha0,kappa1. There is no tight outgoing pair. Thus a zero-cost
+relation to a rigid successor cannot impose a unit bound. The five preceding coordinate LP checks
+on the saved data all had maximum1; an additional sum-objective optimum used only unit values.
+Those checks were insufficient
+to establish the universal shortcut. This counterexample satisfies c>4m,3e<m and is relevant
+to the remaining universal domain. It does not violate Wilf.
+
+**Strategic implication.** Both a cardinality-only treatment of residual coordinates and a
+single-top-ideal argument are now excluded. The missing general statement must pay for weighted
+unpaid mass as well as the fixed boundary, retaining all maximal elements and residue completeness.
+The cone support lemma does not supply that counting statement. Universal nonnegativity of the
+existing matching, propagated or full capped certificates remains unproved.

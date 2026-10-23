@@ -8,6 +8,8 @@
  * --position-audit MAXM: exhaustively check the algebraic penalty identity (MAXM<=128).
  * --individual-search NS SEED [MIN_E]: falsify the integer individual-payment bound.
  * --transport-audit m g...: three exact graph relaxations with path witnesses.
+ * --unit-search NS SEED [MIN_E]: stop on a capped-unpaid envelope above one.
+ * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * This is sampling, not exhaustive enumeration and not a proof of Wilf.
  */
 #include <stdio.h>
@@ -25,6 +27,7 @@ static long nbneg;
 static ll ratio_num,ratio_den=1;
 static int need_e,kunz_cap;
 static int individual_audit;
+static int unit_audit;
 static ll last_num,last_den,last_corrected,last_B,last_M,last_W;
 static ll last_individual;
 static int last_e,last_c,last_q,last_h;
@@ -48,6 +51,31 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
+ if(unit_audit||dump==6){
+  /* Nonnegative capped x obeys xi<=xs+alpha, xj<=xs+alpha and
+   * xs<=xi+xj+kappa. Starting at delta gives valid integer upper bounds.
+   * For repeated parents we deliberately use the weaker xi<=xs+alpha;
+   * no integrality assumption on the actual LP variables is made. */
+  int U[MM],changed=1,sweeps=0;for(int s=0;s<m;s++)U[s]=mu[s]-z[s];
+  while(changed){changed=0;sweeps++;
+   for(int i=1;i<m;i++)for(int j=i;j<m;j++){
+    int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
+    int rp=(w[s]-c)%m;if(rp<0)rp+=m;
+    int lo=rp>=m-rho&&i>r&&j>r,up=rp<=m-rho-2&&i<=r&&j<=r;
+    int tau=mu[i]+mu[j]-mu[s]-q,a=tau+lo,k=up-tau;
+    if(U[i]>U[s]+a){U[i]=U[s]+a;changed=1;}
+    if(U[j]>U[s]+a){U[j]=U[s]+a;changed=1;}
+    if(U[s]>U[i]+U[j]+k){U[s]=U[i]+U[j]+k;changed=1;}
+   }
+  }
+  int target=0;for(int s=1;s<m;s++)if(U[s]>U[target])target=s;
+  if(dump==6||U[target]>1){
+   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"target\":%d,\"max_upper\":%d,\"sweeps\":%d,\"G\":[%d",m,e,c,W,target,U[target],sweeps,m);
+   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("],\"u\":[");
+   for(int s=0;s<m;s++)printf("%s%d",s?",":"",U[s]);printf("]}\n");fflush(stdout);
+  }
+  return unit_audit&&U[target]>1?-3:1;
+ }
  int ix[MM],res[MM],n=0;for(int s=1;s<m;s++){ix[s]=-1;if(!gen[s]){ix[s]=n;res[n++]=s;}}
  if(dump==5){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"G\":[%d",m,e,c,W,B,m);
@@ -183,6 +211,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>1&&!strcmp(argv[1],"--unit-search")){unit_audit=1;argc--;argv++;}
  if(argc>1&&!strcmp(argv[1],"--individual-search")){individual_audit=1;argc--;argv++;}
  if(argc==3&&!strcmp(argv[1],"--position-audit")){
   int maxm=atoi(argv[2]);if(maxm<2||maxm>128)return 1;ll checks=0;
@@ -266,11 +295,11 @@ int main(int argc,char **argv){
   }
   printf("ENUM_DONE m=%d e=%d K=%d candidates=%ld accepted=%ld Bnegative=%ld min_corrected=%lld max_repair_ratio=%lld/%lld\n",m,e,K,cand,acc,nbneg,best0,ratio_num,ratio_den);return 0;
  }
- if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit"))){
+ if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit")||!strcmp(argv[1],"--unit-audit"))){
   int ng=argc-2,G0[MM+GG],m0=INT_MAX;if(ng>MM+GG)return 1;for(int k=0;k<ng;k++){G0[k]=atoi(argv[k+2]);if(G0[k]<m0)m0=G0[k];}
   if(m0<2||m0>=MM)return 1;
   int at=0;while(G0[at]!=m0)at++;int tmp=G0[0];G0[0]=G0[at];G0[at]=tmp;
-  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:2;
+  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:!strcmp(argv[1],"--unit-audit")?6:2;
   ll best0=1LL<<60;return eval(m0,G0,ng,2,mode,&best0)==0?1:0;
  }
  if(argc<3)return 1;long N=atol(argv[1]);state=strtoull(argv[2],NULL,10);if(!state)state=1;int mine=argc>3?atoi(argv[3]):4;
