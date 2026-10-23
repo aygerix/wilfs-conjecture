@@ -2171,3 +2171,57 @@ Engine schema logs all directions/targets/evaluated/skipped metadata and full se
 cases. Native and WILF_CUDA translation syntax checks pass; no GPU execution claim.
 The finite probe is CLOSED. General mixed payment, full-Q sign and weaker combined
 source/support target remain UNKNOWN; the new axis map supplies only its proved part.
+
+## E471 — fifteen SAVED full-feasible witnesses: retain the certificate boundary surplus
+
+2026-10-23, Fejer ~/wilf/p39, project littlewood-paley-8375,us-east1-b. Scope named
+the exact files/15 capped or coordinate records before execution. NO new semigroup
+generation, optimization, source mutation, C/CUDA kernel, rental or agent launch.
+This reuses existing exact vectors to test a DIFFERENT universally quantified helper.
+
+`verify_probe.py --reserve-transfer-check` independently reconstructs each source
+through finite membership, rechecks all tight/cap/primitive constraints and, when
+present, its old rational LP primal/dual certificate (integer witnesses assert only
+feasibility). It then explicitly enumerates canonical columns to compute
+Q,R,Gamma. Let J=W-e*sumx,y=mu-x. It checks the exact equality
+
+    J-Q=(Gamma.x-e*sumx)+(Gamma.y-Dep), Gamma.y-Dep>=0.
+
+Inputs are ONLY coupling_probe(1 capped record), combined_probe(1 capped),
+capped_core_probe(6 coordinate+1 capped), allowance_source_probe(6 coordinate).
+The first two files ALSO contain other model records, which are not in this test.
+Initial checker incorrectly asserted the total file-record counts; it stopped at
+the first file BEFORE auditing a witness. Hash comparison showed worker/local files
+identical. Corrected the filter to select ONLY capped/coordinate records, retaining
+original file indices. All15 then passed. A second replay of the SAME15 added the
+paper boundary-only helper; it is not30 distinct tests or an enlarged source set.
+
+All15 have J-Q>=82; no reserve-transfer falsifier. This checks these POINT witnesses,
+not all feasible vectors on every source. In particular coordinate-optimal vectors
+are not necessarily mass-optimal. The universal J>=Q statement remains UNKNOWN.
+
+The stronger boundary-only helper Gamma.x>=e*sumx FAILS on two full-feasible OLD
+witnesses, with exact compensation from the retained y surplus:
+
+| Source | W | Q | R | e*sumx | Gamma.x | Gamma.y-Dep | J | J-Q |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+|65,82,214,217,265|1452|182|1270|45|39|1231|1407|1225|
+|146,155,184,535|1334|351|983|336|332|651|998|647|
+
+The65 witness is especially compact: x1 at residues27,32,41,46,49,53,58,60,63,
+zero elsewhere. Its corresponding Gamma entries1,7,0,7,7,5,3,3,6 sum39. It is in
+c>4m,3e<m,allcofactors1; all full feasibility rows pass exactly. Source/repair are
+already in E413, not new counterexamples to Wilf or full reserve transfer. The146
+vector has weighted entries up to3; support size is not substituted for mass.
+Minimum transfer margin82 is the old60/67/71/121 mass optimum: W236,Q98,R138,
+ex56,Gamma.x56,J180. These are diagnostics, not new regional proof targets.
+
+Reproduce from p39, with a60s ceiling (no new timing benchmark was instrumented):
+
+    timeout 60s python3 verify_probe.py --reserve-transfer-check data/coupling_probe.jsonl.gz data/combined_probe.jsonl.gz data/capped_core_probe.jsonl.gz data/allowance_source_probe.jsonl.gz data/reserve_transfer_471.json
+
+Output `data/reserve_transfer_471.json` saves every input-file/index, exact x/Gamma,
+source invariants, both signed terms and transfer margin. Source file SHA256s were
+checked equal on laptop/worker before the corrected run; no worker data was replaced.
+All launched commands are terminal. This15-record replay is CLOSED, no automatic additional
+profiles or optimizer. E470 wall/path/5-control/51-calibration are PAPER ONLY.

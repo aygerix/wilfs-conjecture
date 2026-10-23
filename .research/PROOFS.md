@@ -12469,3 +12469,281 @@ allowing reallocation rather than freezing either resource. Proving exact recove
 of source values, or another equivalent budget identity, would not establish its
 sign. The weaker combined support/source target and the coupled finite affine
 budget remain distinct alternatives; neither is refuted by these local controls.
+
+## E470 — coherent full-shadow exchanges, exact score jumps and the finite-path guard
+
+2026-10-23. Scope: Proves Wilf for EVERY S IF the full-Q or weaker joint source
+payment is established; proved reduction yes E466/E467/SUPP/E453 and complements.
+These are structural/accessibility and accounting components, not sign theorems.
+Root and the SAME two authorized agents independently checked the arguments below.
+No Lean or novelty claim. The single-wall mechanism agrees with Brower–McDonough–
+O'Neill2401.06025v3, Thm5.5/Remark5.7; their Remark5.6 also explains why a formal
+substitution alone does not establish a realizable adjacent chamber.
+
+### 1. A genuine rank-one wall supplies a compatible FULL shadow
+
+Let D={z_s} be a residue-bijective downset in N^d, containing all units, with
+phi(z)=z.delta modm. Suppose it is the unique minimum-word tile for an old positive
+cost P_-. Let P0>0 lie in its chamber closure. Use candidate-minus-canonical rows
+
+    l_(s,j)=z_s+e_j-z_(s+delta_j).
+
+Assume the nonempty set of nonidentity rows with l.P0=0 consists of positive
+multiples of b-a. Here a,b have disjoint support and v=a-b generates the
+ONE-DIMENSIONAL lattice L intersect Rv, L=ker(phi). This is lattice primitivity,
+not necessarily gcd1 in Z^d. Orient the old side v.P_-<0 (a cheaper) and cross
+to v.P_+>0 (b cheaper), sufficiently close to P0. Every nonactive row stays positive.
+
+Then the adjacent tile is EXACTLY
+
+    D_+={Phi(z):z in D},
+    Phi(z)=z-q(z)a+q(z)b, q(z)=max{k>=0:ka<=z}.          (WALL-SHADOW)
+
+Proof. D avoids b because replacing it by a improves old cost. Each active row
+is an integer multiple k(b-a). In fact k=1: its candidate word z_s+e_j would
+contain kb; if k>=2, removing e_j still leaves a word containing b in D, a
+contradiction. The target of an active row contains a, so a belongs to D.
+
+Every wall-minimum word y has minimum prefixes. Telescope its successive primitive
+prefixes against the old canonical words. The result y-z_phi(y) is a sum of zero
+primitive-edge rows; nonnegative wall gaps force every used row to be zero. Hence
+
+    y=z_s+k(b-a), k>=0 integer.
+
+Conversely every nonnegative such word has the same wall cost and residue, so is
+a minimum. Disjoint support makes its possible indices precisely0<=k<=q(z_s).
+This finite fiber proof does NOT assume all of ker(P0) intersect L has rank one:
+unrelated annihilated lattice vectors outside minimum fibers are irrelevant.
+Every b-e_j, j in support(b), is a wall minimum but cannot contain b, so its index
+is0; thus b is minimal excluded. Positive costs imply every shortest word has
+length<=m-1 (a repeated residue in a word path would give a removable positive
+cycle). A finite-gap argument therefore excludes new non-wall competitors near P0.
+On the new side the largest k is cheapest, proving WALL-SHADOW. Its downset property
+follows from actual minimum-word optimality, not from blind block substitution.
+
+Units need a separate guard. Automatically |b|>=2. If |a|>=2, every old unit is
+fixed and actual e is unchanged. If a=e_i, Phi removes coordinate i from EVERY
+word; exactly that old primitive becomes redundant. Same-e score formulas must
+not be used in that case. An isolated maximum residue at P0 retains actual top
+residue across small crossings; otherwise include the phase change. Open positive
+cost cones with these units have integer residue-class realizations after scaling
+and perturbation; E455/E462 preserve the intended tile/top and normalize cofactors.
+
+### 2. Exact changes, retaining all column mass and free cap credit
+
+Assume the units/e are unchanged. Set q_s=q(z_s), A_q=sum_s q_s,
+lambda=v.delta/m in Z, z'_s=z_s-q_s v. Residue-bijective downward closure gives
+
+    Gamma_s=d+|z_s|-sum_j (z_(s+delta_j))_j.
+
+Indeed an internal successor contributes z_sj+1 to the subtracted term; at a
+missing direction the canonical target's j-coordinate must be0, by residue
+injectivity. Thus
+
+    DeltaGamma_s=sum_j v_j(q_(s+delta_j)-q_s).
+
+At fixed actual top residue r, the exact phase formula yields
+
+    DeltaQ=DeltaDep+lambda*A_q
+           -sum_(s,j) v_j q_s*[[r-s]_m+delta_j>=m],     (WALL-Q)
+    DeltaDep=sum_(maxD)(d+|z|)-sum_(maxD_+)(d+|z'|),
+    Deltakappa=-lambda*A_q
+       -sum_(s,j)(floor((z_sj-q_s v_j)delta_j/m)-floor(z_sj delta_j/m)),
+    DeltaN=Deltakappa+DeltaQ-DeltaDep.
+
+For WALL-Q reindex the Gamma difference and use
+[r-s+delta_j]_m-[r-s]_m=delta_j-m*[[r-s]_m+delta_j>=m]. If the top residue changes,
+add the exact E450 phase sweep on D_+: Q(r+1)-Q(r)=d-Gamma_(r+1). These are SIGNED
+identities. No positivity, monotonicity or complete chamber enumeration follows.
+
+For a POSTWALL genuine realization P_+ of D_+, let sigma=P_+.v/m>0, actual maximum M
+and mu'_s=floor((M-w'_s)/m). Hold THIS source/maximum fixed and treat old D as a
+constructed source-word tile. Its raw scalar credit is sigma*A_q and its L gain
+e*sigma*A_q. After the FREE residue arithmetic cap cap_s=max{n<=M:n=s modm}, the
+exact additional credit is instead
+
+    sum_s min(sigma*q_s,mu'_s),
+    capped-L gain=e*sum_s min(sigma*q_s,mu'_s).           (WALL-NET)
+
+This follows from oldw_s=w'_s+m*sigma*q_s and cap_s-w'_s=m*mu'_s. It prevents
+double-counting the cap reserve. The formula compares representative choices at
+ONE fixed postwall source, not Wilf values of two different sources. If D_+ is
+not the actual tile at a distant source, do not substitute its mu' as actual data.
+
+### 3. The ALL-rank coherent closure-to-source policy cannot stall before exact values
+
+For any proper S, let a be its least odd primitive. Write the OTHER original
+primitives as P_j=2beta_j+a*chi_j, with beta_j>0 and chi_j in{0,1}; even primitives
+have chi0. U=<a,beta_j>. The prescribed D_U minimizes beta, then chi, then lex,
+in each beta-residue modulo a. Since a is odd, multiplying residue labels by2
+identifies these with the source residues. Consider positive costs
+
+    c_t(z)=2beta.z+t*a*chi.z, 0<=t<=1.
+
+Only finitely many words can minimize: positive cycles can be removed, so degree
+<=a-1 suffices. Equivalently use a uniform competitor bound from the initial D_U
+words and c_t>=2beta. Choose lex among persistent ties. Every generic-t tile is
+a coherent residue-bijective DOWNSET; the right limit at0 is exactly D_U.
+
+At an interior wall, an incoming x replaced by y has
+
+    Delta=chi.x-chi.y>0, beta.y-beta.x=K*a,
+    t_wall*Delta=2K,
+    (P.x-P.y)/a=Delta-2K=(1-t_wall)*Delta>0 integer.      (PATH-CREDIT)
+
+Replace ALL changed residues simultaneously. The incoming/outgoing tiles are
+coherent downsets. Their common part is a downset; removed/inserted parts are upper
+ideals relative to the respective tiles. Every predecessor needed by an inserted
+word is common or inserted at the SAME wall. This supplies the compatibility lost
+by independent arbitrary shadows, including walls with several independent trades.
+
+Already-present ORIGINAL source units persist. For any same-residue rival z!=e_j,
+P.z>P.e_j by source primitivity: a nonpositive difference, necessarily a multiple
+of a, would express P_j by other primitives plus pivots. Its affine cost difference
+is nonnegative when the unit is present and strictly positive at1, hence positive
+at every later interior time. Missing units may be restored, not subsequently lost.
+
+At1 the left-limit tile minimizes P, then MAXIMIZES chi, then lex. It already gives
+the ACTUAL Apéry VALUES, consistent with E448's maximum odd-filtration convention.
+A prescribed different P-lex tile can require zero-P-cost endpoint exchanges.
+Strict improvement applies to all effective value changes before1, not those ties.
+Total credit telescopes exactly to
+
+    C_path=(sum_(z in D_U)P.z-sum_s w_S(2s mod a))/a=E(D_U).
+
+Thus full coherent all-rank exchange cannot stall while any source-value excess
+remains. Restricted corner/shadow algorithms can still stall. A full-policy stall
+with L<0 would already be an actual negative W, not a new auxiliary-policy failure.
+Do NOT search for stalls of the unrestricted class or call termination a sign proof:
+its final bound is W, whatever that sign. The outstanding SOURCE-QUOTA remains.
+
+### 4. Continuous interpolation does not pay the finite correction
+
+Let C_a=(e-2)(a-1)/2, using ORIGINAL source e, and let w_s(t),M(t) be the minimum
+values and their maximum. Define
+
+    J_e(t)=(e-1)M(t)-(e/a)sum_s w_s(t)-C_a.
+
+This is CONTINUOUS at walls. Between walls and top switches, writing Xi(t) for
+sum_s chi.z_s(t) and f_t for an actual value-top,
+
+    J'_e(t)=a(e-1)chi.f_t-e*Xi(t),
+    J_e(0)=2W(U)+2(e-e_U)ell(U)+C_a, J_e(1)=W(S).       (PATH-BUDGET)
+
+The initial identity uses Selmer at modulus a; it includes U=N with ell(U)=0.
+PATH-CREDIT gives jumps of L evaluated at FIXED FINAL P, NOT extra jumps of J_e(t).
+Counting both would double-count. The required integrated finite-drop bound is
+
+    integral_0^1(e*Xi(t)-a(e-1)chi.f_t)dt
+        <=2W(U)+2(e-e_U)ell(U)+C_a.                    (UNKNOWN)
+
+Xi is nonincreasing, but its usual weighted-downset bound uses the MAXIMUM odd
+degree, not the odd degree of the VALUE-top f_t. Substituting that larger quantity
+on the negative-demand side reverses the needed estimate. This is an exact coupling
+gap, not an established quantitative inequality.
+
+Even nonnegative endpoints do NOT give unconditional real-path positivity. Paper
+control S=<5,7,8> has a5,beta=(1,4),chi=(1,0),U=N and actual c12,g7,W3. At t=2/15,
+costs are(8/3,8); the beta-residue minima are(0,8/3,16/3,8,8), M8, sum24. Hence
+
+    J_3(0)=2, J_3(2/15)=16-(3/5)*24-2=-2/5, J_3(1)=3.
+
+The minima follow directly: a candidate using q has cost>=8, and among the words
+below8, only0,p,2p occur; residue3 has3p=8 and residue4 hasq=8. This is a REAL-COST
+path, not a fractional numerical semigroup or negative actual W. The source is
+already covered and outside the sparse/deep domain; no restriction-sensitive
+falsification is claimed. Likewise old MON1 equality control <5,21,22,23,24> consumes
+ALL initial J0=10, so neither reserve separately nor a fixed fraction<1 can fund
+unconditional path loss. That control also lies outside the remaining domain.
+
+For the actual5/7/8 endpoint, the gaps are1,2,3,4,6,9,11;12 through16 are in S
+and addition by5 covers every subsequent integer. Thus c12,g7,ell5,W3 follows
+directly, independently of the real-cost calculation.
+
+### 5. Advisor51: improving source credit does not make Q monotone
+
+P=(53,149,151),a51,beta=(1,49,50),chi=(1,1,1). Write p=2+51t,q=98+51t,r'=100+51t.
+The first two effective positive walls are
+
+    48p <->q+r' at t1=1/23, then47p<->2q at t2=2/45.
+
+For ALL axis competitors, cancel common p factors, write n+2x+y=51k and h=x+y-k>=1.
+The input-minus-output cost is51[t(n-x-y)-2h]. For h1, k1,x+y2, n=49-x; with n<=48
+the largest n-x-y is46, uniquely at(48,1,1). Afterward n<=47 gives45 at(47,2,0).
+For h>=2 the ratios are <=47/h-1 and46/h-1, smaller than46 and45. Units persist;
+the inserted q+r' has degree2 and no same-residue degree0/1 rival, so cannot become
+more expensive relative to a later lower-degree competitor. Thus these ARE the
+first two walls, not guessed profitable trades at arbitrary noncanonical tiles.
+
+    D0={0,...,48e1} union{e2,e3},
+    D1={0,...,47e1} union{e2,e3,e2+e3},
+    D2={0,...,46e1} union{e2,e3,2e2,e2+e3}.
+
+Use fixed SOURCE residues delta=(2,47,49). At both walls top RESIDUE45 is unique:
+its word switches48e1->e2+e3 at the first; at the second q+r' exceeds tied47p=2q
+by r'-q=2. Exact counts are
+
+| Tile | Dep | kappa | N | Q |
+|---|---:|---:|---:|---:|
+|D0|94|0|2|96|
+|D1|98|1|3|100|
+|D2|94|1|3|96|
+
+Total Gamma is153 throughout. Maximal-column mass is59,55,59, proving Dep. At phase
+rho5, axis inversions are0,1,2; the other columns contribute2,2,1. Only e2+e3 adds
+a mixed carry. Both relations have lambda0, one changed cell, and zero WEIGHTED
+wrap term in WALL-Q. In the second, distance2+delta3=51 does wrap, but v3=0.
+
+All three open chamber/top cones have normalized genuine multiplicity51 realizations:
+each deletion cofactor involving51 is1 from labels2,47,49, and E462 handles deletion51.
+The near-wall c_t themselves are positive real costs, NOT those integer source values.
+At the original FINAL source P, raw scalar credits44 and43 are both positive, yet
+Q jumps+4 then-4 on the corresponding actual profiles. This refutes automatic Q
+monotonicity along source-credit-improving coherent exchanges, not Q positivity.
+All Q are already positive, and the original source's constructed D0 is not being
+mislabelled as its actual Apéry tile. Its actual top is1590 of residue9 (E458),
+whereas45 is the top of the near-wall PROFILE realizations. Q of one FIXED source
+does not change when its representative words are replaced. No new numerical
+sources were reconstructed.
+
+## E471 — full certificate reserve transfer: a boundary-only helper is false
+
+2026-10-23. Same universal scope: a parameter-independent certificate payment would
+connect the full coupled route to full-Q; SUPP/E467 and complements give the all-S
+implication. The OPTIONAL stronger component
+
+    J>=Q, equivalently e*sum x<=R=Gamma.mu-Dep            (UNKNOWN)
+
+has not been proved. Here x is REAL, full capped feasible, x0=xprimitive=0, and
+y=mu-x. It does not itself establish Q>=0 or actual Wilf. The baseline b is not a
+full feasible certificate and its negative defect is not a counterexample here.
+
+E430 ORDER implies y>=1 on nonmaximal cells and y>=0 at maxima, so
+
+    R-Gamma.x=Gamma.y-Dep>=0,
+    J-Q=(Gamma.x-e*sum x)+(Gamma.y-Dep).                 (RESERVE-SPLIT)
+
+It is tempting to pay everything from the first term. The universal helper
+Gamma.x>=e*sum x is FALSE even under all full coupled constraints. Replaying ONLY
+the15 existing capped/coordinate witnesses gives two exact failures, no new solve:
+
+    S=<65,82,214,217,265>,c1108,g596,e5,W1452,Q182,R1270.
+    x_s=1 for s in{27,32,41,46,49,53,58,60,63}, 0 otherwise.
+    Gamma on those residues=(1,7,0,7,7,5,3,3,6).
+
+Independent membership and EVERY full tight/cap/primitive constraint pass exactly.
+Thus sumx9, Gamma.x39<e*sumx45, while Gamma.y-Dep1231 covers the shortfall6:
+J1407 and J-Q1225. This source lies in the deep/sparse/cofactor1 setting and was
+already used in E413; it is NOT a new semigroup or an unresolved Wilf case.
+
+The old <146,155,184,535> witness also has Gamma.x332<e*sumx336, with ordered-y
+surplus651, J998,Q351, J-Q647. Its weighted x is not replaced by support size.
+Among the SAME15 witnesses the minimum transfer margin is82 at old60/67/71/121
+(Q98,R138,ex56,J180). Positive tests do not prove universal transfer; coordinate
+optima are not all mass-maximizing repairs. No enlarged file set or optimizer follows.
+
+The attempted full-row column/axis coefficient proof returned exactly E422/E423's
+existing reflection–recombination budget. That duplicate is not a new lemma and
+does not justify another flow solver. Stop the boundary-only helper; retain BOTH
+terms and actual row slacks in RESERVE-SPLIT. Uniform reserve transfer remains
+optional/unknown, not a prerequisite replacing the original weaker Wilf goal.

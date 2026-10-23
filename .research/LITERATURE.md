@@ -1461,3 +1461,22 @@ directly. The numerical axis/inversion count was already SUPP-WILF/E432; only an
 explicit physical slot assignment is added. No Beatty-sequence theorem, unverified
 external matching theorem, priority or absence-of-prior-work assertion is used.
 The reflection capacity controls refute a specified local rule, not global payment.
+
+### E470/E471: coherent exchanges and full-reserve comparison (2026-10-23)
+
+Reopened primary [Brower–McDonough–O'Neill2401.06025v3,Section5](https://arxiv.org/html/2401.06025v3#S5),
+especially Theorem5.5, Remark5.6 and Remark5.7. The theorem describes the single-trade
+fibers at an interior codimension-one wall; the remarks distinguish realizability
+from a formal staircase move and identify the lattice-ideal Gröbner-fan framework.
+E470's compatible wall shadow is the same mechanism, with a direct finite primitive-
+edge proof and explicit lattice-primitivity/orientation/unit/phase guards. No new
+fan-connectivity or novelty claim. Its Qjump and net-cap bookkeeping are derived
+directly from the existing column/phase identities, not a theorem paying their sign.
+
+The closure-to-source coherent path is also proved by finite lower envelopes, with
+simultaneous wall moves and the maximal-chi endpoint tie convention. No external
+result is used to claim a nonnegative finite path budget. Its unconditional real
+path guard does not refute Wilf or integer endpoint positivity. E471's attempted
+reflection/tree argument duplicates E422/E423; root stopped that duplication. Exact
+old witnesses instead refute the boundary-only helper while preserving full reserves.
+No priority, absence-of-prior-work or new regional-proof claim is made.

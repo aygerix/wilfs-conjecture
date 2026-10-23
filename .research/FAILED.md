@@ -618,3 +618,31 @@ targets/309eligible, bestF-3,minQ52,0negativeW/eligibleQ orpositiveF. No inferen
 full chamber adjacency, longer neutral paths or all support-two starting directions.
 The general axis-carry injection remains valid; stop forced reflected-edge allocation,
 retain joint mixed-carry augmentation with BOTH unused wraps and Dep available.
+
+## E470/E471 — coherent accessibility does not supply sign or a boundary-only payment
+
+False unconditional shortcut: nonnegative endpoints of the coherent cost path imply
+J_e(t)>=0 throughout. PAPER S=<5,7,8>,a5,beta(1,4),chi(1,0), has J0=2,J1=actualW3,
+but at t2/15 costs(8/3,8), minima(0,8/3,16/3,8,8) give J=-2/5. These are positive
+REAL costs, not a numerical semigroup or a full actual-coordinate LP witness. The
+control is outside sparse/deep remaining domain, so no restricted theorem is refuted.
+Old equality5/21/22/23/24 also consumes ALL initialgluing surplus10: separate reserve
+or fixed-fraction funding is insufficient unconditionally. Endpoint arithmetic matters.
+
+False shortcut linking the two routes: source-credit-improving coherent exchanges
+force monotone fullQ. The SAME51 paper path has first two genuine walls48p->q+r,
+47p->2q, with normalized realizable profiles Q96->100->96 at topres45. Finalsource
+P53/149/151 gives positive scalar credits44/43. These compare distinct coherent
+profile realizations; Q of ONE fixed actual source is not changing under its scalar
+word substitutions. No negativeQ or Wilf failure follows. Stop a monotonicity proof,
+not general Qjump analysis or source quota. Full unrestricted coherent paths cannot
+stall before exact Apéry values; a search for such auxiliary stalls is unnecessary.
+
+False even for FULL capped feasible x: Gamma.x>=e*sumx. The already saved65/82/214/
+217/265 source has x1 on9 residues, Gamma.x39<e*sumx45. Its Gamma.y-Dep1231 gives
+J-Q1225 despite the deficit6. Saved146/155/184/535 gives332<336 with ysurplus651.
+Both exact feasibility checks pass, no new solves. This stops dropping the second
+term of J-Q=(Gamma.x-e*sumx)+(Gamma.y-Dep), not universal reserve transfer J>=Q.
+All15 saved transfer margins positive, minimum82; those point tests are CLOSED.
+The attempted column/tree proof is the ALREADY recorded E422/E423 budget, not a
+new payment lemma or a reason for another transport optimizer. No universal sign.

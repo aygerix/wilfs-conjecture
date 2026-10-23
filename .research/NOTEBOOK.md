@@ -5881,3 +5881,57 @@ labels/exposedtop. Keep genuinely joint source/fullreserve max(Q,L) and coupled 
 affine payment as the other active universal lines. New identities/exact reconstruction
 alone cannot force the sign. Same TWO agents done; no new launches/Lean/noveltyclaim;
 all jobs terminal, no universal proof or genuine Wilf counterexample, goal ACTIVE.
+
+### 2026-10-23 — E470/E471: complete coherent moves, signed Q jumps, and necessary y compensation
+
+Previous turn PROGRESS:a6cb49a, explicit axis map/closed349point probe. Continued
+SAME universal backwards objective. Did NOT repeat rays or expand source sampling.
+SAME geometric agent/root proved and audited rank-one canonical wall shadow under
+finite active-edge hypotheses, including correct orientation/lattice primitivity,
+the unit-loss exception and actual-top guard. The geometry is prior Thm5.5 of
+Brower–McDonough–O'Neill, not a novelty claim. Exact DeltaGamma/DeltaQ/DeltaDep/
+Deltakappa and net-cap formulas retain all changed mass and capped credit.
+
+Root independently calibrated this on advisor51's FIRST TWO effective coherent
+walls, not merely profitable arbitrary replacements:48p->q+r at1/23,47p->2q at2/45.
+Global competitor bounds prove they are first. Same agent paper-replayed every
+count: Dep94/98/94,kappa0/1/1,N2/3/3,Q96/100/96. All open profiles have genuine
+cofactor1/deep/sparse realizations under E455/E462; raw real costs are not those
+integer source values. Both trades improve fixed FINAL source cost (credits44/43),
+but profileQ jumps+4 then-4. Q of ONE fixed actual source remains fixed; these are
+different profile realizations. No negativeQ or new numerical source claimed.
+
+SAME parity agent/root proved all-rank coherent D_U->actual-value accessibility
+by finite lower envelopes, with simultaneous moves at multi-trade walls and
+preservation of present source units. Atendpoint choose Pmin/MAXchi/lex; fixed
+Plex mayneedzero-cost exchanges. The full mechanism cannotstall beforeexactvalues.
+Its total credit is EXACT initialexcess, endingatW. Thus a new stall search for
+the unrestricted class would answer no new question. Restricted policies maystall.
+
+The actual finite payment remains unpaid. J_e(t) iscontinuous with derivative
+a(e-1)chi(top)-eXi; source-P wallcredits are NOT extra jumps ofJ. Xi falls but the
+odddegree oftheVALUEtop is not the maximumodddegree. Root paperguard5/7/8 gives
+J0=2,J1=W3, yetJ(2/15)=-2/5: unconditionalpathpositivityisfalse. This coveredtoy
+isoutside remainingdomain; no actual/fractional-semigroup or restricted sign claim.
+
+Root's distinct coupled test was optional J>=Q (R>=eΣx), not assumed necessary for
+Wilf. Checked ONLY15 old full capped/coordinate witnesses on Fejer, membership and
+allrationalrows independently. Initial filter counted all filemodels andfailed
+beforeanywitness; correctedto scopedcone records. All15transfermarginspositive,
+minimum82. Same15replayaddsboundaryhelper: Gamma.x>=eΣx fails twice. Compact65
+vector hasx1on9residues, ex45,Gamma.x39, while ysurplus1231 givesJ-Q1225. Old146
+weightedvector has332<336 and ysurplus651. No new sources/optimization; closedreplay.
+The attempted column/tree proof was ALREADY E422/E423; root stopped duplication.
+
+GLOBAL REVIEW: accessibility and better representative values do not force positivity.
+Stop unrestricted-stall searches, unconditional real-path positivity, automaticQ
+monotonicity and boundary-only x funding. Do not implement another wall/flow engine
+merely because the geometry is now explicit. The useful next actual sign mechanism
+must retain cyclic labels/top exposure and all mixed resources; WALL-Q can test a
+proposed global augmentation or a realizable negative-Q construction without blind
+sampling. Source alternative needs the quantitative INTEGRATED finite-drop bound
+with full WU/embedding/correction reserves; coupled alternative retains the SAME y
+surplus and row slacks. These remain three universal lines, not a substitute success
+definition. No new inequality forcing the universal sign was obtained this turn.
+Both SAME authorized agents done, all Fejer jobs terminal, no GPU rental/newlaunch,
+no Lean/noveltyclaim. STATE updated in place, goal ACTIVE.

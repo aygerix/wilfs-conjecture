@@ -1,52 +1,67 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 18:54 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 19:35 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
 
-**E467–E469 checkpoint: explicit axis payment; one exact boundary probe closed.**
-Retaining the FULL missing-residue reserve cancels the alias accounting:
+**E470/E471 checkpoint: coherent exchanges do not stall; finite payment still needed.**
+At a positive canonical wall whose finite active primitive rows generate ONE
+residue-lattice relation b-a, the adjacent tile is EXACTLY the full-shadow image
+z->z-q(z)a+q(z)b. Correct orientation, lattice primitivity, original-unit loss and
+actual-top guards are explicit. This is the known interior-wall mechanism from
+Brower–McDonough–O'Neill Thm5.5, not a novelty claim. E470 supplies exact signed
+DeltaGamma/DeltaQ/DeltaDep/Deltakappa and capped-credit formulas, paper-audited.
 
-    Q=Dep+V-K, K=sum_D floor(z.delta/m),
-    V=sum_(internal edges u->u+ej)(u_j+1)*[phase edge wraps].
+**ALL-rank source path:** positive costs2beta+t*a*chi connect prescribed D_U to
+ACTUAL Apéry values through finitely many simultaneous coherent downset exchanges.
+Every effective preendpoint move saves positive FINAL-source P-cost and preserves
+already-present original units. Endpoint convention is Pmin/MAXchi/lex; a different
+Plex can need zero-cost swaps. Thus the unrestricted mechanism cannotstall before
+exact values. Do NOT implement a search for its auxiliary stalls. Its finalL=W,
+so this proves accessibility, not positivity. Restricted corner policies stillstall.
 
-The universal full-Q obligation is K<=Dep+V. E469 now explicitly injects EVERY
-single-coordinate carry into physical wrapped-edge slots by a reverse-indexed
-Beatty pairing. It pays all descendants, not just a first wrap. Leftover slots
-number EXACTLYN, the old numerical identity; this is a constructive component,
-not a new numerical bound or a positivity theorem. Root/SAME parity agent checked
-the paper proof. Mixedkappa still needs a JOINT assignment to unused wraps andDep.
+**Actual finite budget:** J_e(t) iscontinuous, with derivative
+a(e-1)chi(value-top)-eXi(t), and initialsurplus2WU+2(e-eU)ellU+C_a. Xi decreases,
+but value-top odddegree need not be maximumodddegree. Wallcredit at FIXED FINALP
+is not an extra jump inJ(t). Real-path positivity is FALSE unconditionally:
+paper5/7/8 has J0=2,J1=actualW3,yetJ(2/15)=-2/5. This coveredtoy is outside the
+remainingdomain, not an integer semigroup or restricted-path counterexample.
 
-**Reflection diagnosis:** actual-top involution h has isotone
-tau=(w_z+w_hz-M)/m and self-dual order-convex blocks D intersect(C-D). Under E466,
-tau increases strictly at reflected missing edges. However forced edgewise Dep
-transport fails: reflected parents may be maximal or undersized. OLD19 already
-shows both; no new old19 computation. On cached NONFLAT63, the genuine mixed token
-454+492=946 reflects to maximal784=477+307, regardless of last generator order.
-This stops ONLY the last-edge-reflection-to-Dep rule; unused wraps/other slots/full
-reserves may pay. Q56,W708 cover the source. The axis map remains valid.
+**Signed Q calibration:** advisor51's firsttwo genuine coherent walls48p->q+r,
+47p->2q occurat1/23,2/45. At actualtopRES45, profiles have Q96->100->96 while both
+fixed-final-source credits44/43 arepositive. Allthree openprofiles admit normalized
+genuine51realizations; rawcostvectors are not those generators. OriginalsourceQ
+doesnotchange under its own word substitutions. No automaticQmonotonicity follows
+from sourcecredit. Paper-only, no new computational source or negativeQ claim.
 
-**E468 complete on Fejer:** ONLY cached63 endpoint,242 exact signed support1/2
-directions,397 targets,349distinct vectors/309eligible; all349 evaluated, no skipped
-or truncated points. BestF stays-3,minimumQ52,0negativeW/eligibleQ orpositiveF.
-Full primitive-target guards are included; all242 first-exit formulas and all349
-source invariants/canonical/support scores pass independent unbounded-coin checks.
-C++ wall92.1152ms, not a GPU benchmark. Four full exports pass physical axis-slot
-checks; reflection ONLY on the origin. No full fan-adjacency/neutral-component claim.
-Data: apery_scan/data/boundary_468.jsonl,p39/data/boundary_verified_468.json.
-This bounded recipe is CLOSED; no new anchors/directions/generations/rental implied.
+**E471 saved15 replay CLOSED:** optional uniform J>=Q, i.e.ex<=R, remainsUNKNOWN.
+All15 existing capped/coordinate pointwitnesses recheckexactly, minJ-Q82. Boundary-
+only helper Gamma.x>=ex is FALSE on two. Compact OLD65/82/214/217/265 hasx1on9
+residues,ex45,Gamma.x39, but ysurplusGamma.y-Dep1231 givesJ-Q1225. OLD146vector
+has332<336, ysurplus651. Full tight/cap/primitive rows and independent membership
+pass. No new LP, semigroup generation, sampling or optimizer. Data:
+p39/data/reserve_transfer_471.json. Initial file-filter count assertion fixed before
+any witness audit; no alternate source set. Do not drop y surplus or revive the
+duplicated E422 column/tree budget as a new theorem.
 
-**Next proof task:** construct mixed-carry augmentations retaining BOTH residual
-wrapped slots and nonmaximal missing-direction slots, allowing earlier assignments
-to move. A fixed reflected last edge is insufficient even on a real mixed token.
-Do not substitute exact source reconstruction or a new identity for the sign proof.
-Distinct alternatives remain genuinely joint source-value/full-reserve payment
-(weaker max(Q,L)>=0) and the full coupled finite affine budget. Goal ACTIVE; no
-universal proof or genuine Wilf counterexample. All fixed Fejer jobs finished,
-SAME TWO agents done, no GPU rental/new launch. Directed NEW-predicate discovery
-remains authorized; do not reinstate the old resistant-seed prerequisite.
+**Next actual sign tasks:** full cyclic carry payment K<=Dep+V (equivalently
+kappa<=Dep+N) remains the most direct target. E469 axis map is valid with exactlyN
+unused wraps; mixed augmentation must use BOTH wraps/Dep and can reassign slots.
+E470 WALL-Q can diagnose a proposed global augmentation or a realizable negativeQ
+construction; it does not justify a new wall engine/positive-profile census.
+The weaker joint-source route needs the integrated finite-drop bound with ALL
+closure/embedding/correction reserves. Coupled route retains full y surplus and
+row slacks; optional J>=Q is not a prerequisite replacing Wilf. Goal ACTIVE, no
+uniform sign or genuine Wilf counterexample. Same TWO agents done, all jobs
+terminal, no GPU rental/new launch. Directed NEW-predicate discovery remains
+authorized; do not revive the old resistant-seed prerequisite.
+
+**Retained E467–E469:** Q=Dep+V-K after full residue-reserve cancellation; explicit
+axis descendant injection leavesN. Forced last-edge reflection-toDep fails even
+on a real mixed63token (otherresourcesmaypay). E468242ray/349point probe is CLOSED:
+309eligible,bestF-3,minQ52,allindependentlychecked; no fullfanadjacency claim.
 
 **Retained E464–E466 reductions/guards:** full-Q may be proved on UNIQUE Apéry
 factorization/strict-exit sources while preserving D,delta,actualtop,phase,Q and
@@ -822,18 +837,30 @@ The generic coin closure was factored out as verify_scan.py::coin_reconstruct; n
 independence between two uses of that SAME coin algorithm is claimed. Scan, heap
 and finite coin closure are the distinct reconstruction methods used here.
 
+**E471 implementation:** `verify_probe.py --reserve-transfer-check` accepts ONLY
+the four named old witness files (15 capped/coordinate records), rechecks exact
+source/full-cap feasibility and support geometry, and exports J-Q and its two
+signed terms. It performs NO optimization. Output:p39/data/reserve_transfer_471.json;
+full command/input interpretation in EXPERIMENTS E471. The replay is CLOSED.
+E470 wall-shadow/path/Qjump/calibration results are PAPER ONLY, no new wall walker.
+
 ## Current attempt and next action
 
-**Next proof task (E467–E469):** pay mixedkappa jointly by Dep and the unused wrapped
+**Next proof task (E467–E471):** pay mixedkappa jointly by Dep and the unused wrapped
 slots N after the explicit axis injection, allowing augmentations to reassign earlier
 slots. Exact target K<=Dep+V on E466 strict sources retains cyclic labels and actual
 top. Forced last-edge reflection toDep fails even for a mixed token; it is not the
-next policy. E468349point ray probe is CLOSED and is not full chamber adjacency.
+next policy. E468349point ray probe and E47115oldwitness replay are CLOSED. E470's
+signed wall formulas may test a genuinely global payment or an auxiliaryQcounter-
+construction, not justify more positive profiles. Full coherent source policy cannot
+stall before exactvalues; do not search for such stalls or assume Qmonotonicity.
 Any resulting theorem must assert Q>=0 (or sufficient allocation), not merely Wilf on
 the strict realization; W sign does not transfer. Weaker max(Q,best valid capped/tradeL)
 and coupled finite affine budgets remain distinct alternatives. Retain ALL source/
 parent reserves; raw word energy, fixed-rank return catalogues and unconditional
-flux monotonicity remain stopped. No special-e/m/depth programme or automatic census.
+flux/real-path monotonicity remain stopped. Sourcepath's exact integrated loss still
+needs its quantitative bound; coupledtransfer cannotdiscard Gamma.y-Dep. No special-
+e/m/depth programme or automatic census/optimizer/rental.
 
 Directed discovery remains authorized, with a named predicate and budget; the old
 resistant-seed prerequisite stays superseded. Any new policy search should report both

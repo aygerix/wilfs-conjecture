@@ -1049,6 +1049,48 @@ def audit_factorization_energy(C):
             'M':max(w),'E448_M_cutoff':cutoff,'within_E448_cutoff':max(w)<=cutoff,
             'original_generator_count_retained':True,'universal_sign_claim':False}
 
+def audit_saved_reserve_transfer(paths):
+    """E471: recheck ONLY the fifteen old feasible capped witnesses; no optimizer."""
+    from pathlib import Path
+    expected={'coupling_probe.jsonl.gz':1,'combined_probe.jsonl.gz':1,
+              'capped_core_probe.jsonl.gz':7,'allowance_source_probe.jsonl.gz':6}
+    assert len(paths)==len(expected) and {Path(p).name for p in paths}==set(expected)
+    output=[];complete=True;failure=None
+    for path in paths:
+        with open_text(path) as data:all_records=[json.loads(line) for line in data if line.startswith('{')]
+        records=[(i,R) for i,R in enumerate(all_records)
+                 if R.get('cone',{}).get('mode') in ('capped','coordinate')]
+        assert len(records)==expected[Path(path).name], (str(path),len(records))
+        for index,D in records:
+            assert D['cone']['mode'] in ('capped','coordinate')
+            checked=audit(D);geometry=support_geometry(D);C=checked['cone']
+            x=list(map(F,C['unpaid']));J=F(D['W'])-D['e']*sum(x)
+            Q=geometry['Q_full'];R=geometry['gamma_mu']-geometry['Dep']
+            assert J==F(C['capped_objective']) and D['W']==Q+R and R>=0
+            margin=R-D['e']*sum(x);assert margin==J-Q
+            gamma_x=sum(v*x[s] for s,v in enumerate(geometry['gamma']))
+            boundary_margin=gamma_x-D['e']*sum(x)
+            y_surplus=geometry['gamma_mu']-gamma_x-geometry['Dep']
+            assert y_surplus>=0 and margin==boundary_margin+y_surplus
+            row={'file':Path(path).name,'record':index,'G':D['generators'],
+                 'm':D['m'],'e':D['e'],'c':D['c'],'W':D['W'],
+                 'mode':C['mode'],'target':C['target'],'unpaid':C['unpaid'],
+                 'Q':Q,'R':R,'J':str(J),'J_minus_Q':str(margin),
+                 'gamma':geometry['gamma'],'gamma_x':str(gamma_x),
+                 'reverse_Euler_margin':str(boundary_margin),'ordered_y_surplus':str(y_surplus),
+                 'exact_source_and_full_capped_feasibility_checked':True,
+                 'reserve_transfer_failure':margin<0}
+            output.append(row)
+            if margin<0:failure=row;complete=False;break
+        if failure is not None:break
+    assert len(output)<=15 and (not complete or len(output)==15)
+    return {'expected_old_records':15,'checked_old_records':len(output),'complete':complete,
+            'new_semigroups':0,'new_optimizations':0,'cases':output,'failure':failure,
+            'minimum_J_minus_Q':str(min(F(R['J_minus_Q']) for R in output)),
+            'minimum_reverse_Euler_margin':str(min(F(R['reverse_Euler_margin']) for R in output)),
+            'reverse_Euler_helper_failures':sum(F(R['reverse_Euler_margin'])<0 for R in output),
+            'universal_transfer_claim':False,'universal_Wilf_claim':False}
+
 def audit_axis_slots(D,reflection=False):
     """E469 reverse pairing; physical capacity, not a new numerical bound."""
     m=D['m'];gr,z=factor_basis(D);inv={word:s for s,word in z.items()};d=len(gr)
@@ -2511,6 +2553,13 @@ def audit_mstd_shadow(R):
             'least_root_exit_collision':collisions}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--reserve-transfer-check':
+        assert len(sys.argv)==7, 'four saved witness files, then output'
+        result=audit_saved_reserve_transfer(sys.argv[2:6])
+        with open(sys.argv[6],'w') as out:json.dump(result,out,indent=2)
+        print('RESERVE-TRANSFER',{k:v for k,v in result.items() if k not in ('cases','failure')})
+        if result['failure']:print('EXACT-TRANSFER-FAILURE',result['failure'])
+        sys.exit(0)
     if sys.argv[1]=='--boundary-check':
         import importlib.util
         assert len(sys.argv)==5, 'scan verifier input JSONL output'
