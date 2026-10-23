@@ -8670,3 +8670,163 @@ it does not supply the still-missing uniform allocation or a new regional sign t
 realizations are saved, including a signed v and a nonzero seed repair x_2=1 for <13,17,27,29>.
 The last persists at L313 and after shifting all three primitives by13; its mass is1 in both.
 Paper statements are not Lean checked. Reproduction and exact data are in EXPERIMENTS E431.
+
+## E432 — a global closure/Hall formulation of finite support payment (2026-10-23)
+
+**Scope.** Proves Wilf for: every numerical semigroup if the capacity inequality below holds
+for every genuine canonical tile at its conductor phase in c>4m,3e<m. Proved reduction from
+all S to this case: yes (SUPP-WILF and the recorded c<=4m/3e>=m complements). This is a
+SUFFICIENT unproved target, stronger than Wilf. The graph identities and reductions below
+are proved; their universal NONNEGATIVE SIGN is not. No reduction to the41 checked tiles exists.
+The boundary S=ℕ has c=0 and W=0 separately; the tile discussion concerns proper S.
+
+### Definitions and the completion claim — CONJECTURED
+
+Use a canonical tile D subset N^d, |D|=m, d=e-1>=1, primitive residues delta_j in[1,m-1].
+The residue map phi(z)=z.delta mod m is bijective. Fix the ACTUAL conductor phase rho=(-c) mod m,
+and set r(z)=(phi(z)+rho) mod m. For any down-set E subset D, including the empty set, define
+
+    kappa(z)=floor(sum_j <z_j*delta_j>_m/m),
+    kappa(E)=sum_(z in E) kappa(z),
+    Dep(E)=sum of lengths of coordinate columns whose top is nonmaximal in E,
+    N(E)=sum_(coordinate columns C of E) #{z in C:r(z)>r(top C)}.
+
+The proposed completion inequality is
+
+    Q(E):=Dep(E)+N(E)-kappa(E)+m-|E| >=0.                  (COMP, UNKNOWN)
+
+It allows one credit per MISSING residue; it does not require positivity of each partial tile.
+At E=D, COMP implies W>=Dep(D)+N(D)-kappa(D)>=0 by SUPP-WILF. A failure for proper E would
+refute COMP, not Wilf or necessarily even the complete-tile support inequality. An arbitrary
+injective partial tile need not be a genuine canonical tile; that hypothesis is not discarded.
+
+### Inversion linearization — PROVED for every down-set E subset D
+
+Define the prefix inversion potential, with I_j(z-e_j)=0 when z_j=0,
+
+    I_j(z)=#{1<=k<=z_j:r(z-k*e_j)>r(z)},
+    eta(z)=sum_j (I_j(z)-I_j(z-e_j)).
+
+Then exactly
+
+    N(E)=sum_(z in E) eta(z).                             (INV-LIN)
+
+Proof: the top indicator of z in its j-column of E is b_z-b_(z+e_j), with b=1_E and an absent
+successor interpreted as0. A column whose top is z contributes I_j(z). Expanding the top
+indicators and reindexing telescopes to INV-LIN. Every E-column is a prefix of a D-column,
+so I_j is the same potential for every sub-tile, not recomputed at a missing prefix.
+
+Let omega(z)=d+|z|. Since each maximal cell of E ends d columns of total length d+|z|,
+
+    Dep(E)=d|E|-sum_(z maximal in E) omega(z).
+
+Consequently
+
+    Q(E)=m+sum_(z in E) c(z)+sum_(z nonmaximal in E) omega(z),
+    c(z)=eta(z)-kappa(z)-|z|-1.                           (CLOSURE)
+
+Only the nonmaximal indicator is nonlinear. It is the OR of the selected immediate successors;
+thus the full expression is a minimum-weight closure, not an exponential down-set enumeration.
+
+### Every cell benefit is positive: a useful exact simplification — PROVED
+
+Put K(z)=floor(z.delta/m). Translation of two residues around the circle gives
+
+    I_j(z)-I_j(z-e_j)=z_j*[delta_j>r(z)]-floor(z_j*delta_j/m).
+
+For completeness, compare the pairs <k*delta_j> and r(z) with their simultaneous predecessors
+< (k-1)*delta_j > and r(z-e_j). The change in the strict-order indicator is the wrap of the
+second residue minus the wrap of the first. Summing k=1,...,z_j yields the displayed formula;
+the k=0 indicator is0 and the axis wrap counts telescope. Also
+kappa(z)=K(z)-sum_j floor(z_j*delta_j/m). Therefore
+
+    beta(z):=-c(z)
+      =1+K(z)+sum_(j:delta_j<=r(z)) z_j >=1.               (BETA)
+
+The implementation derives c from column inversions; the independent checker ALSO verifies
+this closed formula. No nonnegative sign theorem for Q follows just from beta>=1.
+
+### Exact minimum-cut and weighted Hall reductions — PROVED
+
+Let B=sum_D beta(z). Make cell nodes b_z of benefit beta(z) and auxiliary nodes o_z of cost
+omega(z). For every immediate edge z->t=z+e_j in D add implications
+
+    b_t -> b_z,       b_t -> o_z.
+
+Closure-selected cell nodes form a down-set E. Because omega>0, an optimal closure selects
+o_z exactly when z is nonmaximal in E. Thus its minimum cost is min_E(Q(E)-m).
+
+Equivalently construct a flow network with source->b_z capacity beta(z), o_z->sink capacity
+omega(z), and the implication arcs of capacity B+1. A cut of capacity<=B always exists,
+so a minimum cut cannot cross an implication. If F_max is the exact maximum flow, then
+
+    min_(E down-set of D) Q(E)=m+F_max-B.                 (CUT)
+
+The closure-to-cut step is standard (Picard, Management Science22(11),1976,1268-1272,
+doi:10.1287/mnsc.22.11.1268); the argument above is self-contained. No novelty is claimed
+for that algorithm. The inversion/benefit formulation retains the actual cyclic labels.
+
+The sparse network is also equivalent to a bipartite network from each cell z to every
+PROPER divisor u<z, with cell demand beta(z) and divisor capacity omega(u). Unlimited paths
+through the b nodes give exactly these reachable sinks. For X subset D put
+P(X)={u in D:u<z for some z in X}. The generalized Hall deficiency is
+
+    Delta_H=max_(X subset D) (sum_X beta-sum_(u in P(X)) omega).
+
+Adding every missing proper divisor to X never adds a new neighbor and increases benefit,
+so this maximum is attained at a down-set E, whose neighbor set is precisely its nonmaximal
+cells. Max-flow/min-cut gives Delta_H=B-F_max and hence
+
+    COMP <=> Delta_H<=m.                                 (HALL, SIGN UNKNOWN)
+
+This is the precise uniform finite capacity theorem that would prove Wilf through this
+route. Matching coefficients or computing F_max for individual profiles is not its proof.
+
+An immediate necessary restriction on a bad cut is worth retaining: it cannot have height<=1.
+For E={0} plus k primitive cells, beta(0)=1 and every primitive benefit is at most2. If k>0,
+the only neighbor is0, of capacity d, so its deficiency is at most1+2k-d<=d+1=e<=m. The
+empty and singleton cases are also harmless. Thus the numerous shallow positive cuts in the
+saved diagnostic are elementary, not evidence from hard cases. This restricts a hypothetical
+violating CUT, not the height or embedding dimension of the semigroups under investigation.
+
+### What a constructive flow can already pay — PROVED identities, incomplete allocation
+
+The degree contribution has a canonical allocation: cell z sends z_j units toward its parent
+z-e_j's auxiliary node. The total potential incoming degree at u is
+
+    sum_(j:u+e_j in D) (u_j+1) <= d+|u|=omega(u).
+
+Its unused amount is Gamma_D(u)=sum_(j:u+e_j notin D)(u_j+1). Only NONMAXIMAL auxiliary
+nodes have incoming paths, so the corresponding total available boundary reserve is Dep(D).
+This is a parent-capacity identity, not necessarily a feasible flow under the actual beta:
+some cell benefits are smaller than their degrees and require redistribution.
+
+There is also an exact inversion redistribution along cell arcs: assign I_j(u) to the arc
+b_(u+e_j)->b_u. At cell z its incoming minus outgoing amount is
+
+    eta(z)-sum_(j:z+e_j notin D) I_j(z).
+
+After the degree allocation, the remaining signed cell balance is therefore
+
+    1+kappa(z)-sum_(j:z+e_j notin D) I_j(z).
+
+These balances may be negative; this preflow is NOT asserted feasible. A global rule must
+resolve them using the actual residual capacities while leaving at most m units unrouted.
+No column, cell or direction is assumed to pay separately. This is the next constructive
+obligation, rather than another positive-instance optimization.
+
+### One free unit fixed at each cell is insufficient — EXACT obstruction
+
+In the saved genuine S=<114,305,307,310>, the exact optimal cut contains34 cells and has
+Q=75, so Dep(E)+N(E)-kappa(E)=-5. Its Hall demand exceeds its divisor capacity by39 units.
+Allowing ONE unmatched unit at each selected cell would permit only34 units; that local
+allocation fails by5. The proposed GLOBAL budget m=114 allows it. This refutes the stronger
+cellwise allocation, not COMP or Wilf. Exact source weights, cut and integer flow are saved.
+
+**Closed diagnostic/status.** Principal-upset/value-prefix testing on41 existing seeds found no
+failure. Exact cuts on the SAME41 seeds then optimized over ALL their down-sets; all minima
+were nonnegative, and independent exhaustive ideal enumeration agreed on the13-point tiles
+(14,52,166 ideals respectively). These are algorithm/certificate checks, NOT a new unresolved
+semigroup census or a universal sign argument. The diagnostic is CLOSED; do not enlarge it.
+The general identities/reductions are paper-proved, not Lean checked. The finite Hall inequality
+remains unproved, and may be stronger than necessary even if Wilf is true.

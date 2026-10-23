@@ -15,6 +15,10 @@
  *   exports a feasible flow and residual potentials for independent checking.
  * --axis-seed m g...: export exact seed invariants/rows without optimization.
  * --supp-audit m g...: canonical support/column counts and SUPP-WILF identities.
+ * --partial-support-audit m g...: test unit missing-residue credit on principal
+ *   upset deletions and value prefixes inside this genuine canonical tile.
+ * --support-cut m g...: exact minimum completion budget over ALL down-sets of
+ *   this tile, with a maximum-flow/minimum-cut certificate (no LP solver).
  * --supp-climb weighted|cycle ITER m g...: bounded local falsification of
  *   the weighted support budget or proposed cycle-excess bound; no LP solver.
  * --residue-audit G...: reconstruct S and T from MINIMAL-generator residues.
@@ -127,6 +131,90 @@ static void print_residue_stats(ResidueStats *S,ResidueStats *T){
  * matching verify_probe.factor_basis. No restriction on factorization height. */
 static ll supp_dep,supp_support,supp_credit,supp_kappa;
 static int supp_height,supp_lowmax;
+typedef struct {int u,v,next;ll cap,initial;} ClosureEdge;
+typedef struct {int n,ne,*head,*level,*it,*queue;ClosureEdge *edge;} ClosureGraph;
+static void closure_add(ClosureGraph *G,int u,int v,ll cap){
+ G->edge[G->ne]=(ClosureEdge){u,v,G->head[u],cap,cap};G->head[u]=G->ne++;
+ G->edge[G->ne]=(ClosureEdge){v,u,G->head[v],0,0};G->head[v]=G->ne++;
+}
+/* Dinic pattern reused from p28/genM.c, with 64-bit capacities and an exported
+ * primal flow / source-side cut checked independently by verify_probe.py. */
+static int closure_bfs(ClosureGraph *G,int source,int sink){
+ for(int v=0;v<G->n;v++)G->level[v]=-1;int head=0,tail=0;G->queue[tail++]=source;G->level[source]=0;
+ while(head<tail){int u=G->queue[head++];for(int a=G->head[u];a>=0;a=G->edge[a].next){ClosureEdge *E=&G->edge[a];if(E->cap&&G->level[E->v]<0){G->level[E->v]=G->level[u]+1;G->queue[tail++]=E->v;}}}
+ return G->level[sink]>=0;
+}
+static ll closure_dfs(ClosureGraph *G,int u,int sink,ll amount){
+ if(u==sink)return amount;
+ for(int *a=&G->it[u];*a>=0;*a=G->edge[*a].next){ClosureEdge *E=&G->edge[*a];if(E->cap&&G->level[E->v]==G->level[u]+1){
+  ll got=closure_dfs(G,E->v,sink,amount<E->cap?amount:E->cap);if(got){E->cap-=got;G->edge[*a^1].cap+=got;return got;}
+ }}return 0;
+}
+static void completion_cut(int m,int e,int c,int r,int *w,int *gr,int F[MM][MM]){
+ int d=e-1,rho=m-r-1,inv[MM][MM],next[MM][MM],co[MM],omega[MM];ll benefit=0;
+ for(int s=0;s<m;s++)for(int j=0;j<d;j++){
+  inv[s][j]=0;for(int k=1;k<=F[s][j];k++){int u=(s-(k*gr[j])%m+m)%m;inv[s][j]+=(u+rho)%m>(s+rho)%m;}
+  int t=(s+gr[j])%m;next[s][j]=t;
+  for(int a=0;a<d;a++)if(F[t][a]!=F[s][a]+(a==j)){next[s][j]=-1;break;}
+ }
+ for(int s=0;s<m;s++){
+  int eta=0,degree=0,axes=0;for(int j=0;j<d;j++){
+   int p=(s-gr[j]+m)%m;eta+=inv[s][j]-(F[s][j]?inv[p][j]:0);degree+=F[s][j];axes+=(F[s][j]*gr[j])%m;
+  }omega[s]=d+degree;co[s]=eta-axes/m-degree-1;assert(co[s]<0);benefit-=co[s];
+ }
+ int n=2*m+2,source=2*m,sink=source+1;ll infinity=benefit+1;
+ ClosureGraph G={.n=n};G.head=malloc(n*sizeof(int));G.level=malloc(n*sizeof(int));G.it=malloc(n*sizeof(int));G.queue=malloc(n*sizeof(int));G.edge=calloc((size_t)(4*m+4*d*m+8),sizeof(ClosureEdge));
+ if(!G.head||!G.level||!G.it||!G.queue||!G.edge){perror("completion cut allocation");exit(2);}
+ for(int v=0;v<n;v++)G.head[v]=-1;
+ for(int s=0;s<m;s++){if(co[s]<0)closure_add(&G,source,s,-co[s]);else if(co[s]>0)closure_add(&G,s,sink,co[s]);closure_add(&G,m+s,sink,omega[s]);}
+ for(int s=0;s<m;s++)for(int j=0;j<d;j++)if(next[s][j]>=0){int t=next[s][j];closure_add(&G,t,s,infinity);closure_add(&G,t,m+s,infinity);}
+ ll flow=0;while(closure_bfs(&G,source,sink)){for(int v=0;v<n;v++)G.it[v]=G.head[v];ll sent;while((sent=closure_dfs(&G,source,sink,LLONG_MAX/4)))flow+=sent;}
+ ll cut=0,selected_cost=0;int size=0;for(int a=0;a<G.ne;a+=2){ClosureEdge E=G.edge[a];if(G.level[E.u]>=0&&G.level[E.v]<0)cut+=E.initial;}
+ for(int s=0;s<m;s++){if(G.level[s]>=0){selected_cost+=co[s];size++;}if(G.level[m+s]>=0)selected_cost+=omega[s];}
+ assert(cut==flow&&m+selected_cost==m+flow-benefit);
+ printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"rho\":%d,\"budget\":%lld,\"size\":%d,\"negative_mass\":%lld,\"cut_capacity\":%lld,\"weights\":[",m,e,c,rho,m+flow-benefit,size,benefit,flow);
+ for(int s=0;s<m;s++)printf("%s%d",s?",":"",co[s]);printf("],\"omega\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",omega[s]);printf("],\"kept\":[");int printed=0;
+ for(int s=0;s<m;s++)if(G.level[s]>=0)printf("%s%d",printed++?",":"",s);printf("],\"cut\":[");printed=0;for(int v=0;v<n;v++)if(G.level[v]>=0)printf("%s%d",printed++?",":"",v);printf("],\"arcs\":[");
+ for(int a=0;a<G.ne;a+=2){ClosureEdge E=G.edge[a];printf("%s[%d,%d,%lld,%lld]",a?",":"",E.u,E.v,E.initial,E.initial-E.cap);}printf("]}\n");fflush(stdout);
+ int failure=m+flow-benefit<0;free(G.head);free(G.level);free(G.it);free(G.queue);free(G.edge);if(failure)exit(5);
+}
+static void partial_support(int m,int e,int c,int r,int *w,int *ord,int *gr,int F[MM][MM]){
+ int d=e-1,next[MM][MM],top[MM][MM],active[MM],best_active[MM],best_n=0,best_cut=-1,best_kind=-1;
+ ll best=LLONG_MAX,best_dep=0,best_kappa=0,best_N=0;int rho=m-r-1,checked=0;
+ for(int s=0;s<m;s++)for(int j=0;j<d;j++){
+  int t=(s+gr[j])%m;next[s][j]=t;
+  for(int a=0;a<d;a++)if(F[t][a]!=F[s][a]+(a==j)){next[s][j]=-1;break;}
+ }
+ for(int kind=0;kind<2;kind++)for(int cut=-1;cut<m;cut++){
+  if(kind&&cut<0)continue;int n=0;
+  for(int s=0;s<m;s++){
+   active[s]=1;
+   if(cut>=0){
+    if(kind)active[s]=w[s]<=w[cut];
+    else {int above=1;for(int j=0;j<d;j++)if(F[s][j]<F[cut][j]){above=0;break;}active[s]=!above;}
+   }n+=active[s];
+  }if(!n)continue;checked++;
+  ll dep=0,kappa=0,N=0;
+  for(int k=m-1;k>=0;k--){
+   int s=ord[k];if(!active[s])continue;int maximal=1,gamma=0,axes=0;
+   for(int j=0;j<d;j++){
+    int t=next[s][j],successor=t>=0&&active[t];top[s][j]=successor?top[t][j]:s;
+    if(successor)maximal=0;else gamma+=F[s][j]+1;
+    axes+=(F[s][j]*gr[j])%m;
+    N+=(s+rho)%m>(top[s][j]+rho)%m;
+   }
+   if(!maximal)dep+=gamma;kappa+=axes/m;
+  }
+  ll value=dep+N-kappa+(m-n);
+  if(value<best){best=value;best_n=n;best_cut=cut;best_kind=kind;best_dep=dep;best_kappa=kappa;best_N=N;memcpy(best_active,active,m*sizeof(int));}
+  if(value<0)goto finished;
+ }
+finished:
+ printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"rho\":%d,\"checked\":%d,\"cut_kind\":\"%s\",\"cut_residue\":%d,\"size\":%d,\"missing\":%d,\"Dep\":%lld,\"N\":%lld,\"kappa\":%lld,\"budget\":%lld,\"G\":[%d",m,e,c,rho,checked,best_kind?"value_prefix":"principal_upset",best_cut,best_n,m-best_n,best_dep,best_N,best_kappa,best,m);
+ for(int j=0;j<d;j++)printf(",%d",w[gr[j]]);printf("],\"kept\":[");int printed=0;
+ for(int s=0;s<m;s++)if(best_active[s])printf("%s%d",printed++?",":"",s);printf("]}\n");fflush(stdout);
+ if(best<0)exit(5);
+}
 static void supp_geometry(int m,int e,int c,int r,int *w,int *mu,int *ord,int *gen,int dump){
  int d=e-1,gr[MM],F[MM][MM]={{0}},gamma[MM]={0},maximal[MM]={0},at=0;
  for(int s=1;s<m;s++)if(gen[s])gr[at++]=s;assert(at==d);
@@ -141,6 +229,8 @@ static void supp_geometry(int m,int e,int c,int r,int *w,int *mu,int *ord,int *g
    if(take)for(int a=0;a<d;a++)F[s][a]=F[t][a]+(a==j);found=1;
   }assert(found);
  }
+ if(dump==2){partial_support(m,e,c,r,w,ord,gr,F);return;}
+ if(dump==3){completion_cut(m,e,c,r,w,gr,F);return;}
  supp_dep=supp_support=supp_credit=supp_kappa=0;supp_height=supp_lowmax=0;
  ll dist_credit=0;
  for(int s=0;s<m;s++){
@@ -214,7 +304,7 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
- if(dump==11||dump==12){supp_geometry(m,e,c,r,w,mu,ord,gen,dump==11);last_e=e;last_c=c;last_W=W;return 1;}
+ if(dump==11||dump==12||dump==13||dump==14){supp_geometry(m,e,c,r,w,mu,ord,gen,dump==14?3:dump==13?2:dump==11);last_e=e;last_c=c;last_W=W;return 1;}
  if(dump==10){
   printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"q\":%d,\"rho\":%d,\"r\":%d,\"generators\":[%d",m,e,c,genus,W,q,rho,r,m);
   for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);
@@ -479,11 +569,11 @@ int main(int argc,char **argv){
    memcpy(G,BG,ng*sizeof(int));
   }
  }
- if(argc>3&&!strcmp(argv[1],"--supp-audit")){
+ if(argc>3&&(!strcmp(argv[1],"--supp-audit")||!strcmp(argv[1],"--partial-support-audit")||!strcmp(argv[1],"--support-cut"))){
   int G[MM],ng=argc-2;ll unused=LLONG_MAX;if(ng>MM)return 2;
   for(int a=0;a<ng;a++)G[a]=atoi(argv[a+2]);if(G[0]<2||G[0]>=MM)return 2;
   for(int a=1;a<ng;a++)if(G[a]<=G[0])return 2;
-  return eval(G[0],G,ng,2,11,&unused)?0:2;
+  return eval(G[0],G,ng,2,!strcmp(argv[1],"--support-cut")?14:!strcmp(argv[1],"--partial-support-audit")?13:11,&unused)?0:2;
  }
  if(argc==3&&!strcmp(argv[1],"--axis-flow"))return axis_flow(argv[2]);
  if(argc>1&&!strcmp(argv[1],"--weighted-search")){unit_audit=2;argc--;argv++;}

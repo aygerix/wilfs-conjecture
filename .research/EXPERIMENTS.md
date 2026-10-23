@@ -859,3 +859,71 @@ redundant inputs, a deep realization and all3,864 neighbors of the corrected bou
 Logs: data/checkpoint_431_checks.log and data/residue_sanitizer.log. The old C seed-export path
 also passed a fresh independent reconstruction; these are not additional LP optimizer calls.
 E431 general mathematical statements remain paper proofs, not Lean checked or novelty claims.
+
+## E432 — exact closure cuts for global support payment (2026-10-23)
+
+Scope: universal BACKWARDS-WILF, all heights/depths in c>4m,3e<m. SUPP-WILF gives
+W>=Dep+N-kappa_0. The proposed completion bound Q(E)=Dep(E)+N(E)-kappa(E)+m-|E|>=0
+would suffice at E=D. It is stronger than Wilf and remains UNPROVED. The new result is an
+exact minimum-cut/Hall formulation, not universal positivity of a better numerical bound.
+
+Pure-C modes (upper_scan.c, no Gurobi or Python optimizer):
+- `--partial-support-audit m g...` tests full D, every nonempty principal-upset deletion and
+  every value prefix of the genuine canonical tile. There are2m pattern evaluations, with
+  duplicates allowed. All use the ACTUAL conductor phase, not an arbitrary permutation/phase.
+- `--support-cut m g...` solves the exact minimum of Q(E) over EVERY down-set E inside D.
+  It exports source weights, divisor costs, every integer arc capacity/flow and a source-side
+  minimum cut. The code reuses the Dinic pattern from p28/genM.c with64-bit capacities and
+  dynamic storage. Its implementation limit remains m<256; the paper reduction has no such bound.
+
+The input list was fixed before the cut test: five historical stress seeds
+<25,38,40,53>, <16,44,59,63>, the19 mirror and19 original case-B examples, and the63 height3
+example, followed by the SAME36 saved transport anchors. No new random population or large
+enumeration was launched. The initial pattern test and then the exact cut test found no
+negative Q. Both diagnostics are CLOSED. Positive results on these already-settled genuine
+examples are not a new resistant-semigroup census and do not establish the capacity theorem.
+
+Independent stdlib checker:
+- `--completion-cut-check INPUT OUTPUT` reconstructs membership and canonical words, derives
+  the graph via whole-column inversion potentials, and verifies the alternative CLOSED FORM
+  beta(z)=1+floor(z.delta/m)+sum_(delta_j<=r(z))z_j. Every source weight is positive.
+- Every reported flow is checked for integer capacities, conservation and equality with the
+  independently reconstructed cut capacity. The selected set is checked as a down-set and
+  its Dep,N,kappa are recomputed directly from its columns; this certifies the global minimum.
+- For the three13-cell tiles, independent mask enumeration agrees (14,52,166 distinct ideals,
+  respectively, including the empty ideal). This tests the model equivalence; the other
+  profiles' all-down-set coverage comes from exact flow/cut certificates, not mask sampling.
+- `--partial-support-check` independently checks the selected pattern witnesses and their
+  actual cut definitions. These checks are now part of run_checks.sh.
+
+New EXACT local obstruction: in <114,305,307,310> the selected34-cell cut has Q75, missing80,
+and raw support value Dep+N-kappa=-5. Hall deficiency is39. Giving one unmatched unit to
+EACH SELECTED CELL allows only34, so that local allocation is infeasible by5. The proposed
+GLOBAL allowance is m114; its sufficiency for every genuine tile is still unproved.
+
+Raw data: data/partial_support_probe.jsonl.gz and data/completion_cut_probe.jsonl.gz. Derived
+exact tables: data/partial_support_audit.json and data/completion_cut_audit.json. Main check
+log: data/checkpoint_432_checks.log. All41 normal integer flow certificates passed. Three
+C ASan/UBSan runs (13/17, the19 mirror,146/155/175/184) also passed and their exported flows
+were independently audited; data/completion_cut_sanitizer.{jsonl,log}. The partial-pattern
+path also passed on13/17/27/29. No new LP optimizer calls or Lean claims were made; unchanged
+264 prior LP certificates were not rerun to inflate this result.
+
+Reproduce in ~/wilf/p39:
+
+```sh
+gcc -O3 upper_scan.c -o repair_scan
+./repair_scan --support-cut 114 305 307 310
+python3 verify_probe.py --completion-cut-check data/completion_cut_probe.jsonl.gz /tmp/completion-audit.json
+python3 verify_probe.py --partial-support-check data/partial_support_probe.jsonl.gz /tmp/partial-audit.json
+```
+
+To regenerate ANY saved optimizer result, take C['seed']['generators'] from the raw bundle and
+run `repair_scan --support-cut` on it; bundle that JSON as {'seed':C['seed'],'cut':result} for
+the independent checker. The flow may differ under a tie; the integer optimum must agree.
+Exit5 denotes a negative proposed COMPLETION budget, not a genuine Wilf counterexample.
+
+Mathematical deliverables are PROOFS E432: inversion linearization, the positive beta formula,
+closure/Hall equivalence, a parent-capacity identity and exact inversion redistribution.
+The last two do not yet form a feasible full flow. The missing proof is Delta_H<=m uniformly,
+or a weaker complete-tile payment argument if that stronger completion claim fails.

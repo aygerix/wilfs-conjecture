@@ -1149,3 +1149,14 @@ Opened [Montgomery, The honest embedding dimension of a numerical semigroup](htt
 (2026), abstract/Definition3.1: its dimension concerns analytic curve realizations and differs from
 the number of minimal semigroup generators used here. It is not used to replace Wilf's e or to
 claim an additional universal reduction. No work on that separate classification problem is activated.
+
+
+### E432 closure reduction: prior algorithm versus the unproved Wilf capacity claim (2026-10-23)
+
+Jean-Claude Picard, [Maximal Closure of a Graph and Applications to Combinatorial Problems](https://pubsonline.informs.org/doi/pdf/10.1287/mnsc.22.11.1268),
+Management Science22(11)(1976),1268-1272, DOI10.1287/mnsc.22.11.1268. Primary publisher
+metadata/abstract checked. The closure/minimum-cut construction is standard; E432 gives a
+self-contained conversion for the support functional. No novelty is claimed for max-flow or
+closure optimization. No external theorem is used to assert Delta_H<=m: that new sufficient
+capacity target remains unproved. Exact searches for the Wilf column/carry/partial-tile
+statement supplied no theorem used in the proof; absence of a search hit is not a priority claim.

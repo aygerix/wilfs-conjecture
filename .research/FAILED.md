@@ -302,3 +302,17 @@ known Wilf cases; they are not passed off as resistant actual candidates.
 Also do not equate T=ℕ with the Lean NoWrap hypothesis without U=T. In <10,17,41>, T=ℕ,
 but w4=34 has only factorization2*17 and residue sum14>=10. The earlier general descent text
 has been clarified to retain U=T when applying NoWrap. The Lean theorem itself is unchanged.
+
+## E432 — a fixed one-per-cell free allowance is insufficient (2026-10-23)
+
+In the completion/Hall graph for genuine <114,305,307,310>, a34-cell down-set has source
+benefit exceeding its proper-divisor capacity by39. A scheme allowing at most ONE unmatched
+unit at each source cell would allow only34 and fails by5. Equivalently its raw support
+value Dep+N-kappa is-5. Exact integer flow and cut plus direct column counts are saved in
+data/completion_cut_probe.jsonl.gz and independently checked by --completion-cut-check.
+
+This does not refute the proposed GLOBAL m114 allowance, COMP, the full-tile support bound,
+or Wilf. It rules out the tempting fixed cellwise allocation in a proof of that global claim.
+The canonical degree allocation has sufficient PARENT capacities but may exceed individual
+beta source capacities; do not describe it or the inversion preflow as a feasible full flow.
+The41 positive exact cut checks are closed diagnostics, not a uniform capacity theorem.

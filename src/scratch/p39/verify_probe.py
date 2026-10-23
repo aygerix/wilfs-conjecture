@@ -34,6 +34,109 @@ def factor_basis(D):
         z[s]=min(candidates)  # lex-least factorization, a monomial order
     return gr,z
 
+def partial_support_geometry(D,kept):
+    m=D['m'];gr,z=factor_basis(D);d=len(gr);kept=set(kept);inv={z[s]:s for s in kept}
+    assert all(0<=s<m for s in kept)
+    nonmax=set();gamma={s:0 for s in kept};N=0
+    for v,s in inv.items():
+        for j in range(d):
+            u=list(v)
+            if u[j]:u[j]-=1;assert tuple(u) in inv
+            u=list(v);u[j]+=1
+            if tuple(u) in inv:nonmax.add(s)
+    for j in range(d):
+        cols=defaultdict(list)
+        for v in inv:cols[v[:j]+v[j+1:]].append(v)
+        for col in cols.values():
+            t=max(col,key=lambda v:v[j]);assert sorted(v[j] for v in col)==list(range(len(col)))
+            gamma[inv[t]]+=len(col)
+            N+=sum((inv[v]+D['rho'])%m>(inv[t]+D['rho'])%m for v in col)
+    dep=sum(gamma[s] for s in nonmax)
+    kappa=sum(sum((z[s][j]*gr[j])%m for j in range(d))//m for s in kept)
+    return {'size':len(kept),'missing':m-len(kept),'Dep':dep,'N':N,'kappa':kappa,
+            'budget':dep+N-kappa+m-len(kept),'nonmax':nonmax}
+
+def completion_graph(D):
+    m=D['m'];gr,z=factor_basis(D);d=len(gr);inv={v:s for s,v in z.items()};eta=[0]*m
+    for j in range(d):
+        cols=defaultdict(list)
+        for v in inv:cols[v[:j]+v[j+1:]].append(v)
+        for col in cols.values():
+            previous=0;prefix=[]
+            for v in sorted(col,key=lambda v:v[j]):
+                s=inv[v];label=(s+D['rho'])%m
+                current=sum((u+D['rho'])%m>label for u in prefix)
+                eta[s]+=current-previous;previous=current;prefix.append(s)
+    kappa=[sum((z[s][j]*gr[j])%m for j in range(d))//m for s in range(m)]
+    co=[eta[s]-kappa[s]-sum(z[s])-1 for s in range(m)]
+    beta=[1+sum(z[s][j]*gr[j] for j in range(d))//m+
+          sum(z[s][j] for j in range(d) if gr[j]<=(s+D['rho'])%m) for s in range(m)]
+    assert co==[-v for v in beta] and all(v>=1 for v in beta)
+    omega=[d+sum(z[s]) for s in range(m)];benefit=-sum(v for v in co if v<0)
+    source,sink=2*m,2*m+1;arcs=[]
+    for s in range(m):
+        if co[s]<0:arcs.append([source,s,-co[s]])
+        elif co[s]>0:arcs.append([s,sink,co[s]])
+        arcs.append([m+s,sink,omega[s]])
+    for s in range(m):
+        for j in range(d):
+            v=list(z[s]);v[j]+=1;t=inv.get(tuple(v))
+            if t is not None:arcs.extend([[t,s,benefit+1],[t,m+s,benefit+1]])
+    return {'m':m,'gr':gr,'z':z,'eta':eta,'co':co,'beta':beta,'omega':omega,'benefit':benefit,'arcs':arcs,'source':source,'sink':sink}
+
+def audit_completion_cut(C):
+    D,R=C['seed'],C['cut'];audit(D);G=completion_graph(D);m=D['m']
+    assert all(R[k]==D[k] for k in ('m','e','c','rho'))
+    assert [a[:3] for a in R['arcs']]==G['arcs']
+    assert R['weights']==G['co'] and R['omega']==G['omega'] and R['negative_mass']==G['benefit']
+    cut=set(R['cut']);assert G['source'] in cut and G['sink'] not in cut and all(0<=v<2*m+2 for v in cut)
+    balance=[0]*(2*m+2);capacity=0
+    for u,v,cap,f in R['arcs']:
+        assert all(type(a) is int for a in (u,v,cap,f)) and 0<=f<=cap
+        balance[u]-=f;balance[v]+=f
+        if u in cut and v not in cut:capacity+=cap
+    value=R['cut_capacity'];expected=[0]*(2*m+2);expected[G['source']]=-value;expected[G['sink']]=value
+    assert balance==expected and capacity==value
+    kept={s for s in range(m) if s in cut};assert kept==set(R['kept']) and R['size']==len(kept)
+    P=partial_support_geometry(D,kept)
+    assert {s for s in range(m) if m+s in cut}==P['nonmax']
+    assert R['budget']==P['budget']==m+value-G['benefit']
+    assert sum(G['eta'][s] for s in kept)==P['N']
+    assert P['budget']==m+sum(G['co'][s] for s in kept)+sum(G['omega'][s] for s in P['nonmax'])
+    # On tiny tiles independently enumerate every mask and its actual columns.
+    enumerated=None
+    if m<=13:
+        lookup={v:s for s,v in G['z'].items()};parents=[0]*m
+        for s,v in G['z'].items():
+            for j in range(len(G['gr'])):
+                if v[j]:
+                    u=list(v);u[j]-=1;parents[s]|=1<<lookup[tuple(u)]
+        best=m;enumerated=0
+        for mask in range(1<<m):
+            if any(mask>>s&1 and mask&parents[s]!=parents[s] for s in range(m)):continue
+            candidate=partial_support_geometry(D,[s for s in range(m) if mask>>s&1]);enumerated+=1;best=min(best,candidate['budget'])
+        assert best==P['budget']
+    return {**{k:v for k,v in P.items() if k!='nonmax'},'G':D['generators'],'kept':sorted(kept),'cut_capacity':value,
+            'actual_W':D['W'],'genuine_negative_W':D['W']<0,'completion_failure':P['budget']<0,
+            'negative_mass':G['benefit'],'maximum_Hall_deficiency':G['benefit']-value,
+            'cut_height':max((sum(G['z'][s]) for s in kept),default=0),
+            'witness_one_per_cell_shortfall':max(0,G['benefit']-value-len(kept)),
+            'independently_enumerated_ideals':enumerated,'global_optimum_over_downsets':True}
+
+def audit_partial_support(C):
+    D,R=C['seed'],C['partial'];audit(D);P=partial_support_geometry(D,R['kept'])
+    assert all(R[k]==D[k] for k in ('m','e','c','rho'))
+    assert all(R[k]==P[k] for k in ('size','missing','Dep','N','kappa','budget'))
+    gr,z=factor_basis(D);cut=R['cut_residue']
+    if cut<0:expected=set(range(D['m']))
+    elif R['cut_kind']=='principal_upset':expected={s for s in range(D['m']) if not all(a>=b for a,b in zip(z[s],z[cut]))}
+    else:assert R['cut_kind']=='value_prefix';expected={s for s in range(D['m']) if D['w'][s]<=D['w'][cut]}
+    assert expected==set(R['kept'])
+    assert 1<=R['checked']<=2*D['m']
+    if R['budget']>=0:assert R['checked']==2*D['m']
+    return {**{k:v for k,v in P.items() if k!='nonmax'},'G':D['generators'],'actual_W':D['W'],
+            'genuine_negative_W':D['W']<0,'tested_patterns':R['checked']}
+
 def membership_stats(G,apery_modulus=None):
     """Membership DP independent of the C shortest-path reconstruction."""
     G=sorted(set(G));m=G[0];assert m>0
@@ -881,6 +984,15 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1] in ('--completion-cut-check','--partial-support-check'):
+        check=audit_completion_cut if sys.argv[1]=='--completion-cut-check' else audit_partial_support
+        results=[check(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
+        with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)
+        for R in results:print(sys.argv[1],R)
+        for R in results:
+            if R.get('genuine_negative_W'):print('GENUINE NEGATIVE W: independent membership audit passed',R)
+        print('EXACTLY CERTIFIED',len(results),'global down-set minima' if sys.argv[1]=='--completion-cut-check' else 'selected partial-tile witnesses','; no universal sign claim')
+        sys.exit(0)
     if sys.argv[1] in ('--residue-check','--tangent-check'):
         check=audit_residue_comparison if sys.argv[1]=='--residue-check' else audit_primitive_tangent
         results=[check(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]

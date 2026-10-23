@@ -5187,3 +5187,40 @@ finite budget C+weighted repair loss. Do not let the realization lemma become an
 recession-only project. The three standing lines (boundary/residue counting, full weighted
 coupling and actual arithmetic/integrality) remain distinct and active. No new subagents or
 solver optimization, no new manuscript, no universal proof/counterexample claim.
+
+
+## 2026-10-23 06:30 EDT — E432: finite capacity construction is now explicit
+
+The direct carry-to-column injection was blocked by internal wraps that disappear before a
+column top. Tested the more global completion allowance Q(E)=Dep+N-kappa+m-|E| on down-sets
+inside genuine canonical tiles. Principal-upset/value-prefix tests did not fail, and were
+closed rather than enlarged. The important advance is the exact graph reduction, not those
+positive values: column inversion counts linearize in cell indicators, nonmaximal-cell costs
+are ORs of selected children, and every cell's source benefit simplifies to the positive
+beta=1+floor(z.delta/m)+sum_(delta_j<=r(z))z_j. The standard closure/mincut conversion then
+optimizes over EVERY down-set exactly. Its equivalent Hall target is maximum deficiency<=m.
+
+Constructive pieces: degree units fit parent capacities, leaving exactly Gamma at a nonmaximal
+parent; inversion potentials give an explicit acyclic redistribution. The remaining signed
+balances1+kappa-sum_top I can be negative, and the resulting preflow is NOT feasible in general.
+A fixed one-unit unmatched allowance per source is refuted: the114case has a34-cell witness
+with Dep4,N5,kappa14 and Hall deficiency39. The extra5 must be allowed to share the GLOBAL
+budget; this is not a counterexample to COMP or Wilf.
+
+All41 exact source/flow/cut models were independently audited; three small cases were also
+enumerated through all their ideals (14,52,166). The same old examples remain already settled
+as Wilf cases, and the many shallow optimal cuts are elementary. No larger positive population
+was launched; three sanitizer replays and the partial path passed. All math is paper proof,
+not Lean checked. Source/data inventory and next action remain solely in STATE.
+
+Global review: the universal finite sign has not been proved. The advisor's concern still
+applies if these reductions are presented as positivity. Continue ONLY with a uniform allocation
+or a targeted falsification justified by an actual proof obstruction; stop more positive graphs,
+fixed per-cell budgets and local self-payment. The concrete next operation is to inject the
+unmatched Hall charges into distinct cyclic residue classes, using completeness and the actual
+primitive structure. The positive beta formula is a cellwise rewriting of the older carry
+identity, not a claim of a new carry principle; its role is to expose a positive-demand Hall
+problem rather than another coordinate-dependent dual sign condition. The completion statement is stronger than the needed full-tile bound;
+if it fails, retain that weaker global payment rather than make this auxiliary conjecture sacred.
+The three lines remain actual boundary/residue payment, full weighted coupling and arithmetic/
+integrality. No restricted family, proof claim, subagent or new manuscript was activated.
