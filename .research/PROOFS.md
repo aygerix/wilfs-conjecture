@@ -8200,3 +8200,177 @@ warned, compensating credit must cross the chosen pieces. A global primitive-bou
 may use the orbit identities but cannot require each orbit, column or direction to fund itself.
 The next obligation is a globally coupled weighted allocation with the E419 objective coefficients,
 not another local self-payment refinement or a larger positive sample.
+
+### Nonnegative primitive circulations cannot create finite dual credit (E427)
+
+**PROVED ON PAPER; elementary coefficient comparison, not a Wilf positivity theorem.** This is a
+reason to stop treating E425's scalar orbit surplus as additional free credit. It applies across
+orbits and directions, not just to the E426 local weighting.
+
+Use unscaled primitive-edge rows G_(s,j)=w_s+p_j-w_(s+g_j)>=m*b_(s,j), with b=1 on actual strict
+edges and b=0 on tight edges. The positive primitive bounds are p_j>=m+g_j. Take any nonzero
+nonnegative edge flow lambda with balanced vertex divergence at every residue. Let
+
+    T_j=sum_s lambda_(s,j).
+
+The w-loads cancel, leaving sum lambda G=sum_j T_j p_j. Thus adding these edge multipliers to a
+dual without changing its objective coefficients requires decreasing its primitive-bound
+multipliers by T_j (assuming those decreases remain nonnegative). The exact change in its
+constant lower bound is
+
+    m*sum_edges lambda*b - sum_j T_j*(m+g_j)
+       = -m*sum_tight lambda - sum_j T_j*g_j <0.                  (NC)
+
+Every g_j lies in1..m-1, which proves strictness. Even permitting cross-direction nonnegative
+circulations therefore cannot increase the finite budget through this replacement. On one orbit,
+summing primitive rows only says p>=h*(number of strict exits), which is strictly weaker than the
+existing primitive bound p>=m+g. The positive gap-excess resource in E425 depends on that primitive
+value credit; it cannot be counted a second time as a new Farkas source.
+
+Limitations: this does NOT prohibit adaptive changes of cap/residue multipliers, signed tight trade
+multipliers, or unbalanced flows whose divergence is paid by the objective/cap loads. Those are
+precisely where a useful global allocation would have to act. It does not disprove Wilf or full
+capped positivity. Stop extending the scalar orbit allocation by nonnegative balanced flow alone;
+match the complete objective and track which primitive credits have already been spent.
+
+### Restricting a joint dual gives a certified actual-objective bound (E428)
+
+**PROVED ON PAPER; ordinary LP restriction/duality, no novelty claim.** Fix the complete E414 actual
+coordinate domain (or the E415 equivalent primitive domain), and a feasible optimal joint primal
+(a,q,y) and exact dual (pi,rc). Let V be the joint optimum and x=a-y. Put
+
+    P=sum_certificate_lower pi*alpha +sum_certificate_upper(-pi)*kappa >=0.
+
+There is a feasible dual for the ACTUAL objective on exactly that actual domain with value V+P.
+Moreover, at the joint actual point,
+
+    J_actual(a,q)-(V+P)=sum_{s>0}rc_y(s)*a_s
+                      =sum_{s>0}rc_y(s)*x_s >=0.                 (AT)
+
+A zero gap in (AT) certifies the actual minimum as V+P without a new optimizer. With a nonzero
+gap, the transfer alone gives a lower bound. The actual minimum might still equal V+P at another
+point, but this calculation does not establish that equality.
+
+Proof: substitute y=a into all joint rows and the objective. Cap/link rows collapse to0. Each typed
+certificate row now has the same left side as an actual tight equality; replace its RHS -lo or up
+by tau. Its dual RHS gains pi*(tau+lo) or(-pi)*(up-tau). Actual tight equality multipliers have free
+sign, so these replacements are dual-feasible. The new reduced cost at a_s is rc_a(s)+rc_y(s)>=0;
+q's reduced cost and lower bound5 are unchanged. Every actual-objective coefficient is matched.
+The actual primal at the joint point is feasible. Joint complementarity kills old actual-row,
+cap/link and reduced-cost slacks; the remaining gap is sum rc_y*a. Since rc_y*y=0, (AT) follows.
+Equivalently multiply the original y-stationarity equations by x.
+
+verify_probe.py audits the complete substituted coefficient vector over Q. On the31 saved full
+joint profiles,20 actual minima are now certified this way;11 have a positive gap and remain only
+bracketed. For example60/67/71/121 gives actual lower bound198 and value236 at the joint point;
+new146 gives1074 and1334. Those upper values must not be relabelled actual minima. Different joint
+duals can give different transferred lower bounds. These are regional certificates, not a uniform
+sign theorem, and no new LP solve is counted for this transfer.
+
+### A profile-wide global allocation model and its boxed dual (E429)
+
+**General paper reduction/normal form; positivity UNKNOWN.** Scope remains all S in the approved
+remaining domain, with the recorded complement. There is no reduction to the three tested profiles.
+This replaces the failed balanced-circulation funding idea by a budget which matches the full
+primitive-coordinate objective and permits compensation across all orbits/directions.
+
+Fix ANY realizable profile, canonical D,z_s, primitive residues g_j, largest residue r, d=e-1.
+Let v_s=z_r-z_s, d_s=[r-s]_m, and a_s=(v_s.p-d_s)/m, q=(z_r.p-r)/m. Let T_s be E396's minimum sum
+of kappa over tight binary factorization trees (T_g=0). For every real actual point in the profile,
+
+    b_s=max(0,a_s-T_s).
+
+This remains true over the real actual domain: positive Kunz bounds give a_s<=q-1 for s!=0.
+In the upper-closure recursion, if a parent is truncated to0, its candidate is <=0 because the
+other parent is <=q-1. Every positive candidate therefore has both parents untruncated; induction
+and the tight identity a_i+a_j-a_s=q+tau give exactly the minimum kappa-tree formula.
+
+Let K_0 begin with all T_s=0 and the top residue r, then close under E424's zero rules. This is a
+PROFILE-FORCED subset of zero unpaid coordinates, valid on the entire actual domain. It need not
+include the additional zero anchors supplied by a particular point's other a_s=0. One way to
+compute precisely K_0 is to scale seed primitive values by2: all non-top a_s become positive,
+while the tight pattern/penalties stay fixed. This is a real model calculation, not a semigroup
+reconstruction.
+
+Build E424's flow using ONLY K_0 (permitted since every such coordinate really is forced zero),
+and let P_0 be its exact minimum unpaid cost. Gamma and P_0 are profile constants. Define
+
+    Omega_0(p)=(Gamma.dist-C)/m +sum_{s in K_0}Gamma_s*a_s
+                      +sum_{s outside K_0}Gamma_s*max(0,a_s-T_s)-P_0,
+    C=(e-2)m(m-1)/2.                                             (PB)
+
+Every full capped objective is >=Omega_0(p), for every real actual point. Unlike choosing the
+point's complete zero closure, this certificate varies continuously with p on the entire profile.
+It is a valid lower bound even at extra zero coordinates; no monotonic comparison with the
+point-adaptive Omega is assumed. A uniform proof Omega_0>=0 for ALL realizable profiles would
+prove Wilf. That stronger statement is not established. It includes both a real-domain and a
+certificate strengthening of Wilf.
+
+Minimizing (PB) is an explicit continuous LP, with no depth upper bound. Use primitive variables p,
+and a nonnegative b_s only when s is outside K_0 and Gamma_s>0. Impose the full primitive actual
+rows from E415, p_j>=m+g_j, z_r.p>=5m+r, v_s.p>=d_s, and
+
+    m*b_s-v_s.p >= -d_s-m*T_s.
+
+The objective m*Omega_0 has p-coefficient sum_{K_0}Gamma_s v_s, b_s-coefficient m*Gamma_s, and
+constant sum_{s outside K_0}Gamma_s*d_s-C-m*P_0. A positive diagnostic floor epsilon can optionally
+replace v_s.p>=d_s by >=d_s+m*epsilon (s!=r); epsilon0 is the COMPLETE actual-coordinate domain.
+All model coefficients are integral after multiplying floor rows by its denominator. Nonemptiness
+follows by scaling the seed primitive values by m+1; this also preserves genuine congruences.
+The objective differs from the actual W by a bounded profile-dependent amount, so E416 controls
+its recession behavior for e>=3. Finite LP minima admit standard dual certificates.
+
+**Global boxed allocation identity.** Write xi for primitive actual-row duals (nonnegative on
+strict rows; signed on tight trades), eta_j>=0 for positive primitive bounds, beta>=0 for depth,
+nu_s>=0 for v_s.p>=d_s, and lambda_s for the baseline rows. Stationarity at b_s forces
+
+    0<=lambda_s<=Gamma_s.
+
+Set theta_s=Gamma_s on K_0 and theta_s=lambda_s otherwise. At an optimum p_j>0 makes its lower-bound
+reduced cost0. The exact remaining coefficient identity is
+
+    sum_s theta_s v_s
+       =sum_primitive_rows xi_(ij->t)(z_i+z_j-z_t)
+          +sum_j eta_j e_j +beta*z_r +sum_s nu_s v_s.              (BC)
+
+It uses all signed zero-RHS trades and global residue/cap loads. The dual constant is
+
+    Omega_0^* = sum_strict xi +sum_j eta_j*(m+g_j)/m
+        +beta*(5m+r)/m +sum_s nu_s*d_s/m
+        +sum_{s outside K_0}(Gamma_s-lambda_s)*d_s/m
+        -C/m-P_0-sum_{s outside K_0}lambda_s*T_s.                 (BB)
+
+All five displayed credit terms are nonnegative; the correction, transport and tree costs must
+still be paid. Equation (BB) alone is NOT a positivity theorem. The new exact target is a
+profile-adaptive construction satisfying (BC) and making the budget (BB) nonnegative, rather than
+requiring any column or primitive orbit to pay on its own. The verifier audits all coefficients,
+every rational primal/dual constraint, the row-transport certificate, and (BB).
+
+**At most e-1 partially used baseline coordinates suffice (general paper LP lemma).** There exists
+an optimal dual with at most d=e-1 coordinates satisfying0<lambda_s<Gamma_s. Proof: fix the other
+optimal dual multipliers. Feasible lambda lie in a box with d coefficient equations (BC). Maximize
+the linear dual budget on that compact polytope and choose an extreme maximizer. If more than d
+coordinates were strictly inside their bounds, the corresponding v_s would be linearly dependent,
+allowing two opposite small feasible perturbations, contradicting extremality. Adjust baseline
+reduced costs to m*(Gamma_s-lambda_s). Global optimality is preserved by weak duality. No claim
+that lambda is integral or that ANY partially used coordinate's unpaid mass is<=1 follows.
+This is standard extreme-point structure, not a novelty claim or an explanation of the sign.
+It reduces the global allocation choice to fully used/unused coordinates plus at most e-1 partial
+ones; proving their complete finite budget remains the mathematical task.
+
+**Closed discriminating tests, not universal evidence:** the complete epsilon0 profile minima are
+100,300,312 for seeds60/67/71/121,146/155/184/535,146/147/155/185, respectively. They are attained at
+the original integer primitives; membership is independently reconstructed. Three preliminary
+epsilon1/1000 chamber minima were12543/125,639223/2125,31201/100 and were fractional model points.
+No reduction from all profiles to these3 is claimed, and this positive diagnostic is closed.
+
+**Stronger trade-quotient version of the partial-weight bound.** Let L be the linear span in R^d
+of the inner tight-trade vectors z_i+z_j-z_t appearing in the primitive actual rows, and put
+k=d-dim(L). An optimal E429 dual can be chosen with at most k partially used baseline coordinates.
+Project (BC) to R^d/L, fix every other inequality multiplier, and optimize lambda in its box with
+these at most k equations. Choose an extreme maximizer as above. The remaining coefficient error
+lies in L and is absorbed by adjusting the SIGNED zero-RHS tight multipliers, without changing any
+finite credit. Thus dual feasibility and the optimum are preserved. The claim concerns the trade
+quotient; it removes no strict affine margins and assumes no outer-Betti minimal presentation.
+This is a concrete use of inner trades in the global allocation, but still gives no sign for (BB).
+Collision-free profiles may have L=0, so k=d; no collision-only payment principle is inferred.

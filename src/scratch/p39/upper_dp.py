@@ -4,6 +4,68 @@ No LP solver. Input: certprobe JSONL. Exact integer/rational arithmetic.
 import json,sys
 from fractions import Fraction as F
 from verify_probe import open_text
+if len(sys.argv)>1 and sys.argv[1]=='--axis-face':
+ import subprocess,tempfile,gzip
+ from pathlib import Path
+ from verify_probe import audit,axis_face_model,audit_axis_face
+ solver=sys.argv[4] if len(sys.argv)>4 else './certprobe'
+ epsilon=F(sys.argv[5]) if len(sys.argv)>5 else F(0)
+ with (gzip.open(sys.argv[3],'wt') if sys.argv[3].endswith('.gz') else open(sys.argv[3],'w')) as out,tempfile.TemporaryDirectory(prefix='wilf-axis-face-') as temp:
+  for line in open_text(sys.argv[2]):
+   if not line.strip():continue
+   D=json.loads(line);D=D.get('seed',D);D={k:v for k,v in D.items() if k not in ('models','face','cone')};D['models']={};audit(D)
+   zero=axis_face_model(D,0,epsilon);N=zero['network'];path=Path(temp)/'flow.txt'
+   path.write_text('%d %d %d %d %d\n'%(N['nodes'],len(N['arcs']),N['source'],N['sink'],N['demand'])+'\n'.join(' '.join(map(str,v)) for v in N['arcs'])+'\n')
+   flow=json.loads(subprocess.check_output(['./repair_scan','--axis-flow',str(path)],text=True,timeout=60))
+   A=axis_face_model(D,N['constant']+flow['cost'],epsilon);path=Path(temp)/'model.txt'
+   path.write_text('%d %d %d\n'%(A['nv'],len(A['rows']),A['constant'])+' '.join(map(str,A['objective']))+'\n'+'\n'.join('%s %s %d %s'%(sense,rhs,len(co),' '.join('%d %d'%(k,v) for k,v in sorted(co.items()))) for sense,rhs,co in A['rows'])+'\n')
+   solution=json.loads(subprocess.check_output([solver,'--linear-lp',str(path)],text=True,timeout=90))
+   C={'seed':D,'flow':flow,'axis_face':solution,'epsilon':str(epsilon)};R=audit_axis_face(C);out.write(json.dumps(C)+'\n');out.flush()
+   print('AXIS-FACE',R,flush=True)
+   if F(R['minimum'])<0:break
+ sys.exit(0)
+if len(sys.argv)>1 and sys.argv[1]=='--axis-climb':
+ import subprocess,tempfile,gzip
+ from pathlib import Path
+ from verify_probe import audit_axis_transport,axis_transport_network,upper_baseline
+ output=sys.argv[2];start=tuple(sorted(map(int,sys.argv[3:])));solver='./repair_scan';cache={};calls=0
+ with tempfile.TemporaryDirectory(prefix='wilf-axis-climb-') as temp:
+  path=Path(temp)/'network.txt'
+  def evaluate(G):
+   global calls
+   if G in cache:return cache[G]
+   calls+=1;p=subprocess.run([solver,'--axis-seed',*map(str,G)],capture_output=True,text=True,timeout=60)
+   if p.returncode==1:cache[G]=None;return None
+   p.check_returncode();D=json.loads(p.stdout);N=axis_transport_network(D,True)
+   path.write_text('%d %d %d %d %d\n'%(N['nodes'],len(N['arcs']),N['source'],N['sink'],N['demand'])+'\n'.join(' '.join(map(str,a)) for a in N['arcs'])+'\n')
+   flow=json.loads(subprocess.check_output([solver,'--axis-flow',str(path)],text=True,timeout=60))
+   b=upper_baseline(D);K=set(N['known_zero']);gamma=N['gamma'];m=D['m'];e=D['e']
+   const=F(sum(gamma[s]*((D['r']-s)%m) for s in range(m))-(e-2)*m*(m-1)//2,m)
+   omega=const+sum(gamma[s]*(D['mu'][s] if s in K else b[s]) for s in range(m))-N['constant']-flow['cost']
+   assert omega.denominator==1
+   C={'seed':D,'flow':flow,'zero_aware':True};cache[G]=(F(omega,D['c']),C,int(omega));return cache[G]
+  current=evaluate(start);assert current is not None;history=[];reason='iteration_limit'
+  for iteration in range(11):
+   score,C,omega=current;R=audit_axis_transport(C);assert R['baseline_bound']==omega
+   G=tuple(sorted(C['seed']['generators']));history.append({'G':G,'omega':omega,'c':C['seed']['c'],'W':C['seed']['W']})
+   print('AXIS-CLIMB iter=%d Omega=%d W=%d c=%d G=%s'%(iteration,omega,C['seed']['W'],C['seed']['c'],G),flush=True)
+   if omega<0 or C['seed']['W']<0:reason='negative_bound' if omega<0 else 'negative_W';break
+   if iteration==10:break
+   best=current;m=G[0]
+   for k in range(1,len(G)):
+    for step in (-m,m):
+     T=list(G);T[k]+=step
+     if T[k]<=m or len(set(T))<len(T):continue
+     candidate=evaluate(tuple(sorted(T)))
+     if candidate is not None and candidate[0]<best[0]:best=candidate
+     if candidate is not None and (candidate[2]<0 or candidate[1]['seed']['W']<0):best=candidate;break
+    if best[2]<0 or best[1]['seed']['W']<0:break
+   if best[0]>=score:reason='local_minimum';break
+   current=best
+  C=current[1];C['search']={'start':start,'steps':'each nonmultiplicity minimal generator +/-m','max_iterations':10,'calls':calls,'stop':reason,'history':history}
+  with (gzip.open(output,'wt') if output.endswith('.gz') else open(output,'w')) as out:out.write(json.dumps(C)+'\n')
+  print('AXIS-CLIMB stop=%s calls=%d'%(reason,calls),flush=True)
+ sys.exit(0)
 if len(sys.argv)>1 and sys.argv[1]=='--axis-transport':
  import subprocess,tempfile,gzip
  from pathlib import Path

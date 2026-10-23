@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 03:07 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 03:58 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -141,6 +141,26 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   globally coupled primitive-boundary credits and match the E419 objective coefficients; no orbit,
   column or direction is required to pay separately. Exact table and regression are saved.
 
+- **Coefficient no-gain theorem (E427, paper):** a nonnegative BALANCED primitive circulation,
+  even across directions, strictly worsens a finite dual bound when its primitive coefficients
+  are compensated using the existing primitive bounds. E425's scalar surplus cannot be counted
+  again as independent credit. Stop that circulation-only approach. Signed tight trades and
+  adaptive cap/residue loads remain essential possibilities.
+- **Actual dual restriction (E428, paper/exact audit):** a joint optimum V and dual allowance cost P
+  give an actual-domain dual bound V+P. Its gap at the joint actual point is exactly sum rc_y*x.
+  This certifies20 of31 saved actual minima without new optimizer calls;11 have nonzero gaps and
+  only lower/upper brackets. No actual value at a joint optimum is silently treated as a minimum.
+- **Global boxed allocation (E429, paper; sign UNKNOWN):** use only profile-forced zeros K_0 and
+  keep the entire real primitive domain, with no depth upper bound. Optimizing the clipped
+  baseline has a dual with0<=lambda_s<=Gamma_s, signed inner trades, strict primitive sources,
+  primitive/depth credit and complete residue distances. Its coefficient identity (BC) and exact
+  budget (BB) retain transport cost P_0 AND tree cost sum lambda*T. An optimal dual can have at
+  most e-1 PARTIALLY used baseline coordinates; signed tight trades sharpen this to the dimension
+  of the primitive trade quotient. All others are0 orGamma. This does not prove its
+  sign. The3 complete-profile minima100,300,312 (and3 preliminary positive-floor diagnostics)
+  are exactly audited; that positive diagnostic is closed. Uniform nonnegative construction of
+  (BC/BB), over every realizable profile, is the current mathematical obligation.
+
 ## Existing implementations
 
 | Code | Purpose | Coverage and dependencies |
@@ -150,8 +170,8 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [enumlp3.c](../src/scratch/p37/enumlp3.c) | Newer C enumeration plus RT3/UA3, with optional height filter. | Pass h4only=0 for all heights. Audit found a 256-bit key overflow at m=24; key capacity is now derived from MAXM. |
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
-| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. `--cap-int-max RES` exports an integer feasibility witness without an LP dual; the checker pairs it with a separate real LP bound when available. `--face-free`, `--face-free-oriented`, and `--face-zero-unpaid` are explicitly weaker diagnostics, never full-model counterexample checks. Independent checker: verify_probe.py (now also audits primitive projection and affine boundary rewriting). |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--axis-flow FILE` returns an integer min-cost flow and exact residual dual potentials for E422–E424; `upper_dp.py --axis-transport INPUT OUTPUT [SOLVER] [--zero-aware]` builds the network and `verify_probe.py --axis-transport INPUT SUMMARY` independently checks it. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--interior-unit-search` filters targets to actual cells extendible by every non-multiplicity primitive; the new104case refutes its proposed unit cap. `--cover` is an UPPER certificate, not a Wilf lower bound. |
+| [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect genuine S; RT3/UA3/TX, cone/capped and joint-profile models; export exact-checkable data. | Gurobi C API. `--linear-lp FILE` solves a sparse nonnegative-variable CONTINUOUS model and exports primal/dual arrays; upper_dp.py `--axis-face INPUT OUTPUT [SOLVER] [EPSILON=0]` generates E429's exact integer matrix (stdlib, no Python optimizer), and verify_probe.py `--axis-face` audits it. `--face` is a CONTINUOUS joint actual/certificate LP with unbounded q>=5; `--face-primitive` reduces only actual-side rows. Neither treats fractional coordinates as semigroups. `--cone`, `--cap`, `--cap-max RES` remain. `--cap-int-max RES` exports an integer feasibility witness without an LP dual; the checker pairs it with a separate real LP bound when available. `--face-free`, `--face-free-oriented`, and `--face-zero-unpaid` are explicitly weaker diagnostics, never full-model counterexample checks. Independent checker: verify_probe.py (now also audits primitive projection and affine boundary rewriting). |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure/assignment, local search, capacity, transport and unpaid-envelope audits. | Pure C. `--axis-seed m g...` exports full seed invariants/tight rows without a solver; upper_dp.py `--axis-climb OUTPUT m g...` performs bounded deterministic generator +/-m descent in Omega/c using this exporter and the C flow solver. `--axis-flow FILE` returns an integer min-cost flow and exact residual dual potentials for E422–E424; `upper_dp.py --axis-transport INPUT OUTPUT [SOLVER] [--zero-aware]` builds the network and `verify_probe.py --axis-transport INPUT SUMMARY` independently checks it. `--weighted-audit` exports real-envelope residual matching; `--integer-weighted-audit` adds floors; `--equality-weighted-audit` counts forced-equal coordinates together. `--combined-climb-wide` tests Phi_Z/c in the existing neighborhood. `--weighted-search` tests the weaker propagation bound. `--interior-unit-search` filters targets to actual cells extendible by every non-multiplicity primitive; the new104case refutes its proposed unit cap. `--cover` is an UPPER certificate, not a Wilf lower bound. |
 | [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, matching/capacity, equality and transport audits. | `--standalone` needs no Gurobi data. upper_dp.py has rational propagation, `--rigid` closure, and `--chain-budget INPUT MATCHING...` for exact CH/primitive-factorization budgets on audited data. |
 | [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
@@ -199,14 +219,15 @@ distinct profile LP minima positive, including180,452,3070/3,998,31,60673/44,502
 fractional;24 integral actual optima independently reconstructed. Four changed integer witnesses have
 Phi281,128,22,5027. These are regional certificates and diagnostics, not an exhaustive profile list.
 
-**Next mathematical action:** construct a GLOBAL weighted allocation for the E424 finite payment inequality (PAY), using
-primitive strict exits, zero-RHS trades and complete cyclic residues. The layered potential dual is
-an exact statement of the gap, not its solution. E426 rules out scaling the E425 unit-row payment
-separately on each orbit; use cross-orbit/direction compensation while matching all coefficients. Stop optimizing the E423 original baseline: exact
-optimal negative bounds show that no allocation inside that network can pay it. Stop expanding
-positive regional samples. A negative corrected Omega needs its exact potential audited, then
-comparison with the full capped and separately minimized actual models. Three universal lines
-remain primitive arithmetic funding, weighted tight transport, and actual integrality/descent.
+**Next mathematical action:** construct a profile-adaptive GLOBAL boxed allocation satisfying E429
+(BC) and paying the complete budget (BB): C/m+P_0+sum lambda*T. Use the trade-quotient partial-coordinate
+normal form (at most e-1 partial weights) to seek a residue-sensitive full/unused/partial baseline rule, retaining signed tight
+trades and strict primitive boundaries. Normal form/duality alone is not positivity. Do not run
+another positive regional sample or tune local/column/orbit self-payment. E427 shows why balanced
+nonnegative circulations cannot create new finite credit, even globally, after coefficient matching.
+The complete-profile E429 minima on the3 chosen anchors are positive, so that diagnostic is closed.
+If a negative allocation-model point appears, check its genuine congruences/membership and compare
+with the full coupled and ACTUAL domains, keeping the distinctions in E428.
 Continue the advisor's primitive-coordinate finite-surplus programme.
 Use E417's exact projection mJ=H.p-C-e*m*sum x: zero-RHS inner trades, strict affine boundaries>=m,
 positive primitive bounds, depth and explicit residue/cap credits. Construct an adaptive global
@@ -238,18 +259,24 @@ is dominated by the old whole-boundary estimate; the false CR-TILE positivity cr
 E412/E413 and the older FAILED record explain why. No single-top-ideal size, bounded core, unit cap,
 partial-tile deletion or guessed W/c constant. The old10000-candidate sample needs no rerun.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record earlier checks; E394 records the first two Lean components; E395-E421 record the latest work.
+record earlier checks; E394 records the first two Lean components; E395-E429 record the latest work.
 The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
 certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
-Latest consolidated checks pass44 exact integer transport flows and primitive cycle allocations in addition to258 exact LP optima (the212 earlier checks plus46 diagnostic optima),
-and2 exact diagnostic rays, plus1 independently feasible integer repair witness. The separate real
+Latest consolidated checks pass258 previous exact LP optima plus6 E429 allocation-model optima,
+44 previous integer transport flows,3 audited bounded-descent endpoints and the6 new models' transport
+proofs. Primitive cycle allocations remain audited. The earlier258 comprise212 prior checks plus46
+diagnostics. The suite separately checks2 exact diagnostic rays and1 independently feasible integer
+repair witness. The separate real
 LP upper bound certifies its integer coordinate optimum2. Source transfer and boundary packing are
 also audited on74 genuine-domain joint points. The2 diagnostic rays have no semigroup reconstruction;
 they falsify only the weakened sourcewise-sign model. Primitive projection/boundary rewriting includes
 fractional actual coordinates. These checks include
 the four new integer witness assignments and existing checks. See the
-[validation log](../src/scratch/p39/data/checkpoint_425_checks.log) and data/allowance_lean.log.
-The C flow path passes ASan/UBSan on8 original and36 zero-aware inputs across checkpoints424/425, with leak detection disabled; no new Lean claim.
+[validation log](../src/scratch/p39/data/checkpoint_429_checks.log) and data/allowance_lean.log.
+The C flow path passes ASan/UBSan on8 original and36 zero-aware inputs across checkpoints424/425.
+New C seed export passes3 sanitizer inputs; the C continuous-matrix solver passes all6 allocation models,
+Gurobi leak detection disabled. The new results are not Lean checked. E428 certifies20 saved actual minima
+by exact dual restriction, with11 nonzero gaps; these do not increase the optimizer count.
 The new cone scaling component is kernel checked with the same three standard axioms, no sorry.
 New equality/empty-core/integer paths pass C ASan/UBSan; log data/equality_sanitizer.log.
 New full/reduced joint-face C paths also pass ASan/UBSan, Gurobi leak detection disabled;

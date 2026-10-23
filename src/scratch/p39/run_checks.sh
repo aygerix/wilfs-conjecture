@@ -25,6 +25,8 @@ python3 verify_matching.py --standalone data/joint_witness_matching.jsonl
 python3 verify_matching.py --standalone data/interior_unit_candidate.jsonl
 python3 verify_probe.py --axis-transport data/axis_transport.jsonl.gz /tmp/wilf-p39-axis-summary.json
 python3 verify_probe.py --axis-transport data/axis_transport_zero.jsonl.gz /tmp/wilf-p39-axis-zero-summary.json
+python3 verify_probe.py --axis-transport data/axis_backwards.jsonl.gz /tmp/wilf-p39-axis-climb-summary.json
+python3 verify_probe.py --axis-face data/axis_face_probe.jsonl.gz /tmp/wilf-p39-axis-face-summary.json
 python3 - <<'PY'
 import json
 full={tuple(sorted(R['generators'])):R['face']['optimum'] for R in json.load(open('/tmp/wilf-p39-joint_face_probe-summary.json'))}
@@ -53,6 +55,14 @@ weighted=zero[153,166,170,317,325,474,617,766,921,925,1080]
 orbit=[C for P in weighted['primitive_cycles'] if P['primitive']==170 for C in P['cycles'] if C['orbit']==4]
 assert len(orbit)==1 and orbit[0]['column_weighted_strict_excess']==7 and orbit[0]['column_weighted_active_allowance']==42
 print('CERTIFIED44 integer transport flows and primitive orbit allocations, including optimal negative original baselines and zero-demand controls; no universal sign assertion')
+joint=json.load(open('/tmp/wilf-p39-joint_face_probe-summary.json'))
+assert sum(R['face']['actual_dual_transfer']['certified_optimum'] is not None for R in joint)==20
+profiles=json.load(open('/tmp/wilf-p39-axis-face-summary.json'))
+complete={tuple(sorted(R['generators'])):R['minimum'] for R in profiles if R['epsilon']=='0'}
+assert len(profiles)==6 and complete=={(60,67,71,121):'100',(146,155,184,535):'300',(146,147,155,185):'312'}
+climbs=json.load(open('/tmp/wilf-p39-axis-climb-summary.json'))
+assert len(climbs)==3 and any(sorted(R['generators'])==[60,67,131,181] and R['baseline_bound']==199 for R in climbs)
+print('CERTIFIED20 actual minima by dual transfer,6 fixed-column regional LP minima,3 bounded descent endpoints; no universal sign assertion')
 PY
 python3 verify_matching.py data/transport_all.jsonl data/probe.jsonl.gz data/structural_probe.jsonl.gz data/residual_probe.jsonl.gz data/stress_probe.jsonl.gz data/climb_probe.jsonl.gz data/margin_probe.jsonl.gz
 ./repair_scan --position-audit 128
@@ -68,3 +78,5 @@ cat rigid_closure.log
 python3 upper_dp.py --chain-budget data/probe.jsonl.gz data/integer_weighted_matching.jsonl
 python3 upper_dp.py --chain-budget data/stress_probe.jsonl.gz data/integer_weighted_matching.jsonl
 python3 base_deflation.py
+./repair_scan --axis-seed 60 67 131 181 > /tmp/wilf-p39-fresh-axis-seed.jsonl
+python3 verify_probe.py /tmp/wilf-p39-fresh-axis-seed.jsonl /tmp/wilf-p39-fresh-axis-seed-summary.json

@@ -1118,3 +1118,19 @@ Dougherty–Faber, arXiv:math/9412223) concerns a related setting, not a result 
 correction here. No inference from its abstract to the needed weighted inequality is made. The
 primitive orbit count in PROOFS is proved directly and adds no independent continuous constraint;
 the disjunctive integer exit condition has the limitations stated there.
+
+### 2026-10-23: coefficient-preserving circulation, actual dual restriction, boxed allocation
+
+Internal comparison includes E419, failed per-chain/direction funding, and E425/E426. E427 is an
+elementary dominance calculation: balanced nonnegative primitive rows are weaker than the existing
+positive primitive bounds. E428 is ordinary restriction of an LP dual; E429 uses an epigraph for
+max(0,a-T) and standard box-polytope extreme-point reasoning. No novelty is claimed for these
+optimization ingredients. The exact coefficient/budget identities are proved directly in PROOFS.
+Focused arXiv/GitHub/conjectures.io searches yielded no theorem invoked to assert their universal
+finite-budget sign; this is not a claim that no such result exists. BGOW1903.04342 and the existing
+primitive Kunz-face literature remain the comparison for regional polyhedral certificates.
+
+Opened [Montgomery, The honest embedding dimension of a numerical semigroup](https://link.springer.com/article/10.1007/s00233-026-10637-3)
+(2026), abstract/Definition3.1: its dimension concerns analytic curve realizations and differs from
+the number of minimal semigroup generators used here. It is not used to replace Wilf's e or to
+claim an additional universal reduction. No work on that separate classification problem is activated.

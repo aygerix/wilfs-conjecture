@@ -95,7 +95,7 @@ def primitive_cycle_budget(D,known_zero):
         out.append({'primitive':p,'residue':g,'column_cycles':h,'cycles':cycles})
     return out
 
-def axis_transport_network(D,zero_aware=False):
+def axis_transport_network(D,zero_aware=False,known_override=None):
     """Column reflections and a global network of axis-adding decompositions."""
     m=D['m'];gr,z=factor_basis(D);d=len(gr);inv={v:s for s,v in z.items()}
     pair={(i,j):p for p,(i,j,s,J,*_) in enumerate(D['pairs']) if not J}
@@ -121,6 +121,9 @@ def axis_transport_network(D,zero_aware=False):
                 if tau+lo==0 and s in known:known.update((i,j))
                 if up-tau==0 and i in known and j in known:known.add(s)
             if known==old:break
+        if known_override is not None:
+            assert set(known_override)<=known
+            known=set(known_override)
         for p,R in enumerate(reflection):
             if not R:continue
             i,j,s,*_=D['pairs'][p];coeff=defaultdict(int)
@@ -148,17 +151,13 @@ def axis_transport_network(D,zero_aware=False):
     return {'nodes':m+2,'source':source,'sink':sink,'demand':need,'arcs':arcs,
             'arc_pairs':arc_pairs,'reflection':reflection,'gamma':gamma,'constant':constant,'known_zero':sorted(known)}
 
-def audit_axis_transport(C):
-    D=C['seed'];audit(D)  # independent membership/minimal generators/Apéry audit
-    zero_aware=C.get('zero_aware',False);N=axis_transport_network(D,zero_aware);R=C['flow'];m,e,r=D['m'],D['e'],D['r']
-    full_known=set(N['known_zero'] if zero_aware else axis_transport_network(D,True)['known_zero'])
-    primitive_cycles=primitive_cycle_budget(D,full_known)
+def audit_integer_flow(N,R):
     assert (R['nodes'],R['arcs'],R['flow'])==(N['nodes'],len(N['arcs']),N['demand'])
     flows=R['flows'];potential=R['potential']
     assert len(flows)==len(N['arcs']) and len(potential)==N['nodes']
     assert all(type(v) is int for v in flows+potential)
     balance=[0]*N['nodes'];cost=0;dual=N['demand']*(potential[N['sink']]-potential[N['source']])
-    merges=[0]*len(D['pairs'])
+    merges=[0]*len(N['reflection'])
     for (u,v,cap,price),f,p in zip(N['arcs'],flows,N['arc_pairs']):
         assert 0<=f<=cap;balance[u]-=f;balance[v]+=f;cost+=f*price
         reduced=price+potential[u]-potential[v]
@@ -168,6 +167,14 @@ def audit_axis_transport(C):
         if p>=0:merges[p]+=f
     expected=[0]*N['nodes'];expected[N['source']]=-N['demand'];expected[N['sink']]=N['demand']
     assert balance==expected and cost==dual==R['cost']
+    return merges,cost
+
+def audit_axis_transport(C):
+    D=C['seed'];audit(D)  # independent membership/minimal generators/Apéry audit
+    zero_aware=C.get('zero_aware',False);N=axis_transport_network(D,zero_aware);R=C['flow'];m,e,r=D['m'],D['e'],D['r']
+    full_known=set(N['known_zero'] if zero_aware else axis_transport_network(D,True)['known_zero'])
+    primitive_cycles=primitive_cycle_budget(D,full_known)
+    merges,cost=audit_integer_flow(N,R)
     net=[a-b for a,b in zip(N['reflection'],merges)];load=[0]*m;unpaid_cost=old_cost=0
     for p,v in enumerate(net):
         if not v:continue
@@ -195,6 +202,91 @@ def audit_axis_transport(C):
             'transport_cost':unpaid_cost if zero_aware else old_cost,
             'baseline_bound':baseline,'actual_bound':actual,'gamma':gamma,
             'net_rows':[[p,v] for p,v in enumerate(net) if v], 'primitive_cycles':primitive_cycles}
+
+def axis_face_model(D,penalty,epsilon=F(0)):
+    """Integer matrix for m*Omega using only profile-forced zero anchors."""
+    m,e,r=D['m'],D['e'],D['r'];gr,z=factor_basis(D);d=len(gr);M=max(D['w'])
+    # Scaling is used only to identify the chamber's structural known-zero set.
+    view={**D,'q':F(2*M-r,m),'mu':[F(2*M-r,m)]+[F(2*(M-D['w'][s])-(r-s)%m,m) for s in range(1,m)]}
+    N=axis_transport_network(view,True);K=set(N['known_zero']);gamma=N['gamma']
+    depth=[0]*m
+    for s in sorted(range(1,m),key=lambda s:D['w'][s]):
+        depth[s]=0 if s in gr else min(depth[i]+depth[j]+up-tau for i,j,t,J,tau,lo,up in D['pairs'] if not J and t==s)
+    variables=[s for s in range(1,m) if s not in K and gamma[s]];ix={s:d+k for k,s in enumerate(variables)};nv=d+len(variables)
+    obj=[0]*nv;constant=-(e-2)*m*(m-1)//2-m*penalty;rows=[];tags=[]
+    def row(sense,rhs,co,tag):
+        co={k:v for k,v in co.items() if v}
+        if co:rows.append((sense,rhs,co));tags.append(tag)
+        else:assert (rhs==0 if sense=='=' else rhs<=0 if sense=='>' else rhs>=0)
+    for pair,(i,j,s,J,tau,lo,up) in enumerate(D['pairs']):
+        if i in gr or j in gr:row('>' if J else '=',m if J else 0,{k:z[i][k]+z[j][k]-z[s][k] for k in range(d)},('strict' if J else 'trade',pair))
+    for k,g in enumerate(gr):row('>',m+g,{k:1},('primitive',k))
+    row('>',5*m+r,{k:z[r][k] for k in range(d)},('depth',r))
+    for s in range(1,m):
+        dist=(r-s)%m;v=[z[r][k]-z[s][k] for k in range(d)]
+        if s!=r:row('>',epsilon.denominator*dist+m*epsilon.numerator,{k:epsilon.denominator*v[k] for k in range(d)},('residue',s))
+        if s in K:
+            for k in range(d):obj[k]+=gamma[s]*v[k]
+        else:
+            constant+=gamma[s]*dist
+            if s in ix:
+                obj[ix[s]]=m*gamma[s];co={k:-v[k] for k in range(d)};co[ix[s]]=m
+                row('>',-dist-m*depth[s],co,('baseline',s))
+    return {'network':N,'gr':gr,'z':z,'known':K,'gamma':gamma,'depth':depth,'variables':variables,
+            'objective':obj,'constant':constant,'rows':rows,'tags':tags,'nv':nv}
+
+def audit_axis_face(C):
+    D=C['seed'];audit(D);epsilon=F(C.get('epsilon','0'));assert epsilon>=0
+    zero=axis_face_model(D,0,epsilon);merges,cost=audit_integer_flow(zero['network'],C['flow'])
+    penalty=zero['network']['constant']+cost;A=axis_face_model(D,penalty,epsilon);R=C['axis_face'];assert R['status']==2
+    load_rows=[0]*D['m'];paid=0
+    for p,v in enumerate(a-b for a,b in zip(A['network']['reflection'],merges)):
+        i,j,s,J,tau,lo,up=D['pairs'][p]
+        load_rows[i]+=v;load_rows[j]+=v;load_rows[s]-=v
+        paid+=v*(tau+lo) if v>=0 else -v*(up-tau)
+    assert paid==penalty and all(load_rows[s]>=D['e']-A['gamma'][s] for s in range(1,D['m']) if s not in A['known'])
+    x=list(map(rat,R['x']));rc=list(map(rat,R['rc']));pi=list(map(rat,R['pi']));nv=A['nv'];assert len(x)==len(rc)==nv and len(pi)==len(A['rows']) and min(x)>=0 and min(rc)>=0
+    load=[F(0)]*nv;dual=F(A['constant'])
+    for (sense,rhs,co),weight in zip(A['rows'],pi):
+        value=sum(v*x[k] for k,v in co.items())
+        assert value==rhs if sense=='=' else value>=rhs if sense=='>' else value<=rhs
+        assert weight>=0 if sense=='>' else weight<=0 if sense=='<' else True
+        dual+=weight*rhs
+        for k,v in co.items():load[k]+=weight*v
+    assert all(load[k]+rc[k]==A['objective'][k] for k in range(nv))
+    primal=F(A['constant'])+sum(v*t for v,t in zip(A['objective'],x));assert primal==dual and abs(float(primal)-R['value'])<1e-5
+    m,e,r=D['m'],D['e'],D['r'];d=len(A['gr']);p=x[:d];w=[sum(a*b for a,b in zip(A['z'][s],p)) for s in range(m)]
+    q=(w[r]-r)/m;mu=[q]+[(w[r]-w[s]-(r-s)%m)/m for s in range(1,m)]
+    assert q>=5 and mu[r]==0 and all(mu[s]>=epsilon for s in range(1,m) if s!=r)
+    assert all(w[s]>=m+s for s in range(1,m))
+    for i,j,s,J,*_ in D['pairs']:
+        gap=w[i]+w[j]-w[s];assert gap==0 if not J else gap>=m
+    view={**D,'q':q,'mu':mu};N=axis_transport_network(view,True,known_override=A['known']);assert N==A['network']
+    baseline=upper_baseline(view);K=A['known'];gamma=A['gamma'];omega=F(sum(gamma[s]*((r-s)%m) for s in range(m))-(e-2)*m*(m-1)//2,m)+sum(gamma[s]*(mu[s] if s in K else baseline[s]) for s in range(m))-penalty
+    assert m*omega==primal
+    budget=defaultdict(F);theta={s:F(A['gamma'][s]) for s in A['known']};active=[]
+    for (sense,rhs,co),(kind,key),weight in zip(A['rows'],A['tags'],pi):
+        if kind=='baseline':
+            assert 0<=weight<=gamma[key];theta[key]=weight;budget['tree_cost']+=m*weight*A['depth'][key]
+        elif kind!='trade':budget[kind]+=weight*rhs
+        if weight:active.append([kind,key,str(weight)])
+    budget['residue']+=sum((gamma[s]-theta.get(s,0))*((r-s)%m) for s in range(1,m) if s not in K)
+    budget['correction']=F((e-2)*m*(m-1),2);budget['transport_cost']=m*penalty
+    assert budget['strict']+budget['primitive']+budget['depth']+budget['residue']-budget['tree_cost']-budget['correction']-budget['transport_cost']==primal
+    integral=all(p[k].denominator==1 and (p[k]-g)%m==0 for k,g in enumerate(A['gr']))
+    witness=None
+    if integral:
+        wi=list(map(int,w));ci=wi[r]-m+1;gi=sum((wi[s]-s)//m for s in range(m));pairs=[]
+        for i,j,s,J,tau,lo,up in D['pairs']:pairs.append([i,j,s,(wi[i]+wi[j]-wi[s])//m,tau,lo,up])
+        actual_seed={**D,'generators':sorted([m]+list(map(int,p))),'w':wi,'mu':list(map(int,mu)),
+                     'c':ci,'g':gi,'W':e*(ci-gi)-ci,'q':int(q),'pairs':pairs,'models':{}}
+        audit(actual_seed)
+        witness={k:actual_seed[k] for k in ('generators','c','g','W')}
+    return {'generators':D['generators'],'epsilon':str(epsilon),'minimum':str(omega),'primitive_values':list(map(str,p)),
+            'q':str(q),'transport_cost':penalty,'known_zero':len(K),'genuine_congruences':integral,
+            'actual_objective_at_point':str(F(m-r-1)+(e-m)*q+e*sum(mu[1:])),
+            'finite_budget':{k:str(F(v,m)) for k,v in budget.items()},'active_dual_rows':active,
+            'partially_used_baselines':sum(0<v<gamma[s] for s,v in theta.items() if s not in K),'genuine_witness':witness}
 
 def interior_sources(D):
     """Residue injection from interior column bases to distinct boundary cells."""
@@ -379,6 +471,30 @@ def primitive_dual_budget(D,C,value):
     assert costs['allowances']<=0
     return {k:str(v) for k,v in costs.items()}
 
+def actual_dual_transfer(D,C,x,joint_value):
+    """Restrict y=a and tighten certificate rows to actual tight equalities."""
+    m,e,r=D['m'],D['e'],D['r'];rc=[F(0)]+list(map(rat,C['rc']))
+    load=[F(0)]*(m+1);dual=F(m-r-1);gain=F(0)
+    for R in C['rows']:
+        pi=rat(R['pi']);rhs=rat(R['b']);coeff=defaultdict(F)
+        for a,v in R['a']:coeff[a-m if a>m else a]+=rat(v)
+        if R['kind']==1:
+            i,j,s,J,tau,lo,up=D['pairs'][R['pair']];assert not J
+            gain+=pi*(tau-rhs);rhs=F(tau)
+        dual+=pi*rhs
+        for a,v in coeff.items():load[a]+=pi*v
+    for s in range(1,m):
+        load[s]+=rc[s]+rc[m+s];assert load[s]==e
+    load[m]+=rc[m];assert load[m]==e-m
+    dual+=5*rc[m]
+    actual=F(m-r-1)+(e-m)*x[m]+e*sum(x[1:m])
+    gap=sum(rc[m+s]*x[s] for s in range(1,m))
+    assert gain>=0 and gap>=0 and dual==joint_value+gain and actual-dual==gap
+    assert gap==sum(rc[m+s]*(x[s]-x[m+s]) for s in range(1,m))
+    return {'lower_bound':str(dual),'value_at_joint_point':str(actual),
+            'allowance_gain':str(gain),'primal_dual_gap':str(gap),
+            'certified_optimum':str(dual) if not gap else None}
+
 def audit_face(D,out):
     m,e,r=D['m'],D['e'],D['r'];C=D['face'];nv=2*m-1
     assert C['variables']==nv and C['status'] in (2,5)
@@ -454,7 +570,9 @@ def audit_face(D,out):
     result['actual_constraints']=actual
     if not oriented:
         result['primitive_projection']=primitive_projection(D,x,value,coverage=='full')
-        if C['status']==2:result['primitive_dual_budget']=primitive_dual_budget(D,C,value)
+        if C['status']==2:
+            result['primitive_dual_budget']=primitive_dual_budget(D,C,value)
+            result['actual_dual_transfer']=actual_dual_transfer(D,C,x,value)
     # If the actual point is integral, reconstruct S independently from its
     # resulting positive generators, rather than accepting Kunz inequalities alone.
     if not oriented and all(x[a].denominator==1 for a in range(1,m+1)):
@@ -654,6 +772,12 @@ def audit(D):
     return out
 
 if __name__=='__main__':
+    if sys.argv[1]=='--axis-face':
+        results=[audit_axis_face(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
+        with open(sys.argv[3],'w') as out:json.dump(results,out,indent=2)
+        for R in results:print('AXIS-FACE',R)
+        print('EXACTLY CERTIFIED',len(results),'fixed-column continuous regional minima; fractional points are not semigroups')
+        sys.exit(0)
     if sys.argv[1]=='--axis-transport':
         results=[audit_axis_transport(json.loads(line)) for line in open_text(sys.argv[2]) if line.strip()]
         with open(sys.argv[3],'w') as f:json.dump(results,f,indent=2)

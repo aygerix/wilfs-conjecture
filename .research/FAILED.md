@@ -253,3 +253,13 @@ The unweighted cycle pays7>=6 exactly as E425 proves; column scaling is the inva
 orbit has8<24. The full corrected E424 bound remains4419>0. Do not call this a certificate/Wilf
 failure or abandon global compensation: discontinue only per-orbit column-scaled self-payment.
 Exact table/proof/checker regression: PROOFS E426, verify_probe.py primitive_cycle_budget, run_checks.sh.
+
+### E427: treat positive orbit slack as free new dual credit — coefficient accounting forbids it
+
+For any nonzero nonnegative balanced primitive-edge circulation lambda, compensating its primitive
+coefficients with the existing primitive-bound multipliers changes the finite lower bound by
+-m*sum_tight lambda-sum_j g_j*sum_s lambda_(s,j)<0. This holds across primitive directions too.
+Thus the E425 scalar surplus is not an independent additional source after objective matching;
+its primitive value credit has already been spent. This does not rule out signed zero-RHS trades,
+unbalanced flows matched by adaptive cap loads, or a global boxed allocation. E429 retains exactly
+those possibilities. Do not revive nonnegative circulation-only funding under a new local weight.

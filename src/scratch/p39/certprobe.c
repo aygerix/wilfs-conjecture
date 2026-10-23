@@ -16,6 +16,8 @@
  *   longer reconstructs numerical semigroups from arbitrary integral points.
  * --face-zero-unpaid: diagnostic keeping only zero-alpha/zero-kappa sides
  *   in unpaid variables. Its certificates need not satisfy the full model.
+ * --linear-lp FILE: solve an explicit nonnegative-variable sparse continuous LP;
+ *   exports primal/dual arrays for exact checking of the supplied integer model.
  * JSON output includes all primal/dual data for independent rational checking.
  * build: gcc -O2 certprobe.c -I.../include -L.../lib -lgurobi130 -lm -o certprobe
  */
@@ -32,6 +34,28 @@ typedef struct { int i,j,s,J,tau,lo,up; } Pair;
 typedef struct { int n,ind[4],pair,kind; double val[4],rhs; char sense; } Row;
 static void *alloc(size_t n,size_t s){void *p=calloc(n,s);if(!p){fprintf(stderr,"allocation failed\n");exit(2);}return p;}
 static int cmp(const void *a,const void*b){int x=*(const int*)a,y=*(const int*)b;return (x>y)-(x<y);}
+static int linear_lp(const char *path){
+ FILE *in=fopen(path,"r");int nv,nr;double constant;
+ if(!in||fscanf(in,"%d%d%lf",&nv,&nr,&constant)!=3||nv<1||nv>8192||nr<0||nr>1000000||!isfinite(constant))return 1;
+ double *obj=alloc(nv,sizeof(double)),*lb=alloc(nv,sizeof(double));
+ for(int v=0;v<nv;v++)if(fscanf(in,"%lf",&obj[v])!=1||!isfinite(obj[v]))return 1;
+ GRBenv *env=NULL;CHECK(GRBemptyenv(&env));CHECK(GRBsetintparam(env,"OutputFlag",0));CHECK(GRBsetintparam(env,"Threads",1));CHECK(GRBstartenv(env));
+ CHECK(GRBsetdblparam(env,"FeasibilityTol",1e-9));CHECK(GRBsetdblparam(env,"OptimalityTol",1e-9));CHECK(GRBsetdblparam(env,"TimeLimit",60));
+ GRBmodel *M=NULL;CHECK(GRBnewmodel(env,&M,"EXPLICIT_CONTINUOUS",nv,obj,lb,NULL,NULL,NULL));
+ int *ix=alloc(nv,sizeof(int));double *val=alloc(nv,sizeof(double));
+ for(int a=0;a<nr;a++){
+  char sense;double rhs;int nz;
+  if(fscanf(in," %c%lf%d",&sense,&rhs,&nz)!=3||!strchr("<>=",sense)||!isfinite(rhs)||nz<0||nz>nv)return 1;
+  for(int k=0;k<nz;k++)if(fscanf(in,"%d%lf",&ix[k],&val[k])!=2||ix[k]<0||ix[k]>=nv||!isfinite(val[k]))return 1;
+  CHECK(GRBaddconstr(M,nz,ix,val,sense,rhs,NULL));
+ }fclose(in);CHECK(GRBoptimize(M));int status;CHECK(GRBgetintattr(M,GRB_INT_ATTR_STATUS,&status));
+ if(status!=GRB_OPTIMAL){fprintf(stderr,"continuous LP status%d\n",status);return 3;}
+ double value,*x=alloc(nv,sizeof(double)),*rc=alloc(nv,sizeof(double)),*pi=alloc(nr,sizeof(double));
+ CHECK(GRBgetdblattr(M,GRB_DBL_ATTR_OBJVAL,&value));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_X,0,nv,x));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_RC,0,nv,rc));CHECK(GRBgetdblattrarray(M,GRB_DBL_ATTR_PI,0,nr,pi));
+ printf("{\"status\":%d,\"value\":%.17g,\"x\":[",status,value+constant);
+ for(int v=0;v<nv;v++)printf("%s%.17g",v?",":"",x[v]);printf("],\"rc\":[");for(int v=0;v<nv;v++)printf("%s%.17g",v?",":"",rc[v]);printf("],\"pi\":[");for(int a=0;a<nr;a++)printf("%s%.17g",a?",":"",pi[a]);printf("]}\n");
+ GRBfreemodel(M);GRBfreeenv(env);free(obj);free(lb);free(ix);free(val);free(x);free(rc);free(pi);return 0;
+}
 static Row pairrow(Pair p,int pi,char sense,int rhs){
  Row R={.pair=pi,.kind=0,.sense=sense,.rhs=rhs};
  int ix[3]={p.i-1,p.j-1,p.s-1},co[3]={1,1,-1};
@@ -124,6 +148,7 @@ static void cone_report(GRBenv *env,int m,int q,int np,Pair *P,int *mu,int *gen,
  GRBfreemodel(M);free(b);free(rigid);free(obj);free(lb);free(ub);free(rows);free(X);free(pi);free(rc);
 }
 int main(int argc,char **argv){
+ if(argc==3&&!strcmp(argv[1],"--linear-lp"))return linear_lp(argv[2]);
  int cone=0,target=0,face=0;
  if(argc>1&&!strcmp(argv[1],"--face")){face=1;argc--;argv++;}
  else if(argc>1&&!strcmp(argv[1],"--face-primitive")){face=2;argc--;argv++;}

@@ -13,6 +13,7 @@
  *   addition by every non-multiplicity primitive remains in the Apéry set.
  * --axis-flow FILE: exact integer min-cost flow for weighted column transport;
  *   exports a feasible flow and residual potentials for independent checking.
+ * --axis-seed m g...: export exact seed invariants/rows without optimization.
  * --unit-audit m g...: export that integer envelope (an upper bound, not a feasible x).
  * --weighted-search NS SEED [MIN_E]: test W-e sum U>=0, stopping at first failure.
  * --weighted-audit m g...: add an exact assignment certificate on the residual core.
@@ -128,6 +129,20 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
    int v=z[i]+z[j]-q-up;if(v>z[s])z[s]=v;v=h[i]+h[j];if(v>h[s])h[s]=v;
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
+ if(dump==10){
+  printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"g\":%lld,\"W\":%lld,\"q\":%d,\"rho\":%d,\"r\":%d,\"generators\":[%d",m,e,c,genus,W,q,rho,r,m);
+  for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);
+  printf("],\"w\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",w[s]);
+  printf("],\"mu\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",mu[s]);
+  printf("],\"height\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",h[s]);
+  printf("],\"pairs\":[");int printed=0;
+  for(int i=1;i<m;i++)for(int j=i;j<m;j++){
+   int s=(i+j)%m;if(!s)continue;int rp=(w[s]-c)%m;if(rp<0)rp+=m;
+   int lo=rp>=m-rho&&i>r&&j>r,up=rp<=m-rho-2&&i<=r&&j<=r;
+   int J=(w[i]+w[j]-w[s])/m,tau=mu[i]+mu[j]-mu[s]-q+J;
+   printf("%s[%d,%d,%d,%d,%d,%d,%d]",printed++?",":"",i,j,s,J,tau,lo,up);
+  }printf("],\"models\":{}}\n");return 1;
+ }
  if(unit_audit||combined_audit||dump==6||dump==7||dump==8||dump==9){
   /* Nonnegative capped x obeys xi<=xs+alpha, xj<=xs+alpha and
    * xs<=xi+xj+kappa. Starting at delta gives valid integer upper bounds.
@@ -408,11 +423,11 @@ int main(int argc,char **argv){
   }
   printf("ENUM_DONE m=%d e=%d K=%d candidates=%ld accepted=%ld Bnegative=%ld min_corrected=%lld max_repair_ratio=%lld/%lld\n",m,e,K,cand,acc,nbneg,best0,ratio_num,ratio_den);return 0;
  }
- if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit")||!strcmp(argv[1],"--unit-audit")||!strcmp(argv[1],"--weighted-audit")||!strcmp(argv[1],"--integer-weighted-audit")||!strcmp(argv[1],"--equality-weighted-audit"))){
+ if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover")||!strcmp(argv[1],"--capacity-audit")||!strcmp(argv[1],"--transport-audit")||!strcmp(argv[1],"--unit-audit")||!strcmp(argv[1],"--weighted-audit")||!strcmp(argv[1],"--integer-weighted-audit")||!strcmp(argv[1],"--equality-weighted-audit")||!strcmp(argv[1],"--axis-seed"))){
   int ng=argc-2,G0[MM+GG],m0=INT_MAX;if(ng>MM+GG)return 1;for(int k=0;k<ng;k++){G0[k]=atoi(argv[k+2]);if(G0[k]<m0)m0=G0[k];}
   if(m0<2||m0>=MM)return 1;
   int at=0;while(G0[at]!=m0)at++;int tmp=G0[0];G0[0]=G0[at];G0[at]=tmp;
-  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:!strcmp(argv[1],"--unit-audit")?6:!strcmp(argv[1],"--weighted-audit")?7:!strcmp(argv[1],"--integer-weighted-audit")?8:!strcmp(argv[1],"--equality-weighted-audit")?9:2;
+  int mode=!strcmp(argv[1],"--cover")?3:!strcmp(argv[1],"--capacity-audit")?4:!strcmp(argv[1],"--transport-audit")?5:!strcmp(argv[1],"--unit-audit")?6:!strcmp(argv[1],"--weighted-audit")?7:!strcmp(argv[1],"--integer-weighted-audit")?8:!strcmp(argv[1],"--equality-weighted-audit")?9:!strcmp(argv[1],"--axis-seed")?10:2;
   ll best0=1LL<<60;return eval(m0,G0,ng,2,mode,&best0)==0?1:0;
  }
  if(argc<3)return 1;long N=atol(argv[1]);state=strtoull(argv[2],NULL,10);if(!state)state=1;int mine=argc>3?atoi(argv[3]):4;

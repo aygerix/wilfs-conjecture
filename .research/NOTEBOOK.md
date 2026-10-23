@@ -5067,3 +5067,54 @@ E425's valid unit-row allocation, discontinue column-scaled orbit payment, and d
 local balancing search. Next work must couple orbit/direction credits and satisfy the full E419
 objective coefficient identity, with C reserved. This is a mathematical obstruction/corrected
 strategy under the same universal scope, not a Wilf or full capped counterexample.
+
+### 2026-10-23 03:54 EDT — E427–E429: match coefficients before spending orbit surplus
+
+PROGRESS: E427 proves a strict no-gain formula for nonnegative balanced primitive circulations
+when primitive-bound coefficients are compensated. The earlier scalar cycle surplus is real but
+cannot be counted twice as a new Farkas source. This ends both per-orbit scaling and the proposed
+nonnegative globally balanced circulation extension. Signed tight trades and adaptive cap loads
+are not excluded.
+
+Derived/audited E428 by identifying y=a in a joint dual: actual bound=V+P, gap=sum rc_y*x. Twenty
+saved full profiles thereby have independently certified actual minima;11 remain bracketed. No new
+actual solver was used and no point value with positive gap was called a minimum.
+
+Discriminating tests: all31 existing joint actual points and6 rational scale perturbations stayed
+nonnegative for the allocation diagnostic. Three bounded generator +/-m descents used21 candidate
+calls and found no negative bound; the60case reaches199/780 at<60,67,131,181>. Do not enlarge either
+sample. E429 instead tests the clipped bound on a whole unbounded actual profile. The complete
+profile-forced-zero version has exact minima100,300,312 on the3 selected profiles. This is a closed
+positive diagnostic, not universal evidence. All integer matrix optimization is in the C API;
+Python is stdlib model generation/orchestration/rational auditing, no Python MILP/optimizer.
+
+New paper structure: the resulting global coefficient/budget pair (BC/BB) uses boxed baseline
+weights lambda in[0,Gamma], signed tight trades and complete cyclic distances. Standard extreme-
+point reasoning proves an optimal dual exists with at most e-1 partially used baseline weights.
+The unresolved statement is their TOTAL finite budget, including C/m, P_0 and sum lambda*T. Neither
+normal form nor reduced dimension establishes its sign.
+
+Mandatory strategic review: distance advanced is the exact coefficient obstruction and global
+allocation structure, not a proof of positivity. The success mechanism would be a residue-sensitive
+choice of full/unused baseline coordinates plus the few partial ones, funded globally by actual
+strict exits and primitive/depth/cap credits. Opportunity cost favors deriving that counting rule
+over another positive optimizer call. Kill pure balanced-cycle funding and all local self-payment;
+continue the boxed GLOBAL construction, while keeping the separate actual/integer question alive.
+Bias check: this is still a stronger auxiliary real/certificate statement than Wilf. A negative
+auxiliary point would have to be classified honestly, and could justify weakening the target while
+preserving the universal Wilf goal. No side family or guessed unpaid cap is activated.
+
+Final checkpoint verification passes:258 earlier LP certificates plus6 allocation LPs, exact
+coefficient transfer,44 earlier flow certificates plus3 descent endpoints, and the new models'
+flow proofs. All3 C seed-export sanitizer inputs and6 C sparse continuous-model sanitizer runs pass,
+Gurobi leak detection disabled. New429 results remain paper/exact-certificate checked, not Lean
+checked. The normal-form budget is exported as rational strings throughout; an integer display
+conversion was corrected and all6 model audits repeated without changing any mathematical values.
+All user/unrelated worktree changes remain untouched. No complete Wilf proof/counterexample.
+
+A final paper refinement uses the advisor's inner-trade perspective explicitly: in the boxed dual,
+project coefficient matching modulo the span of signed zero-RHS tight trade vectors. The partial-
+weight bound improves from e-1 to the dimension of that quotient. Lift any residual coefficient
+error by signed tight multipliers at zero finite cost. No strict affine boundary is removed. This
+is a global structural lemma, not positivity; unique-factorization profiles retain the full e-1
+bound, so it does not revive collision-only funding.
