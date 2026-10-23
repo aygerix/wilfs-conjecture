@@ -4793,3 +4793,43 @@ Validation: consolidated run passes135 previous optima,27 cone,7 capped/coordina
 optima (174 total), existing matching/transport/BASE checks. No sanitizer claim for the new unit branch.
 Logs: data/checkpoint_406_checks.log and data/unpaid_cone_lean.log. Mathematical goal remains ACTIVE;
 neither a universal proof nor a genuine counterexample has been found. Classification: **PROGRESS**.
+
+## 2026-10-22 23:23 EDT — residual assignment; applicable criticism; integer distinction
+
+**E408.** Previous turn was PROGRESS (cone proof/certificates, unit-weight counterexample, constructor
+fix); no old process needed resuming. Compared the weighted envelope with existing bounds on28 saved S.
+Reused E392 seed390/10000 candidates,8592 accepted,34 B-negative; no negative propagation bound.
+Nine record-low witnesses independently checked. This is finite evidence, not universal positivity.
+
+Derived a stronger structural interpretation: the no-floor envelope is the greatest real vector in
+the WEAK three-inequality polytope Q. It need not lie in P. Restart assignment after propagation on
+overflows h=U_i+U_j-U_s-alpha>0. All such demands have two nonzero-U parents, by the fixed-point
+parent bounds. The exact identity z=U-x gives the existing assignment/rounding proof on this core.
+Implemented before receiving the user's assessment;29 complete certificates then verified.
+
+**E409, user-supplied criticism.** Central assessment is applicable: exact local reconstruction is
+not a global nonnegativity argument. Verified the supplied65example from generators: c1108,g596,
+e5,W1452,431+510=941 and U41=U55=1,U31=0. Added explicitly separate integer repeated-parent floors.
+No-floor bound1397,M4->1407; integer bound1402,M2->1407. A fresh exact full real capped LP also
+has value1407. The advisor's four earlier examples and65obstruction are consistent with the data.
+Small algebraic qualification: z_i+z_j-z_s>=max(0,h) is only justified on h>0 rows; the resulting
+nonnegative PAIR-cover demands remain valid on all rows. The proposed sufficient positivity target
+therefore stands with the real/integer feasible sets and active overflow rows made explicit.
+
+**Important correction to the old next-action wording.** Positive directions on all12 nonempty
+REAL cores do not rule out additional integer forced zeros. Floors remove one unit on each of the
+two60cases, matching the previously uncaptured residual assignment. The supplied65case still has
+a nontrivial residual edge after integer propagation. Avoid treating IntCap as real CapUA3.
+
+**Global review — CONTINUE toward a global positivity theorem, stop benchmark-only iteration.**
+The candidate Phi_Z>=0 is universal on the remaining domain and implies Wilf via the recorded
+complement. It can be false even if Wilf is true. The current facts establish validity of Phi_Z as
+a lower bound; they do not establish its sign. Next isolate an arithmetic/residue-completeness
+payment comparing the propagated baseline and residual pair cost to c. Do not rerun the sample for
+the stronger bound: positivity of the weaker bound on that sample already implies its success.
+The user criticism is a useful diagnosis, not evidence that the universal target has been solved.
+
+Validation:175 exact LP optima;58 real/integer envelope+assignment witnesses on29 S;9 additional
+sampled envelopes; existing checks pass. Reverse-order independent propagation gives the same
+fixed points. Empty-core, weighted51-cell-core and integer65case pass ASan/UBSan. Artifacts remain
+in the existing p39 data folder; STATE updated in place. Goal remains ACTIVE. Classification: PROGRESS.

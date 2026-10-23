@@ -7264,3 +7264,72 @@ single-top-ideal argument are now excluded. The missing general statement must p
 unpaid mass as well as the fixed boundary, retaining all maximal elements and residue completeness.
 The cone support lemma does not supply that counting statement. Universal nonnegativity of the
 existing matching, propagated or full capped certificates remains unproved.
+
+### Propagated residual matching and the real/integer distinction (E408/E409)
+
+**General paper result; existing assignment/rounding Lean components apply. Positivity UNPROVED.**
+For the no-floor recurrence in E406 define the weak polytope Q by0<=x<=delta and, for every tight pair,
+
+    x_i<=x_s+alpha, x_j<=x_s+alpha, x_s<=x_i+x_j+kappa.
+
+The stabilized U is its greatest feasible vector, including over R. Indeed each update preserves
+x<=U for every x in Q; integer initial bounds and updates terminate. At termination U itself satisfies
+every defining inequality of Q. Therefore max_Q sum x=sum U. This is exact for Q, NOT the full P.
+Adding both parents on the alpha side is essential; Q only retains each separate parent bound.
+
+Let J={s:U_s>0}. On this fixed point, every positive overflow
+
+    h_p=U_i+U_j-U_s-alpha_p >0
+
+has both i,j in J: if U_j=0, then h_p=U_i-U_s-alpha_p<=0 by the fixed-point inequality. The same
+argument applies with i and j reversed. Build a symmetric matrix H on J, setting H_ij to the maximum
+positive overflow of that pair (zero if none), with repeated-parent demands on the diagonal. Let M_U
+be its maximum assignment weight. For any feasible full capped x, z=U-x>=0 and the original alpha row gives
+
+    z_i+z_j-z_s >= h_p, hence z_i+z_j >= h_p when h_p>0.
+
+For h_p<=0, only the latter inequality with demand0 is asserted. In particular, replacing h_p by
+max(0,h_p) in the THREE-variable inequality is not valid in general. Summing along an optimal
+assignment uses each z twice and proves the real bound
+
+    CapUA3 >= W-e sum U+e M_U/2.
+
+The actual point x=0 has z=U integral, so the recorded rounded-assignment argument proves
+
+    W >= Phi(S):=W-e sum U+e ceil(M_U/2).
+
+Phi need not bound the real capped LP after rounding. Universal Phi>=0 is unproved and would imply
+Wilf in the remaining domain, together with the recorded complement theorems. Exactness on examples
+does not establish its sign universally.
+
+**Integer propagation is a different model.** Define P_Z=P intersect Z^m, and IntCap=min_{x in P_Z}
+(W-e sum x). This set contains x=0, so W>=IntCap. Repeated parents permit
+U_i<-min(U_i,floor((U_s+alpha)/2)) for this model. All updates then preserve x<=U for every x in P_Z;
+termination is finite. This U is the greatest INTEGER vector in the weak system augmented with its
+repeated-parent alpha rows. Residual assignment yields
+
+    W >= IntCap >= Phi_Z(S):=W-e sum U+e ceil(M_U/2).
+
+No real CapUA3 bound follows from the floored envelope. Concrete distinction: <60,61,67,71> has
+real CapUA3=234 (real residual bound232+4/2), while integer propagation and rounded matching give236.
+The positive real cone directions of E405 do NOT preclude further integer forced zeros. On
+<60,67,71,121> the integer recurrence cuts unpaid mass15->14, raising176->180; on the preceding
+60case it cuts7->6, raising232->236. These are examples of useful integer zeros beyond Boolean closure.
+
+**User-supplied coupling obstruction independently verified.** S=<65,82,214,217,265> has
+m65,e5,c1108,g596,W1452 and the tight pair w41+w55=431+510=941=w31,alpha1,kappa0.
+Both envelopes have U41=U55=1,U31=0, so neither is feasible in P. The no-floor envelope has mass11,
+bound1397,M_U4,Phi1407. The integer envelope has mass10,bound1402,M_U2,Phi_Z1407. An independently
+audited full real capped LP has maximum unpaid9, hence CapUA3=1407 exactly. This validates the
+supplied example and its integer values; it is not a counterexample to Wilf or to Phi_Z>=0.
+
+The28 earlier saved S plus this new S have both envelopes and exact assignment/dual certificates.
+On the earlier28, residual matching improves only two no-floor values:232->236 and176->180. Both
+improvements are already captured by integer propagation, so their integer residual assignment is0.
+The supplied65case has a genuine residual pair coupling after integer propagation (1402->1407).
+Do not describe the new matching stage as recovering a missing global counting theorem.
+
+**Next exact research target:** prove or falsify Phi_Z>=0 for every S with c>4m,3e<m. Any true Wilf
+counterexample makes this valid lower bound negative. The unchanged universal backwards scope applies.
+The missing proof must use arithmetic/residue completeness to compare the propagated baseline and
+remaining pair cost to c; more exact reconstruction of an individual W does not supply that comparison.

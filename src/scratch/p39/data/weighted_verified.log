@@ -1,0 +1,67 @@
+WEIGHTED ENVELOPE CERTIFIED G=[20, 23, 25, 39] integer=False W=70 bound=70 unpaid=0 maxU=0 residual_M=0 rounded=70
+WEIGHTED ENVELOPE CERTIFIED G=[25, 59, 60, 76, 93, 102] integer=False W=546 bound=546 unpaid=0 maxU=0 residual_M=0 rounded=546
+WEIGHTED ENVELOPE CERTIFIED G=[20, 25, 61, 102, 143, 184] integer=False W=444 bound=390 unpaid=9 maxU=1 residual_M=0 rounded=390
+WEIGHTED ENVELOPE CERTIFIED G=[19, 26, 27, 48] integer=False W=22 bound=22 unpaid=0 maxU=0 residual_M=0 rounded=22
+WEIGHTED ENVELOPE CERTIFIED G=[37, 75, 78, 80, 88, 89] integer=False W=102 bound=102 unpaid=0 maxU=0 residual_M=0 rounded=102
+WEIGHTED ENVELOPE CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] integer=False W=228 bound=214 unpaid=2 maxU=1 residual_M=0 rounded=214
+WEIGHTED ENVELOPE CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] integer=False W=338 bound=324 unpaid=2 maxU=1 residual_M=0 rounded=324
+WEIGHTED ENVELOPE CERTIFIED G=[15, 37, 39, 40] integer=False W=32 bound=32 unpaid=0 maxU=0 residual_M=0 rounded=32
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 27, 29] integer=False W=41 bound=37 unpaid=1 maxU=1 residual_M=0 rounded=37
+WEIGHTED ENVELOPE CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] integer=False W=189 bound=133 unpaid=8 maxU=1 residual_M=0 rounded=133
+WEIGHTED ENVELOPE CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] integer=False W=451 bound=409 unpaid=6 maxU=1 residual_M=0 rounded=409
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22] integer=False W=100 bound=100 unpaid=0 maxU=0 residual_M=0 rounded=100
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22, 39] integer=False W=148 bound=148 unpaid=0 maxU=0 residual_M=0 rounded=148
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 43] integer=False W=468 bound=468 unpaid=0 maxU=0 residual_M=0 rounded=468
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 79] integer=False W=616 bound=616 unpaid=0 maxU=0 residual_M=0 rounded=616
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 79, 118] integer=False W=843 bound=843 unpaid=0 maxU=0 residual_M=0 rounded=843
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 20] integer=False W=29 bound=29 unpaid=0 maxU=0 residual_M=0 rounded=29
+WEIGHTED ENVELOPE CERTIFIED G=[16, 19, 21] integer=False W=26 bound=26 unpaid=0 maxU=0 residual_M=0 rounded=26
+WEIGHTED ENVELOPE CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] integer=False W=239 bound=215 unpaid=3 maxU=1 residual_M=0 rounded=215
+WEIGHTED ENVELOPE CERTIFIED G=[64, 67, 69, 77, 129] integer=False W=467 bound=452 unpaid=3 maxU=1 residual_M=0 rounded=452
+WEIGHTED ENVELOPE CERTIFIED G=[146, 147, 155, 185] integer=False W=1136 bound=968 unpaid=42 maxU=1 residual_M=0 rounded=968
+WEIGHTED ENVELOPE CERTIFIED G=[60, 61, 67, 71] integer=False W=260 bound=232 unpaid=7 maxU=1 residual_M=1 rounded=236
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 175, 184] integer=False W=1130 bound=1130 unpaid=0 maxU=0 residual_M=0 rounded=1130
+WEIGHTED ENVELOPE CERTIFIED G=[60, 67, 71, 121] integer=False W=236 bound=176 unpaid=15 maxU=1 residual_M=2 rounded=180
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=False W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+WEIGHTED ENVELOPE CERTIFIED G=[43, 155, 184, 193] integer=False W=366 bound=366 unpaid=0 maxU=0 residual_M=0 rounded=366
+WEIGHTED ENVELOPE CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] integer=False W=346 bound=339 unpaid=1 maxU=1 residual_M=0 rounded=339
+WEIGHTED ENVELOPE CERTIFIED G=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1080] integer=False W=5687 bound=5060 unpaid=57 maxU=2 residual_M=0 rounded=5060
+WEIGHTED ENVELOPE CERTIFIED G=[65, 82, 214, 217, 265] integer=False W=1452 bound=1397 unpaid=11 maxU=1 residual_M=4 rounded=1407
+WEIGHTED ENVELOPE CERTIFIED G=[20, 23, 25, 39] integer=True W=70 bound=70 unpaid=0 maxU=0 residual_M=0 rounded=70
+WEIGHTED ENVELOPE CERTIFIED G=[25, 59, 60, 76, 93, 102] integer=True W=546 bound=546 unpaid=0 maxU=0 residual_M=0 rounded=546
+WEIGHTED ENVELOPE CERTIFIED G=[20, 25, 61, 102, 143, 184] integer=True W=444 bound=390 unpaid=9 maxU=1 residual_M=0 rounded=390
+WEIGHTED ENVELOPE CERTIFIED G=[19, 26, 27, 48] integer=True W=22 bound=22 unpaid=0 maxU=0 residual_M=0 rounded=22
+WEIGHTED ENVELOPE CERTIFIED G=[37, 75, 78, 80, 88, 89] integer=True W=102 bound=102 unpaid=0 maxU=0 residual_M=0 rounded=102
+WEIGHTED ENVELOPE CERTIFIED G=[55, 71, 78, 79, 93, 97, 99] integer=True W=228 bound=214 unpaid=2 maxU=1 residual_M=0 rounded=214
+WEIGHTED ENVELOPE CERTIFIED G=[55, 60, 61, 68, 70, 73, 78] integer=True W=338 bound=324 unpaid=2 maxU=1 residual_M=0 rounded=324
+WEIGHTED ENVELOPE CERTIFIED G=[15, 37, 39, 40] integer=True W=32 bound=32 unpaid=0 maxU=0 residual_M=0 rounded=32
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 27, 29] integer=True W=41 bound=37 unpaid=1 maxU=1 residual_M=0 rounded=37
+WEIGHTED ENVELOPE CERTIFIED G=[34, 42, 53, 54, 56, 57, 67] integer=True W=189 bound=133 unpaid=8 maxU=1 residual_M=0 rounded=133
+WEIGHTED ENVELOPE CERTIFIED G=[66, 67, 71, 72, 98, 103, 128] integer=True W=451 bound=409 unpaid=6 maxU=1 residual_M=0 rounded=409
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22] integer=True W=100 bound=100 unpaid=0 maxU=0 residual_M=0 rounded=100
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 22, 39] integer=True W=148 bound=148 unpaid=0 maxU=0 residual_M=0 rounded=148
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 43] integer=True W=468 bound=468 unpaid=0 maxU=0 residual_M=0 rounded=468
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 42, 79] integer=True W=616 bound=616 unpaid=0 maxU=0 residual_M=0 rounded=616
+WEIGHTED ENVELOPE CERTIFIED G=[40, 41, 79, 118] integer=True W=843 bound=843 unpaid=0 maxU=0 residual_M=0 rounded=843
+WEIGHTED ENVELOPE CERTIFIED G=[13, 17, 20] integer=True W=29 bound=29 unpaid=0 maxU=0 residual_M=0 rounded=29
+WEIGHTED ENVELOPE CERTIFIED G=[16, 19, 21] integer=True W=26 bound=26 unpaid=0 maxU=0 residual_M=0 rounded=26
+WEIGHTED ENVELOPE CERTIFIED G=[77, 102, 111, 121, 126, 133, 134, 137] integer=True W=239 bound=215 unpaid=3 maxU=1 residual_M=0 rounded=215
+WEIGHTED ENVELOPE CERTIFIED G=[64, 67, 69, 77, 129] integer=True W=467 bound=452 unpaid=3 maxU=1 residual_M=0 rounded=452
+WEIGHTED ENVELOPE CERTIFIED G=[146, 147, 155, 185] integer=True W=1136 bound=968 unpaid=42 maxU=1 residual_M=0 rounded=968
+WEIGHTED ENVELOPE CERTIFIED G=[60, 61, 67, 71] integer=True W=260 bound=236 unpaid=6 maxU=1 residual_M=0 rounded=236
+WEIGHTED ENVELOPE CERTIFIED G=[146, 155, 175, 184] integer=True W=1130 bound=1130 unpaid=0 maxU=0 residual_M=0 rounded=1130
+WEIGHTED ENVELOPE CERTIFIED G=[60, 67, 71, 121] integer=True W=236 bound=180 unpaid=14 maxU=1 residual_M=0 rounded=180
+WEIGHTED ENVELOPE CERTIFIED G=[60, 71, 121, 143] integer=True W=237 bound=237 unpaid=0 maxU=0 residual_M=0 rounded=237
+WEIGHTED ENVELOPE CERTIFIED G=[43, 155, 184, 193] integer=True W=366 bound=366 unpaid=0 maxU=0 residual_M=0 rounded=366
+WEIGHTED ENVELOPE CERTIFIED G=[66, 71, 72, 98, 103, 128, 361] integer=True W=346 bound=339 unpaid=1 maxU=1 residual_M=0 rounded=339
+WEIGHTED ENVELOPE CERTIFIED G=[153, 166, 170, 317, 325, 474, 617, 766, 921, 925, 1080] integer=True W=5687 bound=5060 unpaid=57 maxU=2 residual_M=0 rounded=5060
+WEIGHTED ENVELOPE CERTIFIED G=[65, 82, 214, 217, 265] integer=True W=1452 bound=1402 unpaid=10 maxU=1 residual_M=2 rounded=1407
+WEIGHTED ENVELOPE CERTIFIED G=[136, 232, 248, 403, 410, 584, 657, 882, 917, 920, 951, 993, 1084] integer=False W=6752 bound=6687 unpaid=5 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[111, 132, 139, 146, 152, 158, 172, 197, 220] integer=False W=1194 bound=1185 unpaid=1 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[30, 31, 47, 97, 101, 106] integer=False W=182 bound=176 unpaid=1 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[28, 33, 35, 37, 45, 85] integer=False W=141 bound=117 unpaid=4 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[24, 31, 34, 51, 63, 81, 88] integer=False W=115 bound=115 unpaid=0 maxU=0
+WEIGHTED ENVELOPE CERTIFIED G=[22, 23, 121, 126] integer=False W=120 bound=104 unpaid=4 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[20, 21, 29, 51] integer=False W=78 bound=78 unpaid=0 maxU=0
+WEIGHTED ENVELOPE CERTIFIED G=[21, 26, 27, 28, 40] integer=False W=83 bound=73 unpaid=2 maxU=1
+WEIGHTED ENVELOPE CERTIFIED G=[21, 22, 27, 35] integer=False W=56 bound=56 unpaid=0 maxU=0

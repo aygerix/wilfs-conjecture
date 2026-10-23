@@ -48,6 +48,55 @@ def transport_audit(C,w,mu,b,q,r,rho,gr):
   reports.append('%s=%d[unpaid:%d,composites:%d]'%(name,T['bound'],sum(u),len(used-gr)))
  return 'TRANSPORT CERTIFIED G=%s W=%d top_ideal=%d | '%(sorted(C['G']),C['W'],len(top_ideal))+' '.join(reports)
 
+def envelope_audit(C,w,mu,b,q,r,rho):
+ m=len(w);U=[a-v for a,v in zip(mu,b)];pairs=[]
+ for i in range(1,m):
+  for j in range(i,m):
+   s=(i+j)%m
+   if not s or w[i]+w[j]!=w[s]:continue
+   shifted=(w[s]-C['c'])%m
+   lo=int(shifted>=m-rho and i>r and j>r)
+   up=int(shifted<=m-rho-2 and i<=r and j<=r)
+   tau=mu[i]+mu[j]-mu[s]-q
+   a,k=tau+lo,up-tau;assert a in (0,1) and k in (0,1)
+   pairs.append((i,j,s,a,k))
+ # Reverse traversal independently checks order independence of the greatest
+ # fixed point; the C producer traverses these pairs in forward order.
+ while True:
+  old=U.copy()
+  for i,j,s,a,k in reversed(pairs):
+   if C.get('integer') and i==j:U[i]=min(U[i],(U[s]+a)//2)
+   U[s]=min(U[s],U[i]+U[j]+k)
+   U[j]=min(U[j],U[s]+a)
+   U[i]=min(U[i],U[s]+a)
+  if old==U:break
+ assert U==C['u'] and len(U)==m and all(type(v) is int and v>=0 for v in U)
+ for i,j,s,a,k in pairs:assert U[i]<=U[s]+a and U[j]<=U[s]+a and U[s]<=U[i]+U[j]+k
+ if C.get('integer'):
+  for i,j,s,a,k in pairs:
+   if i==j:assert 2*U[i]<=U[s]+a
+ assert C['max_upper']==max(U) and U[C['target']]==max(U)
+ assert C['unpaid']==sum(U) and C['bound']==C['W']-C['e']*sum(U)
+ extra=''
+ if 'residual_matching' in C:
+  R=C['residual_matching'];res=[s for s in range(m) if U[s]];assert R['residues']==res
+  n=len(res);ix={s:a for a,s in enumerate(res)};H=[[0]*n for _ in res]
+  for i,j,s,a,k in pairs:
+   d=U[i]+U[j]-U[s]-a
+   if d<=0:continue
+   assert i in ix and j in ix
+   t,z=ix[i],ix[j];H[t][z]=H[z][t]=max(H[t][z],d)
+  p=R['permutation'];alpha=R['alpha'];beta=R['beta']
+  assert sorted(p)==list(range(n)) and len(alpha)==len(beta)==n
+  assert all(type(v) is int for v in alpha+beta)
+  M=sum(H[a][p[a]] for a in range(n));assert M==R['M']==sum(alpha)+sum(beta)
+  for a in range(n):
+   for z in range(n):assert alpha[a]+beta[z]>=H[a][z] and U[res[a]]+U[res[z]]>=H[a][z]
+  rounded=C['bound']+C['e']*((M+1)//2)
+  assert rounded==R['rounded_bound']<=C['W']
+  extra=' residual_M=%d rounded=%d'%(M,rounded)
+ return 'WEIGHTED ENVELOPE CERTIFIED G=%s integer=%s W=%d bound=%d unpaid=%d maxU=%d'%(sorted(C['G']),bool(C.get('integer')),C['W'],C['bound'],sum(U),max(U))+extra
+
 def standalone(C):
  import heapq, math
  G=sorted(C['G']);m=C['m'];e=C['e']
@@ -102,6 +151,7 @@ def standalone(C):
   active[s]=min(active[(s-g%m)%m]+int(g%m not in free) for g in G[1:] if w[(s-g%m)%m]+g==w[s])
   assert mu[s]-b[s]<=max(0,active[s]-1)
  assert C['B']==e*sum(b)-c
+ if 'u' in C and 'max_upper' in C:return envelope_audit(C,w,mu,b,q,r,rho)
  if 'transport' in C:return transport_audit(C,w,mu,b,q,r,rho,gr)
  res=[s for s in range(1,m) if s not in gr];assert C['residues']==res
  n=len(res);ix={s:a for a,s in enumerate(res)}
