@@ -1,0 +1,2 @@
+PARKING_TILE d=6 m=27574 cells=27574 max_degree=20 top_cells=1
+PARKING_RESULT units=1 positive_cost=1 rho_zero=0

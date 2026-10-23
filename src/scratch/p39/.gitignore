@@ -4,6 +4,8 @@
 /export.tar.gz
 /data/*probe.jsonl
 /data/*summary.json
+/data/lattice_matching.jsonl
+/data/lattice_cover_large.jsonl
 /__pycache__/
 /certprobe
 /upper_scan

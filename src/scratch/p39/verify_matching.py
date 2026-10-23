@@ -1,9 +1,113 @@
 """Check a C assignment certificate against independently audited certprobe data.
 usage: python3 verify_matching.py matching.jsonl probe.jsonl [more_probe.jsonl ...]
+       python3 verify_matching.py --standalone matching.jsonl
+The standalone audit reconstructs S by membership and heap Dijkstra and streams
+the repair rows; it requires neither Gurobi data nor a dense matching matrix.
 """
 import sys,json
 from fractions import Fraction as F
 from verify_probe import audit,open_text
+def standalone(C):
+ import heapq, math
+ G=sorted(C['G']);m=C['m'];e=C['e']
+ assert len(G)==len(set(G)) and m==min(G) and math.gcd(*G)==1
+ # Stop after m consecutive members: closure under +m proves all later membership.
+ member=bytearray([1]);run=0;x=0
+ while run<m:
+  x+=1;yes=any(x>=g and member[x-g] for g in G)
+  member.append(yes);run=run+1 if yes else 0
+ c=x-m+1;genus=sum(not v for v in member[:c])
+ minimal=[g for g in G if not any(g>a and member[g-a] for a in G)]
+ assert minimal==G and e==len(G) and C['c']==c
+ assert C['W']==e*(c-genus)-c
+ wm=[None]*m
+ for a,v in enumerate(member):
+  if v and wm[a%m] is None:wm[a%m]=a
+ w=[10**100]*m;w[0]=0;todo=[(0,0)]
+ while todo:
+  val,s=heapq.heappop(todo)
+  if val!=w[s]:continue
+  for g in G[1:]:
+   v=val+g;t=v%m
+   if v<w[t]:w[t]=v;heapq.heappush(todo,(v,t))
+ assert wm==w and max(w)-m+1==c
+ q=(c+m-1)//m;rho=q*m-c;r=w.index(max(w))
+ mu=[max(0,(c-v+m-1)//m) for v in w];assert sum(mu)==c-genus
+ gr={g%m for g in G[1:]};b=[0]*m;b[0]=q
+ penalty=[0]*m;length=[0]*m
+ order=sorted(range(1,m),key=w.__getitem__)
+ for s in order:
+  b[s]=mu[s] if s in gr else 0
+  penalty[s]=0 if s in gr else m*m
+  length[s]=1 if s in gr else m
+  for i in order:
+   if 2*w[i]>w[s]:break
+   j=(s-i)%m
+   if not j or w[i]+w[j]!=w[s]:continue
+   up=int((w[s]-c)%m<=m-rho-2 and i<=r and j<=r)
+   tau=((w[i]-c)%m+(w[j]-c)%m-(w[s]-c)%m-rho)//m
+   assert mu[i]+mu[j]-mu[s]==q+tau and up-tau in (0,1)
+   penalty[s]=min(penalty[s],penalty[i]+penalty[j]+up-tau)
+   length[s]=min(length[s],length[i]+length[j])
+   b[s]=max(b[s],b[i]+b[j]-q-up)
+  assert penalty[s]<=length[s]-1
+  assert b[s]==max(0,mu[s]-penalty[s])
+ assert b==C['b'] and all(0<=a<=v for a,v in zip(b,mu))
+ assert C['B']==e*sum(b)-c
+ res=[s for s in range(1,m) if s not in gr];assert C['residues']==res
+ n=len(res);ix={s:a for a,s in enumerate(res)}
+ cover_mode='cover' in C
+ if cover_mode:
+  v=C['cover'];assert len(v)==n and all(type(a) is int and a>=0 for a in v)
+ else:
+  p=C['permutation'];alpha=C['alpha'];beta=C['beta']
+  assert len(alpha)==len(beta)==n and sorted(p)==list(range(n))
+  assert all(type(v) is int for v in alpha+beta)
+  assert min(alpha,default=0)+min(beta,default=0)>=0
+ selected=[0]*n;actual=[mu[s]-b[s] for s in res]
+ def edge(a,z,d):
+  assert actual[a]+actual[z]>=d
+  if cover_mode:assert v[a]+v[z]>=d
+  else:
+   assert alpha[a]+beta[z]>=d
+   if p[a]==z:selected[a]=max(selected[a],d)
+ for ii,i in enumerate(order):
+  if 2*w[i]>w[r]:break
+  for jj in range(ii,len(order)):
+   j=order[jj]
+   if w[i]+w[j]>w[r]:break
+   s=(i+j)%m
+   if not s or w[i]+w[j]!=w[s]:continue
+   rp=(w[s]-c)%m
+   lo=int(rp>=m-rho and i>r and j>r)
+   up=int(rp<=m-rho-2 and i<=r and j<=r)
+   assert q-lo<=mu[i]+mu[j]-mu[s]<=q+up
+   d=q-lo-b[i]-b[j]+b[s]
+   if d<=0:continue
+   a,z=ix.get(i),ix.get(j)
+   assert a is not None or z is not None
+   if a is None or z is None:
+    a=z if a is None else a;edge(a,a,2*d)
+   else:edge(a,z,d);edge(z,a,d)
+ loss=sum(v-a for v,a in zip(mu,b))
+ assert C['W']-C['B']==e*loss
+ if cover_mode:
+  total=sum(v);upper=C['B']+e*total
+  assert total==C['cover_sum'] and upper==C['matching_bound_upper']
+  return 'VERIFIED ASSIGNMENT UPPER CERTIFICATE G=%s c=%d B=%d loss=%d cover_sum=%d matching_bound_upper=%d W=%d'%(G,c,C['B'],loss,total,upper,C['W'])
+ M=sum(selected);assert M==C['M']==sum(alpha)+sum(beta)
+ assert 2*sum(actual)>=M
+ corrected=C['B']+e*((M+1)//2)
+ assert corrected==C['corrected']<=C['W']
+ assert C['W']-C['B']==e*loss and M<=2*loss
+ return 'INDEPENDENTLY CERTIFIED G=%s c=%d B=%d M=%d loss=%d bound=%d W=%d'%(G,c,C['B'],M,loss,corrected,C['W'])
+
+if len(sys.argv)>1 and sys.argv[1]=='--standalone':
+ for path in sys.argv[2:]:
+  for line in open_text(path):
+   if line.startswith('{'):print(standalone(json.loads(line)))
+ sys.exit(0)
+
 D={}
 for path in sys.argv[2:]:
  for line in open_text(path):

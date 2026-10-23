@@ -1049,3 +1049,10 @@ Apéry factorization support". Hits were only known items: Sammartano 1111.1863 
   https://arxiv.org/html/2604.25051v9#S4.SS3 . The exact inverse Apéry-minimality argument under BASE hypotheses is
   written in PROOFS; the earlier conditional obligation is closed. This does not establish an arbitrary inverse
   inflation or universal certificate nonnegativity.
+- E398 consulted Guzmán–Klivans, *Chip-firing and energy minimization on M-matrices*,
+  https://arxiv.org/abs/1403.1635 , and Postnikov–Shapiro on parking ideals,
+  https://math.mit.edu/~apost/papers/monomial.pdf . General M-matrix z-superstability must not be silently
+  identified with the subset-toppling test. Our finite tile certificate instead verifies every subset test,
+  complete residue bijection and strictly positive reduction cost, then proves termination/minimality directly
+  (PROOFS). No parking theorem or novelty claim is assumed. The gluing theorem arXiv:2306.09876 remains already
+  recorded as #29; gluing was considered as an adversarial construction, not activated as a separate target.

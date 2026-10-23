@@ -1,0 +1,3 @@
+CLIMB iter=0 ratio=320/1000 corrected=340 B=-160 M=200 W=500 c=600 q=7 h=7 G=[86,89,97,103,173]
+CLIMB iter=1 ratio=292/885 corrected=299 B=-146 M=177 W=379 c=601 q=7 h=7 G=[86,89,148,103,173]
+LOCAL_OPTIMUM calls=4963

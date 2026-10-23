@@ -4622,3 +4622,42 @@ All current code/data: src/scratch/p39/ and fejer ~/wilf/p39/. Current handoff: 
 - Goal-turn classification: PROGRESS — new general certificate/repair proof, exact falsification of its upper-only
   shortcut, a closed preexisting deflation obligation, independently checked data/code, and two formal components.
   Full Wilf remains unproved; the goal remains ACTIVE. STATE.md is the single resumption checkpoint.
+
+## 2026-10-22 21:03 EDT — backwards certificate losses, E395-E398
+
+**Scope remains BACKWARDS-WILF, all remaining c>4m,3e<m.** The computations below test necessary conditions
+for a hypothetical counterexample; fixed e and explicit matrix inputs are diagnostics, not replacement targets.
+
+1. Deterministic C local optimization, then full one-coordinate neighborhoods, improves the required-credit ratio
+   from1280/2496 to1052/1720 at <146,155,175,184>. Its matching bound is334 versus actual W1130. Exact full
+   UA3=AM3=FACE=W1130, independently checked; RT3=11950/13 and TX=22054/23. A second e5 neighborhood gives
+   <86,89,103,148,173>, bound299,W379. The searches stop at local optima, not asserted global optima.
+2. Proof attempt on the discarded repair rows: rational interval propagation yields421 in one pass and599 in
+   two passes on the e4 extremizer, but remains below full UA3 after40 finite sweeps. It reaches exact UA3 on
+   the two older stress cases. This explains part of the payment but leaves interactions among rows unresolved.
+3. Derived the exact general loss representation b=max(0,mu-D), with D a minimum tight-tree sum of costs
+   up-tau in {0,1}. D<=minimum factorization length-1. This identifies the quantity that matching fails to pay,
+   rather than using height alone. A proposed simplification M>=sum(mu-b) immediately fails on existing audited
+   data: <34,42,53,54,56,57,67> has loss8,M0,B133,UA3=133,W189. Preserve it in FAILED; it prevents a false
+   per-cell charging argument. The new independent checker needs no raw solver data or dense matching matrix.
+4. A structurally different adversarial construction uses primitive cofactor rows of a perturbed complete-graph
+   matrix. Fourteen examples to m2063 have positive corrected bounds. A matrix-free dual cover permits m27574
+   without a dense H: C7.75s/~4.5MB, B862811,W881291, matching-bound UPPER881123, independently checked. No
+   exact M was computed there. A diagnostic rho0/graded closed-form cover is proved in PROOFS. To test the
+   conductor constraint, an exact parking-tile check verifies27574 cells/bijective residues,309 maximal cells,
+   and107 possible unit alignments (47 positive-cost). None actually has rho0. The preliminary unique highest-
+   degree-cell alignment already failed because another degree can determine max Apéry value. No more tiles
+   are warranted merely to increase d or m.
+
+Validation: the consolidated `run_checks.sh` passes all115 rational optima, saved assignment/cover and
+unit-penalty audits, interval bounds and30 BASE examples. ASan/UBSan pass the changed C local-search and
+cover paths. The first consolidated invocation stopped only because the new climb certificate had not yet
+been copied into remote data/; copying that saved artifact resolved it, and the complete rerun passed.
+Logs are under src/scratch/p39/data/. No new Lean claim is made for the E396-E398 paper arguments.
+
+**Global review.** CONTINUE the approved universal backwards program. Local optimization and the lattice test
+did not refute the matching criterion; they do not prove it. Adding progressively stronger LP descendants now
+would obscure the open realizability problem. The useful new mechanism is the unit-penalty representation;
+the dead shortcut is universal payment of a fixed fraction of all loss. Next derive a residue-counting constraint
+for unpaid penalties compatible with the M0 example, or obtain a genuine negative restricted certificate before
+adding target/capacity constraints. All records remain in their existing files; STATE is the sole current handoff.

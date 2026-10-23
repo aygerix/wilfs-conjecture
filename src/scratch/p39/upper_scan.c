@@ -8,7 +8,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#ifndef MM
 #define MM 256
+#endif
 #define GG 32
 #include "assignment.h"
 typedef long long ll;
@@ -16,6 +18,8 @@ static uint64_t state;
 static long nbneg;
 static ll ratio_num,ratio_den=1;
 static int need_e,kunz_cap;
+static ll last_num,last_den,last_corrected,last_B,last_M,last_W;
+static int last_e,last_c,last_q,last_h;
 static uint64_t rnd(void){state^=state>>12;state^=state<<25;state^=state>>27;return state*2685821657736338717ULL;}
 static int pick(int n){return (int)(rnd()%(unsigned)n);}
 static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
@@ -37,7 +41,32 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
   }if(h[s]>hh)hh=h[s];if(z[s]>mu[s]){fprintf(stderr,"invalid bound\n");exit(2);}}
  ll Z=0;for(int s=0;s<m;s++)Z+=z[s];ll B=e*Z-c,W=(ll)e*(c-genus)-c;
  int ix[MM],res[MM],n=0;for(int s=1;s<m;s++){ix[s]=-1;if(!gen[s]){ix[s]=n;res[n++]=s;}}
- int A[MM][MM]={{0}},perm[MM];ll alpha[MM],beta[MM],match=0;
+ if(dump==3){
+  /* A feasible pair cover is an UPPER bound on M/2, not a Wilf lower bound.
+   * Large Apéry elements cannot pair with one another. Reduce their cover to
+   * the generator-forced demand, then pay every low/high edge at its low end. */
+  ll v[MM]={0},total=0;
+  for(int a=0;a<n;a++){int s=res[a];if(2LL*w[s]<=w[r])v[a]=mu[s]-z[s];}
+  for(int i=1;i<m;i++)if(gen[i])for(int a=0;a<n;a++){
+   int j=res[a],s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
+   int rp=(w[s]-c)%m;if(rp<0)rp+=m;int lo=rp>=m-rho&&i>r&&j>r;
+   ll d=q-lo-z[i]-z[j]+z[s];if(d>v[a])v[a]=d;
+  }
+  for(int a=0;a<n;a++)if(2LL*w[res[a]]<=w[r])for(int b=0;b<n;b++)if(2LL*w[res[b]]>w[r]){
+   int i=res[a],j=res[b],s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
+   int rp=(w[s]-c)%m;if(rp<0)rp+=m;int lo=rp>=m-rho&&i>r&&j>r;
+   ll d=q-lo-z[i]-z[j]+z[s];if(d-v[b]>v[a])v[a]=d-v[b];
+  }
+  for(int a=0;a<n;a++)total+=v[a];
+  printf("{\"m\":%d,\"e\":%d,\"c\":%d,\"W\":%lld,\"B\":%lld,\"cover_sum\":%lld,\"matching_bound_upper\":%lld,\"G\":[%d",m,e,c,W,B,total,B+e*total,m);
+  for(int s=1;s<m;s++)if(gen[s])printf(",%d",w[s]);printf("],\"b\":[");for(int s=0;s<m;s++)printf("%s%d",s?",":"",z[s]);
+  printf("],\"residues\":[");for(int a=0;a<n;a++)printf("%s%d",a?",":"",res[a]);
+  printf("],\"cover\":[");for(int a=0;a<n;a++)printf("%s%lld",a?",":"",v[a]);printf("]}\n");
+  if(B+e*total<0)printf("BOUND_FAILURE_CERTIFIED_BY_COVER W=%lld upper=%lld\n",W,B+e*total);
+  return 1;
+ }
+ static int (*A)[MM];if(!A){A=calloc(MM,sizeof(*A));if(!A){perror("assignment matrix");exit(2);}}
+ memset(A,0,MM*sizeof(*A));int perm[MM];ll alpha[MM],beta[MM],match=0;
  if(B<0||dump==2){
   for(int i=1;i<m;i++)for(int j=i;j<m;j++){int s=(i+j)%m;if(!s||w[i]+w[j]!=w[s])continue;
    int rp=(w[s]-c)%m;if(rp<0)rp+=m;int lo=rp>=m-rho&&i>r&&j>r;
@@ -49,6 +78,9 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
   match=assignment(n,A,perm,alpha,beta);
  }
  ll corrected=B+(ll)e*((match+1)/2);
+ last_num=B<0?-2*B:0;last_den=B<0?e*match:1;
+ last_corrected=corrected;last_B=B;last_M=match;last_W=W;
+ last_e=e;last_c=c;last_q=q;last_h=hh;
  if(B<0){
   nbneg++;
   ll num=-2*B,den=e*match;
@@ -73,6 +105,40 @@ static int eval(int m,int *G,int ng,int mine,int dump,ll *best){
  return 1;
 }
 int main(int argc,char **argv){
+ if(argc>4&&(!strcmp(argv[1],"--climb")||!strcmp(argv[1],"--climb-wide"))){
+  int wide=!strcmp(argv[1],"--climb-wide");
+  int ng=argc-2,G0[GG],m=atoi(argv[2]);if(ng>GG||m<2||m>=MM)return 1;
+  for(int a=0;a<ng;a++)G0[a]=atoi(argv[a+2]);
+  ll best0=1LL<<60;
+  if(!eval(m,G0,ng,4,0,&best0))return 1;
+  need_e=last_e;int iter=0;long calls=1;
+  for(;;){
+   int ret=eval(m,G0,ng,4,0,&best0);if(ret<0)return 0;
+   ll num=last_num,den=last_den,W0=last_W;int c0=last_c;
+   printf("CLIMB iter=%d ratio=%lld/%lld corrected=%lld B=%lld M=%lld W=%lld c=%d q=%d h=%d G=[",iter,num,den,last_corrected,last_B,last_M,last_W,last_c,last_q,last_h);
+   for(int a=0;a<ng;a++)printf("%s%d",a?",":"",G0[a]);printf("]\n");fflush(stdout);
+   if(iter++>=100){printf("ITERATION_LIMIT calls=%ld\n",calls);return 0;}
+   int BG[GG],found=0;
+   for(int a=0;a<ng;a++){
+    int minm=3*need_e+1,maxm=MM-1;for(int b=1;b<ng;b++)if(G0[b]-1<maxm)maxm=G0[b]-1;
+    int limit=wide?(a==0?maxm-minm+1:7*m):10;
+    for(int k=0;k<limit;k++){
+     int step=wide?0:(int[]){-m,-8,-4,-2,-1,1,2,4,8,m}[k];
+     if(!wide&&a==0&&step!=1&&step!=-1)continue;
+     int T[GG];memcpy(T,G0,ng*sizeof(int));T[a]=wide?(a==0?minm+k:m+1+k):T[a]+step;int mm=T[0];
+    if(mm<4||mm>=MM)continue;
+    int ok=1;for(int b=1;b<ng;b++)if(T[b]<=mm)ok=0;if(!ok)continue;
+    ret=eval(mm,T,ng,4,0,&best0);calls++;if(ret<0){printf("CLIMB_FAILURE calls=%ld\n",calls);return 0;}if(!ret)continue;
+    ll nn=last_num,dd=last_den;
+    if(nn*den>num*dd||(nn*den==num*dd&&last_W*c0<W0*last_c)){
+     num=nn;den=dd;W0=last_W;c0=last_c;memcpy(BG,T,ng*sizeof(int));found=1;
+    }
+    }
+   }
+   if(!found){printf("LOCAL_OPTIMUM calls=%ld\n",calls);return 0;}
+   memcpy(G0,BG,ng*sizeof(int));m=G0[0];
+  }
+ }
  if(argc==4&&!strcmp(argv[1],"--truncscan")){
   long N=atol(argv[2]);state=strtoull(argv[3],NULL,10);if(!state)state=1;
   long accepted=0;ll best0=1LL<<60;
@@ -101,11 +167,11 @@ int main(int argc,char **argv){
   }
   printf("ENUM_DONE m=%d e=%d K=%d candidates=%ld accepted=%ld Bnegative=%ld min_corrected=%lld max_repair_ratio=%lld/%lld\n",m,e,K,cand,acc,nbneg,best0,ratio_num,ratio_den);return 0;
  }
- if(argc>3&&!strcmp(argv[1],"--case")){
+ if(argc>3&&(!strcmp(argv[1],"--case")||!strcmp(argv[1],"--cover"))){
   int ng=argc-2,G0[MM+GG],m0=INT_MAX;if(ng>MM+GG)return 1;for(int k=0;k<ng;k++){G0[k]=atoi(argv[k+2]);if(G0[k]<m0)m0=G0[k];}
   if(m0<2||m0>=MM)return 1;
   int at=0;while(G0[at]!=m0)at++;int tmp=G0[0];G0[0]=G0[at];G0[at]=tmp;
-  ll best0=1LL<<60;return eval(m0,G0,ng,2,2,&best0)==0?1:0;
+  ll best0=1LL<<60;return eval(m0,G0,ng,2,!strcmp(argv[1],"--cover")?3:2,&best0)==0?1:0;
  }
  if(argc<3)return 1;long N=atol(argv[1]);state=strtoull(argv[2],NULL,10);if(!state)state=1;int mine=argc>3?atoi(argv[3]):4;
  ll best=1LL<<60;long accepted=0;int G[GG];

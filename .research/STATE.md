@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-22 20:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-22 21:07 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -34,6 +34,9 @@ Bounded searches remain evidence. Agent launches each require the user's explici
   Matching-sum and rounding components are Lean checked (E394); the semigroup construction remains a paper proof.
 - **Old gap closed on paper:** exact BASE-family deflation preserves Apéry minimality, reduces to c<=4m and
   gives W(S)=W(T)+3(k-1)(binom(d+3,3)-m). This excludes that profile, not general S (PROOFS, E393).
+- **PROVED on paper:** b_s=max(0,mu_s-D_s), where D_s is the minimum sum of zero-or-one penalties on a
+  tight factorization tree; D_s<=minimum factorization length-1. Thus the precise unpaid matching loss is
+  W-(B+e ceil(M/2))=e(sum min(mu,D)-ceil(M/2)). The shortcut M>=sum min(mu,D) is FALSE (E396).
 
 ## Existing implementations
 
@@ -45,7 +48,9 @@ Bounded searches remain evidence. Agent launches each require the user's explici
 | [anchgen.c](../src/scratch/p32/anchgen.c) | Genus-bounded tree; ID-q, ANCHOR and CORE1 checks. | No Gurobi; arbitrary heights/depths within finite enumeration and implementation limits. |
 | [anchgen_t2.c](../src/scratch/p32/anchgen_t2.c) | Related T2 checker referenced in the proposal. | Audit before reuse. |
 | [certprobe.c](../src/scratch/p39/certprobe.c) | Inspect hard genuine S; RT3/UA3/TX and full-Kunz relaxations; export primal/dual data. | Gurobi C API; no height restriction. Independent membership/rational checker: verify_probe.py alongside it. |
-| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Exact upper closure and repair-assignment certificate; cases, bounded enumeration and seeded sampling. | Pure C, no Gurobi. assignment.h exports/checks integer matching duals; verify_matching.py independently audits selected certificates. |
+| [upper_scan.c](../src/scratch/p39/upper_scan.c) | Upper closure, exact assignment; cases, enumeration, sampling and deterministic local search. | Pure C. `--cover` gives a matrix-free UPPER certificate for falsification; do not read it as a Wilf lower bound. Compile-time MM is configurable. |
+| [verify_matching.py](../src/scratch/p39/verify_matching.py) | Independent membership, heap Apéry, tree-penalty and matching/cover audit. | `--standalone` needs no Gurobi data or dense matrix. upper_dp.py alongside it implements rational interval propagation. |
+| [lattice_cases.py](../src/scratch/p39/lattice_cases.py) | Reproduce the cofactor-shaped adversarial inputs and exact finite parking-tile check. | Diagnostic construction only; no separate family target. `--parking 6` checks all maximal-cell conductor alignments in the recorded tile. |
 
 [Experiment E375](EXPERIMENTS.md) records 108 matching certificate minima against the MILP and C timings of
 3.5-6.2 seconds versus 25-55 minutes for tested e = 4 instances. These are previous results, not new benchmarks.
@@ -53,17 +58,27 @@ Audit height filters, fixed-size limits and exact certificate coverage before ad
 
 ## Current attempt and next action
 
-Completed: 110 exactly rationally certified LP optima on 22 S; four independently verified integer assignment
+Completed: 115 exactly rationally certified LP optima on 23 S; independently verified integer assignment
 certificates. The simple B>=0 shortcut is false (e=5 example B=-33,W=467); matching raises its bound to347.
 Initial gate: 17230 accepted samples over two seeds (76 with B<0), 2577 truncation samples (5 with B<0), and
 55001 unique S in the exact m20/e5/Kunz<=6 box; no negative corrected bound. These are bounded evidence only.
 
-**Next mathematical action:** analyze a hypothetical negative B+e ceil(M/2) through its optimal fractional repair
-cover. Derive a realizability constraint from the discarded target-repair charges or upper residual capacities,
-or find a genuine counterexample to the restricted certificate. Preserve the universal scope; avoid simply enlarging
-the same boxes. Genuine BASE cases are discharged; fractional BASE fakes at other S can still be obstructions.
+Local C search improves the credit ratio to1052/1720 at <146,155,175,184>: B=-526,M430,bound334,W1130.
+Here full UA3=W; coordinate propagation gives421 after one pass but does not recover the full payment (E395/E397).
+Fourteen cofactor-shaped examples and a matrix-free m27574 check produced no failure. The exhaustive conductor
+alignment check in that one 27574-cell tile found no rho0 first-layer unit rescaling; stop enlarging this construction (E398).
+
+**Next mathematical action:** combine the exact unit-penalty trees with an optimal assignment cover and seek a
+residue-counting inequality implying e(sum b+M/2)>=c throughout the remaining domain. It must allow the genuine
+M0/loss8 example; compulsory payment cannot be assigned to every lost cell. Use discarded target charges/upper
+capacities if an actual negative matching certificate is found. Preserve the universal scope; avoid larger sweeps
+of the same boxes or more lattice tiles without a new discriminating hypothesis. Genuine BASE cases are discharged;
+fractional BASE fakes at other S can still be obstructions.
 Code and compressed raw data: `src/scratch/p39/` and fejer `~/wilf/p39/`. Full statements are in PROOFS; E390-E393
-record exact checks and reproduction details; E394 records the two Lean components. The enumlp3 capacity fix passed sanitizers and an old/new output comparison.
+record earlier checks; E394 records the two Lean components; E395-E398 record the latest tests and penalty proof.
+The enumlp3 capacity fix passed sanitizers and an old/new output comparison. `run_checks.sh` is the consolidated
+certificate check entry point; it includes all saved LP sets, matching/cover audits and the BASE examples.
+Latest complete run passed; ASan/UBSan also passed the changed C search/cover paths (data/checkpoint_checks.log).
 
 ## Supporting records — consult as needed
 

@@ -150,3 +150,12 @@ the exact upper-side closure has sum b=60 and bound -20. Full UA3 is 100, exactl
 The dropped lower-side split inequalities pay the deficit. This is distinct from the older one-sided R
 certificate, which kept lower-side rows and dropped upper-side rows. The DP remains a valid lower bound,
 and B<0 is a necessary condition for a Wilf counterexample; its positivity is not a theorem.
+
+### Matching pays at least half the total upper-closure loss (FALSE, 2026-10-22; E396)
+
+The proposed shortcut M>=sum_s(mu_s-b_s) fails even for genuine S in c>4m,3e<m.
+For S=<34,42,53,54,56,57,67>, c140,g93,e7,W189,B133, the loss sum is8 but M=0.
+The vector b already satisfies every UA3 row, with certified UA3=B=133. Some loss is on maximal Apéry cells;
+other loss cells occur as parents but still produce no positive repair demand. Thus lost actual level does
+not by itself create compulsory repair payment. A second example <20,25,61,102,143,184> has loss22,M10.
+This kills the shortcut, not the proved bound W>=B+e ceil(M/2) or its still-unproved universal positivity.

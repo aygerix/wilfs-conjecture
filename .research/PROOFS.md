@@ -6839,3 +6839,113 @@ Both depend only on propext, Classical.choice and Quot.sound. The semigroup cons
 deflation theorem have NOT been formalized here. Thus these component checks do not constitute a Lean proof
 of the full semigroup certificate or of Wilf. Reproduce on fejer from ~/wilf/lean with
 `~/.elan/bin/lake env lean ../p39/RepairMatching.lean`; the exact source is also saved under lean/Wilf/ locally.
+
+### Exact unit-penalty description of upper closure (2026-10-22; PROVED on paper, E396)
+
+This is an ingredient in the universal backwards target, with the same unrestricted semigroup scope as the
+upper-closure theorem. Keep its notation and let kappa_p = up_p - tau_p for a tight pair p. TYPE and WINDOW
+give kappa_p in {0,1}: tau=-1 forces up=0; tau=1 forces up=1; tau=0 allows either.
+Define D_g=0 at non-m generators and, in increasing Apéry value, define
+
+    D_s = min_{tight i+j -> s} (D_i+D_j+kappa_p).
+
+Then, writing h_min(s) for the minimum number of non-m generators in a factorization of w_s,
+
+    b_s = max(0, mu_s-D_s),
+    delta_s := mu_s-b_s = min(mu_s,D_s),
+    0 <= D_s <= h_min(s)-1                 (s != 0).
+
+Set D_0=delta_0=0 and b_0=mu_0=q. Equivalently, D_s is the minimum sum of zero-or-one penalties over all
+tight binary factorization trees of w_s. This does not require equal factorization lengths or uniqueness.
+
+*Proof.* Induct in w_s. For a tight pair, the exact level identity gives
+
+    (mu_i-D_i)+(mu_j-D_j)-(q+up_p)
+      = mu_s-(D_i+D_j+kappa_p).
+
+Taking positive parts at the two parents does not change the positive part of this expression. If a parent
+is clipped to zero, the other parent's b is at most mu_j<=q-1, while q+up_p>=q, so the candidate remains
+negative. If neither is clipped the equality applies directly. Maximizing the recurrence for b proves the
+formula. Any minimum-length factorization has a tight binary tree: each proper partial sum is Apéry, since
+otherwise subtracting m there would subtract m from w_s. Its h_min(s)-1 internal nodes each cost at most one.
+This proves the length bound. QED.
+
+Consequently the precise loss of the assignment certificate is
+
+    B = W-e sum_s delta_s,
+    W-(B+e ceil(M/2)) = e (sum_s delta_s-ceil(M/2)),
+    0 <= W-(B+e ceil(M/2)) <= e sum_{s!=0} min(mu_s,h_min(s)-1).
+
+The residual row data also have an exact description:
+
+    d_p = delta_i+delta_j-delta_s-(tau_p+lo_p),
+    u_p = delta_i+delta_j-delta_s+(up_p-tau_p).
+
+Both tau_p+lo_p and up_p-tau_p lie in {0,1}; u_p-d_p=up_p+lo_p<=1. These identities isolate losses
+from dropped unit allowances. They do NOT prove that enough total payment is available. In particular,
+M>=sum delta is FALSE: <34,42,53,54,56,57,67> has c=140,g=93,e=7,W=189,B=133,sum delta=8,M=0.
+Here b itself is UA3-feasible and UA3=133, independently rationally certified; not every difference from
+the actual mu needs repair. Also <20,25,61,102,143,184> has sum delta=22 but M=10.
+
+### Rational interval propagation and matrix-free assignment upper certificates (E397)
+
+**Interval bounds (PROVED, elementary elimination).** Initialize l=b. Initialize upper bounds at generators
+by u_g=mu_g and at a composite s by u_s=min_tight(u_i+u_j-L_p), in increasing w. These are finite valid
+coordinate bounds on every UA3-feasible vector. For i!=j each row L<=y_i+y_j-y_s<=U implies
+
+    l_i >= L+l_s-u_j,     l_j >= L+l_s-u_i,     u_s <= u_i+u_j-L,
+    l_s >= l_i+l_j-U,     u_i <= U+u_s-l_j,     u_j <= U+u_s-l_i.
+
+Read these as max/min updates of the old bounds, not as fresh inequalities about arbitrary l/u. For i=j use
+l_i >= (L+l_s)/2, u_i <= (U+u_s)/2, l_s >= 2l_i-U, u_s <= 2u_i-L. Every finite sequence of these rational
+updates is sound, and e sum l-c<=UA3. No ceiling/floor of individual coordinates is allowed for this real LP.
+Convergence in finitely many sweeps is not asserted. On <146,155,175,184>, successive lower bounds start
+-526,421,599,1337/2; the full rationally certified UA3=W=1130, so coordinate propagation does not explain
+the whole payment. On the two older stress cases it reaches UA3=968 and 234 respectively.
+
+**A matrix-free falsification certificate (PROVED).** Split the non-generator residues into low cells
+2w_s<=max Ap and high cells 2w_s>max Ap. High cells cannot occur together in a tight pair. Start a cover v
+at delta on low cells and zero on high cells. Raise each variable to every demand from a generator-variable
+pair; then raise the low endpoint of each low/high tight pair to d_p-v_high if necessary. Low/low pairs
+were covered by delta already. This produces a nonnegative integer pair cover, hence
+
+    M <= 2 sum v,     B+e ceil(M/2) <= B+e sum v.
+
+The right-hand side is an UPPER bound on the matching certificate, not a lower bound on W. A negative
+value would rigorously refute universal nonnegativity of this restricted certificate. It avoids a dense
+assignment matrix; the independent checker streams all tight pairs and verifies the cover inequalities.
+
+**A diagnostic closed-form cover (PROVED).** If, additionally, rho=0, every non-m generator is in (m,2m),
+and all factorizations of each Apéry element have the same length h_s, then
+
+    b_s=max(0,q+1-2h_s)  (s!=0),
+    v_s=2h_s-2 if 2h_s<=q, and v_s=1 otherwise.
+
+Here v_g=0, so it is a pair cover on the variables. For a non-top target the upper allowance is 1 and the
+graded recurrence gives the formula for b. At the top residue r=m-1, w_r=(q+1)m-1<2mh_r, so its displayed
+positive part is zero as required. All h_s<=q. Two high-degree parents therefore cannot form a tight pair.
+A low/high pair has demand 2h_low-1, paid exactly by the proposed v. A low/low pair has demand -1 if its
+target has positive b, otherwise 2(h_i+h_j)-q-2<=2(h_i+h_j)-4. Generator pairs and repeated parents satisfy
+the same cover inequalities. Thus, if N_low counts the nonzero cells with 2h_s<=q,
+
+    B+e ceil(M/2) <= e(q+m-1+(q-2)N_low)-qm.
+
+A negative right side would refute the general matching claim using a genuine S; it would not refute Wilf.
+This conditional diagnostic is NOT a replacement family target. E398 checks one attempted construction
+against its hypotheses and finds no rho=0 realization there.
+
+### Finite lattice-tile realization check used in E398 (on-paper certificate argument)
+
+For an integer matrix L with positive diagonal, nonpositive off-diagonal entries and positive row sums,
+call x>=0 parking if x-L*1_U is not nonnegative for every nonempty coordinate subset U. Suppose a finite
+list T contains exactly these configurations, a^T L is divisible by m, labels a dot x mod m biject T onto
+Z/m, and g_i=m+(a_i mod m) satisfies g^T L>0 coordinatewise. Then
+
+    Ap(<m,g_1,...,g_d>,m) = {g dot x : x in T}.
+
+Indeed any non-parking configuration admits a nonnegative reduction x -> x-L*1_U, decreasing g dot x by
+a positive multiple of m and preserving the residue. Repetition terminates at the unique parking configuration
+of that residue. Thus it is the unique least-cost factorization. All parking coordinates are smaller than
+the corresponding diagonal of L, since singleton U is among the tests, so the finite check is exhaustive.
+This is a direct certificate argument for the experiment, not a novelty claim about parking-function theory.
+The relation to z-superstability and M-matrix energy minimization is recorded in LITERATURE.
