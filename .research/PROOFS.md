@@ -14034,3 +14034,168 @@ NEXT DIRECT OBLIGATION: derive an integrated estimate from the full unequal-cost
 recursion and actual birth congruences, controlling shifted-set overlaps/growth
 across all primitive directions. Do not replace this by Q positivity, another
 routing policy, fixed-e verification or a coarse Kneser bound already shown weak.
+
+## E492 — user-supplied sharp half-stability theorem: paper audit passes
+
+2026-10-24 00:21 EDT. USER supplied the theorem and full argument and asked
+"Is this anything:". Root independently checked the pasted PAPER proof, including
+the planar block algebra, higher-dimensional reduction, source calibration and
+sharpness. No gap found. Status: PROVED ON PAPER / internally audited, NOT Lean
+checked, externally refereed or established bibliographically novel. This is a
+universal quantitative reduction for ACTUAL W within DIRECT-WILF, not a new
+auxiliary-positivity programme. No numerical run, agent or autonomous resumption.
+
+### Exact statement and border-column identity
+
+Let d>=2, D subset N^d be a finite downset containing0 and all units, p>=0,
+M>0 and p.z<=M on D. Write n=|D| and
+
+    F=d*n*M-(d+1)*sum_(z in D)p.z.
+
+If D is not a full discrete simplex Delta_H, then F>=M/2.
+Normalize M=1 for the proof. The existing column identity is
+
+    F=sum_(directed coordinate columns C)|C|*(1-p.top(C)).
+
+For a minimal excluded word y, each positive coordinate j gives a distinct
+directed column with top y-e_j and length y_j. Their total contribution is
+
+    B(y)=|y|-(|y|-1)*p.y.
+
+If p.y<=1, this is at least1. Thus F<1/2 implies that no word of weight<=1 is
+excluded: any such excluded word has a minimal excluded divisor. Consequently
+D={z:p.z<=1}, and every p_j>0 (a finite zero-weight axis would violate this).
+
+### Independent planar moment derivation
+
+For a fixed nonsimplex planar downset E containing both units, its feasible
+weight polytope p>=0,p.z<=1 is compact. If min F_E<1/2, choose a minimizing
+vertex. The preceding argument gives positive weights and a complete cutoff.
+Two independent point constraints must then be active. Thus
+
+    p=(u/T,v/T),  1<=u<v, gcd(u,v)=1,
+
+with T an integer having at least two nonnegative (u,v)-representations. Equal
+weights would make E a simplex. The two representations differ by a multiple
+of(v,-u), so T>=N=uv. Write T=qN+r, q>=1,0<=r<N.
+
+Let G be the gaps of <u,v>, g=|G|, S_G=sum G, g_r=|G intersect[0,r]|,
+S_r=sum_(h in G,h<=r)h. Reducing the x-coordinate modulo v shows that the
+number of representations of jN+h,0<=h<N, is j+1-1_(h in G). The unique
+representative with0<=x<v has y>-u; its y is negative exactly for h in G.
+
+For n_T=# {(x,y):ux+vy<=T} and s_T=sum_(ux+vy<=T)(ux+vy), summing FULL blocks
+and the final partial block gives the independently reconstructed formulas
+
+    n_T=N*q*(q+1)/2-q*g+(q+1)*(r+1)-g_r,
+
+    s_T=N^2*q*(q-1)*(q+1)/3-N*g*q*(q-1)/2
+        +N*(N-1)*q*(q+1)/4-q*S_G
+        +q*N*((q+1)*(r+1)-g_r)
+        +(q+1)*r*(r+1)/2-S_r.
+
+Using the classical expansions of
+sum_(h in G)z^h=1/(1-z)-(1-z^N)/((1-z^u)(1-z^v)), namely
+
+    g=(u-1)*(v-1)/2,
+    S_G=(u-1)*(v-1)*(2uv-u-v-1)/12,
+
+these simplify exactly to the USER's polynomial
+
+    2T*n_T-3s_T=A*q^2+B(r)*q+D(r),
+    A=N*(u+v-2)/4,
+    B(r)=B0+r*(r+1)/2-2g*r+N*g_r,
+    B0=(u^2-uv+v^2-1)/4,
+    D(r)=r*(r+1)/2-2r*g_r+3S_r.
+
+Since representations below N are unique, D(r)=2r*n_r-3s_r>=0 by the column
+identity on the smaller cutoff. That identity does not require both units in
+this smaller set; r=0 gives0 directly. No hidden unit hypothesis is used here.
+
+Writing r=a*u+b,0<=b<u, the floor-free row sum minus
+r^2/(2uv)+r/u+r/(2v)+1 is
+
+    b/(2v)-b/u-b^2/(2uv)<=0.
+
+Hence n_r is bounded above by that expression, and g_r=r+1-n_r gives
+B(r)>=B0+(u-1)*r/2>=B0>0. As T<(q+1)N and q>=1,
+
+    (2T*n_T-3s_T)/T
+      >=(u+v-2)/8+(u^2-uv+v^2-1)/(8uv).
+
+This is >=1/2 for u+v>=6. The smaller coprime pairs(1,3),(1,4),(2,3) give
+1/2,3/4,1/2. For(1,2), direct row summation gives respectively
+(q+1)/4 for T=2q, and (q+1)*(q+2)/(2*(2q+1)) for T=2q+1, both>=1/2.
+This contradicts min F_E<1/2 and proves the planar lemma.
+
+### Passage to every dimension; application to actual Apéry values
+
+If F_D<1/2, the complete-cutoff conclusion holds. If two axis lengths differ,
+their coordinate-plane section is nonsimplex. Its directed columns are ALSO
+columns of D, with identical lengths/tops; all other contributions are
+nonnegative. Thus F_D>=F_section>=1/2, contradiction.
+
+All axis lengths are therefore the same H>=1. Completeness of the cutoff gives
+1/(H+1)<p_j<=1/H for EVERY j. All words of degree<=H are included, and all of
+degree>=H+1 are excluded. Hence D=Delta_H. This proves the stability theorem.
+
+For an actual S with3<=e<m, choose the standard canonical Apéry factorization
+downset in d=e-1 nonmultiplicity primitives. It contains all units and has m
+cells/residues. It cannot be a simplex: H=1 would give m=e; for H>=2, residue
+injectivity on Delta_H would imply injectivity on Delta_1-Delta_(H-1), although
+
+    |Delta_1-Delta_(H-1)|=binom(H+d-1,d)+d*binom(H+d-2,d-1)
+                       >binom(H+d,d)=m.
+
+The strict difference is equivalent to(d-1)*(H-1)>0. This is the existing cyclic
+simplex obstruction, not a new reduction to a special multiplicity or dimension.
+With the actual weights and M=c+m-1, the theorem therefore yields
+
+    mW+C_m>=M/2,   C_m=(e-2)*m*(m-1)/2.              (HALF-STABILITY)
+
+Equivalently W>=M/(2m)-(e-2)*(m-1)/2. Integrality gives
+
+    W<0 => M<=(e-2)*m*(m-1)-2m.                     (CUBIC-CUTOFF)
+
+For W<=0 the corresponding bound is M<=(e-2)*m*(m-1), WITHOUT the -2m.
+The distinction matters. Since e<m, the negative-W cutoff is at most
+m*(m-1)*(m-3)-2m, cubic in m. Multiplicity remains unbounded. This supersedes
+E448's actual-W quartic cutoff, not the need for a universal finite-correction
+argument. The e2 and e=m cases are known complements; no exception is hidden.
+
+### Sharpness and independently checked calibration
+
+For S_t=<4,4t+1,8t+3>, t>=1, both nonmultiplicity generators are primitive,
+and the Apéry values are0,4t+1,8t+2,8t+3. Thus c=8t,g=5t,W=t and
+
+    (mW+C_m)/M=(4t+6)/(8t+3) -> 1/2.
+
+No larger coefficient works uniformly over the STATED3<=e<m range. The family
+does not establish optimality on the narrower resistant sparse domain; no such
+optimization is activated. The abstract nonsimplex planar tile {0,e1,2e1,e2}
+with weights(1/2,1) attains normalized F=1/2 exactly.
+
+For distinct minimal excluded y, the columns used in B(y) are distinct: for
+fixed direction j a column's top determines y uniquely. Consequently
+
+    F_D>=sum_(minimal excluded y)(|y|M-(|y|-1)*p.y).  (BORDER-SUM)
+
+This is a valid sum without double counting, not an asserted universal payment
+of C_m. On the USER's ONE calibration <101,102,111>, reductions
+
+    10*102=111+9*101,
+    11*111=9*102+3*101,
+    102+10*111=12*101
+
+strictly lower nonpivot value. The normal words are [0,9]^2 union{(0,10)};
+their residues a+10b run bijectively through0..100. Hence this is the actual
+Apéry tile, with M1917 and sum values96960. Independently summing gives
+c1817,g910,ell907,W904. The three minimal excluded words(10,0),(0,11),(1,10)
+contribute9990,8877,8967, summing27834. Thus101W+5050>=27834 gives W>=226,
+as claimed. This tests the finite-correction certificate on the calibration;
+it is not a new three-generator Wilf result.
+
+The user's reported7285 planar downsets,17169 moment instances and1854 sources
+are NOT independently rerun here. The two sandbox:/mnt/data attachments are
+absent in this workspace. The above status rests on the complete PAPER argument,
+not those finite checks. No source code, new research document or census added.

@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 23:32 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 00:21 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -20,6 +20,28 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**E492 user-supplied sharp half-stability theorem — PAPER AUDIT PASSES.** For every
+actual S with3<=e<m, the supplied nonsimplex downset argument proves
+
+    mW+(e-2)m(m-1)/2 >= M/2.
+
+Root independently rederived the planar block polynomial, its row estimate and
+small coprime cases, and checked that plane-section columns are actual columns
+of the full downset. Low surplus forces a complete weighted cutoff; equal axis
+lengths then force a simplex, ruled out by cyclic injectivity. No gap found.
+This is internally audited on paper, not Lean checked, externally refereed or
+established novel. Precise proof/audit: [PROOFS.md, E492](PROOFS.md#e492--user-supplied-sharp-half-stability-theorem-paper-audit-passes).
+
+Consequently an ACTUAL counterexample must satisfy
+M<=(e-2)m(m-1)-2m. This supersedes E448's quartic cutoff by a cubic cutoff in m;
+m remains unbounded. The1/2 coefficient is sharp over the stated range, using
+<4,4t+1,8t+3>. This is a completed quantitative reduction, not full Wilf and not
+an instruction to optimize constants or enumerate the remaining conductor box.
+The border-column sum is also valid and gives W>=226 on <101,102,111>; direct
+summation verifies exact W904. Its universal payment of the finite correction
+is NOT asserted. User-reported finite checks were not rerun; sandbox attachments
+are absent in this workspace. No numerical campaign or new agent was launched.
 
 **E490 audit — sound on paper:** the user's full unequal-cost recursion is exact:
 A_t={0} union UNION_j(delta_j+A_(t-p_j)). Also A_u+A_v subset A_(u+v), and
@@ -731,6 +753,15 @@ Investigate the full unequal-cost cyclic recursion together with the birth
 congruences w_r=r mod m. The outstanding step is an integrated lower bound on
 Area that earns the additional (e-2)m(m-1)/2 beyond the homogeneous downset estimate.
 This is a required inequality, not a result established by restating Wilf.
+
+E492 now earns M/2 of actual surplus uniformly and gives the completed cubic
+conductor reduction. Treat that reduction as finished. A proof for the remaining
+range still needs additional arithmetic: the universal1/2 is sharp, so another
+improvement of that same shape is unavailable over the full stated domain.
+BORDER-SUM provides explicit, nonoverlapping contributions but has no proved
+universal lower bound paying C_m. Do not turn its one calibration into such a
+claim or launch a bounded-conductor census. The user's present question was a
+proof assessment; no new primary programme or compute was authorized by it.
 
 The first common-threshold Kneser estimate is too weak and is closed as a complete
 payer. The finer BIRTH-RANK statement in E491 retains actual arrival times and the

@@ -1621,3 +1621,28 @@ The paper calibration <101,102,111> rejects only the adequacy of E491's coarse
 threshold bound. It does not exclude a more informative Kneser argument using
 unequal costs, overlaps and actual residue birth times. No literature absence,
 priority, universal positivity or new special-case Wilf result is asserted.
+
+### E492: sharp half-stability audit and limited bibliographic comparison (2026-10-24)
+
+USER supplied the nonsimplex F_D>=M/2 lemma and its proof. Root reconstructed
+the planar block formulas and checked the all-dimensional deduction on paper.
+No bibliographic novelty or external-referee status is established.
+
+Rechecked primary [Zhai, arXiv:1111.2779](https://arxiv.org/pdf/1111.2779), Lemma3,
+Theorem1 and Section5. Lemma3 gives the homogeneous downset inequality; Section5
+identifies equal-weight full simplices as its equality case and explicitly
+suggests investigating quantitative deviation. The USER's dimension-independent
+half-gap is a quantitative refinement of that theme. This comparison does not
+show that the refinement is absent from all later literature.
+
+Rechecked primary [Hellus–Waldi, arXiv:1804.06146](https://arxiv.org/pdf/1804.06146),
+Lemma1.1 and the surrounding weighted-cutoff discussion. They use Zhai's
+homogeneous mean/maximum inequality. A limited exact-target search of arXiv,
+GitHub, preprints and conjectures.io did not establish the supplied half-gap's
+priority. Search absence is not treated as evidence of novelty.
+
+The two-generator gap-count and gap-sum formulas used in E492 follow from the
+explicit generating function recorded there; the audit uses no black-box
+external computation. User-reported finite checks and inaccessible sandbox
+attachments are not certified as reproduced. The exact sharpness family and
+single calibration were checked symbolically in the paper audit.

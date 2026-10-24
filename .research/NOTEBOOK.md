@@ -6283,3 +6283,39 @@ proof attempts and precise method falsifiers, not a proof of the target.
 STATE's current-status and next-action sections now supersede all old "next"
 entries; historical mathematics and the implementation inventory remain. No new
 manuscript, source implementation, numerical test, rental or background job.
+
+### 2026-10-24 00:21 EDT — E492: user-supplied half-stability theorem passes paper audit
+
+Scope: EVERY S is reduced to the opposite cubic conductor range by the actual-W
+inequality mW+C_m>=M/2 for3<=e<m, with e2/e=m known complements. This is a
+completed universal quantitative reduction, not a proof of its remaining range.
+User asked "Is this anything:" and supplied the full theorem/proof. Review stays
+inside DIRECT-WILF; no suspended programme or autonomous goal is resumed.
+
+Root independently rederived n_T,s_T from complete uv-blocks, then simplified
+to the user's A*q^2+B*q+D polynomial. The floor-row upper bound gives exactly
+B>=B0+(u-1)r/2; D>=0 uses the column identity even if the smaller cutoff lacks
+units. All small coprime cases and the positive-vertex argument check out.
+Plane-section columns really are distinct columns of the full tile, so their
+deficits can be retained without overcounting. Complete cutoff plus equal axis
+lengths then forces a full simplex, excluded for actual3<=e<m by cyclic counting.
+No gap found in this PAPER audit; no Lean or external-referee claim.
+
+Actual consequence: W<0 forces M<=(e-2)m(m-1)-2m, improving the previous quartic
+cutoff to cubic in m. W<=0 has no -2m. The sharpness family gives c8t,g5t,Wt
+and ratio(4t+6)/(8t+3)->1/2. It is sharp over the stated range, without claiming
+optimality in every narrower normalized domain.
+
+BORDER-SUM also checks: each minimal excluded word uses its own directed columns.
+For the one101/102/111 calibration, the normal tile has sum96960, c1817,g910,W904;
+border contributions sum27834, proving the claimed lower bound W>=226.
+These are hand derivations, not numerical reconstruction/checker runs.
+
+STRATEGIC DECISION: accept HALF-STABILITY as a completed paper result and retain
+the direct actual-W priority. The constant1/2 cannot be improved uniformly;
+neither constant tuning nor a bounded-conductor census is a default next target.
+Full finite-correction positivity remains open. Novelty is not established:
+primary Zhai Section5 already points to quantitative deviation from simplex
+equality, and Hellus–Waldi discuss weighted cutoffs. The user's sandbox files are
+absent locally; reported finite-check counts are not independently reproduced.
+No new code/document/agent/worker/rental, and the autonomous tracker stays paused.
