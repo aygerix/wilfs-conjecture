@@ -2225,3 +2225,79 @@ source invariants, both signed terms and transfer margin. Source file SHA256s we
 checked equal on laptop/worker before the corrected run; no worker data was replaced.
 All launched commands are terminal. This15-record replay is CLOSED, no automatic additional
 profiles or optimizer. E470 wall/path/5-control/51-calibration are PAPER ONLY.
+
+## E472 — One exact nonflat phase-debt witness, not a search campaign
+
+2026-10-23, Fejer e2-standard-8/us-east1-b. The universal target is still
+Q=Dep+N-kappa>=0, with W=Q+R. The named test is a falsifier of its STRONGER
+nonflat helper kappa<=Dep. SCOPE fixes exactly one m95250 cover and one distinguished
+atom127; no random proposals, other q/atoms, affine-orbit census or GPU rental.
+Both paper audits passed first, giving F>=525. Full construction/proof: PROOFS E472.
+
+New fixed-input C++ constructor: `src/apery_scan/cover_cubic.cpp`. Its only interface
+is --output PATH. It enumerates sparse degree<=2 canonical candidates and replaces
+exactly one with3e_p, checks the cost separations, every generator-edge inequality,
+all attaining predecessors, explicit columns, invariants/cofactors and paper bounds.
+No dense m*d word table. Wide intermediate arithmetic is __int128, with checked
+signed64 exports. Source/output integers exceed the old32-bit evaluator's range.
+
+Independent Python mode in EXISTING `src/scratch/p39/verify_probe.py`:
+`--cover-cubic-check`. It regenerates the four arithmetic basis sets, verifies all
+95250 residue classes are two-covered, independently enumerates canonical flat
+pairs, checks the one-cell change and source words. It checks ALL48291750 edge
+inequalities and95249 strictly decreasing attaining predecessors. Together these
+prove exact Apéry distances without allocating membership up to c381022955509.
+Every tight generator edge also checks the sparse exponent-vector lex choice;
+216267 such comparisons pass. Independent active-column grouping verifies all
+Gamma entries, phase inversions, nonmaximal cells, K/axis/V, cofactors and W=Q+R.
+
+|Quantity|Flat profile comparison|Actual nonflat source|
+|---|---:|---:|
+|height|2|3|
+|Dep|68072|68580|
+|kappa|70622|70622|
+|F=kappa-Dep|2550|2042|
+|N|142166|142167|
+|Q|139616|140125|
+|W|5952436602083|6050807372067|
+
+Actual m95250,e508,M381023050758,r258,c381022955509,g368361872187,
+ell12661083322,R6050807231942. All deletion cofactors1,3e<m,c>4m. Actual K70812,
+axis190,V142357, hence N142167 and Q140125. Mixed cells94552; the flat comparison
+has94553. Exactly one word differs, at actual residue94869: raw63500+32131 is
+replaced by3*127. No parent unit becomes maximal, so DeltaDep508,Deltaeta1 and
+DeltaQ509. Actual W is large and positive. This is NOT a resistant full-Q case,
+a negativeQ witness, a Wilf counterexample or evidence of positivity on new regions.
+
+Execution: GCC13 initially rejected std::sort on a3-entry fixed array under-Werror
+with its internal16-entry array-bounds diagnostic; compilation stopped BEFORE any
+source evaluation. Replacing that call with a bounded tiny insertion sort allowed
+the SAME strict flags. Exactly one C++ source evaluation then completed,1.75548s
+including export. The independent Python audit completed once,16.5353s. These are
+job timings, not CPU/GPU or algorithm benchmarks. Each mathematical run had a60s
+ceiling. No timeout, source-check failure, rerun/scaleup or new rental. All jobs
+are terminal; a targeted process check found none left running.
+
+Reproduce on Fejer/Linux from repository root:
+
+    g++ -O3 -std=c++17 -Wall -Wextra -Werror src/apery_scan/cover_cubic.cpp -o /tmp/cover_cubic
+    timeout 60s /tmp/cover_cubic --output /tmp/cover_cubic_472.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --cover-cubic-check /tmp/cover_cubic_472.json /tmp/cover_cubic_check_472.json
+
+Saved artifacts (gzip preserves the complete source and flat-profile arrays):
+
+    src/apery_scan/data/cover_cubic_472.json.gz        1517151bytes
+    src/apery_scan/data/cover_cubic_check_472.json     exact compact independent report
+
+SHA256s matched between worker and laptop, including BOTH source files:
+
+    cover_cubic.cpp          e6fdc38671181bc6d546455593619f9540c702827dc42688558756d3d972ea4d
+    verify_probe.py          32da5ce5802711766a5d1653b3c24d8b95b3e4a097e5eed71a91e62832ce1ce8
+    source.json.gz           63a9d1be45e339cf4a378911abc233683ff1005ecb7c59c40c215c54a47afd90
+    independent_report.json  269edc5862e4c4c14be6b17673bbf901bbe32a2afa32c2376fa035d89d8a894d
+
+The phase-free nonflat helper is CLOSED/refuted. The ONE fixed diagnostic is CLOSED.
+No more F-only mutations follow from success. Paper signed analysis explains why
+the cubic makes Q SAFER when the old square is maximal and no unit is isolated:
+at a fixed phase DeltaQ>=e-2. Actual-top changes require separate accounting.
+Full-Q global allocation and the weaker full-reserve Wilf target remain UNKNOWN.

@@ -1,12 +1,50 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 19:35 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 20:16 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
 
-**E470/E471 checkpoint: coherent exchanges do not stall; finite payment still needed.**
+**E472 checkpoint: the NONFLAT phase-free helper is REFUTED.** A general complete
+cyclic2basis plus one cheap primitive replaces exactly one quadratic by a pure cubic.
+For an explicit directed cover from Bevan–Erskine–Lewis, m95250,e508, the paper
+carry bounds prove F=kappa-Dep>=525. ONE actual reflected source certifies exactly
+kappa70622,Dep68580,F2042,N142167,Q140125,W6050807372067. Every deletion cofactor1,
+height3,3e<m,c>4m. This is a mechanism falsifier, NOT a low-Q/W case: fullQ and W
+are comfortably positive. The original raw/mirror cover and one-cell formulas
+are proved on paper with independent review; no new cover/novelty/Lean claim.
+
+**Independent exact evidence:** all48291750 generator-edge inequalities,95249
+positive-cost attaining predecessors and216267 tight canonical lex choices pass.
+Independent sparse columns verify EVERY Gamma and Q/R identity. Source constructor
+1.75548s; separate Python audit16.5353s on Fejer. Initial GCC13 strict-build warning
+was repaired before source evaluation; only ONE actual source/flat-profile comparison
+ran. Full witness and report are apery_scan/data/cover_cubic_472.json.gz and
+cover_cubic_check_472.json. Worker/laptop hashes match. This compute is CLOSED;
+no atom/q scan, sampling expansion, new GPU rental or pending process.
+
+**Useful signed diagnosis:** for maximal quadratic b avoiding p exchanged for
+minimal-excluded3e_p, DeltaGamma=1_(3p)-3*1_(2p)+sum b_j*1_(e_j). At ANY common
+phase Deltaeta=Delta(N-kappa) is an integer in[-2,2]. Put U=[old2e_p maximal], and
+z_new=number of distinct unit parents becoming maximal. Then
+DeltaDep=(e+1)U-1-e*z_new and DeltaQ=DeltaDep+Deltaeta. In particular a flat old
+tile with z_new0 has DeltaQ>=e-2>0. Our witness has U1,z_new0,Deltaeta1: Q rises
+139616->140125. The construction succeeds at exposing phase debt while moving
+the full budget the SAFE way. Do not enlarge this recipe to seek negativeQ.
+If U0,z_new0, DeltaQ lies[-3,1]; actual-top changes need separate accounting.
+All these signed statements are paper-reviewed specializations of E470 WALL-Q.
+
+**Next:** the full actual-phase payment kappa<=Dep+N (equivalently K<=Dep+V),
+or the weaker combined full-reserve quota, remains the universal obligation.
+N cannot be discarded even after sparse/deep/cofactor/strict normalization.
+Any new negativeQ construction or augmentation must account for the signed
+Gamma/top change, not optimize F alone. No new numerical campaign is activated.
+The source integrated budget and coupled full-y reserve remain the other two
+universal lines. Same TWO authorized agents done; goal ACTIVE, no universal proof
+or genuine Wilf counterexample. PROOFS/EXPERIMENTS E472 contain reproduction.
+
+**Retained E470/E471: coherent exchanges do not stall; finite payment still needed.**
 At a positive canonical wall whose finite active primitive rows generate ONE
 residue-lattice relation b-a, the adjacent tile is EXACTLY the full-shadow image
 z->z-q(z)a+q(z)b. Correct orientation, lattice primitivity, original-unit loss and
@@ -844,9 +882,21 @@ signed terms. It performs NO optimization. Output:p39/data/reserve_transfer_471.
 full command/input interpretation in EXPERIMENTS E471. The replay is CLOSED.
 E470 wall-shadow/path/Qjump/calibration results are PAPER ONLY, no new wall walker.
 
+**E472 implementation:** [cover_cubic.cpp](../src/apery_scan/cover_cubic.cpp) has
+ONLY the fixed --output interface; sparse words degree<=3, all generator edges,
+full invariants/cofactors, explicit columns and one-cell jump checks. No search
+parameters or GPU dependency. Existing `verify_probe.py --cover-cubic-check INPUT
+OUTPUT` independently verifies the basis, canonical pairs, exact shortest-path
+certificate, tight-edge lex choices and active-column geometry; it does not call
+the C++ code or the dense factor_basis/support routines. Input may be gzipped.
+Data: [complete witness](../src/apery_scan/data/cover_cubic_472.json.gz),
+[independent report](../src/apery_scan/data/cover_cubic_check_472.json). Reproduce
+from repository root using the three commands in EXPERIMENTS E472. Both are CLOSED
+fixed-control tools; no automatic generalization to a parameter scan.
+
 ## Current attempt and next action
 
-**Next proof task (E467–E471):** pay mixedkappa jointly by Dep and the unused wrapped
+**Next proof task (E467–E472):** pay mixedkappa jointly by Dep and the unused wrapped
 slots N after the explicit axis injection, allowing augmentations to reassign earlier
 slots. Exact target K<=Dep+V on E466 strict sources retains cyclic labels and actual
 top. Forced last-edge reflection toDep fails even for a mixed token; it is not the
@@ -861,6 +911,14 @@ parent reserves; raw word energy, fixed-rank return catalogues and unconditional
 flux/real-path monotonicity remain stopped. Sourcepath's exact integrated loss still
 needs its quantitative bound; coupledtransfer cannotdiscard Gamma.y-Dep. No special-
 e/m/depth programme or automatic census/optimizer/rental.
+
+E472 now CLOSES the nonflat phase-free kappa<=Dep helper with a genuine F2042
+witness. The actual phase more than pays it; no negativeQ/W found or claimed.
+The one-cubic construction is also CLOSED: common-phase DeltaQ>=e-2 when the
+old square is maximal and no unit becomes maximal. Its success on F is therefore
+not progress toward low Q. Any next proof-derived augmentation must retain both
+DeltaDep and Deltaeta and possible top changes; the generalized signed formula
+above diagnoses the already-branching case without authorizing a new wall sampler.
 
 Directed discovery remains authorized, with a named predicate and budget; the old
 resistant-seed prerequisite stays superseded. Any new policy search should report both

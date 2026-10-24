@@ -1480,3 +1480,24 @@ path guard does not refute Wilf or integer endpoint positivity. E471's attempted
 reflection/tree argument duplicates E422/E423; root stopped that duplication. Exact
 old witnesses instead refute the boundary-only helper while preserving full reserves.
 No priority, absence-of-prior-work or new regional-proof claim is made.
+
+### E472: directed cyclic two-basis used as an exact helper falsifier (2026-10-23)
+
+Primary source checked: [Bevan–Erskine–Lewis, Large circulant graphs of fixed
+diameter and arbitrary degree,1506.04962v3,Section3.3](https://arxiv.org/html/1506.04962v3#S3.SS3),
+Theorem9, Theorem10(a), and Lemma6. The DIRECTED diameter-two construction with
+q127, factors127,125,6 has degree507/order95250. Its zero-adjoined generator
+set is a complete cyclic two-basis of cardinal508. This is established graph/
+sumset material, not a new cover construction. The undirected table with signed
+generators is not substituted for that directed basis.
+
+E472 gives the explicit four arithmetic residue lists and independently proves
+their two-coverage, then derives its own finite carry estimate, reflected actual
+source and one-cubic change. The correct affine CRT translation is63500;31750 is
+the start of the Z family. Independent paper review caught no gap in the carry
+bound. No priority claim is made for converting covers into semigroup mechanism
+controls; E353 had already discussed efficient-cover/one-cubic ideas. The new
+claim is an explicitly proved falsifier of the phase-free nonflat support helper,
+with full phase and actual Wilf reserve retained. Exact witness certification is
+listed in EXPERIMENTS; it is neither a new proof of Wilf nor a new bound on its
+counterexample domain. No broader literature-absence claim is inferred.

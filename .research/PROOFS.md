@@ -12747,3 +12747,185 @@ existing reflection–recombination budget. That duplicate is not a new lemma an
 does not justify another flow solver. Stop the boundary-only helper; retain BOTH
 terms and actual row slacks in RESERVE-SPLIT. Uniform reserve transfer remains
 optional/unknown, not a prerequisite replacing the original weaker Wilf goal.
+
+## E472 — A complete cyclic cover with one cubic and positive phase debt
+
+2026-10-23. Scope: the universal SUPP route would follow from
+kappa<=Dep+N on all normalized remaining sources. This section tests the STRONGER
+phase-free nonflat helper kappa<=Dep. It is not a fixed-family Wilf programme.
+Status: the following construction/bound is proved on paper; independent exact
+source certification is recorded below when completed. No novelty/Lean claim.
+
+**ONE-CUBIC construction.** Let A={0,a_1,...,a_d} be a set of distinct residues
+in Z_m with A+A=Z_m. Suppose a=a_p satisfies 2a,3a notin A. Fix an integer L>=4
+and a coordinate lex order. Assign raw generators
+
+    flat:    p=4Lm+a,       P_j=5Lm+a_j (j!=p),
+    nonflat: p=3Lm+a,       P_j=5Lm+a_j (j!=p).
+
+Every displayed nonmultiplicity generator is primitive: distinct nonzero residues
+exclude decompositions with at most one nonmultiplicity generator, and two such
+generators exceed the largest generator. Two-covering gives finite Apéry tables.
+Units beat pairs. In BOTH sources, pair order is first more occurrences of p,
+then smaller raw residue sum, then the fixed lex order. In the flat source all
+degree>=3 words exceed every selected unit/pair. In the nonflat source any triple
+using another coordinate costs>=11Lm, and degree>=4 costs>=12Lm; both exceed
+the unit/pair cover. The only possible cubic is 3e_p. It beats every pair avoiding
+p and loses to every pair containing p. At residue 3a no unit or p-containing pair
+exists, since 3a,2a notin A. Thus EXACTLY ONE old quadratic b, avoiding p, is
+replaced by 3e_p; 2e_p remains selected. All other canonical words stay unchanged.
+
+Let z_new be the number of DISTINCT parents of b that become maximal units after
+its deletion (0<=z_new<=2). A maximal word of degree h has Gamma=d+h. The maximal
+sum loses b and 2e_p, gains 3e_p and those z_new units. Since sumGamma=dm,
+
+    DeltaDep=e(1-z_new),   Deltakappa=-kappa(b),
+    F_nonflat=F_flat-e(1-z_new)-kappa(b),  F=kappa-Dep.     (ONE-CUBIC-F)
+
+Loops have one distinct parent and kappa0; this formula does not count them twice.
+In particular F_flat>d+2 suffices for positive nonflat F. This is a change of
+actual sources, not a word improvement inside one fixed source. It need not be
+a rank-one facet when pair ties persist.
+
+**Explicit cover.** Put m=95250=6*127*125 and take the disjoint union
+
+    O={6h:0<=h<=128},                  |O|=129,
+    X={500+750h:0<=h<=126},            |X|=127,
+    Y={127+762h:0<=h<=124},            |Y|=125,
+    Z={[31750+48012h]_m:0<=h<=126},    |Z|=127.
+
+Their classes modulo6 are respectively0,2,1,4, so A has508 elements including0.
+The distinguished a=127 has 254,381 notin A. This is the directed diameter-two
+cover of Bevan–Erskine–Lewis1506.04962v3,Thm9/10(a), q127. More explicitly, in
+Z127 x Z125 x Z6 use C0=(x,0,0), C1=(0,x,1), C2=(x,x,2), C4=(x,2x,4), with
+x ranges0..126,0..124,0..128,0..126. If CRT identifies that product with Z_m,
+the affine image 15881*CRT+63500 maps C2,C0,C1,C4 to O,X,Y,Z respectively.
+The shift is63500=4*127*125, NOT31750; the latter is the start of Z. An earlier
+working-summary shift typo was corrected before any numerical source run.
+
+Complete2coverage can also be checked directly. XY and YZ biject the class3/5
+cosets (size15875 each), and XZ covers class0, its extra254 pairs being harmless.
+For OX and OY, quotienting their fixed mod6 classes gives intervals of129 integers
+with start spacing125 and127, respectively; these cover their quotient circles.
+For OZ, the centers of those129-intervals are
+5291+129k (k0..63) and13293+129k (k0..62), modulo15875; together they cover the
+circle. Thus the six distinct-family pair sums cover every mod6 class.
+
+**Carry bound.** In the uniform minimum-raw-sum pair selector, X,Y,Z have means
+47750,47371,48256. XY and YZ therefore contribute exactly7916 and8000 wrapping
+pairs. In XZ every class0 target is covered; choose one pair for each target and
+discard nonnegative sums of redundant pairs. Its wrapping count is at most
+
+    floor((127^2*(47750+48256)-15875*47622)/95250)=8320.
+
+O has maximum768, and EACH of X,Y,Z has exactly one element >=m-768. Thus each
+of OX,OY,OZ has at most129 wrapping pairs. Choosing minimum-raw pairs can only
+reduce these counts. Ignoring a unit or replacing a mixed pair by a square also
+cannot increase kappa. Consequently the uniform selector has
+
+    kappa_raw<=7916+8000+8320+3*129=24623.
+
+Making p cheaper changes the pair choice in at most d=507 residues (those with
+a p-containing pair). Each change increases kappa by at most1, hence the flat
+raw tile satisfies kappa_raw<=25130. There are m-e quadratic cells and at mostd
+squares, so its mixed quadratic count T>=m-e-d=94235. Its maximal quadratic
+Gamma=e+1 gives Dep<=e(e+1)-2m=68072; isolated maximal units only reduce Dep.
+
+**A reflected genuine source with all cofactors1.** Order raw nonzero residues
+DECREASING, set L4, and replace each raw generator by
+
+    P_delta=m*P_raw(delta)+(m-delta)
+           =h_delta*m^2+m+(m-1)*delta,
+    h_delta=12 fordelta127, otherwise20.                 (ACTUAL-SOURCE)
+
+The comparison flat profile uses h127=16. Actual residues are m-delta, so the
+coordinate order is increasing actual residue. This is NOT scalar dilation.
+Raw strict unit/pair/cubic gaps survive: multiplication by m dominates the
+at-most3m residue correction. Raw equal pairs have equal degree, p-count and
+raw residue sum, so actual ties and lex selection are unchanged. The elementary
+degree bounds still exclude all other words. Each actual displayed generator
+is primitive since 2*minP>maxP and its residue is distinct/nonzero.
+
+Deleting m leaves gcd1: non-p raw atoms6,12,889 have differences6 and883, of gcd1,
+so gcd(all non-p P) divides m-1. Modulo m-1 their value is21, while P127 is13;
+gcd(21,13)=1. The flat comparison has17 in place of13, also coprime to21.
+Every other deletion leaves gcd1 using raw6,12,127,889: deleting6 leaves12,127;
+deleting127 leaves6,889; any other deletion leaves6,127. The gcd with m is1
+for each listed pair, and reflection does not change that gcd. Thus this is in
+the E439-normalized domain, with e508,3e1524<m, height3 and c>4m.
+
+Reflection changes the mixed quadratic carry to its complement; squares and
+the pure cubic have kappa0. Hence kappa_flat_mirror=T-kappa_flat_raw and
+
+    F_flat_mirror>=94235-25130-68072=1033.
+
+At raw residue381 the removed pair is (63500,32131), of summ+381. To check it
+without enumeration, write XY=627+6(125h+127k). The residue381 condition is
+125h+127k congruent15834 modulo15875; h84,k42 is the unique allowed solution.
+Its reflected carry is0. By ONE-CUBIC-F,
+
+    F_nonflat_mirror>=1033-508=525>0.                    (PHASE-DEBT)
+
+Thus the phase-free nonflat helper is FALSE even with strict sparse/deep and
+all deletion-cofactor-one guards. This does not imply Q<0: the actual phase term
+N must be retained. Nor does it imply W<0: W=Q+R retains its separate reserve.
+The purpose is to expose an actual mixed-carry obligation for the universal
+argument, rather than count further examples already satisfying Dep>=kappa.
+
+**Exact witness, independently certified.** The one fixed Fejer run gives
+
+|Profile|height|Dep|kappa|F|N|Q|
+|---|---:|---:|---:|---:|---:|---:|
+|Flat comparison|2|68072|70622|2550|142166|139616|
+|Actual nonflat source|3|68580|70622|2042|142167|140125|
+
+For the actual source M381023050758,r258,c381022955509,g368361872187,
+ell12661083322,W6050807372067,R6050807231942. ALL48291750 generator inequalities,
+95249 positive-cost attaining predecessors and216267 tight-edge canonical lex
+checks pass independently. Sparse explicit columns give K70812,axis190,V142357,
+N=V-axis142167,kappa=K-axis70622 and Q=Dep+V-K140125. Cofactors are all1.
+Canonical degree counts are1 origin,507 units,94741 pairs,1 cubic. The source
+is comfortably full-Q covered and has very large positive actual W; no claim
+that it is resistant to those stronger budgets. E466 also supplies strict/unique-
+factorization realizations with the SAME F/Q, if desired, but no extra source was
+constructed and actual W is not preserved by that normalization.
+
+**Signed diagnosis: why this recipe does not lower Q.** This is a specialization
+of E470 WALL-Q, not a new wall theorem. In ANY residue-bijective downset with all
+units, suppose a maximal quadratic b avoiding p is exchanged for the minimal
+excluded word 3e_p in the same residue. Assume the resulting set is a downset.
+Let u=2e_p,t=3e_p, U=1 if u was maximal, and z_new the number of DISTINCT unit
+parents of b that become maximal. Then, as vectors on residue labels,
+
+    DeltaGamma=1_t-3*1_u+sum_j b_j*1_(e_j).             (CUBIC-GAMMA)
+
+Both exchanged cells are maximal; their Gamma values are d+2,d+3. The p-axis
+column extends from length3 to4, removing3 Gamma slots at u. Removing a mixed
+pair creates one slot at each unit parent; removing a square creates two at its
+one parent. No other columns change. This proves CUBIC-GAMMA even in a higher-
+degree old tile. The sum of coefficients is0 and their residue-weighted sum is0
+modulo m. For ANY fixed phase r, writing D_r(s)=[r-s]_m,
+
+    Deltaeta_r = (D_r(t)-3D_r(u)+sum_j b_j D_r(e_j))/m,
+    eta=N-kappa,    Deltaeta_r in{-2,-1,0,1,2}.         (CUBIC-PHASE)
+
+Indeed the quotient is integral, and three positive/three negative unit
+coefficients of numbers in[0,m-1] bound it strictly between-3 and3.
+At u, the Dep change is e-2 if U1 and -3 if U0. Unit-parent changes total
+2-e*z_new: every newly maximal unit loses its new Gamma=e contribution from
+Dep, including the repeated-parent case. Hence
+
+    DeltaDep=(e+1)U-1-e*z_new,
+    DeltaQ_r=(e+1)U-1-e*z_new+Deltaeta_r.              (CUBIC-SIGN)
+
+For a flat old tile U1. If no parent becomes maximal, DeltaQ_r>=e-2>0 for e>=3.
+For U0,z_new0 the range is instead[-3,1]; do not extend the flat formula to an
+already-branching square. If actual top r changes, these common-phase estimates
+alone do not compare actual Q. Independent paper review passes all hypotheses,
+the repeated-parent case and both formulas; not Lean-checked.
+
+The exact witness has U1,z_new0,Deltaeta1 and the SAME actual top258, so Q rises
+by509. Thus its successful F falsification does NOT justify enlarging this
+recipe to hunt negative Q. Further useful work needs the full phase/reserve
+mechanism or operations whose signed budget can actually reduce it. This one-
+source compute and the phase-free helper are CLOSED; no sampler expansion.

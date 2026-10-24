@@ -646,3 +646,18 @@ term of J-Q=(Gamma.x-e*sumx)+(Gamma.y-Dep), not universal reserve transfer J>=Q.
 All15 saved transfer margins positive, minimum82; those point tests are CLOSED.
 The attempted column/tree proof is the ALREADY recorded E422/E423 budget, not a
 new payment lemma or a reason for another transport optimizer. No universal sign.
+
+E472 (2026-10-23): the NONFLAT restriction does not rescue kappa<=Dep. The explicit
+508-element complete cyclic two-basis in PROOFS E472, reflected and given one
+cheap primitive, produces a genuine m95250,e508 source with canonical height3,
+c>4m,3e<m and every primitive-deletion gcd1. On paper F=kappa-Dep>=525. The
+general one-cubic change is DeltaDep=e(1-z_new), Deltakappa=-kappa(removed pair).
+For this reflected source that removed mixed pair has kappa0. Independent paper
+review passes the covering, carry bounds, exact one-cell change and all guards.
+
+This improves on the old FLAT19 counterexample to unrestricted KAPPA-DEP; it
+closes the later NONFLAT phase-free helper, which E457/E466 left UNKNOWN. It
+does NOT refute kappa<=Dep+N or Wilf. The actual N and the actual reserve R must
+both be reported. The explicit source can have very large positive W; it is a
+mechanism falsifier, not a low-W witness or an unresolved Wilf case. No automatic
+cover-size increase, atom scan, orbit census or GPU campaign follows this result.

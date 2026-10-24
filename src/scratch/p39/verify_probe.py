@@ -2552,7 +2552,186 @@ def audit_mstd_shadow(R):
             'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
             'least_root_exit_collision':collisions}
 
+def audit_cover_cubic(C):
+    """E472: one fixed sparse witness; exact edge and canonical certificates.
+
+    This deliberately avoids membership DP up to a huge conductor and does not
+    call the C++ constructor or the dense factor_basis/support routines. Edge
+    inequalities plus attaining words prove all shortest distances exactly.
+    """
+    import time
+    started=time.monotonic()
+    m=95250
+    families=[set(6*h for h in range(129)),
+              set(500+750*h for h in range(127)),
+              set(127+762*h for h in range(125)),
+              set((31750+48012*h)%m for h in range(127))]
+    A=set().union(*families)
+    assert len(A)==508 and sum(map(len,families))==508
+    assert 0 in A and 127 in A and 254 not in A and 381 not in A
+    covered={ (a+b)%m for a in A for b in A }
+    assert len(covered)==m
+    raw=sorted(A-{0},reverse=True);d=len(raw);e=d+1
+    assert C['m']==m and C['raw_delta']==raw and (d,e)==(507,508)
+    special=raw.index(127)
+    P=[(12 if a==127 else 20)*m*m+m+(m-1)*a for a in raw]
+    Pflat=[(16 if a==127 else 20)*m*m+m+(m-1)*a for a in raw]
+    assert C['P']==P and min(P)>m and 2*min(P)>max(P)
+    residues=[p%m for p in P]
+    assert residues==[m-a for a in raw] and len(set(residues))==d
+    G=[m]+P
+    cofactors=[gcd(*[v for j,v in enumerate(G) if j!=i]) for i in range(e)]
+    assert set(cofactors)=={1} and 3*e<m
+
+    def lex_leq(a,b):
+        # Sparse exponent vectors in the fixed coordinate order, NOT tuple lex.
+        for j in sorted(set(a+b)):
+            ac,bc=a.count(j),b.count(j)
+            if ac!=bc:return ac<bc
+        return True
+
+    # Independent enumeration of the entire flat candidate set. The paper
+    # degree bound excludes every triple; nonflat only adds the pure cubic.
+    pair_words=[None]*m;pair_values=[None]*m
+    pair_words[0]=();pair_values[0]=0
+    for j,s in enumerate(residues):pair_words[s]=(j,);pair_values[s]=Pflat[j]
+    for i in range(d):
+        for j in range(i,d):
+            s=(residues[i]+residues[j])%m
+            val=Pflat[i]+Pflat[j];word=(i,j)
+            if pair_values[s] is None or val<pair_values[s] or (val==pair_values[s] and lex_leq(word,pair_words[s])):
+                pair_values[s]=val;pair_words[s]=word
+    assert all(v is not None for v in pair_words)
+    assert 3*min(Pflat)>max(pair_values)
+    flat_words=[tuple(v) for v in C['flat_profile']['words']]
+    words=[tuple(v) for v in C['source']['words']]
+    assert flat_words==pair_words
+    changed=[s for s in range(m) if words[s]!=flat_words[s]]
+    cubic_s=(-381)%m
+    assert changed==[cubic_s] and words[cubic_s]==(special,)*3
+    b=flat_words[cubic_s]
+    assert sorted(raw[j] for j in b)==[32131,63500]
+    assert sum(raw[j] for j in b)==m+381
+    otherP=[p for j,p in enumerate(P) if j!=special]
+    assert 4*min(P)>max(sum(P[j] for j in v) for v in words)
+    assert 2*P[special]+min(otherP)>max(P[i]+P[j] for i in range(d) for j in range(i,d))
+
+    def sparse_columns(ws,values,stats,export_gamma=None):
+        assert len(ws)==m and len(set(ws))==m
+        inv={v:s for s,v in enumerate(ws)}
+        assert inv[()]==0 and all(tuple(sorted(v))==v for v in ws)
+        for j,s in enumerate(residues):assert ws[s]==(j,)
+        maximum=max(values);r=values.index(maximum);c=maximum-m+1
+        rho=(-c)%m;labels=[(s+rho)%m for s in range(m)]
+        gamma=[d]*m;columns=defaultdict(list)
+        for s,v in enumerate(ws):
+            for j in set(v):
+                base=tuple(k for k in v if k!=j)
+                columns[j,base].append((v.count(j),s))
+        nonmax=set();N=0;V=0;axis=0;K=0;kappa=0;mixed=0
+        for (j,base),positive in columns.items():
+            col=sorted([(0,inv[base])]+positive)
+            assert [k for k,s in col]==list(range(len(col)))
+            top=col[-1][1]
+            for k,s in col:
+                gamma[s]-=1
+                N+=int(labels[s]>labels[top])
+            gamma[top]+=len(col)
+            for (k,s),(kn,t) in zip(col,col[1:]):
+                assert kn==k+1 and (s+residues[j])%m==t
+                nonmax.add(s)
+                V+=(k+1)*int(labels[s]+residues[j]>=m)
+        for v in ws:
+            cnt={j:v.count(j) for j in set(v)}
+            axis+=sum(k*residues[j]//m for j,k in cnt.items())
+            K+=sum(k*residues[j] for j,k in cnt.items())//m
+            kappa+=sum((k*residues[j])%m for j,k in cnt.items())//m
+            mixed+=int(len(cnt)==2)
+        Dep=sum(gamma[s] for s in nonmax)
+        assert sum(gamma)==d*m and N==V-axis and kappa==K-axis
+        Cm=(e-2)*m*(m-1)//2
+        phase_numerator=sum(gamma[s]*((r-s)%m) for s in range(m))-Cm
+        assert phase_numerator==m*(N-kappa)
+        g=sum(values[s]//m for s in range(1,m));ell=c-g;W=e*ell-c
+        mu=[(maximum-v)//m for v in values]
+        credit=sum(gamma[s]*mu[s] for s in range(m))
+        Q=Dep+N-kappa;R=credit-Dep
+        assert R>=0 and W==Q+R
+        out={'m':m,'e':e,'M':maximum,'r':r,'c':c,'g':g,'ell':ell,'W':W,
+             'Dep':Dep,'kappa':kappa,'N':N,'Q':Q,'R':R,'F':kappa-Dep,
+             'height':max(map(len,ws)),'mixed_count':mixed,'raw_carries':K,
+             'axis_carries':axis,'weighted_wraps':V,'gamma_sum':sum(gamma),
+             'nonmax_count':len(nonmax),'raw_kappa':mixed-kappa}
+        for key in ('e','M','r','c','g','W','Dep','kappa','N','Q','R','F'):
+            assert stats[key]==out[key],(key,stats[key],out[key])
+        if export_gamma is not None:assert gamma==export_gamma
+        return out
+
+    source=C['source'];w=source['w']
+    assert len(w)==m and w[0]==0
+    predecessor_count=0
+    for s,v in enumerate(words):
+        assert 0<=len(v)<=3 and all(0<=j<d for j in v)
+        assert w[s]==sum(P[j] for j in v) and w[s]%m==s
+        if v:
+            parent=v[:-1];j=v[-1]
+            t=sum(residues[k] for k in parent)%m
+            assert words[t]==parent and w[t]+P[j]==w[s] and w[t]<w[s]
+            predecessor_count+=1
+    edge_count=0;tight_count=0
+    for j,(delta,p) in enumerate(zip(residues,P)):
+        for s,ws in enumerate(w):
+            t=s+delta
+            if t>=m:t-=m
+            value=ws+p
+            assert w[t]<=value,('edge',j,s,t,w[t],value)
+            if w[t]==value:
+                assert lex_leq(words[t],tuple(sorted(words[s]+(j,)))),('canonical',j,s,t)
+                tight_count+=1
+            edge_count+=1
+    actual=sparse_columns(words,w,source['summary'],source.get('gamma'))
+    flat_values=[sum(Pflat[j] for j in v) for v in flat_words]
+    if 'w' in C['flat_profile']:assert C['flat_profile']['w']==flat_values
+    flat=sparse_columns(flat_words,flat_values,C['flat_profile']['summary'],C['flat_profile'].get('gamma'))
+    assert actual['height']==3 and flat['height']==2 and actual['c']>4*m
+    # Recheck the paper bound using exact family counts, without fitting it.
+    O,X,Y,Z=families
+    assert [sum(B)//len(B) for B in (X,Y,Z)]==[47750,47371,48256]
+    assert all(sum(v>=m-768 for v in B)==1 for B in (X,Y,Z))
+    assert sum((x+y)//m for x in X for y in Y)==7916
+    assert sum((y+z)//m for y in Y for z in Z)==8000
+    class0_bound=(127**2*(47750+48256)-15875*47622)//m
+    assert class0_bound==8320
+    uniform_bound=7916+8000+class0_bound+3*129
+    assert uniform_bound==24623 and flat['raw_kappa']<=uniform_bound+d
+    assert flat['mixed_count']>=m-e-d and flat['Dep']<=e*(e+1)-2*m
+    assert flat['F']>=1033 and actual['F']>=525
+    old_parents={tuple(k for at,k in enumerate(b) if at!=i) for i in range(len(b))}
+    def nonmax_words(ws):
+        return {v[:i]+v[i+1:] for v in ws for i in range(len(v))}
+    old_nonmax=nonmax_words(flat_words);new_nonmax=nonmax_words(words)
+    newly_maximal=sum(v in old_nonmax and v not in new_nonmax for v in old_parents)
+    assert actual['Dep']-flat['Dep']==e*(1-newly_maximal)
+    assert actual['kappa']==flat['kappa']
+    return {'status':'exactly verified','source':actual,'flat_profile':flat,
+            'complete_two_cover':len(covered),'generator_edges_checked':edge_count,
+            'tight_canonical_edges_checked':tight_count,'attaining_predecessors':predecessor_count,
+            'deletion_cofactors':sorted(set(cofactors)),
+            'changed_actual_residue':cubic_s,'removed_raw_pair':[32131,63500],
+            'newly_maximal_parent_units':newly_maximal,
+            'paper_nonflat_F_lower_bound':525,'verified_F_positive':actual['F']>0,
+            'negative_Q':actual['Q']<0,'genuine_negative_W':actual['W']<0,
+            'elapsed_seconds':time.monotonic()-started,
+            'coverage':'one fixed source and its flat profile; no sampling',
+            'membership_certificate':'all generator-edge inequalities plus attaining positive-cost predecessor words'}
+
 if __name__=='__main__':
+    if sys.argv[1]=='--cover-cubic-check':
+        assert len(sys.argv)==4
+        with open_text(sys.argv[2]) as source:result=audit_cover_cubic(json.load(source))
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('COVER-CUBIC-CHECK',json.dumps(result,sort_keys=True))
+        sys.exit(0)
     if sys.argv[1]=='--reserve-transfer-check':
         assert len(sys.argv)==7, 'four saved witness files, then output'
         result=audit_saved_reserve_transfer(sys.argv[2:6])

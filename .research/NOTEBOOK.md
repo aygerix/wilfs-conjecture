@@ -5935,3 +5935,51 @@ surplus and row slacks. These remain three universal lines, not a substitute suc
 definition. No new inequality forcing the universal sign was obtained this turn.
 Both SAME authorized agents done, all Fejer jobs terminal, no GPU rental/newlaunch,
 no Lean/noveltyclaim. STATE updated in place, goal ACTIVE.
+
+### 2026-10-23 20:16 EDT — E472: actual phase debt, and the sign of the cubic move
+
+SCOPE: Proves Wilf for EVERY S if the universal full actual-phase allocation
+kappa<=Dep+N, or weaker full-reserve/source quota, is established; proved reduction
+SUPP-WILF/E466 plus complements/E439. The optional nonflat phase-free helper was
+an explicit universal-mechanism falsification target, not a restricted Wilf family.
+
+NEW PAPER RESULT: complete cyclic2basis A plus a distinguished a with2a/3a notin A
+admits a flat-to-one-cubic realization with EXACTLY one changed canonical word.
+DeltaDep=e(1-z_new),Deltakappa=-kappa(b). Bevan–Erskine–Lewis's directed q127
+cover yields an explicit reflected cofactor1/deep/sparse source with F>=525.
+Both same agents independently audited construction/carry arithmetic; root corrected
+a working-summary CRT shift typo before compute. Full proof is PROOFS E472, not
+a novelty or formalization claim.
+
+EXACT OUTCOME: ONE source, m95250,e508,c381022955509,g368361872187,
+W6050807372067,Dep68580,kappa70622,F2042,N142167,Q140125,R6050807231942.
+ALL48291750 edges and95249 attaining predecessors prove the Apéry table; independent
+Python additionally checks216267 tight canonical choices, all sparse columns,
+every cofactor and the paper bounds. Source constructor1.75548s, audit16.5353s on
+Fejer,60s ceilings. An initial GCC13 std::sort warning stopped compilation before
+any evaluation; tiny insertion sort repaired it under unchanged strict flags.
+Saved full/verified artifacts are in apery_scan/data/cover_cubic*472*; hashes match
+worker/laptop. No GPU rental, new agents, sampler or job remains.
+
+INTERPRETATION: kappa<=Dep is FALSE even for NONFLAT normalized sources; retaining
+actual phase is essential. This source is ALREADY full-Q covered, with huge positive
+W. It is not the new difficult Wilf regime. No further F-only run follows success.
+
+NEXT PAPER DIAGNOSIS COMPLETED: specialize E470 to a valid maximal quadratic b
+avoiding p exchanged for minimal-excluded3e_p. DeltaGamma=1_(3p)-3*1_(2p)+sum
+b_j*1_(e_j), giving Deltaeta integer in[-2,2] at any COMMON phase. With
+U=[old2p maximal], DeltaDep=(e+1)U-1-e*z_new. Thus a flat old tile with z_new0
+has DeltaQ>=e-2>0; the exact control has DeltaQ509. If U0,z_new0 the range is
+[-3,1]. Independent paper review checked the repeated-parent case and warned
+that the flat Dep formula fails when2p already has another child; corrected
+general formula records that distinction. Top changes are not silently ignored.
+
+GLOBAL REVIEW / NEXT HANDOFF: direct F-positive discovery succeeded but this cubic
+recipe moves the full budget the safe way, so CLOSE it. Next actual sign work must
+pay mixed carry from BOTH Dep and unused physical wraps, or use the FULL actual
+reserve in W=Q+R. Use existing signed wall formulas to reject proposed augmentations
+that cannot lower a candidate deficit; another identity or more positive profiles
+is not payment. No new numerical predicate/budget is activated by this handoff.
+The other universal lines remain integrated source-trade quota and coupled affine
+budget with Gamma.y-Dep/row slacks. No standalone phase-free, frozen/rank/energy or
+real-path positivity revival. Goal ACTIVE; no universal Wilf proof/counterexample.
