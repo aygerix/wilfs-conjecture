@@ -1678,3 +1678,13 @@ theorem USED to prove the missing integrated-overlap bound. This is not a claim
 of novelty, absence of prior work, or a literature-based impossibility result.
 No generic graph distance theorem or scalar polynomial positivity assertion is
 substituted for actual generator costs and all individual arrival inequalities.
+
+### E499: actual-prefix proof step (2026-10-24)
+
+The prefix assertion is a proposed sufficient step here, not a theorem attributed
+to a source. Its paper falsifier uses only exact residue and value comparisons.
+Limited Wilf/Apéry/prefix/simplex searches, including GitHub, supplied no external
+theorem USED in the derivation. The earlier GW/PGW window targets concern other
+prefixes; no result is inferred for this assertion from them. The ordered-birth
+and sliding-window formulas are elementary consequences of Selmer/E490, not
+claimed novel or a replacement for the missing universal inequality.

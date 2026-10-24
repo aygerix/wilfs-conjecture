@@ -814,3 +814,14 @@ has homogeneous deficit-1544700, despite satisfying those relaxed conditions.
 It assigns16248 to residue48 while624+624=1248 is already attainable. It is
 NOT an Apéry set or a numerical semigroup counterexample. EACH individual
 generator-shift inequality must remain. No aggregate-only repair is activated.
+
+## E499 — every actual prefix need not separately pay the finite correction
+
+FALSE universal proof step: for every actual Apéry prefix of size k and maximum
+T, d*k*T-e*sum w >= (e-2)*k*(k-1)/2. It would prove Wilf at the FINAL prefix,
+but genuine <301,344,345,351> has a Delta6 prefix giving6552<6972. The prefix
+values are distinct in their actual residues and are exact minima; none of
+E498's relaxed-model defects is present. The source is sparse/deep/cofactor-one.
+PROOFS E499 gives the paper argument, with no full W calculation. Full residue
+coverage excludes a simplex; a proper prefix CAN be a simplex. Do not impose
+nonnegative intermediate budgets or activate a restricted-prefix repair.

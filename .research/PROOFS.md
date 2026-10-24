@@ -14486,3 +14486,91 @@ Decision: stop aggregate-positivity-only completion of the universal argument.
 No repair family, numerical census, new engine, transport rule or agent follows.
 The exact individual arrival inequalities and actual generator count remain
 mandatory in the all-S proof. The universal sign is still unproved.
+
+## E499 — actual prefixes cannot each be required to pay the finite correction
+
+2026-10-24. A PAPER attempt to integrate the FULL actual reachability process.
+No relaxed arrival model is used. A proposed stronger induction statement was:
+at every actual birth threshold T, with k=|A_T|,
+
+    d*k*T-e*sum_(w<=T)w >= (e-2)*k*(k-1)/2.         (PREFIX-PAY)
+
+At T=M,k=m this is precisely mW>=0 by E490, so the proposed universal step had
+a direct implication to ALL Wilf. It is nevertheless FALSE. This is not a
+necessary condition of Wilf, and no restricted repair is activated.
+
+The smallest paper test here is S=<11,14,15>. Its Apéry values up to30 are
+exactly0,14,15,28,29,30: the nonzero values minus11 are3,4,17,18,19, all gaps;
+every other source value below31 contains11. Both other generators are primitive
+and gcd1. Thus k6,T30,sum116, so the left side is12 while the proposed correction
+is15. This is a failure on ACTUAL minima, not the E498 artificial profile.
+
+The same obstruction occurs with sparse/deep/cofactor-one hypotheses intact.
+Take the ONE source
+
+    S=<301,344,345,351>.
+
+All four generators are primitive since344,345,351 lie between301 and602.
+The gcd is1. Its FIRST84 Apéry values are exactly
+
+    344*x+345*y+351*z,   x,y,z>=0, x+y+z<=6.         (Delta6 prefix)
+
+Here is a direct check, with no reconstruction of the rest of Apéry. For a word
+of degree n<=6 its residue is43n+y+7z, an integer in[43n,50n] below301. These
+intervals are disjoint for0<=n<=6; within an interval y+7z determines y,z
+uniquely because0<=y<=6. Hence all84 residues are distinct. Every word of
+degree>=7 costs at least7*344=2408>6*351=2106. If any displayed value minus301
+belonged to S, a factorization of that smaller value could use at most six
+nonpivot generators; its residue would force exactly the same displayed word,
+whose value is already too large. Therefore the displayed values are all
+ACTUAL Apéry minima. Conversely, an Apéry value<=2106 has no301 in a
+factorization and at most six other generators, so it is on the list.
+
+Their number is binom(9,3)=84, their maximum T is2106, and the sum of EACH
+coordinate over Delta6 is binom(9,4)=126. Consequently
+
+    sum w=126*(344+345+351)=131040,
+    d*k*T-e*sum w=3*84*2106-4*131040=6552,
+    (e-2)*k*(k-1)/2=6972.
+
+The prefix budget is-420. This is NOT W(S): k84<m301. The actual maximum is
+at least2106, hence c>=1806>4m, and3e12<m301. Deleting301 leaves consecutive
+344,345; deleting344 leaves gcd(301,345)=1; deleting345 leaves
+gcd(301,344,351)=1; deleting351 leaves gcd(301,344,345)=1. Thus all deletion
+cofactors are1 as well. No exact full conductor, genus or W is asserted or
+needed. This tests a universal induction step, not Wilf for a fixed-e family.
+
+The structural reason is precise. These genuine partial sets are full discrete
+simplices. The counting obstruction excluding a full simplex applies only when
+ALL m residues have been represented; it does not apply to an injective proper
+prefix. A final-budget proof may allow a negative prefix and later compensation.
+The result does not refute an integrated argument retaining that compensation.
+
+### Exact final accounting after rejecting nonnegative intermediate budgets
+
+Order the actual births as0=b_0<b_1<...<b_(m-1)=M, and put
+
+    G_k=b_k-b_(k-1)-1,   1<=k<m.
+
+Every G_k is nonnegative. Removing the birth integers from[0,M) leaves exactly
+c=M-m+1 nonbirth times, and directly from E490's area formula
+
+    sum G_k=c,
+    Area=sum_(k=1..m-1)k*(G_k+1),
+    sum k*G_k=m*ell,
+    mW=sum_(k=1..m-1)(e*k-m)*G_k.                   (GLOBAL-WAIT)
+
+For example, the third identity follows by substituting
+ell=Area/m-(m-1)/2; the other two are telescoping integer sums. Equivalently,
+|A_t|=|S intersect[t-m+1,t]|, taking negative integers outside S. Each residue's
+unique integer in that window belongs to S exactly when its Apéry birth is<=t.
+The global target is therefore a lower bound on the average number of reached
+residues during NONBIRTH times, at least m/e. This is EXACTLY Wilf, not an
+independently proved bound or a new programme. The coefficients in GLOBAL-WAIT
+have both signs; nonnegativity of G alone supplies no proof.
+
+Attempting to integrate prefixwise finite corrections failed at PREFIX-PAY.
+Restoring the full final sum preserves the requisite compensation but does not
+yet bound it. No global lower bound for GLOBAL-WAIT was obtained. Do not turn
+this identity into another graph policy, pointwise-positivity requirement,
+reconstruction algorithm, special-family search or claim of mathematical novelty.

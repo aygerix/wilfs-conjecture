@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-24 02:06 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 02:24 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -19,6 +19,22 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**E499: stagewise finite-correction integration is false on ACTUAL prefixes.**
+Requiring the k reached residues at every birth threshold T to satisfy
+d*k*T-e*sum_(w<=T)w>=(e-2)k(k-1)/2 would prove Wilf at k=m, but it is stronger
+than needed and FALSE. Genuine S=<301,344,345,351> has a complete Delta6 prefix:
+k84,T2106,sum131040, giving prefix6552 versus correction6972, a deficit420.
+Distinct-residue and minimum constraints are verified directly on paper; all
+cofactors1,3e<m,c>4m. Its actual W is NOT computed or asserted. The smaller
+11/14/15 prefix gives the same warning. No repaired prefix theorem is activated.
+
+The full final accounting remains exact: if b_k are the ORDERED actual births,
+G_k=b_k-b_(k-1)-1, then sum G=c, sum kG=m*ell, and
+mW=sum_(k=1..m-1)(e*k-m)*G_k. Thus compensation across the entire birth process
+must be allowed. This identity is NOT a bound or a new sign mechanism. No proof
+of its nonnegative total has been obtained. Paper proof and scope: [PROOFS E499](PROOFS.md#e499--actual-prefixes-cannot-each-be-required-to-pay-the-finite-correction).
+This checkpoint adds no numerical run, code engine, worker, agent or rental.
 
 **E497–E498: aggregate arrival positivity is an insufficient proof step.** The
 full recursion gives Area=M+X-Omega, where X=sum_(j,r)(M-p_j-w_r)_+ and Omega is
@@ -41,7 +57,7 @@ No numerical run, source-library edit, worker or new agent in this checkpoint.
 The previous user-facing explanation was no research progress; this checkpoint
 persists the failed proof-step audit. Goal remains ACTIVE, not achieved/blocked.
 
-**Latest universal-argument attempts E493–E496: three required steps rejected.**
+**Universal-argument attempts E493–E496: three proposed steps rejected.**
 The E492 border contribution alone is insufficient on a genuine sparse/deep,
 cofactor-one source (border11760<C12096). Applying Zhai directly to rounded
 conductor levels also lacks its linear-grading hypothesis; its proposed error

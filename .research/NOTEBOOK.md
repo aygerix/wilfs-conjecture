@@ -6398,3 +6398,35 @@ remain the authorized universal argument. No parameter-independent payment,
 descent, new universal positive lower bound or full proof has emerged here.
 Persist the actual failed derivation and continue the main goal without claiming
 completion, novelty, an independent numerical check, or a process running now.
+
+### 2026-10-24 02:24 EDT — full-system prefix integration attempted and rejected
+
+Previous goal turn: progress in the narrow sense of a persisted falsifier that
+changes the next action, not a new positive estimate for actual W. Inspected
+current worktree and authoritative handoff. Goal ACTIVE; no old job restarted.
+
+E499 attempted a universal all-threshold proof retaining ACTUAL minima: require
+each reached prefix to pay the finite correction for its own size k. At the
+last prefix this is exactly Wilf, so the implication to the all-S goal is clear.
+But the proposed intermediate invariant is false. The initial paper11/14/15
+prefix is Delta2 and fails by3. To identify the same cause inside sparse/deep/
+cofactor-one hypotheses, the ONE explicit source301/344/345/351 has an ACTUAL
+Delta6 prefix of84 words, maximum2106,sum131040, and deficit420. Distinct
+residues and minimum status follow from degree<=6 residual intervals[43n,50n]
+and the strict cost7*344>6*351. No full source invariants or checker run needed.
+This is a disproof of an overly strong UNIVERSAL induction step, not research
+on a fixed embedding dimension and not a Wilf counterexample.
+
+The mathematical follow-up retained compensation: ordering the actual births
+gives mW=sum(e*k-m)*G_k with nonnegative interbirth waiting counts G_k. Also
+sum G=c and sum kG=m*ell. This follows by exact summation and has not supplied
+a nonnegative-total theorem. It is recorded as accounting, not as an advance
+on Wilf's sign. The full costed recursion/minimum conditions remain mandatory.
+
+GLOBAL REVIEW: do not demand that partial residue sets inherit a theorem whose
+proof uses full residue completeness. Do not turn failure into a prefix-policy
+repair, another isolated-family project or a reconstruction/benchmark task.
+No universal positive bound or complete proof resulted in this checkpoint.
+The active objective is unchanged; no permission, extra resource or user input
+is missing. The remaining difficulty here is mathematical, not an external
+blocker. No blocked/complete status is appropriate and no background job exists.
