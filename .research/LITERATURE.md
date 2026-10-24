@@ -1501,3 +1501,28 @@ claim is an explicitly proved falsifier of the phase-free nonflat support helper
 with full phase and actual Wilf reserve retained. Exact witness certification is
 listed in EXPERIMENTS; it is neither a new proof of Wilf nor a new bound on its
 counterexample domain. No broader literature-absence claim is inferred.
+
+### E473/E474: quantitative checks and the one-label cofactor bridge (2026-10-23)
+
+Advisor all-phase extrema and the short Q_flat>=ceil(Dep/m) deduction are checked
+against the existing Flat-MaxCL proof and saved arrays. The earlier ONE-CUBIC
+theorem (E261/P6d) already covers broader positivity: no new one-cubic theorem or
+priority is claimed. PATH-COUNT follows directly from E470's integer wall-credit
+identity and finite-downset degree counting. Fiber centroids use the existing
+ordinary downset mean bound; its proposed integrated quota is refuted, not promoted.
+
+Reopened primary [Ojeda–Rosales2605.14775v1,Theorem4.14](https://arxiv.org/html/2605.14775v1#S4)
+for the exact coprime rank-one Frobenius/genus formulas underlying E439. The
+least-genus application retains the primitive-count correction. The new advisor's
+subgroup bridge is precisely the UNKNOWN statement recorded in E462, not a quoted
+theorem from this paper. A targeted arXiv/preprint/GitHub/conjectures.io check was
+made for duplication; no absence or novelty claim follows from its search results.
+The recorded conductor<=4m formal complement was not rerun or substituted for the
+universal target.
+
+JOINT-ANCESTOR's Hall equivalence is derived directly from finite cuts and includes
+all axis reassignment. Primal conservation plus an equal-capacity cut certify its
+ONE tested maxflow without trusting an optimization status. This is a sufficient
+algorithmic rule with an UNKNOWN universal obstruction classification. The cyclic
+skew-kernel calculation merely rewrites Win; no external spectral positivity or
+ordinary/popular-sum periodicity theorem is claimed to give a one-label quotient.

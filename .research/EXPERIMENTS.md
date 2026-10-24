@@ -2301,3 +2301,108 @@ No more F-only mutations follow from success. Paper signed analysis explains why
 the cubic makes Q SAFER when the old square is maximal and no unit is isolated:
 at a fixed phase DeltaQ>=e-2. Actual-top changes require separate accounting.
 Full-Q global allocation and the weaker full-reserve Wilf target remain UNKNOWN.
+
+## E473 — advisor all-phase check and one remaining-domain centroid-quota falsifier
+
+2026-10-23, Fejer. SCOPE fixes ONLY the two SAVED E472 Gamma arrays and ONE new
+paper-derived source13/15/35/37. No new large source/image, full E472 edge replay,
+new q/atom, path engine, solver or GPU rental. Paper chamber/centroid calculations
+were independently reviewed before execution.
+
+The saved-phase check evaluates190500 abstract phases using exact recurrence and
+checks direct dot products at every extremizer. Advisor numbers all match:
+
+|Profile|minQ (phase)|maxQ (phase)|
+|---|---:|---:|
+|Flat|91833 (94360)|139751 (8)|
+|Nonflat|92340 (94360)|140260 (8)|
+
+Both extrema are unique. DeltaQ ranges506..509; the paper Flat-MaxCL/swap lower
+bound is507. This phase family is CLOSED; no top-realization problem remains for
+making this SAME tile Qnegative. Earlier ONE-CUBIC already supplies broader
+positivity. Transition-count corollary H<=floor(a(a-1)/6) is PAPER ONLY.
+
+Existing C `upper_scan --axis-seed 13 15 35 37` and independent coin closure agree:
+m13,e4,M107,c95,g51,ell44,W81,Q20,R61, all4 deletion cofactors1. Allodd primitives
+are below39,3e12<m13,c95>4m. The internally proposed fiber-centroid integral quota
+fails: firstchamber top switch4/117 and effective walls1/4,2/7 give envelope losses
+12,0,39/4 on the first three top/chamber intervals. Their sum87/4 exceeds full
+J0=12; the remaining envelope integrand39(H-n_top) is nonnegative by unit persistence.
+Actual partial losses84/13,-909/26,59/14 preserve compensation; true FULL loss is
+J0-W=-69. Thus the bound on Xi is VALID but its proposed sufficient quota is FALSE.
+
+The independent mode checks ALL455 words of degree<=12 (positive-cost cycle deletion
+makes that complete) with1820 rational endpoint inequalities proving BOTH entire
+chambers, not just sampled times. The actual source is also independently coin-
+reconstructed. No later wall location or full path enumeration was performed.
+Whole combined independent phase/source/chamber check took0.187688s; not a benchmark.
+Each C/checker job had a60s limit and terminated successfully.
+
+Reproduce with the existing C evaluator from repository root on Fejer/Linux:
+
+    gcc -O3 -std=c11 src/scratch/p39/upper_scan.c -o /tmp/upper_scan_473
+    timeout 60s /tmp/upper_scan_473 --axis-seed 13 15 35 37 > /tmp/centroid_source_473.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --advisor-phase-path-check src/apery_scan/data/cover_cubic_472.json.gz /tmp/centroid_source_473.json /tmp/phase_path_check_473.json
+
+Saved p39/data/centroid_source_473.json and phase_path_check_473.json. The check is
+CLOSED: no family expansion or centroid optimizer. Full integrated payment remains
+UNKNOWN with actual Xi and every reserve. Spectral/Win observations in PROOFS E473
+are PAPER ONLY; no additional image/source numerical evaluation.
+
+## E474 — first exact joint-allocation rule and a single cached control
+
+New advisor steering prioritizes the E462 Qnegative=>one-original-label prime
+bridge. The first proposed JOINT-ANCESTOR network is defined in PROOFS E474; it
+uses BOTH physical resource pools and permits all axis reassignment. Total demand
+is K, full capacity Dep+V, and its axis-eliminated Hall cut is exact. The stronger
+rule-failure=>cofactor statement remains UNKNOWN; a Qpositive rule failure would
+refute the rule/classifier, not the main bridge or Wilf.
+
+Before any numerical reconstruction of the old35 periodicity guard, independent
+paper analysis proved EVERY raw word sum<35, so K=kappa=A_axis=0. Its planned
+network/source job was CANCELLED as vacuous. No replacement mirror or census.
+
+The ONLY actual network control was the cached63 origin, replayed under a NEW
+permission rule, not a repeat of349 ray points or468 images:
+
+    G=63,307,438,440,454,461,474,475,477,482,486,492
+    c912,g777,W708,Dep42,kappa39,N53,Q56,R652.
+
+Existing C --axis-seed and independent coin reconstruction agree. Integer maxflow
+completes ALL47 raw tokens, comprising8 axes and39 mixed tokens. The exhibited
+flow uses38 wrapped slots and1 boundary slot for mixed payment,8 wrapped slots
+for axes. Pool use is an exhibited certificate, not proved optimal. Wrapped raw
+capacity61 and boundary42 give full slack56. All deletion cofactors1; prime3 has
+6 nonzero ORIGINAL labels, prime7 has11. No deficient terminal component arose.
+
+The report stores EVERY arc(capacity,flow), all group/resource/original-direction
+metadata, axis-column demands, residual cut and Hall downset. Separate primal
+capacity/conservation and equal-capacity dual-cut checks prove maximality; no
+acceptance relies on the Dinic implementation's termination. Every permitted arc
+has capacityK+1. Report runtime0.064001s, not a performance benchmark. Both C and
+audit had60s ceilings and are terminal. This ONE-control diagnostic is CLOSED;
+no broad adversarial batch or GPU work was launched from its passing result.
+
+Reproduce after the C compile above:
+
+    timeout 60s /tmp/upper_scan_473 --axis-seed 63 307 438 440 454 461 474 475 477 482 486 492 > /tmp/ancestor_source_474.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --joint-ancestor-check /tmp/ancestor_source_474.json /tmp/joint_ancestor_474.json
+
+Saved p39/data/ancestor_source_474.json and joint_ancestor_474.json. The source was
+ALREADY Qpositive, including the stronger phase-free Dep>=kappa bound; this tests
+the NEW permissions, not positivity on a new unresolved Wilf shape. The proper-cut
+Hall equivalence and STRANDED formula are independently reviewed PAPER results.
+They identify missing successor/label closure; they do not establish periodicity.
+
+Worker/laptop data SHA256s match:
+
+    centroid_source_473.json f74f1aaa9e644a4cdc91114fb7cf3217c49534bbfd128b8b5f5934f62d25cb1d
+    phase_path_check_473.json 701712c31aa7c79aa39475cd59b21aae7e897f0e5bda3904930778aedc659e20
+    ancestor_source_474.json 7eaa14dd05fed42b084614ed289dc0b160305b34ecc0d7348602db290f476518
+    joint_ancestor_474.json 31bf9f5dd995e7aa1914d4dcc67c23d30af148251386b56e01ed8abe042a0ba0
+
+Final verify_probe.py SHA5340be12a54b78028dcbcf931dc7a3b6bb0865b368fbfeffc5e2a5c0034c0f17
+matches the worker. E473 ran before the independent E474 function/CLI was added;
+its tested audit function was unchanged by that addition. C source/assignment
+hashes also match; no C evaluator code was modified. All processes terminal, no
+automatic counts/variants/rental/optimizer authorized by this checkpoint.

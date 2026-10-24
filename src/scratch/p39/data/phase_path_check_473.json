@@ -1,0 +1,99 @@
+{
+  "status": "exactly verified",
+  "saved_phase_profiles": [
+    {
+      "profile": "flat_profile",
+      "phases_checked": 95250,
+      "minimum_Q": 91833,
+      "maximum_Q": 139751,
+      "minimizing_phases": [
+        94360
+      ],
+      "maximizing_phases": [
+        8
+      ],
+      "actual_top_Q": 139616
+    },
+    {
+      "profile": "source",
+      "phases_checked": 95250,
+      "minimum_Q": 92340,
+      "maximum_Q": 140260,
+      "minimizing_phases": [
+        94360
+      ],
+      "maximizing_phases": [
+        8
+      ],
+      "actual_top_Q": 140125
+    }
+  ],
+  "phase_count": 190500,
+  "delta_Q_range": [
+    506,
+    509
+  ],
+  "paper_all_phase_lower_bound": 507,
+  "new_source_count": 1,
+  "source": {
+    "generators": [
+      13,
+      15,
+      35,
+      37
+    ],
+    "m": 13,
+    "e": 4,
+    "c": 95,
+    "g": 51,
+    "ell": 44,
+    "W": 81,
+    "deletion_cofactors": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "Q": 20,
+    "R": 61
+  },
+  "path_control": {
+    "beta": [
+      1,
+      11,
+      12
+    ],
+    "chi": [
+      1,
+      1,
+      1
+    ],
+    "closure_U": "N",
+    "initial_J": "12",
+    "first_top_switch": "4/117",
+    "first_two_walls": [
+      "1/4",
+      "2/7"
+    ],
+    "words_checked": 455,
+    "affine_endpoint_checks": 1820,
+    "envelope_loss_parts": [
+      "12",
+      "0",
+      "39/4"
+    ],
+    "partial_envelope_loss": "87/4",
+    "remaining_envelope_integrand_nonnegative": true,
+    "true_partial_losses": [
+      "84/13",
+      "-909/26",
+      "59/14"
+    ],
+    "true_total_integrated_loss": "-69",
+    "fiber_centroid_quota_failure": true
+  },
+  "semigroup_membership_method": "independent integer coin closure via audit",
+  "large_witness_reconstruction_repeated": false,
+  "genuine_negative_W": false,
+  "elapsed_seconds": 0.1876877019967651
+}

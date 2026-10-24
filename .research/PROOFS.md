@@ -12929,3 +12929,232 @@ by509. Thus its successful F falsification does NOT justify enlarging this
 recipe to hunt negative Q. Further useful work needs the full phase/reserve
 mechanism or operations whose signed budget can actually reduce it. This one-
 source compute and the phase-free helper are CLOSED; no sampler expansion.
+
+## E473 — advisor phase/transition checks; a centroid quota loses finite payment
+
+2026-10-23. Universal scope: full-Q payment or the weaker integrated source quota,
+with reductions SUPP-WILF/E439/E466 and complements. Same authorized agents made
+distinct paper attempts; one fixed small source and two SAVED phase arrays were
+checked on Fejer. No new large source, GPU campaign, Lean or novelty claim.
+
+### Quantitative consequences of the existing theorems
+
+The advisor's all-phase recurrence replay is correct. On the SAVED E472 arrays:
+
+|Profile|min Q|max Q|argmin|argmax|
+|---|---:|---:|---:|---:|
+|Flat|91833|139751|94360|8|
+|Nonflat|92340|140260|94360|8|
+
+All190500 abstract phases pass the integer recurrence and direct dot-product
+checks at every extremizer. DeltaQ ranges506..509. No phase/top realization was
+generated. In fact N-kappa=Q-Dep>=23760 on the nonflat tile at EVERY phase:
+this witness needs N when dropping it, but does not force simultaneous use of
+both pools. It remains a falsifier of the phase-free helper, not a low fullQ case.
+
+For a flat tile, Flat-MaxCL bounds the maximal-cell part of sumGamma*lambda by
+e*m(m-1)/2. The remaining Gamma mass is Dep and each lambda<=m-1. Therefore
+
+    Q_r=Dep+[e*m(m-1)/2-sumGamma*lambda]/m>=Dep/m.
+
+Integer Q gives Q_flat(r)>=ceil(Dep/m). With E472's U1,z_new0 cubic swap,
+Q_new(r)>=ceil(Dep_flat/m)+e-2, here507, at EVERY common phase. This short
+quantitative corollary is correct. The older ONE-CUBIC theorem (E261/P6d above)
+already proves broader one-cubic MaxCL positivity; do not advertise another
+one-cubic positivity programme as a new universal reduction.
+
+The advisor's path-transition bound is also correct. For EACH changed residue
+at an effective INTERIOR E470 wall,
+
+    Delta=chi.x-chi.y=2K+sigma>=3,
+
+since K>=1 and final-source pivot credit sigma>=1 are integers. Xi drops by at
+least3 for every such change, even at a simultaneous wall. If H counts these
+changed residues, including repeated changes of one residue,
+
+    H<=floor((Xi(0+)-Xi(1-))/3)<=floor(a(a-1)/6).       (PATH-COUNT)
+
+For the last step, order an a-cell downset by a linear extension: a word of degree
+h has h distinct strict predecessors along a coordinate chain, hence its degree
+is at most its zero-based position. Sum degrees<=a(a-1)/2, and chi.degree<=degree.
+Zero-final-cost endpoint tie swaps are excluded; they need not drop chi. This
+is an accessibility/event-count result, NOT a finite-payment proof or a reason
+to build a path engine without a specific predicate.
+
+### A proposed coefficient-fiber centroid quota is FALSE in the remaining domain
+
+At a chamber, fix an even-coordinate exponent word v and let E_v be the odd
+fiber, of size m_v, maximum odd degree H_v and q_v active odd directions.
+The ordinary downset centroid inequality gives the VALID upper bound
+
+    Xi<=Hcal=sum_v [q_v/(q_v+1)]*m_v*H_v.
+
+It preserves original e and the mixed coefficient action. The proposed sufficient
+quota integral(e*Hcal-a(e-1)n_top)<=J0 is stronger than E470's actual moment
+quota. It FAILS, even with all initial reserves and all normalization guards.
+
+Take ONLY S=<13,15,35,37>, a13, beta=(1,11,12), chi=(1,1,1), U=N. Then e4,J0=12.
+Every displayed generator is odd and<3a, so all are primitive. All deletion gcds1.
+For costs p=2+13t,q=22+13t,r=24+13t, the strict reductions for t>0
+
+    pq->r (saving13t), pr->1 (saving26+26t),
+    r^2->q (saving26+13t)
+
+leave only pure p^s or q^j*r^epsilon, epsilon0/1. Comparing these candidates gives
+
+    D0={0,p,...,p^10,q,r},             0<t<1/4,
+    D1={0,p,...,p^9,q,r,qr},           1/4<t<2/7.
+
+The first two walls are p^10->qr at1/4 and p^9->q^2 at2/7. In D0,H10; the
+value-top is r, of odd degree1, until t=4/117, then p^10. In D1,H9 and the
+value-top is qr, degree2: qr-9p=28-91t>=2 throughout that interval.
+
+There is ONE all-odd fiber. Every original unit persists, so q_v=3 at all chamber
+times. Its envelope integrand is e*Hcal-a(e-1)n_top=39(H-n_top)>=0. Consequently
+
+    integral_envelope >=351*(4/117)+273*(2/7-1/4)
+                      =12+39/4=87/4>J0=12.           (FIBER-QUOTA FAILS)
+
+No later interval can repair this upper envelope, since its integrand is always
+nonnegative. The actual integrand DOES have negative portions: over the intervening
+D0 interval [4/117,1/4] its integral is -909/26. Replacing Xi by the envelope
+turns that useful surplus into0. This is a loss of compensation, not a failure
+of the actual full initial budget.
+
+At t1, Apéry values indexed by BETA residue are
+
+    (0,15,30,45,60,75,90,105,107,70,72,35,37), sum741.
+
+Hence M107,c95,g51,ell44,W81 and Q20,R61. Thus 3e12<m13,c95>4m and actual
+integrated loss J0-W=-69. The zero-cost endpoint tie p^7=q^3 does not affect
+the audited intervals. An independent coin reconstruction and1820 rational
+endpoint comparisons over ALL455 words of degree<=12 verify the source and both
+chambers; positive-cost cycle deletion proves that this word bound is complete.
+This is a ONE-input falsification of an internal universal helper, not an e4
+Wilf programme. Stop the centroid-envelope quota; retain ACTUAL Xi and full reserves.
+
+### The group-ring attempt does not turn the phase into a positive energy
+
+With A=sum_DX^phi=sum_(s0..m-1)X^s and C_j=sum_Dz_jX^phi, exact reindexing gives
+B=sumGammaX^phi=dA+sum_j(1-X^(-delta_j))*C_j. Pairing with the cyclic ramp simply
+reproduces the old Win functional; no new sign follows from Fourier diagonalization.
+For h_m(0)=0,h_m(t)=t-m/2 on1..m-1, actual top degree H and
+
+    mu=Dep+(m-1-H)/2, T_r=(Gamma*h_m)(r)/m,
+    Q_r=mu+T_r.
+
+Convolution by h_m/m is skew-adjoint, with multiplier (i/2)cot(pi*k/m) on nonzero
+Fourier modes. Its quadratic form vanishes; symmetrizing discards the oriented
+term. Actual-top exposure does NOT force one sign. E472's top has degree2
+(its only cubic is cheaper than M), so mu232407/2 and T47843/2. E465 mirror
+realizability gives the opposite sign on a normalized nonflat realization, on
+paper only, without another source/image evaluation; mirrorQ92282 stayspositive.
+This reverses the residue labelling, not merely the phase of the original array,
+so it does not contradict that array's all-phase minimum92340.
+The necessary two-orientation bound |T|<=mu remains UNPROVED and is just full-Q
+on both realizable orientations. No Fourier optimizer, energy shortcut or extra
+phase/image census follows this observation.
+
+## E474 — principal cofactor bridge and a first explicit joint allocation rule
+
+2026-10-23. New advisor steering: prioritize the UNKNOWN E462 bridge
+
+    Q(S)<0 => exists prime p|m with EXACTLY ONE ORIGINAL delta_j nonzero modp.
+
+Universal finishing chain: a least-genus Wilf counterexample satisfies W<0 and
+therefore Q<0. The bridge supplies j and p dividing m and every other primitive.
+E439 then produces a strictly smaller-genus numerical semigroup with negative W,
+since every additional term in DIV-W is nonnegative. Contradiction. The N boundary
+and recorded complements cover the omitted cases. Conversely, on E439-normalized
+remaining sources the one-label conclusion is impossible, so proving the bridge
+there is the same sign burden as Q>=0. It is a concrete structural target, not
+an already proved simplification of the finite budget. Keep full R/source/coupled
+budgets available if this stronger support claim fails.
+
+### JOINT-ANCESTOR: exact permissions and conservation, no obstruction theorem yet
+
+Use the canonical D with original coordinate labels and actual conductor phase.
+Create mixed group z with demand kappa(z). For every full coordinate column C,
+create an axis group with demand A_C=sum_(n0..L-1)floor(n*delta_j/m), if positive.
+Resources: a nonmaximal u has boundary capacity Gamma_u; each INTERNAL wrapped
+edge u->u+e_j has capacity u_j+1. Distinct resources are disjoint physical slots.
+A mixed group z may reach ANY resource with parent anchor u<=z, including directions
+j outside support(z). An axis group reaches ALL wrapped resources in its OWN
+column. No rank cap, frozen axis reservation or fixed forest. Integral residual
+paths can reassign every earlier axis OR mixed payment. Boundary directions and
+wrap labels remain ORIGINAL generators; no quotient-coset collapse.
+
+Total demand K=A_axis+kappa, total resource capacity Dep+V, and V=A_axis+N.
+Any complete assignment proves K<=Dep+V, hence Q>=0. E469 provides a feasible
+axis-only starting assignment. This defines a sufficient rule, NOT a theorem
+that all actual sources admit it. Proposed stronger obstruction lemma: failure
+of THIS network forces the one-label prime conclusion. It remains UNKNOWN.
+
+### Exact Hall reduction and the stranded-capacity term — PROVED on paper
+
+For a downset E of the FULL D define
+
+    G_D(E)=sum_(u inE,nonmaximal inD)Gamma_u,
+    V_C(E)=wrap capacity inC whose PARENT is inE,
+    N_C=V_C-A_C.
+
+Nonmaximality/columns are global, and the child of a permitted wrapped edge may
+lie outside E. The network completes iff EVERY downset E satisfies
+
+    kappa(E)<=G_D(E)+sum_C min(V_C(E),N_C).             (ANCESTOR-HALL)
+
+Proof: a selected mixed-group set Z has neighborhood anchored in E=downclosure(Z).
+For fixed E, adding every mixed group in E increases demand without enlarging
+the neighborhood. Including axis group C exposes all wrap capacity V_C but adds
+A_C demand. Excluding it exposes only V_C(E). The least net cut cost is therefore
+min(V_C(E),V_C-A_C). Max-flow/min-cut gives, with D(E) the left-minus-right,
+
+    K-maxflow=max_(downsetsE) D(E), including Eempty0.
+
+Conversely any violating downset generates a violating mixed-group set; unused
+zero-demand maxima can be dropped. Subtracting the full-tile identity gives
+
+    D(E)=-Q+G_D(D\E)-kappa(D\E)
+                    +sum_C max(0,N_C-V_C(E)).          (STRANDED)
+
+Thus a proper-cut failure may strand capacity outside the ancestor neighborhood
+even with Qpositive. ANCESTOR-HALL is STRONGER than the full-tile target. This
+is not literally E432's graph, but it is another proper-downset strengthening.
+Paper derivation and all-axis-reassignment accounting were independently checked.
+
+The exact missing structural implication is successor/subgroup closure. Ancestor
+closure and whole RESOURCE-column closure do not force a nonwrapping successor
+or its mixed group into E. Ordinary periodicity therefore does not follow, and
+even it would not establish the one-original-label condition (E462 guard).
+Nor may one silently assume phi(E) is proper: when Q<0, E=D itself is a violating
+cut, with phi(E)=the WHOLE cyclic group. A deficient-component classification
+must extract additional label-specific arithmetic, not just take its stabilizer.
+
+### One checked rule control; the periodicity guard is a zero-demand case
+
+Before running anything on E462's original35 guard, paper analysis shows K=0.
+Write r=7h+k,0<=k<=6. For k2..6 the least degree is k and a word of k outside-
+coset atoms has raw sum r<35 (atom1+7h plus k-1 copies of1). A larger degree
+costs>35k+r; a smaller one has the wrong mod7 class. Classes0/1 are units, apart
+from origin. Thus EVERY canonical word has raw sum<35, hence every axis carry
+and mixed carry vanishes. The planned35 source/flow computation was CANCELLED
+before reconstruction. Its periodicity remains a guard, not an allocation stresscase.
+
+ONLY the already cached63 source was replayed for the NEW rule:
+
+    G=(63,307,438,440,454,461,474,475,477,482,486,492),
+    c912,g777,W708,Dep42,kappa39,N53,Q56,R652.
+
+Joint integer maxflow pays ALL47 tokens:8 axes,39 mixed. The exhibited mixed
+allocation uses38 wrapped slots and1 boundary slot; axes use8 wrapped slots.
+This is not a claim that these pool usages are minimal. A full primal conservation
+and equal-capacity residual-cut certificate pass; runtime0.0640s on Fejer. Every
+source invariant is independently coin-reconstructed. All deletion cofactors1;
+prime3 has6 nonzero original labels and prime7 has11. No deficient component
+arose, so this control proves NO subgroup obstruction theorem. Its proper-cut
+inequalities hold on this one profile only. No archive/ray replay or larger search.
+Data/reproduction: EXPERIMENTS E474 and p39/data/joint_ancestor_474.json.
+
+Principal target remains the Q-negative one-label bridge. The first explicit
+network supplies a conservation law and a falsifiable stronger lemma; no claim
+that closure alone or this one passing control gives its universal validity.

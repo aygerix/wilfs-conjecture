@@ -2552,6 +2552,267 @@ def audit_mstd_shadow(R):
             'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
             'least_root_exit_collision':collisions}
 
+def audit_joint_ancestor(seed):
+    """E474 fixed63 control: joint two-pool assignment with reassignable axes.
+
+    Full integer flow/cut certificates are checked after Dinic. A deficient
+    proper cut falsifies this stronger permission rule, not full Q or Wilf.
+    """
+    import time
+    started=time.monotonic()
+    assert sorted(seed['generators'])==[63,307,438,440,454,461,474,475,477,482,486,492]
+    audit(seed)
+    assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==(63,12,912,777,708)
+    geometry=support_geometry(seed);m=seed['m'];gr,z=factor_basis(seed);d=len(gr)
+    assert (geometry['Dep'],geometry['kappa'],geometry['inversions'],geometry['Q_full'])==(42,39,53,56)
+    inv={v:s for s,v in z.items()};gamma=geometry['gamma']
+    nonmax=set();columns=[];resources=[];groups=[]
+    for s,v in z.items():
+        kappa=sum((v[j]*gr[j])%m for j in range(d))//m
+        if kappa:groups.append({'kind':'mixed','residue':s,'word':list(v),'demand':kappa})
+    for j,delta in enumerate(gr):
+        cols=defaultdict(list)
+        for v in inv:cols[v[:j]+v[j+1:]].append(v)
+        for col in cols.values():
+            col.sort(key=lambda v:v[j]);L=len(col);cid=len(columns)
+            assert [v[j] for v in col]==list(range(L))
+            A=sum(n*delta//m for n in range(L));V=0;wraps=[]
+            for n in range(1,L):
+                u=inv[col[n-1]];v=inv[col[n]];nonmax.add(u)
+                if (u+seed['rho'])%m+delta>=m:
+                    rid=len(resources)
+                    resources.append({'kind':'wrap','anchor':u,'child':v,'direction':j,
+                                      'position':n,'capacity':n,'column':cid})
+                    wraps.append(rid);V+=n
+            assert V>=A
+            columns.append({'direction':j,'base':inv[col[0]],'residues':[inv[v] for v in col],
+                            'axis_demand':A,'wrap_capacity':V,'N':V-A,'wrap_resources':wraps})
+            if A:groups.append({'kind':'axis','column':cid,'direction':j,'demand':A})
+    for u in sorted(nonmax):
+        if not gamma[u]:continue
+        v=z[u];directions=[]
+        for j in range(d):
+            child=tuple(v[k]+int(k==j) for k in range(d))
+            if child not in inv:directions.append([j,v[j]+1])
+        assert sum(cap for j,cap in directions)==gamma[u]
+        resources.append({'kind':'boundary','anchor':u,'capacity':gamma[u],'directions':directions})
+    axis=sum(C['axis_demand'] for C in columns)
+    mixed=sum(g['demand'] for g in groups if g['kind']=='mixed')
+    wrapped=sum(C['wrap_capacity'] for C in columns)
+    Dep=sum(r['capacity'] for r in resources if r['kind']=='boundary')
+    K=sum(sum(v[j]*gr[j] for j in range(d))//m for v in inv)
+    assert K==axis+mixed and mixed==geometry['kappa']
+    assert Dep==geometry['Dep'] and wrapped-axis==geometry['inversions']
+    assert Dep+wrapped-K==geometry['Q_full']
+
+    # Resource capacities aggregate distinct physical unit slots. Directions
+    # remain original labels; no coset or rank quotient is used in the graph.
+    source=0;gstart=1;rstart=gstart+len(groups);sink=rstart+len(resources);n=sink+1
+    arcs=[];adj=[[] for _ in range(n)];forward=[]
+    def add(u,v,cap):
+        assert cap>0
+        at=len(adj[u]);bt=len(adj[v]);adj[u].append([v,bt,cap]);adj[v].append([u,at,0])
+        arcs.append([u,v,cap]);forward.append((u,at))
+    for i,g in enumerate(groups):
+        node=gstart+i;add(source,node,g['demand'])
+        if g['kind']=='axis':allowed=columns[g['column']]['wrap_resources']
+        else:
+            word=tuple(g['word'])
+            allowed=[k for k,r in enumerate(resources) if all(a<=b for a,b in zip(z[r['anchor']],word))]
+        for k in allowed:add(node,rstart+k,K+1)
+    for k,r in enumerate(resources):add(rstart+k,sink,r['capacity'])
+    flow=0
+    while True:
+        level=[-1]*n;level[source]=0;queue=[source]
+        for u in queue:
+            for v,rev,cap in adj[u]:
+                if cap and level[v]<0:level[v]=level[u]+1;queue.append(v)
+        if level[sink]<0:break
+        cursor=[0]*n
+        def send(u,amount):
+            if u==sink:return amount
+            while cursor[u]<len(adj[u]):
+                at=cursor[u];v,rev,cap=adj[u][at]
+                if cap and level[v]==level[u]+1:
+                    pushed=send(v,min(amount,cap))
+                    if pushed:
+                        adj[u][at][2]-=pushed;adj[v][rev][2]+=pushed;return pushed
+                cursor[u]+=1
+            return 0
+        while True:
+            pushed=send(source,K+1)
+            if not pushed:break
+            flow+=pushed
+    # Independent primal feasibility/conservation and dual cut checks certify
+    # maximality; acceptance never relies on the flow algorithm's termination.
+    reachable={source};queue=[source]
+    for u in queue:
+        for v,rev,cap in adj[u]:
+            if cap and v not in reachable:reachable.add(v);queue.append(v)
+    assert sink not in reachable
+    balance=[0]*n;certificate=[];cut_capacity=0
+    for (u,v,cap),(fu,at) in zip(arcs,forward):
+        f=cap-adj[fu][at][2];assert 0<=f<=cap
+        balance[u]-=f;balance[v]+=f;certificate.append([u,v,cap,f])
+        if u in reachable and v not in reachable:cut_capacity+=cap
+    expected=[0]*n;expected[source]=-flow;expected[sink]=flow
+    assert balance==expected and cut_capacity==flow
+    assert 0<=flow<=K
+    cut_groups=[i for i in range(len(groups)) if gstart+i in reachable]
+    cut_resources=[k for k in range(len(resources)) if rstart+k in reachable]
+    cut_mixed=[groups[i] for i in cut_groups if groups[i]['kind']=='mixed']
+    E={s for s,v in z.items() if any(all(a<=b for a,b in zip(v,g['word'])) for g in cut_mixed)}
+    kE=sum(sum((z[s][j]*gr[j])%m for j in range(d))//m for s in E)
+    gE=sum(gamma[s] for s in E if s in nonmax)
+    column_allowance=0;column_cut=[]
+    for cid,C in enumerate(columns):
+        V_E=sum(resources[k]['capacity'] for k in C['wrap_resources'] if resources[k]['anchor'] in E)
+        allowed=min(V_E,C['N']);column_allowance+=allowed
+        if V_E or C['N']:column_cut.append({'column':cid,'V_E':V_E,'N_C':C['N'],'allowance':allowed})
+    hall_deficiency=kE-gE-column_allowance
+    assert hall_deficiency==K-flow
+    if flow<K:
+        assert E and hall_deficiency>0
+        assert sum(groups[i]['demand'] for i in cut_groups)-sum(resources[k]['capacity'] for k in cut_resources)==hall_deficiency
+    factors=[];remainder=m;p=2
+    while p*p<=remainder:
+        if remainder%p==0:
+            factors.append(p)
+            while remainder%p==0:remainder//=p
+        p+=1
+    if remainder>1:factors.append(remainder)
+    prime_counts=[{'prime':p,'nonzero_original_labels':[j for j,delta in enumerate(gr) if delta%p]} for p in factors]
+    G=seed['generators'];cofactors=[gcd(*[v for j,v in enumerate(G) if j!=i]) for i in range(len(G))]
+    assert set(cofactors)=={1} and all(len(R['nonzero_original_labels'])!=1 for R in prime_counts)
+    return {'status':'exact primal/cut verified','source':{'G':sorted(G),'m':m,'e':seed['e'],
+            'c':seed['c'],'g':seed['g'],'W':seed['W'],'Dep':Dep,'kappa':mixed,
+            'N':wrapped-axis,'Q':geometry['Q_full'],'R':seed['W']-geometry['Q_full'],
+            'deletion_cofactors':cofactors},'K':K,'axis_demand':axis,'wrapped_capacity':wrapped,
+            'flow':flow,'deficiency':K-flow,'completion':flow==K,
+            'primitive_residues':gr,'primitive_values':[seed['w'][s] for s in gr],
+            'prime_quotient_labels':prime_counts,
+            'network':{'nodes':n,'source':source,'sink':sink,'groups':groups,'resources':resources,
+                       'columns':columns,'arcs_with_flow':certificate,'residual_cut':sorted(reachable)},
+            'hall_cut':{'E':sorted(E),'words':[list(z[s]) for s in sorted(E)],'kappa_E':kE,
+                        'G_E':gE,'column_allowance':column_allowance,'columns':column_cut,
+                        'deficiency':hall_deficiency,'group_indices':cut_groups,'resource_indices':cut_resources},
+            'rule_obstruction_lemma_failure':flow<K,'full_Q_failure':geometry['Q_full']<0,
+            'genuine_negative_W':seed['W']<0,'source_count':1,
+            'elapsed_seconds':time.monotonic()-started}
+
+def audit_advisor_phase_and_path(saved, seed):
+    """E473: two SAVED phase arrays and ONE fixed centroid-quota falsifier.
+
+    Does not replay the closed large edge audit, generate any large realization,
+    walk chambers, optimize a certificate, or build a general path engine.
+    """
+    import time
+    started=time.monotonic();m=saved['m'];d=len(saved['raw_delta'])
+    assert (m,d)==(95250,507)
+    phase_reports=[];phase_values=[]
+    for name,expected in [('flat_profile',(91833,139751)),('source',(92340,140260))]:
+        P=saved[name];gamma=P['gamma'];S=P['summary'];Dep=S['Dep']
+        assert len(gamma)==m and sum(gamma)==d*m
+        values=[None]*m;r=S['r'];values[r]=S['Q'];q=S['Q']
+        for step in range(1,m):
+            t=(r+step)%m
+            q+=d-gamma[t];values[t]=q
+        assert q+d-gamma[r]==S['Q']
+        lo,hi=min(values),max(values)
+        argmin=[s for s,v in enumerate(values) if v==lo]
+        argmax=[s for s,v in enumerate(values) if v==hi]
+        assert (lo,hi)==expected and 94360 in argmin
+        C=(d-1)*m*(m-1)//2
+        # Direct dot products at every extremizer, independent of accumulated
+        # sweep rounding: all arithmetic is exact integer arithmetic.
+        for t in argmin+argmax:
+            numerator=sum(gamma[s]*((t-s)%m) for s in range(m))-C
+            assert numerator%m==0 and Dep+numerator//m==values[t]
+        phase_reports.append({'profile':name,'phases_checked':m,'minimum_Q':lo,
+                              'maximum_Q':hi,'minimizing_phases':argmin,
+                              'maximizing_phases':argmax,'actual_top_Q':S['Q']})
+        phase_values.append(values)
+    differences=[b-a for a,b in zip(*phase_values)]
+    assert (min(differences),max(differences))==(506,509)
+    flatDep=saved['flat_profile']['summary']['Dep']
+    structural_bound=(flatDep+m-1)//m+(d+1)-2
+    assert structural_bound==507 and min(phase_values[1])>=structural_bound
+
+    assert sorted(seed['generators'])==[13,15,35,37]
+    independent=audit(seed);geometry=support_geometry(seed)
+    assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==(13,4,95,51,81)
+    a=13;e=4;beta=(1,11,12);P=(15,35,37)
+    source_by_beta=[0,15,30,45,60,75,90,105,107,70,72,35,37]
+    assert [seed['w'][(2*s)%a] for s in range(a)]==source_by_beta
+    assert sum(source_by_beta)==741 and max(source_by_beta)==107
+    cofactors=[gcd(*[v for j,v in enumerate([a]+list(P)) if j!=i]) for i in range(e)]
+    assert cofactors==[1]*4 and 3*e<a and seed['c']>4*a
+
+    # Positive-cost residue walks can delete every repeated-residue cycle;
+    # hence any minimum has degree<=a-1. Enumerate WORDS only for this a13 case.
+    words=[(i,j,k) for i in range(a) for j in range(a-i) for k in range(a-i-j)]
+    assert len(words)==comb(a+2,3)==455
+    def value(z,t):return 2*sum(v*b for v,b in zip(z,beta))+a*t*sum(z)
+    by_residue=defaultdict(list)
+    for z in words:by_residue[sum(v*b for v,b in zip(z,beta))%a].append(z)
+    D0=[(s,0,0) for s in range(11)]+[(0,1,0),(0,0,1)]
+    D1=[(s,0,0) for s in range(10)]+[(0,1,0),(0,0,1),(0,1,1)]
+    intervals=[(F(0),F(1,4),D0),(F(1,4),F(2,7),D1)]
+    affine_checks=0
+    for lo,hi,D in intervals:
+        assert len(D)==a and {sum(v*b for v,b in zip(z,beta))%a for z in D}==set(range(a))
+        for z in D:
+            for j in range(3):
+                if z[j]:
+                    parent=list(z);parent[j]-=1;assert tuple(parent) in D
+            s=sum(v*b for v,b in zip(z,beta))%a
+            for candidate in by_residue[s]:
+                assert value(z,lo)<=value(candidate,lo)
+                assert value(z,hi)<=value(candidate,hi)
+                if candidate!=z:assert value(z,(lo+hi)/2)<value(candidate,(lo+hi)/2)
+                affine_checks+=2
+    top_switch=F(4,117)
+    top_intervals=[(F(0),top_switch,D0,(0,0,1)),
+                   (top_switch,F(1,4),D0,(10,0,0)),
+                   (F(1,4),F(2,7),D1,(0,1,1))]
+    envelope_parts=[];actual_parts=[]
+    for lo,hi,D,top in top_intervals:
+        for z in D:
+            assert value(top,lo)>=value(z,lo) and value(top,hi)>=value(z,hi)
+        H=max(map(sum,D));n_top=sum(top);Xi=sum(map(sum,D))
+        # There is one all-odd fiber, active in all three original directions.
+        envelope=F(3,4)*a*H
+        upper_loss=(e*envelope-a*(e-1)*n_top)*(hi-lo)
+        true_loss=(e*Xi-a*(e-1)*n_top)*(hi-lo)
+        envelope_parts.append(upper_loss);actual_parts.append(true_loss)
+    assert envelope_parts==[F(12),F(0),F(39,4)]
+    initial_surplus=F(12);partial_envelope=sum(envelope_parts)
+    assert partial_envelope==F(87,4)>initial_surplus
+    # For EVERY remaining time: all original units persist, q_active=3 and
+    # n_top<=H. Thus the unused envelope integrand39*(H-n_top) is nonnegative.
+    # The partial lower bound alone disproves the proposed full integral quota.
+    true_total_loss=initial_surplus-seed['W'];assert true_total_loss==-69
+    return {'status':'exactly verified','saved_phase_profiles':phase_reports,
+            'phase_count':2*m,'delta_Q_range':[min(differences),max(differences)],
+            'paper_all_phase_lower_bound':structural_bound,
+            'new_source_count':1,'source':{'generators':sorted(seed['generators']),
+                'm':a,'e':e,'c':seed['c'],'g':seed['g'],'ell':seed['c']-seed['g'],
+                'W':seed['W'],'deletion_cofactors':cofactors,
+                'Q':geometry['Q_full'],'R':seed['W']-geometry['Q_full']},
+            'path_control':{'beta':list(beta),'chi':[1,1,1],'closure_U':'N',
+                'initial_J':str(initial_surplus),'first_top_switch':str(top_switch),
+                'first_two_walls':['1/4','2/7'],'words_checked':len(words),
+                'affine_endpoint_checks':affine_checks,
+                'envelope_loss_parts':list(map(str,envelope_parts)),
+                'partial_envelope_loss':str(partial_envelope),
+                'remaining_envelope_integrand_nonnegative':True,
+                'true_partial_losses':list(map(str,actual_parts)),
+                'true_total_integrated_loss':str(true_total_loss),
+                'fiber_centroid_quota_failure':True},
+            'semigroup_membership_method':'independent integer coin closure via audit',
+            'large_witness_reconstruction_repeated':False,
+            'genuine_negative_W':False,'elapsed_seconds':time.monotonic()-started}
+
 def audit_cover_cubic(C):
     """E472: one fixed sparse witness; exact edge and canonical certificates.
 
@@ -2726,6 +2987,22 @@ def audit_cover_cubic(C):
             'membership_certificate':'all generator-edge inequalities plus attaining positive-cost predecessor words'}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--joint-ancestor-check':
+        assert len(sys.argv)==4
+        with open_text(sys.argv[2]) as source:seed=json.load(source)
+        result=audit_joint_ancestor(seed)
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('JOINT-ANCESTOR-CHECK',json.dumps({k:v for k,v in result.items() if k not in ('network','hall_cut')},sort_keys=True))
+        if result['rule_obstruction_lemma_failure']:print('JOINT-ANCESTOR-HALL-FAILURE',json.dumps(result['hall_cut'],sort_keys=True))
+        sys.exit(0)
+    if sys.argv[1]=='--advisor-phase-path-check':
+        assert len(sys.argv)==5
+        with open_text(sys.argv[2]) as source:saved=json.load(source)
+        with open_text(sys.argv[3]) as source:seed=json.load(source)
+        result=audit_advisor_phase_and_path(saved,seed)
+        with open(sys.argv[4],'w') as out:json.dump(result,out,indent=2)
+        print('ADVISOR-PHASE-PATH-CHECK',json.dumps(result,sort_keys=True))
+        sys.exit(0)
     if sys.argv[1]=='--cover-cubic-check':
         assert len(sys.argv)==4
         with open_text(sys.argv[2]) as source:result=audit_cover_cubic(json.load(source))

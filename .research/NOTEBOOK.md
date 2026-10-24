@@ -5983,3 +5983,57 @@ is not payment. No new numerical predicate/budget is activated by this handoff.
 The other universal lines remain integrated source-trade quota and coupled affine
 budget with Gamma.y-Dep/row slacks. No standalone phase-free, frozen/rank/energy or
 real-path positivity revival. Goal ACTIVE; no universal Wilf proof/counterexample.
+
+### 2026-10-23 21:01 EDT — E473/E474: source surrogate falsified; explicit subgroup-route rule
+
+Scope: Proves Wilf for EVERY S if the Qnegative one-original-label prime bridge
+holds; proved reduction E439/E462/SUPP plus complements. New advisor steering
+elevates this exact UNKNOWN bridge. Previous turn PROGRESS2111996, not a wait.
+No change to the universal goal, no fixed-e/depth programme, no new agents/rental.
+
+ADVISOR CHECKS: two saved E472 Gamma arrays,190500 abstractphases, match min/max
+91833/139751(flat),92340/140260(nonflat); minima94360,maxima8,DeltaQ506..509.
+Flat-MaxCL givesceil(Dep/m), then signed swap yields507 paperbound. OldONE-CUBIC
+was alreadybroader; no new fullQ evidence from this safeconstruction. PATH-COUNT
+H<=floor(a(a-1)/6) follows from EACH effectiveinterioroddcountdrop>=3, excluding
+zerocost endpointties. No pathengine constructed.
+
+NEW FALSE HELPER: the internal valid coefficient-fiber Xi upperbound loses too
+much in the proposed integrated quota. Rootderived ONE S=<13,15,35,37>,U=N,J0=12,
+allnormalizationguards. Firsttop4/117 andwalls1/4,2/7 giveenvelopeloss>=87/4>12,
+restnonnegative. ActualW81 andfullactualloss-69. Negativeactualpiece-909/26 is
+discardedbyenvelope. Paperreviewpasses; independentcoinclosureandALL455bounded
+words/1820rationalendpointschecktheWHOLEfirsttwochambers. Newsourcec95,g51,Q20,R61.
+Stopcentroidquota,retainACTUALXi and everyreserve. Combinedaudit0.1877sFejer.
+
+The otherpaperagentfoundFourierboundaryrepresentationduplicatesWin. Its kernel
+is skew, so evenenergy/symmetrizationdrops the phase. Actualtop permits BOTHsigns
+usingE465general mirrorrealizability on E472(paperonly,noextraimageeval). Not a
+new signmechanism or reason for another optimizer.
+
+PRINCIPAL E474 ATTEMPT: fullydefinedJOINT-ANCESTOR. Mixedz demandkappa(z), axisC
+demandA_C. Mixedcanreachboundary/wrapresources atANYancestorparentu<=z, allj;
+axescanreachALLwrapslotsinOWNcolumn. Residualmovescanreassignaxesandmixed,
+no fixedrank/cosetcollapse. CountsK versusDep+V exact. Agent/root independently
+derivecompletioniff EVERYdownsetE satisfieskappa(E)<=G_D(E)+Σmin(V_C(E),N_C).
+Deficit D(E)=-Q+G_D(outside)-kappa(outside)+Σmax(0,N_C-V_C(E)). This shows why
+propercutfailure canstrandcapacity evenwhen Qpositive. Ancestor/resourcecolumn
+closure doesNOTforce successorclosure. IfQnegative,wholeE=D itselfviolates; its
+residuesarenotproper. A cofactorproofneedsadditionaldeficit-sensitiveORIGINALlabel
+arithmetic, not ordinaryperiodicity or a declarationthat everyterminalsetisproper.
+
+PRE-RUN STOP: old35periodicityguard hasK0 onpaper, soitsplannedsource/networktest
+wasCANCELLEDbeforecompute. Noautomaticreplacementmirror. ONLYcached63origin
+testedNEWnetwork: 47/47 tokenspaid (8axes,39mixed), mixed38wrap+1boundary, axis8wrap.
+Exactprimal/equalcutchecksandindependentcoinreconstructionpass,0.0640sFejer.
+Allcofactors1, prime3/7nonzerolabelcounts6/11. No deficientcomponentarose. This
+onecaseALREADYhadQ56andDep42>=kappa39; passingisnotuniversalbridgeevidence.
+Fullflow/cutlabels persisted in p39/data/joint_ancestor_474.json. DiagnosticCLOSED.
+
+GLOBAL DECISION / HANDOFF: prioritizeE462bridgeasuser/advisorrequested, keepQ+R
+andintegratedsource/coupledfull-dualinsurance. Firstnextpaperworkisadeficit-sensitive
+label/successorlemma for theEXPLICITpermissions, oritsrulefalsifier; don'tpromote
+anallpropercutstrengtheningwithoutproof. Newnumericpredicate/input/budgetmustbe
+writtenbeforeexecution. Noautomatic349ray/468image/15repair/63controlreplay,
+one-cubicFexpansion,unrestrictedstallsorcentroidquota. SameTWOagentsdone,alljobs
+terminal,worker/laptopfilesmatch,goalACTIVE. No universalWilfproof/counterexample.

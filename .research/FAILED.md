@@ -661,3 +661,28 @@ does NOT refute kappa<=Dep+N or Wilf. The actual N and the actual reserve R must
 both be reported. The explicit source can have very large positive W; it is a
 mechanism falsifier, not a low-W witness or an unresolved Wilf case. No automatic
 cover-size increase, atom scan, orbit census or GPU campaign follows this result.
+
+E473 (2026-10-23): the valid coefficient-fiber centroid bound Xi<=Hcal does NOT
+give its proposed integrated quota, even with ALL initial reserves in the actual
+remaining domain. ONE S=<13,15,35,37> has U=N,J0=12,c95,g51,W81,allcofactors1,
+3e<m,c>4m. Firsttop/walls4/117,1/4,2/7 yield envelope loss>=12+39/4=87/4>12;
+the rest is nonnegative. Actual full loss is -69. The surrogate discards the
+useful negative loss on[4/117,1/4] (exactly-909/26). Stop the stronger envelope
+quota, not the valid centroid inequality, original integrated budget or Wilf.
+Paper review and independent455-word/1820-rational-comparison audit pass. No family
+scan/path engine. Full Xi, actual-top odd count and all reserves remain necessary.
+
+Likewise a skew Fourier/Hilbert correction is not nonnegative merely because
+the top is actually exposed. E472 plus the GENERAL E465 mirror-realizability
+theorem gives opposite corrections +/-47843/2, with the same center232407/2,
+on normalized nonflat realizations (PAPER ONLY, no extra numerical source/image).
+Both fullQ values staypositive. Symmetrizing annihilates the skew term and loses
+the phase; it does not pay it. The Fourier representation duplicates old Win.
+
+E474 status guard: the principal Qnegative=>one-original-label prime bridge is
+UNKNOWN. The precise JOINT-ANCESTOR flow rule is also UNKNOWN universally, not
+refuted by its passing cached63 control. Its Hall condition includes stronger
+PROPER-downset inequalities; closure alone yields neither translation periodicity
+nor a prime quotient with one original surviving label. A Qpositive deficient cut
+would falsify THIS rule/classifier only. E462's original35 guard has K=0 on paper,
+so its planned numerical rule test was cancelled before execution as vacuous.
