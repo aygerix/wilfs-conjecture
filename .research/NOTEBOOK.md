@@ -6319,3 +6319,49 @@ primary Zhai Section5 already points to quantitative deviation from simplex
 equality, and Hellus–Waldi discuss weighted cutoffs. The user's sandbox files are
 absent locally; reported finite-check counts are not independently reproduced.
 No new code/document/agent/worker/rental, and the autonomous tracker stays paused.
+
+### 2026-10-24 01:19 EDT — active universal goal resumed; three direct proof steps tested
+
+USER explicitly resumed the full universal goal and forbade side paths. The
+authoritative goal tracker is ACTIVE; SCOPE/DIRECTIVES/STATE now reflect that.
+The preceding conversational acknowledgments were not research progress. This
+turn must change mathematical evidence, not just restate the standard.
+
+E493: tried to complete actual F>=C with the new BORDER-SUM. A hand-derived
+genuine source <64,129,130,132,136,144,160,767> has border11760<C12096 despite
+all cofactors1 and sparse/deep conditions. Full W1864 is positive because of
+nonborder columns. Reject the standalone step; no repair rule/catalogue follows.
+
+E494: tried to apply the homogeneous argument to exact integer conductor levels.
+Sum eta=g+rho makes the desired level inequality EXACTLY Wilf. But floor weights
+are not a linear grading, and bounding their column error by the phase alone is
+the old FALSE Carry Lemma, as direct algebra shows. Primary Hellus–Waldi already
+give the requisite abstract floor-moment counterexample. Stop this shortcut;
+retaining the full level slack is mandatory, not a new allocation programme.
+
+E495: attacked the unbounded-multiplicity issue through a precise ALL-S induction
+step: some clock contraction should have actual W no larger than S. The finishing
+induction is sound if that step holds. Planned ONE old60 calibration was canceled
+before compilation/execution when the paper construction E496 refuted the step.
+
+E496: reuse the OLD complete Z63 two-basis as a COUNTERMODEL for that universal
+monotonicity, not another cover/Wilf-family target. With literal L304, actual
+source W9258. Paper degree and residual estimates prove ALL63 contracted W>=9260.
+Independent C++ scan/certification plus heap shortest paths and membership DP
+verify source and12 distinct outputs: min contractedW157419 at t30. Every paper
+bound and original cofactor check passes.13inputs,9684edgechecks,794attainments;
+compile1.521694s, evaluation+audit1.026925s Fejer. Exact runner/data in one JSON,
+tracked library unchanged. SSH alias fejer was unavailable; configured GCP SSH
+worked, so no laptop mathematical computation or rental was needed.
+
+GLOBAL REVIEW: no universal sign theorem has been proved this turn. The new
+evidence rejects three proposed direct proof steps; each had a complete logical
+implication to all S, and each was stopped when its required step failed. Do not
+repair the monotonicity by speculative exceptions: its counterexample has W>0,
+so it does not settle negative-W sign transfer or rule out other descents.
+Do not make a uniform bound on m a separate deliverable: the actual inequality
+could instead hold directly for all m. Preserve the full costed birth recursion,
+all residue congruences and full actual surplus. The exact area inequality stays
+the ONLY objective. Old transport/Hall/cofactor/GPU and agents remain stopped.
+No proof, genuine Wilf counterexample, Lean or novelty assertion. Goal ACTIVE;
+all scoped numerical handles terminal, no automatic next search.

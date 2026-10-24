@@ -2637,3 +2637,51 @@ input; old481/482 calls retain their uniqueness requirement. No closed source
 audits were rerun. Python compile and whitespace checks pass. All jobs terminal.
 E485 prefix/reset/bundle statements and E487's101/102/154/161/171 guard are PAPER
 ONLY: no other source or flow computation and no W/Q claims on the paper guard.
+
+## E495–E496 — one exact falsifier of a proposed universal multiplicity induction
+
+2026-10-24. Active user goal: universal actual Wilf only. The tested claim would
+prove ALL S by induction on m if true: some gcd-normalized clock contraction
+f_t(n)=n-floor((n+m-t)/m),t1..m, should have W(T_t)<=W(S). No fixed-family theorem
+or positive census is the objective. E495's planned old60 calibration was
+CANCELED before execution: its script/header were transferred, never run.
+
+E496 PAPER analysis supplies ONE literal counterexample; the audit verifies that
+falsifier only. Source G=(63,19153,19155,19160,19164,19170,19174,19179,19181,
+19182,19195,19202), c38322,g34357,ell3965,e12,W9258, all deletion cofactors1.
+All63 thresholds give12 distinct contracted lists of multiplicity62. All have
+W>9258; the smallest is157419 at t30, e11,c56542,g37091. All have degree height3.
+The paper lower bounds, including >=9260 uniformly, pass on EVERY output.
+
+Existing src/apery_scan/apery.hpp scan_cpu/certify/invariants supplies the C++
+evaluation. Independent heap Dijkstra and direct membership DP supply separate
+checks of attaining arrays, actual minimal generators, genus/conductor/ell/W,
+9684 generator-edge inequalities and794 attaining predecessors. All source
+cofactors and proof slope/constant inequalities pass.13 inputs total. No flow,
+solver, mutation, random case, GPU, agent launch or persistent engine added.
+Fejer CPU GCC13.3: compile1.521694389s; evaluation plus independent audit
+1.026924631s. These are one diagnostic's times, not a performance claim.
+
+Artifact: src/apery_scan/data/clock_contraction_496.json, including all arrays,
+threshold groups, exact generated C++/Python runner, proof variables and timings.
+Tracked header SHA2560288bf367b5d61d2405075504075e770a848e8cd4bb1c58fa6a20effa6c90ae7
+matches the worker copy. All process handles terminal. Stop this hypothesis;
+no repaired/restricted contraction programme or larger sample is activated.
+
+To reproduce ONLY this certificate in a temporary directory:
+
+    python3 - <<'PY'
+    import hashlib, json, pathlib, subprocess, tempfile
+    r=json.loads(pathlib.Path('src/apery_scan/data/clock_contraction_496.json').read_text())
+    header=pathlib.Path('src/apery_scan/apery.hpp').read_bytes()
+    assert hashlib.sha256(header).hexdigest()==r['header_sha256']
+    with tempfile.TemporaryDirectory(prefix='wilf_e496_') as d:
+        p=pathlib.Path(d)
+        (p/'apery.hpp').write_bytes(header)
+        (p/'clock496.py').write_text(r['runner_source'])
+        subprocess.run(['python3',str(p/'clock496.py')],check=True)
+    PY
+
+This failure does NOT refute Wilf, a conditional negative-W transfer, or all
+possible descents. It rejects the proposed stronger ALL-S monotonicity only.
+E493's border falsifier and E494's floor/Carry-Lemma audit are PAPER ONLY.

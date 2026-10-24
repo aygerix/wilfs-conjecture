@@ -14199,3 +14199,183 @@ The user's reported7285 planar downsets,17169 moment instances and1854 sources
 are NOT independently rerun here. The two sandbox:/mnt/data attachments are
 absent in this workspace. The above status rests on the complete PAPER argument,
 not those finite checks. No source code, new research document or census added.
+
+## E493 — direct border-only completion of Wilf is false
+
+2026-10-24. This is a failed step in an attempted UNIVERSAL proof of actual
+F>=C_m, not a fixed-e/m Wilf programme. E492 BORDER-SUM is valid, but replacing
+the omitted columns merely by0 cannot prove the target on every genuine input.
+The explicit PAPER falsifier is
+
+    S=<64,129,130,132,136,144,160,767>.
+
+Before adjoining767, the six nonpivot residues are1,2,4,8,16,32, and the Apéry
+tile is {0,1}^6. Carrying a square to the next generator saves2*64 (the last
+square is5*64), proving binary normal forms and residue bijectivity. Their
+largest value is831. Adding767 replaces ONLY that top: 767 has its residue63,
+and767+129>831 prevents any further improvement. Thus the actual tile is the
+cube minus its full word plus the new generator unit.
+
+Its sum is32*831-64=26528, M767,c704,g383,ell321,e8,W1864. Every deletion
+cofactor is1: deleting129 leaves64,130,132,767 with gcd1; deleting64 leaves
+129,130; every other deletion leaves64,129. It satisfies3e<m and c>4m.
+
+Minimal excluded words are six original squares, six mixed pairs with the767
+unit, its square, and the removed full cube word of degree6. Their E492 credits
+are respectively7542,3771,0,447, totaling11760. But C_m=6*64*63/2=12096.
+The full F=131392 pays the correction easily; the discarded nonborder columns
+are indispensable to this uniform proof attempt. No standalone-border repair,
+case census or restricted-family claim is activated by the example.
+
+## E494 — integer-level Zhai attempt exposes an already false step
+
+2026-10-24. Direct universal actual-W formulation: q=ceil(c/m),rho=qm-c,
+eta_s=floor((w_s+rho)/m). Residue completeness gives sum eta=g+rho, hence
+
+    e*sum eta-d*m*q=rho-W,  d=e-1.
+
+The exact target is e*sum eta<=d*m*q+rho. A homogeneous mean bound for these
+integer levels is not supplied by Zhai's LINEAR-weight theorem. The primary
+Hellus–Waldi example gamma=(12/8,13/8), cutoff floor(gamma.z)<=4, has the
+10-cell simplex Delta3 and total floor moment27>2*10*4/3. Even weights>1 and
+superadditivity of the floor do not justify that extension. This is an abstract
+model obstruction, not an actual semigroup counterexample or prime-m reduction.
+
+More precisely, let Gamma_s be the FULL directed-column weight, sum Gamma=d*m,
+and r'_s=(w_s+rho) modm. The rounding error is exactly
+
+    E_eta=sum Gamma*eta-e*sum eta
+         =-rho+(e*m*(m-1)/2-sum Gamma*r')/m.
+
+The complete actual identity retains all terms:
+
+    W=rho+sum Gamma_s*(q-eta_s)+E_eta.
+
+The tempting sufficient assertion E_eta>=-rho is EXACTLY the old Carry Lemma
+(use (M-w_s) modm=m-1-r'_s), not a new universal argument. The already certified
+E47 source <14,22,23,57,61,62,63> has Carry-Lemma slack-14, so E_eta=-rho-1.
+Stop this shortcut before building a grading/transport repair. This refutes
+neither the full identity nor its sought sign. The omitted nonnegative level
+slack must remain; no A-graded hypothesis is assumed for all S.
+
+## E495 — a direct multiplicity-induction attempt and its exact obligation
+
+2026-10-24. To attempt the UNIVERSAL argument itself, define for t=1..m
+
+    f_t(n)=n-floor((n+m-t)/m).
+
+Map the actual minimal generators of S by f_t, divide their common gcd g_t,
+and call the generated numerical semigroup T_t. Its actual multiplicity is
+(m-1)/g_t<m: f_t(m)=m-1, all other images are at least m-1, and gcd normalization
+gives a cofinite semigroup. Base m1 is N.
+
+If for EVERY proper S there were some t with W(T_t)<=W(S), induction on actual
+m would prove Wilf for EVERY S. This is a precise finishing implication, not
+a reduction to fixed multiplicity or an auxiliary Q positivity statement.
+The proposed monotonicity itself is stronger than necessary and was unproved.
+The planned old60/67/71/121 calibration was CANCELLED before execution: E496's
+paper falsifier made it unnecessary. Only its runner/header transfer occurred;
+no old-control invariant calculation, compilation or result exists.
+
+## E496 — every clock contraction increases W on one explicit source
+
+2026-10-24 01:17 EDT. A complete PAPER falsification of E495's universal actual-W
+monotonicity, independently certified numerically below. This is NOT a Wilf
+counterexample and does not disprove every possible descent or the weaker
+negative-W sign-transfer statement. Do not treat the latter as established or
+patch the failed rule with special cases.
+
+Use the previously recorded cyclic two-basis
+
+    A={0,1,3,8,12,18,22,27,29,30,43,50} subset Z/63.
+
+For a self-contained coverage check, its nonatom residues have the following
+pairs (the five sums above63 are marked with their resulting residue):
+
+    2=1+1,4=1+3,5=18+50-63,6=3+3,7=27+43-63,
+    9=1+8,10=30+43-63,11=3+8,13=1+12,14=27+50-63,
+    15=3+12,16=8+8,17=30+50-63,19=1+18,20=8+12,
+    21=3+18,23=1+22,24=12+12,25=3+22,26=8+18,
+    28=1+27,31=1+30,32=3+29,33=3+30,34=12+22,
+    35=8+27,36=18+18,37=8+29,38=8+30,39=12+27,
+    40=18+22,41=12+29,42=12+30,44=22+22,45=18+27,
+    46=3+43,47=18+29,48=18+30,49=22+27,51=1+50,
+    52=22+30,53=3+50,54=27+27,55=12+43,56=27+29,
+    57=27+30,58=29+29,59=29+30,60=30+30,61=18+43,62=12+50.
+
+Choose the SINGLE literal L304 and
+
+    S=<63,19153,19155,19160,19164,19170,19174,
+          19179,19181,19182,19195,19202>,  p_delta=63L+delta.
+
+All eleven nonpivot generators are primitive. At each residue a shortest
+factorization uses the minimum NUMBER of terms, since one extra term costs63L
+while a two-term residual sum is at most100. There are eleven one-term residues
+and51 two-term residues. The only minimal residual sums above63 are at residues
+5,7,10,14,17, with values68,70,73,77,80. None has a nonwrapping pair, as checked
+from the small elements of A. Thus max residual80 and sum residual2268, giving
+
+    M=126L+80=38384, c=126L+18=38322,
+    g=113L+5=34357, ell=13L+13=3965, e12, W=30L+138=9258.
+
+All deletion cofactors are1: deleting63 leaves primitive differences2 and7;
+deleting19153 leaves63 and19160 (residue8); other deletions leave63 and19153.
+The source is sparse/deep. It is flat, and Wilf was already known on it; this
+does not weaken its role as a falsifier of the proposed ALL-S monotonicity.
+It does not refute a separately hypothesized descent restricted to nonflat
+inputs, and no such repaired programme is activated.
+
+### Uniform paper lower bound for ALL63 contractions
+
+The new modulus is62 and the contracted nonpivot costs are62L+alpha, where
+alpha=delta-1_(delta>=t). The only generator losses are t1 (delta1 becomes0)
+and t30 (delta29,30 collide); then d'=10. Otherwise d'=11. Every nonzero
+distinct cost is primitive, since all lie between62L+1 and62L+50. All gcds1:
+t>=2 retains residue1; t1 retains residue7 coprime to62.
+
+For t1 the new nonzero residues are2,7,11,17,21,26,28,29,42,49, whose two-sums
+miss3 modulo62. For t30 they are1,3,8,12,18,22,27,29,42,49, whose two-sums
+miss10. Hence their maximum minimal word degree H is at least3. For all cuts,
+minimal degree is at most61 (a shortest walk cannot repeat a residue).
+
+Since62L>50*61, the ACTUAL weighted minima use these minimal degrees h_r, and
+their maximum also has degree H. Write w'_r=62L*h_r+s_r,0<=s_r<=50h_r. With
+e'=d'+1 and R=max residual among degree-H words,
+
+    W(T_t)=L*a_t+K_t,
+    a_t=d'*62*H-e'*sum h_r,
+    K_t=d'*R-e'*sum s_r/62-(e'-2)*61/2.
+
+Using h0=0 and d' degree-one residues gives
+sum h_r<=d'+H*(61-d'), so
+
+    d'11: a_t>=82H-132, K_t>=-600H-305;
+    d'10: a_t>=59H-110, K_t>=-550H-275.
+
+For H>=3 and L304 these imply W>=32551 and W>=18443, respectively.
+The only remaining possibility is d'11,H2. Then a_t=32, R>=61, and every
+s_r is r or r+62. A wrapped residual can occur only for r<=38 because s_r<=100,
+so their number v<=39. Consequently
+
+    K_t=11R-671-12v>=-468,
+    W(T_t)>=32*304-468=9260>9258=W(S).
+
+This handles EVERY t without computing a universal range. Thus the proposed
+monotone induction step is false. No bound on the multiplicity of hypothetical
+counterexamples follows from this operation.
+
+### Independent finite certificate of this paper falsifier — CLOSED
+
+Existing C++ cyclic-scan reconstruction/certification/invariants plus independent
+heap shortest paths AND membership DP agree on S and all12 distinct contracted
+inputs, covering ALL63 thresholds. They check actual minimal generators, gcds,
+conductor/genus/ell/W, every edge inequality and positive attaining predecessors,
+and every degree/slope/constant inequality used above. All contractions have H3.
+The smallest actual contracted W is157419 at t30 (e11,c56542,g37091), far above
+the paper lower bound9260 and source9258. This establishes ONLY the rule failure.
+
+Compilation1.521694389s; C++ execution plus independent checks1.026924631s on
+Fejer CPU, GCC13.3. Only13 invariant evaluations, no random search/flow/GPU/agent.
+Header SHA256 matches local tracked apery.hpp. Complete small witness, bounds,
+all threshold groups and exact ephemeral runner source are saved in
+src/apery_scan/data/clock_contraction_496.json. No persistent engine was added.

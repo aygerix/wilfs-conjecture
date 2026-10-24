@@ -1,14 +1,13 @@
 # Wilf research — start here
 
-Updated: 2026-10-24 00:21 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 01:19 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
-**Current direct task: DIRECT-WILF, the actual Wilf number.** The user stopped the
-preceding research programme and then explicitly changed the mathematical priority.
-The autonomous goal tracker is **PAUSED**. This checkpoint records the subsequent
-direct paper task; it does not resume autonomous work, agents or computation.
-Exact authorization and scope are in [SCOPE.md](SCOPE.md).
+**ACTIVE goal: DIRECT-WILF, the actual Wilf number for EVERY S.** On2026-10-24 the
+user explicitly resumed universal proof work and forbade all side paths. The new
+goal tracker is ACTIVE. The stopped transport/Hall/cofactor/GPU programmes and
+agents remain stopped. Exact authorization and scope are in [SCOPE.md](SCOPE.md).
 
 **Scope:** proves Wilf for EVERY numerical semigroup if the target below is proved.
 Proved reduction from all S: **yes, exact equivalence by the Apéry identities**.
@@ -20,6 +19,29 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**Latest universal-argument attempts E493–E496: three required steps rejected.**
+The E492 border contribution alone is insufficient on a genuine sparse/deep,
+cofactor-one source (border11760<C12096). Applying Zhai directly to rounded
+conductor levels also lacks its linear-grading hypothesis; its proposed error
+bound is exactly the old false Carry Lemma. Neither shortcut is being repaired.
+
+A direct ALL-S multiplicity induction was then attempted: some clock contraction
+n-floor((n+m-t)/m), followed by gcd normalization, should have actual W<=W(S).
+That statement would prove Wilf by induction on m, but it is FALSE. One explicit
+source m63,e12,c38322,g34357,W9258 has ALL63 contracted W larger; minimum157419.
+Paper estimates already prove every contracted W>=9260. Existing C++ plus
+independent heap/membership DP confirm all12 distinct outputs and every paper
+bound (13 inputs total,9684edgechecks,794attainments,1.026925s after compilation).
+Exact source/proof: [PROOFS E496](PROOFS.md#e496--every-clock-contraction-increases-w-on-one-explicit-source).
+Witness and embedded exact runner: src/apery_scan/data/clock_contraction_496.json.
+No new engine/flow/GPU/agent; the obsolete old60 test was canceled before execution.
+
+This rejects the stronger monotone induction step, not Wilf, not a conditional
+negative-W transfer, and not every possible descent. The source is flat and
+already Wilf-positive; no restricted nonflat repair is activated. Do not present
+these failures as a universal sign theorem. The actual area target remains open,
+the goal remains ACTIVE, and all scoped numerical handles are terminal.
 
 **E492 user-supplied sharp half-stability theorem — PAPER AUDIT PASSES.** For every
 actual S with3<=e<m, the supplied nonsimplex downset argument proves
@@ -748,46 +770,32 @@ source/flow mode or W computation on the101 guard.
 
 ## Current attempt and next action
 
-**Only current mathematical target:** the actual area inequality above for EVERY S.
-Investigate the full unequal-cost cyclic recursion together with the birth
-congruences w_r=r mod m. The outstanding step is an integrated lower bound on
-Area that earns the additional (e-2)m(m-1)/2 beyond the homogeneous downset estimate.
-This is a required inequality, not a result established by restating Wilf.
+**Only objective:** prove the exact actual area inequality for EVERY S. E492 is
+a completed large-conductor reduction, not a multiplicity bound or a census target.
+The border-only, rounded-Zhai/phase-only and monotone-clock-contraction steps are
+closed after E493–E496. Do not patch them with speculative exceptions. The latter
+failure does not justify claiming that all universal descents are impossible.
 
-E492 now earns M/2 of actual surplus uniformly and gives the completed cubic
-conductor reduction. Treat that reduction as finished. A proof for the remaining
-range still needs additional arithmetic: the universal1/2 is sharp, so another
-improvement of that same shape is unavailable over the full stated domain.
-BORDER-SUM provides explicit, nonoverlapping contributions but has no proved
-universal lower bound paying C_m. Do not turn its one calibration into such a
-claim or launch a bounded-conductor census. The user's present question was a
-proof assessment; no new primary programme or compute was authorized by it.
+**Next direct paper work:** use the FULL unequal-cost reachability recursion,
+retaining residue congruences and all overlaps. One exact working form is to put
+omega(t)=sum_j|A_(t-p_j)|-|A_t|+1>=0, Omega=sum_(t<M)omega(t), and
+X=sum_(j,r)max(0,M-p_j-w_r). Then Area=M+X-Omega, so the universal target is
 
-The first common-threshold Kneser estimate is too weak and is closed as a complete
-payer. The finer BIRTH-RANK statement in E491 retains actual arrival times and the
-stabilizer correction for composite m. The next paper task is to determine whether
-those constraints control cumulative growth across unequal primitive costs. Any
-new lemma must explicitly imply the area inequality or supply a proved reduction
-to it. In particular a theorem about Q, a routing policy or a bounded family is not
-the default next step.
+    e*Omega <= (e-m)*M + e*X - C_m.
 
-The immediate invalid shortcut is to apply the linear downset theorem to w-R(w),
-where R counts earlier births. These compressed costs need not be linear on the
-factorization tile. Neither a name such as Kneser nor a local rank inequality
-supplies the missing mean–maximum estimate without a further proof.
+This is only an equivalent working identity, NOT new progress or a stronger
+auxiliary conjecture. The actual proof task is to derive the inequality from
+the generating costs and cyclic arrivals, with root overlaps included. A coarse
+common-threshold Kneser estimate is already too weak; dropping all overlap,
+column level slack or nonborder columns repeats a rejected step. No unrelated
+profile/hardware task should substitute for that argument.
 
-**Strategic review:** stop coarse growth that forgets costs/births; continue the
-user's actual-W arithmetic target. Test proposed integrated estimates against
-exact source arithmetic before considering a numerical campaign. No stronger
-auxiliary positivity conjecture is required. The old allocation, parity, source
-exchange and cofactor lines are retained in PROOFS but are suspended as primary
-targets. No current next action authorizes their automatic revival.
-
-**Session boundary:** this is a paper checkpoint only. The autonomous goal remains
-paused and no continuation job has been scheduled. Preserve the six existing
-research records; do not create another handoff, manuscript or implementation
-inventory. Existing C/C++ and independent checkers are catalogued above if a later,
-explicitly scoped falsification experiment needs them.
+The autonomous goal is ACTIVE, with no scoped computation left running. No
+further experiment, sampler, agent launch or contraction variant is activated.
+Old transport/Hall/cofactor/parity/source-repair/GPU programmes remain suspended.
+Use existing records and the implementation inventory above; no new handoff or
+manuscript. If a mathematical falsification check becomes necessary, it needs
+an explicit all-S implication, exact predicate, budget and stop decision first.
 
 ## Supporting records — consult as needed
 

@@ -46,7 +46,12 @@ The C preference does not activate a target or authorize compute, agents or a di
 
 ## Current research directive
 2026-10-23: the user STOPPED the transport/Hall/cofactor/GPU programme and paused
-its autonomous goal. That goal tracker remains paused until the user resumes it.
+its earlier autonomous goal. Those auxiliary programmes remain suspended.
+
+2026-10-24 00:34 EDT: the user created a NEW ACTIVE goal, explicitly ordering
+continued work ONLY on the universal argument. The exact approval is in SCOPE.md.
+This revokes the paused status for the main research objective, but does not
+revive the stopped programmes, agent permissions or numerical campaigns.
 
 The user's subsequent direct instruction is:
 > Change the mathematical priority.

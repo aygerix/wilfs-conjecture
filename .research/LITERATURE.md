@@ -1646,3 +1646,24 @@ explicit generating function recorded there; the audit uses no black-box
 external computation. User-reported finite checks and inaccessible sandbox
 attachments are not certified as reproduced. The exact sharpness family and
 single calibration were checked symbolically in the paper audit.
+
+### E493–E496: direct universal-proof attempts, with exact scope (2026-10-24)
+
+The border-only claim is a new attempted completion of E492, not a statement
+attributed to its author. Its explicit counterexample is derived here on paper.
+
+Primary [Hellus–Waldi, arXiv:1804.06146](https://arxiv.org/pdf/1804.06146), Section1,
+gives h(4,(12/8,13/8))=27/40>2/3. Thus nonnegative floor-superadditivity and
+weights>1 do not justify a Zhai-type moment bound for integer parts. Their
+Section4 positive result assumes an actual A-grading; that hypothesis is NOT
+assumed for all S. E494 also algebraically identifies the proposed phase-error
+bound as the already refuted internal Carry Lemma, avoiding a renamed programme.
+
+The E495 clock map changes multiplicity and is not the earlier fixed-m local
+height drop. A limited primary-source search on multiplicity/floor/contraction
+and Wilf supplied no theorem usable to prove its monotonicity. No inference of
+absence or novelty is made. E496 supplies its own complete arithmetic falsifier.
+The Z63 two-basis was already recorded at E353; its full pair certificate is
+included, so no unverified optimal-basis classification is used. A successful
+two-basis construction is not presented as evidence for Wilf: here it refutes
+a proposed ALL-S induction step. No new special-case Wilf result is claimed.

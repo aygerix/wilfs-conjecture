@@ -774,3 +774,33 @@ needed, and it supplies no universal sign evidence. Close that ONE-case test;
 do not enlarge a passing census. FullR insurance remains UNKNOWN: the depth
 potential does not prove distinctness of charges to the same boundary/depth copies.
 The homogeneous shortcut duplicates E416 and is stopped, not promoted again.
+
+## E493 — E492 border columns alone do not universally pay the finite correction
+
+FALSE sufficient step: BORDER-SUM>=C_m for every genuine S. PAPER source
+<64,129,130,132,136,144,160,767> has all deletion cofactors1, c704>4m,3e24<m64,
+but border11760<C12096. Actual W1864 is paid by the omitted nonborder columns.
+The Apéry cube-minus-top construction and exact sums are in PROOFS E493. No
+restricted repair, new allocator or source search is activated. The valid
+BORDER-SUM inequality and E492 half-stability theorem remain intact.
+
+## E494 — applying Zhai directly to integer conductor levels is unjustified
+
+The floor of a linear weight is not a linear grading. Hellus–Waldi's explicit
+gamma=(12/8,13/8),Delta3 counterexample has floor moment27>80/3. Allowing a phase
+error does not fix the unqualified column argument: E_eta>=-rho is EXACTLY the
+old FALSE Carry Lemma. E47 has E_eta=-rho-1. Keep the full nonnegative level
+slack; do not construct a new grading/carry policy around this discarded step.
+
+## E495–E496 — monotone clock contraction cannot supply a universal multiplicity induction
+
+FALSE: for every S, some t=1..m makes the gcd-normalized semigroup generated
+by n-floor((n+m-t)/m) on its actual generators have W<=W(S).
+For S=<63,19153,19155,19160,19164,19170,19174,19179,19181,19182,19195,19202>,
+W9258, ALL63 contractions have larger W; their minimum is157419 at t30.
+Paper estimates alone prove every contracted W>=9260. C++ and independent
+heap/membership certify the complete finite witness; PROOFS E496 gives the
+all-cut algebra. The source is flat and already satisfies Wilf, so this does
+NOT refute a separately restricted nonflat/sign-transfer theorem. No such
+repair is activated. It refutes neither Wilf nor every possible descent.
+Cancel the unexecuted old60 control; no sampling or rule extension follows.
