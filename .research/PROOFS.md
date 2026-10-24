@@ -14379,3 +14379,110 @@ Fejer CPU, GCC13.3. Only13 invariant evaluations, no random search/flow/GPU/agen
 Header SHA256 matches local tracked apery.hpp. Complete small witness, bounds,
 all threshold groups and exact ephemeral runner source are saved in
 src/apery_scan/data/clock_contraction_496.json. No persistent engine was added.
+
+## E497 — exact overlap counting retains an individual minimum condition
+
+2026-10-24. PAPER work within the ALL-S actual-W argument, not a new graph,
+certificate-policy or polynomial programme. Let d=e-1 and put
+
+    P(z)=sum_r z^(w_r),  G(z)=sum_j z^(p_j),
+    R(z)=1+(G(z)-1)*P(z).
+
+For the actual Apéry values R has nonnegative integer coefficients: at a nonzero
+birth w_r at least one primitive attains it from an earlier Apéry value; at every
+other positive exponent only arrivals are counted. Its constant coefficient is0.
+Directly from E490's UNION, for integer0<=t<M,
+
+    omega(t)=sum_j |A_(t-p_j)|-|A_t|+1=sum_(v<=t) [z^v]R,
+    Omega=sum_(t=0..M-1)omega(t)=sum_v (M-v)_+*[z^v]R,
+    X=sum_(j,r)(M-p_j-w_r)_+,
+    Area=M+X-Omega.
+
+Consequently the desired universal inequality is EXACTLY
+
+    e*Omega <= (e-m)*M+e*X-C_m.
+
+This reformulation is not a positivity proof. Although R>=0, its coefficients
+count redundant arrivals; the needed estimate is an UPPER bound on their
+integrated count. Further elementary identities are
+
+    R(1)=1+(d-1)m,
+    R'(1)=(d-1)*sum w+m*sum p,
+    R(z) = 1+(d-1)*(1+z+...+z^(m-1)) mod(z^m-1).
+
+Neither these identities nor coefficientwise R>=0 retains all shortest-distance
+inequalities. E498 gives an explicit falsifier to that weakening.
+
+The individual constraints are retained as follows. Set
+
+    H(z)=P(z)/(1-z^m).
+
+Because w_r=r modm and w_0=0, H is the0/1 series of the union of the columns
+w_r+m*N. For EACH primitive p_j, the condition
+
+    (1-z^(p_j))*H(z) has nonnegative coefficients
+
+is exactly closure of that union under addition by p_j. If also R>=0, every
+nonzero assigned w_r has an attaining primitive predecessor, of smaller value.
+Induction gives a factorization in the supplied p_j. Column closure and these
+attainments together therefore identify H with the series of <m,p_1,...,p_d>:
+closure gives one inclusion and attaining factorizations give the other. To use
+e=d+1 as the ACTUAL embedding dimension one must additionally check that the
+supplied generators are primitive. In particular, assigned p_j with R's
+coefficient at p_j equal to0 have no alternate positive-parent decomposition.
+
+These are elementary exact characterizations, not a novel theorem about Wilf.
+No universal upper bound on Omega has been established. Do not discard the
+individual shift inequalities or treat aggregate positivity as their substitute.
+
+## E498 — congruent attaining births and positive aggregate overlap are insufficient
+
+2026-10-24. PAPER countermodel to the weakened E497 proof step, NOT an Apéry set,
+numerical semigroup, or Wilf counterexample. No numerical run is used here.
+
+Take m600, p625, q624. Index600 assigned values by
+0<=x<24, 0<=y<25, with residue25x+24y mod600. This is a bijection by reducing
+modulo24 and25. Define
+
+    v(x,0)=x*p,
+    v(x,1)=q+x*p.
+
+For2<=y<=12 put x_y=25-y and
+
+    B_y=(y-1)*23*p+y*q,
+    v(x,y)=B_y+((x-x_y) mod24)*p.
+
+Finally put K=12*(23*p+q) and for13<=y<=24 put
+
+    v(x,y)=K+(y-12)*q+((x-12) mod24)*p.
+
+All assigned values have their stated distinct residues and are distinct;
+the root is0 and every positive value exceeds m. The primitive births624,625
+are included. Every other value has a strictly smaller attaining predecessor:
+move backward within a row by p, or from a row's first cell to the previous
+row's last cell by q. Rows0 and1 start at0 and q. At row12 the last cell is
+x12, which is the starting x for every subsequent row. Thus the polynomial
+1+(z^p+z^q-1)*sum_(x,y)z^(v(x,y)) is coefficientwise nonnegative, and the
+aggregate congruence/moment identities of E497 hold.
+
+Nevertheless direct finite sums on the displayed formulas give
+
+    M=13*23*p+24*q=201851,
+    sum v=122820*p+7200*q=81255300,
+    2*600*M-3*sum v=-1544700<0.
+
+Thus these relaxed hypotheses do not even imply the homogeneous downset bound.
+The missing condition is visible without reconstructing any source:
+
+    v(0,1)=624,
+    v(0,2)=16248 > v(0,1)+624=1248.
+
+Both right-hand arrivals have residue48. The assigned birth ignores an arrival
+earlier by15000=25m. Equivalently, the coefficient at z^1248 of
+(1-z^624)*H_fake is-1. The individual minimum/shift-closure condition rejects
+the model immediately. This is NOT evidence against E490's full recursion.
+
+Decision: stop aggregate-positivity-only completion of the universal argument.
+No repair family, numerical census, new engine, transport rule or agent follows.
+The exact individual arrival inequalities and actual generator count remain
+mandatory in the all-S proof. The universal sign is still unproved.

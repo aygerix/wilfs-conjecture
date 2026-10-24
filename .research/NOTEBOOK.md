@@ -6365,3 +6365,36 @@ all residue congruences and full actual surplus. The exact area inequality stays
 the ONLY objective. Old transport/Hall/cofactor/GPU and agents remain stopped.
 No proof, genuine Wilf counterexample, Lean or novelty assertion. Goal ACTIVE;
 all scoped numerical handles terminal, no automatic next search.
+
+### 2026-10-24 02:06 EDT — universal overlap attempt; lost-minimum step rejected
+
+The preceding user-facing explanation was NO RESEARCH PROGRESS. Read current
+worktree/STATE/DIRECTIVES and retained the ACTIVE ALL-S actual-W objective.
+No old numerical job was restarted, no new worker/agent/code engine was launched.
+
+E497 writes exact redundant-arrival counts as the nonnegative polynomial
+R=1+(sum z^p-1)*sum z^w. Integrating gives Area=M+X-Omega. This is a working
+identity ONLY; the desired upper bound on Omega is exactly Wilf and is unproved.
+Trying to obtain it from coefficient positivity, residue mass and attaining
+parents loses the fact that EVERY generator arrival bounds the birth in its
+residue, not merely one selected predecessor.
+
+E498 completes the pending paper audit of that weakening. Its600-residue model
+has a valid factorization for every assigned value and distinct correct residue
+labels, but ignores an earlier arrival by25m. The exact finite sums give negative
+homogeneous deficit. The single bad edge rejects it; no reconstruction/checker
+run is needed or claimed. This is a countermodel to a relaxation, NOT to Wilf.
+
+The mathematical pivot was to restore all individual (1-z^p)H>=0 conditions.
+Together with attaining parents they exactly characterize the generated S;
+this characterization is routine and supplies no new mean/maximum estimate.
+It is not being presented as a stronger theorem, a new target, or proof progress
+on the sign. The global overlap upper bound has NOT been derived.
+
+GLOBAL REVIEW: the evidence closes the aggregate-only proof step. Do not repair
+it by a routing rule, another scalar positivity condition, a fixed family or a
+larger search. The full actual costed union and its individual minimum conditions
+remain the authorized universal argument. No parameter-independent payment,
+descent, new universal positive lower bound or full proof has emerged here.
+Persist the actual failed derivation and continue the main goal without claiming
+completion, novelty, an independent numerical check, or a process running now.

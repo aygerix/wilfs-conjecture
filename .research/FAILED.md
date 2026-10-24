@@ -804,3 +804,13 @@ all-cut algebra. The source is flat and already satisfies Wilf, so this does
 NOT refute a separately restricted nonflat/sign-transfer theorem. No such
 repair is activated. It refutes neither Wilf nor every possible descent.
 Cancel the unexecuted old60 control; no sampling or rule extension follows.
+
+## E498 — aggregate positive arrivals do not replace shortestness
+
+FALSE universal proof step: distinct congruent assigned births with attaining
+parents and coefficientwise1+(sum z^p-1)*sum z^w>=0 suffice for the actual
+Wilf moment bound. The paper600-residue profile in PROOFS E498, costs624/625,
+has homogeneous deficit-1544700, despite satisfying those relaxed conditions.
+It assigns16248 to residue48 while624+624=1248 is already attainable. It is
+NOT an Apéry set or a numerical semigroup counterexample. EACH individual
+generator-shift inequality must remain. No aggregate-only repair is activated.

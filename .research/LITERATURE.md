@@ -1667,3 +1667,14 @@ The Z63 two-basis was already recorded at E353; its full pair certificate is
 included, so no unverified optimal-basis classification is used. A successful
 two-basis construction is not presented as evidence for Wilf: here it refutes
 a proposed ALL-S induction step. No new special-case Wilf result is claimed.
+
+### E497–E498: full reachability versus aggregate arrivals (2026-10-24)
+
+The polynomial identities, individual shift-closure characterization and explicit
+artificial countermodel are elementary derivations given in PROOFS, not results
+attributed to an external theorem. Limited searches on Wilf/Apéry overlap,
+cumulative reachability and weighted cyclic shortest paths supplied no external
+theorem USED to prove the missing integrated-overlap bound. This is not a claim
+of novelty, absence of prior work, or a literature-based impossibility result.
+No generic graph distance theorem or scalar polynomial positivity assertion is
+substituted for actual generator costs and all individual arrival inequalities.

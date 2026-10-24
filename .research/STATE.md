@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-24 01:19 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 02:06 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -19,6 +19,27 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**E497–E498: aggregate arrival positivity is an insufficient proof step.** The
+full recursion gives Area=M+X-Omega, where X=sum_(j,r)(M-p_j-w_r)_+ and Omega is
+the integrated redundant-arrival count. Bounding Omega as in PROOFS E497 is
+exactly the universal target, not a new theorem proving its sign. The attempted
+completion using only a nonnegative arrival polynomial, congruent distinct births
+and attaining parents is FALSE. A paper600-residue artificial profile passes all
+those aggregate conditions but has negative homogeneous deficit. It ignores an
+earlier arrival by15000=25m and is NOT an Apéry set or Wilf counterexample.
+
+The individual inequalities w_(r+delta_j)<=w_r+p_j must remain. Equivalently,
+with H=(sum z^w)/(1-z^m), EACH (1-z^p_j)H must be coefficientwise nonnegative.
+Together with attaining predecessors these identify the actual generated S;
+the supplied generator count must still be checked against actual primitivity.
+This is an elementary exact characterization, not progress on the sign itself.
+No universal overlap upper bound has been obtained. Stop the aggregate-only
+completion; do not turn it into a new policy/engine or an experimental campaign.
+Paper derivations and explicit rejection edge: [PROOFS E497–E498](PROOFS.md#e497--exact-overlap-counting-retains-an-individual-minimum-condition).
+No numerical run, source-library edit, worker or new agent in this checkpoint.
+The previous user-facing explanation was no research progress; this checkpoint
+persists the failed proof-step audit. Goal remains ACTIVE, not achieved/blocked.
 
 **Latest universal-argument attempts E493–E496: three required steps rejected.**
 The E492 border contribution alone is insufficient on a genuine sparse/deep,
