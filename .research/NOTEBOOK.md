@@ -6037,3 +6037,65 @@ anallpropercutstrengtheningwithoutproof. Newnumericpredicate/input/budgetmustbe
 writtenbeforeexecution. Noautomatic349ray/468image/15repair/63controlreplay,
 one-cubicFexpansion,unrestrictedstallsorcentroidquota. SameTWOagentsdone,alljobs
 terminal,worker/laptopfilesmatch,goalACTIVE. No universalWilfproof/counterexample.
+
+### 2026-10-23 21:45 EDT — E475–E478: a tight component and constructive axis elimination
+
+Scope: Proves Wilf for EVERY S if the principal Qnegative one-original-label
+bridge holds; proved reduction E439/E462/SUPP plus complements. Same backwards
+strategy, same TWO authorized paper agents, Fejer exact CPU only. No new family
+proof programme, rental or unrestricted sampler. Previous checkpoint PROGRESS6749cec.
+
+NEW CRITIC: E475's old65 control passes48tokens and is CLOSED. To measure slack
+without calling every passing rule0, E476 forces one positive-demand word z* into
+the original cut. PAPER M_z*=max_E D(E)=K-F_forced, with E containing z*. All
+logical infinities exceed K+totalcapacity. Ordinary solve first; after completion,
+-Q<=M<=0. Forced flow>K is a negative signed score, not extra carry debt. Root
+and geometric agent independently check the identity. D is supermodular; the
+largest WORD maximizer has a strict minimal-outside marginal, but the default
+residual mincut is the SMALLEST and omits zero-demand words. Keep that distinction.
+
+BOUNDED FEEDBACK: four islands,64parent-derived children,68C calls,47scored and
+43archive changes in4.48185s.49ordinary/47forced primal-equal-cut certificates pass,
+with independent coin reconstruction.19domain rejections,2zero-mixed cases. Best
+forced scores -1,-1,-9,0 from -8,-3,-9,-16. All47 groups distinct, so neutral-height
+retention not exercised. No actual failure/negativeQ/W. Run CLOSED at its budget.
+
+USEFUL TIGHT CONTROL: S=<65,147,270,319>,W1919,Q155,allcofactors1. The six-cell
+E={1,p,r,pr,r^2,pr^2} has2mixed demand and0boundary. An r-column has V17,A15,N2
+and6accessible physical slots. The old reverse-axis injection leaves its only2
+free slots outside E. Freezing it gives an artificial cut deficit2. Two explicit
+axis moves place the mixed tokens at front slots; the physical17-slot allocation
+and GLOBAL102-token certificate both pass. E has trivial stabilizer and prime5/13
+retain2/3 original labels. Tightness is not strict unpaid debt. Frozen obstruction
+classification is FALSE; full JOINT-ANCESTOR and principal bridge remain UNKNOWN.
+
+GENERAL PAPER COMPONENT: V physical slots, A own-column axes, N=V-A. Any chosen
+t<=N mixed slots can be freed by at most t axis moves to unselected free slots.
+Protect previous mixed assignments in the TOTAL quota. Thus remove all axis groups
+and give each physical wrapped-edge resource its parent/direction capacity followed
+by the shared N_C column quota. This mixed-only graph is EXACTLY the full model;
+its integral assignments extend to axes in each column complement. Same parity
+agent independently audits the general proof and explicit moves. This is genuine
+constructive progress, not a universal sign bound or novel matching theorem claim.
+
+LIMITED PRIMARY CHECK: Rado just restates rank domination. Aliabadi–Losonczy's
+checked rank-growth theorem needs a translation-invariant modular matroid on the
+whole group; neither slot projection nor our column quotas provides that structure.
+E464's existing family has a U_(3,6) block, nonmodular on paper. Aliabadi–Zerbib has
+failure even in prime cyclic groups for a DIFFERENT group-subset matching relation.
+This closes the unsupported generic-theorem shortcut, not additive-matroid research
+or the one-label bridge. No numerical member/flow/source was added for E478.
+
+GLOBAL REVIEW / CONTINUE: the signed critic reached equality, exposed the need
+for reassigning axes and supplied a general elimination move. It did not advance
+the actual rank SIGN, so do not treat47passing profiles as a theorem or expand
+their census. Keep the principal bridge, now expressed on the mixed-only quotas.
+Next seek deficit-sensitive arithmetic rank growth or successor closure retaining
+actual phase and ORIGINAL labels. A valid obstruction must have strict positive
+deficiency after every allowed reassignment; generic periodicity/tightness fails.
+Kill frozen-axis stall searches and the limited primary lookup. Keep ACTUAL Xi
+integrated source loss and the full coupled y-surplus/row slacks as the other two
+universal lines. Any new computational falsifier needs a precise predicate/budget;
+no passive resistant-seed prerequisite is reinstated. All mathematical jobs are
+terminal, complete data/code hashes match worker/laptop, goal ACTIVE. No universal
+Wilf proof/counterexample, manuscript, Lean verification or novelty assertion.

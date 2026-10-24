@@ -13158,3 +13158,231 @@ Data/reproduction: EXPERIMENTS E474 and p39/data/joint_ancestor_474.json.
 Principal target remains the Q-negative one-label bridge. The first explicit
 network supplies a conservation law and a falsifiable stronger lemma; no claim
 that closure alone or this one passing control gives its universal validity.
+
+## E475/E476 — a signed component critic and extremal-cut conditions
+
+2026-10-23. Proves Wilf for EVERY S if the principal one-original-label bridge is
+proved; reductions E439/E462/SUPP plus complements. These are diagnostics of the
+explicit stronger allocation rule, not fixed-m/rank Wilf theorems. Previous turn
+PROGRESS6749cec. No universal sign, negativeQ/W, Lean or novelty claim.
+
+The ONE old65/82/214/217/265 source passes the NEW joint rule: K48,axes34,mixed14,
+Dep156,V74,N40,Q182,W1452. Every cofactor1, prime5/13 surviving-label counts3/4.
+Independent coin and integer primal/cut checks pass in0.05405s. Its old feasible
+unpaid vector does not supply a new ancestor obstruction; this control is CLOSED.
+
+### Forcing an actual positive-demand component — PROVED on paper
+
+Let C_tot=Dep+V=K+Q (NOT the actual Wilf reserve R). Pick a mixed word z* with
+kappa(z*)>0. Add a source->group(z*) forcing arc and set EVERY logical infinite
+arc to B>K+C_tot. The all-groups/all-resources cut has capacity C_tot, so an
+augmented minimum cut crosses neither the forcing arc nor any logical arc.
+Its finite capacity is ORIGINAL K minus selected ORIGINAL demands plus selected
+resource capacities. Axis elimination from E474 gives
+
+    M_z*=max_(downsets E containing z*) D(E)=K-F_forced. (FORCED-MARGIN)
+
+Zero-demand words may be dropped from a Hall set without raising its resource
+cost; positive kappa(z*) ensures the forced ancestor closure contains z*. Thus
+forcing the group is equivalent to the stated word-downset condition.
+F_forced may exceed K: this means a NEGATIVE signed margin, not an actual deficit.
+Primal conservation uses the AUGMENTED flow including the forcing arc. Exact checks:
+
+    -Q<=M_z*<=K-F_ordinary;
+    ordinary completion => -Q<=M_z*<=0.
+
+A positive margin after a passing ordinary flow is therefore an implementation
+inconsistency. Always solve the ordinary graph FIRST; a designated group can
+otherwise miss a bad cut elsewhere. This creates a nonconstant slack score for
+adversarial feedback; it supplies no new sign theorem.
+
+### Supermodularity and the largest-word-maximizer caveat — PROVED on paper
+
+V_C(E) is nonnegative modular. Its capped function min(V_C(E),N_C) is submodular,
+so D(E) is supermodular. Downsets (including those containing z*) are closed under
+union/intersection, hence maximizing downsets have a unique largest member U.
+For a MINIMAL outside word v in D\U, largest maximality gives the strict marginal
+
+    D(U+v)-D(U)
+      =kappa(v)-Gamma_v*1_nonmaxD
+         -sum_C min(w_C(v), max(0,N_C-V_C(U))) <0,      (CUT-MARGINAL)
+
+where w_C(v) is wrapped-edge capacity in C anchored at v. Integer capacities make
+it <=-1. A globally maximal v has neither boundary nor internal-wrap resource,
+so its marginal would be kappa(v)>=0: it cannot be minimal outside this U.
+This is a necessary extremal-cut condition, not successor/subgroup closure.
+
+Do NOT apply strictness to the default residual-source-reachable cut, which is
+the smallest source-side minimum cut. Positive-demand nodes also omit zero-demand
+word cells that can belong to the largest WORD maximizer. To extract that object,
+include all word nodes and take the largest cut, or separately recover the largest
+word-level maximizer. No largest-maximizer claim is made for the reported small
+forced cuts. Independent paper review checked this distinction and both identities.
+
+### One bounded feedback test, then CLOSED
+
+Four fixed islands,8 rounds,2 children per island give64 parent-derived proposals.
+Existing C reconstructs; actual minimal primitives, e>=4,c>4m,3e<m and allcofactors1
+are required. After ordinary matching passes, select z* with the largest exact
+principal-ideal D score, solve the forced critic, and rank by M_z* then actualW/c.
+The archive keeps up to4 distinct heights per EXACT D/residue/top signature.
+One/two-generator mutations cross residues/heights; no depth/height restriction.
+Exact recipes and stop policy are in SCOPE and the implementation.
+
+The Fejer run ends at64proposals:68 C evaluations including4seeds,47scored,
+19domain-rejected,2zero-mixed,43actualarchiveupdates. All47scored profiles are
+structurally distinct in this run; neutral multi-height retention was NOT exercised.
+There are49 eligible ordinary-flow checks and47forced checks, all with exact
+primal/cut certificates and independent coin reconstruction. No unforced failure,
+negativeQ/W or one-label counterexample. Runtime4.48185s, not a GPU benchmark.
+
+|Island|initial forcedM|retained G|final forcedM|
+|---|---:|---|---:|
+|13|-8|13,15,77,94|-1|
+|38|-3|38,51,67,99|-1|
+|63|-9|63,307,438,440,454,461,474,475,477,482,486,492|-9|
+|65|-16|65,147,270,319|0|
+
+Passing finite cases do not establish the rule or bridge. The useful new endpoint
+is the last NONEMPTY tight cut, analyzed next. Trace and complete promoted source/
+ordinary/forced certificates: p39/data/forced_ancestor_476.json.gz and its JSONL.
+No automatic additional generation/census/rental is authorized by this outcome.
+
+## E477 — axis repacking is essential and can be eliminated constructively
+
+2026-10-23. Same universal bridge/allocation scope. The frozen-rule failure below
+is a mechanism control, not a counterexample to JOINT-ANCESTOR, Q or Wilf. Same
+authorized parity agent independently audited both explicit moves and the general
+lemma. Exact postprocessing also verifies a complete GLOBAL flow replacement.
+
+### General repacking and mixed-only formulation — PROVED on paper
+
+Take ANY full column C with V physical wrapped slots, A axis demands restricted
+to their OWN column but allowed every slot there, and N=V-A. Let W0 be t<=N
+distinct slots prescribed for mixed demands. If f are currently unoccupied, t-f
+axis occupants must move. There are N-f unoccupied slots OUTSIDE W0, at least
+t-f. Move these occupants directly to distinct such slots. At most t axis moves
+free W0; conversely t>N leaves insufficient room for all A axes. Thus an accessible
+slot set W has mixed capacity exactly min(|W|,N).
+
+For incremental assignments apply this to the TOTAL protected mixed set. If p
+mixed slots are already reserved, an additional t requires p+t<=N. Existing mixed
+occupants are not silently evicted or counted as unoccupied axis destinations.
+
+Consequently JOINT-ANCESTOR is EXACTLY equivalent to a MIXED-ONLY flow network:
+mixed groups retain their demands/ancestor access; boundary resources have Gamma
+capacity; each physical wrapped edge retains capacity u_j+1 and original parent,
+direction and column; its flow then passes through one shared column quota N_C.
+Axes are removed. A full assignment projects to at most N_C mixed units per column.
+Conversely an integral mixed flow chooses distinct physical slots, and the lemma
+fills the complement with all A_C axes independently per column. This assumes the
+stated own-column axes model; allowing axes boundary/other-column destinations
+would be a different model and invalidate the simple projection bound.
+
+Equivalently, after expanding physical slots, the right resources have a partition-
+matroid rank G_D(E)+sum_C min(V_C(E),N_C). Ordinary Rado/Hall would restate our
+rank condition, not prove its arithmetic sign. The missing bridge remains a
+label-specific theorem for genuinely positive mixed deficiency.
+
+### A cofactor-one control requiring two actual axis reassignments
+
+The E476 retained source is
+
+    S=<65,147,270,319>, m65,e4,c1997,g1018,ell979,W1919,
+    Dep128,kappa33,N60,Q155,R1764,K102,A_axis69,V129.
+
+All deletion cofactors1. Use coordinate order (g,p,r)=(270,147,319), residues
+(10,17,59), actual top residue46 and conductor phase rho18. The tight Hall cut
+
+    E={1,p,r,pr,r^2,pr^2}, phi(E)={0,5,11,17,53,59}
+
+has Gamma0 at EVERY cell: all three canonical successors exist at each of its
+six cells (18 exact child checks). Its only mixed demands are one at pr and one
+at pr^2, so kappa(E)=2,G_D(E)=0. Its sole positive column allowance is the full
+r-axis column C=(1,r,...,r^6):
+
+    residues       (0,59,53,47,41,35,29),
+    phase labels   (18,12,6,0,59,53,47),
+    wrap edges n   1,2,3,5,6 with n physical slots each,
+    A_C=15,V_C=17,N_C=2,V_C(E)=6.
+
+The E469 reverse assignment occupies:
+
+    raw level k1 -> edge6, slots0..4,
+    k2 -> edge5, slots0..3; k3 -> edge3, slots0..2;
+    k4 -> edge2, slots0..1; k5 -> edge1, slot0.
+
+It leaves ONLY(edge5,slot4) and(edge6,slot5) free. Their parents r^4,r^5 are
+outside E; all accessible slots on edges1,2,3 are occupied. Every other column
+has zero accessible net allowance. Thus freezing THIS axis injection gives a
+Hall cut deficit2 despite positiveQ and cofactor1. This is a cut certificate of
+failure, not a claim that the entire frozen graph's maximum deficit is exactly2.
+
+Two permitted augmentations repair the component:
+
+    axis token(n6,k5): (edge1,slot0)->(edge6,slot5),
+    axis token(n5,k4): (edge2,slot0)->(edge5,slot4),
+    mixed pr ->(edge1,slot0), mixed pr^2 ->(edge2,slot0).
+
+All15 axis tokens plus2 mixed tokens now occupy the17 slots without collision.
+The mixed anchors1,r divide their source words. Original direction59 and every
+axis demand remain unchanged. The tight component exhausts C, so no outside
+mixed group can use C in a complete assignment. Replacing this column in the
+SAVED full assignment changes four aggregate arc flows and preserves EVERY
+capacity/balance: the complete global102-token certificate still passes. No
+new flow solve or semigroup reconstruction was used for this postprocessing.
+
+The six residues have trivial stabilizer (a stabilizer order divides both6 and65).
+Modulo5, residues17 and59 survive; modulo13, allthree survive. Thus saturation
+with positive mixed DEMAND can be aperiodic and cofactor1. There is NO positive
+JOINT deficit here: D(E)=0 exactly. Strictly unpaid demand after all permitted
+reassignments is essential to the proposed cofactor classification. Frozen axes
+can create spurious trapped debt, so that version of the obstruction lemma is
+FALSE. The principal Qnegative bridge and full JOINT rule remain UNKNOWN.
+
+This one saved-profile audit is CLOSED. Data:p39/data/axis_augmentation_477.json.
+The result supplies an explicit general move and conservation proof; it does not
+pay the remaining mixed-only rank condition for arbitrary semigroups.
+
+## E478 — the resource matroid needs arithmetic beyond generic matching
+
+2026-10-23. Same principal universal bridge; this is a LIMITED primary-theorem
+hypothesis check, not a new survey, computation or assertion of literature absence.
+Expand physical slots. Boundary slots form free blocks; wrapped slots of C form
+a uniform block of rank N_C. Their direct sum has neighborhood rank
+
+    r(Neighbors(E))=G_D(E)+sum_C min(V_C(E),N_C).
+
+Rado's independent-transversal criterion is exactly the missing Hall inequality.
+It does not establish it. The primary checks below identify why a group-rank
+theorem cannot simply be invoked to obtain the one-original-label conclusion.
+
+Aliabadi–Losonczy, arXiv2608.18340v1, Definition2.6 and Theorem7.14, require a
+MODULAR finitary matroid on the ENTIRE group, with EVERY translation a matroid
+automorphism. Their rank-growth failure gives a stabilizing flat/submonoid. Our
+physical column quotas have no established compatible translation action. Merely
+projecting a slot to its parent residue loses rank: independent slots can share
+that residue, whereas a singleton group element has rank at most1. Artificial
+tags require a new compatible action/projection theorem, not a change of notation.
+
+Modularity is genuinely absent in the allowed resource class. In E464's ALREADY
+proved flux-guard family, the q-axis labels are t,t-1,...,0. All t internal edges
+wrap, so V_C=t(t+1)/2, A_C=t(t-1)/2 and N_C=t. At t3 its block is U_(3,6).
+Two disjoint two-slot flats have rank sum4, but their union and intersection have
+rank sum3. This violates modularity. It is a PAPER consequence of an existing
+family, with no new member evaluated. The family has Qpositive and kappa0; this
+is a hypothesis guard, not a matching failure for our mixed demands.
+
+Aliabadi–Zerbib, arXiv2202.07719v3, Definition1.3/Example4.2, instead embed matroid
+ground sets as actual subsets of an abelian group and match by a+b outside the
+first ground set. Their uniform-to-partition example fails even in a sufficiently
+large PRIME cyclic group. Thus arbitrary group-labelled partition-matroid failure
+does not imply a proper subgroup. Their relation is NOT our ancestor permission,
+so the example refutes no JOINT-ANCESTOR or Wilf statement.
+
+Neither checked theorem supplies our missing original-label conclusion. Preserve
+the physical ancestor permissions, shared N_C quotas, actual phase and original
+directions. A genuinely positive deficiency must yield additional arithmetic
+structure; tightness, generic matroidality or a stabilizer alone are insufficient.
+No claim that all matroid approaches fail, that the bridge is false, or that this
+limited check exhausts the literature. Primary links/hypotheses: LITERATURE E478.

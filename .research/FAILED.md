@@ -686,3 +686,30 @@ PROPER-downset inequalities; closure alone yields neither translation periodicit
 nor a prime quotient with one original surviving label. A Qpositive deficient cut
 would falsify THIS rule/classifier only. E462's original35 guard has K=0 on paper,
 so its planned numerical rule test was cancelled before execution as vacuous.
+
+E475–E478 (2026-10-23): the ORIGINAL E469 axis injection cannot be frozen in a
+deficient-component=>cofactor argument. The genuine E476 endpoint
+S=<65,147,270,319>,W1919,Q155,all deletioncofactors1, has the six-cell downset
+E={1,p,r,pr,r^2,pr^2},p147,r319. It has mixed demand2 and no boundary capacity.
+Every accessible unused slot of the original fixed axis map is absent: its two
+free r-column slots lie at parents r^4,r^5 outside E. Thus that frozen graph has
+a Hall-cut deficit2 with no one-label prime quotient. Reassigning TWO axes frees
+the front slots needed by pr/pr^2, and an exact global102-token certificate passes.
+The JOINT cut is TIGHT, not deficient: kappa(E)=2=min(V_C(E),N_C). No positive
+JOINT deficit, negativeQ or Wilf counterexample is obtained. Its residue set has
+trivial stabilizer, so even positive mixed demand plus saturation is insufficient
+for a cofactor conclusion. Strict unpaid debt AFTER all permitted moves matters.
+
+The bounded64-proposal signed-component critic is CLOSED without actual failure;
+its tight endpoint above is useful for permissions, not evidence proving the bridge.
+Forced flow>K gives a negative signed margin and is not new actual demand. Do not
+apply largest-maximizer strict marginal claims to the default SMALLEST residual
+cut or omit zero-demand word cells when recovering a largest WORD downset.
+
+Generic matching is not a shortcut to the arithmetic subgroup bridge. E478 checks
+two primary theorems and records the incompatible ground set/translation and
+modularity hypotheses; the existing E464 family has a U_(3,6) resource block.
+Another primary paper has generic partition matching failures even over prime
+cyclic groups, but for a DIFFERENT matching relation. Neither observation refutes
+JOINT-ANCESTOR or the principal Qnegative bridge; both stop an unsupported appeal
+to a generic theorem. Keep all original labels, physical capacities and reserves.

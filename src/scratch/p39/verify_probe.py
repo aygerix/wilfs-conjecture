@@ -2552,19 +2552,33 @@ def audit_mstd_shadow(R):
             'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
             'least_root_exit_collision':collisions}
 
-def audit_joint_ancestor(seed):
-    """E474 fixed63 control: joint two-pool assignment with reassignable axes.
+def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
+    """E474/E475 fixed controls: joint two-pool assignment with reassignable axes.
 
     Full integer flow/cut certificates are checked after Dinic. A deficient
     proper cut falsifies this stronger permission rule, not full Q or Wilf.
     """
     import time
     started=time.monotonic()
-    assert sorted(seed['generators'])==[63,307,438,440,454,461,474,475,477,482,486,492]
+    controls={
+        'cached63':([63,307,438,440,454,461,474,475,477,482,486,492],(63,12,912,777,708)),
+        'interior65':([65,82,214,217,265],(65,5,1108,596,1452)),
+    }
+    if control=='bounded476':
+        assert seed['m'] in (13,38,63,65) and seed['e']>=4
+        assert seed['c']>4*seed['m'] and 3*seed['e']<seed['m']
+        assert max(seed['generators'])<=8*seed['m']
+        stats=tuple(seed[k] for k in ('m','e','c','g','W'))
+    else:
+        assert control in controls
+        wanted,stats=controls[control]
+        assert sorted(seed['generators'])==wanted
     audit(seed)
-    assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==(63,12,912,777,708)
+    assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==stats
     geometry=support_geometry(seed);m=seed['m'];gr,z=factor_basis(seed);d=len(gr)
-    assert (geometry['Dep'],geometry['kappa'],geometry['inversions'],geometry['Q_full'])==(42,39,53,56)
+    if control=='cached63':
+        assert (geometry['Dep'],geometry['kappa'],geometry['inversions'],geometry['Q_full'])==(42,39,53,56)
+    elif control=='interior65':assert geometry['Q_full']==182
     inv={v:s for s,v in z.items()};gamma=geometry['gamma']
     nonmax=set();columns=[];resources=[];groups=[]
     for s,v in z.items():
@@ -2613,14 +2627,20 @@ def audit_joint_ancestor(seed):
         assert cap>0
         at=len(adj[u]);bt=len(adj[v]);adj[u].append([v,bt,cap]);adj[v].append([u,at,0])
         arcs.append([u,v,cap]);forward.append((u,at))
+    logical_infinity=K+1 if forced_residue is None else K+Dep+wrapped+1
+    forced_node=None
     for i,g in enumerate(groups):
         node=gstart+i;add(source,node,g['demand'])
+        if g['kind']=='mixed' and g['residue']==forced_residue:forced_node=node
         if g['kind']=='axis':allowed=columns[g['column']]['wrap_resources']
         else:
             word=tuple(g['word'])
             allowed=[k for k,r in enumerate(resources) if all(a<=b for a,b in zip(z[r['anchor']],word))]
-        for k in allowed:add(node,rstart+k,K+1)
+        for k in allowed:add(node,rstart+k,logical_infinity)
     for k,r in enumerate(resources):add(rstart+k,sink,r['capacity'])
+    if forced_residue is not None:
+        assert forced_node is not None
+        add(source,forced_node,logical_infinity)
     flow=0
     while True:
         level=[-1]*n;level[source]=0;queue=[source]
@@ -2640,7 +2660,7 @@ def audit_joint_ancestor(seed):
                 cursor[u]+=1
             return 0
         while True:
-            pushed=send(source,K+1)
+            pushed=send(source,logical_infinity)
             if not pushed:break
             flow+=pushed
     # Independent primal feasibility/conservation and dual cut checks certify
@@ -2657,7 +2677,9 @@ def audit_joint_ancestor(seed):
         if u in reachable and v not in reachable:cut_capacity+=cap
     expected=[0]*n;expected[source]=-flow;expected[sink]=flow
     assert balance==expected and cut_capacity==flow
-    assert 0<=flow<=K
+    assert 0<=flow<=Dep+wrapped
+    if forced_residue is None:assert flow<=K
+    else:assert forced_node in reachable and logical_infinity>flow
     cut_groups=[i for i in range(len(groups)) if gstart+i in reachable]
     cut_resources=[k for k in range(len(resources)) if rstart+k in reachable]
     cut_mixed=[groups[i] for i in cut_groups if groups[i]['kind']=='mixed']
@@ -2671,9 +2693,9 @@ def audit_joint_ancestor(seed):
         if V_E or C['N']:column_cut.append({'column':cid,'V_E':V_E,'N_C':C['N'],'allowance':allowed})
     hall_deficiency=kE-gE-column_allowance
     assert hall_deficiency==K-flow
+    assert sum(groups[i]['demand'] for i in cut_groups)-sum(resources[k]['capacity'] for k in cut_resources)==hall_deficiency
     if flow<K:
         assert E and hall_deficiency>0
-        assert sum(groups[i]['demand'] for i in cut_groups)-sum(resources[k]['capacity'] for k in cut_resources)==hall_deficiency
     factors=[];remainder=m;p=2
     while p*p<=remainder:
         if remainder%p==0:
@@ -2684,11 +2706,14 @@ def audit_joint_ancestor(seed):
     prime_counts=[{'prime':p,'nonzero_original_labels':[j for j,delta in enumerate(gr) if delta%p]} for p in factors]
     G=seed['generators'];cofactors=[gcd(*[v for j,v in enumerate(G) if j!=i]) for i in range(len(G))]
     assert set(cofactors)=={1} and all(len(R['nonzero_original_labels'])!=1 for R in prime_counts)
-    return {'status':'exact primal/cut verified','source':{'G':sorted(G),'m':m,'e':seed['e'],
+    return {'status':'exact primal/cut verified','control':control,'source':{'G':sorted(G),'m':m,'e':seed['e'],
             'c':seed['c'],'g':seed['g'],'W':seed['W'],'Dep':Dep,'kappa':mixed,
             'N':wrapped-axis,'Q':geometry['Q_full'],'R':seed['W']-geometry['Q_full'],
             'deletion_cofactors':cofactors},'K':K,'axis_demand':axis,'wrapped_capacity':wrapped,
-            'flow':flow,'deficiency':K-flow,'completion':flow==K,
+            'flow':flow,'deficiency':K-flow,
+            'completion':flow==K if forced_residue is None else None,
+            'forced_residue':forced_residue,
+            'forced_component_margin':K-flow if forced_residue is not None else None,
             'primitive_residues':gr,'primitive_values':[seed['w'][s] for s in gr],
             'prime_quotient_labels':prime_counts,
             'network':{'nodes':n,'source':source,'sink':sink,'groups':groups,'resources':resources,
@@ -2699,6 +2724,244 @@ def audit_joint_ancestor(seed):
             'rule_obstruction_lemma_failure':flow<K,'full_Q_failure':geometry['Q_full']<0,
             'genuine_negative_W':seed['W']<0,'source_count':1,
             'elapsed_seconds':time.monotonic()-started}
+
+def audit_axis_augmentation_477(pack):
+    """Postprocess ONLY E476's tight65 endpoint; no new source/flow solve."""
+    import time
+    started=time.monotonic()
+    best=next(R for R in pack['best_islands'] if R['G']==[65,147,270,319])
+    seed=best['seed'];baseline=best['baseline'];forced=best['forced']
+    assert baseline['completion'] and best['forced_margin']==0
+    assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==(65,4,1997,1018,1919)
+    assert baseline['source']['Q']==155
+    m=65;gr,z=factor_basis(seed);assert gr==[10,17,59] and seed['rho']==18
+    inv={v:s for s,v in z.items()}
+    E={inv[(0,i,j)] for i in range(2) for j in range(3)}
+    assert E=={0,5,11,17,53,59}==set(forced['hall_cut']['E'])
+    child_checks=[]
+    for s in sorted(E):
+        for j in range(3):
+            child=tuple(z[s][k]+int(k==j) for k in range(3))
+            assert child in inv
+            t=inv[child];assert seed['w'][s]+seed['w'][gr[j]]==seed['w'][t]
+            child_checks.append([s,j,t])
+    kappa={s:sum((z[s][j]*gr[j])%m for j in range(3))//m for s in E}
+    assert {s:k for s,k in kappa.items() if k}=={5:1,11:1}
+    network=baseline['network'];resources=network['resources'];columns=network['columns']
+    assert not any(r['kind']=='boundary' and r['anchor'] in E for r in resources)
+    frozen_accessible=0;positive_allowances=[];target=None
+    for cid,C in enumerate(columns):
+        j=C['direction'];delta=gr[j];L=len(C['residues']);b=(C['base']+seed['rho'])%m
+        labels=[(b+n*delta)%m for n in range(L)]
+        available={(n,h) for n in range(1,L) if labels[n-1]+delta>=m for h in range(n)}
+        original={};qprime=(b+(L-1)*delta)//m
+        for n in range(L):
+            for k in range(1,n*delta//m+1):
+                start=(k*m+delta-1)//delta;ell=qprime+1-k
+                edge=(ell*m-b+delta-1)//delta;slot=(edge,n-start)
+                assert slot in available and slot not in original.values()
+                original[n,k]=slot
+        assert len(original)==C['axis_demand'] and len(available)==C['wrap_capacity']
+        unused=available-set(original.values());assert len(unused)==C['N']
+        V_E=sum(C['residues'][n-1] in E for n,h in available)
+        frozen_accessible+=sum(C['residues'][n-1] in E for n,h in unused)
+        allowance=min(V_E,C['N'])
+        if allowance:positive_allowances.append({'column':cid,'V_E':V_E,'N':C['N'],'allowance':allowance})
+        if j==2 and C['base']==0:
+            target=(cid,C,labels,available,original,unused)
+    assert frozen_accessible==0 and len(positive_allowances)==1
+    cid,C,labels,available,original,unused=target
+    assert C['residues']==[0,59,53,47,41,35,29]
+    assert labels==[18,12,6,0,59,53,47]
+    assert (C['axis_demand'],C['wrap_capacity'],C['N'])==(15,17,2)
+    assert positive_allowances==[{'column':cid,'V_E':6,'N':2,'allowance':2}]
+    assert unused=={(5,4),(6,5)}
+    revised=dict(original);moves=[]
+    for token,new in [((6,5),(6,5)),((5,4),(5,4))]:
+        old=original[token];assert old==((1,0) if token==(6,5) else (2,0))
+        revised[token]=new;moves.append({'axis_token':list(token),'from':list(old),'to':list(new)})
+    mixed={11:(1,0),5:(2,0)}
+    assert len(set(revised.values()))==15 and set(revised.values())<=available
+    assert set(revised.values()).isdisjoint(mixed.values())
+    assert set(revised.values())|set(mixed.values())==available
+    for s,(edge,slot) in mixed.items():
+        anchor=C['residues'][edge-1]
+        assert all(a<=b for a,b in zip(z[anchor],z[s]))
+
+    # This column's 15 axis + 2 cut demands exhaust its17 slots. Check that the
+    # local replacement extends the saved GLOBAL complete flow without touching
+    # any other column or group, then verify the resulting full certificate.
+    groups=network['groups'];gstart=1;rstart=1+len(groups)
+    axis_i=next(i for i,g in enumerate(groups) if g['kind']=='axis' and g['column']==cid)
+    mixed_i={s:next(i for i,g in enumerate(groups) if g['kind']=='mixed' and g['residue']==s) for s in mixed}
+    target_rids=set(C['wrap_resources']);positions={resources[k]['position']:k for k in target_rids}
+    axis_counts=defaultdict(int)
+    for edge,slot in revised.values():axis_counts[edge]+=1
+    desired={(gstart+axis_i,rstart+positions[n]):count for n,count in axis_counts.items()}
+    for s,(edge,slot) in mixed.items():desired[gstart+mixed_i[s],rstart+positions[edge]]=1
+    arcs=[];changes=[]
+    allowed_group_nodes={gstart+axis_i,*[gstart+i for i in mixed_i.values()]}
+    for index,(u,v,cap,f) in enumerate(network['arcs_with_flow']):
+        old=f
+        if gstart<=u<rstart and v-rstart in target_rids:
+            if f:assert u in allowed_group_nodes
+            f=desired.get((u,v),0)
+        if u in allowed_group_nodes and rstart<=v<rstart+len(resources) and v-rstart not in target_rids:
+            assert f==0
+        assert 0<=f<=cap
+        if f!=old:changes.append([index,old,f])
+        arcs.append([u,v,cap,f])
+    balance=[0]*network['nodes']
+    for u,v,cap,f in arcs:balance[u]-=f;balance[v]+=f
+    expected=[0]*network['nodes'];expected[network['source']]=-baseline['K'];expected[network['sink']]=baseline['K']
+    assert balance==expected
+    stabilizer=[t for t in range(m) if {(s+t)%m for s in E}==E]
+    assert stabilizer==[0] and gcd(len(E),m)==1
+    return {'status':'exact slot and global-flow replacement verified',
+            'source':baseline['source'],'E':sorted(E),'E_words':[list(z[s]) for s in sorted(E)],
+            'canonical_child_checks':child_checks,'mixed_demands':kappa,
+            'G_E':0,'joint_accessible_allowance':2,'joint_cut_deficiency':0,
+            'frozen_accessible_unused_slots':0,'frozen_cut_deficiency':2,
+            'positive_columns':positive_allowances,'axis_column':C,'phase_labels':labels,
+            'original_axis_assignment':[[n,k,*slot] for (n,k),slot in sorted(original.items())],
+            'initial_unused_slots':[list(s) for s in sorted(unused)],'axis_augmentations':moves,
+            'revised_axis_assignment':[[n,k,*slot] for (n,k),slot in sorted(revised.items())],
+            'mixed_assignments':[[s,*slot] for s,slot in sorted(mixed.items())],
+            'modified_global_flow_arc_changes':changes,'global_flow_value':baseline['K'],
+            'stabilizer':stabilizer,'one_label_prime_bridge_refuted':False,
+            'frozen_axis_obstruction_rule_refuted':True,'joint_ancestor_rule_refuted':False,
+            'new_source_evaluations':0,'new_flow_solves':0,
+            'elapsed_seconds':time.monotonic()-started}
+
+def run_forced_ancestor_critic(executable, output_path):
+    """E476 bounded feedback experiment; no inference beyond the exact cases.
+
+    Four fixed islands, at most eight generations/two children each; stop on the
+    first actual unforced Hall failure. Artificial forcing is ONLY a score.
+    """
+    import subprocess,time
+    from pathlib import Path
+    started=time.monotonic();events=[];evaluations=0;proposals=0;accepted=0
+    seen=set();failure=None;stop='proposal_limit';generation_updates=0
+    seeds=[[13,15,35,37],[38,51,67,120,193],
+           [63,307,438,440,454,461,474,475,477,482,486,492],
+           [65,82,214,217,265]]
+    archive=[{} for _ in seeds]
+    event_path=str(output_path)+'.jsonl'
+    trace=open(event_path,'w')
+    def log(event):
+        events.append(event);trace.write(json.dumps(event,sort_keys=True)+'\n');trace.flush()
+    def evaluate(G,island,generation,parent=None):
+        nonlocal evaluations,accepted,failure
+        key=tuple(sorted(G))
+        if key in seen:
+            log({'kind':'duplicate_input','island':island,'generation':generation,'G':list(key)});return None
+        seen.add(key)
+        proc=subprocess.run([executable,'--axis-seed',*map(str,key)],capture_output=True,text=True,timeout=2)
+        evaluations+=1
+        if proc.returncode or not proc.stdout.strip().startswith('{'):
+            log({'kind':'C_rejected','island':island,'generation':generation,'G':list(key),'returncode':proc.returncode});return None
+        D=json.loads(proc.stdout);m=D['m'];actual=sorted(D['generators'])
+        if D['W']<0:
+            audit(D);failure={'kind':'genuine_negative_W','seed':D}
+            log({'kind':'negative_W','G':actual,'W':D['W']});return None
+        cofactors=[gcd(*[v for j,v in enumerate(actual) if j!=i]) for i in range(len(actual))]
+        if not (m==seeds[island][0] and D['e']>=4 and D['c']>4*m and 3*D['e']<m and set(cofactors)=={1}):
+            log({'kind':'domain_rejected','island':island,'generation':generation,'input':list(key),'G':actual,
+                 'e':D['e'],'c':D['c'],'cofactors':cofactors});return None
+        B=audit_joint_ancestor(D,'bounded476')
+        if B['rule_obstruction_lemma_failure']:
+            failure={'kind':'joint_ancestor_failure','seed':D,'baseline':B}
+            log({'kind':'Hall_failure','island':island,'generation':generation,'G':actual,
+                 'deficiency':B['deficiency'],'Q':B['source']['Q'],'W':D['W']});return None
+        mixed=[g for g in B['network']['groups'] if g['kind']=='mixed']
+        if not mixed:
+            log({'kind':'zero_mixed','island':island,'generation':generation,'G':actual});return None
+        gr,z=factor_basis(D);resources=B['network']['resources'];columns=B['network']['columns']
+        principal=[]
+        for g in mixed:
+            E={s for s,v in z.items() if all(a<=b for a,b in zip(v,g['word']))}
+            kE=sum(h['demand'] for h in mixed if h['residue'] in E)
+            G_E=sum(r['capacity'] for r in resources if r['kind']=='boundary' and r['anchor'] in E)
+            allowance=sum(min(sum(resources[k]['capacity'] for k in C['wrap_resources'] if resources[k]['anchor'] in E),C['N']) for C in columns)
+            principal.append((kE-G_E-allowance,-D['w'][g['residue']],g['residue']))
+        pscore,unused,zstar=max(principal)
+        forced=audit_joint_ancestor(D,'bounded476',zstar)
+        margin=forced['forced_component_margin']
+        assert -B['source']['Q']<=margin<=0 and pscore<=margin and zstar in forced['hall_cut']['E']
+        signature=(m,D['e'],tuple(gr),tuple(z[s] for s in range(m)),D['r'])
+        P=[D['w'][s] for s in gr];heights=tuple((p-s)//m for p,s in zip(P,gr))
+        result={'seed':D,'baseline':B,'forced':forced,'signature':signature,'heights':heights,
+                'score':margin,'ratio':F(D['W'],D['c']),'G':tuple(actual)}
+        accepted+=1
+        log({'kind':'scored','island':island,'generation':generation,'input':list(key),'G':actual,
+             'parent':list(parent) if parent else None,'e':D['e'],'c':D['c'],'W':D['W'],
+             'Q':B['source']['Q'],'Dep':B['source']['Dep'],'kappa':B['source']['kappa'],'N':B['source']['N'],
+             'K':B['K'],'flow':B['flow'],'forced_word_residue':zstar,'principal_D':pscore,
+             'forced_margin':margin,'forced_flow':forced['flow']})
+        return result
+    def quality(R):return (R['score'],-R['ratio'])
+    def insert(R,island):
+        if R is None:return False
+        group=archive[island].setdefault(R['signature'],[])
+        if any(S['G']==R['G'] for S in group):return False
+        before=tuple(S['G'] for S in group)
+        candidates=group+[R];chosen=[max(candidates,key=quality)]
+        while len(chosen)<min(4,len(candidates)):
+            remaining=[S for S in candidates if not any(S is T for T in chosen)]
+            def diversity(S):
+                distance=min(sum(abs(a-b) for a,b in zip(S['heights'],T['heights'])) for T in chosen)
+                return (distance,*quality(S))
+            chosen.append(max(remaining,key=diversity))
+        archive[island][R['signature']]=chosen
+        return before!=tuple(S['G'] for S in chosen)
+    try:
+        for i,G in enumerate(seeds):
+            insert(evaluate(G,i,-1),i)
+            if failure:break
+        if not failure:
+            for generation in range(8):
+                for island in range(4):
+                    if not archive[island]:continue
+                    for child in range(2):
+                        if time.monotonic()-started>=50:
+                            stop='soft_time_limit';break
+                        groups=sorted(archive[island].values(),key=lambda group:max(quality(R) for R in group),reverse=True)
+                        rank=0 if (generation+child)%3 else (generation+child)%len(groups)
+                        group=groups[rank];parent=group[(2*generation+child+island)%len(group)]
+                        G=list(parent['G']);m=G[0];d=len(G)-1
+                        j=1+(generation+child+island)%d
+                        G[j]=m+1+((G[j]-m-1+97*(generation+1)+53*child+29*island)%(7*m))
+                        if child:
+                            k=1+j%d
+                            G[k]=m+1+((G[k]-m-1+131*(generation+1)+41*island)%(7*m))
+                        proposals+=1
+                        changed=insert(evaluate(G,island,generation,parent['G']),island)
+                        generation_updates+=int(changed)
+                        if failure:stop='first_actual_failure';break
+                    if failure or stop=='soft_time_limit':break
+                if failure or stop=='soft_time_limit':break
+    except subprocess.TimeoutExpired:
+        stop='C_call_timeout'
+    finally:
+        trace.close()
+    if failure:stop='first_actual_failure'
+    best=[]
+    for island,A in enumerate(archive):
+        all_reps=[R for group in A.values() for R in group]
+        if not all_reps:continue
+        R=max(all_reps,key=quality)
+        best.append({'island':island,'G':list(R['G']),'forced_margin':R['score'],
+                     'seed':R['seed'],'baseline':R['baseline'],'forced':R['forced'],
+                     'structural_groups':len(A),'height_representatives':len(all_reps)})
+    result={'scope':'E476 four islands, <=64 child proposals, no universal inference',
+            'proposal_limit':64,'proposals':proposals,'C_evaluations':evaluations,
+            'accepted_scored':accepted,'parent_derived_proposals':proposals,
+            'feedback_updates':generation_updates,'event_counts':dict((kind,sum(E['kind']==kind for E in events)) for kind in sorted({E['kind'] for E in events})),
+            'stop':stop,'failure':failure,'best_islands':best,'trace':Path(event_path).name,
+            'elapsed_seconds':time.monotonic()-started}
+    with open(output_path,'w') as out:json.dump(result,out,indent=2)
+    return result
 
 def audit_advisor_phase_and_path(saved, seed):
     """E473: two SAVED phase arrays and ONE fixed centroid-quota falsifier.
@@ -2987,6 +3250,32 @@ def audit_cover_cubic(C):
             'membership_certificate':'all generator-edge inequalities plus attaining positive-cost predecessor words'}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--axis-augmentation-check':
+        assert len(sys.argv)==4
+        with open_text(sys.argv[2]) as source:pack=json.load(source)
+        result=audit_axis_augmentation_477(pack)
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('AXIS-AUGMENTATION-CHECK',json.dumps({k:v for k,v in result.items() if k not in (
+            'canonical_child_checks','original_axis_assignment','revised_axis_assignment')},sort_keys=True))
+        sys.exit(0)
+    if sys.argv[1]=='--forced-ancestor-probe':
+        assert len(sys.argv)==4
+        result=run_forced_ancestor_critic(sys.argv[2],sys.argv[3])
+        print('FORCED-ANCESTOR-PROBE',json.dumps({k:v for k,v in result.items() if k not in ('failure','best_islands')},sort_keys=True))
+        if result['failure']:
+            R=result['failure'];print('EXACT-ANCESTOR-FAILURE',json.dumps({'kind':R['kind'],'G':R['seed']['generators'],
+                'Q':R.get('baseline',{}).get('source',{}).get('Q'),'W':R['seed']['W'],
+                'deficiency':R.get('baseline',{}).get('deficiency')},sort_keys=True))
+        for R in result['best_islands']:print('FORCED-ISLAND',R['island'],R['G'],R['forced_margin'])
+        sys.exit(0)
+    if sys.argv[1]=='--joint-ancestor65-check':
+        assert len(sys.argv)==4
+        with open_text(sys.argv[2]) as source:seed=json.load(source)
+        result=audit_joint_ancestor(seed,'interior65')
+        with open(sys.argv[3],'w') as out:json.dump(result,out,indent=2)
+        print('JOINT-ANCESTOR65-CHECK',json.dumps({k:v for k,v in result.items() if k not in ('network','hall_cut')},sort_keys=True))
+        if result['rule_obstruction_lemma_failure']:print('JOINT-ANCESTOR65-HALL-FAILURE',json.dumps(result['hall_cut'],sort_keys=True))
+        sys.exit(0)
     if sys.argv[1]=='--joint-ancestor-check':
         assert len(sys.argv)==4
         with open_text(sys.argv[2]) as source:seed=json.load(source)

@@ -1526,3 +1526,29 @@ ONE tested maxflow without trusting an optimization status. This is a sufficient
 algorithmic rule with an UNKNOWN universal obstruction classification. The cyclic
 skew-kernel calculation merely rewrites Win; no external spectral positivity or
 ordinary/popular-sum periodicity theorem is claimed to give a one-label quotient.
+
+### E475–E478: axis repacking and the exact matroid-theorem gap (2026-10-23)
+
+E477's repacking proof is elementary finite slot counting: axes use any slot in
+their own column, so mixed occupancy has the shared quota N_C=V_C-A_C. It gives
+a partition-matroid formulation without establishing its required rank inequality.
+No novelty claim is made for that general matching reduction.
+
+Checked primary [Aliabadi–Losonczy, Matchings and product growth in modular
+abelian independence groups,2608.18340v1](https://arxiv.org/html/2608.18340v1),
+Definition2.6, Definition5.5 and Theorem7.14. The theorem requires a modular
+finitary matroid on the entire abelian group, invariant under every translation.
+Our repeated-residue physical slots and unequal column quotas have no established
+such action; E464's paper family even supplies a nonmodular U_(3,6) resource block.
+The stabilizing-flat conclusion would also need an additional argument to force
+exactly one ORIGINAL surviving primitive direction. These are unproved hypotheses
+and a conclusion gap, not a theorem ruling out all use of additive matroids.
+
+Checked primary [Aliabadi–Zerbib, Matchings in matroids over abelian groups,
+2202.07719v3](https://arxiv.org/html/2202.07719v3), Definition1.3, Theorem2.16 and
+Example4.2. Its group-subset matching relation differs from ancestor access, and
+its positive partition results impose additional hypotheses. Example4.2 fails
+over a sufficiently large prime cyclic group: generic partition-matroid matching
+failure therefore does not force a proper subgroup. This is not a counterexample
+to our more structured permission rule. The limited two-primary check supplies
+no absence/priority claim and activates no broader survey or numerical run.

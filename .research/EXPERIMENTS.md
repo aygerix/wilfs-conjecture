@@ -2406,3 +2406,84 @@ matches the worker. E473 ran before the independent E474 function/CLI was added;
 its tested audit function was unchanged by that addition. C source/assignment
 hashes also match; no C evaluator code was modified. All processes terminal, no
 automatic counts/variants/rental/optimizer authorized by this checkpoint.
+
+## E475–E477 — signed component feedback and exact axis augmentation
+
+2026-10-23, Fejer CPU, project littlewood-paley-8375,us-east1-b,
+/home/jmercedes/wilf-e472. Every target/input/budget was written in SCOPE BEFORE
+execution. Existing upper_scan_473 binary (unchanged C evaluator) reconstructs;
+existing verify_probe.py gains fixed65, bounded-critic and saved-augmentation modes.
+No GPU/new rental, optimization benchmark, Lean or universal coverage claim.
+
+E475 tests ONLY the new network on OLD S=<65,82,214,217,265>. It passes48tokens
+(34axis,14mixed), Dep156,V74,N40,Q182,W1452. Independent coin reconstruction,
+primal balances and equal mincut verify the result. Runtime0.0540462s. This one
+control is CLOSED; no replay of15oldrepairs or enlargement from its passing result.
+
+E476's new signed critic forces ONE positive-demand mixed group into the cut.
+Every logical infinity is B>K+Dep+V. The exact margin is ORIGINAL K-F_forced;
+forced flow may exceed K. Ordinary matching is ALWAYS checked first. Bounds
+-Q<=M<=0 are checked on every passing profile. Parent selection uses M, then W/c;
+one/two-generator mutations are deterministic and the next parents depend on scores.
+All actual minimal generators, c>4m,3e<m,e>=4 and every deletioncofactor1 are checked.
+
+Four fixed islands listed in SCOPE,8rounds,2children each, hard60s/soft50s ceiling:
+
+|Measure|Exact result|
+|---|---:|
+|Parent-derived child proposals|64|
+|C evaluations, including4seeds|68|
+|Eligible ordinary integer flow certificates|49|
+|Forced integer flow certificates / scored records|47|
+|Domain rejections / zero-mixed eligible cases|19 / 2|
+|Actual feedback archive changes, excludingseedinsertions|43|
+|Distinct exact structural groups|47|
+|Unforced allocation failure / negativeQ / negativeW|0 / 0 / 0|
+|Elapsed seconds / stopping reason|4.4818473 / proposal_limit|
+
+All47 structural groups have one retained height representative; this run did NOT
+exercise neutral multi-height retention. Eligible sources are independently coin-
+reconstructed, not accepted from C alone. Every ordinary/forced flow has capacity,
+conservation and equal-capacity residual-cut checks. Full source/ordinary/forced
+certificates for the four promoted endpoints and the complete JSONL event trace
+are saved. A forced score0 means a tight nonempty component, not actual failure.
+Best forced scores by island13/38/63/65 are -1,-1,-9,0 (initial -8,-3,-9,-16).
+The probe is CLOSED; no automatic extra generations or positive census.
+
+E477 postprocesses ONLY the retained S=<65,147,270,319>,W1919,Q155,fullflow102.
+No new source or flow solve. It verifies18 canonical child edges for the six-cell
+tight E, mixed demand2, boundary0, sole positive accessible allowance2 from a
+column with V17,A15,N2. The old reverse-axis injection leaves no ancestor-accessible
+unused slot. Two explicit axis moves release the needed front slots. All15axis
+plus2mixed slot assignments are collision-free, and replacing four aggregate arcs
+in the saved GLOBAL102-token flow preserves every capacity and balance. Runtime
+0.00112018s. The frozen graph has a cut deficit2; the reassignable graph has deficit0.
+The residue-set stabilizer is trivial and prime5/13 retain2/3 original labels.
+No claim that the frozen graph's entire maximum deficiency equals this cut value.
+The paper general repacking proof and mixed-only equivalence are in PROOFS E477.
+
+Reproduce on Fejer/Linux from repository root; the first compile is needed only
+when the unchanged evaluator binary is absent:
+
+    gcc -O3 -std=c11 src/scratch/p39/upper_scan.c -o /tmp/upper_scan_473
+    timeout 60s /tmp/upper_scan_473 --axis-seed 65 82 214 217 265 > /tmp/ancestor_source_475.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --joint-ancestor65-check /tmp/ancestor_source_475.json /tmp/joint_ancestor_475.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --forced-ancestor-probe /tmp/upper_scan_473 /tmp/forced_ancestor_476.json
+    timeout 60s python3 src/scratch/p39/verify_probe.py --axis-augmentation-check /tmp/forced_ancestor_476.json /tmp/axis_augmentation_477.json
+
+The original complete forced JSON is stored compressed; open_text accepts either
+form. Its trace filename retains the original doubleextension .json.jsonl. Worker
+and laptop SHA256s agree for ALL5 data artifacts:
+
+    ancestor_source_475.json 75376f10ccd6b0c9f221d0187a476b2a9a14e709349e421e725dd7485cae768a
+    joint_ancestor_475.json 8688ff8c228eb3095e69c51fe0fd309b6ee59b19e0d23379340a02fb1d479ac9
+    forced_ancestor_476.json.gz 44e59ebe8f424805e3a24bb8fc82b78e50ebcdc34b1622a53a947dc86653a582
+    forced_ancestor_476.json.jsonl 72363a091317beb9a9469d84944ef1383bc85e9b48d008d61aaa71c100ec7394
+    axis_augmentation_477.json 12d475d6883f903f694a61f8b13ce82c9144d299617cfe2650fdf3f9417c18f0
+
+Final tested verify_probe.py SHA256 is
+0cd5fd5945194591e82f07d9319403a2fa8697dbef2903fc3f17d57761d7137a
+on BOTH machines. E475/E476 ran before the independent E477 postprocessor was
+added; their tested routines were unchanged. Python compile and whitespace checks
+pass. E478 is PAPER ONLY: limited primary-hypothesis comparison and a consequence
+of the existing E464 family, with no new family member or matroid source evaluated.
