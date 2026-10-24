@@ -1,77 +1,85 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 21:45 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 22:13 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
 **ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
 
-**PRINCIPAL TARGET — the advisor's one-original-label cofactor bridge.**
-UNKNOWN: Q<0 forces a prime p|m with EXACTLY ONE original primitive residue nonzero
-modp. W<0=>Q<0 and E439 then descends a least-genus Wilf counterexample. E462's
-normalization removes the multiplicity-deletion cofactor; ordinary periodicity or
-one occupied coset is insufficient. Keep actual R, source and coupled full-y budgets.
+**PRINCIPAL TARGET — the advisor's negative-Q one-original-label bridge remains UNKNOWN.**
+If Q<0 forces a prime p|m with exactly ONE original primitive residue nonzero,
+W<0=>Q<0 and E439 descends a least-genus Wilf counterexample. E462 removes the
+multiplicity-deletion cofactor without changing Q. Ordinary periodicity/cosets do
+not give one ORIGINAL label. Keep actual R, source Xi and coupled full-y budgets.
 
-**E477 constructive progress: axes can be eliminated without freezing them.**
-For ANY full column with V physical wrap slots, A own-column axis demands and
-N_C=V-A, any prescribed t<=N_C mixed slots can be freed with at most t axis moves.
-The proof counts free destinations outside the prescribed set. Previously assigned
-mixed slots must be protected in the TOTAL quota. Consequently JOINT-ANCESTOR is
-EXACTLY a mixed-only network: keep physical parent/direction edge capacities and
-ancestor permissions, then pass each column through ONE shared quota N_C; retain
-boundary Gamma capacity. Conversely every integral mixed assignment extends to all
-axes in the complement. This is an all-rank constructive component, NOT a sign proof.
+**E481/E482 decisive mechanism result: JOINT-ANCESTOR is FALSE.**
+Even after arbitrary reassignment WITHIN every axis home column, an actual proper
+cut can have unpaid debt and NO removable cofactor. Small explicit source:
 
-**Exact control of why reassignment matters:** S=<65,147,270,319>,c1997,g1018,
-ell979,W1919,Dep128,kappa33,N60,Q155,R1764,allcofactors1. In coordinates p147,r319,
-E={1,p,r,pr,r^2,pr^2} has mixed demand2 and boundary0. A single r-column supplies
-allowance2 from V17,A15,N2. The original axis injection leaves both free slots
-OUTSIDE E; freezing it produces a cut deficit2. TWO explicit axis moves free the
-front slots needed by pr/pr^2. All physical slots and the modified GLOBAL102-token
-flow verify exactly. E's residue set has trivial stabilizer; primes5/13 retain2/3
-original labels. Thus frozen-axis obstruction=>cofactor is FALSE; after reassignment
-this is only a TIGHT cut, not positive joint deficiency. Main bridge/rule UNKNOWN.
+    S=<65,3381,6275,7337>, c47339,g24192,ell23147,W45249,
+    Dep128,kappa17,N29,Q140,R45109,all deletioncofactors1.
 
-**E476 bounded feedback result, CLOSED:** the signed forced-component critic
-M_z*=max_(downsets E containing positive-demand z*) D(E)=K-F_forced is proved and
-exactly checked. Ordinary flow is always solved first. Four islands,64parent-derived
-proposals,68C evaluations,49eligible ordinary checks,47forced/scored cases,43archive
-changes. No actual allocation failure or negativeQ/W. Best scores -1,-1,-9,0; the
-last gives E477's tight control. Runtime4.48185s on Fejer CPU. All47 groups distinct;
-neutral multi-height retention was NOT exercised. No automatic extra generations.
-Old65/82/214/217/265 new-rule control also passes48tokens in0.05405s, then CLOSED.
+Unique Apéry exponents, strict nonidentity primitive exits, height7,3e<m,c>4m.
+A self-contained paper certificate has nine positive word reductions and a65-cell
+standard-word table. Its exponent moments94/74/108 and max47403 give all invariants.
+Both source C reconstruction and independent heap AND coin membership audits pass.
 
-**Exact missing inequality:** for EVERY word-downset E,
+**Exact rule falsifier:** coordinates p3381,g6275,r7337 have residues1,35,57 and
+actual phase46. E=p^0..1*g^0..1*r^0..2 has4mixed demand,0boundary and only2usable
+column-reserve units. In the ORIGINAL network,52 selected demands reach capacity50.
+All axis reassignment in home columns is already allowed. The residue stabilizer
+is trivial; prime5/13 retain2/3 ORIGINAL labels. Both paper reviewers independently
+check the cut. Thus rule-failure=>cofactor is FALSE. Q140 is ALREADY covered by
+Dep>=kappa; this is a mechanism falsifier, NOT negativeQ/W or an unresolved Wilf
+shape. The principal Qnegative bridge is untouched.
 
-    kappa(E)<=G_D(E)+sum_C min(V_C(E),N_C).
+**E483 verified global repair: axes must be allowed to change columns.**
+Two explicitly justified same-direction transports keep the mixed tokens at ancestor
+anchors. Axis source pg²r can use a slot anchored at g²r in the parallel g-column;
+repeat for r². The destination divides the AXIS source. Adding ONLY these two arcs
+to the saved graph raises flow102->104 through two integral paths, lengths9/13.
+Every capacity/balance/equalcut passes; all87axis and17mixed tokens paid. No newS.
+Net axis exports are +1 in homepr/pr², -1 in receivingr/r², zero elsewhere. Hence
 
-At fullE this is Q>=0; proper cuts are STRONGER. D(E) is supermodular, and its
-largest WORD maximizer has the strict minimal-outside marginal in E476. Do not
-apply that strictness to the default SMALLEST residual cut or omit zero-demand
-word cells. Ancestor closure does not imply successor/translation closure; a
-Qnegative full cut has the entire residue group. A cofactor theorem must use
-strict deficiency plus additional ORIGINAL-label arithmetic.
+    mixedload_C<=N_C+netaxisexport_C,   sum_C netaxisexport_C=0.
 
-**E478 primary check is CLOSED:** ordinary Rado restates the rank condition.
-The checked additive-matroid theorem requires a translation-invariant MODULAR
-matroid on the whole group. Our slot projection loses rank and the existing
-E464 paper family supplies a nonmodular U_(3,6) block. A second primary paper has
-failure for a DIFFERENT partition matching relation even over prime cyclic groups.
-No theorem of those checked gives our one-label conclusion. This is a precise
-hypothesis gap, not a claim that all matroid methods or the bridge fail.
+This is general conservation, not a uniform existence theorem. E477's fixed N_C
+quotas are exact ONLY for own-column axes. They cannot be retained after export.
+The two-arc repair uses existing total reserves; no extra credit is invented.
 
-**Next precise paper task:** derive a deficit-sensitive arithmetic rank/successor
-lemma for the mixed-only column-budget model, forcing the one-original-label
-quotient from genuinely positive deficiency, or falsify that stronger rule without
-confusing tightness/frozen failure with unpaid debt. No further frozen-axis stall
-search. Any new finite experiment needs a named predicate/input/budget first.
-Keep ACTUAL Xi in the integrated source quota and full y-surplus/row slacks in
-the coupled model as the other two universal lines. E473's centroid-envelope quota
-is false; saved E472 phases are safely positive and CLOSED. Do not reopen old
-349rays/468images/15repairs, one-cubic F-ascent or unrestricted exchange stalls.
-Same TWO authorized agents done; all mathematical jobs terminal, no GPU rental.
-Goal ACTIVE; no universal proof/counterexample, Lean or novelty claim. Details and
-reproduction are in PROOFS/EXPERIMENTS E475–E478; inventory remains below.
+**E484 exact next arithmetic formulation (paper):** for a specified direction/
+source-sensitive axis graph, let A totalaxis, Ω all physical wrapped slots, and
+ν(Ω\W) maximum axis assignment outside accessible mixed-slot set W. The residual
+mixed capacity is r(W)=|W|-A+ν(Ω\W). Ordinary cuts give the all-downset condition
+kappa(E)<=G_D(E)+r(W_E). Old own-column permissions recover the FALSE stronger
+policy's separable summin quotas; full E still recovers Q>=0. The formula does
+not prove its sign or a cofactor conclusion. Do not replace arithmetic by the name
+of a matroid theorem. No new matching/source run is activated by this formulation.
+
+**Finite work CLOSED:** E480 original uniqueness guard failed BEFORE any new source.
+Saved base has17 ties3g+p=3r; E481 explicitly proves +65g breaks them correctly.
+18 new unit realizers evaluated (of48maximum), STOP firstactualfailure atunit23;
+remaining30 NOT run. Runtime0.250244s. E482 ONEsmallL23 source audit0.325238s; E483
+same-source residualrepair0.00236943s. No GPU/rental/old468image replay/newcensus.
+Complete data/code hashes match Fejer/laptop. Details: PROOFS/EXPERIMENTS E479–E484.
+
+**E479 structural lesson:** a positive cut stable under single maximal-word deletion
+has h<=kappa(z)<=support(z)-1 at EVERY maximal word. Non-global maxima have many
+canonical successors, but in the actual10-word bad subcut gr² has phase0 and NONE
+of its outgoing edges wraps. Saturation is vacuous; this does not force subgroup
+propagation. PAPER13/17/19/31 also rules out carry-only descent to support two.
+No source evaluation or universal closure claim is attached to that paper guard.
+
+**Next precise task:** attack direction-preserving, axis-source-ancestor transport
+or the negative-Q bridge directly, retaining the global signed reserve transfer.
+Old own-column JOINT and its one-label classifier are CLOSED AS FALSE. A replacement
+must explicitly allow the observed exports and explain why a genuine GLOBAL deficit
+forces original-label arithmetic. Another successful local repair or rank identity
+is not sufficient. Keep full actual Xi/source quota and coupled y-surplus/row slacks
+as the other two universal lines. No automatic more unit cases, old349rays/468images/
+15repairs, one-cubic F-ascent or unrestricted exchange stalls. Same TWO authorized
+paper agents; no new launches. Goal ACTIVE, no universal proof/counterexample, Lean
+or novelty claim. All scoped mathematical jobs terminal; current inventory below.
 
 **Retained E472: the NONFLAT phase-free helper is REFUTED.** A general complete
 cyclic2basis plus one cheap primitive replaces exactly one quadratic by a pure cubic.
@@ -985,36 +993,38 @@ forced_ancestor_476.json.gz,forced_ancestor_476.json.jsonl,axis_augmentation_477
 Exact counts, timings, hashes and reproduction are in EXPERIMENTS E475–E477.
 No general compute activation, GPU dependence or new source/flow for E478.
 
+**E481–E483 implementation:** the SAME [verify_probe.py](../src/scratch/p39/verify_probe.py)
+adds `--unit-joint-check C_BINARY OLD476_PACK OUT_GZ` for the CLOSED one-new-tile
+unit test (stops at18/48); `--small-joint-check C_BINARY OLD476_PACK UNIT481_PACK
+OUT_GZ` for ONLY the L23 witness; `--axis-transport483-check SMALL482_PACK OUT_GZ`
+for exactly two new permissions on its SAVED failed graph. Large values use an
+independent heap/edge/attainment certificate; the small source also uses coin DP.
+The residual repair keeps the full integer primal/equalcut certificate. Data:
+p39/data/unit_joint_481.json.gz,small_joint_482.json.gz,axis_transport_483.json.gz.
+E480 failed guard and every old tie are preserved in the report. No new C evaluator,
+GPU dependency or general sampler. E484 is paper only; commands/counts/hashes in
+EXPERIMENTS E480–E483. The old JOINT model remains implemented as a REFUTED policy.
+
 ## Current attempt and next action
 
-**Principal next proof task (E474–E478 advisor steering):** Qnegative must force a
+**Principal next proof task (E474–E484 advisor steering):** Qnegative must force a
 prime p|m with exactly one ORIGINAL surviving primitive label, enabling E439 descent.
-Use E477's mixed-only physical-slot network with shared N_C quotas; axes can always
-be repacked once these quotas hold. The exact all-downset Hall condition, stranded
-capacity formula and strict largest-WORD-maximizer marginal are proved. The arithmetic
-cofactor classification is NOT. Tight E477 has an aperiodic residue set and allcofactors1;
-its artificial frozen deficit is repaired, so do not classify tightness as trapped debt.
-A full negative cut can have the whole residue group. Generic Rado merely restates
-rank; the checked group-matroid theorem's translation/modularity hypotheses fail.
-Next derive an original-label rank-growth/successor principle specific to coherent
-actual-phase tiles, or adversarially test a precise stronger claim. No extra E476
-generations, frozen-axis search, broad literature survey or rental is activated.
+The previous own-column JOINT-ANCESTOR route is REFUTED by a cofactor1 proper cut,
+even with strict/unique Apéry geometry. The two-arc axis-source-ancestor repair
+shows which signed reserve transfer was missing; full direction-preserving transport
+needs an actual arithmetic existence/obstruction theorem. Its exact remaining-axis
+rank r(W)=|W|-A+ν(Ω\W) does not itself prove that theorem. Full E still asks Q>=0.
+Do not defend the disproved all-proper-cut quotas or derive subgroup structure from
+tightness, ancestor closure, maximality or generic Rado. New numerical hypotheses
+need a named predicate/budget before execution; no remaining30unit cases or census.
 
-**Underlying allocation obligation (E467–E474):** pay mixedkappa jointly by Dep and the unused wrapped
-slots N after the explicit axis injection, allowing augmentations to reassign earlier
-slots. Exact target K<=Dep+V on E466 strict sources retains cyclic labels and actual
-top. Forced last-edge reflection toDep fails even for a mixed token; it is not the
-next policy. E468349point ray probe and E47115oldwitness replay are CLOSED. E470's
-signed wall formulas may test a genuinely global payment or an auxiliaryQcounter-
-construction, not justify more positive profiles. Full coherent source policy cannot
-stall before exactvalues; do not search for such stalls or assume Qmonotonicity.
-Any resulting theorem must assert Q>=0 (or sufficient allocation), not merely Wilf on
-the strict realization; W sign does not transfer. Weaker max(Q,best valid capped/tradeL)
-and coupled finite affine budgets remain distinct alternatives. Retain ALL source/
-parent reserves; raw word energy, fixed-rank return catalogues and unconditional
-flux/real-path monotonicity remain stopped. Sourcepath's exact integrated loss still
-needs its quantitative bound; coupledtransfer cannotdiscard Gamma.y-Dep. No special-
-e/m/depth programme or automatic census/optimizer/rental.
+**Other universal lines remain:** integrated source quota with ACTUAL Xi and all
+closure/embedding/correction reserves; coupled affine budget with full y-surplus
+and row slacks; weaker combined max(Q,valid capped/tradeL) payment if support is too
+strong. The main bridge's failure would call for these reserves, not a restricted
+Wilf target. No source-path stall search, standalone raw word energy, fixed-rank
+returns or unconditional flux/real-path monotonicity revival. All mathematical jobs
+are finished; new paper work retains every-m/e/depth quantifiers.
 
 E472 now CLOSES the nonflat phase-free kappa<=Dep helper with a genuine F2042
 witness. The actual phase more than pays it; no negativeQ/W found or claimed.

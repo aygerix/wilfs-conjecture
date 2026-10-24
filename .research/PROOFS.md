@@ -13386,3 +13386,316 @@ directions. A genuinely positive deficiency must yield additional arithmetic
 structure; tightness, generic matroidality or a stabilizer alone are insufficient.
 No claim that all matroid approaches fail, that the bridge is false, or that this
 limited check exhausts the literature. Primary links/hypotheses: LITERATURE E478.
+
+## E479 — what a deletion-stable positive cut forces, and a higher-support guard
+
+2026-10-23. Proves Wilf for EVERY S if the principal deficit-to-one-original-label
+bridge is proved (E439/E462/SUPP/complements). Paper conditions below constrain a
+hypothetical bad cut; they do not establish its impossibility or a subgroup.
+
+Suppose the mixed-only graph has a positive deficiency. Repeatedly remove any
+maximal word whose removal leaves the deficiency positive. Finiteness yields a
+positive downset H with h=D(H)>0 such that EVERY maximal z of H satisfies
+D(H\{z})<=0. This is ONE-CELL deletion stability, not a proof of global inclusion
+minimality. Let w_C(z) be wrap capacity in C anchored at z and
+V_C^-=V_C(H\{z}). Exact subtraction gives
+
+    h <= kappa(z)-Gamma_z*1_nonmaxD
+             -sum_C min(w_C(z),max(0,N_C-V_C^-)).      (DELETE-MARGIN)
+
+All removed resource terms are nonnegative. If s=|support(z)|, then
+
+    1<=h<=kappa(z)<=s-1.
+
+For a z that is NONMAXIMAL in the FULL D, also
+
+    Gamma_z<=s-1-h,
+    #canonical successors of z in D >= d-s+1+h.
+
+Every such successor lies outside H, since z is maximal in H. The count follows
+because each missing direction contributes at least1 to Gamma. More precisely,
+each missing direction j costs z_j+1 in the same allowance s-1-h.
+
+If s2 and z is nonmaximal in D, then h=kappa(z)=1, Gamma_z=0, all d successors
+exist, and EVERY outgoing wrapped column at z already satisfies V_C^->=N_C.
+The GLOBAL-MAX exception is essential: such a z has no resource at its anchor,
+so the deletion formula alone gives no successors. Same authorized geometric
+agent derived/audited this marginal. It is an additional necessary condition,
+not translation closure, an augmentation theorem or a sign proof.
+
+### Positive carry need not have a positive support-two divisor — FALSE shortcut
+
+PAPER source S=<13,17,19,31> has e4,3e<m and all deletioncofactors1. All primitives
+are odd and below3m, so a decomposition would need at least three terms, already
+too large. The odd59 has no one/three-term representation and is below5m, hence
+is a gap; therefore c>=60>4m. In residue coordinate order delta=(4,5,6), values
+(17,31,19), the word z=(1,1,1) is the UNIQUE Apéry factorization of67/residue2.
+The smaller same-residue values2,15,28,41,54 are gaps. For67, parity permits1,3,5
+terms; direct offsets above13 show only17+31+19 works (five terms start65 but need
+an unavailable increment2). Its children are not canonical:
+
+    67+17=84 >19 (same residue),
+    67+31=98 >72=2*17+2*19 (same residue),
+    67+19=86 >34=2*17 (same residue).
+
+Thus z is globally maximal in D, kappa(z)=floor((4+5+6)/13)=1, while every
+support-two divisor has kappa0. Arithmetic carry alone cannot reduce a bad-cut
+argument to support-two maxima. This guard is NOT an actual deficient cut or
+network failure, and no numerical source evaluation was performed for it.
+
+The attempted ancestor-path proof also stops at the column quota: the existing
+carry cocycle expresses mixed increments as physical wraps minus axis wraps plus
+a phase endpoint coboundary. It does not bound simultaneous use of EACH column
+by N_C. Repacking axes does not transfer quota between columns. No new sign
+result is claimed for that reformulation; keep the full resource-sensitive target.
+
+## E480–E482 — JOINT-ANCESTOR fails on a genuine normalized source
+
+2026-10-23. A falsifier of a proposed UNIVERSAL proof mechanism, not a fixed-e
+Wilf programme. Proves Wilf for EVERY S only if the principal Qnegative bridge
+or full budget is established; reductions E439/E462/SUPP/complements. The proposed
+STRONGER JOINT-failure=>one-original-label classifier is now FALSE. The principal
+Q<0=>one-label bridge remains UNKNOWN. Source Q and W below are both positive.
+
+### Explicit realization and the pre-run guard correction
+
+E480's planned unit test stopped BEFORE any new source: the old65 tile was not
+uniquely factored. Its17 nonidentity tight primitive-edge rows are ALL (3,1,-3),
+namely3*270+147=3*319. No passing48-run or failed source is attributed to E480.
+The SAME proposed perturbation actually breaks all these ties in the correct
+direction: +65 in the270 coordinate gives gap195. The corrected E481 guard checks
+that direction on EVERY old tie, rather than assuming no ties exist.
+
+For each unit u mod65 set L=4225+u and
+
+    G_u=(65,270L+65,147L,319L).
+
+At old word z_s its new value is L*w_s+65*z_g(s), in residue us. Identity rows stay
+zero, old nonidentity ties become195, and old strict primitive edges have gap at
+least65(L-64)>0. Every top gap is at least L-65*64>0. Thus the chosen tile/top
+persist with UNIQUE exponent vectors. All deletion cofactors1: the deletion of65
+has gcd=gcd(270L+65,L)=gcd(65,L)=1 since gcd147,319=1; the other deletions are
+fixed residue gcds involving pairs(10,17),(10,59),(17,59). Values stay below9million,
+within the existing C sentinel. Same authorized geometric agent checked the proof.
+
+E481 evaluated18 units in ascending order, then STOPPED at u23,L4248:
+
+    S=<65,624456,1147025,1355112>,
+    c8755064,g4460442,W8423424,Dep128,kappa17,N29,Q140.
+
+The ordinary maxflow is102 of104: a genuine two-token deficiency, with every
+deletion cofactor1. Exact heap/edge/attainment/unique-word/minimality/invariant and
+integer primal/equal-cut checks pass. No forcing or new GPU workload. Runtime
+0.250244s. Remaining30 units were NOT evaluated; this finite run is CLOSED.
+
+E482 checks ONLY the smaller same-profile u23,L23 realization
+
+    S=<65,p,g,r>=<65,3381,6275,7337>.
+
+Exact saved-word linear guards pass:129 identity edges,17 old tied edges,49 old
+strict edges, minimum new nonidentity gap195, minimum top gap3381. One C source
+reconstruction, independent heap AND coin membership/minimality reconstructions,
+and a direct column/cut audit pass in0.325238s. This one-source check is CLOSED.
+
+### Nine arithmetic reductions give a self-contained Apéry certificate
+
+The following word substitutions satisfy input value=output value+65*sigma:
+
+|Input|Output|sigma|
+|---|---|---:|
+|p^5|g^2|67|
+|g^7|p*r^2|398|
+|p*g^3|r^3|3|
+|g^4*r|p^2|395|
+|g*r^4|p^3|392|
+|p^2*r^4|g|459|
+|p^4*r^3|g^5|64|
+|p^3*g^2*r|1 (zero word)|462|
+|r^7|p^4*g^2|389|
+
+All sigma are strictly positive. The words not divisible by any input form D.
+Writing p^i*g^j*r^k with 0<=k<h_(i,j), its height table is:
+
+|i / j|0|1|2|3|4|5|6|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|0|7|4|4|4|1|1|1|
+|1|7|4|4|0|0|0|0|
+|2|4|4|4|0|0|0|0|
+|3|4|4|1|0|0|0|0|
+|4|3|3|1|0|0|0|0|
+
+Its65 cells form a downset. Every reduction strictly lowers positive source value
+and preserves residue, so any word reduces to D. In particular p^s,0<=s<65, shows
+that D maps ONTO all residues, since p=1 mod65. Its cardinality then gives residue
+bijectivity. Every nonstandard word is strictly more expensive than its terminal
+word, so D is exactly the Apéry set, with unique exponent vectors. This argument
+needs no confluence assumption: termination plus residue bijectivity suffices.
+
+The exponent sums are (94,74,108); the source-value sum is1574560. The maximum is
+p+6r=47403. Hence c47339,g1574560/65-32=24192,ell23147 and W45249. All generators
+are minimal: their units are in D; a decomposition involving65 contradicts their
+Apéry status, and another source word would contradict uniqueness. Every deletion
+cofactor1 as above. Thus c>4m and3e<m. No genuine Wilf counterexample is involved.
+
+The seven maximal words are (1,0,6),(0,3,3),(0,6,0),(2,2,3),(3,1,3),(4,1,2),
+(4,2,0). Their weights d+degree sum67, giving Dep=3*65-67=128. The kappa row
+totals for p-exponents0..4 are6,3,3,3,2, giving17. Full-column inversion counts
+in directions p,g,r are0,10,19, giving N29. Therefore Q128+29-17=140 and R45109.
+The geometric reviewer independently checked all nine reductions, height table,
+moments, maxima and these support statistics on paper. Maximum degree is7.
+
+### A direct 52-demand/50-capacity Hall certificate
+
+Use coordinate order (p,g,r), residues(1,35,57), actual phase rho46. The bad cut is
+
+    E={p^a*g^b*r^c: a,b in{0,1}, c in{0,1,2}}.
+
+All12 words have all3 canonical children in D, so G_D(E)=0. Exactly gr,pgr,gr^2,
+pgr^2 have mixed demand1, with residue sums92,93,84,85. Thus kappa(E)=4.
+The accessible p-columns have no wrap. The full g-columns are:
+
+|Base|Phase labels|A_C|V_C|N_C|V_C(E)|Allowance|
+|---|---|---:|---:|---:|---:|---:|
+|1|46,16,51,21,56,26,61|9|9|0|1|0|
+|p|47,17,52|1|1|0|1|0|
+|r|38,8,43,13|2|4|2|1|1|
+|pr|39,9,44|1|1|0|1|0|
+|r^2|30,0,35,5|2|4|2|1|1|
+|pr^2|31,1,36|1|1|0|1|0|
+
+The r-columns at1,p,g,pg have phase sequences
+
+    (46,38,30,22,14,6,63), (47,39,31,23,15,7,64),
+    (16,8,0,57), (17,9,1,58).
+
+Their A_C=V_C are15,15,3,3, so N_C=0 in all four despite accessible capacities
+6,6,3,3. Total allowance is2 and D(E)=4-0-2=2. BOTH authorized paper reviewers
+checked this count independently of the flow solver.
+
+Equivalently, in the ORIGINAL network select the four mixed groups and the axis
+groups at g-bases1,p,pr,pr^2 and r-bases1,p,g,pg. Demand is
+
+    4+(9+1+1+1+15+15+3+3)=52.
+
+Their ENTIRE neighborhood has capacity48+1+1=50. This is a direct integer Hall
+certificate even with arbitrary reassignment inside every axis column.
+
+Modulo5 the three original residues are(1,0,2), modulo13 they are(1,9,5). Neither
+prime has exactly one surviving label. The12-element residue set has trivial
+stabilizer since12 and65 are coprime. Thus strict unpaid debt under THIS policy
+can be aperiodic and cofactor1. The policy/classifier is REFUTED, not just a local
+frozen variant. The full Q140 is ALREADY positive by Dep128>=kappa17; this example
+tests the stronger mechanism, not an unresolved support shape or the Qnegative bridge.
+
+Greedy deletion also yields a ten-word positive subcut with deficiency1. Its
+support-two maximal gr^2 has phase label0, so all three children exist but NONE
+of its outgoing edges wraps. E479's saturation conclusion is vacuous here; it
+cannot alone force subgroup propagation. No global inclusion-minimality claim.
+
+## E483 — parallel-column axis transport repairs the complete witness
+
+2026-10-23. Same source, no new semigroup. This is a precisely defined extension
+of the FALSE own-column policy, not a universal payment or cofactor theorem.
+
+The g-axis group in column basepr has one token, from source pg^2r. Let it use a
+third-edge slot in the g-column baser, anchored at g^2r. The anchor divides the
+AXIS source, and original direction35 is unchanged. Do the same from pg^2r^2 in
+column basepr^2 to anchor g^2r^2 in column baser^2. These are exactly TWO new arcs;
+mixed permissions, boundary/wrap capacities and every demand remain unchanged.
+
+The local picture alone does not prove global completion because outside groups
+may occupy those slots. A residual audit starts from the SAVED full old maxflow
+102/104, adds ONLY these two arcs, and finds two integral augmentations. One has
+9 residual arcs, the other13, so they do reassign other payments. The resulting
+GLOBAL104-token flow passes every capacity, conservation and equal-cut check.
+All87 axes and17 mixed demands are paid; mixed use14 wraps and3 boundary slots.
+Runtime0.00236943s, no source reconstruction/new search. No claim these path lengths
+or cross-column moves are minimal. Complete paths and flow are persisted.
+
+### General conservation when axes can change columns — PROVED on paper
+
+For a feasible complete assignment let T_(C,C') be axes whose home column is C
+but assigned to a physical slot in C'. Define
+
+    b_C=sum_(C') T_(C,C')-sum_(C') T_(C',C).
+
+The first sum is A_C, counting home demands, and physical axis occupancy in C is
+A_C-b_C. Consequently mixed load m_C satisfies
+
+    m_C <= V_C-(A_C-b_C)=N_C+b_C,   sum_C b_C=0.       (TRANSPORT-QUOTA)
+
+With original direction retained, the net exports also sum to0 within each
+direction. This is conservation, not a guarantee of an assignment. Fixed N_C
+quotas from E477 are exact ONLY for axes confined to home columns. They must NOT
+be imposed after allowing export/import or the same artificial obstruction returns.
+Here b_pr=b_pr^2=+1 and b_r=b_r^2=-1 in directiong; all other b vanish. The two
+N0 export columns can now serve one mixed token each, while imports use the
+previously inaccessible reserve in the receiving columns. No extra total credit.
+
+A candidate general rule may index each axis demand by its original source word
+and direction, permitting home-column slots OR same-direction wrapped slots whose
+parent divides that word. The two additions above satisfy this explicit permission.
+Universal completion/classification for that enlarged rule is UNKNOWN and was NOT
+tested beyond this one repair. In particular, arbitrary unrestricted transport
+would just restate Q>=0 and supplies no missing arithmetic theorem.
+
+GLOBAL DECISION: close the old JOINT-ANCESTOR policy as FALSE, keep the principal
+Qnegative bridge, and study deficit-sensitive direction-preserving transport with
+all physical/global reserves. No expansion of E481 units, extra positive-profile
+census or new rental. Full actual R/source/coupled budgets remain insurance.
+
+## E484 — exact residual capacity for a specified axis-transport graph
+
+2026-10-23. Paper formulation in the SAME universal bridge programme; no new
+source or matching run. This replaces a FALSE separable proper-cut target by its
+correct transported analogue. It is NOT a new sign bound or universal allocator.
+
+Fix any explicit axis permissions on the physical wrapped slots Ω, including the
+old own-column permissions, with total A axis units and V=|Ω|. Axis units may be
+expanded individually. A complete axis assignment exists by the old injection.
+For W subset Ω, let ν(Ω\W) be the maximum number of axes matchable outside W.
+The largest number of slots in W that can be left for mixed use is exactly
+
+    r(W)=|W|-A+ν(Ω\W).                               (RESIDUAL-RANK)
+
+Upper bound: a full axis assignment uses at most ν outside W, hence at least
+A-ν inside. For attainment start with a maximum axis matching outside W and
+augment to a full matching in Ω. Alternating augmentation preserves the occupation
+of previously occupied slots; the final outside occupation cannot exceed ν.
+Thus exactly A-ν new occupied slots are inside W, proving the formula. This is
+the dual-transversal rank interpretation, but the finite matching proof suffices.
+
+Mixed groups keep ancestor access, and axes keep wrap-only access. Let W_E be
+ALL physical wrapped slots anchored in a word-downset E. Boundary cost is G_D(E).
+For fixed selected mixed groups with downclosure E, minimize the net cost over
+selected axis-unit sets T. The wrapped portion is
+
+    min_T (|W_E union Neighbors(T)|-|T|)
+      =|W_E|-max_T (|T|-|Neighbors(T)\W_E|)
+      =|W_E|-A+ν(Ω\W_E)=r(W_E).
+
+The last equality is ordinary finite matching/mincut deficiency on the axis graph
+restricted outside W_E. Consequently the EXACT mixed-completion condition is
+
+    kappa(E)<=G_D(E)+r(W_E) for EVERY word-downset E.  (TRANSPORT-HALL)
+
+As before, adding all positive mixed groups in the downclosure cannot enlarge its
+neighborhood. Zero-demand maxima can be dropped without raising the cost, so this
+condition is equivalent to the group-set cuts. All original direction/source
+metadata must remain in the specified axis permissions; an abstract arbitrary
+matching would erase the very arithmetic the desired obstruction needs.
+
+With own-column-only axes, ν(outside)=sum_C min(A_C,V_C-|W_E intersect C|), giving
+r(W_E)=sum_C min(N_C,V_C(E)): E474/E477 are recovered exactly, despite that policy's
+universal failure. With E=D, W_E=Ω and ν(empty)=0, giving r=V-A=N and the unchanged
+full-tile Q>=0 target. Boundary slots remain a separate pool, not axis destinations.
+
+The arithmetic obligation is therefore explicit: for the proposed source/direction-
+sensitive transport graph, prove this rank condition (or classify genuine failure
+by one ORIGINAL label), rather than assume fixed column reserves. No sign follows
+from the formula, and no translation/modularity or generic subgroup theorem is
+silently invoked. The principal negative-Q bridge and full actual reserves remain
+the target; another rank identity is not counted as a proof of it.
+The same authorized geometric reviewer independently checked both rank/attainment
+and cut-elimination arguments, including the occupied-SLOT versus frozen-EDGE
+distinction. No computational matching run or formal Lean check was performed.

@@ -2487,3 +2487,92 @@ on BOTH machines. E475/E476 ran before the independent E477 postprocessor was
 added; their tested routines were unchanged. Python compile and whitespace checks
 pass. E478 is PAPER ONLY: limited primary-hypothesis comparison and a consequence
 of the existing E464 family, with no new family member or matroid source evaluated.
+
+## E480–E483 — a genuine proper-cut failure and a two-transfer global repair
+
+2026-10-23, Fejer CPU, project littlewood-paley-8375,us-east1-b,
+/home/jmercedes/wilf-e472. Scopes, stop conditions and revised proof guards were
+written BEFORE each run. Existing upper_scan_473 C binary unchanged. No GPU/rental,
+old9-orbit/468-image replay or additional E476 generations.
+
+E480 STOPPED at its original pre-run seed-uniqueness assertion. New source count0,
+new flow count0. Its hypothesis was false:17 nonidentity tight edges share row
+(3,1,-3). The failed guard/history are retained in SCOPE/PROOFS and the E481 report;
+do not report this as a completed48-unit experiment. E481 replaces that overly
+restrictive guard with an independently reviewed tie-direction proof: +65g gives
+positive gap195 on every such tie and preserves all identity/strict/top rows.
+
+E481 NEW-PREDICATE test, ONLY the recently found tight65 tile: for ascending units
+u mod65, L4225+u, reconstruct EXPLICIT G=(65,270L+65,147L,319L). Every deletion gcd1
+and all original canonical exponent words/top are preserved by the proved rows.
+Stop FIRST genuine rule deficiency, negativeQ/W,48sources or60s (soft50). Result:
+
+|Measure|Exact result|
+|---|---:|
+|New sources / ordinary flow certificates|18 / 18|
+|Units|1,2,3,4,6,7,8,9,11,12,14,16,17,18,19,21,22,23|
+|Independent heap Apéry entries|1170|
+|Independent generator-edge inequalities|3510|
+|Attaining predecessors / unique-word tight edges|1152 / 2322|
+|First failure|u23,L4248, flow102 of104|
+|Elapsed seconds / reason|0.250243931 / first_actual_failure|
+
+The constructor is explicitly checked against all C arrays, coordinate reordering
+and top labels. A separate heap SSSP and edge/attainment/minimal-generator/invariant
+certificate avoids conductor-sized DP on these large values. Flow acceptance uses
+primal capacity/conservation and equal-capacity residual cut, not solver status.
+First source failure G65/624456/1147025/1355112 has c8755064,g4460442,W8423424,
+Dep128,kappa17,N29,Q140,all deletioncofactors1. Remaining30 units NOT evaluated.
+All18 compact records and the failure's complete source/flow/cut are saved in
+p39/data/unit_joint_481.json.gz. This finite diagnostic is CLOSED.
+
+E482 ONLY ONE smaller same-profile realization: u=L23 gives G65/3381/6275/7337.
+BEFORE C reconstruction, saved-word affine edge/top checks prove it preserves D:
+129identity edges,17old tied,49old strict; minimum new nonidentity gap195, minimum
+top gap3381. No L optimization/scan. Existing C, independent heap AND full coin
+membership/minimal-generator/conductor/genus reconstruction agree. Direct36 child
+checks and column inversions give the12-word cut's demand4,boundary0,allowance2.
+Ordinary exact maxflow102/104 and matching Hall cut verify. Runtime0.325237982s.
+
+Exact small invariants: m65,e4,M47403,c47339,g24192,ell23147,W45249,Dep128,kappa17,
+N29,Q140,R45109,allcofactors1. Paper proof independently reviewed: nine positive
+border substitutions,65-word table, exponent moments94/74/108, sumvalues1574560.
+Direct original Hall groups have demand52, ENTIRE neighborhood capacity50. No
+negativeQ/W assertion: Dep>=kappa already certifies this source. Saved data:
+p39/data/small_joint_482.json.gz. This one-source simplification is CLOSED.
+
+E483 adds ONLY two same-original-direction, axis-source-ancestor permissions to
+the SAVED failed graph. No source reconstruction. The unique axis group in each
+home g-column basepr/pr^2 can use the third wrapped edge in base r/r^2, respectively;
+its parent g^2r/g^2r^2 divides the corresponding axis source pg^2r/pg^2r^2. Both
+new logical arcs have capacityK+1. Integer residual augmentation begins at the
+old102-token flow; two unit paths of9 and13 arcs produce the full104-token flow.
+Every old/new capacity, all balances and equal cut are independently checked.
+
+All87 axes and17 mixed demands are paid; mixed use14wrapped and3boundary units.
+Net axis exports are +1 at homepr/pr^2, -1 at receivingr/r^2, zero elsewhere.
+Signed-column bounds mixedload<=N_C+netexport_C and global netexport0 pass.
+No axis remains unpaid. Runtime0.002369434s. This repairs the GLOBAL assignment,
+not only the cut. It does not prove a universal transport rule or any sign theorem.
+Complete augmented flow, two new permission justifications and both residual paths
+are in p39/data/axis_transport_483.json.gz. This one-profile repair is CLOSED.
+
+Reproduce on Fejer/Linux using the same unchanged C binary or compile as in E475:
+
+    timeout 60s python3 src/scratch/p39/verify_probe.py --unit-joint-check /tmp/upper_scan_473 src/scratch/p39/data/forced_ancestor_476.json.gz /tmp/unit_joint_481.json.gz
+    timeout 60s python3 src/scratch/p39/verify_probe.py --small-joint-check /tmp/upper_scan_473 src/scratch/p39/data/forced_ancestor_476.json.gz /tmp/unit_joint_481.json.gz /tmp/small_joint_482.json.gz
+    timeout 60s python3 src/scratch/p39/verify_probe.py --axis-transport483-check /tmp/small_joint_482.json.gz /tmp/axis_transport_483.json.gz
+
+All3 artifact SHA256s match worker/laptop:
+
+    unit_joint_481.json.gz 5a913bcbbb2f3759cbb9db41e2a01ffa6d8defb2bd6df740472156c23647519e
+    small_joint_482.json.gz d566d661e2e7698a1c6deceaccc6c80922b6d698bb3db1f3c15454302082a273
+    axis_transport_483.json.gz 9528ff47577ec948339d3bcac54395b74b55425a103dbf57d14ba7fb0076b2ae
+
+Final tested verify_probe.py SHA256 on both machines:
+4f7a39ac6f074101582cb79202b80164f9ef454391d969c0bfa7d624e1eee0c0.
+E481/E482 ran before the independent E483 function/CLI was added; their tested
+routines were unchanged. Python compile and whitespace checks pass. Every scoped
+job is terminal; no automatic new image, source, forced critic or rental is active.
+Paper E479 is not a numerical evaluation of13/17/19/31. All times are fixed
+diagnostic durations, not throughput/GPU benchmarks or exhaustive-domain claims.

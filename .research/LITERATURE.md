@@ -1552,3 +1552,36 @@ over a sufficiently large prime cyclic group: generic partition-matroid matching
 failure therefore does not force a proper subgroup. This is not a counterexample
 to our more structured permission rule. The limited two-primary check supplies
 no absence/priority claim and activates no broader survey or numerical run.
+
+### E479–E483: an internal rule falsifier, with arithmetic certification (2026-10-23)
+
+The deletion marginal is elementary subtraction in the already defined capped
+column-rank function. It supplies a necessary condition, not a new additive
+periodicity theorem. The higher-support carry guard is proved directly on paper.
+The corrected unit realizer uses the EXISTING E455/E465 strict tie-breaking
+mechanism; no new fan-connectivity or realizability theorem is claimed. A limited
+exact-target arXiv/preprint/GitHub/conjectures.io search preceded the attack, with
+no inference of literature absence or priority from the results.
+
+The new self-contained65-source certificate uses nine positive source-word
+reductions and a65-cell standard-word table. Strict descent, residue surjectivity
+and cardinality prove exact Apéry values without assuming confluence or invoking
+an external Gröbner theorem. Its demand52/capacity50 Hall inequality refutes the
+project's specifically defined JOINT-ANCESTOR rule and its stronger one-label
+classifier. It refutes neither the principal Qnegative bridge nor Wilf, and is
+already covered by an old sufficient support bound. No special-e Wilf novelty.
+
+E483's two additional permissions and signed export identity are explicit finite
+matching/conservation arguments. They repair one entire certificate; no external
+matroid theorem is invoked to claim their universal availability or sufficiency.
+The source-word/direction-sensitive transport problem still needs its own uniform
+proof. The older own-column rank formulation remains correct for its old model,
+whose universal completion claim is now FALSE.
+
+E484's r(W)=|W|-A+ν(Ω\W) is the standard dual-transversal rank formula, derived
+here by finite matching and cuts so no external theorem is used to establish
+positivity. Alternating augmentation preserves occupied right slots, not frozen
+edges. The general rank target recovers the previous separable formula under
+home-column permissions and total N at the full tile. Independent paper review
+checks the elimination; its arithmetic sign and original-label conclusion remain
+unproved. No new rank-theory or allocation novelty is claimed.

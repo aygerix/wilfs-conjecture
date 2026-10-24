@@ -2552,6 +2552,42 @@ def audit_mstd_shadow(R):
             'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
             'least_root_exit_collision':collisions}
 
+def audit_large_apery_edges_481(D):
+    """Exact independent heap distances/attainment; no conductor-sized DP."""
+    import heapq
+    m=D['m'];G=sorted(D['generators']);w=D['w']
+    assert m==65 and len(G)==4 and G[0]==m and gcd(*G)==1
+    distance=[None]*m;distance[0]=0;queue=[(0,0)]
+    while queue:
+        value,s=heapq.heappop(queue)
+        if distance[s]!=value:continue
+        for p in G[1:]:
+            t=(s+p)%m;candidate=value+p
+            if distance[t] is None or candidate<distance[t]:
+                distance[t]=candidate;heapq.heappush(queue,(candidate,t))
+    assert distance==w and w[0]==0 and all(v%m==s for s,v in enumerate(w))
+    gr,z=factor_basis(D);primitives=set(range(1,m));edges=tight=0
+    for j,delta in enumerate(gr):
+        p=w[delta]
+        for s,value in enumerate(w):
+            t=(s+delta)%m;assert w[t]<=value+p;edges+=1
+            if w[t]==value+p:
+                assert z[t]==tuple(a+int(k==j) for k,a in enumerate(z[s]))
+                tight+=1
+                if s:primitives.discard(t)
+    assert sorted([m]+[w[s] for s in primitives])==G
+    predecessors=0
+    for s in range(1,m):
+        matches=[j for j,delta in enumerate(gr) if w[(s-delta)%m]+w[delta]==w[s]]
+        assert matches and all(w[(s-gr[j])%m]<w[s] for j in matches)
+        predecessors+=1
+    c=max(w)-m+1;g=sum(v//m for v in w[1:]);e=len(G);q=(c+m-1)//m;rho=q*m-c;r=w.index(max(w))
+    assert (D['e'],D['c'],D['g'],D['W'],D['q'],D['rho'],D['r'])==(e,c,g,e*(c-g)-c,q,rho,r)
+    assert D['mu']==[max(0,(c-v+m-1)//m) for v in w]
+    return {'method':'independent heap SSSP plus integer edge/attainment/unique-word checks',
+            'generator_edges':edges,'tight_unique_word_edges':tight,'attaining_predecessors':predecessors,
+            'all_apery_values':len(w),'all_original_generators_minimal':True}
+
 def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
     """E474/E475 fixed controls: joint two-pool assignment with reassignable axes.
 
@@ -2563,8 +2599,17 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
     controls={
         'cached63':([63,307,438,440,454,461,474,475,477,482,486,492],(63,12,912,777,708)),
         'interior65':([65,82,214,217,265],(65,5,1108,596,1452)),
+        'small482':([65,3381,6275,7337],(65,4,47339,24192,45249)),
     }
-    if control=='bounded476':
+    distance_certificate=None
+    if control=='unit481':
+        u=seed['_unit481'];L=65*65+u
+        assert 1<=u<65 and gcd(u,65)==1
+        assert sorted(seed['generators'])==sorted([65,270*L+65,147*L,319*L])
+        assert max(seed['w'])<9000000
+        stats=tuple(seed[k] for k in ('m','e','c','g','W'))
+        distance_certificate=audit_large_apery_edges_481(seed)
+    elif control=='bounded476':
         assert seed['m'] in (13,38,63,65) and seed['e']>=4
         assert seed['c']>4*seed['m'] and 3*seed['e']<seed['m']
         assert max(seed['generators'])<=8*seed['m']
@@ -2573,7 +2618,7 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
         assert control in controls
         wanted,stats=controls[control]
         assert sorted(seed['generators'])==wanted
-    audit(seed)
+    if control!='unit481':audit(seed)
     assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==stats
     geometry=support_geometry(seed);m=seed['m'];gr,z=factor_basis(seed);d=len(gr)
     if control=='cached63':
@@ -2706,7 +2751,8 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
     prime_counts=[{'prime':p,'nonzero_original_labels':[j for j,delta in enumerate(gr) if delta%p]} for p in factors]
     G=seed['generators'];cofactors=[gcd(*[v for j,v in enumerate(G) if j!=i]) for i in range(len(G))]
     assert set(cofactors)=={1} and all(len(R['nonzero_original_labels'])!=1 for R in prime_counts)
-    return {'status':'exact primal/cut verified','control':control,'source':{'G':sorted(G),'m':m,'e':seed['e'],
+    return {'status':'exact primal/cut verified','control':control,'distance_certificate':distance_certificate,
+            'source':{'G':sorted(G),'m':m,'e':seed['e'],
             'c':seed['c'],'g':seed['g'],'W':seed['W'],'Dep':Dep,'kappa':mixed,
             'N':wrapped-axis,'Q':geometry['Q_full'],'R':seed['W']-geometry['Q_full'],
             'deletion_cofactors':cofactors},'K':K,'axis_demand':axis,'wrapped_capacity':wrapped,
@@ -2724,6 +2770,228 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
             'rule_obstruction_lemma_failure':flow<K,'full_Q_failure':geometry['Q_full']<0,
             'genuine_negative_W':seed['W']<0,'source_count':1,
             'elapsed_seconds':time.monotonic()-started}
+
+def audit_axis_transport_483(saved):
+    """Exactly two new, original-direction axis permissions on saved E482."""
+    import time
+    started=time.monotonic();B=saved['baseline'];seed=saved['seed'];net=B['network']
+    assert sorted(seed['generators'])==[65,3381,6275,7337] and B['deficiency']==2
+    gr,z=factor_basis(seed);assert gr==[1,35,57]
+    inv={v:s for s,v in z.items()};groups=net['groups'];resources=net['resources'];columns=net['columns']
+    gstart=1;rstart=1+len(groups);K=B['K'];arcs=[a[:] for a in net['arcs_with_flow']]
+    added=[]
+    for power in (1,2):
+        home=next(cid for cid,C in enumerate(columns) if C['direction']==1 and z[C['base']]==(1,0,power))
+        target=next(cid for cid,C in enumerate(columns) if C['direction']==1 and z[C['base']]==(0,0,power))
+        gi=next(i for i,g in enumerate(groups) if g['kind']=='axis' and g['column']==home)
+        assert groups[gi]['demand']==1
+        axis_source=(1,2,power);assert axis_source in inv and (axis_source[1]*gr[1])//65==1
+        rid=next(k for k,R in enumerate(resources) if R['kind']=='wrap' and R['column']==target and R['position']==3)
+        anchor=z[resources[rid]['anchor']]
+        assert anchor==(0,2,power) and all(a<=b for a,b in zip(anchor,axis_source))
+        assert resources[rid]['direction']==groups[gi]['direction']==1
+        u=gstart+gi;v=rstart+rid;assert not any(a==u and b==v for a,b,c,f in arcs)
+        index=len(arcs);arcs.append([u,v,K+1,0])
+        added.append({'arc_index':index,'home_column':home,'target_column':target,
+                      'axis_source_word':list(axis_source),'axis_source_residue':inv[axis_source],
+                      'resource':rid,'resource_anchor_word':list(anchor),'original_direction_residue':35})
+    adj=[[] for _ in range(net['nodes'])]
+    for i,(u,v,cap,f) in enumerate(arcs):adj[u].append((v,i,1));adj[v].append((u,i,-1))
+    source=net['source'];sink=net['sink'];flow=B['flow'];augmentations=[]
+    while flow<K:
+        prev={source:None};queue=[source]
+        for u in queue:
+            if sink in prev:break
+            for v,i,orientation in adj[u]:
+                cap,f=arcs[i][2:];residual=cap-f if orientation==1 else f
+                if residual>0 and v not in prev:prev[v]=(u,i,orientation);queue.append(v)
+        if sink not in prev:break
+        path=[];v=sink;amount=K-flow
+        while v!=source:
+            u,i,orientation=prev[v];cap,f=arcs[i][2:]
+            amount=min(amount,cap-f if orientation==1 else f);path.append([i,orientation]);v=u
+        path.reverse()
+        for i,orientation in path:arcs[i][3]+=orientation*amount
+        flow+=amount;augmentations.append({'amount':amount,'path':path})
+        assert len(augmentations)<=2
+    balance=[0]*net['nodes']
+    for u,v,cap,f in arcs:
+        assert 0<=f<=cap;balance[u]-=f;balance[v]+=f
+    expected=[0]*net['nodes'];expected[source]=-flow;expected[sink]=flow;assert balance==expected
+    reachable={source};queue=[source]
+    for u in queue:
+        for v,i,orientation in adj[u]:
+            cap,f=arcs[i][2:];residual=cap-f if orientation==1 else f
+            if residual>0 and v not in reachable:reachable.add(v);queue.append(v)
+    assert sink not in reachable
+    cut=sum(cap for u,v,cap,f in arcs if u in reachable and v not in reachable);assert cut==flow
+    loads=defaultdict(int);exports=defaultdict(int);unpaid_axis=defaultdict(int)
+    for gi,g in enumerate(groups):
+        if g['kind']=='axis':
+            assigned=0
+            for u,v,cap,f in arcs:
+                if u==gstart+gi and rstart<=v<rstart+len(resources) and f:
+                    R=resources[v-rstart];assert R['kind']=='wrap'
+                    exports[g['column']]+=f;exports[R['column']]-=f;assigned+=f
+            assert assigned<=g['demand'];unpaid_axis[g['column']]+=g['demand']-assigned
+            if flow==K:assert assigned==g['demand']
+        else:
+            for u,v,cap,f in arcs:
+                if u==gstart+gi and rstart<=v<rstart+len(resources) and f:
+                    R=resources[v-rstart]
+                    if R['kind']=='wrap':loads[R['column']]+=f
+    assert sum(exports.values())==0
+    for cid,C in enumerate(columns):assert loads[cid]<=C['N']+exports[cid]+unpaid_axis[cid]
+    return {'status':'exact two-arc residual primal/cut verified','source':B['source'],
+            'original_flow':B['flow'],'K':K,'flow':flow,'completion':flow==K,'remaining_deficiency':K-flow,
+            'added_permissions':added,'augmentations':augmentations,
+            'column_net_axis_exports':[[cid,x] for cid,x in sorted(exports.items()) if x],
+            'unpaid_axis_by_column':[[cid,x] for cid,x in sorted(unpaid_axis.items()) if x],
+            'mixed_wrap_loads':[[cid,x] for cid,x in sorted(loads.items()) if x],
+            'network':{'nodes':net['nodes'],'source':source,'sink':sink,'arcs_with_flow':arcs,
+                       'reachable':sorted(reachable),'cut_capacity':cut},
+            'new_source_evaluations':0,'new_flow_solves':1,'elapsed_seconds':time.monotonic()-started}
+
+def audit_small_joint_482(executable, original, unit_pack):
+    """One small L23 realizer AFTER exact edge/top guards; no L search."""
+    import subprocess,time
+    started=time.monotonic();base=next(R['seed'] for R in original['best_islands'] if R['G']==[65,147,270,319])
+    assert unit_pack['stop']=='first_actual_failure' and unit_pack['failure']['unit']==23
+    gr,z=factor_basis(base);u=L=23
+    P=[270*L+65,147*L,319*L];w=[None]*65
+    for s in range(65):w[(u*s)%65]=L*base['w'][s]+65*z[s][0]
+    identity=tied=strict=0;nonidentity_gaps=[]
+    for s in range(65):
+        for j,delta in enumerate(gr):
+            t=(s+delta)%65
+            row=tuple(a+int(k==j)-b for k,(a,b) in enumerate(zip(z[s],z[t])))
+            gap=w[(u*s)%65]+P[j]-w[(u*t)%65]
+            if not any(row):assert gap==0;identity+=1
+            else:
+                assert gap>0;nonidentity_gaps.append(gap)
+                if base['w'][s]+base['w'][delta]==base['w'][t]:tied+=1
+                else:strict+=1
+    top=(u*base['r'])%65;assert all(w[top]>w[s] for s in range(65) if s!=top)
+    proc=subprocess.run([executable,'--axis-seed','65',*map(str,P)],capture_output=True,text=True,timeout=2)
+    assert proc.returncode==0 and proc.stdout.strip().startswith('{')
+    seed=json.loads(proc.stdout);assert seed['w']==w
+    heap=audit_large_apery_edges_481(seed)
+    result=audit_joint_ancestor(seed,'small482')  # Independent coin membership too.
+    assert result['deficiency']==2 and result['source']['Q']==140
+    nGr,nz=factor_basis(seed);assert nGr==[1,35,57]
+    inv={v:s for s,v in nz.items()}
+    E={inv[(a,b,c)] for a in range(2) for b in range(2) for c in range(3)}
+    assert E==set(result['hall_cut']['E'])
+    resources=result['network']['resources'];columns=result['network']['columns']
+    children=[]
+    for s in sorted(E):
+        for j in range(3):
+            child=tuple(a+int(k==j) for k,a in enumerate(nz[s]));assert child in inv
+            children.append([s,j,inv[child]])
+    assert not any(R['kind']=='boundary' and R['anchor'] in E for R in resources)
+    independent_columns=[]
+    for cid,C in enumerate(columns):
+        Lc=len(C['residues']);j=C['direction'];delta=nGr[j]
+        if not any(s in E for s in C['residues']):continue
+        labels=[(s+seed['rho'])%65 for s in C['residues']]
+        inversions=sum(v>labels[-1] for v in labels[:-1])
+        wraps=sum(n for n in range(1,Lc) if labels[n-1]+delta>=65)
+        axis=sum(n*delta//65 for n in range(Lc))
+        access=sum(n for n in range(1,Lc) if C['residues'][n-1] in E and labels[n-1]+delta>=65)
+        assert inversions==wraps-axis==C['N']
+        independent_columns.append({'column':cid,'direction':j,'base_word':list(nz[C['base']]),
+                                    'length':Lc,'residues':C['residues'],'phase_labels':labels,
+                                    'V':wraps,'A':axis,'N':inversions,'V_E':access,
+                                    'allowance':min(inversions,access)})
+    kE=sum(sum((nz[s][j]*nGr[j])%65 for j in range(3))//65 for s in E)
+    assert kE==4 and sum(C['allowance'] for C in independent_columns)==2
+    stabilizer=[t for t in range(65) if {(s+t)%65 for s in E}==E];assert stabilizer==[0]
+    return {'status':'independent small source and direct Hall cut verified','seed':seed,'baseline':result,
+            'heap_certificate':heap,'membership_certificate':'independent conductor/member/minimal-generator coin DP passes',
+            'linear_guard':{'identity_edges':identity,'old_nonidentity_tied_edges':tied,'old_strict_edges':strict,
+                            'minimum_new_nonidentity_gap':min(nonidentity_gaps),
+                            'minimum_top_gap':min(w[top]-w[s] for s in range(65) if s!=top)},
+            'E':sorted(E),'canonical_child_checks':children,'kappa_E':kE,'G_E':0,
+            'independent_columns':independent_columns,'cut_allowance':2,'cut_deficiency':2,
+            'stabilizer':stabilizer,'elapsed_seconds':time.monotonic()-started}
+
+def run_unit_joint_481(executable, pack, output_path):
+    """One NEW saved tile, <=48 explicit realizers, stop first rule failure."""
+    import subprocess,time
+    started=time.monotonic()
+    base=next(R['seed'] for R in pack['best_islands'] if R['G']==[65,147,270,319])
+    gr,z=factor_basis(base);assert gr==[10,17,59] and max(base['w'])==2061
+    oldP=[base['w'][s] for s in gr];assert oldP==[270,147,319]
+    tight_edges=0;nonidentity_ties=[]
+    for s in range(65):
+        for j,delta in enumerate(gr):
+            t=(s+delta)%65
+            if base['w'][s]+oldP[j]==base['w'][t]:
+                row=tuple(a+int(k==j)-b for k,(a,b) in enumerate(zip(z[s],z[t])))
+                tight_edges+=1
+                if any(row):
+                    assert row[0]>0
+                    nonidentity_ties.append({'parent':s,'direction':j,'target':t,'row':list(row)})
+    assert len(nonidentity_ties)==17 and {tuple(R['row']) for R in nonidentity_ties}=={(3,1,-3)}
+    records=[];failure=None;stop='48_unit_limit';certificate_counts=defaultdict(int)
+    for u in range(1,65):
+        if gcd(u,65)!=1:continue
+        if time.monotonic()-started>=50:stop='soft_time_limit';break
+        L=65*65+u;G=[65,270*L+65,147*L,319*L]
+        proc=subprocess.run([executable,'--axis-seed',*map(str,G)],capture_output=True,text=True,timeout=2)
+        assert proc.returncode==0 and proc.stdout.strip().startswith('{'),(u,proc.returncode,proc.stderr)
+        seed=json.loads(proc.stdout);seed['_unit481']=u
+        expected=[None]*65
+        for s in range(65):expected[(u*s)%65]=L*base['w'][s]+65*z[s][0]
+        assert seed['w']==expected and seed['r']==(u*base['r'])%65
+        assert seed['c']>4*65 and seed['e']==4 and 3*seed['e']<65
+        ngr,nz=factor_basis(seed);permutation=sorted(range(3),key=lambda j:(u*gr[j])%65)
+        assert ngr==[(u*gr[j])%65 for j in permutation]
+        assert all(nz[(u*s)%65]==tuple(z[s][j] for j in permutation) for s in range(65))
+        result=audit_joint_ancestor(seed,'unit481')
+        for key in ('generator_edges','tight_unique_word_edges','attaining_predecessors','all_apery_values'):
+            certificate_counts[key]+=result['distance_certificate'][key]
+        S=result['source'];records.append({'unit':u,'L':L,**S,'K':result['K'],'flow':result['flow'],
+                                         'deficiency':result['deficiency']})
+        if not result['completion'] or S['Q']<0 or S['W']<0:
+            failure={'unit':u,'seed':seed,'baseline':result}
+            stop='first_actual_failure'
+            # Greedy deletion stops when no SINGLE maximal word can be removed
+            # preserving positive debt. This is not global inclusion minimality.
+            E=set(result['hall_cut']['E']);resources=result['network']['resources'];columns=result['network']['columns']
+            def debt(T):
+                demand=sum(sum((nz[s][j]*ngr[j])%65 for j in range(3))//65 for s in T)
+                boundary=sum(R['capacity'] for R in resources if R['kind']=='boundary' and R['anchor'] in T)
+                allowance=sum(min(C['N'],sum(resources[k]['capacity'] for k in C['wrap_resources'] if resources[k]['anchor'] in T)) for C in columns)
+                return demand-boundary-allowance
+            if result['deficiency']>0:
+                assert debt(E)==result['deficiency']
+                deleted=[]
+                while True:
+                    maxima=[s for s in sorted(E) if not any(s!=t and all(a<=b for a,b in zip(nz[s],nz[t])) for t in E)]
+                    removable=next((s for s in maxima if debt(E-{s})>0),None)
+                    if removable is None:break
+                    E.remove(removable);deleted.append(removable)
+                h=debt(E);assert h>0
+                maxima=[s for s in sorted(E) if not any(s!=t and all(a<=b for a,b in zip(nz[s],nz[t])) for t in E)]
+                assert all(debt(E-{s})<=0 for s in maxima)
+                failure['deletion_stable_positive_cut']={'E':sorted(E),'words':[list(nz[s]) for s in sorted(E)],
+                                                'deficiency':h,'maximal_residues':maxima,
+                                                'deleted_residues':deleted,
+                                                'deletion_deficiencies':[[s,debt(E-{s})] for s in maxima]}
+            break
+    result={'scope':'E481 only tight65 tile, <=48 explicit tie-strict normalized unit realizers',
+            'base_tight_edges':tight_edges,'base_nonidentity_ties':nonidentity_ties,
+            'failed_E480_unique_seed_guard':True,'E480_new_source_evaluations':0,
+            'sources_evaluated':len(records),
+            'units_evaluated':[R['unit'] for R in records],'records':records,
+            'independent_certificate_totals':dict(certificate_counts),'failure':failure,
+            'stop':stop,'elapsed_seconds':time.monotonic()-started}
+    if str(output_path).endswith('.gz'):
+        with gzip.open(output_path,'wt') as f:json.dump(result,f,indent=2)
+    else:
+        with open(output_path,'w') as f:json.dump(result,f,indent=2)
+    return result
 
 def audit_axis_augmentation_477(pack):
     """Postprocess ONLY E476's tight65 endpoint; no new source/flow solve."""
@@ -3250,6 +3518,33 @@ def audit_cover_cubic(C):
             'membership_certificate':'all generator-edge inequalities plus attaining positive-cost predecessor words'}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--axis-transport483-check':
+        assert len(sys.argv)==4
+        with open_text(sys.argv[2]) as source:saved=json.load(source)
+        result=audit_axis_transport_483(saved)
+        with gzip.open(sys.argv[3],'wt') as out:json.dump(result,out,indent=2)
+        print('AXIS-TRANSPORT483-CHECK',json.dumps({k:v for k,v in result.items() if k!='network'},sort_keys=True))
+        sys.exit(0)
+    if sys.argv[1]=='--small-joint-check':
+        assert len(sys.argv)==6
+        with open_text(sys.argv[3]) as source:original=json.load(source)
+        with open_text(sys.argv[4]) as source:unit_pack=json.load(source)
+        result=audit_small_joint_482(sys.argv[2],original,unit_pack)
+        with gzip.open(sys.argv[5],'wt') as out:json.dump(result,out,indent=2)
+        print('SMALL-JOINT-CHECK',json.dumps({k:v for k,v in result.items() if k not in ('seed','baseline','canonical_child_checks','independent_columns')},sort_keys=True))
+        print('SMALL-JOINT-COLUMNS',json.dumps(result['independent_columns'],sort_keys=True))
+        sys.exit(0)
+    if sys.argv[1]=='--unit-joint-check':
+        assert len(sys.argv)==5
+        with open_text(sys.argv[3]) as source:pack=json.load(source)
+        result=run_unit_joint_481(sys.argv[2],pack,sys.argv[4])
+        print('UNIT-JOINT-CHECK',json.dumps({k:v for k,v in result.items() if k not in ('records','failure')},sort_keys=True))
+        if result['failure']:
+            R=result['failure'];B=R['baseline']
+            print('UNIT-JOINT-FAILURE',json.dumps({'unit':R['unit'],'source':B['source'],
+                'deficiency':B['deficiency'],'hall_cut':B['hall_cut'],
+                'deletion_stable_positive_cut':R.get('deletion_stable_positive_cut')},sort_keys=True))
+        sys.exit(0)
     if sys.argv[1]=='--axis-augmentation-check':
         assert len(sys.argv)==4
         with open_text(sys.argv[2]) as source:pack=json.load(source)

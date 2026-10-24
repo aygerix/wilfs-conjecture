@@ -713,3 +713,41 @@ Another primary paper has generic partition matching failures even over prime
 cyclic groups, but for a DIFFERENT matching relation. Neither observation refutes
 JOINT-ANCESTOR or the principal Qnegative bridge; both stop an unsupported appeal
 to a generic theorem. Keep all original labels, physical capacities and reserves.
+
+E479–E483 (2026-10-23): the FULL JOINT-ANCESTOR policy, including arbitrary
+reassignment WITHIN each axis's own column, is now FALSE on genuine normalized
+deep/sparse sources. Small self-contained witness S=<65,3381,6275,7337> has
+c47339,g24192,ell23147,W45249,Dep128,kappa17,N29,Q140,allcofactors1 and unique
+Apéry factorizations. Nine positive word reductions certify the whole65-cell tile
+on paper (PROOFS E482), independently of source/flow software.
+
+At residues(p,g,r)=(1,35,57),phase46, the12-word box p^0..1*g^0..1*r^0..2 has
+four mixed demands, no boundary capacity and only two usable column-reserve units.
+Equivalently52 original group demands reach capacity50. Its residue stabilizer
+is trivial, and primes5/13 retain2/3 ORIGINAL labels. Thus even STRICT unpaid
+debt after all permitted own-column reassignments does NOT force a removable
+cofactor under this rule. The principal Qnegative=>one-label bridge is NOT refuted:
+Q140 is already covered by Dep>=kappa, and W is positive. Stop the old policy/
+classifier; do not call passing earlier controls evidence of a universal theorem.
+
+The deletion-stable ten-word subcut has a support-two maximal gr^2 at phase0.
+All its children exist, yet none of its outgoing edges wraps. The correct E479
+successor/saturation lemma therefore has a vacuous saturation conclusion here.
+Also PAPER <13,17,19,31> has a global-maximal support-three carry word whose every
+support-two divisor has zero carry. No carry-only reduction to support two is valid.
+
+E480's original uniqueness GUARD failed before any new source evaluation, because
+the saved base has17 tight trades3g+p=3r. It was not a failed new semigroup or a
+completed48-run. Revised E481 explicitly proves that +65g breaks all17 ties in
+the retained direction;18 new unit sources then run, stopping at first failureu23.
+No remaining30 units or old468-image orbit replay was performed.
+
+The repair must permit axis transport BETWEEN columns. On the SAME small witness,
+two same-direction, ancestor-supported axis permissions increase flow102->104.
+They move one axis from each N0 column into a parallel column's spare reserve,
+while preserving total physical capacity. This repairs the FULL certificate,
+not only the local cut. It does not prove a new universal policy. E477 fixed
+N_C quotas are valid only with own-column axes; after transport the valid bound
+is mixedload_C<=N_C+netaxisexport_C, with global netexports0. Ignoring these signed
+exports recreates an artificial obstruction; allowing unrestricted arbitrary
+transport merely restates Q>=0. A direction/source-sensitive theorem remains needed.

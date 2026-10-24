@@ -6099,3 +6099,76 @@ universal lines. Any new computational falsifier needs a precise predicate/budge
 no passive resistant-seed prerequisite is reinstated. All mathematical jobs are
 terminal, complete data/code hashes match worker/laptop, goal ACTIVE. No universal
 Wilf proof/counterexample, manuscript, Lean verification or novelty assertion.
+
+### 2026-10-23 22:13 EDT — E479–E484: actual rule failure, arithmetic witness, transported reserve
+
+Scope: Proves Wilf for EVERY S if the principal Qnegative one-original-label bridge
+or uniform full-budget payment is established; proved finishing chain E439/E462/
+SUPP/complements. Previous turn PROGRESS02bda83. Same backward proof-first strategy,
+same TWO authorized paper agents, existing Fejer C reconstructor, no GPU/rental.
+
+PAPER ATTACK: a positive cut stable under deleting one maximal word satisfies
+h<=kappa(z)-boundary(z)-marginalrank<=support(z)-1. Nonglobal maxima thus have
+many successors; support2 forces Γ0 and saturated outgoing wrapped columns.
+GLOBAL-max exception is essential. Root checked the proposed carry-only reduction
+to support2 is false on PAPER13/17/19/31:67=17+31+19 has one carry but every
+support2divisor has none. No numerical source run attached to that paper guard.
+
+FIRST EXACT TEST STOPPED: E480 assumed old tight65 tile uniquely factored. Its
+guard failed BEFORE any new source. Inspecting existing rows gave17 identical
+trades3g+p=3r. The SAME +65g perturbation breaks each positively by195. E481
+uses this more general directional condition; the geometric agent independently
+checks old strict/identity/top rows and every deletioncofactor. No silent guard bypass.
+
+ACTUAL NEW RULE FAILURE: E481 ascending unit realizers stop at the18th, u23.
+Complete integer flow102/104 fails with all deletioncofactors1, Q140,W8423424.
+The remaining30 possible units are NOT run. Runtime0.250244s; all18explicit C
+sources pass independent heap, edge/attainment/unique-word/minimality checks and
+all primal/equal-cut flow certificates. Not a GPU or throughput benchmark.
+
+E482 checks ONE smaller same-profile S=<65,3381,6275,7337>, c47339,g24192,ell23147,
+W45249,Dep128,kappa17,N29,Q140,R45109. Linear rows pass before reconstruction;
+independent heap AND coin membership/minimality agree. Runtime0.325238s. Root
+extracts nine positive border substitutions and a65-cell table, giving exact Apéry
+values by termination/residue surjectivity/cardinality, with no confluence premise.
+Geometric agent independently checks all nine, moments94/74/108, seven maxima,
+value sum1574560, max47403 and full support counts on paper.
+
+CRITICAL HALL COUNT: at δ=(1,35,57),rho46, E=p^0..1*g^0..1*r^0..2 has four
+mixed carries, zero boundary and only two usable own-column reserves. Directly,
+52 original group demands reach capacity50. Both paper agents independently check
+all column sequences. Stabilizer trivial, primes5/13 retain2/3 original labels.
+Thus FULL own-column JOINT-ANCESTOR completion and failure=>cofactor are FALSE,
+not merely frozen-axis variants. Main negative-Q bridge survives. Q140 is already
+covered by Dep>=kappa: this source tests the mechanism, not a resistant Wilf case.
+The ten-word deletion-stable bad subcut has gr² at phase0, so outgoing-wrap
+saturation is vacuous despite all children existing. Local successor counting
+therefore cannot by itself yield the required arithmetic propagation.
+
+EXPLOIT, NOT JUST STOP: parity agent identifies two same-direction axis transfers
+from homepr/pr² to parallel columnr/r². Their destination anchors divide the
+original AXIS source. Root adds ONLY those two arcs on the SAVED failed graph;
+two exact residual paths(9/13arcs) repair the GLOBAL104-token matching. Every
+capacity/balance/equalcut passes, no source run,0.00236943s. All87axes+17mixed
+paid; mixed uses14wrap+3boundary. Export columns gain one available mixed unit,
+import columns lose one. Global total reserve unchanged.
+
+GENERAL CORRECTION: mixedload_C<=N_C+netaxisexport_C, sumexports0. Old fixed N_C
+quotas are exact only with home-column axes. E484 derives residual rank
+r(W)=|W|-A+ν(Ω\\W), whereνis remaining-axis matching capacity. Ordinary finite cuts
+give exact transported Hall target. This is a formulation/conservation lemma,
+NOT a universal sign or allocation theorem. Full E still asks Q>=0.
+
+GLOBAL STRATEGIC REVIEW: the named allocation rule was supposed to connect unpaid
+debt to a removable cofactor; a certified normalized counterexample now excludes
+that claim. Keeping it would be wasted effort. CLOSE old JOINT/classifier and both
+finite tests. CONTINUE principal negative-Q bridge with explicit direction/source-
+sensitive cross-column axis transport and full global reserves. The theory of
+success now requires an actual transport/rank-growth or descent theorem, not a
+separable quota, a generic matroid name or more successful repairs. The new witness
+is a required adversarial control for any replacement. A globally negative full Q
+would call for actual R/source/coupled budgets; do not make a stronger support rule
+sacred. Actual Xi integrated loss and full y-surplus/row slacks remain the other
+two universal lines. No unit expansion, oldorbit/ray/repair census or new rental.
+All scoped jobs terminal, data/code hashes match worker/laptop; goal ACTIVE.
+No universal Wilf proof/counterexample, new manuscript, Lean or novelty assertion.
