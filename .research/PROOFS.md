@@ -13882,3 +13882,155 @@ debt, even in the normalized sparse/deep domain with a valid residue-one prefix.
 The same geometric reviewer independently checked the gap/count argument. W and
 the full Q/network are not computed or claimed on this guard. It cannot replace
 the global inherited-debt allocation by a reset-to-zero shortcut.
+
+## E490 — user priority change: actual Wilf area and exact reachability
+
+2026-10-23. USER stopped the preceding programme and changed the mathematical
+priority. Transport/Hall/cofactor/protected-prefix/GPU targets are SUSPENDED.
+E488/E489 were unexecuted preparations; no489 source/network audit ran, and its
+untested CLI was removed. The autonomous goal tracker remains PAUSED. This entry
+handles the subsequent direct user request; it does not silently restart old work.
+
+Proves Wilf for EVERY numerical semigroup if the area inequality below is proved.
+Proved reduction from all S to this target: yes, EXACT equivalence, no auxiliary Q.
+Treat S=N with c0 separately (the empty-area convention also gives0). For proper
+S, let m>=2,e>=2,d=e-1, nonmultiplicity primitives p_j, residues delta_j, and
+Apéry values w_r with M=max w=c+m-1. For integer t put A_t={r:w_r<=t}, empty ift<0.
+
+For EVERY t>=0,
+
+    A_t={0} union UNION_j (delta_j+A_(t-p_j)).          (REACH)
+
+Forward inclusion follows because w_r<=w_s+p_j whenever r=s+delta_j. Conversely,
+a nonzero w_r has a primitive factorization without m. Removing its final p_j
+leaves an Apéry element: otherwise subtracting m there would subtract m from w_r.
+This gives an attaining parent in A_(t-p_j). Also A_u+A_v subset A_(u+v).
+
+Integer summation gives
+
+    Area=sum_(t=0..M-1)|A_t|=sum_r(M-w_r).
+
+With the exact genus/conductor identities,
+
+    W=e*Area/m-M-(e-2)(m-1)/2,
+    mW=e*Area-mM-C_m,   C_m=(e-2)m(m-1)/2.
+
+Thus the ACTUAL universal target is
+
+    e*Area>=mM+C_m.                                  (DIRECT-WILF)
+
+The general weighted-downset estimate gives only e*Area>=mM. Rewriting the target
+does not provide the additional C_m; a new arithmetic estimate must earn it.
+
+The indispensable actual-source data include p_j>m, p_j=delta_j modm, minimality
+of every p_j, and gcd(m,p_1,...,p_d)=1. Nonzero primitive residues are distinct,
+and every primitive belongs to Apéry. Every w_r=r modm, so the m arrival times are
+distinct and |A_t|-|A_(t-1)| is always0 or1. A generic weighted graph need not have
+these birth constraints. No supplied generator count may replace actual e.
+
+## E491 — first growth attempt and precise tests of lost arithmetic
+
+2026-10-23. PAPER ONLY. These are discriminating tests of a proposed UNIVERSAL
+area proof, not special-case Wilf programmes or numerical searches. No new source
+reconstruction, worker launch, GPU campaign or autonomous continuation.
+
+### The recursion alone does not imply the finite correction
+
+Take an ABSTRACT weighted cyclic graph on Z/16, step residues1,2,3,4,8,12, with
+EVERY step cost17. Its sets satisfy REACH, A_u+A_v subset A_(u+v), full generation,
+integer costs>m and cost-minimality of each supplied step. Every residue is reached
+with at most two steps by its base4 digits. Thus M34 and
+
+    |A_t|=1 for0<=t<17,   |A_t|=7 for17<=t<34,
+    Area=17+17*7=136.
+
+For e7, e*Area952 but mM+C_m=16*34+5*16*15/2=1144. The homogeneous inequality
+still holds (952>=544), but the finite correction fails by192. This is NOT a
+numerical semigroup counterexample: the costs do not have their stated residues,
+and multiple residues are born at the same time. It disproves only an overbroad
+weighted-graph theorem that drops actual arithmetic. It does not show that full
+congruence is logically necessary beyond every weaker birth constraint; it shows
+that the listed coarse axioms are insufficient.
+
+### A valid all-cost Kneser estimate
+
+For v>0 let B_v={0} union {delta_j:p_j<=v}. Whenever v<=t<M,
+
+    A_(t-v)+B_v subset A_t.
+
+If B_v generates Z/m, Kneser's theorem gives
+
+    |A_t|>=|A_(t-v)|+gamma_v,
+    gamma_v=ceil(|B_v|/2) (general m),
+    gamma_v=|B_v|-1       (prime m).                  (THRESHOLD-GROWTH)
+
+Proof: the sumset is proper because A_t is. If its stabilizer H is trivial,
+the gain is |B_v|-1. Otherwise B_v meets beta>=2 H-cosets, since it contains0
+and generates the whole group. The gain is at least(beta-1)|H|>=|B_v|/2.
+The prime case is Cauchy-Davenport. Primary Kneser statement: DeVos1303.3539,
+Theorem1; link/hypothesis comparison in LITERATURE E490/E491. This is a standard
+application, not a claimed new theorem. Earlier LK/LK+YZ already exploit related
+growth for low-generator bands; their restricted hypotheses are not substituted
+for the present all-S target.
+
+B_(max p_j) always generates, though the estimate can be vacuous before M if
+that threshold is already M. Validity does not mean it pays DIRECT-WILF. It rounds
+different generator costs to the common threshold v and loses branching detail.
+
+### A genuine-source test where that bound cannot improve Zhai
+
+Take S=<101,102,111>, m101,e3. All three are minimal and gcd1. This ONE paper
+calibration tests the universal estimate; no restricted-e proof target is activated.
+The only undominated threshold steps are cost102/gain1 and cost111/gain2. The
+least lower profile generated from these birth/growth facts is
+
+    L(t)=1+max{a+2b: a,b>=0 integers,102a+111b<=t}.
+
+Every residue r=10b+a,0<=a<=9, is attained at cost111b+102a. For r0..99, b<=9;
+r100 has a0,b10. Hence the ACTUAL Apéry maximum satisfies M<=1917. No exact M,
+conductor, genus or W computation is needed for the test. Since each allowed
+gain/cost ratio is at most2/111,
+
+    sum_(t<M)L(t)<=M+M(M-1)/111
+                  <=(2027/111)M < (101/3)M.
+
+It therefore cannot even reach the homogeneous Zhai lower bound101M/3, much less
+the required finite improvement. This rejects this PARTICULAR common-threshold
+growth estimate as a complete argument. It does not refute Kneser, the exact
+weighted recursion, the actual Wilf inequality, or more informative sumset methods.
+
+### A fine birth-rank consequence retains the actual times
+
+Let R(x)=# {r:w_r<x}. For Apéry values u>0,v>=0 with u+v<=M, put
+H=Stab(A_(u-1)+A_v). Both sets are nonempty and their sum lies in A_(u+v-1),
+which is proper. Kneser yields
+
+    R(u+v)>=R(u)+R(v)+1-|H|.                          (BIRTH-RANK)
+
+For prime m the stabilizer is trivial, giving superadditivity. For composite m
+the subgroup correction must be kept; this is not a cofactor-obstruction claim.
+The total ordered-rank sum is exactly m(m-1)/2. No argument summing these local
+inequalities into the required cost-weighted area correction has been proved.
+In particular compressed costs w-R(w) need not remain linear on a downset;
+applying the homogeneous theorem to them without proof would reopen a gap.
+
+An explicit PAPER nonlinearity guard is S=<11,12,15>. Its sorted Apéry values are
+
+    0,12,15,24,27,30,36,39,42,51,54.
+
+For a direct check, source words 12a+15b reduce using 4*12=15+3*11,
+3*15=12+3*11, and 3*12+2*15=6*11. Each nontrivial reduction strictly lowers
+the nonpivot value. The remaining words have b0,1 with a0..3, or b2 with a0..2;
+they represent residues0..10 bijectively and give the table. Thus these are the
+actual minima, not hypothetical graph distances. Since R(12)=1 and R(24)=3,
+
+    (24-R(24))=21 != 2*(12-R(12))=22.
+
+So the compressed function is not linear even along this tight factorization.
+This refutes that shortcut's hypothesis, not a possible nonlinear estimate, the
+BIRTH-RANK inequality or Wilf. It activates no fixed-m/prime-m proof programme.
+
+NEXT DIRECT OBLIGATION: derive an integrated estimate from the full unequal-cost
+recursion and actual birth congruences, controlling shifted-set overlaps/growth
+across all primitive directions. Do not replace this by Q positivity, another
+routing policy, fixed-e verification or a coarse Kneser bound already shown weak.

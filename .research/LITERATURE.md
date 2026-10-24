@@ -1602,3 +1602,22 @@ matroidal/Cayley theorem is invoked to assert a one-original-label obstruction.
 The attempted fullR injection is still unproved, and its homogeneous rewrite is
 the already recorded E416 result. No new sign theorem is attached to the passing
 higher-rank input or its deliberately nonminimal exhibited flow.
+
+### E490–E491: direct reachability and the precise Kneser input (2026-10-23)
+
+Checked the primary statement in [Matt DeVos, A short proof of Kneser's addition
+theorem, arXiv:1303.3539, Theorem 1](https://arxiv.org/pdf/1303.3539). For finite
+nonempty A,B in an abelian group, with H the stabilizer of A+B, it gives
+|A+B|>=|A+H|+|B+H|-|H|. The group here is Z/m; the sumsets used before the last
+birth are proper. Composite-m stabilizers cannot silently be set to {0}.
+
+E491's common-cost-threshold growth and BIRTH-RANK inequalities are direct
+applications of that standard theorem. They make no novelty claim. The earlier
+LK/LK+YZ entries in PROOFS and the Yang–Zhang comparison above already concern
+related sumset growth; their low-generator-band hypotheses are not a reduction
+of all numerical semigroups to that setting.
+
+The paper calibration <101,102,111> rejects only the adequacy of E491's coarse
+threshold bound. It does not exclude a more informative Kneser argument using
+unequal costs, overlaps and actual residue birth times. No literature absence,
+priority, universal positivity or new special-case Wilf result is asserted.

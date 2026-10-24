@@ -45,10 +45,21 @@ The implementation inventory, current status and next action are maintained only
 The C preference does not activate a target or authorize compute, agents or a different research strategy.
 
 ## Current research directive
-ACTIVE: BACKWARDS-WILF, resumed by the user in the current Codex goal (2026-10-22).
-Exact approval and scope are in SCOPE.md; current evidence and next action are in STATE.md.
-The specific ANCHOR program in PLAN.md remains a proposal; resumption authorizes the backwards approach,
-not an automatic switch to that program or a restricted-family target.
+2026-10-23: the user STOPPED the transport/Hall/cofactor/GPU programme and paused
+its autonomous goal. That goal tracker remains paused until the user resumes it.
+
+The user's subsequent direct instruction is:
+> Change the mathematical priority.
+> The central target must be the actual Wilf number, not the positivity of a stronger auxiliary bound such as \(Q\).
+
+Current direct task: attack the EXACT Apéry mean/maximum inequality through the
+costed cyclic reachability sets A_t={r:w_r<=t}, retaining actual generator costs,
+residue congruences and the full cumulative area. Scope/authorization is in SCOPE.md;
+STATE.md remains the single handoff/inventory. Old transport, Hall, cofactor,
+protected-prefix and GPU programmes are SUSPENDED, not automatic next steps.
+No new numerical campaign, worker launch or background job follows from a paper
+identity. The earlier backwards/C preference is used only within this actual-W
+priority and does not activate the suspended programmes.
 
 For reference, the last research directions the user gave or approved:
 - 2026-10-20 23:13 EDT. Backward strategy: an exact Kunz MILP in Gurobi minimizing W; the height-3 obstruction first;

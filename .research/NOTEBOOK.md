@@ -6240,3 +6240,46 @@ Sourcepath ACTUALXi and coupledfullY/rowslacks remain the other universal reserv
 lines; neither is silently replaced by this stronger policy. No automatic compute
 is activated. Data/code hashes match worker/laptop, all jobs terminal, goalACTIVE.
 No universal proof/counterexample, new manuscript, formal Lean or novelty claim.
+
+### 2026-10-23 23:32 EDT — E490–E491: user stops auxiliary programme; direct actual-W attempt
+
+USER ORDER: "Change the mathematical priority." The actual Wilf number replaces
+Q positivity as the central target. JOINT-ANCESTOR, cross-column transport,
+protected-prefix, cofactor-obstruction and GPU programmes are SUSPENDED. The
+autonomous goal remains PAUSED. This entry handles the subsequent direct paper
+request only; no automatic continuation, agent or worker launch. E488/E489 were
+unexecuted preparations, not results. E489's untested CLI is removed; no489
+source/flow/old41 audit ran.
+
+Scope: Proves Wilf for EVERY S. Proved reduction from all S: yes, exact equivalence
+e*sum_(t<M)|A_t|>=mM+(e-2)m(m-1)/2. Audit proves the user's full unequal-cost
+recursion, sumset inclusion and area identity. Crucial retained arithmetic is
+w_r=r mod m: births are distinct, one at most per integer time. Actual minimal
+generator costs/counts remain part of the statement.
+
+FIRST ATTEMPT: Kneser on A_(t-v)+B_v gives valid threshold increments, with the
+stabilizer retained. It loses too much to prove the target. On ONE genuine paper
+calibration <101,102,111>, the resulting lower profile has area below even the
+homogeneous bound needed. An abstract Z/16 weighted graph separately shows the
+coarse recursion/generation/cost axioms can fail the finite correction by192
+when congruent, distinct births are dropped. Neither falsifier is a Wilf
+counterexample; no bounded-family proof target was started.
+
+SECOND ATTEMPT: using actual birth ranks rather than a common cost gives the valid
+R(u+v)>=R(u)+R(v)+1-|H| inequality. Prime m gives superadditivity, but no reduction
+to prime m is asserted. Subtracting R from values need not preserve linear
+downset weights: <11,12,15> has compressed value21 at24 but twice the compressed
+value at12 is22. Therefore the linear downset theorem cannot be applied to that
+compression without a new argument. A nonlinear integrated estimate remains open.
+
+GLOBAL REVIEW / DECISION: close the coarse threshold estimate as a complete
+payer, retain full unequal-cost recursion and birth congruences as the user's
+current mechanism. The exact next obligation is cumulative growth sufficient
+to earn the finite correction, not another local routing repair or positivity
+of a stronger auxiliary bound. Existing LK was checked to avoid rediscovery;
+the Kneser applications are standard, with no novelty claim. These are paper
+proof attempts and precise method falsifiers, not a proof of the target.
+
+STATE's current-status and next-action sections now supersede all old "next"
+entries; historical mathematics and the implementation inventory remain. No new
+manuscript, source implementation, numerical test, rental or background job.

@@ -1,362 +1,65 @@
 # Wilf research — start here
 
-Updated: 2026-10-23 22:47 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-23 23:32 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
-**ACTIVE: BACKWARDS-WILF**, resumed by the user; exact scope/approval in [SCOPE.md](SCOPE.md).
+**Current direct task: DIRECT-WILF, the actual Wilf number.** The user stopped the
+preceding research programme and then explicitly changed the mathematical priority.
+The autonomous goal tracker is **PAUSED**. This checkpoint records the subsequent
+direct paper task; it does not resume autonomous work, agents or computation.
+Exact authorization and scope are in [SCOPE.md](SCOPE.md).
 
-**PRINCIPAL TARGET remains UNKNOWN:** Q<0 must force a prime p|m with exactly ONE
-ORIGINAL primitive residue nonzero. W<0=>Q<0 and E439 then descends a least-genus
-Wilf counterexample. E462 normalizes deletion of m while preservingQ. Ordinary
-periodicity/cosets do not count original labels. Keep actual R, source Xi and full
-coupled y-surplus/row slacks; no universal sign or Wilf counterexample is claimed.
+**Scope:** proves Wilf for EVERY numerical semigroup if the target below is proved.
+Proved reduction from all S: **yes, exact equivalence by the Apéry identities**.
+For proper S, let m be its multiplicity, e its ACTUAL embedding dimension,
+p_j its nonmultiplicity primitives, w_r its Apéry values, and M=max w=c+m-1.
+With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
-**E485 new exact local theorem: protected axis imports depend on PREFIX rank.**
-New AXIS-ANCESTOR-TRANSPORT indexes each axis demand by(sourcewordz,j), demand
-floor(z_jδ_j/m), with access to all HOME-column wrap slots OR SAME-j wrapped slots
-whose parent divides z. No axis boundary/different-direction access. Mixed groups
-keep their ancestor access to both pools. Universal completion/classifier UNKNOWN.
+    e*Area >= m*M + (e-2)*m*(m-1)/2.
 
-For distinct parallel donor/recipient columns with dividing bases, native recipient
-axes STAY INSIDE their own column and p mixed slots are protected. Let A_t be
-cumulative donor axis demand through positiont; F_t unprotected recipient wrapslots
-with parent<=t. Exact isolated import capacity is
+The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
+S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
 
-    min(N_recipient-p, A_donor-max_t(A_t-F_t)_+).
+**E490 audit — sound on paper:** the user's full unequal-cost recursion is exact:
+A_t={0} union UNION_j(delta_j+A_(t-p_j)). Also A_u+A_v subset A_(u+v), and
+Area=sum_r(M-w_r). Crucial arithmetic remains: p_j=delta_j mod m and w_r=r mod m.
+Consequently all birth times are distinct, with at most one new residue per
+integer time. Minimal generators and their actual costs cannot be replaced by
+an arbitrary weighted graph or a supplied generator count.
 
-The blocking term is P_t-N_t-e_t: protected prefix occupancy minus its inversion
-reserve and the next wrap-edge capacity. Reviewer checks parent/arrival indexing.
-This is an all-rank local transport criterion, NOT a global payment or sign proof.
-Total spare quota alone is insufficient: a length9 δm-1 recipient with phase8 has
-N8; protecting the6frontslots leaves2spares but blocks a length3donor's sole unit.
-That is a LOCAL column counter, not an asserted genuine-source/policy failure.
+**E491 first proof attempt — coarse estimate rejected, full route still open.**
+Kneser gives a valid common-threshold increment, but rounding unequal costs to
+that threshold loses too much. On the ONE paper calibration <101,102,111>, its
+resulting lower profile cannot even recover the homogeneous downset bound. An
+abstract weighted cyclic graph also disproves an area theorem that omits actual
+birth arithmetic. These are method falsifiers, not Wilf counterexamples or
+special-case research programmes. A finer birth-rank inequality is proved, but
+subtracting ranks does not preserve the linear weights needed by the downset
+theorem. No integration paying the finite correction has been established.
+Statements, proofs and qualifications: [PROOFS.md, E490–E491](PROOFS.md#e490--user-priority-change-actual-wilf-area-and-exact-reachability).
 
-**E485/E487 arithmetic lesson:** if δp1 and purep prefix0..t-1 exists, an axis reset
-x=nej of residue t cannot create NEW mixed debt on contexty_j0: κ(x+y)=κ(y), by
-residue injectivity. It need not kill inheritedκ(y). PAPER genuine
-S=<101,102,154,161,171> satisfies ALL prefix hypotheses: unique4p408 and2j+k+l640
-are Apéry (gaps307/539), reset2j residue5, but κ(k+l)=κ(2j+k+l)=1. Allcofactors1,
-c>=540>4m,3e<m. Independent paper review includes exponent uniqueness. No W/Q or
-source-wide computation on this guard. No reduction to δp1/fixed-e is asserted.
-
-**E486 ONE higher-rank numerical control is CLOSED:** new explicit
-G153/12935/13090/24409/25025/36498/47509/58982/70917/71225/83160 has residues77..86,
-e11,c141602,g84060,W491360,Dep1090,kappa69,N102,Q1123,R490237,allcofactors1.
-C and independent heap/edge/attainment/canonical/minimality checks pass;4nonidentity
-tight edges, so uniqueness NOT assumed. Eight genuine contexts retainκ1 after a
-reset. Both OLD and new rules already complete359/359; this input DOES NOT
-separate their completion properties. The new exhibited68cross-column units are
-not necessary/minimum. All label, physical, flow/equalcut and signedquota checks
-pass in0.129207s. No extra input/oldorbit/critic/GPU. PointR>=olddef is trivial0.
-
-**Precise next paper task:** a terminal blocked prefix has protected occupancy
-exceeding N_t+nextwrapcapacity. Explain globally why those protected mixed claims
-can be reassigned, or why genuine full deficiency forces ONE original label in
-aprimequotient. Reset exclusion alone misses inherited contexts; protected blocks
-cannot be paid independently. Base-ideal axis selections preserve old cuts under
-the new permissions, but no free uncrossing to those ideals is proved. Keep every
-source/direction label and full global reserve. Another local criterion or passing
-flow is not the arithmetic sign theorem. Any new numeric predicate needs its own
-exact budget; no expansion of the one passing higher-rank control is activated.
-
-**Full-R insurance also UNKNOWN:** R>=max_E D_old(E) would imply Wilf because
-D_old(D)=-Q. Actual depth gives a potential but not an injective charge of net
-unmatched units to Γ(u)(μ(u)-1) nonmax and Γ(u)μ(u) max copies. The attempted
-homogeneous shortcut duplicates E416 and is stopped. Keep the full pools; do not
-revive boundary-only/collision-only/centroid payments. Same TWO authorized paper
-agents done, all scoped mathematical jobs terminal. Goal ACTIVE; no Lean/novelty
-or universal proof claim. Detailed new results/reproduction: E485–E487.
-
-**Retained E481–E484: old own-column JOINT-ANCESTOR is FALSE.**
-S=<65,3381,6275,7337>,c47339,g24192,W45249,Dep128,kappa17,N29,Q140,R45109,
-allcofactors1, uniqueApéry,strictprimitiveexits,height7,sparse/deep. Nine positive
-border reductions and a65-cell table prove the source on paper. A12-word cut has
-4mixed demands,0boundary,2usablecolumnreserves: ORIGINAL52demand/50capacity.
-Stabilizer trivial;prime5/13retain2/3labels. This refutes the old policy/classifier,
-not negative-Q bridge: Q140 is already covered by Dep>=kappa. Two specific same-j
-axis-source-ancestor transfers repair GLOBAL102->104 with exact paths/certificates.
-Signed quota is mixedload_C<=N_C+netaxisexport_C, sumexports0; no new total credit.
-
-E484 general remaining-axis rank r(W)=|W|-A+ν(Ω\W) and all-downset Hall elimination
-are proved, not their arithmetic sign. Old fixed N_C caps apply ONLY to home-column
-axes. FullE still gives Q>=0. E480 failed its unique-seed guard before new sources;
-E481 breaks17oldties in the correctdirection, stops18/48 atfirstfailureu23 (remaining30
-NOTrun); E482ONEsmallL23 andE483ONEtwoarc repair CLOSED. No unit expansion,
-old349rays/468images/15repairs, one-cubicF-ascent, unrestrictedstalls or rental.
-Full integrated ACTUALXi/source quota and coupled y-surplus remain other universal
-lines. Current implementation inventory is below; no extra research documents.
-
-**Retained E472: the NONFLAT phase-free helper is REFUTED.** A general complete
-cyclic2basis plus one cheap primitive replaces exactly one quadratic by a pure cubic.
-For an explicit directed cover from Bevan–Erskine–Lewis, m95250,e508, the paper
-carry bounds prove F=kappa-Dep>=525. ONE actual reflected source certifies exactly
-kappa70622,Dep68580,F2042,N142167,Q140125,W6050807372067. Every deletion cofactor1,
-height3,3e<m,c>4m. This is a mechanism falsifier, NOT a low-Q/W case: fullQ and W
-are comfortably positive. The original raw/mirror cover and one-cell formulas
-are proved on paper with independent review; no new cover/novelty/Lean claim.
-
-**Independent exact evidence:** all48291750 generator-edge inequalities,95249
-positive-cost attaining predecessors and216267 tight canonical lex choices pass.
-Independent sparse columns verify EVERY Gamma and Q/R identity. Source constructor
-1.75548s; separate Python audit16.5353s on Fejer. Initial GCC13 strict-build warning
-was repaired before source evaluation; only ONE actual source/flat-profile comparison
-ran. Full witness and report are apery_scan/data/cover_cubic_472.json.gz and
-cover_cubic_check_472.json. Worker/laptop hashes match. This compute is CLOSED;
-no atom/q scan, sampling expansion, new GPU rental or pending process.
-
-**Useful signed diagnosis:** for maximal quadratic b avoiding p exchanged for
-minimal-excluded3e_p, DeltaGamma=1_(3p)-3*1_(2p)+sum b_j*1_(e_j). At ANY common
-phase Deltaeta=Delta(N-kappa) is an integer in[-2,2]. Put U=[old2e_p maximal], and
-z_new=number of distinct unit parents becoming maximal. Then
-DeltaDep=(e+1)U-1-e*z_new and DeltaQ=DeltaDep+Deltaeta. In particular a flat old
-tile with z_new0 has DeltaQ>=e-2>0. Our witness has U1,z_new0,Deltaeta1: Q rises
-139616->140125. The construction succeeds at exposing phase debt while moving
-the full budget the SAFE way. Do not enlarge this recipe to seek negativeQ.
-If U0,z_new0, DeltaQ lies[-3,1]; actual-top changes need separate accounting.
-All these signed statements are paper-reviewed specializations of E470 WALL-Q.
-
-**Next:** the full actual-phase payment kappa<=Dep+N (equivalently K<=Dep+V),
-or the weaker combined full-reserve quota, remains the universal obligation.
-N cannot be discarded even after sparse/deep/cofactor/strict normalization.
-Any new negativeQ construction or augmentation must account for the signed
-Gamma/top change, not optimize F alone. No new numerical campaign is activated.
-The source integrated budget and coupled full-y reserve remain the other two
-universal lines. Same TWO authorized agents done; goal ACTIVE, no universal proof
-or genuine Wilf counterexample. PROOFS/EXPERIMENTS E472 contain reproduction.
-
-**Retained E470/E471: coherent exchanges do not stall; finite payment still needed.**
-At a positive canonical wall whose finite active primitive rows generate ONE
-residue-lattice relation b-a, the adjacent tile is EXACTLY the full-shadow image
-z->z-q(z)a+q(z)b. Correct orientation, lattice primitivity, original-unit loss and
-actual-top guards are explicit. This is the known interior-wall mechanism from
-Brower–McDonough–O'Neill Thm5.5, not a novelty claim. E470 supplies exact signed
-DeltaGamma/DeltaQ/DeltaDep/Deltakappa and capped-credit formulas, paper-audited.
-
-**ALL-rank source path:** positive costs2beta+t*a*chi connect prescribed D_U to
-ACTUAL Apéry values through finitely many simultaneous coherent downset exchanges.
-Every effective preendpoint move saves positive FINAL-source P-cost and preserves
-already-present original units. Endpoint convention is Pmin/MAXchi/lex; a different
-Plex can need zero-cost swaps. Thus the unrestricted mechanism cannotstall before
-exact values. Do NOT implement a search for its auxiliary stalls. Its finalL=W,
-so this proves accessibility, not positivity. Restricted corner policies stillstall.
-
-**Actual finite budget:** J_e(t) iscontinuous, with derivative
-a(e-1)chi(value-top)-eXi(t), and initialsurplus2WU+2(e-eU)ellU+C_a. Xi decreases,
-but value-top odddegree need not be maximumodddegree. Wallcredit at FIXED FINALP
-is not an extra jump inJ(t). Real-path positivity is FALSE unconditionally:
-paper5/7/8 has J0=2,J1=actualW3,yetJ(2/15)=-2/5. This coveredtoy is outside the
-remainingdomain, not an integer semigroup or restricted-path counterexample.
-
-**Signed Q calibration:** advisor51's firsttwo genuine coherent walls48p->q+r,
-47p->2q occurat1/23,2/45. At actualtopRES45, profiles have Q96->100->96 while both
-fixed-final-source credits44/43 arepositive. Allthree openprofiles admit normalized
-genuine51realizations; rawcostvectors are not those generators. OriginalsourceQ
-doesnotchange under its own word substitutions. No automaticQmonotonicity follows
-from sourcecredit. Paper-only, no new computational source or negativeQ claim.
-
-**E471 saved15 replay CLOSED:** optional uniform J>=Q, i.e.ex<=R, remainsUNKNOWN.
-All15 existing capped/coordinate pointwitnesses recheckexactly, minJ-Q82. Boundary-
-only helper Gamma.x>=ex is FALSE on two. Compact OLD65/82/214/217/265 hasx1on9
-residues,ex45,Gamma.x39, but ysurplusGamma.y-Dep1231 givesJ-Q1225. OLD146vector
-has332<336, ysurplus651. Full tight/cap/primitive rows and independent membership
-pass. No new LP, semigroup generation, sampling or optimizer. Data:
-p39/data/reserve_transfer_471.json. Initial file-filter count assertion fixed before
-any witness audit; no alternate source set. Do not drop y surplus or revive the
-duplicated E422 column/tree budget as a new theorem.
-
-**Next actual sign tasks:** full cyclic carry payment K<=Dep+V (equivalently
-kappa<=Dep+N) remains the most direct target. E469 axis map is valid with exactlyN
-unused wraps; mixed augmentation must use BOTH wraps/Dep and can reassign slots.
-E470 WALL-Q can diagnose a proposed global augmentation or a realizable negativeQ
-construction; it does not justify a new wall engine/positive-profile census.
-The weaker joint-source route needs the integrated finite-drop bound with ALL
-closure/embedding/correction reserves. Coupled route retains full y surplus and
-row slacks; optional J>=Q is not a prerequisite replacing Wilf. Goal ACTIVE, no
-uniform sign or genuine Wilf counterexample. Same TWO agents done, all jobs
-terminal, no GPU rental/new launch. Directed NEW-predicate discovery remains
-authorized; do not revive the old resistant-seed prerequisite.
-
-**Retained E467–E469:** Q=Dep+V-K after full residue-reserve cancellation; explicit
-axis descendant injection leavesN. Forced last-edge reflection-toDep fails even
-on a real mixed63token (otherresourcesmaypay). E468242ray/349point probe is CLOSED:
-309eligible,bestF-3,minQ52,allindependentlychecked; no fullfanadjacency claim.
-
-**Retained E464–E466 reductions/guards:** full-Q may be proved on UNIQUE Apéry
-factorization/strict-exit sources while preserving D,delta,actualtop,phase,Q and
-cofactor1. This is NOT a W-sign-preserving reduction; canonical additive certificate
-rows remain. All468 unit images of9cached tiles are CLOSED and Qpositive,F<=0;
-no explicit new image sources. Raw all-word energy payer fails even inside cutoff
-at24/27/30/1003/1004 (margin-30133741,Q84). Flux anchored sampling target remains
-UNKNOWN; unconditional monotonicity/quadrature fail. Retain full reserves and net
-cap accounting from E461; fixed-rank frozen returns and standalone cap-transfer
-remain false. Detailed statements/results are in PROOFS E461–E469 and EXPERIMENTS.
-
-**E457–E460 checkpoint: standalone unit/corner payer REFUTED; compatible shadow verified.**
-The latest advisor's51 control and both31 restoration orders are correct. A new proof
-family S=<a,a+2,3a-4,3a-2>, odda>=39, shows that canonical D_U may already have ALL
-source units while L<0, needing order-a^2 credit. Every primitive-output catalogue
-fails there; every fixed INPUT-degree cap eventually fails even with composite outputs.
-Long inputs must be synthesized from arithmetic, not excluded by a fixed local grammar.
-This is a universal-mechanism falsification, not a fixed-e Wilf programme. One39 member
-was computed; the advisor's51 member was independently checked. No family W census.
-
-**New exact policy obstruction:** S=<38,51,67,120,193>,m38,e5,c333,g209,W287,a51,
-P=(38,67,120,193),beta=(19,8,60,71). Its initial canonical closure tile has all4units,
-seven maxima,L=-8, and ZERO positive maximal/minimal-excluded corner exchanges.
-No unit/corner move can start. This refutes the standalone existential unit+corner
-policy on its ACTUAL starting class, even under cofactor1/deep/sparse normalization.
-It is ALREADY SUPP-certified (Q103,R184); the weaker combined [SUPP OR source policy]
-claim is NOT refuted. Do not call it a resistant Wilf case or counterexample to Wilf.
-
-Exactly three profitable border outputs exist, with nonmaximal inputs. The compatible
-shadow13*67 ->5*38+120 (saving11 pivots51) moves13e67 and14e67 together, preserving
-all geometry/residues/units; credit22 gives L102 and leaves excess37. Scalar alternatives
-give L172/167 with non-downset images. Credits are alternatives, not added. The SAME
-parity agent checked the51saved words/13borders and repair independently.
-
-**E459 bounded run:** prepared4x128 feedback proposals; stopped in generation0 after
-37 evaluations/29accepted/128proposed. ZERO adaptive feedback generations ran. No
-corner cap; no GPU rental. C++ source/exact U construction, complete corner absence
-and all policy choices replay independently. Three controls31/39/51 end at516/108/156.
-Raw traces and independent audits are under apery_scan/data/trade_*459*; the engine is
-retained as a CLOSED falsified-policy diagnostic, not a positivity theorem/campaign.
-No automatic rerun, larger count or rental. All Fejer jobs finished; both same agents done.
-
-**E460 general normalization lemma:** at ANY primitive pivot, a residue-bijective
-full-source-unit downset with ONE maximal cell is a box. Cyclic character/quotient
-factorization forces some source generator whose removal leaves gcd>=2. E439 thus
-excludes every such box from a least-genus Wilf counterexample, even as a constructed
-rather than actual Apéry tile. Independent paper review passes, not Lean/no novelty.
-It does not pay multi-max states; the new corner obstruction has seven maxima.
-
-**Next uniform obligation:** compatible NONMAXIMAL-input border shadows/general scalar
-packings must provide sufficient credit, retaining all reserves. Prefer the weaker
-combined target max(Q, best admissible L)>=0 over requiring each route separately.
-The old corner-only rule is false; directed discovery remains authorized for a NEW
-explicit lemma/policy and budget, with support-covered mechanism controls labelled.
-**E453–E456 checkpoint: neutral archive repaired; finite exits checked; general components proved on paper.**
-The archive now groups by EXACT (e, primitive residues, canonical words), preserving up
-to4 distinct height representatives per group, including the W/c winner and height/
-boundary diversity. The advisor's W1020 neutral representative is retained alongside
-W708; a deliberate diagnostic hash collision cannot merge different tiles. Boundary
-slack ranking is a heuristic, not an integer realizability certificate. The64x4 CPU
-integration check retained11,14,19,21 reps across8 groups, with156 feedback proposals;
-it verifies the workflow, not improved search quality or GPU performance.
-
-**Finite advisor test:** all19 first-step neutral representatives have the SAME exact
-tile. ALL8294 outgoing one-input replacements from EACH were evaluated,165880 evaluations
-including initial collection,2.95seconds on Fejer. No F improvement or negativeQ/W.
-The39 exported witnesses pass independent coin/column/phase checks, remotely and locally.
-This does NOT exhaust the full neutral component or prove that archive pruning caused
-the old plateau. Separately, all70125 proper two-atom cover exchanges have pair coverage
-at most59: no full/one-hole covers, hence ZERO new uniform-lift semigroups evaluated.
-Both finite recipes stop here; no automatic extra generations or three-atom expansion.
-
-**New general mathematics, paper-proved and independently agent-reviewed:** original-
-source trades P.x=P.y+sigma*a give joint lift credit sigma for disjoint input blocks
-inside each original-label U-word. Credits pay surviving AND killed mass together,
-retaining original e, mixed parity, W(U) and every reserve. Their descendant contribution
-has an exact column-shadow sum; mixed inputs and composite outputs are necessary.
-On ONLY the advisor control S=<31,33,101,103>, packing4*33=101+31 and5*33=103+2*31
-gives total credit168, reducing joint lift bound465 to297 and recovering W516 exactly.
-The advisor's zero-death refinement alone gives bound438/Wlower-48 on this same input.
-This is calibration, not a universal payment theorem. General finite sign remains UNKNOWN.
-
-**E455 neutral-buffer lemma:** ANY two integer height assignments realizing a genuine
-labelled lex tile can be connected after a common positive coordinated neutral shift,
-using a buffered monotone unit-step path. The construction preserves m,e,D,residues,F;
-it may change tight patterns/top/W and leave every practical height box. It is not a
-Wilf-sign-preserving reduction or a proof of original unit-step connectivity. Actual
-tops must be positively exposed vertices, excluding some low abstract phases. No Lean
-or novelty claim. Full statements: PROOFS E453–E455; exact experiments: EXPERIMENTS E453/E454.
-
-No GPU rental this checkpoint. All Fejer diagnostic jobs finished. The SAME TWO authorized
-agents completed independent audits; no new launch. Next is a uniform finite payment
-using original-source trades and full reserves, with Hall/coupled alternatives retained.
-
-**E456 adds a general payment component, independently reviewed:** a missing original
-unit in D_U forces a positive primitive-output block; other such blocks cannot match
-its credit at its own input without decomposing that source primitive. A full-shadow
-compression replaces every applicable repeated input block by its primitive output,
-preserving a downset, all residues and existing units. Iterating restores ALL source
-units in at most e-1 steps. This compression works for ANY primitive pivot, not just
-the parity setup. Its exact gain in the constructed Wilf lower bound is e times the
-total pivot credit. It does not reconstruct Apéry minima or guarantee positivity:
-the constructed maximum may still exceed the actual one. SOURCE-QUOTA in PROOFS E456
-states the precise remaining global inequality. No computation, Lean or novelty claim.
-
-**E452 COMPLETE: warmed GPU benefit and genuinely adaptive feedback VERIFIED.** The
-user's advisor critique correctly superseded the self-imposed no-compute-until-resistant
-rule. Directed discovery remains authorized; do NOT reinstate that gate. Reusable
-GPU/host buffers, parallel canonical scoring and single primitive extraction are live.
-Seven measured full-path repetitions show CPU/GPU median milliseconds63:23.034/17.495,
-256:120.227/90.929,1024:505.465/390.450 (about1.30x BATCH-EVALUATION speedup).
-Candidate generation, selection and archive updates were outside this comparison;
-there is NO matched CPU/GPU speedup measurement for the entire adaptive campaign.
-No timeline profiler or asynchronous overlap was used. Fejer and GPU exact checks pass,
-including repeated-workspace memory checking and independent final coin/column audits.
-
-Adaptive614400 evaluations INCLUDE repeated elites;500640 proposals explicitly depend
-on scored parents across600 feedback generations. Best F at m61/63/67/71 improves
--112->-5,-7->-3,-156->-21,-125->-20. No nonflat F>0,negativeQ/W or new sign theorem.
-Height2 bridges reached F9 and remain already covered, not resistant discoveries.
-The63 endpoint is cofactor1, height3,Dep42,kappa39,Q56,R652,W708.
-**Exact follow-up:** ALL8294 one-input replacements in the height1..12 box checked
-on Fejer: no improvement,19 neutral ties; every changed-residue eligible nonflat
-neighbor has F<=-52. This is a FINITE local barrier, not global impossibility. It
-motivates coordinated residue/tile moves or neutral traversal, not more generations
-of the same ascent policy. Raw/aggregate evidence:
-[adaptive_analysis_452.json](../src/apery_scan/data/adaptive_analysis_452.json).
-
-A40 u3tgprqzvgrw2q ran14:39:11--14:40:59EDT and is independently confirmed ABSENT;
-controller81926 is TERMINAL, watchdog done. Estimated GPU runtime0.0177USD, not invoice.
-Task public key removed,4 unrelated EXITED pods untouched. No GPU/Fejer search job
-or running agent remains. Same two authorized agents completed all work/audits.
-
-**E451 paper components, independently reviewed:** exact mirror-Q pairing at a fixed
-maximal cell, and residue-column scalar deaths form INITIAL segments with pointwise
-lambda_s=nu_s+2D_s,nu the max source odd filtration degree. New value-sensitive bound
-alpha*(nu_s+2D_s+1_(D_s>0))<=u_s controls ALL descendant mass, without counting kernel
-roots. Its standalone OC-W payer is FALSE on the existing k2 calibration; retain full
-original increment distribution, W(U), coefficient ring and parent reserves. No Lean,
-novelty or finite-sign claim. Details in PROOFS E451; do not repeat the alpha-only payer.
-
-**E450 Runpod pilot COMPLETE; sampler CLOSED.** User explicitly authorized the GPU
-proposal. Exact C++/CUDA engine and proofs are retained; no rental or background research
-job remains. Fejer passed1011 lists/7627 incremental heap/certificate checks. A40 CUDA
-passed111 lists/752 prefixes, compute-sanitizer74 prefixes/0 errors, and all36864 batch
-arrays/invariants matched CPU. Independent coin/column/phase audit passed all9 saved
-minima on Runpod and locally. Both task pods terminated and absent in --all inventory;
-four pre-existing EXITED pods untouched; task account SSH key removed. Estimated GPU
-runtime cost0.022USD at quoted0.59/hour, not an invoice. Details/data: E450 EXPERIMENTS,
-[aggregate audit](../src/apery_scan/data/pilot_analysis_450.json).
-
-**Discriminating result:** ALL36860 eligible inputs were already residue-support excluded
-(Dep>=kappa).165 escaped shape-only exclusion but none reached the remaining obstruction.
-No negativeQ/W or negative abstract phase. This is NOT new resistant-case positivity
-evidence. Stop this sampler; do not enlarge its census or rerent. GPU kernels were fast,
-but allocation/transfers and CPU canonical analysis erase the gain at4096-candidate
-batches. That old prerequisite construction gate is SUPERSEDED by the user-steered E452
-directed discovery task above; this passive sampler alone stays closed. No W cutoff is
-valid for excluding Q<0<W. The SAME two authorized agents completed CPU/audit tasks;
-no new agent was launched. Mathematical finite payment remains open below.
-Fejer is running in us-east1-b on e2-standard-8 after two c2d-standard-8 capacity failures. The startup process check
-found no previous research jobs. User also authorized laptop calculations if fejer cannot run.
-The specific ANCHOR plan remains **proposed, not automatically approved** by the resumption.
-
-**Goal:** prove Wilf for every numerical semigroup. Q5-only targets have no proved reduction from all semigroups
-and are retired as active directions. The old handoff is [archived](archive/STATE_2026-10-21.md).
+**SUSPENDED:** JOINT-ANCESTOR, cross-column transport, protected-prefix
+rearrangement, cofactor-obstruction conjectures and GPU searches. Earlier
+mathematical results and implementations remain available as history, not next
+instructions. E488/E489 were unexecuted preparations: no E489 source/network
+audit ran; its untested CLI has been removed. No numerical campaign, worker,
+rental or new agent was launched for E490–E491. The same earlier agents remain
+stopped. No universal proof, counterexample, Lean verification or novelty claim.
 
 ## Method and standing orders
 
-Read [DIRECTIVES.md](DIRECTIVES.md) for the binding rules. Work backwards from a hypothetical counterexample:
-search genuine semigroups for small W, optimize splitting weights, inspect tight constraints and exact dual
-obstructions, then extract and prove a parameter-independent lemma. C/C++ is preferred for search and checks;
-use a solver where weight optimization needs it. Every target needs an explicit implication chain to full Wilf.
-Bounded searches remain evidence. Agent launches each require the user's explicit approval.
+Read [DIRECTIVES.md](DIRECTIVES.md) for the binding rules. Work backwards from the ACTUAL
+Wilf inequality and seek an arithmetic estimate with a proved implication to it.
+The user's new reachability priority supersedes old auxiliary-target selection.
+C/C++ remains preferred if a later scoped experiment is needed. Every target
+needs an explicit implication chain to full Wilf; bounded tests remain evidence.
+Agent launches require the user's explicit approval.
 
-## Where the mathematics stands
+## Retained mathematical results — historical, not active targets
+
+The results below preserve context. Old requests to continue, compute or delegate
+are superseded by the current status and the user's DIRECT-WILF instruction.
 
 **E448, advisor's stronger stability theorem VERIFIED:** for EVERY S with3<=e<m,
 M=c+m-1,C=(e-2)m(m-1)/2,L=m-e+1, now `mW+C>=M/L`, superseding E446's L^(e-1).
@@ -1023,254 +726,37 @@ source/flow mode or W computation on the101 guard.
 
 ## Current attempt and next action
 
-**Principal next proof task (E485–E487):** prove a GLOBAL deficit-sensitive
-transport/one-original-label theorem, using the now explicit source-indexed
-permissions. PREFIX-IMPORT quantifies local blockage by P_t>N_t+e_t; it does not
-pay those protected claims. RESET-EXCLUSION removes fresh carry only; the101
-paper guard proves inherited debt persists under its full hypotheses. A closed
-component must be analyzed with all inherited labels and possible mixed reassignment,
-not a count-only quota or repeated local argument. Base-ideal axis selections
-preserve cuts but arbitrary-component uncrossing is unproved. Negative fullQ remains
-the direct E439 descent bridge; proper-cut failure may be an overly strong model.
-No new compute/positive-profile census, higher-rank expansion, oldunit/repair replay
-or rental is activated. Full-R injection is a distinct open insurance target,
-not a replacement by the homogeneous/collision-only bound already rejected.
+**Only current mathematical target:** the actual area inequality above for EVERY S.
+Investigate the full unequal-cost cyclic recursion together with the birth
+congruences w_r=r mod m. The outstanding step is an integrated lower bound on
+Area that earns the additional (e-2)m(m-1)/2 beyond the homogeneous downset estimate.
+This is a required inequality, not a result established by restating Wilf.
 
-**Other universal lines remain:** integrated source quota with ACTUAL Xi and all
-closure/embedding/correction reserves; coupled affine budget with full y-surplus
-and row slacks; weaker combined max(Q,valid capped/tradeL) payment if support is too
-strong. The main bridge's failure would call for these reserves, not a restricted
-Wilf target. No source-path stall search, standalone raw word energy, fixed-rank
-returns or unconditional flux/real-path monotonicity revival. All mathematical jobs
-are finished; new paper work retains every-m/e/depth quantifiers.
+The first common-threshold Kneser estimate is too weak and is closed as a complete
+payer. The finer BIRTH-RANK statement in E491 retains actual arrival times and the
+stabilizer correction for composite m. The next paper task is to determine whether
+those constraints control cumulative growth across unequal primitive costs. Any
+new lemma must explicitly imply the area inequality or supply a proved reduction
+to it. In particular a theorem about Q, a routing policy or a bounded family is not
+the default next step.
 
-E472 now CLOSES the nonflat phase-free kappa<=Dep helper with a genuine F2042
-witness. The actual phase more than pays it; no negativeQ/W found or claimed.
-The one-cubic construction is also CLOSED: common-phase DeltaQ>=e-2 when the
-old square is maximal and no unit becomes maximal. Its success on F is therefore
-not progress toward low Q. Any next proof-derived augmentation must retain both
-DeltaDep and Deltaeta and possible top changes; the generalized signed formula
-above diagnoses the already-branching case without authorizing a new wall sampler.
+The immediate invalid shortcut is to apply the linear downset theorem to w-R(w),
+where R counts earlier births. These compressed costs need not be linear on the
+factorization tile. Neither a name such as Kneser nor a local rank inequality
+supplies the missing mean–maximum estimate without a further proof.
 
-Directed discovery remains authorized, with a named predicate and budget; the old
-resistant-seed prerequisite stays superseded. Any new policy search should report both
-its own failure and the combined support/source margin. Do not enlarge the stopped
-corner policy or the earlier cover/neutral recipes. E455 connectivity is not a W-sign
-preserving reduction; E460 no-box normalization is a proved necessary restriction,
-not a multi-max payment. All resources/jobs are finished, and the same two agents done.
+**Strategic review:** stop coarse growth that forgets costs/births; continue the
+user's actual-W arithmetic target. Test proposed integrated estimates against
+exact source arithmetic before considering a numerical campaign. No stronger
+auxiliary positivity conjecture is required. The old allocation, parity, source
+exchange and cofactor lines are retained in PROOFS but are suspended as primary
+targets. No current next action authorizes their automatic revival.
 
-**Parallel proof obligation:** exploit E451's POINTWISE-DEATH/VALUE-DEATH while retaining
-the full distribution of original odd increments and mixed coefficient ring B. The
-minimum-alpha stand-alone payer already fails, so do not optimize or resample it.
-A uniform payment of the surviving moment plus initial-column death lengths remains
-needed. Mirror-Q provides an exact paired identity but no positivity transfer.
-
-**First precise proof task:** on the remaining genuine tiles, try to derive
-N(actual top)>=kappa-Dep from arithmetic boundary/maximum constraints, retaining the
-complete cyclic residue reserve. If that sufficient statement fails, isolate the
-unpaid amount and use the FULL R=Gamma.mu-Dep in W=Q+R. This is the E432 whole-tile
-payment obligation, not an all-cut/frozen strengthening. The parity descendant/value
-budget below remains the distinct current alternative; no bounded family is activated.
-
-**Current exact target (E444–E448):** prove the finite source value gain for EVERY S:
-`(e-1)M-e*mean >= (e-2)(a-1)/2`, using the ORIGINAL parity algebra, cyclic residue labels,
-E439 normalization and the FULL E445 unused-parent reserve. E448 now supplies a quartic
-large-conductor exclusion; it does not make the bounded finite budget nonnegative. The
-next theorem must pay BOTH surviving degree moment sum n*b_n and killed scalar mass
-2sum eta_n using their actual value labels and the coefficient ring B. The unseparated
-E441 budget retains BOTH WU and every nonnegative resource; do not require the two costs
-to pay independently. No all-odd reduction, cutoff refinement or Hilbert census is active.
-
-**Hall alternative, at its weakest useful strength:** prove Q(D)=Dep+N-kappa>=0 at the
-actual conductor phase, retaining BOTH reserves in Q=frozen+Leak+m-pool. At the full tile
-Leak=0 but m-pool remains. All-cut, pool-only and frozen extension targets are stronger
-optional diagnostics. They are not the main proof obligation. No new search is pending.
-
-**Earlier E432 stronger target (retained as optional, not current):** for every genuine canonical tile in c>4m,3e<m at its ACTUAL
-conductor phase, bound the maximum weighted Hall deficiency by m. Cell z has positive benefit
-beta(z)=1+floor(z.delta/m)+sum_(delta_j<=r(z))z_j; every proper-divisor sink u has capacity
-d+|u|. The graph uses immediate parent implications, with2m+2 nodes and O(dm) arcs. A flow
-of value at least B-m, B=sum beta, would prove the proposed completion bound Q(E)>=0 for
-ALL down-sets E. At E=D it gives W>=Dep+N-kappa_0>=0, hence universal Wilf with the complements.
-
-**Proved versus open:** inversion counts linearize exactly in the selected cells. The source
-benefits above are always positive. The minimum completion budget is exactly m+maxflow-B,
-and generalized Hall gives its equivalent deficiency formulation. These reductions are paper
-proofs, not positivity. The uniform deficiency<=m theorem remains UNKNOWN and is stronger
-than the complete-tile support bound, itself stronger than Wilf. A negative proper cut need
-not refute Wilf. No reduction from all S to the41 diagnostic profiles is claimed.
-
-**Earlier E435 stronger task (optional; preserve both E444 reserves):** for every genuine D and every nontrivial
-down-set E, the SINGLE joint inequality
-
-    K(E)+L_out(E) <= C(E)+(Gamma_D(nonmax E)-F_in(E))+V_D(nonmax E).
-
-F_in has already been mapped to distinct missing-direction slots; C=number_of_negative_starts
-minus number_of_maximal_cells is nonnegative by an explicit column selection. Construct the
-remaining cancellation/transport of exterior alias relations AND carry copies into unused
-starts, unreserved missing slots and wrapped slots. A dimension comparison or an unspecified
-rank bound alone would only restate the inequality. The scalar lowering trial fails even on
-the safe height1 control (rank2 versus a d+1-dimensional domain), so do not tune its coefficients.
-
-**E436 correction, now partially repaired by E437:** do NOT first require L_out<=C; the MSTD lift
-refutes that stage on every representative choice. For an exterior group, choosing its
-least signed word by actual primitive weight then lex order proves that every other start
-(v,j) has a canonical cross-exit v+e_k in the root's direction k. This is a concrete map,
-but it can overload the same exit: the checked images2 and3 both choose (u_14,j_0), of
-capacity1. E437 repairs THIS collision and constructs a uniform forest exchange, but does
-not fund the remaining cycles and carries. All Gamma slots in the pair witness arise from
-zero actual-gap trades, so a proof cannot reinterpret them as strict positive arithmetic margins.
-
-**Unresolved E437 stronger step (optional):** use the labeled cycle relations and actual
-conductor phase to derive or refute a GLOBAL payment of K+beta_* from C+Gamma-p_*+V.
-Here the all-alias graph has F_in+L_out edges, p_*=vertices-components tree edges are already
-paid, and beta_*=edges-p_* remains. The exact equivalence to JD is proved; its sign is NOT.
-Do not merely improve the forest/edge assignment, assert a rank theorem, or require each
-component to pay itself. No new solver run is warranted without a proof-derived inequality
-that distinguishes a source of finite surplus. If no such inequality emerges, return to
-actual arithmetic/weighted full repair rather than treating graph bookkeeping as sign progress.
-
-**Actual-arithmetic task after E445:** keep E439's cofactor1 normalization for a least-genus
-counterexample. Replace uncontrolled quotient generator growth by U=<I>=<a,H,A+>, with
-eU<=eS and smaller genus. PROOFS E441 gives the exact mixed Apéry budget and typed H/A
-constraints. Seek a uniform bound on the WEIGHTED common lifts sum(K+L), using residue
-completeness and actual WU, sufficient to force WS>=0 when WU>=0. Unrestricted MON1 is
-FALSE; its sparse-domain restriction is unknown and optional. E442 now expresses the mass
-as h_1+2*sum_(n>=2)h_n of the ideal-power algebra. Retain its original-source coefficient
-actions (including paired quotient primitives); the scalar algebra's dimension h_1
-cannot be replaced by eS-1. Use the ORIGINAL source Apéry algebra, with its eS-1 generators,
-and the exact ODD-PRODUCT correspondence to quantify the finite value gain. Retain E445's
-unmatched even-parent deficit reserve; primitive-only funding and selector refinement are
-refuted. When a>m, use floor(p/a) depth, not a unit drop on every primitive. Source relations
-kill higher scalar layers, but that is not a payment without a global inequality. No
-O-sequence census or layer optimizer is next. Only epsilon
-=K-L is binary. Do not replace L by support size, infer a unit cap from the
-two search cases, or run a new closure/shortest-path optimizer that merely reconstructs
-the instance. The bounded C falsification is CLOSED with no failure, not a theorem.
-This is standard normalized-ideal blowup; no novelty claim. All ranks/heights/depths
-remain included. The cyclic-boundary and full weighted-certificate alternatives remain active.
-
-The19 tile has L_out8,K6 against C8,G_rem0,V7. The old34-cell114 cut has L_out2,K54 against
-C15,G_rem2,V45. Unused starts cannot be assigned only to carries (19 fails) or only to aliases
-(114 fails). Wrapped capacity alone cannot pay raw carries (54>45 on that114 cut). No new
-positive-profile tests are next. The Gamma=K=0 safe-cut proof supplies a valid base; extending
-it quantitatively to nonzero exterior/carry debt is the missing step.
-
-Equivalently, the original E434 task is to extend the feasible nonwrapping occurrence flow by
-routing every NONZERO cell's remaining1+K_z units into proper-divisor capacities
-R_u=Gamma_D(u)+V_u and the permitted nonzero directional pool units. On u->z=u+e_j the
-pool choices are phi(u), and also phi(u)-delta_j if u_j=0; ancestor paths allow descent.
-Every nonzero free residue has capacity1, aliases counted ONCE; the origin's unit is reserved.
-For ALL nonempty down-sets E prove
-
-    sum_(z in E\{0})(1+K_z) <= sum_(u in nonmax E)(Gamma_D(u)+V_u)+|U(E)|-1.
-
-This is a SINGLE JOINT inequality, not separate payers for alias rank, carry units or
-boundary. The19 full tile forces wrapped usage>=6 with only7 available: formal credits27
-map to15 residues, losing12 dimensions, but the actual demand including the origin is25.
-Charging one slot per formal relation overstates what must be paid. Keep the actual source
-count. Do not assume the lift integers are closed under ALL primitive subtraction: that is
-the old U=T hypothesis, false in the saved10 example. If freezing is too strong, revert to
-the unfrozen E433 beta flow / E432 global m allowance, not a restricted family.
-Do not launch more positive-profile checks; all three diagnostic tiles are closed.
-
-The older global degree/inversion identity is recorded for comparison: that degree allocation respects parent capacities; its unused
-amount at a nonmaximal parent is Gamma. The explicit inversion flux cancels eta in the source
-balances and leaves1+kappa(z)-sum_(missing directions)I_j(z). Those balances can be negative;
-neither construction is asserted feasible under the actual beta source capacities. Resolve
-these balances globally, leaving at most m unmatched units. An injection of all remaining
-unmatched charges into DISTINCT cyclic residue classes would suffice. Do not assign one free
-unit rigidly to each source: the114case has a34-cell witness with Hall deficiency39, failing
-that local rule by5. Do not require columns, directions or cells to pay separately.
-
-**Stopped E433 routes:** an unspecified matrix of nullity<=m only restates Hall, without an
-arithmetic operator or kernel proof. Requiring ALL successors for the interior credit is
-false: the40 example has kappa=N=0, so its shortfall already comes from boundary structure.
-The directional pool retains those missing starts; this is a candidate mechanism, not a
-proved repair. PRIVATE/CRIT conditions on minimal bad cuts restrict shared parents but do
-not exclude the14-maximal-cell114 core. See PROOFS/FAILED E433 for exact statements.
-
-If the stronger completion claim fails, classify the exact cut and keep the weaker full-tile
-payment target; do not abandon the universal goal or assume the stronger auxiliary conjecture
-is necessary. Coefficient feasibility, positive recession and accurate reconstruction of an
-individual W still do not pay the finite constants. The advisor's warning remains applicable.
-
-**Closed E432 diagnostic:** first principal-upset/value-prefix scans, then exact optimization
-over EVERY down-set of the SAME41 existing tiles; all minima nonnegative. These were mostly
-already-settled examples, not a new resistant-semigroup census. The small-tile audits independently
-enumerate14,52,166 ideals. These are model/algorithm checks, NOT a universal sign argument.
-Do not enlarge this positive list; the next work is the uniform capacity proof, not sampling.
-
-Three distinct universal lines stay active: (1) actual primitive boundary and complete cyclic
-residue payment; (2) full weighted repair coupling/order ideals (E419/E429/E430); (3) actual
-arithmetic/integrality, including E431's integer realization. The current actual-support Hall
-route does not assert positivity of the stronger capped certificate or Phi_Z. Keep their
-implication directions and weighted counterexamples intact. No fixed height/e/Q5 family target.
-
-**Important earlier corrections:** all36 transport anchors satisfy old SUPP's shape exclusion;
-the63 height3 example is also excluded by its residue-aware version. E431 realizes integer
-tangent directions exactly and refutes common primitive-lift monotonicity by unbounded drops,
-but does not preserve a fractional finite objective's sign under scaling. Retain U=T when
-applying the Lean NoWrap result to T=ℕ. One-unit residual caps, source-only/circulation-only
-funding and the E430 lo-only payment remain false. Full statements/counters are in PROOFS/FAILED.
-
-**Verification and implementation:** new pure-C modes --partial-support-audit and --support-cut
-share the current p39 canonical geometry. The latter exports exact integer flows/cuts and
-definition-level source weights; verify_probe.py --completion-cut-check reconstructs the graph,
-verifies its positive closed benefit formula, flow/cut equality and selected columns. There
-are41 normal exact flow certificates plus3 sanitizer replays, and41 selected-pattern audits;
-C ASan/UBSan passes the flow paths and partial geometry. Logs are data/checkpoint_432_checks.log
-and data/completion_cut_sanitizer.log. The checks are in run_checks.sh; unchanged264 LP optima
-were not rerun merely to inflate this checkpoint. E430/E431 checks remain in that suite.
-E433 adds4 exact structure audits,2 pool-flow certificates and one pool ASan/UBSan replay;
-the changed original completion path was also re-audited on40. Files are
-data/completion_structure_audit.json, completion_pool_probe.jsonl.gz, completion_pool_audit.json,
-completion_pool_sanitizer.jsonl and checkpoint_433_checks.log. No new solver LP or census.
-E434 adds3 fixed-allocation all-cut certificates and one ASan/UBSan19 replay, with exact
-source/capacity component checks. Files are completion_frozen_{probe.jsonl.gz,audit.json},
-completion_frozen_sanitizer.jsonl.gz and checkpoint_434_checks.log. Whole-tile19 has margin1;
-the minimum over all cuts is0 at the EMPTY cut. Neither is an E432 minimum. No new census.
-The extra nonempty40 control verifies leakage2 exactly; a fresh original-pool40 C result
-also passes the changed checker, so the old path remains compatible.
-E435 reused those exact certificates, with no new C solve, to audit3 whole tiles,3 old selected
-cuts and2 zero-resource controls. It checks each internal alias slot and all components of
-the joint defect separately. Files are joint_defect_audit.json and checkpoint_435_checks.log.
-E436 adds one constructed staged-claim counterexample, checked in C++ and independent
-membership DP through818775. All97558 Apéry entries agree; the new C++ sanitizer replay
-matches the normal output exactly. The root-map collision is checked in the SAME witness.
-This is a stopped-stage audit, not another positive Wilf census. Data paths are above.
-E437 extends verify_probe.py with --exterior-forest-check, using existing C certificates as
-inputs and Python stdlib exact graph/slot auditing only. It checks3 OLD cuts in each of2
-accountings (internal slots retained/all aliases together) plus the local two-edge MSTD
-repair. Data: exterior_forest_audit.json, checkpoint_437_checks.log. The original E435 audit
-also passed after the change; no C source changed, new optimizer ran, or large witness
-membership computation was repeated. run_checks.sh includes the new targeted replay.
-E438–E440 add the known rank-one arithmetic descent and a precise parity-transfer obstruction,
-including the cofactor1 remaining-domain example. Checks and code are inventoried above;
-the old E437 graph replay also passed after the new audit code. No broad LP suite, new C
-sanitizer path or large enumeration was rerun. General arithmetic applications are on paper.
-E441 adds the standard odd-ideal closure, generator/genus bounds, mixed Apéry identity and
-exact common-height budget. Its two saved C cases and two boundary controls pass independent
-membership, fresh-output and ASan/UBSan checks; data and modes are inventoried above.
-The only search stopped at a local optimum; no negative margin and no universal sign claim.
-E442 refutes unrestricted MON1 using one exact predicted witness and a paper unbounded family;
-it does not refute the sparse-domain version or full transfer. The ideal-power algebra and
-weighted-cost formula are proved on paper; its five fixed-case audits are inventoried above.
-The generator-count mismatch is checked on the OLD5/7 control; no new search or solver.
-E443's standard differential presentation/Euler decomposition and E444's source-parity,
-ODD-PRODUCT and reserve identities are proved on paper; their universal finite signs
-remain UNKNOWN. Advisor family/support formulas verify on paper and k2 is independently
-checked; no family search. All general lemmas recorded as proved in E432–E444 remain
-paper-proved, not Lean checked. E445's parent injection/typed credit and arbitrary-modulus
-weighted-depth lemmas are also paper-proved; the stronger reserve-free payer is refuted
-on OLD19 and the finite sign is still UNKNOWN. E446's quantitative cyclic-tile gap and
-explicit all-profile conductor/full-joint bounds are paper-proved and independently
-agent-reviewed; they leave the finite sign unproved.
-E448 supersedes that cutoff by the advisor's1/L argument and identifies the correct
-odd-ideal Hilbert sequence, with independent paper and fixed-case set audits. These
-remain partial results; the full finite value gain is UNKNOWN. No universal
-Wilf proof or genuine counterexample has been obtained. The implementation inventory above
-and this section are the single current code/handoff record.
+**Session boundary:** this is a paper checkpoint only. The autonomous goal remains
+paused and no continuation job has been scheduled. Preserve the six existing
+research records; do not create another handoff, manuscript or implementation
+inventory. Existing C/C++ and independent checkers are catalogued above if a later,
+explicitly scoped falsification experiment needs them.
 
 ## Supporting records — consult as needed
 
