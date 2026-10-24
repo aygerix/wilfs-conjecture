@@ -1688,3 +1688,13 @@ theorem USED in the derivation. The earlier GW/PGW window targets concern other
 prefixes; no result is inferred for this assertion from them. The ordered-birth
 and sliding-window formulas are elementary consequences of Selmer/E490, not
 claimed novel or a replacement for the missing universal inequality.
+
+### E500: complete-window degree count (2026-10-24)
+
+The coordinate-ancestor count is proved directly in PROOFS; no external theorem
+is needed. H>=c is the attempted bridge here, not a claim attributed to Macaulay.
+Ordinary degree of a chosen factorization is not its numerical value, and the
+critical window need not be a single ordinary degree. The earlier primary
+Eliahou/Macaulay true-grading statements therefore cannot supply this bridge by
+renaming parameters. The control is the existing5/7 example, not a new special-
+case Wilf claim. No novelty or independent numerical-verification assertion.

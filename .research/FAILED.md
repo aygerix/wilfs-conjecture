@@ -825,3 +825,12 @@ E498's relaxed-model defects is present. The source is sparse/deep/cofactor-one.
 PROOFS E499 gives the paper argument, with no full W calculation. Full residue
 coverage excludes a simplex; a proper prefix CAN be a simplex. Do not impose
 nonnegative intermediate budgets or activate a restricted-prefix repair.
+
+## E500 — ordinary degree on the complete critical window cannot pay alone
+
+FALSE sufficient bridge: the sum H of canonical factorization lengths for ALL
+values in[c,c+m) is>=c. The valid disjoint-ancestor count H<=e*ell would then
+prove Wilf universally. But OLD5/7 has c24,H22 and unique critical factorizations;
+the unused count U2 is essential, with W=U+H-c=0. No generator-count mismatch
+or partial-prefix issue is involved. Keep source VALUES distinct from ordinary
+degrees; PROOFS E500. No selector/degree repair or new numerical campaign.

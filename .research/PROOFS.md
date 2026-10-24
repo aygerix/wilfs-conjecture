@@ -14574,3 +14574,55 @@ Restoring the full final sum preserves the requisite compensation but does not
 yet bound it. No global lower bound for GLOBAL-WAIT was obtained. Do not turn
 this identity into another graph policy, pointwise-positivity requirement,
 reconstruction algorithm, special-family search or claim of mathematical novelty.
+
+## E500 — a global source count controls factorization length, not conductor
+
+2026-10-24. PAPER attempt on the COMPLETE final window, following the E499
+failure of nonnegative partial budgets. This tests a proposed ALL-S proof step,
+not a two-generator Wilf programme. Let the actual minimal generators be
+p_0=m,p_1,...,p_(e-1). Choose canonical factorizations for every source value
+below c+m, using one additive monomial order. They form a finite downset E:
+every coordinatewise divisor is canonical for its own value. Distinct words in
+E represent distinct actual integers, by construction.
+
+Write L_E for the words of value<c, so |L_E|=ell, and Z for the m words of
+values c,...,c+m-1. Every z in Z is maximal in E, since every p_j>=m. For a
+fixed direction j, all z_j proper coordinate ancestors of z have value<c.
+Distinct z in Z lie in distinct j-columns: two values in the final window
+differ by less than m, whereas a positive j-step adds p_j>=m. Their ancestor
+sets are therefore disjoint subsets of L_E. Consequently, for EVERY S,
+
+    Z_j:=sum_(z in Z)z_j <= ell,
+    H:=sum_(z in Z)|z|=sum_j Z_j <= e*ell.
+
+This is an elementary coordinate count, not a new application of a theorem
+about standard gradings. The proposed completion H>=c would imply ALL Wilf.
+It is FALSE, even when every critical factorization is unique.
+
+The existing S=<5,7> control has c24, L of size12, and the critical values have
+the following unique factorizations (all values are below the first relation35):
+
+    24=2*5+2*7, 25=5*5, 26=5+3*7, 27=4*5+7, 28=4*7.
+
+Thus Z_0=12, Z_1=10 and H=22<c24. For a direct conductor check,23 has no
+representation5a+7b;24..28 are represented above, and repeated addition of5
+covers every larger integer. The twelve left elements are
+0,5,7,10,12,14,15,17,19,20,21,22. No numerical checker or new source run is used.
+
+The FULL accounting has not failed. If U_j=ell-Z_j>=0 and U=sum_j U_j, then
+
+    W=U+H-c.
+
+On5/7 the unused count U=2 pays exactly the length shortfall c-H=2, giving W0.
+Dropping U and asking ordinary factorization length to pay alone is therefore
+unjustified; changing canonical choices cannot repair the unique-factorization
+control. Replacing length by source value instead yields only
+
+    sum_j p_j*Z_j=m*c+m*(m-1)/2 <= ell*sum_j p_j,
+
+which also does not prove e*ell>=c, since sum_j p_j is generally much larger
+than e*m. A grading by word length cannot silently replace actual costs.
+
+Decision: stop this standalone degree-moment completion. The coupled inequality
+U+H>=c remains EXACTLY the original Wilf target, not an extra established bound
+or an activated allocation programme. No uniform proof of it was obtained.

@@ -1,6 +1,6 @@
 # Wilf research — start here
 
-Updated: 2026-10-24 02:24 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 02:53 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
@@ -19,6 +19,17 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**E500: full-window ordinary-degree completion also fails.** For canonical
+factorizations of ALL m source values in[c,c+m), disjoint coordinate ancestors
+give H=sum of their factorization lengths<=e*ell. This uses actual e and the
+complete window, not a partial residue model. But H>=c is FALSE even on OLD5/7:
+c24,ell12,H22, with unique critical factorizations. The unused count U=2 pays
+the shortfall exactly. In general W=U+H-c, U>=0; the proof has not shown its sign.
+The weighted version gives only ell*sum p>=m*c+m(m-1)/2, also insufficient.
+Stop the standalone word-degree bridge; do not repair selectors, grade values
+by assumption, or restart source/transport programmes. [PROOFS E500](PROOFS.md#e500--a-global-source-count-controls-factorization-length-not-conductor)
+contains the elementary paper proof and control. No numerical run or new code.
 
 **E499: stagewise finite-correction integration is false on ACTUAL prefixes.**
 Requiring the k reached residues at every birth threshold T to satisfy

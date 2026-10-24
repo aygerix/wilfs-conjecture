@@ -6430,3 +6430,26 @@ No universal positive bound or complete proof resulted in this checkpoint.
 The active objective is unchanged; no permission, extra resource or user input
 is missing. The remaining difficulty here is mathematical, not an external
 blocker. No blocked/complete status is appropriate and no background job exists.
+
+### 2026-10-24 02:53 EDT — global final-window count; degree shortcut rejected
+
+Previous goal turn was NO PROGRESS. Current state and authorization revalidated;
+the active target still concerns ALL S and the actual W. Attempted a GLOBAL
+endpoint count, not E499's false prefix invariant. Canonical source words below
+c+m give disjoint proper coordinate ancestors of the critical m words. For
+every original direction their number is<=ell, hence their total length H<=e*ell.
+This is an elementary count, not a new graded-algebra theorem or a sign proof.
+
+The completion H>=c fails on the OLD5/7 control: critical factorizations are
+unique, total length22, conductor24. Exact unused ancestor count U2 pays the
+shortfall. Thus neither changing canonical selectors nor merely preserving the
+correct e repairs a standalone degree argument. Weighted source values instead
+give ell*sum p>=m*c+m(m-1)/2, which is too weak to infer Wilf. All checks here
+are the displayed finite hand calculations; no new source reconstruction/run.
+
+GLOBAL REVIEW: new evidence closes that proof step; no new positive bound for
+actual W has resulted. Retain the full unused count and actual costs, without
+turning W=U+H-c into another payment-policy programme. Do not present this
+identity as an advance on the universal sign. Main area goal ACTIVE; no external
+blocker, numerical job, new agent or resource request. No broader exhaustion
+or novelty claim follows from this failed attempt.
