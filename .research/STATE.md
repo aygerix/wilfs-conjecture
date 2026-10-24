@@ -1,13 +1,15 @@
 # Wilf research — start here
 
-Updated: 2026-10-24 02:53 EDT. This is the single current handoff. Update this page in place at each checkpoint.
+Updated: 2026-10-24 10:23 EDT. This is the single current handoff. Update this page in place at each checkpoint.
 
 ## Current status
 
-**ACTIVE goal: DIRECT-WILF, the actual Wilf number for EVERY S.** On2026-10-24 the
-user explicitly resumed universal proof work and forbade all side paths. The new
-goal tracker is ACTIVE. The stopped transport/Hall/cofactor/GPU programmes and
-agents remain stopped. Exact authorization and scope are in [SCOPE.md](SCOPE.md).
+**PAUSED BY USER: DIRECT-WILF, the actual Wilf number for EVERY S.** The goal
+tracker reports paused. The user then instructed: "At the next natural checkpoint ,
+wrap up your work". This checkpoint ends the session; do not resume research,
+compute or agents without an explicit resumption. The universal objective is
+unchanged. Transport/Hall/cofactor/GPU programmes and agents remain stopped.
+Exact authorization and scope are in [SCOPE.md](SCOPE.md).
 
 **Scope:** proves Wilf for EVERY numerical semigroup if the target below is proved.
 Proved reduction from all S: **yes, exact equivalence by the Apéry identities**.
@@ -19,6 +21,18 @@ With A_t={r:w_r<=t}, empty for t<0, set Area=sum_(t=0..M-1)|A_t|. The target is
 
 The difference of the two sides is EXACTLY m*W(S), not an auxiliary bound Q.
 S=N has c=0 and is trivial. Neither m, e nor depth is bounded in this task.
+
+**E501 fragment preserved; that detour is CLOSED.** The pending paper argument
+shows U=0 implies W=0 and, for e>=3, U=1 is impossible. It does NOT reduce all S
+to those cases or bound the full shortfall c-H. It is not counted as progress
+on the universal sign. No small-U classification or local extension is active.
+The full-arrival summation tried next cancels the birth values; retaining its
+truncated terms returns E497's still-unproved overlap budget. No new universal
+estimate resulted. The previous user-facing explanation was NO research
+progress. No new universal inequality was obtained; no numerical job or agent is
+running. IF explicitly resumed, work only on the full actual-area inequality
+above, retaining all minimum constraints and compensation across the whole
+process. This is the unresolved obligation, not a claim to know its proof.
 
 **E500: full-window ordinary-degree completion also fails.** For canonical
 factorizations of ALL m source values in[c,c+m), disjoint coordinate ancestors

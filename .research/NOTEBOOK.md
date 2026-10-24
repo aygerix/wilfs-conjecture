@@ -6453,3 +6453,40 @@ turning W=U+H-c into another payment-policy programme. Do not present this
 identity as an advance on the universal sign. Main area goal ACTIVE; no external
 blocker, numerical job, new agent or resource request. No broader exhaustion
 or novelty claim follows from this failed attempt.
+
+### 2026-10-24 10:20 EDT — close the small-unused-count detour
+
+Previous goal turn: NO PROGRESS; it explained the drift without advancing the
+mathematics. Revalidated current worktree, STATE, DIRECTIVES and ACTIVE scope.
+The only target remains the exact actual-Apery area inequality for ALL S.
+
+Preserved the previously pending E501 elementary paper fragment: U is the
+total length of columns ending below c; U=0 forces a full simplex and W=0;
+for e>=3 the unique-defect argument excludes U=1. No new computation or
+independent verification is claimed. These statements do not give a reduction
+to bounded U and do not bound U against the unrestricted shortfall c-H.
+CLOSED this detour instead of continuing it into a small-U programme.
+
+The full-arrival proof attempt gives no new sign estimate: an unweighted sum
+of each generator's minimum inequalities cancels all birth values; retaining
+the truncated terms returns the exact E497 overlap budget. No bound on that
+budget was established. A look at arbitrary residue-complete downsets also
+returns the already recorded stronger GW conjecture; it is not reactivated.
+
+GLOBAL REVIEW: no universal positive inequality or proof was obtained. Merely
+connecting an auxiliary statement to Wilf does not justify another target.
+Keep full numerical costs, all actual minimum inequalities and the final area;
+do not demand nonnegative intermediate prefixes, substitute ordinary degree,
+or restart stronger-Q, transport, source-repair, bounded-family or GPU work.
+Goal remains ACTIVE; difficulty proving the inequality is not an external
+blocker. No additional user instruction or resource is required to continue.
+
+### 2026-10-24 10:23 EDT — user pause and final checkpoint
+
+The user set the goal status to PAUSED, then requested wrapping up at the next
+natural checkpoint. No further mathematics or numerical work follows. Goal
+tracker paused; SCOPE ACTIVE:no. Preserve E501 as a closed elementary fragment,
+not a reduction of all S to small U and not a claim of universal proof progress.
+The full inequality remains unproved. This checkpoint updates existing records
+only; unrelated worktree files are excluded from the commit. Resume only on
+an explicit user instruction, with the unchanged universal actual-W objective.

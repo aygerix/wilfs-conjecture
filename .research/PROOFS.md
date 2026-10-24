@@ -14626,3 +14626,90 @@ than e*m. A grading by word length cannot silently replace actual costs.
 Decision: stop this standalone degree-moment completion. The coupled inequality
 U+H>=c remains EXACTLY the original Wilf target, not an extra established bound
 or an activated allocation programme. No uniform proof of it was obtained.
+
+## E501 — a rigidity fragment for the full unused contribution
+
+2026-10-24. PAPER proof fragment inside the ALL-S target U>=c-H from E500.
+The reduction to that FULL inequality is exact. This is NOT a claim that every
+S reduces to the case U=0, or a programme to classify bounded U. All actual
+costs, canonical source words and the complete final window are retained.
+No novelty, Lean verification, external review or numerical run is claimed.
+RESEARCH DECISION: CLOSED as a target. The elementary fragment is preserved
+below, but it supplies no proved reduction from all S to its zero/one cases.
+It is not counted as an advance on the universal sign. Do not pursue small U,
+classify its equality cases, or treat another local extension as the next task.
+
+Use E,L_E,Z,U_j,U,H from E500. Every coordinate unit belongs to E: a minimal
+generator p>=c+m would decompose as m+(p-m), since p-m>=c. In each direction j,
+a column with critical top z has exactly z_j left cells; a column whose top is
+left has only left cells. Therefore the UNUSED contribution has the exact form
+
+    U=sum_j sum_(j-columns C with top(C) in L_E) |C|.   (LOWER-COLUMNS)
+
+In particular U is an integer, not a fractional capacity or a discarded phase.
+
+### Zero unused contribution forces a simplex and W=0
+
+If U=0, EVERY coordinate column ends at a critical cell. Since critical cells
+are maximal in E, every nonmaximal word has all e coordinate children in E.
+Pick a maximal word a of total degree q. If a_i>0, the parent a-e_i is nonmaximal,
+so b=a-e_i+e_j belongs to E for every j. This b is also maximal: otherwise its
+i-child b+e_i=a+e_j would belong to E, contradicting maximality of a.
+
+The coordinate-exchange graph of all nonnegative words of degree q is connected.
+Thus every degree-q word belongs to E and is maximal. Every smaller-degree word
+is a divisor of one of them, and no larger-degree word can belong to E. Hence
+
+    E={z in N^e: |z|<=q}.
+
+All maximal words are critical (a maximal left word would end a lower column),
+so Z is exactly the degree-q layer. The smallest value there is q*m, attained
+by q copies of the multiplicity generator; consequently c=q*m. Also H=q*|Z|=q*m.
+The exact E500 identity now gives W=U+H-c=0. N is treated separately with c0.
+This proves the zero-unused case without classifying any additional families.
+
+### Exactly one unused contribution is impossible when e>=3
+
+Assume U=1. LOWER-COLUMNS gives exactly one lower column, say in direction j,
+of length1 and top a. Thus a_j=0 and a+e_j is missing. Every other child of a
+belongs to E; otherwise there would be another lower column. In particular a
+is nonmaximal. Every other nonmaximal word likewise has all coordinate children.
+
+The word a is nonzero because all coordinate units belong to E. Choose i with
+a_i>0; then i!=j. Since e>=3 choose k distinct from i,j. Put u=a-e_i. It is
+nonmaximal, so v=u+e_j and w=u+e_k both belong to E. The i-child of v is
+a+e_j, which is missing. Since v!=a, this forces v to be maximal.
+
+On the other hand, w has i-child a+e_k in E, so w is nonmaximal and w!=a.
+It therefore has j-child w+e_j in E. But w+e_j=v+e_k, contradicting maximality
+of v. This proves U!=1 for e>=3.
+
+The dimension hypothesis matters: for <2,5>, c4,L={0,2}, critical4 and5 have
+lengths2 and1, giving U=2*2-3=1. This is a hand boundary check of the lemma,
+not a new two-generator Wilf target.
+
+### Exact consequence and remaining quantitative obligation
+
+Two-generator S already satisfy Wilf. Hence ANY genuine Wilf counterexample
+would satisfy e>=3, U>=2 and c-H>=U+1>=3. These statements concern every possible
+counterexample; they impose no upper bound on multiplicity, depth, e or U.
+
+The local proof above does NOT establish U>=c-H for arbitrary U. Its contradiction
+uses the uniqueness of the lower column: with several lower columns, the newly
+exposed missing children may terminate in other lower columns. No distinctness
+or bound on the accumulated numerical shortfall follows by summing this argument.
+No general reduction decreasing U while preserving source data or W is proved.
+
+A continuation toward the full bound must retain the numerical interval data,
+not just the qualitative rigidity. An attempted general summation returns the
+FULL integer-level obligation of E494; dropping its retained slack would repeat
+the false phase-only step. No such shortcut is taken here. The quantitative
+inequality U>=c-H, and therefore the universal proof, remains unproved.
+Do not expand this fragment into small-U cases, transport/selector repairs, or
+another identity-driven programme.
+
+The subsequent full-arrival attempt also gives no new estimate. Summing
+w_(r+delta_j)<=w_r+p_j over ALL r cancels the birth values and yields only
+0<=m*p_j. Retaining truncated arrival terms instead recovers E497's exact
+overlap budget, whose required bound has not been proved. Neither calculation
+is a universal positivity argument or a reason to restart an auxiliary target.
