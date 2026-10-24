@@ -6172,3 +6172,71 @@ sacred. Actual Xi integrated loss and full y-surplus/row slacks remain the other
 two universal lines. No unit expansion, oldorbit/ray/repair census or new rental.
 All scoped jobs terminal, data/code hashes match worker/laptop; goal ACTIVE.
 No universal Wilf proof/counterexample, new manuscript, Lean or novelty assertion.
+
+### 2026-10-23 22:47 EDT — E485–E487: exact blocked prefixes and inherited-debt exclusion guard
+
+Scope: Proves Wilf for EVERY S if the principal negativeQ one-original-label bridge
+or full-reserve payment is proved; finishing chain E439/E462/SUPP/complements.
+Previous turn PROGRESS22e525f. Same two authorized paper agents, no new launches.
+Principal objective unchanged; no fixed-e proof or positive-profile census.
+
+NEW PRECISE MODEL: axis(sourcewordz,j) demandfloor(z_jδj/m), allowed whole HOME
+column OR SAME-j wrapped parentu<=z. Mixedbothancestor pools. Sources cannot be
+aggregated by home column with union-neighbors. New policy's universal sign and
+failure=>cofactor remain UNKNOWN; the previous own-column policy stays FALSE.
+
+GENERAL MOVE: donor column can match all its axis units into a longer parallel
+column with dividing base, via nested-prefix Hall. With native recipient axes
+staying inside and no protected mixed slots, importcapacity=min(A_donor,N_recipient).
+But protecting6frontslots in a length9,δm-1,phase8 recipient leaves2totalspares yet
+blocks a length3donor's sole unit. This LOCAL counter refutes the count-only import
+rule, not a full semigroup/policy. Root derives exact protected import capacity
+min(N'-p,A-max_t(A_t-F_t)_+), and blockage=A_t-F_t=P_t-N_t-e_t. Geometric agent
+independently checks all parent/arrival indices and disjoint/native cohort guards.
+This is an all-rank local theorem, not global payment; protected mixed assignments
+may themselves need rerouting. Native onward export changes the isolated bound.
+
+ARITHMETIC ADVANCE: ifδp1 andpurep prefix0..t-1 exist, axisresetx residue t cannot
+create a NEW carry on contexty_j0 without a residue collision. Henceκ(x+y)=κ(y).
+This is general across context support but does not erase inheritedκy. Base-ideal
+axis selections also preserve old cuts under the new model; no free uncrossing
+to that class is established. These are actual necessary structures, not generic
+periodicity or a one-original-label theorem.
+
+ONE FINITE CONTROL: target inherited high-rank contexts withoutδ1. Scalar77 and
+one153bump of the OLD E413source gives ONE explicit153e11 input (list inSTATE).
+Exact actualG persists; allcofactors1. ExistingC plus independentheap/edge/attainment/
+canonicallex/minimality/invariants pass: c141602,g84060,W491360,Dep1090,κ69,N102,
+Q1123,R490237. Four nonidentity tight edges; uniqueness NOT assumed. Eight actual
+contexts haveκy=κz1 afterresets13/17. BOTH old andnew rules already complete359;
+the test does NOT distinguish completion or test the hard global sign. Newflowuses
+68cross-columnunits but they are unnecessary/nonminimal sinceoldcompleted. Every
+primal/equalcut/source-direction/signed-column check passes. Runtime0.129207s,
+singlecaseSTOP. R>=olddef is trivial0. No second input/GPU/rental/orbit expansion.
+
+STRONGER PAPER GUARD: S=<101,102,154,161,171> retains the VALIDδp1/prefix hypotheses.
+Gaps307/539 by termcounts prove uniqueApéry4p408 and2j+k+l640; reset2j residue5,
+contextk+l hasκ1, andsourceκ1 survives. Allcofactors1,3e<m,c>=540>4m. This refutes
+reset-to-TOTAL-zero, not the valid equality, Q or Wilf. Agent independently checks
+uniqueness as well as membership—Apéry membership alone would not put a specified
+word in an arbitrary canonical tile. No W/Q/source-wide numerical evaluation.
+
+ACTUAL-R INSURANCE: remainsUNKNOWN. Depth orders a proposed path but does not
+injectively charge net unmatched units to boundary/depth copies. Same drop can
+be reused by different paths. The homogeneous detour is exactlyE416, so STOP it
+and do not call it a new cutoff or payment. Keep maximalΓμ as well as nonmaxΓ(μ-1).
+
+GLOBAL REVIEW / DECISION: valid unprotected exports alone were too weak; the exact
+prefix theorem exposes where earlier mixed assignments block them. Reset arithmetic
+does forbid fresh debt, but the normalized101guard makes inherited multiplicity
+an unavoidable part of the next proof. CONTINUE the negativeQ bridge and seek a
+GLOBAL protected-prefix/original-label reassignment or actualR injection; do not
+let another local formula stand in for that theorem. Close the one passing higher-
+rank control and all count-only/total-annihilation shortcuts. Credible leverage is
+the connection between explicit prefix blockage and residue-collision restrictions;
+the missing step is simultaneous accounting for inherited contexts across labels.
+Any proposed augmenting rule must survive both the old65counter and101guard.
+Sourcepath ACTUALXi and coupledfullY/rowslacks remain the other universal reserve
+lines; neither is silently replaced by this stronger policy. No automatic compute
+is activated. Data/code hashes match worker/laptop, all jobs terminal, goalACTIVE.
+No universal proof/counterexample, new manuscript, formal Lean or novelty claim.

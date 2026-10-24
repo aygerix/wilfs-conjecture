@@ -2552,11 +2552,11 @@ def audit_mstd_shadow(R):
             'all_apery_entries_checked':len(w),'membership_method':'exact unbounded-coin bitset DP',
             'least_root_exit_collision':collisions}
 
-def audit_large_apery_edges_481(D):
+def audit_large_apery_edges_481(D, allow_ties=False):
     """Exact independent heap distances/attainment; no conductor-sized DP."""
     import heapq
     m=D['m'];G=sorted(D['generators']);w=D['w']
-    assert m==65 and len(G)==4 and G[0]==m and gcd(*G)==1
+    assert m>=2 and len(G)==D['e'] and G[0]==m and gcd(*G)==1
     distance=[None]*m;distance[0]=0;queue=[(0,0)]
     while queue:
         value,s=heapq.heappop(queue)
@@ -2566,13 +2566,16 @@ def audit_large_apery_edges_481(D):
             if distance[t] is None or candidate<distance[t]:
                 distance[t]=candidate;heapq.heappush(queue,(candidate,t))
     assert distance==w and w[0]==0 and all(v%m==s for s,v in enumerate(w))
-    gr,z=factor_basis(D);primitives=set(range(1,m));edges=tight=0
+    gr,z=factor_basis(D);primitives=set(range(1,m));edges=tight=tied=0
     for j,delta in enumerate(gr):
         p=w[delta]
         for s,value in enumerate(w):
             t=(s+delta)%m;assert w[t]<=value+p;edges+=1
             if w[t]==value+p:
-                assert z[t]==tuple(a+int(k==j) for k,a in enumerate(z[s]))
+                candidate=tuple(a+int(k==j) for k,a in enumerate(z[s]))
+                assert z[t]<=candidate
+                if z[t]!=candidate:tied+=1
+                if not allow_ties:assert z[t]==candidate
                 tight+=1
                 if s:primitives.discard(t)
     assert sorted([m]+[w[s] for s in primitives])==G
@@ -2584,9 +2587,11 @@ def audit_large_apery_edges_481(D):
     c=max(w)-m+1;g=sum(v//m for v in w[1:]);e=len(G);q=(c+m-1)//m;rho=q*m-c;r=w.index(max(w))
     assert (D['e'],D['c'],D['g'],D['W'],D['q'],D['rho'],D['r'])==(e,c,g,e*(c-g)-c,q,rho,r)
     assert D['mu']==[max(0,(c-v+m-1)//m) for v in w]
-    return {'method':'independent heap SSSP plus integer edge/attainment/unique-word checks',
-            'generator_edges':edges,'tight_unique_word_edges':tight,'attaining_predecessors':predecessors,
-            'all_apery_values':len(w),'all_original_generators_minimal':True}
+    return {'method':'independent heap SSSP plus integer edge/attainment/canonical-word checks',
+            'generator_edges':edges,'tight_unique_word_edges':tight-tied,'tight_canonical_edges':tight,
+            'attaining_predecessors':predecessors,
+            'all_apery_values':len(w),'all_original_generators_minimal':True,
+            'nonidentity_tight_edges':tied,'unique_exponent_vectors':tied==0}
 
 def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
     """E474/E475 fixed controls: joint two-pool assignment with reassignable axes.
@@ -2602,7 +2607,12 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
         'small482':([65,3381,6275,7337],(65,4,47339,24192,45249)),
     }
     distance_certificate=None
-    if control=='unit481':
+    if control=='highrank486':
+        assert sorted(seed['generators'])==[153,12935,13090,24409,25025,36498,47509,58982,70917,71225,83160]
+        assert seed['m']==153 and seed['e']==11 and seed['c']>4*153
+        stats=tuple(seed[k] for k in ('m','e','c','g','W'))
+        distance_certificate=audit_large_apery_edges_481(seed,allow_ties=True)
+    elif control=='unit481':
         u=seed['_unit481'];L=65*65+u
         assert 1<=u<65 and gcd(u,65)==1
         assert sorted(seed['generators'])==sorted([65,270*L+65,147*L,319*L])
@@ -2618,7 +2628,7 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
         assert control in controls
         wanted,stats=controls[control]
         assert sorted(seed['generators'])==wanted
-    if control!='unit481':audit(seed)
+    if control not in ('unit481','highrank486'):audit(seed)
     assert (seed['m'],seed['e'],seed['c'],seed['g'],seed['W'])==stats
     geometry=support_geometry(seed);m=seed['m'];gr,z=factor_basis(seed);d=len(gr)
     if control=='cached63':
@@ -2770,6 +2780,129 @@ def audit_joint_ancestor(seed, control='cached63', forced_residue=None):
             'rule_obstruction_lemma_failure':flow<K,'full_Q_failure':geometry['Q_full']<0,
             'genuine_negative_W':seed['W']<0,'source_count':1,
             'elapsed_seconds':time.monotonic()-started}
+
+def audit_axis_ancestor_486(seed, old):
+    """Exact source/direction-labelled axis transport; no column quota shortcut."""
+    import time
+    started=time.monotonic();m=seed['m'];gr,z=factor_basis(seed);resources=old['network']['resources'];columns=old['network']['columns']
+    groups=[dict(g) for g in old['network']['groups'] if g['kind']=='mixed']
+    for cid,C in enumerate(columns):
+        j=C['direction'];delta=gr[j]
+        for n,s in enumerate(C['residues']):
+            q=n*delta//m
+            if q:groups.append({'kind':'axis','column':cid,'direction':j,'residue':s,'word':list(z[s]),'demand':q})
+    assert sum(g['demand'] for g in groups)==old['K']
+    source=0;gstart=1;rstart=1+len(groups);sink=rstart+len(resources);nodes=sink+1;K=old['K']
+    adj=[[] for _ in range(nodes)];arcs=[];forward=[];extra_permissions=0
+    def add(u,v,cap):
+        at=len(adj[u]);bt=len(adj[v]);adj[u].append([v,bt,cap]);adj[v].append([u,at,0]);arcs.append([u,v,cap]);forward.append((u,at))
+    for i,g in enumerate(groups):
+        node=gstart+i;add(source,node,g['demand']);word=g['word']
+        if g['kind']=='mixed':
+            allowed=[k for k,R in enumerate(resources) if all(a<=b for a,b in zip(z[R['anchor']],word))]
+        else:
+            home=set(columns[g['column']]['wrap_resources'])
+            allowed=[k for k,R in enumerate(resources) if k in home or (R['kind']=='wrap' and R['direction']==g['direction'] and all(a<=b for a,b in zip(z[R['anchor']],word)))]
+            extra_permissions+=sum(k not in home for k in allowed)
+        for k in allowed:add(node,rstart+k,K+1)
+    for k,R in enumerate(resources):add(rstart+k,sink,R['capacity'])
+    flow=0
+    while True:
+        level=[-1]*nodes;level[source]=0;queue=[source]
+        for u in queue:
+            for v,rev,cap in adj[u]:
+                if cap and level[v]<0:level[v]=level[u]+1;queue.append(v)
+        if level[sink]<0:break
+        cursor=[0]*nodes
+        def send(u,amount):
+            if u==sink:return amount
+            while cursor[u]<len(adj[u]):
+                edge=adj[u][cursor[u]];v,rev,cap=edge
+                if cap and level[v]==level[u]+1:
+                    sent=send(v,min(amount,cap))
+                    if sent:edge[2]-=sent;adj[v][rev][2]+=sent;return sent
+                cursor[u]+=1
+            return 0
+        while True:
+            amount=send(source,K+1)
+            if not amount:break
+            flow+=amount
+    certified=[];balance=[0]*nodes
+    for (u,v,cap),(at,idx) in zip(arcs,forward):
+        f=cap-adj[at][idx][2];assert 0<=f<=cap
+        balance[u]-=f;balance[v]+=f;certified.append([u,v,cap,f])
+    expected=[0]*nodes;expected[source]=-flow;expected[sink]=flow;assert balance==expected
+    reachable={source};queue=[source]
+    for u in queue:
+        for v,rev,cap in adj[u]:
+            if cap and v not in reachable:reachable.add(v);queue.append(v)
+    assert sink not in reachable
+    cut=sum(cap for u,v,cap in arcs if u in reachable and v not in reachable);assert cut==flow
+    chosen_groups=[i for i in range(len(groups)) if gstart+i in reachable]
+    chosen_resources=[k for k in range(len(resources)) if rstart+k in reachable]
+    assert sum(groups[i]['demand'] for i in chosen_groups)-sum(resources[k]['capacity'] for k in chosen_resources)==K-flow
+    if flow<K:assert any(groups[i]['kind']=='mixed' for i in chosen_groups)
+    loads=defaultdict(int);exports=defaultdict(int);unpaid=defaultdict(int);crossflow=0;routed=defaultdict(list)
+    for u,v,cap,f in certified:
+        if gstart<=u<rstart and rstart<=v<sink and f:routed[u-gstart].append((resources[v-rstart],f))
+    for i,g in enumerate(groups):
+        assigned=0
+        for R,f in routed[i]:
+            assigned+=f
+            if g['kind']=='axis':
+                assert R['kind']=='wrap' and R['direction']==g['direction']
+                exports[g['column']]+=f;exports[R['column']]-=f
+                if R['column']!=g['column']:
+                    assert all(a<=b for a,b in zip(z[R['anchor']],g['word']));crossflow+=f
+            elif R['kind']=='wrap':loads[R['column']]+=f
+        if g['kind']=='axis':unpaid[g['column']]+=g['demand']-assigned
+        if flow==K:assert assigned==g['demand']
+    assert sum(exports.values())==0
+    for cid,C in enumerate(columns):assert loads[cid]<=C['N']+exports[cid]+unpaid[cid]
+    return {'status':'exact primal/equal-cut and label/column checks verified','source':old['source'],
+            'K':K,'flow':flow,'deficiency':K-flow,'completion':flow==K,
+            'extra_axis_permissions':extra_permissions,'cross_column_axis_units':crossflow,
+            'net_axis_exports':[[cid,v] for cid,v in sorted(exports.items()) if v],
+            'unpaid_axis':[[cid,v] for cid,v in sorted(unpaid.items()) if v],
+            'network':{'nodes':nodes,'source':source,'sink':sink,'groups':groups,'resources':resources,'columns':columns,
+                       'arcs_with_flow':certified,'reachable':sorted(reachable),'cut_capacity':cut,
+                       'cut_groups':chosen_groups,'cut_resources':chosen_resources},
+            'elapsed_seconds':time.monotonic()-started}
+
+def run_highrank_486(executable, output):
+    """ONE explicit inherited-carry test; no mutation, repair, or continuation."""
+    import subprocess,time
+    started=time.monotonic();G=[153,12935,13090,24409,25025,36498,47509,58982,70917,71225,83160]
+    proc=subprocess.run([executable,'--axis-seed',*map(str,G)],capture_output=True,text=True,timeout=2)
+    assert proc.returncode==0 and proc.stdout.strip().startswith('{')
+    seed=json.loads(proc.stdout);assert sorted(seed['generators'])==G and seed['e']==11 and seed['c']>4*153
+    heap=audit_large_apery_edges_481(seed,allow_ties=True)
+    if time.monotonic()-started>=50:
+        result={'seed':seed,'heap':heap,'stop':'soft_time_limit','new_source_count':1}
+    elif seed['W']<0:
+        result={'seed':seed,'heap':heap,'stop':'genuine_negative_W','new_source_count':1}
+    else:
+        old=audit_joint_ancestor(seed,'highrank486')
+        if time.monotonic()-started>=50:
+            result={'seed':seed,'heap':heap,'old':old,'stop':'soft_time_limit','new_source_count':1}
+        else:
+            new=audit_axis_ancestor_486(seed,old);gr,z=factor_basis(seed);contexts=[]
+            for s,word in z.items():
+                for j,a in enumerate(word):
+                    if a!=2:continue
+                    y=list(word);y[j]=0
+                    ky=sum((b*delta)%153 for b,delta in zip(y,gr))//153
+                    if ky:
+                        contexts.append({'residue':s,'word':list(word),'direction':j,'reset_residue':(2*gr[j])%153,
+                                         'context_word':y,'context_kappa':ky,
+                                         'source_kappa':sum((b*delta)%153 for b,delta in zip(word,gr))//153})
+            result={'seed':seed,'heap':heap,'old':old,'new':new,'inherited_context_count':len(contexts),
+                    'inherited_contexts':contexts,'new_source_count':1,
+                    'R_covers_old_deficiency':old['source']['R']>=old['deficiency'],
+                    'stop':'first_new_policy_failure' if not new['completion'] else 'one_source_limit'}
+    result['elapsed_seconds']=time.monotonic()-started
+    with gzip.open(output,'wt') as f:json.dump(result,f,indent=2)
+    return result
 
 def audit_axis_transport_483(saved):
     """Exactly two new, original-direction axis permissions on saved E482."""
@@ -3518,6 +3651,14 @@ def audit_cover_cubic(C):
             'membership_certificate':'all generator-edge inequalities plus attaining positive-cost predecessor words'}
 
 if __name__=='__main__':
+    if sys.argv[1]=='--highrank486-check':
+        assert len(sys.argv)==4
+        result=run_highrank_486(sys.argv[2],sys.argv[3])
+        print('HIGHRANK486-CHECK',json.dumps({k:v for k,v in result.items() if k not in ('seed','old','new','inherited_contexts')},sort_keys=True))
+        if 'new' in result:
+            print('HIGHRANK486-SOURCE',json.dumps(result['new']['source'],sort_keys=True))
+            print('HIGHRANK486-ALLOCATION',json.dumps({k:v for k,v in result['new'].items() if k not in ('network','source')},sort_keys=True))
+        sys.exit(0)
     if sys.argv[1]=='--axis-transport483-check':
         assert len(sys.argv)==4
         with open_text(sys.argv[2]) as source:saved=json.load(source)

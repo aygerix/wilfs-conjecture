@@ -2576,3 +2576,64 @@ routines were unchanged. Python compile and whitespace checks pass. Every scoped
 job is terminal; no automatic new image, source, forced critic or rental is active.
 Paper E479 is not a numerical evaluation of13/17/19/31. All times are fixed
 diagnostic durations, not throughput/GPU benchmarks or exhaustive-domain claims.
+
+## E486 — one higher-rank inherited-debt control under the new rule
+
+2026-10-23, Fejer CPU, littlewood-paley-8375,us-east1-b,~/wilf-e472. Scope and
+ONE-input/60s-hard/50s-soft stop policy were written before execution. Existing
+upper_scan_473 binary unchanged. This is a NEW permission predicate on ONE explicit
+input, not an old orbit/15-repair replay, unit scan or sample expansion.
+
+Input:
+
+    G=153,12935,13090,24409,25025,36498,47509,58982,70917,71225,83160.
+
+It is scalar77 applied to the OLD E413 source, then +153 on scaled166. No old
+tile/top/tight pattern preservation was assumed. Actual minimal G/e11 is explicitly
+checked. The primitive residues are exactly77..86, with no residue1, and every
+deletion cofactor1. Exact C array-Dijkstra and independent heap/canonical-edge/
+attaining-predecessor/minimal-generator/invariant checks agree:
+
+    m153,e11,c141602,g84060,ell57542,W491360,
+    Dep1090,kappa69,N102,Q1123,R490237.
+
+The independent certificate covers153 values,1530 generator-edge inequalities,
+152 attaining predecessors and317 tight canonical comparisons. Four tight edges
+are nonidentity factorization trades; uniqueness is FALSE and was NOT required.
+Heap validation accepts canonical lex<=candidate, retaining ties. No enormous
+conductor-sized membership/minimality DP is run on these high input values.
+
+The old own-column graph already completes359/359. The new graph keeps an axis
+group for EACH(sourceword,direction) with demandfloor(z_j*delta_j/m), and allows
+the union of home-column wrap slots with same-direction ancestor wrap slots.
+It has1324 additional group-to-resource permissions and also completes359/359.
+Both primal balances/capacities and equal-capacity residual cuts pass independently
+of the maxflow stopping rule. All290 axes and69 mixed demands are paid.
+
+The exhibited new flow uses68 cross-column axis units. This is NOT a necessary
+or minimum use: the old graph already completed. Signed column-load/export and
+original-direction/ancestor checks pass, with no unpaid axis group. The run finds
+EIGHT actual contexts z_j=2,y=z-2e_j with kappa(y)=kappa(z)=1; reset residues are
+13 or17. This validates inherited debt in the intended higher-rank geometry, but
+does NOT distinguish completion of the two policies or establish their universal
+validity. The point insurance check R>=olddef is trivial here because olddef0.
+
+Total runtime0.129206625s; new network0.056690323s. Stop one_source_limit, no extra
+case/mutation/critic/repair. No GPU/new rental or performance benchmark. Complete
+source, both networks/primal-cut witnesses, inherited contexts and quotas are in
+p39/data/highrank_486.json.gz. The diagnostic is CLOSED.
+
+Reproduce on Fejer/Linux, using the unchanged C binary or compile as in E475:
+
+    timeout 60s python3 src/scratch/p39/verify_probe.py --highrank486-check /tmp/upper_scan_473 /tmp/highrank_486.json.gz
+
+Worker/laptop SHA256s match:
+
+    highrank_486.json.gz 703c56d957bf45bdda243d7dfb5d742b5f83c23f2a3db8bc0f0be28103a8eea6
+    verify_probe.py 12f58442ad3ea6b10bad29f44bb61c39e9daf27f4d98f7ada4c6c5357078e8a1
+
+The existing heap checker was generalized to canonical ties for this exact guarded
+input; old481/482 calls retain their uniqueness requirement. No closed source
+audits were rerun. Python compile and whitespace checks pass. All jobs terminal.
+E485 prefix/reset/bundle statements and E487's101/102/154/161/171 guard are PAPER
+ONLY: no other source or flow computation and no W/Q claims on the paper guard.

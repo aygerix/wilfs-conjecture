@@ -751,3 +751,26 @@ N_C quotas are valid only with own-column axes; after transport the valid bound
 is mixedload_C<=N_C+netaxisexport_C, with global netexports0. Ignoring these signed
 exports recreates an artificial obstruction; allowing unrestricted arbitrary
 transport merely restates Q>=0. A direction/source-sensitive theorem remains needed.
+
+E485–E487 (2026-10-23): protected mixed occupancy invalidates the count-only
+parallel-column import rule min(donoraxis,N_recipient-protected). A local recipient
+of length9,stepm-1,phase8 has V36,A28,N8. Protect all6 slots at parent positions
+0..2; native axes fit with2 total slots spare, but a length3 donor's sole unit
+can reach only those protected slots. Its import rank is0. This is a LOCAL
+physical-column counter, not a genuine-source/full-policy or Wilf counterexample.
+The correct protected import test uses source-indexed prefix Hall deficits; see
+PROOFS PREFIX-IMPORT/BLOCKED-PREFIX. Mixed reassignment must remain available.
+
+Reset-exclusion proves kappa(x+y)=kappa(y), NOT total debt0. This distinction persists
+WITH the valid residue-one prefix in PAPER S=<101,102,154,161,171>. Unique Apéry
+words4p408 and2j+k+l640, proved by gaps307/539, supply x2j residue5, prefix0..4p,
+and contexty=k+l with inheritedkappa1. Sourcekappa1 survives. Allcofactors1,
+c>=540>4m,3e<m. No W/Q or full-source numerical value is asserted. Thus a global
+payment cannot stop at fresh/reset carries or assume that contexts have support1.
+
+The E486 higher-rank actual control has8 inherited contexts and passes both old
+and new rules359/359; it does NOT demonstrate that68 exhibited transports are
+needed, and it supplies no universal sign evidence. Close that ONE-case test;
+do not enlarge a passing census. FullR insurance remains UNKNOWN: the depth
+potential does not prove distinctness of charges to the same boundary/depth copies.
+The homogeneous shortcut duplicates E416 and is stopped, not promoted again.

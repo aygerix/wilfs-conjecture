@@ -13699,3 +13699,186 @@ the target; another rank identity is not counted as a proof of it.
 The same authorized geometric reviewer independently checked both rank/attainment
 and cut-elimination arguments, including the occupied-SLOT versus frozen-EDGE
 distinction. No computational matching run or formal Lean check was performed.
+
+## E485 — exact parallel-column import capacity and a reset exclusion
+
+2026-10-23. Same universal negative-Q/cofactor programme (E439/E462/SUPP plus
+complements). These are components for an arbitrary-rank transport proof, not
+Wilf theorems for fixed rank or a reduction to residue-one primitives.
+
+The new AXIS-ANCESTOR-TRANSPORT rule is explicit: axis group (z,j) has demand
+floor(z_j*delta_j/m), if positive. It may use any wrapped slot in its HOME column,
+or a SAME-original-direction wrapped slot whose parent divides z. No axis boundary
+or different-direction destinations. Mixed demands keep both ancestor resource
+pools. Groups with different source words cannot be merged by union-neighbors:
+their cross-column prefix permissions differ. Universal completion and its
+failure=>one-label cofactor conclusion are UNKNOWN. E483 tested only two added arcs.
+
+### A protected-prefix formula — PROVED on paper
+
+Take distinct parallel columns C,C' in original direction j, donor length L and
+recipient length L'>=L. Recipient base divides donor base, as holds for such
+columns in any downset. Write delta=delta_j, q_n=floor(n*delta/m), and
+A=sum_(0<=n<L)q_n. Recipient native axes A' retain arbitrary access to their own
+column, with V' physical wrapped slots and N'=V'-A'. Let P be a protected set of
+p mixed slots in that column, with p<=N'. No old mixed token is evicted or counted
+as free. Donor axes retain their distinct source positions n. ALL native axes
+remain inside C' in this isolated move; onward export would change the bound.
+
+For 0<=t<L define
+
+    A_t=sum_(0<=n<=t)q_n,
+    F_t=#unprotected recipient wrap slots with parent coordinate<=t.
+
+The source-specific recipient neighborhoods are nested with n. A selected donor
+unit set whose largest source position is t has neighborhood F_t and at most A_t
+demand; including all units through t maximizes that deficit. Ordinary finite
+matching therefore gives
+
+    nu=A-max_(0<=t<L)(A_t-F_t)_+.
+
+The EXACT maximum number of donor axes that can be imported while preserving P
+and all native axes is
+
+    I_max=min(N'-p,nu).                                (PREFIX-IMPORT)
+
+The upper bounds are recipient free capacity and source-specific matching rank.
+For attainment take I_max distinct donor units/slots from a maximum such matching;
+the remaining V'-p-I_max slots fit all A' native axes. If the donor already has
+an own-column assignment, removing precisely those exported units preserves the
+assignment of the others. This is a two-column move, not a simultaneous global
+transport theorem or a claim that arbitrarily many donor columns pay independently.
+
+Let V_t count wraps internal to recipient coordinates0..t, and let e_t be the
+capacity of its next edge t->t+1 if that edge exists and wraps, otherwise0. Put
+N_t=V_t-A_t. The ordinary prefix inversion identity gives N_t>=0. If P_t is the
+number of protected slots with parent coordinate<=t, then
+
+    A_t-F_t=P_t-N_t-e_t.                              (BLOCKED-PREFIX)
+
+A genuinely inaccessible donor prefix therefore has protected occupancy strictly
+exceeding its inversion reserve PLUS the next wrapped-edge capacity. This is the
+precise quantity a global augmentation/cofactor argument must explain.
+
+Without protection, F_t>=V_t>=A_t, so nu=A and I_max=min(A,N'). The same authorized
+geometric reviewer independently checked this unprotected bundle construction.
+The protected formula follows from the explicitly nested finite neighborhoods;
+it is not an assertion that total spare quota alone determines feasibility.
+The same reviewer independently checked the protected formula and its parent/
+arrival indexing, including protected slots of the outgoing edge in P_t.
+
+### A local protected-capacity shortcut is FALSE
+
+For any m>=10, take delta=m-1 and a recipient length9 with starting phase8. Its
+labels are8,7,...,0. Thus V'=36,A'=28,N'=8. Protect all6 slots at parent positions
+0,1,2. Native axes still fit in30 remaining slots, with total spare quota2. A
+length3 donor has just one axis unit, at source position2. Every recipient slot
+reachable by that unit is protected, so its import rank is0, not min(1,2)=1.
+At t2, A_t1,F_t0 and BLOCKED-PREFIX gives deficiency1. This is a physical-column
+matching counterexample, NOT a constructed numerical semigroup or failure of the
+full new policy: globally one may reassign the protected mixed units.
+
+### Small resets exclude fresh carries, but not inherited debt — PROVED
+
+Suppose an ORIGINAL coordinate p has delta_p=1, and D contains0,e_p,...,(t-1)e_p.
+Let x=n*e_j, j!=p, have residue t in1..m-1. If y_j=0 and x+y lies in D, then
+
+    kappa(x+y)=kappa(y).                              (RESET-EXCLUSION)
+
+Indeed their difference is [t+phi(y)>=m]. If positive, phi(x+y) is in0..t-1,
+colliding with the pure-p word already present; x+y has positive j-coordinate
+and cannot equal that pure word. Residue injectivity forbids this. This applies
+to contexts of ANY support. In E482 x=2g has residue5 and p-axis0..4, so g²r and
+pg²r cannot acquire a new carry. Their contexts happen to have kappa0.
+
+The delta_p1/prefix hypotheses are not automatic, and kappa(y) need not vanish.
+No unit normalization preserving actual Q is inferred; E465 changes Q. The next
+paper guard below keeps BOTH reset hypotheses while demonstrating inherited debt.
+
+### A persistence criterion for bad cuts under the enlarged rule — PROVED
+
+For each direction j choose a set B_j of column bases downward closed in the
+other coordinates, and select ALL axis units whose home columns lie there. Every
+new ancestor destination has base b'<=b, hence remains inside those columns;
+home arcs do also. Thus an old Hall cut with these base-ideal axis selections
+retains exactly its old neighborhood/capacity under the new permissions.
+
+This is a counter-cut criterion, not an uncrossing theorem for arbitrary deficient
+components. E482's g-bases0,p,pr,pr² were not an ideal: r,r² were omitted, exactly
+the escape used by E483. Protected-prefix blockage prevents assuming one can
+freely saturate the axis selections into such ideals.
+
+Full actual-R insurance R>=max_E D_old(E) is also UNKNOWN. It would imply Wilf
+because D_old(D)=-Q. The attempted actual-depth charging did not prove distinctness
+of boundary/depth copies; it reduces to a simultaneous injection obligation, not
+a new sign lemma. The homogeneous attempt duplicates E416 and is stopped.
+
+## E486 — one actual higher-rank inherited-carry control, then CLOSED
+
+2026-10-23. New-predicate mechanism check, not a fixed-e Wilf target or census.
+Starting from the OLD E413 source, multiply nonmultiplicity generators by77 and
+add153 to the scaled166. The ONE new source is
+
+    <153,12935,13090,24409,25025,36498,47509,58982,70917,71225,83160>.
+
+Its ten residues are77..86, with no residue1. Every deletion cofactor1: unbumped
+generators have gcd77 using gcd170,317=1, and the bump is coprime to77; deleting
+another primitive leaves153 and nine consecutive residues. Exact C and independent
+heap/edge/attainment/canonical-lex/minimality/invariant certificates give
+
+    m153,e11,c141602,g84060,W491360,
+    Dep1090,kappa69,N102,Q1123,R490237.
+
+The source has four nonidentity tight primitive edges; uniqueness is NOT assumed.
+There are EIGHT actual contexts z_j2,y=z-2e_j with kappa(y)=kappa(z)=1 and small
+reset residues13 or17. Thus inherited debt is present. Both OLD and enlarged
+rules already pay ALL359 demands. This control does NOT distinguish completion
+of the two policies and supplies no evidence of a uniform sign theorem. The new
+exhibited assignment uses68 cross-column axis units; necessity/minimality is not
+claimed. Every group/source/direction/slot capacity, balance, signed column bound
+and equal-capacity cut passes. Runtime0.129207s, new network0.0566903s on Fejer CPU.
+No case expansion, old orbit replay or GPU rental. Full data:highrank_486.json.gz.
+
+## E487 — inherited debt survives even with the valid unit-reset prefix
+
+2026-10-23. PAPER falsifier of a stronger universal shortcut, not Wilf on e5 and
+not a counterexample to RESET-EXCLUSION. No numerical source or flow evaluation.
+Take
+
+    S=<101,p,j,k,l>=<101,102,154,161,171>.
+
+All five generators are primitive, since they lie below2m. Every deletion gcd1:
+use101/102 except when deleting102 (then101/154), and102/161 when deleting101.
+
+The number307 is a gap. With N terms and offsets0,1,53,60,70 above m101, N<=3.
+For N3, offset4 is impossible: at most three ones or a high offset at least53.
+For N2, offset105 is impossible: two high offsets give at least106, one gives at
+most71, and no high offset gives at most2. N1 gives value at most171. Thus4p=408
+is Apéry, and summand closure gives the whole pure-p prefix0..4p.
+
+The number539 is also a gap. For N5 the offset34 is impossible (ones<=5 or a high
+offset>=53). For N4 it is135. At most one high offset gives at most73, three high
+offsets at least159, and two give106,113,120,123,130,140 plus at most two ones;
+none equals135. N<=3 gives value at most513. Hence
+
+    x+y=2j+k+l=640 is Apéry,   c>=640-101+1=540>4m.
+
+These exponent words are UNIQUE, so they really occur in every canonical tile.
+For408, four terms force four unit offsets; three terms would need offset105,
+impossible with either at most one high offset or at least two. For640, six terms
+need offset34; five need135 (two high offsets plus at most THREE ones still reach
+at most133 below135, with the next pair140). Four terms must all have high offsets.
+If their multiplicities are a,b,c, then a+b+c=4 and7b+17c=24, uniquely a2,b1,c1.
+At most three terms reach at most513. Uniqueness passes to all required divisors.
+
+Let x=2j (residue5) and y=k+l. Both are Apéry by summand closure. All hypotheses
+of RESET-EXCLUSION hold, but
+
+    kappa(y)=floor((60+70)/101)=1,
+    kappa(x+y)=floor((5+60+70)/101)=1.
+
+Thus a reset can erase the NEW contribution without erasing total inherited mixed
+debt, even in the normalized sparse/deep domain with a valid residue-one prefix.
+The same geometric reviewer independently checked the gap/count argument. W and
+the full Q/network are not computed or claimed on this guard. It cannot replace
+the global inherited-debt allocation by a reset-to-zero shortcut.

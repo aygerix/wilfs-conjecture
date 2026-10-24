@@ -1585,3 +1585,20 @@ edges. The general rank target recovers the previous separable formula under
 home-column permissions and total N at the full tile. Independent paper review
 checks the elimination; its arithmetic sign and original-label conclusion remain
 unproved. No new rank-theory or allocation novelty is claimed.
+
+### E485–E487: local prefix matching versus the missing global allocation (2026-10-23)
+
+The source-position neighborhoods of one donor column are nested, so PREFIX-IMPORT
+is derived directly from the ordinary finite matching deficiency, with native
+recipient axes fitted in the complement. BLOCKED-PREFIX uses the existing column
+inversion identity; no new matching-theory novelty is claimed. Reset-exclusion and
+the101-source inherited-debt guard are direct residue/word arguments. Neither is
+a reduction to the residue-one or fixed-rank class.
+
+A limited exact-target arXiv/preprint/GitHub/conjectures.io check was made before
+the new control; it does not supply an absence/priority claim. The known c<=4m
+complement is not reverified or substituted for the universal goal. No external
+matroidal/Cayley theorem is invoked to assert a one-original-label obstruction.
+The attempted fullR injection is still unproved, and its homogeneous rewrite is
+the already recorded E416 result. No new sign theorem is attached to the passing
+higher-rank input or its deliberately nonminimal exhibited flow.
